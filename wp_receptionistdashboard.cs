@@ -292,7 +292,7 @@ namespace GeneXus.Programs {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -391,7 +391,7 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Usdtnotificationsdata", AV70USDTNotificationsData);
          }
          GxWebStd.gx_hidden_field( context, "gxhash_Usdtnotificationsdata", GetSecureSignedToken( "", AV70USDTNotificationsData, context));
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_139", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_139), 8, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_139", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_139), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vEVENTS", AV25Events);
@@ -445,8 +445,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "vDISABLEDDAYSJSON", AV21DisabledDaysJson);
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_USERACTION1", AV32IsAuthorized_UserAction1);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_USERACTION1", GetSecureSignedToken( "", AV32IsAuthorized_UserAction1, context));
-         GxWebStd.gx_hidden_field( context, "GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage), 15, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "GRIDUSDTNOTIFICATIONSDATAS_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDUSDTNOTIFICATIONSDATAS_nEOF), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "GRIDUSDTNOTIFICATIONSDATAS_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDUSDTNOTIFICATIONSDATAS_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "GRIDUSDTNOTIFICATIONSDATAS_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridusdtnotificationsdatas_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "DVPANEL_TABLECARDS_Width", StringUtil.RTrim( Dvpanel_tablecards_Width));
          GxWebStd.gx_hidden_field( context, "DVPANEL_TABLECARDS_Autowidth", StringUtil.BoolToStr( Dvpanel_tablecards_Autowidth));
@@ -523,6 +523,18 @@ namespace GeneXus.Programs {
          {
             WebComp_Wwpaux_wc.componentjscripts();
          }
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -565,7 +577,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WP_Receptionist Dashboard" ;
+         return context.GetMessage( "WP_Receptionist Dashboard", "") ;
       }
 
       protected void WBBN0( )
@@ -641,10 +653,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavKpi2_value_Internalname, "KPI2_Value", "col-sm-3 DashboardNumberCardNoBorderLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavKpi2_value_Internalname, context.GetMessage( "KPI2_Value", ""), "col-sm-3 DashboardNumberCardNoBorderLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'',false,'" + sGXsfl_139_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavKpi2_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV42KPI2_Value), 15, 0, ".", "")), StringUtil.LTrim( ((edtavKpi2_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV42KPI2_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV42KPI2_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))), TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,25);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi2_value_Jsonclick, 0, "DashboardNumberCardNoBorder", "", "", "", "", 1, edtavKpi2_value_Enabled, 0, "text", "", 15, "chr", 1, "row", 15, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\KPINumericValue", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_single_line_edit( context, edtavKpi2_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV42KPI2_Value), 15, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavKpi2_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV42KPI2_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV42KPI2_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))), TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,25);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi2_value_Jsonclick, 0, "DashboardNumberCardNoBorder", "", "", "", "", 1, edtavKpi2_value_Enabled, 0, "text", "", 15, "chr", 1, "row", 15, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\KPINumericValue", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -672,7 +684,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblViewdetailsuppliers_Internalname, "View details", lblViewdetailsuppliers_Link, "", lblViewdetailsuppliers_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblViewdetailsuppliers_Internalname, context.GetMessage( "View details", ""), lblViewdetailsuppliers_Link, "", lblViewdetailsuppliers_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -707,10 +719,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavKpi3_value_Internalname, "KPI3_Value", "col-sm-3 DashboardNumberCardNoBorderLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavKpi3_value_Internalname, context.GetMessage( "KPI3_Value", ""), "col-sm-3 DashboardNumberCardNoBorderLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'" + sGXsfl_139_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavKpi3_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV45KPI3_Value), 15, 0, ".", "")), StringUtil.LTrim( ((edtavKpi3_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV45KPI3_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV45KPI3_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))), TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,53);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi3_value_Jsonclick, 0, "DashboardNumberCardNoBorder", "", "", "", "", 1, edtavKpi3_value_Enabled, 0, "text", "", 15, "chr", 1, "row", 15, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\KPINumericValue", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_single_line_edit( context, edtavKpi3_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV45KPI3_Value), 15, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavKpi3_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV45KPI3_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV45KPI3_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))), TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,53);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi3_value_Jsonclick, 0, "DashboardNumberCardNoBorder", "", "", "", "", 1, edtavKpi3_value_Enabled, 0, "text", "", 15, "chr", 1, "row", 15, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\KPINumericValue", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -738,7 +750,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblViewdetailsresidents_Internalname, "View details", lblViewdetailsresidents_Link, "", lblViewdetailsresidents_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblViewdetailsresidents_Internalname, context.GetMessage( "View details", ""), lblViewdetailsresidents_Link, "", lblViewdetailsresidents_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -773,10 +785,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavKpi4_value_Internalname, "KPI4_Value", "col-sm-3 DashboardNumberCardNoBorderLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavKpi4_value_Internalname, context.GetMessage( "KPI4_Value", ""), "col-sm-3 DashboardNumberCardNoBorderLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 81,'',false,'" + sGXsfl_139_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavKpi4_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV48KPI4_Value), 15, 0, ".", "")), StringUtil.LTrim( ((edtavKpi4_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV48KPI4_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV48KPI4_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))), TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,81);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi4_value_Jsonclick, 0, "DashboardNumberCardNoBorder", "", "", "", "", 1, edtavKpi4_value_Enabled, 0, "text", "", 15, "chr", 1, "row", 15, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\KPINumericValue", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_single_line_edit( context, edtavKpi4_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV48KPI4_Value), 15, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavKpi4_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV48KPI4_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV48KPI4_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))), TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,81);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi4_value_Jsonclick, 0, "DashboardNumberCardNoBorder", "", "", "", "", 1, edtavKpi4_value_Enabled, 0, "text", "", 15, "chr", 1, "row", 15, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\KPINumericValue", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -804,7 +816,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblViewdetailsapp_Internalname, "View details", lblViewdetailsapp_Link, "", lblViewdetailsapp_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblViewdetailsapp_Internalname, context.GetMessage( "View details", ""), lblViewdetailsapp_Link, "", lblViewdetailsapp_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -839,10 +851,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavKpi5_value_Internalname, "KPI5_Value", "col-sm-3 DashboardNumberCardNoBorderLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavKpi5_value_Internalname, context.GetMessage( "KPI5_Value", ""), "col-sm-3 DashboardNumberCardNoBorderLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 109,'',false,'" + sGXsfl_139_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavKpi5_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV51KPI5_Value), 15, 0, ".", "")), StringUtil.LTrim( ((edtavKpi5_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV51KPI5_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV51KPI5_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))), TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,109);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi5_value_Jsonclick, 0, "DashboardNumberCardNoBorder", "", "", "", "", 1, edtavKpi5_value_Enabled, 0, "text", "", 15, "chr", 1, "row", 15, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\KPINumericValue", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_single_line_edit( context, edtavKpi5_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV51KPI5_Value), 15, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavKpi5_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV51KPI5_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV51KPI5_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))), TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,109);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi5_value_Jsonclick, 0, "DashboardNumberCardNoBorder", "", "", "", "", 1, edtavKpi5_value_Enabled, 0, "text", "", 15, "chr", 1, "row", 15, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\KPINumericValue", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -870,7 +882,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblViewdetailsfilledforms_Internalname, "View details", lblViewdetailsfilledforms_Link, "", lblViewdetailsfilledforms_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblViewdetailsfilledforms_Internalname, context.GetMessage( "View details", ""), lblViewdetailsfilledforms_Link, "", lblViewdetailsfilledforms_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -909,7 +921,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 133,'',false,'',0)\"";
             ClassString = "buttonSmall";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuseraction1_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(139), 3, 0)+","+"null"+");", "Send Message", bttBtnuseraction1_Jsonclick, 5, "Send Message", "", StyleString, ClassString, bttBtnuseraction1_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUSERACTION1\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuseraction1_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(139), 3, 0)+","+"null"+");", context.GetMessage( "Send Message", ""), bttBtnuseraction1_Jsonclick, 5, context.GetMessage( "Send Message", ""), "", StyleString, ClassString, bttBtnuseraction1_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUSERACTION1\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -993,7 +1005,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 158,'',false,'',0)\"";
             ClassString = "buttonSmall";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncreateevent_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(139), 3, 0)+","+"null"+");", "Create Event", bttBtncreateevent_Jsonclick, 5, "Create Event", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOCREATEEVENT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncreateevent_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(139), 3, 0)+","+"null"+");", context.GetMessage( "WWP_Calendar_CreateEvent", ""), bttBtncreateevent_Jsonclick, 5, context.GetMessage( "WWP_Calendar_CreateEvent", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOCREATEEVENT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1141,7 +1153,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "WP_Receptionist Dashboard", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WP_Receptionist Dashboard", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -1752,16 +1764,16 @@ namespace GeneXus.Programs {
             ajax_req_read_hidden_sdt(cgiGet( "vDISABLEDDAYS"), AV20DisabledDays);
             ajax_req_read_hidden_sdt(cgiGet( "vUSDTNOTIFICATIONSDATA"), AV70USDTNotificationsData);
             /* Read saved values. */
-            nRC_GXsfl_139 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_139"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_139 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_139"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV5CalendarLoadFromDate = context.localUtil.CToD( cgiGet( "vCALENDARLOADFROMDATE"), 0);
             AV6CalendarLoadToDate = context.localUtil.CToD( cgiGet( "vCALENDARLOADTODATE"), 0);
             AV21DisabledDaysJson = cgiGet( "vDISABLEDDAYSJSON");
             AV15CalendarEventId = cgiGet( "vCALENDAREVENTID");
             AV17CalendarEventsJson = cgiGet( "vCALENDAREVENTSJSON");
             Gx_mode = cgiGet( "vMODE");
-            GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"), ".", ","), 18, MidpointRounding.ToEven));
-            GRIDUSDTNOTIFICATIONSDATAS_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_nEOF"), ".", ","), 18, MidpointRounding.ToEven));
-            subGridusdtnotificationsdatas_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_Rows"), ".", ","), 18, MidpointRounding.ToEven));
+            GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRIDUSDTNOTIFICATIONSDATAS_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGridusdtnotificationsdatas_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, "GRIDUSDTNOTIFICATIONSDATAS_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridusdtnotificationsdatas_Rows), 6, 0, ".", "")));
             Dvpanel_tablecards_Width = cgiGet( "DVPANEL_TABLECARDS_Width");
             Dvpanel_tablecards_Autowidth = StringUtil.StrToBool( cgiGet( "DVPANEL_TABLECARDS_Autowidth"));
@@ -1812,7 +1824,7 @@ namespace GeneXus.Programs {
             Gridusdtnotificationsdatas_empowerer_Gridinternalname = cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_EMPOWERER_Gridinternalname");
             Usercontrol1_Defaulteventstyle = cgiGet( "USERCONTROL1_Defaulteventstyle");
             Usercontrol1_Defaulteventstyle = cgiGet( "USERCONTROL1_Defaulteventstyle");
-            nRC_GXsfl_139 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_139"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_139 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_139"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             nGXsfl_139_fel_idx = 0;
             while ( nGXsfl_139_fel_idx < nRC_GXsfl_139 )
             {
@@ -1834,7 +1846,7 @@ namespace GeneXus.Programs {
             }
             nGXsfl_139_fel_idx = 1;
             /* Read variables values. */
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi2_value_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi2_value_Internalname), ".", ",") > Convert.ToDecimal( 999999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi2_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi2_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vKPI2_VALUE");
                GX_FocusControl = edtavKpi2_value_Internalname;
@@ -1845,10 +1857,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV42KPI2_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavKpi2_value_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV42KPI2_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavKpi2_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV42KPI2_Value", StringUtil.LTrimStr( (decimal)(AV42KPI2_Value), 12, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi2_percentagevalue_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi2_percentagevalue_Internalname), ".", ",") > 99.99m ) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi2_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi2_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > 99.99m ) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vKPI2_PERCENTAGEVALUE");
                GX_FocusControl = edtavKpi2_percentagevalue_Internalname;
@@ -1859,10 +1871,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV41KPI2_PercentageValue = context.localUtil.CToN( cgiGet( edtavKpi2_percentagevalue_Internalname), ".", ",");
+               AV41KPI2_PercentageValue = context.localUtil.CToN( cgiGet( edtavKpi2_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep"));
                AssignAttri("", false, "AV41KPI2_PercentageValue", StringUtil.LTrimStr( AV41KPI2_PercentageValue, 5, 2));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi3_value_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi3_value_Internalname), ".", ",") > Convert.ToDecimal( 999999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi3_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi3_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vKPI3_VALUE");
                GX_FocusControl = edtavKpi3_value_Internalname;
@@ -1873,10 +1885,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV45KPI3_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavKpi3_value_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV45KPI3_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavKpi3_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV45KPI3_Value", StringUtil.LTrimStr( (decimal)(AV45KPI3_Value), 12, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi3_percentagevalue_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi3_percentagevalue_Internalname), ".", ",") > 99.99m ) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi3_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi3_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > 99.99m ) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vKPI3_PERCENTAGEVALUE");
                GX_FocusControl = edtavKpi3_percentagevalue_Internalname;
@@ -1887,10 +1899,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV44KPI3_PercentageValue = context.localUtil.CToN( cgiGet( edtavKpi3_percentagevalue_Internalname), ".", ",");
+               AV44KPI3_PercentageValue = context.localUtil.CToN( cgiGet( edtavKpi3_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep"));
                AssignAttri("", false, "AV44KPI3_PercentageValue", StringUtil.LTrimStr( AV44KPI3_PercentageValue, 5, 2));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi4_value_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi4_value_Internalname), ".", ",") > Convert.ToDecimal( 999999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi4_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi4_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vKPI4_VALUE");
                GX_FocusControl = edtavKpi4_value_Internalname;
@@ -1901,10 +1913,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV48KPI4_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavKpi4_value_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV48KPI4_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavKpi4_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV48KPI4_Value", StringUtil.LTrimStr( (decimal)(AV48KPI4_Value), 12, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi4_percentagevalue_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi4_percentagevalue_Internalname), ".", ",") > 99.99m ) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi4_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi4_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > 99.99m ) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vKPI4_PERCENTAGEVALUE");
                GX_FocusControl = edtavKpi4_percentagevalue_Internalname;
@@ -1915,10 +1927,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV47KPI4_PercentageValue = context.localUtil.CToN( cgiGet( edtavKpi4_percentagevalue_Internalname), ".", ",");
+               AV47KPI4_PercentageValue = context.localUtil.CToN( cgiGet( edtavKpi4_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep"));
                AssignAttri("", false, "AV47KPI4_PercentageValue", StringUtil.LTrimStr( AV47KPI4_PercentageValue, 5, 2));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi5_value_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi5_value_Internalname), ".", ",") > Convert.ToDecimal( 999999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi5_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi5_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vKPI5_VALUE");
                GX_FocusControl = edtavKpi5_value_Internalname;
@@ -1929,10 +1941,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV51KPI5_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavKpi5_value_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV51KPI5_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavKpi5_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV51KPI5_Value", StringUtil.LTrimStr( (decimal)(AV51KPI5_Value), 12, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi5_percentagevalue_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi5_percentagevalue_Internalname), ".", ",") > 99.99m ) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavKpi5_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavKpi5_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > 99.99m ) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vKPI5_PERCENTAGEVALUE");
                GX_FocusControl = edtavKpi5_percentagevalue_Internalname;
@@ -1943,11 +1955,11 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV50KPI5_PercentageValue = context.localUtil.CToN( cgiGet( edtavKpi5_percentagevalue_Internalname), ".", ",");
+               AV50KPI5_PercentageValue = context.localUtil.CToN( cgiGet( edtavKpi5_percentagevalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep"));
                AssignAttri("", false, "AV50KPI5_PercentageValue", StringUtil.LTrimStr( AV50KPI5_PercentageValue, 5, 2));
             }
             /* Read subfile selected row values. */
-            nGXsfl_139_idx = (int)(Math.Round(context.localUtil.CToN( cgiGet( subGridusdtnotificationsdatas_Internalname+"_ROW"), ".", ","), 18, MidpointRounding.ToEven));
+            nGXsfl_139_idx = (int)(Math.Round(context.localUtil.CToN( cgiGet( subGridusdtnotificationsdatas_Internalname+"_ROW"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             sGXsfl_139_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_139_idx), 4, 0), 4, "0");
             SubsflControlProps_1392( ) ;
             AV73GXV1 = (int)(nGXsfl_139_idx+GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage);
@@ -2018,22 +2030,22 @@ namespace GeneXus.Programs {
          new WorkWithPlus.workwithplus_web.gethomesampledata(context ).execute( out  GXt_objcol_SdtHomeSampleData_HomeSampleDataItem3) ;
          AV9HomeSampleData = GXt_objcol_SdtHomeSampleData_HomeSampleDataItem3;
          GXt_objcol_SdtUSDTNotificationsData_USDTNotificationsDataItem4 = AV70USDTNotificationsData;
-         new dp_getusernotifications(context ).execute(  "UnRead",  AV54NotificationDefinitionIdEmptyCollection,  "", out  GXt_objcol_SdtUSDTNotificationsData_USDTNotificationsDataItem4) ;
+         new dp_getusernotifications(context ).execute(  context.GetMessage( "UnRead", ""),  AV54NotificationDefinitionIdEmptyCollection,  "", out  GXt_objcol_SdtUSDTNotificationsData_USDTNotificationsDataItem4) ;
          AV70USDTNotificationsData = GXt_objcol_SdtUSDTNotificationsData_USDTNotificationsDataItem4;
          gx_BV139 = true;
          if ( AV70USDTNotificationsData.Count == 0 )
          {
-            lblNotificationssubtitle_Caption = "No new notifications";
+            lblNotificationssubtitle_Caption = context.GetMessage( "WWP_Notifications_NoNewNotifications", "");
             AssignProp("", false, lblNotificationssubtitle_Internalname, "Caption", lblNotificationssubtitle_Caption, true);
          }
          else if ( AV70USDTNotificationsData.Count == 1 )
          {
-            lblNotificationssubtitle_Caption = "You have 1 new notification";
+            lblNotificationssubtitle_Caption = context.GetMessage( "WWP_Notifications_OneNewNotification", "");
             AssignProp("", false, lblNotificationssubtitle_Internalname, "Caption", lblNotificationssubtitle_Caption, true);
          }
          else
          {
-            lblNotificationssubtitle_Caption = StringUtil.Format( "You have %1 new notifications", StringUtil.Trim( StringUtil.Str( (decimal)(AV70USDTNotificationsData.Count), 9, 0)), "", "", "", "", "", "", "", "");
+            lblNotificationssubtitle_Caption = StringUtil.Format( context.GetMessage( "WWP_Notifications_NewNotifications", ""), StringUtil.Trim( StringUtil.Str( (decimal)(AV70USDTNotificationsData.Count), 9, 0)), "", "", "", "", "", "", "", "");
             AssignProp("", false, lblNotificationssubtitle_Internalname, "Caption", lblNotificationssubtitle_Caption, true);
          }
          GXt_int2 = (short)(AV51KPI5_Value);
@@ -2059,9 +2071,9 @@ namespace GeneXus.Programs {
          AV63Progress3_TotalValue = 2256;
          AV66Progress4_Value = 1085;
          AV65Progress4_TotalValue = 5423;
-         divTableagenda_Height = 326;
+         divTableagenda_Height = 360;
          AssignProp("", false, divTableagenda_Internalname, "Height", StringUtil.LTrimStr( (decimal)(divTableagenda_Height), 9, 0), true);
-         divTablenotifications_Height = 326;
+         divTablenotifications_Height = 360;
          AssignProp("", false, divTablenotifications_Internalname, "Height", StringUtil.LTrimStr( (decimal)(divTablenotifications_Height), 9, 0), true);
          Gridusdtnotificationsdatas_empowerer_Gridinternalname = subGridusdtnotificationsdatas_Internalname;
          ucGridusdtnotificationsdatas_empowerer.SendProperty(context, "", false, Gridusdtnotificationsdatas_empowerer_Internalname, "GridInternalName", Gridusdtnotificationsdatas_empowerer_Gridinternalname);
@@ -2210,7 +2222,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GX_msglist.addItem("Action no longer available");
+            GX_msglist.addItem(context.GetMessage( "WWP_ActionNoLongerAvailable", ""));
             context.DoAjaxRefresh();
          }
          /*  Sending Event outputs  */
@@ -2379,15 +2391,15 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavKpi5_percentagevalue_Internalname, "KPI5_Percentage Value", "gx-form-item DashboardPercentageSuccessLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavKpi5_percentagevalue_Internalname, context.GetMessage( "KPI5_Percentage Value", ""), "gx-form-item DashboardPercentageSuccessLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 118,'',false,'" + sGXsfl_139_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavKpi5_percentagevalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV50KPI5_PercentageValue, 5, 2, ".", "")), StringUtil.LTrim( ((edtavKpi5_percentagevalue_Enabled!=0) ? context.localUtil.Format( AV50KPI5_PercentageValue, "Z9%") : context.localUtil.Format( AV50KPI5_PercentageValue, "Z9%"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','2');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','2');"+";gx.evt.onblur(this,118);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi5_percentagevalue_Jsonclick, 0, edtavKpi5_percentagevalue_Class, "", "", "", "", 1, edtavKpi5_percentagevalue_Enabled, 0, "text", "", 5, "chr", 1, "row", 5, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWPPercentage", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_single_line_edit( context, edtavKpi5_percentagevalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV50KPI5_PercentageValue, 5, 2, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavKpi5_percentagevalue_Enabled!=0) ? context.localUtil.Format( AV50KPI5_PercentageValue, "Z9%") : context.localUtil.Format( AV50KPI5_PercentageValue, "Z9%"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'2');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'2');"+";gx.evt.onblur(this,118);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi5_percentagevalue_Jsonclick, 0, edtavKpi5_percentagevalue_Class, "", "", "", "", 1, edtavKpi5_percentagevalue_Enabled, 0, "text", "", 5, "chr", 1, "row", 5, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWPPercentage", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi5_moreinfocaption_Internalname, "From Last Month", "", "", lblKpi5_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi5_moreinfocaption_Internalname, context.GetMessage( "From Last Month", ""), "", "", lblKpi5_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2410,11 +2422,11 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td class='MergeDataCell'>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi5_icon_Internalname, "<i class='ProgressCardIcon fas fa-file'></i>", "", "", lblKpi5_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi5_icon_Internalname, context.GetMessage( "<i class='ProgressCardIcon fas fa-file'></i>", ""), "", "", lblKpi5_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi5_description_Internalname, "FILLED FORMS", "", "", lblKpi5_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi5_description_Internalname, context.GetMessage( "FILLED FORMS", ""), "", "", lblKpi5_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2443,15 +2455,15 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavKpi4_percentagevalue_Internalname, "KPI4_Percentage Value", "gx-form-item DashboardPercentageSuccessLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavKpi4_percentagevalue_Internalname, context.GetMessage( "KPI4_Percentage Value", ""), "gx-form-item DashboardPercentageSuccessLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 90,'',false,'" + sGXsfl_139_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavKpi4_percentagevalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV47KPI4_PercentageValue, 5, 2, ".", "")), StringUtil.LTrim( ((edtavKpi4_percentagevalue_Enabled!=0) ? context.localUtil.Format( AV47KPI4_PercentageValue, "Z9%") : context.localUtil.Format( AV47KPI4_PercentageValue, "Z9%"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','2');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','2');"+";gx.evt.onblur(this,90);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi4_percentagevalue_Jsonclick, 0, edtavKpi4_percentagevalue_Class, "", "", "", "", 1, edtavKpi4_percentagevalue_Enabled, 0, "text", "", 5, "chr", 1, "row", 5, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWPPercentage", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_single_line_edit( context, edtavKpi4_percentagevalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV47KPI4_PercentageValue, 5, 2, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavKpi4_percentagevalue_Enabled!=0) ? context.localUtil.Format( AV47KPI4_PercentageValue, "Z9%") : context.localUtil.Format( AV47KPI4_PercentageValue, "Z9%"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'2');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'2');"+";gx.evt.onblur(this,90);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi4_percentagevalue_Jsonclick, 0, edtavKpi4_percentagevalue_Class, "", "", "", "", 1, edtavKpi4_percentagevalue_Enabled, 0, "text", "", 5, "chr", 1, "row", 5, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWPPercentage", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi4_moreinfocaption_Internalname, "From Last Month", "", "", lblKpi4_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi4_moreinfocaption_Internalname, context.GetMessage( "From Last Month", ""), "", "", lblKpi4_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2474,11 +2486,11 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td class='MergeDataCell'>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi4_icon_Internalname, "<i class='ProgressCardIcon fas fa-mobile-alt'></i>", "", "", lblKpi4_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi4_icon_Internalname, context.GetMessage( "<i class='ProgressCardIcon fas fa-mobile-alt'></i>", ""), "", "", lblKpi4_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi4_description_Internalname, "APPS PROVISIONED", "", "", lblKpi4_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi4_description_Internalname, context.GetMessage( "APPS PROVISIONED", ""), "", "", lblKpi4_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2507,15 +2519,15 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavKpi3_percentagevalue_Internalname, "KPI3_Percentage Value", "gx-form-item DashboardPercentageSuccessLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavKpi3_percentagevalue_Internalname, context.GetMessage( "KPI3_Percentage Value", ""), "gx-form-item DashboardPercentageSuccessLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 62,'',false,'" + sGXsfl_139_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavKpi3_percentagevalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV44KPI3_PercentageValue, 5, 2, ".", "")), StringUtil.LTrim( ((edtavKpi3_percentagevalue_Enabled!=0) ? context.localUtil.Format( AV44KPI3_PercentageValue, "Z9%") : context.localUtil.Format( AV44KPI3_PercentageValue, "Z9%"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','2');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','2');"+";gx.evt.onblur(this,62);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi3_percentagevalue_Jsonclick, 0, edtavKpi3_percentagevalue_Class, "", "", "", "", 1, edtavKpi3_percentagevalue_Enabled, 0, "text", "", 5, "chr", 1, "row", 5, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWPPercentage", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_single_line_edit( context, edtavKpi3_percentagevalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV44KPI3_PercentageValue, 5, 2, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavKpi3_percentagevalue_Enabled!=0) ? context.localUtil.Format( AV44KPI3_PercentageValue, "Z9%") : context.localUtil.Format( AV44KPI3_PercentageValue, "Z9%"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'2');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'2');"+";gx.evt.onblur(this,62);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi3_percentagevalue_Jsonclick, 0, edtavKpi3_percentagevalue_Class, "", "", "", "", 1, edtavKpi3_percentagevalue_Enabled, 0, "text", "", 5, "chr", 1, "row", 5, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWPPercentage", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi3_moreinfocaption_Internalname, "From Last Month", "", "", lblKpi3_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi3_moreinfocaption_Internalname, context.GetMessage( "From Last Month", ""), "", "", lblKpi3_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2538,11 +2550,11 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td class='MergeDataCell'>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi3_icon_Internalname, "<i class='ProgressCardIcon fa fa-users'></i>", "", "", lblKpi3_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi3_icon_Internalname, context.GetMessage( "<i class='ProgressCardIcon fa fa-users'></i>", ""), "", "", lblKpi3_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi3_description_Internalname, "RESIDENTS", "", "", lblKpi3_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi3_description_Internalname, context.GetMessage( "RESIDENTS", ""), "", "", lblKpi3_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2571,15 +2583,15 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavKpi2_percentagevalue_Internalname, "KPI2_Percentage Value", "gx-form-item DashboardPercentageSuccessLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavKpi2_percentagevalue_Internalname, context.GetMessage( "KPI2_Percentage Value", ""), "gx-form-item DashboardPercentageSuccessLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'',false,'" + sGXsfl_139_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavKpi2_percentagevalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV41KPI2_PercentageValue, 5, 2, ".", "")), StringUtil.LTrim( ((edtavKpi2_percentagevalue_Enabled!=0) ? context.localUtil.Format( AV41KPI2_PercentageValue, "Z9%") : context.localUtil.Format( AV41KPI2_PercentageValue, "Z9%"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','2');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','2');"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi2_percentagevalue_Jsonclick, 0, edtavKpi2_percentagevalue_Class, "", "", "", "", 1, edtavKpi2_percentagevalue_Enabled, 0, "text", "", 5, "chr", 1, "row", 5, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWPPercentage", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_single_line_edit( context, edtavKpi2_percentagevalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV41KPI2_PercentageValue, 5, 2, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavKpi2_percentagevalue_Enabled!=0) ? context.localUtil.Format( AV41KPI2_PercentageValue, "Z9%") : context.localUtil.Format( AV41KPI2_PercentageValue, "Z9%"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'2');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'2');"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavKpi2_percentagevalue_Jsonclick, 0, edtavKpi2_percentagevalue_Class, "", "", "", "", 1, edtavKpi2_percentagevalue_Enabled, 0, "text", "", 5, "chr", 1, "row", 5, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWPPercentage", "end", false, "", "HLP_WP_ReceptionistDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi2_moreinfocaption_Internalname, "From Last Month", "", "", lblKpi2_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi2_moreinfocaption_Internalname, context.GetMessage( "From Last Month", ""), "", "", lblKpi2_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2602,11 +2614,11 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td class='MergeDataCell'>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi2_icon_Internalname, "<i class='ProgressCardIcon fas fa-shipping-fast'></i>", "", "", lblKpi2_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi2_icon_Internalname, context.GetMessage( "<i class='ProgressCardIcon fas fa-shipping-fast'></i>", ""), "", "", lblKpi2_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblKpi2_description_Internalname, "SUPPLIERS", "", "", lblKpi2_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblKpi2_description_Internalname, context.GetMessage( "SUPPLIERS", ""), "", "", lblKpi2_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ReceptionistDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2668,7 +2680,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542418163397", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025425197147", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2683,8 +2695,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_receptionistdashboard.js", "?202542418163397", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_receptionistdashboard.js", "?2025425197149", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -2812,7 +2824,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridusdtnotificationsdatasRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUsdtnotificationsdata__notificationid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationid), 5, 0, ".", "")),StringUtil.LTrim( ((edtavUsdtnotificationsdata__notificationid_Enabled!=0) ? context.localUtil.Format( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationid), "ZZZZ9") : context.localUtil.Format( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationid), "ZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+""+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavUsdtnotificationsdata__notificationid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavUsdtnotificationsdata__notificationid_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)5,(short)0,(short)0,(short)139,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            GridusdtnotificationsdatasRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUsdtnotificationsdata__notificationid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationid), 5, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( ((edtavUsdtnotificationsdata__notificationid_Enabled!=0) ? context.localUtil.Format( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationid), "ZZZZ9") : context.localUtil.Format( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationid), "ZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+""+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavUsdtnotificationsdata__notificationid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavUsdtnotificationsdata__notificationid_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)5,(short)0,(short)0,(short)139,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridusdtnotificationsdatasContainer.GetWrapped() == 1 )
             {
@@ -2833,20 +2845,20 @@ namespace GeneXus.Programs {
             /* Subfile cell */
             if ( GridusdtnotificationsdatasContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+"display:none;"+"\">") ;
             }
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 144,'',false,'" + sGXsfl_139_idx + "',139)\"";
             ROClassString = "Attribute";
-            GridusdtnotificationsdatasRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUsdtnotificationsdata__notificationdescription_Internalname,((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdescription,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,144);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavUsdtnotificationsdata__notificationdescription_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavUsdtnotificationsdata__notificationdescription_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)200,(short)0,(short)0,(short)139,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridusdtnotificationsdatasRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUsdtnotificationsdata__notificationdescription_Internalname,((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdescription,(string)"",""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavUsdtnotificationsdata__notificationdescription_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavUsdtnotificationsdata__notificationdescription_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)200,(short)0,(short)0,(short)139,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridusdtnotificationsdatasContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+"display:none;"+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"end"+"\""+" style=\""+""+"\">") ;
             }
             /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 145,'',false,'" + sGXsfl_139_idx + "',139)\"";
             ROClassString = "Attribute";
-            GridusdtnotificationsdatasRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUsdtnotificationsdata__notificationdatetime_Internalname,context.localUtil.TToC( ((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdatetime, 10, 8, 0, 3, "/", ":", " "),context.localUtil.Format( ((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdatetime, "99/99/99 99:99"),""+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',5,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavUsdtnotificationsdata__notificationdatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavUsdtnotificationsdata__notificationdatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)139,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            GridusdtnotificationsdatasRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUsdtnotificationsdata__notificationdatetime_Internalname,context.localUtil.TToC( ((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdatetime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "),context.localUtil.Format( ((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdatetime, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,145);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavUsdtnotificationsdata__notificationdatetime_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)-1,(int)edtavUsdtnotificationsdata__notificationdatetime_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)17,(short)0,(short)0,(short)139,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridusdtnotificationsdatasContainer.GetWrapped() == 1 )
             {
@@ -2862,7 +2874,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridusdtnotificationsdatasRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUsdtnotificationsdata__notificationdefinitionid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdefinitionid), 10, 0, ".", "")),StringUtil.LTrim( ((edtavUsdtnotificationsdata__notificationdefinitionid_Enabled!=0) ? context.localUtil.Format( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdefinitionid), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdefinitionid), "ZZZZZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+""+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavUsdtnotificationsdata__notificationdefinitionid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavUsdtnotificationsdata__notificationdefinitionid_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)10,(short)0,(short)0,(short)139,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            GridusdtnotificationsdatasRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavUsdtnotificationsdata__notificationdefinitionid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdefinitionid), 10, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( ((edtavUsdtnotificationsdata__notificationdefinitionid_Enabled!=0) ? context.localUtil.Format( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdefinitionid), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(((SdtUSDTNotificationsData_USDTNotificationsDataItem)AV70USDTNotificationsData.Item(AV73GXV1)).gxTpr_Notificationdefinitionid), "ZZZZZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+""+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavUsdtnotificationsdata__notificationdefinitionid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavUsdtnotificationsdata__notificationdefinitionid_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)10,(short)0,(short)0,(short)139,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridusdtnotificationsdatasContainer.GetWrapped() == 1 )
             {
@@ -2947,31 +2959,31 @@ namespace GeneXus.Programs {
             context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Notification Id") ;
+            context.SendWebValue( context.GetMessage( "Notification Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Notification Icon Class") ;
+            context.SendWebValue( context.GetMessage( "Notification Icon Class", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Notification Title") ;
+            context.SendWebValue( context.GetMessage( "Notification Title", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Notification Description") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
+            context.SendWebValue( context.GetMessage( "Notification Description", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Notification Datetime") ;
+            context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.SendWebValue( context.GetMessage( "Notification Datetime", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" width="+StringUtil.LTrimStr( (decimal)(570), 4, 0)+"px"+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Notification Link") ;
+            context.SendWebValue( context.GetMessage( "Notification Link", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Notification Definition Id") ;
+            context.SendWebValue( context.GetMessage( "Notification Definition Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"AttributeCheckBox"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Notification Is Read") ;
+            context.SendWebValue( context.GetMessage( "Notification Is Read", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Notification Metadata") ;
+            context.SendWebValue( context.GetMessage( "Notification Metadata", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
             GridusdtnotificationsdatasContainer.AddObjectProperty("GridName", "Gridusdtnotificationsdatas");
@@ -3148,13 +3160,13 @@ namespace GeneXus.Programs {
          edtavKpi5_percentagevalue_Jsonclick = "";
          edtavKpi5_percentagevalue_Enabled = 1;
          edtavKpi5_percentagevalue_Class = "DashboardPercentageSuccess";
-         lblKpi5_moreinfoicon_Caption = "<i class='FontColorIconSuccess fas fa-caret-up' style='font-size: 12px'></i>";
+         lblKpi5_moreinfoicon_Caption = context.GetMessage( "<i class='FontColorIconSuccess fas fa-caret-up' style='font-size: 12px'></i>", "");
          edtavKpi4_percentagevalue_Class = "DashboardPercentageSuccess";
-         lblKpi4_moreinfoicon_Caption = "<i class='FontColorIconSuccess fas fa-caret-up' style='font-size: 12px'></i>";
+         lblKpi4_moreinfoicon_Caption = context.GetMessage( "<i class='FontColorIconSuccess fas fa-caret-up' style='font-size: 12px'></i>", "");
          edtavKpi3_percentagevalue_Class = "DashboardPercentageSuccess";
-         lblKpi3_moreinfoicon_Caption = "<i class='FontColorIconSuccess fas fa-caret-up' style='font-size: 12px'></i>";
+         lblKpi3_moreinfoicon_Caption = context.GetMessage( "<i class='FontColorIconSuccess fas fa-caret-up' style='font-size: 12px'></i>", "");
          edtavKpi2_percentagevalue_Class = "DashboardPercentageSuccess";
-         lblKpi2_moreinfoicon_Caption = "<i class='FontColorIconSuccess fas fa-caret-up' style='font-size: 12px'></i>";
+         lblKpi2_moreinfoicon_Caption = context.GetMessage( "<i class='FontColorIconSuccess fas fa-caret-up' style='font-size: 12px'></i>", "");
          edtavUsdtnotificationsdata__notificationmetadata_Enabled = -1;
          chkavUsdtnotificationsdata__notificationisread.Enabled = -1;
          edtavUsdtnotificationsdata__notificationdefinitionid_Enabled = -1;
@@ -3165,7 +3177,7 @@ namespace GeneXus.Programs {
          edtavUsdtnotificationsdata__notificationiconclass_Enabled = -1;
          edtavUsdtnotificationsdata__notificationid_Enabled = -1;
          divTableagenda_Height = 0;
-         lblNotificationssubtitle_Caption = "You have %1 new notifications";
+         lblNotificationssubtitle_Caption = context.GetMessage( "WWP_Notifications_NewNotifications", "");
          bttBtnuseraction1_Visible = 1;
          divTablenotifications_Height = 0;
          lblViewdetailsfilledforms_Link = "";
@@ -3183,14 +3195,14 @@ namespace GeneXus.Programs {
          Usercontrol1_Defaulteventstyle = "Grayscale";
          Createevent_modal_Bodytype = "WebComponent";
          Createevent_modal_Confirmtype = "";
-         Createevent_modal_Title = "Event";
+         Createevent_modal_Title = context.GetMessage( "Event", "");
          Createevent_modal_Width = "600";
          Dvpanel_tableagenda_Autoscroll = Convert.ToBoolean( 0);
          Dvpanel_tableagenda_Iconposition = "Right";
          Dvpanel_tableagenda_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_tableagenda_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_tableagenda_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tableagenda_Title = "AGENDA";
+         Dvpanel_tableagenda_Title = context.GetMessage( "AGENDA", "");
          Dvpanel_tableagenda_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_tableagenda_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_tableagenda_Autowidth = Convert.ToBoolean( 0);
@@ -3212,7 +3224,7 @@ namespace GeneXus.Programs {
          Dvpanel_tablenotifications_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_tablenotifications_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_tablenotifications_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tablenotifications_Title = "NOTIFICATIONS";
+         Dvpanel_tablenotifications_Title = context.GetMessage( "NOTIFICATIONS", "");
          Dvpanel_tablenotifications_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_tablenotifications_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_tablenotifications_Autowidth = Convert.ToBoolean( 0);
@@ -3231,7 +3243,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "WP_Receptionist Dashboard";
+         Form.Caption = context.GetMessage( "WP_Receptionist Dashboard", "");
          subGridusdtnotificationsdatas_Rows = 0;
          if ( context.isSpaRequest( ) )
          {

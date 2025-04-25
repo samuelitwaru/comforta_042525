@@ -2,6 +2,7 @@ import { CtaComponent } from "../components/CtaComponent";
 import { TileComponent } from "../components/TileComponent";
 import { Content } from "../interfaces/Content";
 import { Cta } from "../interfaces/Cta";
+import { CtaAttributes } from "../interfaces/CtaAttributes";
 import { Page } from "../interfaces/Page";
 import { PageContentStructure } from "../interfaces/PageContentStructure";
 import { Row } from "../interfaces/Row";
@@ -61,7 +62,7 @@ export class ContentPageMapper {
         const ctaContainer = document.createElement('div');
         ctaContainer.className = 'tbap-cta-container';
 
-        this.pageData.Cta.forEach((cta: Cta) => {
+        this.pageData.Cta.forEach((cta: CtaAttributes) => {
             console.log(cta);
             const ctaElement = new CtaComponent(cta);
             ctaContainer.appendChild(ctaElement.getCta());

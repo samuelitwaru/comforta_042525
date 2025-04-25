@@ -72,6 +72,34 @@ namespace GeneXus.Programs {
          AV11baseUrl = AV39GAMApplication.gxTpr_Environment.gxTpr_Url;
          if ( AV15GAMUser.success() )
          {
+            AV40GAMUserLanguage = AV15GAMUser.gxTpr_Language;
+            GXt_char1 = AV41ResidentLanguage;
+            new prc_getresidentlanguagefromguid(context ).execute(  AV23UserGAMGUID, out  GXt_char1) ;
+            AV41ResidentLanguage = GXt_char1;
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40GAMUserLanguage)) )
+            {
+               AV43Language = AV40GAMUserLanguage;
+            }
+            else if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41ResidentLanguage)) )
+            {
+               if ( StringUtil.StrCmp(AV41ResidentLanguage, "nl") == 0 )
+               {
+                  AV43Language = "Dutch";
+               }
+               else if ( StringUtil.StrCmp(AV41ResidentLanguage, "en") == 0 )
+               {
+                  AV43Language = "English";
+               }
+               else
+               {
+                  AV43Language = "Dutch";
+               }
+            }
+            else
+            {
+               AV43Language = "Dutch";
+            }
+            new prc_logtofile(context ).execute(  AV43Language) ;
             AV28KeyToChangePassword = AV15GAMUser.recoverpasswordbykey(out  AV30GAMErrorCollection);
             GXt_char1 = AV27LinkURL;
             new gam_buildappurl(context ).execute(  formatLink("urecoverpasswordstep2.aspx", new object[] {GXUtil.UrlEncode(StringUtil.RTrim(AV23UserGAMGUID)),GXUtil.UrlEncode(StringUtil.RTrim(AV28KeyToChangePassword))}, new string[] {"UserGAMGUID","KeyToChangePassword"}) , out  GXt_char1) ;
@@ -84,33 +112,60 @@ namespace GeneXus.Programs {
                {
                   AV32MailTemplateBody = AV31MailTemplate.gxTpr_Wwpmailtemplatebody;
                }
-               AV22SMTPSession.Host = "comforta.yukon.software";
+               AV22SMTPSession.Host = context.GetMessage( "comforta.yukon.software", "");
                AV22SMTPSession.Port = 465;
                AV22SMTPSession.Secure = 1;
                AV22SMTPSession.Authentication = 0;
                AV22SMTPSession.AuthenticationMethod = "";
-               AV22SMTPSession.UserName = "no-reply@comforta.yukon.software";
-               AV22SMTPSession.Password = "2uSFuxkquz";
-               AV22SMTPSession.Sender.Address = "no-reply@comforta.yukon.software";
+               AV22SMTPSession.UserName = context.GetMessage( "no-reply@comforta.yukon.software", "");
+               AV22SMTPSession.Password = context.GetMessage( "2uSFuxkquz", "");
+               AV22SMTPSession.Sender.Address = context.GetMessage( "no-reply@comforta.yukon.software", "");
                AV22SMTPSession.Sender.Name = "Comforta Software";
                AV9MailRecipient.Address = AV15GAMUser.gxTpr_Email;
                AV9MailRecipient.Name = AV24Username;
-               AV20MailMessage.Subject = "Password reset";
+               if ( StringUtil.StrCmp(AV43Language, "English") == 0 )
+               {
+                  AV20MailMessage.Subject = "Password reset";
+               }
+               else if ( StringUtil.StrCmp(AV43Language, "Dutch") == 0 )
+               {
+                  AV20MailMessage.Subject = "Wachtwoord opnieuw instellen";
+               }
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV32MailTemplateBody)) )
                {
-                  AV20MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+"<div style=\"background-color: #222F54; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Dear "+AV24Username+",</p><p>You are recieving this email because you requested for password reset.</p><p>Please click the button below to reset your password:</p>"+"</b></p><a href=\""+AV27LinkURL+"\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #222F54; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Reset Password</a>"+"<p>Please note that the link expires in 2 hours.</p>"+"</div></div>";
+                  if ( StringUtil.StrCmp(AV43Language, "English") == 0 )
+                  {
+                     AV20MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+context.GetMessage( "<div style=\"background-color: #222F54; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Dear ", "")+AV24Username+context.GetMessage( ",</p><p>You are recieving this email because you requested for password reset.</p><p>Please click the button below to reset your password:</p>", "")+context.GetMessage( "</b></p><a href=\"", "")+AV27LinkURL+context.GetMessage( "\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #222F54; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Reset Password</a>", "")+context.GetMessage( "<p>Please note that the link expires in 2 hours.</p>", "")+context.GetMessage( "</div></div>", "");
+                  }
+                  else if ( StringUtil.StrCmp(AV43Language, "Dutch") == 0 )
+                  {
+                     AV20MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+context.GetMessage( "<div style=\"background-color: #222F54; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Beste ", "")+AV24Username+context.GetMessage( ",</p><p>Je ontvangt deze e-mail omdat je een wachtwoordreset hebt aangevraagd.</p><p>Klik op de onderstaande knop om je wachtwoord opnieuw in te stellen:</p>", "")+context.GetMessage( "</b></p><a href=\"", "")+AV27LinkURL+context.GetMessage( "\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #222F54; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Wachtwoord Resetten</a>", "")+context.GetMessage( "<p>Houd er rekening mee dat de link over 2 uur verloopt.</p>", "")+context.GetMessage( "</div></div>", "");
+                  }
                }
                else
                {
-                  AV34Dear_Username = "Dear " + AV24Username;
-                  AV40Welcome_message = "You are recieving this email because you requested for a password reset.";
-                  AV38Instruction_Message = "Please click the button below to reset your password:";
-                  AV33Button_Text = "Reset Password";
-                  AV35Expiration_Message = "Please note that the link expires in 2 hours.";
-                  AV36FollowUp_Message = "Once you have reset your password, you can login into the platform once again.";
-                  AV37Footer_Message = "All the best!";
+                  if ( StringUtil.StrCmp(AV43Language, "English") == 0 )
+                  {
+                     AV34Dear_Username = "Dear " + AV24Username;
+                     AV44Welcome_message = "You are recieving this email because you requested for a password reset.";
+                     AV38Instruction_Message = "Please click the button below to reset your password:";
+                     AV33Button_Text = "Reset Password";
+                     AV35Expiration_Message = "Please note that the link expires in 2 hours.";
+                     AV36FollowUp_Message = "Once you have reset your password, you can login into the platform once again.";
+                     AV37Footer_Message = "All the best!";
+                  }
+                  else if ( StringUtil.StrCmp(AV43Language, "Dutch") == 0 )
+                  {
+                     AV34Dear_Username = "Beste " + AV24Username;
+                     AV44Welcome_message = "Je ontvangt deze e-mail omdat je een wachtwoordreset hebt aangevraagd.";
+                     AV38Instruction_Message = "Klik op de onderstaande knop om je wachtwoord opnieuw in te stellen:";
+                     AV33Button_Text = "Wachtwoord Resetten";
+                     AV35Expiration_Message = "Houd er rekening mee dat de link over 2 uur verloopt.";
+                     AV36FollowUp_Message = "Zodra je je wachtwoord hebt gereset, kun je opnieuw inloggen op het platform.";
+                     AV37Footer_Message = "Het allerbeste!";
+                  }
                   AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[DEAR_USERNAME]", AV34Dear_Username);
-                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[WELCOME_MESSAGE]", AV40Welcome_message);
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[WELCOME_MESSAGE]", AV44Welcome_message);
                   AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[INSTRUCTION_MESSAGE]", AV38Instruction_Message);
                   AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[BUTTON_TEXT]", AV33Button_Text);
                   AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[EXPIRATION_MESSAGE]", AV35Expiration_Message);
@@ -123,32 +178,32 @@ namespace GeneXus.Programs {
                AV20MailMessage.To.Add(AV9MailRecipient);
                AV22SMTPSession.Login();
                AV22SMTPSession.Send(AV20MailMessage);
-               if ( ( AV22SMTPSession.ErrCode < 1 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV22SMTPSession.ErrDescription), "OK") == 0 ) )
+               if ( ( AV22SMTPSession.ErrCode < 1 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV22SMTPSession.ErrDescription), context.GetMessage( "OK", "")) == 0 ) )
                {
                   AV22SMTPSession.Logout();
                   AV19isSuccessful = true;
                }
                else
                {
-                  AV12ErrDescription = "Sending password reset email failed - " + StringUtil.Str( (decimal)(AV22SMTPSession.ErrCode), 10, 2) + " " + AV22SMTPSession.ErrDescription;
+                  AV12ErrDescription = context.GetMessage( "Sending password reset email failed - ", "") + StringUtil.Str( (decimal)(AV22SMTPSession.ErrCode), 10, 2) + " " + AV22SMTPSession.ErrDescription;
                   AV19isSuccessful = false;
                }
             }
             else
             {
-               AV41GXV1 = 1;
-               while ( AV41GXV1 <= AV30GAMErrorCollection.Count )
+               AV45GXV1 = 1;
+               while ( AV45GXV1 <= AV30GAMErrorCollection.Count )
                {
-                  AV8GAMErrorItem = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV30GAMErrorCollection.Item(AV41GXV1));
+                  AV8GAMErrorItem = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV30GAMErrorCollection.Item(AV45GXV1));
                   AV12ErrDescription += AV8GAMErrorItem.gxTpr_Message + " ";
-                  AV41GXV1 = (int)(AV41GXV1+1);
+                  AV45GXV1 = (int)(AV45GXV1+1);
                }
                AV19isSuccessful = false;
             }
          }
          else
          {
-            AV12ErrDescription = "Failed to load user";
+            AV12ErrDescription = context.GetMessage( "Failed to load user", "");
             AV19isSuccessful = false;
          }
          cleanup();
@@ -169,6 +224,9 @@ namespace GeneXus.Programs {
          AV15GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV39GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
          AV11baseUrl = "";
+         AV40GAMUserLanguage = "";
+         AV41ResidentLanguage = "";
+         AV43Language = "";
          AV28KeyToChangePassword = "";
          AV30GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV27LinkURL = "";
@@ -180,7 +238,7 @@ namespace GeneXus.Programs {
          AV9MailRecipient = new GeneXus.Mail.GXMailRecipient();
          AV20MailMessage = new GeneXus.Mail.GXMailMessage();
          AV34Dear_Username = "";
-         AV40Welcome_message = "";
+         AV44Welcome_message = "";
          AV38Instruction_Message = "";
          AV33Button_Text = "";
          AV35Expiration_Message = "";
@@ -191,15 +249,18 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV41GXV1 ;
+      private int AV45GXV1 ;
+      private string AV41ResidentLanguage ;
       private string AV28KeyToChangePassword ;
       private string GXt_char1 ;
-      private string AV40Welcome_message ;
+      private string AV44Welcome_message ;
       private string AV12ErrDescription ;
       private bool AV19isSuccessful ;
       private string AV32MailTemplateBody ;
       private string AV23UserGAMGUID ;
       private string AV11baseUrl ;
+      private string AV40GAMUserLanguage ;
+      private string AV43Language ;
       private string AV27LinkURL ;
       private string AV24Username ;
       private string AV34Dear_Username ;

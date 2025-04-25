@@ -1,4 +1,10 @@
+import { ThemeManager } from "./ThemeManager";
+
 export default class MyActivityPageMapper {
+    themeManager: ThemeManager;
+    constructor() {
+        this.themeManager = new ThemeManager();
+    }
     renderContent(container: HTMLElement): void {  
         
         const chatContainer = document.createElement('div');
@@ -8,7 +14,7 @@ export default class MyActivityPageMapper {
         toggleButtons.className = 'tbap-toggle-buttons';
 
         const messageButton = document.createElement('button');
-        messageButton.style.backgroundColor = '#5068a8';
+        messageButton.style.backgroundColor = this.themeManager.getThemeColor('backgroundColor') || '#5068a8';
         messageButton.style.borderRadius = '6px';
         messageButton.innerText = 'Messages';
 

@@ -1,7 +1,14 @@
+import { ThemeManager } from "./ThemeManager";
+
 export class CalendarPageMapper {
+  themeManager: ThemeManager;
+      constructor() {
+          this.themeManager = new ThemeManager();
+      }
     private htmlData(): string {
         let pageData = `
-        <div class="tbap-date-selector">
+        <div class="tbap-date-selector"
+          style="background-color: ${this.themeManager.getThemeColor('backgroundColor') || '#5068a8'};">
           <span class="tbap-arrow">❮</span>
           <span class="tbap-date-text" id="current-date">${this.formatDate()}</span>
           <span class="tbap-arrow">❯</span>

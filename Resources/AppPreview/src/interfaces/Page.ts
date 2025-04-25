@@ -1,4 +1,5 @@
 import { PageContentStructure } from "./PageContentStructure";
+import { PageInfoContentStructure } from "./PageInfoContentStructure";
 import { PageMenuStructure } from "./PageMenuStructure";
 
 export interface Page {
@@ -8,4 +9,5 @@ export interface Page {
     PageStructure: string;
     PageMenuStructure: PageMenuStructure;
     PageContentStructure: PageContentStructure;
+    PageInfoStructure: PageInfoContentStructure
 }

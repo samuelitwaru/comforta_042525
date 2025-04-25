@@ -2,6 +2,7 @@ import { HeaderComponent } from "../components/HeaderComponent";
 import { CalendarPageMapper } from "../controls/CalendarPageMapper";
 import { ContentPageMapper } from "../controls/ContentPageMapper";
 import { HomePageMapper } from "../controls/HomePageMapper";
+import { InfoPageMapper } from "../controls/InfoPageMapper";
 import { MenuPageMapper } from "../controls/MenuPageMapper";
 import MyActivityPageMapper from "../controls/MyActivityPageMapper";
 import { WebLinkPageMapper } from "../controls/WebLinkPageMapper";
@@ -44,6 +45,8 @@ export class MenuPageComponent {
             this.page.PageType === "Reception"
         ) {
             pageMapper = new ContentPageMapper(this.page);
+        } else if (this.page.PageType === "Information") {
+            pageMapper = new InfoPageMapper(this.page);
         }
 
         pageMapper?.renderContent(this.pageElement);

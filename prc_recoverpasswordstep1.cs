@@ -72,12 +72,12 @@ namespace GeneXus.Programs {
             if ( AV12IsSuccess )
             {
                AV13result = new SdtSDT_RecoverPasswordStep1(context);
-               AV13result.gxTpr_Success_message = "An email was sent with instructions to change your password";
+               AV13result.gxTpr_Success_message = context.GetMessage( "An email was sent with instructions to change your password", "");
             }
             else
             {
                AV13result = new SdtSDT_RecoverPasswordStep1(context);
-               AV13result.gxTpr_Error.gxTpr_Message = "Something went wrong, please try again";
+               AV13result.gxTpr_Error.gxTpr_Message = context.GetMessage( "Something went wrong, please try again", "");
             }
          }
          else
