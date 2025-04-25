@@ -1,0 +1,2 @@
+const environment = "/Comforta_version20DevelopmentNETPostgreSQL1";
+export {environment};
