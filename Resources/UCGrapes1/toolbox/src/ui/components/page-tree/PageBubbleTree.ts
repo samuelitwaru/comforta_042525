@@ -40,6 +40,7 @@ export class PageBubbleTree {
         this.themeManager = new ThemeManager();
         const appVersionManager = this.themeManager.appVersionManager
         this.pages = appVersionManager.getPages()
+        console.log('pages',this.pages)
         this.processsedPages = this.processPageData()
         const config = AppConfig.getInstance();
         this.d3 = config.UC.d3
@@ -125,7 +126,7 @@ export class PageBubbleTree {
                     })
                 })
             } else if (page.PageType == "Content" || page.PageType == "Location" || page.PageType == "Reception") {
-                // ret.structure = this.pageTreeRenderer.createContentHTML(page);
+                ret.structure = this.pageTreeRenderer.createContentHTML(page);
             } else if (page.PageType == "Calendar") {
                 ret.structure = this.pageTreeRenderer.createAgendaHTML(page);
             } else if (page.PageType == "MyActivity") {
