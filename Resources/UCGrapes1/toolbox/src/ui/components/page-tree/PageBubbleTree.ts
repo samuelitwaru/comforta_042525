@@ -125,7 +125,7 @@ export class PageBubbleTree {
                     })
                 })
             } else if (page.PageType == "Content" || page.PageType == "Location" || page.PageType == "Reception") {
-                ret.structure = this.pageTreeRenderer.createContentHTML(page);
+                // ret.structure = this.pageTreeRenderer.createContentHTML(page);
             } else if (page.PageType == "Calendar") {
                 ret.structure = this.pageTreeRenderer.createAgendaHTML(page);
             } else if (page.PageType == "MyActivity") {
@@ -133,7 +133,6 @@ export class PageBubbleTree {
             } else if (page.PageType == "Map") {
                 ret.structure = this.pageTreeRenderer.createMapHTML(page);
             }
-
             return ret
         })
         
