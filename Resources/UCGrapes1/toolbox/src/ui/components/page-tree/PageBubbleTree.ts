@@ -120,8 +120,10 @@ export class PageBubbleTree {
                             })
                             ret.children.push(tile.Action.ObjectId)
                         } else if (tile.Action.ObjectId) {
-                            console.log('    tile:', tile.Action.ObjectType, tile.Action.ObjectId)
-                            ret.children.push(tile.Action.ObjectId)
+                            // console.log('    tile:', tile.Action.ObjectType, tile.Action.ObjectId)
+                            if (this.pages.filter((page:any) => page.PageId === tile.Action.ObjectId)) {
+                                ret.children.push(tile.Action.ObjectId)
+                            }
                         }
                     })
                 })
