@@ -120,7 +120,7 @@ export class PageBubbleTree {
                             })
                             ret.children.push(tile.Action.ObjectId)
                         } else if (tile.Action.ObjectId) {
-                            console.log('    tile:', tile.Action.ObjectType)
+                            console.log('    tile:', tile.Action.ObjectType, tile.Action.ObjectId)
                             ret.children.push(tile.Action.ObjectId)
                         }
                     })
