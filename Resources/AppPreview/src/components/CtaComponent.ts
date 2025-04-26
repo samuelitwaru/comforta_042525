@@ -38,7 +38,6 @@ export class CtaComponent {
 
         const label = document.createElement("div");
         label.classList.add("tbap-cta-round-button__label");
-        label.style.color = this.cta.CtaColor ? this.cta.CtaColor : "#fff";
         if(this.cta.CtaLabel) label.innerText = this.cta.CtaLabel;
         
         this.ctaButton.appendChild(buttonDiv);
