@@ -42,6 +42,7 @@ export class PageBubbleTree {
         this.pages = appVersionManager.getPages()
         console.log('pages',this.pages)
         this.processsedPages = this.processPageData()
+        console.log('pages',this.processsedPages)
         const config = AppConfig.getInstance();
         this.d3 = config.UC.d3
         this.nodes = this.createNodes()
@@ -120,7 +121,7 @@ export class PageBubbleTree {
                             })
                             ret.children.push(tile.Action.ObjectId)
                         } else if (tile.Action.ObjectId) {
-                            // console.log('    tile:', tile.Action.ObjectType, tile.Action.ObjectId)
+                            console.log('    tile:', tile.Action.ObjectType, tile.Action.ObjectId)
                             if (this.pages.filter((page:any) => page.PageId === tile.Action.ObjectId)) {
                                 ret.children.push(tile.Action.ObjectId)
                             }
