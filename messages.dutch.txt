@@ -1331,3 +1331,7 @@ GXM_Deleting=Verwijderen
 GXM_fileupload_addfiles=Bestand toevoegen
 General Supplier Type=Algemeen Leverancier type
 Supplier Type Name=naam van het leverancierstype
+WWP_GAM_ForgotPassword=Wachtwoord vergeten?
+WWP_GAM_Keepmeloggedin=Blijf ingelogd
+Back To Login=Terug naar inloggen
+Comfirm Password=Bevestig wachtwoord
