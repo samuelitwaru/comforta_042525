@@ -377,7 +377,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Trn_appversionwwds_3_tfappversionname_sel)) && ! ( StringUtil.StrCmp(AV41Trn_appversionwwds_3_tfappversionname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV41Trn_appversionwwds_3_tfappversionname_sel)) && ! ( StringUtil.StrCmp(AV41Trn_appversionwwds_3_tfappversionname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(AppVersionName = ( :AV41Trn_appversionwwds_3_tfappversionname_sel))");
          }
@@ -385,7 +385,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV41Trn_appversionwwds_3_tfappversionname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV41Trn_appversionwwds_3_tfappversionname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from AppVersionName))=0))");
          }

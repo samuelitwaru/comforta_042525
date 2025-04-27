@@ -196,7 +196,7 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          context.WriteHtmlText( "<title>") ;
-         context.SendWebValue( "Recover password step 2") ;
+         context.SendWebValue( context.GetMessage( "GAM_Recoverpasswordstep2", "")) ;
          context.WriteHtmlTextNl( "</title>") ;
          if ( context.isSpaRequest( ) )
          {
@@ -257,7 +257,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vUSERAUTHTYPENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14UserAuthTypeName, "")), context));
          GxWebStd.gx_hidden_field( context, "vKEYTOCHANGEPASSWORD", StringUtil.RTrim( AV10KeyToChangePassword));
          GxWebStd.gx_hidden_field( context, "gxhash_vKEYTOCHANGEPASSWORD", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV10KeyToChangePassword, "")), context));
-         GxWebStd.gx_hidden_field( context, "vUSERREMEMBERME", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV18UserRememberMe), 2, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vUSERREMEMBERME", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV18UserRememberMe), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vUSERREMEMBERME", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV18UserRememberMe), "Z9"), context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
@@ -271,7 +271,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vUSERAUTHTYPENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14UserAuthTypeName, "")), context));
          GxWebStd.gx_hidden_field( context, "vKEYTOCHANGEPASSWORD", StringUtil.RTrim( AV10KeyToChangePassword));
          GxWebStd.gx_hidden_field( context, "gxhash_vKEYTOCHANGEPASSWORD", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV10KeyToChangePassword, "")), context));
-         GxWebStd.gx_hidden_field( context, "vUSERREMEMBERME", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV18UserRememberMe), 2, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vUSERREMEMBERME", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV18UserRememberMe), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vUSERREMEMBERME", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV18UserRememberMe), "Z9"), context));
          GxWebStd.gx_hidden_field( context, "vIDP_STATE", StringUtil.RTrim( AV9IDP_State));
       }
@@ -295,6 +295,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -310,7 +322,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Recover password step 2" ;
+         return context.GetMessage( "GAM_Recoverpasswordstep2", "") ;
       }
 
       protected void WB0X0( )
@@ -362,7 +374,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divCurrentrepositorycell_Internalname, 1, 0, "px", 0, "px", "col-xs-12 TextBlockTitleWWP", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblResetpassword_Internalname, "Reset Password", "", "", lblResetpassword_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "DataDescriptionLogin", 0, "", 1, 1, 0, 0, "HLP_GAMExampleRecoverPasswordStep2.htm");
+            GxWebStd.gx_label_ctrl( context, lblResetpassword_Internalname, context.GetMessage( "Reset Password", ""), "", "", lblResetpassword_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "DataDescriptionLogin", 0, "", 1, 1, 0, 0, "HLP_GAMExampleRecoverPasswordStep2.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -411,7 +423,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Recover password step 2", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "GAM_Recoverpasswordstep2", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -608,7 +620,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vUSERAUTHTYPENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14UserAuthTypeName, "")), context));
          GxWebStd.gx_hidden_field( context, "vKEYTOCHANGEPASSWORD", StringUtil.RTrim( AV10KeyToChangePassword));
          GxWebStd.gx_hidden_field( context, "gxhash_vKEYTOCHANGEPASSWORD", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV10KeyToChangePassword, "")), context));
-         GxWebStd.gx_hidden_field( context, "vUSERREMEMBERME", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV18UserRememberMe), 2, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vUSERREMEMBERME", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV18UserRememberMe), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vUSERREMEMBERME", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV18UserRememberMe), "Z9"), context));
       }
 
@@ -728,7 +740,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GX_msglist.addItem("The new password and confirmation do not match.");
+            GX_msglist.addItem(context.GetMessage( "GAM_Thenewpasswordandconfirmationdonotmatch", ""));
          }
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV5AdditionalParameter", AV5AdditionalParameter);
@@ -786,10 +798,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUsername_Internalname, "User Name", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavUsername_Internalname, context.GetMessage( "User Name", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavUsername_Internalname, AV15UserName, StringUtil.RTrim( context.localUtil.Format( AV15UserName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,25);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "Email", edtavUsername_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavUsername_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, true, "GeneXusSecurityCommon\\GAMEMail", "start", true, "", "HLP_GAMExampleRecoverPasswordStep2.htm");
+            GxWebStd.gx_single_line_edit( context, edtavUsername_Internalname, AV15UserName, StringUtil.RTrim( context.localUtil.Format( AV15UserName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,25);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "Email", ""), edtavUsername_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavUsername_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, true, "GeneXusSecurityCommon\\GAMEMail", "start", true, "", "HLP_GAMExampleRecoverPasswordStep2.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
@@ -798,10 +810,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUserpasswordnew_Internalname, "User Password New", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavUserpasswordnew_Internalname, context.GetMessage( "User Password New", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavUserpasswordnew_Internalname, StringUtil.RTrim( AV16UserPasswordNew), StringUtil.RTrim( context.localUtil.Format( AV16UserPasswordNew, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "New Password", edtavUserpasswordnew_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavUserpasswordnew_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_GAMExampleRecoverPasswordStep2.htm");
+            GxWebStd.gx_single_line_edit( context, edtavUserpasswordnew_Internalname, StringUtil.RTrim( AV16UserPasswordNew), StringUtil.RTrim( context.localUtil.Format( AV16UserPasswordNew, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_GAM_NewPassword", ""), edtavUserpasswordnew_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavUserpasswordnew_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_GAMExampleRecoverPasswordStep2.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
@@ -810,10 +822,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUserpasswordnewconf_Internalname, "User Password New Conf", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavUserpasswordnewconf_Internalname, context.GetMessage( "User Password New Conf", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavUserpasswordnewconf_Internalname, StringUtil.RTrim( AV17UserPasswordNewConf), StringUtil.RTrim( context.localUtil.Format( AV17UserPasswordNewConf, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,33);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "Confirm Password", edtavUserpasswordnewconf_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavUserpasswordnewconf_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_GAMExampleRecoverPasswordStep2.htm");
+            GxWebStd.gx_single_line_edit( context, edtavUserpasswordnewconf_Internalname, StringUtil.RTrim( AV17UserPasswordNewConf), StringUtil.RTrim( context.localUtil.Format( AV17UserPasswordNewConf, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,33);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_GAM_ConfirmPassword", ""), edtavUserpasswordnewconf_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavUserpasswordnewconf_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_GAMExampleRecoverPasswordStep2.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
@@ -826,12 +838,12 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Confirm", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMExampleRecoverPasswordStep2.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMExampleRecoverPasswordStep2.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "CellMarginTop", "start", "top", "", "flex-grow:1;align-self:center;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblBacktologin_Internalname, "Back to Login", "", "", lblBacktologin_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "DataDescriptionLogin", 0, "", 1, 1, 0, 0, "HLP_GAMExampleRecoverPasswordStep2.htm");
+            GxWebStd.gx_label_ctrl( context, lblBacktologin_Internalname, context.GetMessage( "WWP_GAM_BackLogin", ""), "", "", lblBacktologin_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "DataDescriptionLogin", 0, "", 1, 1, 0, 0, "HLP_GAMExampleRecoverPasswordStep2.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
@@ -890,7 +902,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411531814", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271813219", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -905,8 +917,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamexamplerecoverpasswordstep2.js", "?202542411531818", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("gamexamplerecoverpasswordstep2.js", "?202542718132113", false, true);
          /* End function include_jscripts */
       }
 

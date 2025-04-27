@@ -276,7 +276,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {A58ProductServiceId, A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem("No matching 'Services'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Services", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(3);
@@ -286,7 +286,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A366LocationDynamicFormId) || (Guid.Empty==A11OrganisationId) || (Guid.Empty==A29LocationId) ) )
             {
-               GX_msglist.addItem("No matching 'Location Dynamic Forms'.", "ForeignKeyNotFound", 1, "LOCATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Location Dynamic Forms", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "LOCATIONID");
                AnyError = 1;
             }
          }
@@ -302,7 +302,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (0==A206WWPFormId) || (0==A207WWPFormVersionNumber) ) )
             {
-               GX_msglist.addItem("No matching 'Dynamic Form'.", "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Dynamic Form", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
                AnyError = 1;
             }
          }
@@ -326,22 +326,22 @@ namespace GeneXus.Programs {
          }
          if ( ! ( ( StringUtil.StrCmp(A340CallToActionType, "Phone") == 0 ) || ( StringUtil.StrCmp(A340CallToActionType, "Email") == 0 ) || ( StringUtil.StrCmp(A340CallToActionType, "Form") == 0 ) || ( StringUtil.StrCmp(A340CallToActionType, "SiteUrl") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Call To Action Type is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Call To Action Type", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A500CallToActionPhoneNumber)) && ! GxRegex.IsMatch(A500CallToActionPhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A500CallToActionPhoneNumber)) && ! GxRegex.IsMatch(A500CallToActionPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone should contain 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone should contain 9 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A367CallToActionUrl,"^((?:[a-zA-Z]+:(//)?)?((?:(?:[a-zA-Z]([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*)(?:\\.(?:([a-zA-Z0-9$\\-_@&+!*\"'(),]|%[0-9a-fA-F]{2})*))*)|(?:(\\d{1,3}\\.){3}\\d{1,3}))(?::\\d+)?(?:/([a-zA-Z0-9$\\-_@.&+!*\"'(),=;: ]|%[0-9a-fA-F]{2})+)*/?(?:[#?](?:[a-zA-Z0-9$\\-_@.&+!*\"'(),=;: /]|%[0-9a-fA-F]{2})*)?)?\\s*$") ) )
          {
-            GX_msglist.addItem("Field Call To Action Url does not match the specified pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Call To Action Url", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A341CallToActionEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Invalid email pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Call To Action Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }

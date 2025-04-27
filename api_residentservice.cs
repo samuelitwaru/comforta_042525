@@ -480,7 +480,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            new prc_logtofile(context ).execute(  "Loc Memos API Response: "+AV17result) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Loc Memos API Response: ", "")+AV17result) ;
          }
       }
 
@@ -494,7 +494,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            new prc_logtofile(context ).execute(  "Memos API Response: "+AV17result) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Memos API Response: ", "")+AV17result) ;
          }
       }
 

@@ -109,10 +109,10 @@ namespace GeneXus.Programs {
             if (true) break;
          }
          pr_default.close(0);
-         AV8BC_WebLinkPage.gxTpr_Pagename = "Web Link";
+         AV8BC_WebLinkPage.gxTpr_Pagename = context.GetMessage( "Web Link", "");
          AV8BC_WebLinkPage.gxTpr_Ispredefined = true;
          AV8BC_WebLinkPage.gxTpr_Pagetype = "WebLink";
-         AV10BC_DynamicFormPage.gxTpr_Pagename = "Dynamic Form";
+         AV10BC_DynamicFormPage.gxTpr_Pagename = context.GetMessage( "Dynamic Form", "");
          AV10BC_DynamicFormPage.gxTpr_Ispredefined = true;
          AV10BC_DynamicFormPage.gxTpr_Pagetype = "DynamicForm";
          cleanup();

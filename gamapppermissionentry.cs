@@ -301,7 +301,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vAPPLICATIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7ApplicationId), 12, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vAPPLICATIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7ApplicationId), 12, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vAPPLICATIONID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV7ApplicationId), "ZZZZZZZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "gxhash_vGUID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12GUID, "")), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
@@ -314,7 +314,7 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "vAPPLICATIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7ApplicationId), 12, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vAPPLICATIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7ApplicationId), 12, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vAPPLICATIONID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV7ApplicationId), "ZZZZZZZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
@@ -350,6 +350,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -392,7 +404,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Permission" ;
+         return context.GetMessage( "WWP_GAM_Permission", "") ;
       }
 
       protected void WB8T0( )
@@ -459,7 +471,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavGamapplication_name_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavGamapplication_name_Internalname, "Application", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavGamapplication_name_Internalname, context.GetMessage( "WWP_GAM_Application", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
@@ -477,7 +489,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavGuid_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavGuid_Internalname, "GUID", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavGuid_Internalname, context.GetMessage( "WWP_GAM_GUID", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -494,7 +506,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavName_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavName_Internalname, "Name", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavName_Internalname, context.GetMessage( "WWP_GAM_Name", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -508,7 +520,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavDsc_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavDsc_Internalname, "Description", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavDsc_Internalname, context.GetMessage( "WWP_GAM_Description", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -525,7 +537,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavAccesstype_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavAccesstype_Internalname, "Access Type", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavAccesstype_Internalname, context.GetMessage( "WWP_GAM_AccessType", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 40,'',false,'',0)\"";
@@ -548,7 +560,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavIsparent_Internalname, StringUtil.BoolToStr( AV13IsParent), "", " ", 1, chkavIsparent.Enabled, "true", "Is a Parent Permission?", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(44, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,44);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavIsparent_Internalname, StringUtil.BoolToStr( AV13IsParent), "", " ", 1, chkavIsparent.Enabled, "true", context.GetMessage( "WWP_GAM_IsaParentPermission", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(44, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,44);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -571,14 +583,14 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", bttBtnenter_Caption, bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMAppPermissionEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", bttBtnenter_Caption, bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMAppPermissionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMAppPermissionEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMAppPermissionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -604,7 +616,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Permission", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WWP_GAM_Permission", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -812,7 +824,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_lvl_hashes8T2( )
       {
-         GxWebStd.gx_hidden_field( context, "vAPPLICATIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7ApplicationId), 12, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vAPPLICATIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7ApplicationId), 12, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vAPPLICATIONID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV7ApplicationId), "ZZZZZZZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "gxhash_vGUID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12GUID, "")), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
@@ -1034,7 +1046,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411582054", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718194951", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1049,8 +1061,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamapppermissionentry.js", "?202542411582055", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("gamapppermissionentry.js", "?202542718194953", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1061,8 +1073,8 @@ namespace GeneXus.Programs {
       {
          cmbavAccesstype.Name = "vACCESSTYPE";
          cmbavAccesstype.WebTags = "";
-         cmbavAccesstype.addItem("A", "Allow", 0);
-         cmbavAccesstype.addItem("R", "Restricted", 0);
+         cmbavAccesstype.addItem("A", context.GetMessage( "WWP_GAM_Allow", ""), 0);
+         cmbavAccesstype.addItem("R", context.GetMessage( "WWP_GAM_Restricted", ""), 0);
          if ( cmbavAccesstype.ItemCount > 0 )
          {
             AV15AccessType = cmbavAccesstype.getValidValue(AV15AccessType);
@@ -1106,7 +1118,7 @@ namespace GeneXus.Programs {
          init_default_properties( ) ;
          chkavIsparent.Caption = " ";
          edtavGamapplication_name_Enabled = -1;
-         bttBtnenter_Caption = "Confirm";
+         bttBtnenter_Caption = context.GetMessage( "GX_BtnEnter", "");
          bttBtnenter_Visible = 1;
          chkavIsparent.Enabled = 1;
          cmbavAccesstype_Jsonclick = "";
@@ -1124,7 +1136,7 @@ namespace GeneXus.Programs {
          Dvpanel_tableattributes_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Title = "Permission";
+         Dvpanel_tableattributes_Title = context.GetMessage( "WWP_GAM_Permission", "");
          Dvpanel_tableattributes_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_tableattributes_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_tableattributes_Autowidth = Convert.ToBoolean( 0);
@@ -1133,7 +1145,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Permission";
+         Form.Caption = context.GetMessage( "WWP_GAM_Permission", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {

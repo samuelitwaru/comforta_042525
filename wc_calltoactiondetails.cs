@@ -226,7 +226,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WC_Call To Action Details") ;
+            context.SendWebValue( context.GetMessage( "WC_Call To Action Details", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -388,7 +388,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WC_Call To Action Details" ;
+         return context.GetMessage( "WC_Call To Action Details", "") ;
       }
 
       protected void WBA20( )
@@ -487,7 +487,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WC_Call To Action Details", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WC_Call To Action Details", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -1010,7 +1010,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411434380", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271755162", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1028,7 +1028,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_calltoactiondetails.js", "?202542411434380", false, true);
+            context.AddJavascriptSource("wc_calltoactiondetails.js", "?20254271755163", false, true);
          }
          /* End function include_jscripts */
       }

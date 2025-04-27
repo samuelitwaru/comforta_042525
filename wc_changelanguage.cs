@@ -264,7 +264,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WC_Change Language") ;
+            context.SendWebValue( context.GetMessage( "WC_Change Language", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -363,8 +363,8 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_9", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_9), 8, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"subGrid2_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid2_Recordcount), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_9", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_9), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"subGrid2_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid2_Recordcount), 5, 0, context.GetLanguageProperty( "decimal_point"), "")));
       }
 
       protected void RenderHtmlCloseForm4V2( )
@@ -421,7 +421,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WC_Change Language" ;
+         return context.GetMessage( "WC_Change Language", "") ;
       }
 
       protected void WB4V0( )
@@ -542,7 +542,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WC_Change Language", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WC_Change Language", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -936,8 +936,8 @@ namespace GeneXus.Programs {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_9 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_9"), ".", ","), 18, MidpointRounding.ToEven));
-            subGrid2_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"subGrid2_Recordcount"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_9 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_9"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGrid2_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"subGrid2_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
@@ -953,11 +953,11 @@ namespace GeneXus.Programs {
       {
          /* Load Routine */
          returnInSub = false;
-         AV8OrganisationLanguagesList.FromJSonString("[\"English\",\"Dutch\"]", null);
-         AV15GXV1 = 1;
-         while ( AV15GXV1 <= AV8OrganisationLanguagesList.Count )
+         AV8OrganisationLanguagesList.FromJSonString("[\"English\",\"Nederlands\"]", null);
+         AV16GXV1 = 1;
+         while ( AV16GXV1 <= AV8OrganisationLanguagesList.Count )
          {
-            AV6LanguageItem = ((string)AV8OrganisationLanguagesList.Item(AV15GXV1));
+            AV6LanguageItem = ((string)AV8OrganisationLanguagesList.Item(AV16GXV1));
             AV5LanguageCode = AV6LanguageItem;
             AssignAttri(sPrefix, false, edtavLanguagecode_Internalname, AV5LanguageCode);
             GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vLANGUAGECODE"+"_"+sGXsfl_9_idx, GetSecureSignedToken( sPrefix+sGXsfl_9_idx, StringUtil.RTrim( context.localUtil.Format( AV5LanguageCode, "")), context));
@@ -966,7 +966,7 @@ namespace GeneXus.Programs {
             {
                DoAjaxLoad(9, Grid2Row);
             }
-            AV15GXV1 = (int)(AV15GXV1+1);
+            AV16GXV1 = (int)(AV16GXV1+1);
          }
       }
 
@@ -974,18 +974,20 @@ namespace GeneXus.Programs {
       {
          /* Languagecode_Click Routine */
          returnInSub = false;
-         AV7NumericValue = (short)(context.SetLanguage( AV5LanguageCode));
-         AV14WebSession.Set("Language", AV5LanguageCode);
-         if ( AV7NumericValue == 0 )
+         AV15tempLanguage = AV5LanguageCode;
+         if ( StringUtil.StrCmp(AV5LanguageCode, "Nederlands") == 0 )
          {
-            AV11GamUser.load( new GeneXus.Programs.genexussecurity.SdtGAMUser(context).getid());
-            AV11GamUser.gxTpr_Language = AV5LanguageCode;
-            AV11GamUser.save();
-            if ( AV11GamUser.success() )
-            {
-               context.CommitDataStores("wc_changelanguage",pr_default);
-               context.DoAjaxRefreshForm();
-            }
+            AV15tempLanguage = "Dutch";
+         }
+         AV7NumericValue = (short)(context.SetLanguage( AV15tempLanguage));
+         AV14WebSession.Set(context.GetMessage( "Language", ""), AV15tempLanguage);
+         AV11GamUser.load( new GeneXus.Programs.genexussecurity.SdtGAMUser(context).getid());
+         AV11GamUser.gxTpr_Language = AV15tempLanguage;
+         AV11GamUser.save();
+         if ( AV11GamUser.success() )
+         {
+            context.CommitDataStores("wc_changelanguage",pr_default);
+            context.DoAjaxRefreshForm();
          }
       }
 
@@ -1159,7 +1161,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411505839", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271883842", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1175,7 +1177,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_changelanguage.js", "?202542411505841", false, true);
+         context.AddJavascriptSource("wc_changelanguage.js", "?20254271883845", false, true);
          /* End function include_jscripts */
       }
 
@@ -1311,7 +1313,7 @@ namespace GeneXus.Programs {
                }
             }
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute MasterPageTopActionsOption"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Change Language") ;
+            context.SendWebValue( context.GetMessage( "Change Language", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
             Grid2Container.AddObjectProperty("GridName", "Grid2");
@@ -1425,6 +1427,7 @@ namespace GeneXus.Programs {
          AV8OrganisationLanguagesList = new GxSimpleCollection<string>();
          AV6LanguageItem = "";
          Grid2Row = new GXWebRow();
+         AV15tempLanguage = "";
          AV14WebSession = context.GetSession();
          AV11GamUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          BackMsgLst = new msglist();
@@ -1474,7 +1477,7 @@ namespace GeneXus.Programs {
       private int nGXsfl_9_idx=1 ;
       private int edtavLanguagecode_Enabled ;
       private int subGrid2_Islastpage ;
-      private int AV15GXV1 ;
+      private int AV16GXV1 ;
       private int idxLst ;
       private int subGrid2_Backcolor ;
       private int subGrid2_Allbackcolor ;
@@ -1522,6 +1525,7 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private string AV5LanguageCode ;
       private string AV6LanguageItem ;
+      private string AV15tempLanguage ;
       private GXWebGrid Grid2Container ;
       private GXWebRow Grid2Row ;
       private GXWebColumn Grid2Column ;

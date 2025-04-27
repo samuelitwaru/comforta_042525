@@ -371,50 +371,50 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
          if ( ! ( ( StringUtil.StrCmp(A72ResidentSalutation, "Mr") == 0 ) || ( StringUtil.StrCmp(A72ResidentSalutation, "Mrs") == 0 ) || ( StringUtil.StrCmp(A72ResidentSalutation, "Dr") == 0 ) || ( StringUtil.StrCmp(A72ResidentSalutation, "Miss") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Resident Salutation is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Resident Salutation", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A63ResidentBsnNumber)) && ( StringUtil.Len( A63ResidentBsnNumber) != 9 ) )
          {
-            GX_msglist.addItem("BSN number contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "BSN number contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A64ResidentGivenName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Given Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Given Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          new prc_getnameinitials(context ).execute(  A64ResidentGivenName,  A65ResidentLastName, out  A66ResidentInitials) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A65ResidentLastName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Last Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Last Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A67ResidentEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Invalid email pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Resident Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A67ResidentEmail)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Email", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Email", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( ( StringUtil.StrCmp(A68ResidentGender, "Male") == 0 ) || ( StringUtil.StrCmp(A68ResidentGender, "Female") == 0 ) || ( StringUtil.StrCmp(A68ResidentGender, "Other") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Resident Gender is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Resident Gender", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          A314ResidentZipCode = StringUtil.Upper( A314ResidentZipCode);
-         if ( ! GxRegex.IsMatch(A314ResidentZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A314ResidentZipCode)) )
+         if ( ! GxRegex.IsMatch(A314ResidentZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A314ResidentZipCode)) )
          {
-            GX_msglist.addItem("Zip Code is incorrect", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Zip Code is incorrect", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00095 */
@@ -423,7 +423,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A96ResidentTypeId) ) )
             {
-               GX_msglist.addItem("No matching 'Resident Types'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
                AnyError = 1;
             }
          }
@@ -435,7 +435,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem("No matching 'Medical Indications'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Medical Indications", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
             }
          }
@@ -444,17 +444,17 @@ namespace GeneXus.Programs {
          GXt_char2 = A70ResidentPhone;
          new prc_concatenateintlphone(context ).execute(  A347ResidentPhoneCode,  A348ResidentPhoneNumber, out  GXt_char2) ;
          A70ResidentPhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A348ResidentPhoneNumber)) && ! GxRegex.IsMatch(A348ResidentPhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A348ResidentPhoneNumber)) && ! GxRegex.IsMatch(A348ResidentPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
          GXt_char2 = A430ResidentHomePhone;
          new prc_concatenateintlphone(context ).execute(  A431ResidentHomePhoneCode,  A432ResidentHomePhoneNumber, out  GXt_char2) ;
          A430ResidentHomePhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A432ResidentHomePhoneNumber)) && ! GxRegex.IsMatch(A432ResidentHomePhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A432ResidentHomePhoneNumber)) && ! GxRegex.IsMatch(A432ResidentHomePhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00097 */
@@ -463,7 +463,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A527ResidentPackageId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_ResidentPackage'.", "ForeignKeyNotFound", 1, "RESIDENTPACKAGEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_ResidentPackage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTPACKAGEID");
                AnyError = 1;
             }
          }
@@ -827,7 +827,7 @@ namespace GeneXus.Programs {
             pr_default.execute(15, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Memo"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Memo", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);
@@ -1354,7 +1354,7 @@ namespace GeneXus.Programs {
             pr_default.execute(17, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(17) == 101) )
             {
-               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(17);
@@ -1393,7 +1393,7 @@ namespace GeneXus.Programs {
             pr_default.execute(17, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(17) == 101) )
             {
-               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(17);

@@ -221,7 +221,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "WC_Location Receptionists With Insert") ;
+            context.SendWebValue( context.GetMessage( "WC_Location Receptionists With Insert", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -382,7 +382,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WC_Location Receptionists With Insert" ;
+         return context.GetMessage( "WC_Location Receptionists With Insert", "") ;
       }
 
       protected void WBA10( )
@@ -427,7 +427,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "WC_Location Receptionists With Insert", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "WC_Location Receptionists With Insert", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -883,7 +883,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411434363", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271755082", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -901,7 +901,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_locationreceptionistswithinsert.js", "?202542411434363", false, true);
+            context.AddJavascriptSource("wc_locationreceptionistswithinsert.js", "?20254271755083", false, true);
          }
          /* End function include_jscripts */
       }

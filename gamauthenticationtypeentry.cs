@@ -351,6 +351,18 @@ namespace GeneXus.Programs {
          {
             WebComp_Wcentrypanel.componentjscripts();
          }
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -393,7 +405,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Authentication type" ;
+         return context.GetMessage( "WWP_GAM_AuthenticationType", "") ;
       }
 
       protected void WB8F0( )
@@ -460,7 +472,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavTypeid_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavTypeid_Internalname, "Type", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavTypeid_Internalname, context.GetMessage( "WWP_GAM_Type", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 22,'',false,'',0)\"";
@@ -528,7 +540,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Authentication type", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WWP_GAM_AuthenticationType", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -824,7 +836,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
-            cmbavTypeid.removeItem("GAMLocal");
+            cmbavTypeid.removeItem(context.GetMessage( "GAMLocal", ""));
             cmbavTypeid.Enabled = 1;
             AssignProp("", false, cmbavTypeid_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbavTypeid.Enabled), 5, 0), true);
          }
@@ -995,7 +1007,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411571215", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718181687", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1010,8 +1022,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamauthenticationtypeentry.js", "?202542411571215", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("gamauthenticationtypeentry.js", "?202542718181687", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1022,21 +1034,21 @@ namespace GeneXus.Programs {
       {
          cmbavTypeid.Name = "vTYPEID";
          cmbavTypeid.WebTags = "";
-         cmbavTypeid.addItem("", "(None)", 0);
-         cmbavTypeid.addItem("APIkey", "API Key", 0);
-         cmbavTypeid.addItem("AppleID", "Apple", 0);
-         cmbavTypeid.addItem("Custom", "Custom", 0);
-         cmbavTypeid.addItem("ExternalWebService", "External web service", 0);
-         cmbavTypeid.addItem("Facebook", "Facebook", 0);
-         cmbavTypeid.addItem("GAMLocal", "GAM local", 0);
-         cmbavTypeid.addItem("GAMRemote", "GAM remote", 0);
-         cmbavTypeid.addItem("GAMRemoteRest", "GAM remote rest", 0);
-         cmbavTypeid.addItem("Google", "Google", 0);
-         cmbavTypeid.addItem("Twitter", "Twitter", 0);
-         cmbavTypeid.addItem("Oauth20", "Oauth 2.0", 0);
-         cmbavTypeid.addItem("OTP", "One Time Password", 0);
-         cmbavTypeid.addItem("Saml20", "Saml 2.0", 0);
-         cmbavTypeid.addItem("WeChat", "WeChat", 0);
+         cmbavTypeid.addItem("", context.GetMessage( "GX_EmptyItemText", ""), 0);
+         cmbavTypeid.addItem("APIkey", context.GetMessage( "WWP_GAM_APIkey", ""), 0);
+         cmbavTypeid.addItem("AppleID", context.GetMessage( "WWP_GAM_Apple", ""), 0);
+         cmbavTypeid.addItem("Custom", context.GetMessage( "WWP_GAM_Custom", ""), 0);
+         cmbavTypeid.addItem("ExternalWebService", context.GetMessage( "WWP_GAM_ExternalWebService", ""), 0);
+         cmbavTypeid.addItem("Facebook", context.GetMessage( "WWP_GAM_Facebook", ""), 0);
+         cmbavTypeid.addItem("GAMLocal", context.GetMessage( "WWP_GAM_GAMLocal", ""), 0);
+         cmbavTypeid.addItem("GAMRemote", context.GetMessage( "WWP_GAM_GAMRemote", ""), 0);
+         cmbavTypeid.addItem("GAMRemoteRest", context.GetMessage( "WWP_GAM_GAMRemoteRest", ""), 0);
+         cmbavTypeid.addItem("Google", context.GetMessage( "WWP_GAM_Google", ""), 0);
+         cmbavTypeid.addItem("Twitter", context.GetMessage( "WWP_GAM_Twitter", ""), 0);
+         cmbavTypeid.addItem("Oauth20", context.GetMessage( "WWP_GAM_OAuth20", ""), 0);
+         cmbavTypeid.addItem("OTP", context.GetMessage( "WWP_GAM_OTP", ""), 0);
+         cmbavTypeid.addItem("Saml20", context.GetMessage( "WWP_GAM_Saml20", ""), 0);
+         cmbavTypeid.addItem("WeChat", context.GetMessage( "WWP_GAM_WeChat", ""), 0);
          if ( cmbavTypeid.ItemCount > 0 )
          {
             AV6TypeId = cmbavTypeid.getValidValue(AV6TypeId);
@@ -1072,7 +1084,7 @@ namespace GeneXus.Programs {
          Dvpanel_tableattributes_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Title = "Authentication Type";
+         Dvpanel_tableattributes_Title = context.GetMessage( "WWP_GAM_AuthTypeSingular", "");
          Dvpanel_tableattributes_Cls = "PanelNoHeader";
          Dvpanel_tableattributes_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_tableattributes_Autowidth = Convert.ToBoolean( 0);
@@ -1081,7 +1093,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Authentication type";
+         Form.Caption = context.GetMessage( "WWP_GAM_AuthenticationType", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {

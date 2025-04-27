@@ -383,6 +383,18 @@ namespace GeneXus.Programs {
          {
             WebComp_Wizardstepwc.componentjscripts();
          }
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -425,7 +437,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Service" ;
+         return context.GetMessage( "Service", "") ;
       }
 
       protected void WB6A0( )
@@ -546,7 +558,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Service", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Service", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -860,8 +872,8 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV21WWPContext) ;
          AV16OrganisationId = AV21WWPContext.gxTpr_Organisationid;
          AV13WizardSteps = new GXBaseCollection<WorkWithPlus.workwithplus_web.SdtWizardSteps_WizardStepsItem>( context, "WizardStepsItem", "Comforta_version20");
-         AV13WizardSteps.Add(new WorkWithPlus.workwithplus_web.wwp_wizardgetstep(context).executeUdp(  "Step1",  "Service",  " ",  false), 0);
-         AV13WizardSteps.Add(new WorkWithPlus.workwithplus_web.wwp_wizardgetstep(context).executeUdp(  "Step2",  "Call To Action",  " ",  false), 0);
+         AV13WizardSteps.Add(new WorkWithPlus.workwithplus_web.wwp_wizardgetstep(context).executeUdp(  "Step1",  context.GetMessage( "Service", ""),  " ",  false), 0);
+         AV13WizardSteps.Add(new WorkWithPlus.workwithplus_web.wwp_wizardgetstep(context).executeUdp(  "Step2",  context.GetMessage( "Call To Action", ""),  " ",  false), 0);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11CurrentStep)) )
          {
             AV12CurrentStepAux = "Step1";
@@ -973,7 +985,7 @@ namespace GeneXus.Programs {
             {
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14WizardStep.gxTpr_Description)) )
                {
-                  lblWizardstepdescription_Caption = StringUtil.Format( "Step %1/%2 :: %3", StringUtil.Trim( StringUtil.Str( (decimal)(AV15StepNumber), 2, 0)), StringUtil.Trim( StringUtil.Str( (decimal)(AV13WizardSteps.Count), 9, 0)), AV14WizardStep.gxTpr_Description, "", "", "", "", "", "");
+                  lblWizardstepdescription_Caption = StringUtil.Format( context.GetMessage( "Step %1/%2 :: %3", ""), StringUtil.Trim( StringUtil.Str( (decimal)(AV15StepNumber), 2, 0)), StringUtil.Trim( StringUtil.Str( (decimal)(AV13WizardSteps.Count), 9, 0)), AV14WizardStep.gxTpr_Description, "", "", "", "", "", "");
                   AssignProp("", false, lblWizardstepdescription_Internalname, "Caption", lblWizardstepdescription_Caption, true);
                }
             }
@@ -1064,7 +1076,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542418152086", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718154965", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1079,8 +1091,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_productservice.js", "?202542418152086", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_productservice.js", "?202542718154966", false, true);
          /* End function include_jscripts */
       }
 
@@ -1111,7 +1123,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Service";
+         Form.Caption = context.GetMessage( "Service", "");
          if ( context.isSpaRequest( ) )
          {
             enableJsOutput();

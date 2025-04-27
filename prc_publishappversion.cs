@@ -80,8 +80,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV16SDT_Error.gxTpr_Status = "Error";
-            AV16SDT_Error.gxTpr_Message = "Not Authenticated";
+            AV16SDT_Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV16SDT_Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
             cleanup();
             if (true) return;
          }
@@ -137,7 +137,7 @@ namespace GeneXus.Programs {
                A29LocationId = P00BL5_A29LocationId[0];
                A598PublishedActiveAppVersionId = P00BL5_A598PublishedActiveAppVersionId[0];
                n598PublishedActiveAppVersionId = P00BL5_n598PublishedActiveAppVersionId[0];
-               new prc_logtoserver(context ).execute(  "setting PublishedActiveAppVersionId: "+AV15AppVersionId.ToString()) ;
+               new prc_logtoserver(context ).execute(  context.GetMessage( "setting PublishedActiveAppVersionId: ", "")+AV15AppVersionId.ToString()) ;
                A598PublishedActiveAppVersionId = AV15AppVersionId;
                n598PublishedActiveAppVersionId = false;
                GXTBL4 = 1;
@@ -167,7 +167,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV16SDT_Error.gxTpr_Message = "App version not found";
+            AV16SDT_Error.gxTpr_Message = context.GetMessage( "App version not found", "");
          }
          cleanup();
       }

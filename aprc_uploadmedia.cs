@@ -130,8 +130,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV25Error.gxTpr_Status = "Error";
-            AV25Error.gxTpr_Message = "Not Authenticated";
+            AV25Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV25Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {
@@ -144,17 +144,17 @@ namespace GeneXus.Programs {
             GXt_guid1 = Guid.Empty;
             new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
             AV13BC_Trn_Media.gxTpr_Locationid = GXt_guid1;
-            AV20MediaUrl = AV27baseUrl + "media/" + AV11MediaName;
+            AV20MediaUrl = AV27baseUrl + context.GetMessage( "media/", "") + AV11MediaName;
             AV13BC_Trn_Media.gxTpr_Mediaurl = AV20MediaUrl;
             AV13BC_Trn_Media.Save();
             new prc_logtofile(context ).execute(  AV13BC_Trn_Media.ToJSonString(true, true)) ;
             new prc_logtofile(context ).execute(  StringUtil.BoolToStr( AV13BC_Trn_Media.Success())) ;
             if ( AV13BC_Trn_Media.Success() )
             {
-               AV19Path = "media/";
-               if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http://localhost") )
+               AV19Path = context.GetMessage( "media/", "");
+               if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, context.GetMessage( "http://localhost", "")) )
                {
-                  AV19Path = "C:\\KBs\\Comforta_version20\\Data018\\Web\\media\\";
+                  AV19Path = context.GetMessage( "C:\\KBs\\Comforta_version20\\Data018\\Web\\media\\", "");
                }
                new SdtEO_Base64Image(context).saveimage(AV15MediaImageData, AV19Path+AV11MediaName) ;
                new prc_logtofile(context ).execute(  AV19Path+AV11MediaName) ;
@@ -171,7 +171,7 @@ namespace GeneXus.Programs {
                   new prc_logtofile(context ).execute(  AV14Message.gxTpr_Description) ;
                   AV29GXV2 = (int)(AV29GXV2+1);
                }
-               AV9response = "Insert ERROR";
+               AV9response = context.GetMessage( "Insert ERROR", "");
                context.RollbackDataStores("prc_uploadmedia",pr_default);
             }
          }

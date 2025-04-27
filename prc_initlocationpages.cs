@@ -65,7 +65,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV25Folder = "Resources/UCGrapes1/PredefinedPages/";
+         AV25Folder = context.GetMessage( "Resources/UCGrapes1/PredefinedPages/", "");
          AV14BC_Trn_Location.Load(AV8LocationId, AV12OrganisationId);
          /* Execute user subroutine: 'CREATERECEPTIONPAGE' */
          S121 ();
@@ -140,7 +140,7 @@ namespace GeneXus.Programs {
          pr_default.close(0);
          if ( AV33GXLvl15 == 0 )
          {
-            new prc_logtofile(context ).execute(  "creating home page..") ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "creating home page..", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
             AV15File.Source = AV25Folder+"DefaultHome.json";
             AV13PageGJSJson = AV15File.ReadAllText("");
@@ -206,7 +206,7 @@ namespace GeneXus.Programs {
          pr_default.close(1);
          if ( AV36GXLvl64 == 0 )
          {
-            new prc_logtofile(context ).execute(  "Creating reception...") ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Creating reception...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
             AV15File.Source = AV25Folder+"DefaultReception.json";
             AV13PageGJSJson = AV15File.ReadAllText("");
@@ -321,7 +321,7 @@ namespace GeneXus.Programs {
          pr_default.close(3);
          if ( AV42GXLvl141 == 0 )
          {
-            new prc_logtofile(context ).execute(  "Creating location...") ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Creating location...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
             AV15File.Source = AV25Folder+"DefaultLocation.json";
             AV13PageGJSJson = AV15File.ReadAllText("");
@@ -347,7 +347,7 @@ namespace GeneXus.Programs {
             {
                context.CommitDataStores("prc_initlocationpages",pr_default);
                AV26LocationPageId = AV18BC_Trn_Page.gxTpr_Trn_pageid;
-               new prc_logtofile(context ).execute(  "created location... "+AV26LocationPageId.ToString()) ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "created location... ", "")+AV26LocationPageId.ToString()) ;
             }
             else
             {
@@ -384,7 +384,7 @@ namespace GeneXus.Programs {
          pr_default.close(4);
          if ( AV45GXLvl185 == 0 )
          {
-            new prc_logtofile(context ).execute(  "Creating mailbox...") ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Creating mailbox...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
             AV15File.Source = AV25Folder+"DefaultMailbox.json";
             AV13PageGJSJson = AV15File.ReadAllText("");
@@ -405,7 +405,7 @@ namespace GeneXus.Programs {
             if ( AV18BC_Trn_Page.Success() )
             {
                context.CommitDataStores("prc_initlocationpages",pr_default);
-               new prc_logtofile(context ).execute(  "created mailbox... "+AV27MailboxPageId.ToString()) ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "created mailbox... ", "")+AV27MailboxPageId.ToString()) ;
                AV27MailboxPageId = AV18BC_Trn_Page.gxTpr_Trn_pageid;
             }
             else

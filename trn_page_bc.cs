@@ -272,20 +272,20 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A397Trn_PageName)) )
          {
-            GX_msglist.addItem("Page name cannot be empty.", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Page name cannot be empty.", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00194 */
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
-         if ( ( StringUtil.StrCmp(A397Trn_PageName, "Home") == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) && IsIns( )  )
+         if ( ( StringUtil.StrCmp(A397Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) && IsIns( )  )
          {
-            GX_msglist.addItem("Reserved page name.", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Reserved page name.", ""), 1, "");
             AnyError = 1;
          }
          if ( (Guid.Empty==A58ProductServiceId) )
@@ -300,7 +300,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A58ProductServiceId) || (Guid.Empty==A29LocationId) || (Guid.Empty==A11OrganisationId) ) )
             {
-               GX_msglist.addItem("No matching 'Services'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Services", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
          }
@@ -605,9 +605,9 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
-            if ( ( StringUtil.StrCmp(A397Trn_PageName, "Home") == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) && IsIns( )  )
+            if ( ( StringUtil.StrCmp(A397Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) && IsIns( )  )
             {
-               GX_msglist.addItem("Reserved page name.", 1, "");
+               GX_msglist.addItem(context.GetMessage( "Reserved page name.", ""), 1, "");
                AnyError = 1;
             }
          }

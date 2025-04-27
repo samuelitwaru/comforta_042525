@@ -83,7 +83,7 @@ namespace GeneXus.Programs {
          while ( AV27GXV2 <= AV22UploadedFiles.Count )
          {
             AV11file = ((SdtSDT_FileUploadData)AV22UploadedFiles.Item(AV27GXV2));
-            if ( StringUtil.StartsWith( AV11file.gxTpr_File, "data:") )
+            if ( StringUtil.StartsWith( AV11file.gxTpr_File, context.GetMessage( "data:", "")) )
             {
                AV13FilesToInsert.Add(AV11file, 0);
             }

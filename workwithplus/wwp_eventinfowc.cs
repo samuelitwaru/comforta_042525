@@ -249,7 +249,7 @@ namespace GeneXus.Programs.workwithplus {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "Event") ;
+            context.SendWebValue( context.GetMessage( "Event", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -274,7 +274,7 @@ namespace GeneXus.Programs.workwithplus {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
@@ -346,7 +346,7 @@ namespace GeneXus.Programs.workwithplus {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, sPrefix+"vDURATIONHOURS", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV31DurationHours), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vDURATIONHOURS", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV31DurationHours), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vDURATIONHOURS", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV31DurationHours), "ZZZ9"), context));
          if ( context.isAjaxRequest( ) )
          {
@@ -388,7 +388,7 @@ namespace GeneXus.Programs.workwithplus {
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV8CalendarEventId", wcpOAV8CalendarEventId);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV15DisabledDaysJson", wcpOAV15DisabledDaysJson);
          GxWebStd.gx_hidden_field( context, sPrefix+"vMODE", StringUtil.RTrim( Gx_mode));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vDURATIONHOURS", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV31DurationHours), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vDURATIONHOURS", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV31DurationHours), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vDURATIONHOURS", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV31DurationHours), "ZZZ9"), context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vCALENDAREVENTID", AV8CalendarEventId);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vFIXSTARTDATE", AV27FixStartDate);
@@ -488,7 +488,7 @@ namespace GeneXus.Programs.workwithplus {
 
       public override string GetPgmdesc( )
       {
-         return "Event" ;
+         return context.GetMessage( "Event", "") ;
       }
 
       protected void WB4T0( )
@@ -580,7 +580,7 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-3 MergeLabelCell", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktodatedisplay_Internalname, "To", "", "", lblTextblocktodatedisplay_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblocktodatedisplay_Internalname, context.GetMessage( "WWP_Calendar_To", ""), "", "", lblTextblocktodatedisplay_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
@@ -609,7 +609,7 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavDuration_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavDuration_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavDuration_Internalname, "Duration", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavDuration_Internalname, context.GetMessage( "WWP_Calendar_DurationEvent", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
@@ -630,7 +630,7 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavTitle_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTitle_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTitle_Internalname, "Title", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTitle_Internalname, context.GetMessage( "WWP_Calendar_TitleEvent", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -647,7 +647,7 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavEventtype.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavEventtype_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavEventtype_Internalname, "Type", "col-sm-3 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavEventtype_Internalname, context.GetMessage( "Type", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'" + sPrefix + "',false,'',0)\"";
@@ -670,7 +670,7 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, divTextblockcurrentdate_cell_Internalname, 1, 0, "px", 0, "px", divTextblockcurrentdate_cell_Class, "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockcurrentdate_Internalname, "From", "", "", lblTextblockcurrentdate_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblockcurrentdate_Internalname, context.GetMessage( "WWP_Calendar_From", ""), "", "", lblTextblockcurrentdate_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
@@ -703,7 +703,7 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, divTextblockenddate_cell_Internalname, 1, 0, "px", 0, "px", divTextblockenddate_cell_Class, "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockenddate_Internalname, "To", "", "", lblTextblockenddate_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblockenddate_Internalname, context.GetMessage( "WWP_Calendar_To", ""), "", "", lblTextblockenddate_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
@@ -769,28 +769,28 @@ namespace GeneXus.Programs.workwithplus {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 104,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Confirm", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtnenter_Visible, bttBtnenter_Enabled, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtnenter_Visible, bttBtnenter_Enabled, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 106,'" + sPrefix + "',false,'',0)\"";
             ClassString = "BtnDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuacancel_Internalname, "", "Cancel", bttBtnuacancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, bttBtnuacancel_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e114t1_client"+"'", TempTags, "", 2, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuacancel_Internalname, "", context.GetMessage( "Cancel", ""), bttBtnuacancel_Jsonclick, 7, context.GetMessage( "Cancel", ""), "", StyleString, ClassString, bttBtnuacancel_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e114t1_client"+"'", TempTags, "", 2, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 108,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuaupdate_Internalname, "", "Update", bttBtnuaupdate_Jsonclick, 5, "Update", "", StyleString, ClassString, bttBtnuaupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUAUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuaupdate_Internalname, "", context.GetMessage( "GXM_update", ""), bttBtnuaupdate_Jsonclick, 5, context.GetMessage( "GXM_update", ""), "", StyleString, ClassString, bttBtnuaupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUAUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 110,'" + sPrefix + "',false,'',0)\"";
             ClassString = "BtnDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuadelete_Internalname, "", "Delete", bttBtnuadelete_Jsonclick, 7, "Delete", "", StyleString, ClassString, bttBtnuadelete_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e124t1_client"+"'", TempTags, "", 2, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuadelete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtnuadelete_Jsonclick, 7, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtnuadelete_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e124t1_client"+"'", TempTags, "", 2, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -863,7 +863,7 @@ namespace GeneXus.Programs.workwithplus {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "Event", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "Event", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -1255,7 +1255,7 @@ namespace GeneXus.Programs.workwithplus {
 
       protected void send_integrity_lvl_hashes4T2( )
       {
-         GxWebStd.gx_hidden_field( context, sPrefix+"vDURATIONHOURS", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV31DurationHours), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vDURATIONHOURS", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV31DurationHours), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vDURATIONHOURS", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV31DurationHours), "ZZZ9"), context));
          if ( context.isAjaxRequest( ) )
          {
@@ -1339,9 +1339,9 @@ namespace GeneXus.Programs.workwithplus {
             cmbavEventtype.CurrentValue = cgiGet( cmbavEventtype_Internalname);
             AV40EventType = cgiGet( cmbavEventtype_Internalname);
             AssignAttri(sPrefix, false, "AV40EventType", AV40EventType);
-            if ( context.localUtil.VCDate( cgiGet( edtavCurrentdate_Internalname), 2) == 0 )
+            if ( context.localUtil.VCDate( cgiGet( edtavCurrentdate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"Current Date"}), 1, "vCURRENTDATE");
+               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Current Date", "")}), 1, "vCURRENTDATE");
                GX_FocusControl = edtavCurrentdate_Internalname;
                AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
@@ -1350,26 +1350,26 @@ namespace GeneXus.Programs.workwithplus {
             }
             else
             {
-               AV12CurrentDate = context.localUtil.CToD( cgiGet( edtavCurrentdate_Internalname), 2);
+               AV12CurrentDate = context.localUtil.CToD( cgiGet( edtavCurrentdate_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
                AssignAttri(sPrefix, false, "AV12CurrentDate", context.localUtil.Format(AV12CurrentDate, "99/99/99"));
             }
-            if ( context.localUtil.VCDate( cgiGet( edtavFromtime_Internalname), 2) == 0 )
+            if ( context.localUtil.VCDate( cgiGet( edtavFromtime_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_badtime", new   object[]  {"From Time"}), 1, "vFROMTIME");
+               GX_msglist.addItem(context.GetMessage( "GXM_badtime", new   object[]  {context.GetMessage( "From Time", "")}), 1, "vFROMTIME");
                GX_FocusControl = edtavFromtime_Internalname;
                AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                AV17FromTime = (DateTime)(DateTime.MinValue);
-               AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, 0, 3, "/", ":", " "));
+               AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                AV17FromTime = DateTimeUtil.ResetDate(context.localUtil.CToT( cgiGet( edtavFromtime_Internalname)));
-               AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, 0, 3, "/", ":", " "));
+               AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
-            if ( context.localUtil.VCDate( cgiGet( edtavEnddate_Internalname), 2) == 0 )
+            if ( context.localUtil.VCDate( cgiGet( edtavEnddate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"End Date"}), 1, "vENDDATE");
+               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "End Date", "")}), 1, "vENDDATE");
                GX_FocusControl = edtavEnddate_Internalname;
                AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
@@ -1378,22 +1378,22 @@ namespace GeneXus.Programs.workwithplus {
             }
             else
             {
-               AV16EndDate = context.localUtil.CToD( cgiGet( edtavEnddate_Internalname), 2);
+               AV16EndDate = context.localUtil.CToD( cgiGet( edtavEnddate_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
                AssignAttri(sPrefix, false, "AV16EndDate", context.localUtil.Format(AV16EndDate, "99/99/99"));
             }
-            if ( context.localUtil.VCDate( cgiGet( edtavTotime_Internalname), 2) == 0 )
+            if ( context.localUtil.VCDate( cgiGet( edtavTotime_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_badtime", new   object[]  {"To Time"}), 1, "vTOTIME");
+               GX_msglist.addItem(context.GetMessage( "GXM_badtime", new   object[]  {context.GetMessage( "To Time", "")}), 1, "vTOTIME");
                GX_FocusControl = edtavTotime_Internalname;
                AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                AV19ToTime = (DateTime)(DateTime.MinValue);
-               AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, 0, 3, "/", ":", " "));
+               AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                AV19ToTime = DateTimeUtil.ResetDate(context.localUtil.CToT( cgiGet( edtavTotime_Internalname)));
-               AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, 0, 3, "/", ":", " "));
+               AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             AV7AllDay = StringUtil.StrToBool( cgiGet( chkavAllday_Internalname));
             AssignAttri(sPrefix, false, "AV7AllDay", AV7AllDay);
@@ -1473,7 +1473,7 @@ namespace GeneXus.Programs.workwithplus {
          }
          else
          {
-            this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "WCPopup_UpdateTitle", new Object[] {(string)"New Event"}, false);
+            this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "WCPopup_UpdateTitle", new Object[] {context.GetMessage( "WWP_Calendar_NewEvent", "")}, false);
             AV9CalendarSDT.FromJSonString(AV10CalendarSDTJson, null);
          }
          AV7AllDay = AV9CalendarSDT.gxTpr_Allday;
@@ -1483,18 +1483,18 @@ namespace GeneXus.Programs.workwithplus {
          AV16EndDate = DateTimeUtil.ResetTime(AV9CalendarSDT.gxTpr_End);
          AssignAttri(sPrefix, false, "AV16EndDate", context.localUtil.Format(AV16EndDate, "99/99/99"));
          AV17FromTime = DateTimeUtil.ResetDate(AV9CalendarSDT.gxTpr_Start);
-         AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, 0, 3, "/", ":", " "));
+         AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AV19ToTime = DateTimeUtil.ResetDate(AV9CalendarSDT.gxTpr_End);
-         AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, 0, 3, "/", ":", " "));
+         AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) || AV7AllDay )
          {
             if ( (DateTime.MinValue==AV17FromTime) && (DateTime.MinValue==AV19ToTime) )
             {
                AV25CurrentTime = DateTimeUtil.Now( context);
                AV17FromTime = DateTimeUtil.ResetDate(context.localUtil.YMDHMSToT( (short)(DateTimeUtil.Year( AV25CurrentTime)), (short)(DateTimeUtil.Month( AV25CurrentTime)), (short)(DateTimeUtil.Day( AV25CurrentTime)), (short)(DateTimeUtil.Hour( AV25CurrentTime)+1), 0, 0));
-               AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, 0, 3, "/", ":", " "));
+               AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
                AV19ToTime = DateTimeUtil.ResetDate(DateTimeUtil.TAdd( AV17FromTime, 3600*(1)));
-               AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, 0, 3, "/", ":", " "));
+               AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
          }
          if ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 )
@@ -1510,7 +1510,7 @@ namespace GeneXus.Programs.workwithplus {
                {
                   if ( ((int)((AV32DurationMinutes) % (60))) == 0 )
                   {
-                     AV29Duration = StringUtil.Format( "%1 %2", StringUtil.Str( (decimal)(AV31DurationHours), 4, 0), ((AV31DurationHours==1) ? "hour" : "hours"), "", "", "", "", "", "", "");
+                     AV29Duration = StringUtil.Format( "%1 %2", StringUtil.Str( (decimal)(AV31DurationHours), 4, 0), ((AV31DurationHours==1) ? context.GetMessage( "hour", "") : context.GetMessage( "hours", "")), "", "", "", "", "", "", "");
                      AssignAttri(sPrefix, false, "AV29Duration", AV29Duration);
                   }
                   else
@@ -1518,12 +1518,12 @@ namespace GeneXus.Programs.workwithplus {
                      if ( AV31DurationHours > 0 )
                      {
                         AV33Minutes = (short)(AV32DurationMinutes-(AV31DurationHours*60));
-                        AV29Duration = StringUtil.Format( "%1 %2 and %3 %4", StringUtil.Str( (decimal)(AV31DurationHours), 4, 0), ((AV31DurationHours==1) ? "hour" : "hours"), StringUtil.Str( (decimal)(AV33Minutes), 4, 0), ((AV33Minutes==1) ? "minute" : "minutes"), "", "", "", "", "");
+                        AV29Duration = StringUtil.Format( context.GetMessage( "%1 %2 and %3 %4", ""), StringUtil.Str( (decimal)(AV31DurationHours), 4, 0), ((AV31DurationHours==1) ? context.GetMessage( "hour", "") : context.GetMessage( "hours", "")), StringUtil.Str( (decimal)(AV33Minutes), 4, 0), ((AV33Minutes==1) ? context.GetMessage( "minute", "") : context.GetMessage( "minutes", "")), "", "", "", "", "");
                         AssignAttri(sPrefix, false, "AV29Duration", AV29Duration);
                      }
                      else
                      {
-                        AV29Duration = StringUtil.Format( "%1 %2", StringUtil.Str( (decimal)(AV32DurationMinutes), 4, 0), ((AV32DurationMinutes==1) ? "minute" : "minutes"), "", "", "", "", "", "", "");
+                        AV29Duration = StringUtil.Format( "%1 %2", StringUtil.Str( (decimal)(AV32DurationMinutes), 4, 0), ((AV32DurationMinutes==1) ? context.GetMessage( "minute", "") : context.GetMessage( "minutes", "")), "", "", "", "", "", "", "");
                         AssignAttri(sPrefix, false, "AV29Duration", AV29Duration);
                      }
                   }
@@ -1531,7 +1531,7 @@ namespace GeneXus.Programs.workwithplus {
             }
             if ( DateTimeUtil.ResetTime ( AV12CurrentDate ) == DateTimeUtil.ResetTime ( AV16EndDate ) )
             {
-               lblTextblockfromdatedisplay_Caption = "Date";
+               lblTextblockfromdatedisplay_Caption = context.GetMessage( "Date", "");
                AssignProp(sPrefix, false, lblTextblockfromdatedisplay_Internalname, "Caption", lblTextblockfromdatedisplay_Caption, true);
                if ( AV7AllDay )
                {
@@ -1546,7 +1546,7 @@ namespace GeneXus.Programs.workwithplus {
             }
             else
             {
-               lblTextblockfromdatedisplay_Caption = "From";
+               lblTextblockfromdatedisplay_Caption = context.GetMessage( "From", "");
                AssignProp(sPrefix, false, lblTextblockfromdatedisplay_Internalname, "Caption", lblTextblockfromdatedisplay_Caption, true);
                if ( AV7AllDay )
                {
@@ -1619,7 +1619,7 @@ namespace GeneXus.Programs.workwithplus {
             AssignProp(sPrefix, false, chkavAllday_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavAllday.Visible), 5, 0), true);
             if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
             {
-               this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "WCPopup_UpdateTitle", new Object[] {(string)"Update Event"}, false);
+               this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "WCPopup_UpdateTitle", new Object[] {context.GetMessage( "WWP_Calendar_UpdateEvent", "")}, false);
             }
          }
          /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
@@ -1716,19 +1716,19 @@ namespace GeneXus.Programs.workwithplus {
          AssignAttri(sPrefix, false, "AV11CheckRequiredFieldsResult", AV11CheckRequiredFieldsResult);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV18Title)) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Title", "", "", "", "", "", "", "", ""),  "error",  edtavTitle_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_Calendar_TitleEvent", ""), "", "", "", "", "", "", "", ""),  "error",  edtavTitle_Internalname,  "true",  ""));
             AV11CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV11CheckRequiredFieldsResult", AV11CheckRequiredFieldsResult);
          }
          if ( (DateTime.MinValue==AV12CurrentDate) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "From", "", "", "", "", "", "", "", ""),  "error",  edtavCurrentdate_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_Calendar_From", ""), "", "", "", "", "", "", "", ""),  "error",  edtavCurrentdate_Internalname,  "true",  ""));
             AV11CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV11CheckRequiredFieldsResult", AV11CheckRequiredFieldsResult);
          }
          if ( (DateTime.MinValue==AV16EndDate) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "To", "", "", "", "", "", "", "", ""),  "error",  edtavEnddate_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_Calendar_To", ""), "", "", "", "", "", "", "", ""),  "error",  edtavEnddate_Internalname,  "true",  ""));
             AV11CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV11CheckRequiredFieldsResult", AV11CheckRequiredFieldsResult);
          }
@@ -1896,14 +1896,14 @@ namespace GeneXus.Programs.workwithplus {
          AssignProp(sPrefix, false, lblFromdatedisplay_tags_Internalname, "Caption", lblFromdatedisplay_tags_Caption, true);
          if ( ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 ) && ( DateTimeUtil.ResetTime ( AV12CurrentDate ) == DateTimeUtil.ResetTime ( AV16EndDate ) ) && AV7AllDay )
          {
-            lblFromdatedisplay_tags_Caption = lblFromdatedisplay_tags_Caption+StringUtil.Format( "<span class='AttributeTagInfo TagAfterText'>%1</span>", "All day event", "", "", "", "", "", "", "", "");
+            lblFromdatedisplay_tags_Caption = lblFromdatedisplay_tags_Caption+StringUtil.Format( "<span class='AttributeTagInfo TagAfterText'>%1</span>", context.GetMessage( "WWP_Calendar_AllDayEvent", ""), "", "", "", "", "", "", "", "");
             AssignProp(sPrefix, false, lblFromdatedisplay_tags_Internalname, "Caption", lblFromdatedisplay_tags_Caption, true);
          }
          lblTodatedisplay_tags_Caption = "";
          AssignProp(sPrefix, false, lblTodatedisplay_tags_Internalname, "Caption", lblTodatedisplay_tags_Caption, true);
          if ( ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 ) && ( DateTimeUtil.ResetTime ( AV12CurrentDate ) != DateTimeUtil.ResetTime ( AV16EndDate ) ) && AV7AllDay )
          {
-            lblTodatedisplay_tags_Caption = lblTodatedisplay_tags_Caption+StringUtil.Format( "<span class='AttributeTagInfo TagAfterText'>%1</span>", "All day event", "", "", "", "", "", "", "", "");
+            lblTodatedisplay_tags_Caption = lblTodatedisplay_tags_Caption+StringUtil.Format( "<span class='AttributeTagInfo TagAfterText'>%1</span>", context.GetMessage( "WWP_Calendar_AllDayEvent", ""), "", "", "", "", "", "", "", "");
             AssignProp(sPrefix, false, lblTodatedisplay_tags_Internalname, "Caption", lblTodatedisplay_tags_Caption, true);
          }
       }
@@ -2025,7 +2025,7 @@ namespace GeneXus.Programs.workwithplus {
                      AssignAttri(sPrefix, false, "AV12CurrentDate", context.localUtil.Format(AV12CurrentDate, "99/99/99"));
                   }
                   AV17FromTime = DateTimeUtil.ResetDate(DateTimeUtil.TAdd( AV19ToTime, 3600*(-1)));
-                  AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, 0, 3, "/", ":", " "));
+                  AssignAttri(sPrefix, false, "AV17FromTime", context.localUtil.TToC( AV17FromTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
                }
                else
                {
@@ -2035,7 +2035,7 @@ namespace GeneXus.Programs.workwithplus {
                      AssignAttri(sPrefix, false, "AV16EndDate", context.localUtil.Format(AV16EndDate, "99/99/99"));
                   }
                   AV19ToTime = DateTimeUtil.ResetDate(DateTimeUtil.TAdd( AV17FromTime, 3600*(1)));
-                  AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, 0, 3, "/", ":", " "));
+                  AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
                }
             }
          }
@@ -2059,7 +2059,7 @@ namespace GeneXus.Programs.workwithplus {
          }
          if ( AV26IncludedInADisableDay )
          {
-            GX_msglist.addItem("The event cannot be in a blocked day");
+            GX_msglist.addItem(context.GetMessage( "WWP_Calendar_EventInBlockedDate", ""));
             bttBtnenter_Enabled = 0;
             AssignProp(sPrefix, false, bttBtnenter_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtnenter_Enabled), 5, 0), true);
          }
@@ -2148,12 +2148,12 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavAllday_Internalname, "All Day", "gx-form-item AttributeCheckBoxLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, chkavAllday_Internalname, context.GetMessage( "All Day", ""), "gx-form-item AttributeCheckBoxLabel", 0, true, "width: 25%;");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 97,'" + sPrefix + "',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavAllday_Internalname, StringUtil.BoolToStr( AV7AllDay), "", "All Day", chkavAllday.Visible, chkavAllday.Enabled, "true", "All day event", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,97);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavAllday_Internalname, StringUtil.BoolToStr( AV7AllDay), "", context.GetMessage( "All Day", ""), chkavAllday.Visible, chkavAllday.Enabled, "true", context.GetMessage( "WWP_Calendar_AllDayEvent", ""), StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,97);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
@@ -2184,11 +2184,11 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavEnddate_Internalname, "End Date", "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavEnddate_Internalname, context.GetMessage( "End Date", ""), "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 82,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavEnddate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavEnddate_Internalname, context.localUtil.Format(AV16EndDate, "99/99/99"), context.localUtil.Format( AV16EndDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onblur(this,82);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEnddate_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavEnddate_Visible, edtavEnddate_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavEnddate_Internalname, context.localUtil.Format(AV16EndDate, "99/99/99"), context.localUtil.Format( AV16EndDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,82);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEnddate_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavEnddate_Visible, edtavEnddate_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_bitmap( context, edtavEnddate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavEnddate_Visible==0)||(edtavEnddate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2197,11 +2197,11 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTotime_Internalname, "To Time", "gx-form-item AttributeDateTimeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavTotime_Internalname, context.GetMessage( "To Time", ""), "gx-form-item AttributeDateTimeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 85,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavTotime_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavTotime_Internalname, context.localUtil.TToC( AV19ToTime, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( AV19ToTime, "99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 0,'DMY',5,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 0,'DMY',5,24,'eng',false,0);"+";gx.evt.onblur(this,85);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTotime_Jsonclick, 0, "AttributeDateTime", "", "", "", "", edtavTotime_Visible, edtavTotime_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Time", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavTotime_Internalname, context.localUtil.TToC( AV19ToTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( AV19ToTime, "99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,85);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTotime_Jsonclick, 0, "AttributeDateTime", "", "", "", "", edtavTotime_Visible, edtavTotime_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Time", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_bitmap( context, edtavTotime_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavTotime_Visible==0)||(edtavTotime_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2229,11 +2229,11 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCurrentdate_Internalname, "Current Date", "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavCurrentdate_Internalname, context.GetMessage( "Current Date", ""), "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 67,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavCurrentdate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavCurrentdate_Internalname, context.localUtil.Format(AV12CurrentDate, "99/99/99"), context.localUtil.Format( AV12CurrentDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onblur(this,67);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCurrentdate_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavCurrentdate_Visible, edtavCurrentdate_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavCurrentdate_Internalname, context.localUtil.Format(AV12CurrentDate, "99/99/99"), context.localUtil.Format( AV12CurrentDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,67);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCurrentdate_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavCurrentdate_Visible, edtavCurrentdate_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_bitmap( context, edtavCurrentdate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavCurrentdate_Visible==0)||(edtavCurrentdate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2242,11 +2242,11 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavFromtime_Internalname, "From Time", "gx-form-item AttributeDateTimeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavFromtime_Internalname, context.GetMessage( "From Time", ""), "gx-form-item AttributeDateTimeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 70,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavFromtime_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavFromtime_Internalname, context.localUtil.TToC( AV17FromTime, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( AV17FromTime, "99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 0,'DMY',5,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 0,'DMY',5,24,'eng',false,0);"+";gx.evt.onblur(this,70);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFromtime_Jsonclick, 0, "AttributeDateTime", "", "", "", "", edtavFromtime_Visible, edtavFromtime_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Time", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavFromtime_Internalname, context.localUtil.TToC( AV17FromTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( AV17FromTime, "99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,70);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFromtime_Jsonclick, 0, "AttributeDateTime", "", "", "", "", edtavFromtime_Visible, edtavFromtime_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Time", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_bitmap( context, edtavFromtime_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavFromtime_Visible==0)||(edtavFromtime_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2274,7 +2274,7 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTodatedisplay_Internalname, "To Date Display", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavTodatedisplay_Internalname, context.GetMessage( "To Date Display", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Multiple line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Attribute";
@@ -2311,7 +2311,7 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavFromdatedisplay_Internalname, "From Date Display", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavFromdatedisplay_Internalname, context.GetMessage( "From Date Display", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Multiple line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Attribute";
@@ -2600,7 +2600,7 @@ namespace GeneXus.Programs.workwithplus {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411435050", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271755252", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2616,7 +2616,7 @@ namespace GeneXus.Programs.workwithplus {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/wwp_eventinfowc.js", "?202542411435050", false, true);
+         context.AddJavascriptSource("workwithplus/wwp_eventinfowc.js", "?20254271755254", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
@@ -2627,14 +2627,14 @@ namespace GeneXus.Programs.workwithplus {
       {
          cmbavEventtype.Name = "vEVENTTYPE";
          cmbavEventtype.WebTags = "";
-         cmbavEventtype.addItem("Event", "Event", 0);
-         cmbavEventtype.addItem("Activity", "Activity", 0);
+         cmbavEventtype.addItem("Event", context.GetMessage( "Event", ""), 0);
+         cmbavEventtype.addItem("Activity", context.GetMessage( "Activity", ""), 0);
          if ( cmbavEventtype.ItemCount > 0 )
          {
          }
          chkavAllday.Name = "vALLDAY";
          chkavAllday.WebTags = "";
-         chkavAllday.Caption = "All Day";
+         chkavAllday.Caption = context.GetMessage( "All Day", "");
          AssignProp(sPrefix, false, chkavAllday_Internalname, "TitleCaption", chkavAllday.Caption, true);
          chkavAllday.CheckedValue = "false";
          chkavRecurringevent.Name = "vRECURRINGEVENT";
@@ -2726,7 +2726,7 @@ namespace GeneXus.Programs.workwithplus {
          init_default_properties( ) ;
          chkavAddrsvp.Caption = "";
          chkavRecurringevent.Caption = "";
-         chkavAllday.Caption = "All Day";
+         chkavAllday.Caption = context.GetMessage( "All Day", "");
          edtavFromdatedisplay_Enabled = 1;
          edtavTodatedisplay_Enabled = 1;
          edtavFromtime_Jsonclick = "";
@@ -2778,7 +2778,7 @@ namespace GeneXus.Programs.workwithplus {
          edtavDuration_Visible = 1;
          divDuration_cell_Class = "col-xs-12";
          divTodatedisplay_cell_Class = "col-xs-12";
-         lblTextblockfromdatedisplay_Caption = "From";
+         lblTextblockfromdatedisplay_Caption = context.GetMessage( "WWP_Calendar_From", "");
          divFromdatedisplay_cell_Class = "col-xs-12";
          Dvelop_confirmpanel_uadelete_Confirmtype = "1";
          Dvelop_confirmpanel_uadelete_Yesbuttonposition = "left";
@@ -2786,7 +2786,7 @@ namespace GeneXus.Programs.workwithplus {
          Dvelop_confirmpanel_uadelete_Nobuttoncaption = "WWP_ConfirmTextNo";
          Dvelop_confirmpanel_uadelete_Yesbuttoncaption = "WWP_ConfirmTextYes";
          Dvelop_confirmpanel_uadelete_Confirmationtext = "Are you sure you want to delete event?";
-         Dvelop_confirmpanel_uadelete_Title = "Delete event";
+         Dvelop_confirmpanel_uadelete_Title = context.GetMessage( "Delete event", "");
          context.GX_msglist.DisplayMode = 1;
          if ( StringUtil.Len( sPrefix) == 0 )
          {

@@ -81,8 +81,11 @@ namespace GeneXus.Programs {
             A29LocationId = P00AX2_A29LocationId[0];
             A397Trn_PageName = P00AX2_A397Trn_PageName[0];
             A392Trn_PageId = P00AX2_A392Trn_PageId[0];
-            AV10GXLvl7 = 1;
-            AV9IsHomePageCreated = true;
+            if ( StringUtil.StrCmp(A397Trn_PageName, context.GetMessage( "Home", "")) == 0 )
+            {
+               AV10GXLvl7 = 1;
+               AV9IsHomePageCreated = true;
+            }
             pr_default.readNext(0);
          }
          pr_default.close(0);
@@ -160,7 +163,7 @@ namespace GeneXus.Programs {
           new ParDef("AV8LocationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00AX2", "SELECT LocationId, Trn_PageName, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Home')) AND (LocationId = :AV8LocationId) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00AX2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P00AX2", "SELECT LocationId, Trn_PageName, Trn_PageId FROM Trn_Page WHERE LocationId = :AV8LocationId ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00AX2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

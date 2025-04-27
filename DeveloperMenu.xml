@@ -180,43 +180,43 @@
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMExampleLogin</ObjName>
-      <ObjDesc>Login</ObjDesc>
+      <ObjDesc>GAM_Login</ObjDesc>
       <ObjLink>gamexamplelogin.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMExampleNotAuthorized</ObjName>
-      <ObjDesc>Not Authorized</ObjDesc>
+      <ObjDesc>GAM_NotAuthorized</ObjDesc>
       <ObjLink>gamexamplenotauthorized.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMHome</ObjName>
-      <ObjDesc>Home</ObjDesc>
+      <ObjDesc>GAM_Home</ObjDesc>
       <ObjLink>gamhome.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMExampleRegisterUser</ObjName>
-      <ObjDesc>Register user</ObjDesc>
+      <ObjDesc>GAM_Registeruser</ObjDesc>
       <ObjLink>gamexampleregisteruser.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMExampleSSOLogin</ObjName>
-      <ObjDesc>Single Sign-On</ObjDesc>
+      <ObjDesc>GAM_SingleSignOn</ObjDesc>
       <ObjLink>gamexamplessologin.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>Home</ObjName>
-      <ObjDesc>Home</ObjDesc>
+      <ObjDesc>WWP_HomeTitle</ObjDesc>
       <ObjLink>home.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>WorkWithPlus.WWP_ParameterWW</ObjName>
-      <ObjDesc>WorkWithPlus.Parameter</ObjDesc>
+      <ObjDesc>WorkWithPlus.WWP_Parameter_Transaction_Description</ObjDesc>
       <ObjLink>workwithplus.wwp_parameterww.aspx</ObjLink>
    </Object>
    <Object>
@@ -246,7 +246,7 @@
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>Trn_OrganisationTypeWW</ObjName>
-      <ObjDesc>Organisation Types</ObjDesc>
+      <ObjDesc>Organisation Type</ObjDesc>
       <ObjLink>trn_organisationtypeww.aspx</ObjLink>
    </Object>
    <Object>
@@ -294,7 +294,7 @@
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>Trn_SupplierGenTypeWW</ObjName>
-      <ObjDesc>General Supplier Types</ObjDesc>
+      <ObjDesc>General Supplier Type</ObjDesc>
       <ObjLink>trn_suppliergentypeww.aspx</ObjLink>
    </Object>
    <Object>
@@ -324,7 +324,7 @@
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>Trn_ResidentTypeWW</ObjName>
-      <ObjDesc>Resident Types</ObjDesc>
+      <ObjDesc>Resident Type</ObjDesc>
       <ObjLink>trn_residenttypeww.aspx</ObjLink>
    </Object>
    <Object>
@@ -396,61 +396,61 @@
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMWWApplications</ObjName>
-      <ObjDesc>Applications</ObjDesc>
+      <ObjDesc>WWP_GAM_Applications</ObjDesc>
       <ObjLink>gamwwapplications.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMWWUsers</ObjName>
-      <ObjDesc>Users</ObjDesc>
+      <ObjDesc>WWP_GAM_Users</ObjDesc>
       <ObjLink>gamwwusers.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMWWAuthTypes</ObjName>
-      <ObjDesc>Authentication Types</ObjDesc>
+      <ObjDesc>WWP_GAM_AuthenticationTypes</ObjDesc>
       <ObjLink>gamwwauthtypes.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMWWRoles</ObjName>
-      <ObjDesc>Roles</ObjDesc>
+      <ObjDesc>WWP_GAM_Roles</ObjDesc>
       <ObjLink>gamwwroles.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMChangeRepository</ObjName>
-      <ObjDesc>Change Repository</ObjDesc>
+      <ObjDesc>WWP_GAM_ChangeRepository</ObjDesc>
       <ObjLink>gamchangerepository.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMChangeYourPassword</ObjName>
-      <ObjDesc>Change my password</ObjDesc>
+      <ObjDesc>WWP_GAM_ChangeMyPassword</ObjDesc>
       <ObjLink>gamchangeyourpassword.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMWWConnections</ObjName>
-      <ObjDesc>Connections</ObjDesc>
+      <ObjDesc>WWP_GAM_Connections</ObjDesc>
       <ObjLink>gamwwconnections.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMWWRepositories</ObjName>
-      <ObjDesc>Repositories</ObjDesc>
+      <ObjDesc>WWP_GAM_Repositories</ObjDesc>
       <ObjLink>gamwwrepositories.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMWWSecurityPolicy</ObjName>
-      <ObjDesc>Security Policies</ObjDesc>
+      <ObjDesc>WWP_GAM_SecurityPolicies</ObjDesc>
       <ObjLink>gamwwsecuritypolicy.aspx</ObjLink>
    </Object>
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMWWEventSubscriptions</ObjName>
-      <ObjDesc>Event subscriptions</ObjDesc>
+      <ObjDesc>WWP_GAM_EventSubscriptions</ObjDesc>
       <ObjLink>gamwweventsubscriptions.aspx</ObjLink>
    </Object>
    <Object>
@@ -462,7 +462,7 @@
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>WP_ChangeYourPassword</ObjName>
-      <ObjDesc>Change my password</ObjDesc>
+      <ObjDesc>WWP_GAM_ChangeMyPassword</ObjDesc>
       <ObjLink>wp_changeyourpassword.aspx</ObjLink>
    </Object>
    <Object>
@@ -480,7 +480,7 @@
    <Object>
       <ObjCls>13</ObjCls>
       <ObjName>UHome</ObjName>
-      <ObjDesc>Home</ObjDesc>
+      <ObjDesc>WWP_HomeTitle</ObjDesc>
       <ObjLink>uhome.aspx</ObjLink>
    </Object>
    <Object>

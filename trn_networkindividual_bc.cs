@@ -214,32 +214,32 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A75NetworkIndividualBsnNumber)) && ( StringUtil.Len( A75NetworkIndividualBsnNumber) != 9 ) )
          {
-            GX_msglist.addItem("BSN number contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "BSN number contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A78NetworkIndividualEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Invalid email pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Network Individual Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A360NetworkIndividualPhoneNumber)) && ! GxRegex.IsMatch(A360NetworkIndividualPhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A360NetworkIndividualPhoneNumber)) && ! GxRegex.IsMatch(A360NetworkIndividualPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A435NetworkIndividualHomePhoneNumb)) && ! GxRegex.IsMatch(A435NetworkIndividualHomePhoneNumb,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A435NetworkIndividualHomePhoneNumb)) && ! GxRegex.IsMatch(A435NetworkIndividualHomePhoneNumb,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( ( StringUtil.StrCmp(A81NetworkIndividualGender, "Male") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Female") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Other") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Network Individual Gender is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Network Individual Gender", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
-         if ( ! GxRegex.IsMatch(A324NetworkIndividualZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A324NetworkIndividualZipCode)) )
+         if ( ! GxRegex.IsMatch(A324NetworkIndividualZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A324NetworkIndividualZipCode)) )
          {
-            GX_msglist.addItem("Zip Code is incorrect", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Zip Code is incorrect", ""), 1, "");
             AnyError = 1;
          }
       }

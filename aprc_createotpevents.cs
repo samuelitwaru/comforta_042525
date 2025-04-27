@@ -92,7 +92,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV12GAMEvents = "user-otp-validateuser";
-         AV15EventDescription = "Validate User";
+         AV15EventDescription = context.GetMessage( "Validate User", "");
          /* Execute user subroutine: 'CREATEOTPEVENT' */
          S121 ();
          if ( returnInSub )
@@ -101,7 +101,7 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV12GAMEvents = "user-otp-generatecode";
-         AV15EventDescription = "Generate OTP";
+         AV15EventDescription = context.GetMessage( "Generate OTP", "");
          /* Execute user subroutine: 'CREATEOTPEVENT' */
          S121 ();
          if ( returnInSub )
@@ -110,7 +110,7 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV12GAMEvents = "user-otp-sendcode";
-         AV15EventDescription = "Send OTP";
+         AV15EventDescription = context.GetMessage( "Send OTP", "");
          /* Execute user subroutine: 'CREATEOTPEVENT' */
          S121 ();
          if ( returnInSub )
@@ -119,7 +119,7 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV12GAMEvents = "user-otp-validatecode";
-         AV15EventDescription = "Validate OTP";
+         AV15EventDescription = context.GetMessage( "Validate OTP", "");
          /* Execute user subroutine: 'CREATEOTPEVENT' */
          S121 ();
          if ( returnInSub )
@@ -156,8 +156,8 @@ namespace GeneXus.Programs {
             AV8GAMEventSubscription = new GeneXus.Programs.genexussecurity.SdtGAMEventSubscription(context);
             AV8GAMEventSubscription.gxTpr_Description = AV15EventDescription;
             AV8GAMEventSubscription.gxTpr_Event = AV12GAMEvents;
-            AV17FileName = "aprc_handleotpevents.dll";
-            AV18ClassName = "GeneXus.Programs.aprc_handleotpevents";
+            AV17FileName = context.GetMessage( "aprc_handleotpevents.dll", "");
+            AV18ClassName = context.GetMessage( "GeneXus.Programs.aprc_handleotpevents", "");
             AV8GAMEventSubscription.gxTpr_Filename = AV17FileName;
             AV8GAMEventSubscription.gxTpr_Classname = AV18ClassName;
             AV8GAMEventSubscription.gxTpr_Methodname = "execute";

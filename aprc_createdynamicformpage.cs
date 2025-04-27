@@ -119,8 +119,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV22Error.gxTpr_Status = "Error";
-            AV22Error.gxTpr_Message = "Not Authenticated";
+            AV22Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV22Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {

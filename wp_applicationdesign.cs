@@ -393,6 +393,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -435,7 +447,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Application Design" ;
+         return context.GetMessage( "Application Design", "") ;
       }
 
       protected void WB5C0( )
@@ -521,7 +533,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Application Design", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Application Design", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -874,7 +886,7 @@ namespace GeneXus.Programs {
             AV43SDT_DynamicForms.gxTpr_Formid = A206WWPFormId;
             AV43SDT_DynamicForms.gxTpr_Referencename = A208WWPFormReferenceName;
             GXt_char1 = "";
-            GXt_char3 = "Form";
+            GXt_char3 = context.GetMessage( "Form", "");
             new prc_getcalltoactionformurl(context ).execute( ref  GXt_char3, ref  A208WWPFormReferenceName, out  GXt_char1) ;
             AssignAttri("", false, "A208WWPFormReferenceName", A208WWPFormReferenceName);
             AV43SDT_DynamicForms.gxTpr_Formurl = GXt_char1;
@@ -892,9 +904,9 @@ namespace GeneXus.Programs {
             A414MediaName = H005C7_A414MediaName[0];
             AV18BC_Trn_Media = new SdtTrn_Media(context);
             AV18BC_Trn_Media.Load(A413MediaId);
-            AV53MediaPath = "media/" + A414MediaName;
+            AV53MediaPath = context.GetMessage( "media/", "") + A414MediaName;
             AV52File = new GxFile(context.GetPhysicalPath());
-            AV52File.Source = "media/"+A414MediaName;
+            AV52File.Source = context.GetMessage( "media/", "")+A414MediaName;
             if ( AV52File.Exists() )
             {
                AV19BC_Trn_MediaCollection.Add(AV18BC_Trn_Media, 0);
@@ -996,7 +1008,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542515291326", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718154144", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1011,8 +1023,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_applicationdesign.js", "?202542515291327", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_applicationdesign.js", "?202542718154146", false, true);
          context.AddJavascriptSource("UserControls/UC_AppToolBox1Render.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1051,7 +1063,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Application Design";
+         Form.Caption = context.GetMessage( "Application Design", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {

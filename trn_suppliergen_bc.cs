@@ -205,15 +205,15 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
-            AV12WebSession.Set("NotificationMessage", "General Supplier Updated successfully");
+            AV12WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "General Supplier Updated successfully", ""));
          }
          if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
          {
-            AV12WebSession.Set("NotificationMessage", "General Supplier Deleted successfully");
+            AV12WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "General Supplier Deleted successfully", ""));
          }
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
-            AV12WebSession.Set("NotificationMessage", "General Supplier Inserted successfully");
+            AV12WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "General Supplier Inserted successfully", ""));
          }
       }
 
@@ -372,70 +372,70 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( ! ( GxRegex.IsMatch(A43SupplierGenKvkNumber,"\\b\\d{8}\\b") ) )
          {
-            GX_msglist.addItem("KvK number should contain 8 digits", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "KvK number should contain 8 digits", ""), context.GetMessage( "Supplier Gen KvK Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A43SupplierGenKvkNumber)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen KvK Number", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen KvK Number", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A43SupplierGenKvkNumber) != 8 )
          {
-            GX_msglist.addItem("KvK number should contain 8 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "KvK number should contain 8 digits", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00064 */
          pr_default.execute(2, new Object[] {A253SupplierGenTypeId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'General Supplier Types'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "General Supplier Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
             AnyError = 1;
          }
          A254SupplierGenTypeName = BC00064_A254SupplierGenTypeName[0];
          pr_default.close(2);
          if ( (Guid.Empty==A253SupplierGenTypeId) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Category", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Category", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A44SupplierGenCompanyName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Company Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Company Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A309SupplierGenAddressCountry)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen Address Country", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Address Country", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A260SupplierGenAddressCity)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "City", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "City", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          A259SupplierGenAddressZipCode = StringUtil.Upper( A259SupplierGenAddressZipCode);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A259SupplierGenAddressZipCode)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Zip Code", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Zip Code", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
-         if ( ! GxRegex.IsMatch(A259SupplierGenAddressZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A259SupplierGenAddressZipCode)) )
+         if ( ! GxRegex.IsMatch(A259SupplierGenAddressZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A259SupplierGenAddressZipCode)) )
          {
-            GX_msglist.addItem("Zip Code is incorrect", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Zip Code is incorrect", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A310SupplierGenAddressLine1)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Address Line1", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Address Line1", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          GXt_char2 = A48SupplierGenContactPhone;
          new prc_concatenateintlphone(context ).execute(  A353SupplierGenPhoneCode,  A354SupplierGenPhoneNumber, out  GXt_char2) ;
          A48SupplierGenContactPhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A354SupplierGenPhoneNumber)) && ! GxRegex.IsMatch(A354SupplierGenPhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A354SupplierGenPhoneNumber)) && ! GxRegex.IsMatch(A354SupplierGenPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone should contain 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone should contain 9 digits", ""), 1, "");
             AnyError = 1;
          }
          GXt_char2 = A607SupplierGenLandlineNumber;
@@ -443,12 +443,12 @@ namespace GeneXus.Programs {
          A607SupplierGenLandlineNumber = GXt_char2;
          if ( ! ( GxRegex.IsMatch(A501SupplierGenEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Invalid email pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
-         if ( ! GxRegex.IsMatch(A428SupplierGenWebsite,"(?:https?://|www\\.)[^\\s/$.?#].[^\\s]*") && ! String.IsNullOrEmpty(StringUtil.RTrim( A428SupplierGenWebsite)) )
+         if ( ! GxRegex.IsMatch(A428SupplierGenWebsite,context.GetMessage( "(?:https?://|www\\.)[^\\s/$.?#].[^\\s]*", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A428SupplierGenWebsite)) )
          {
-            GX_msglist.addItem("Invalid website format", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Invalid website format", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00065 */
@@ -457,7 +457,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A600SG_OrganisationSupplierId) ) )
             {
-               GX_msglist.addItem("No matching 'SG_Organisation Supplier'.", "ForeignKeyNotFound", 1, "SG_ORGANISATIONSUPPLIERID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "SG_Organisation Supplier", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SG_ORGANISATIONSUPPLIERID");
                AnyError = 1;
             }
          }
@@ -468,7 +468,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A601SG_LocationSupplierLocationId) || (Guid.Empty==A602SG_LocationSupplierOrganisatio) ) )
             {
-               GX_msglist.addItem("No matching 'SG_Location Supplier'.", "ForeignKeyNotFound", 1, "SG_LOCATIONSUPPLIERORGANISATIO");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "SG_Location Supplier", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SG_LOCATIONSUPPLIERORGANISATIO");
                AnyError = 1;
             }
          }
@@ -797,7 +797,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {n42SupplierGenId, A42SupplierGenId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Services"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Services", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);

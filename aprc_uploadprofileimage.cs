@@ -100,8 +100,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV25Error.gxTpr_Status = "Error";
-            AV25Error.gxTpr_Message = "Not Authenticated";
+            AV25Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV25Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {
@@ -114,7 +114,7 @@ namespace GeneXus.Programs {
             AV28Trn_Location.Load(AV22LocationId, AV23OrganisationId);
             AV28Trn_Location.gxTpr_Toolboxdefaultprofileimage = AV30ProfileImageUrl;
             AV28Trn_Location.Save();
-            AV9response = "Saved successfully";
+            AV9response = context.GetMessage( "Saved successfully", "");
          }
          cleanup();
       }

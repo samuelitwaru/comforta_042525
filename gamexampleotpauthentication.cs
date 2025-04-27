@@ -189,7 +189,7 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          context.WriteHtmlText( "<title>") ;
-         context.SendWebValue( "Insert OTP code to login") ;
+         context.SendWebValue( context.GetMessage( "GAM_InsertOTPcodetologin", "")) ;
          context.WriteHtmlTextNl( "</title>") ;
          if ( context.isSpaRequest( ) )
          {
@@ -290,6 +290,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -305,7 +317,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Insert OTP code to login" ;
+         return context.GetMessage( "GAM_InsertOTPcodetologin", "") ;
       }
 
       protected void WB0U0( )
@@ -333,7 +345,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 stack-bottom-xxl", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTbtitle_Internalname, "Login", "", "", lblTbtitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Title", 0, "", 1, 1, 0, 0, "HLP_GAMExampleOTPAuthentication.htm");
+            GxWebStd.gx_label_ctrl( context, lblTbtitle_Internalname, context.GetMessage( "GAM_Login", ""), "", "", lblTbtitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Title", 0, "", 1, 1, 0, 0, "HLP_GAMExampleOTPAuthentication.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -343,7 +355,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavUsername_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavUsername_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUsername_Internalname, "User", "col-xs-12 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavUsername_Internalname, context.GetMessage( "GAM_User", ""), "col-xs-12 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -360,12 +372,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavUserpassword_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavUserpassword_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUserpassword_Internalname, "OTP Code", "col-xs-12 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavUserpassword_Internalname, context.GetMessage( "GAM_OTPCode", ""), "col-xs-12 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavUserpassword_Internalname, StringUtil.RTrim( AV15UserPassword), StringUtil.RTrim( context.localUtil.Format( AV15UserPassword, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "Code", edtavUserpassword_Jsonclick, 0, "Attribute", "", "", "", "", edtavUserpassword_Visible, edtavUserpassword_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_GAMExampleOTPAuthentication.htm");
+            GxWebStd.gx_single_line_edit( context, edtavUserpassword_Internalname, StringUtil.RTrim( AV15UserPassword), StringUtil.RTrim( context.localUtil.Format( AV15UserPassword, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "GAM_Code", ""), edtavUserpassword_Jsonclick, 0, "Attribute", "", "", "", "", edtavUserpassword_Visible, edtavUserpassword_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, -1, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMPassword", "start", true, "", "HLP_GAMExampleOTPAuthentication.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -386,7 +398,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'',false,'',0)\"";
             ClassString = "Button button-primary";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttEnter_Internalname, "", "VALIDATE CODE", bttEnter_Jsonclick, 5, "VALIDATE CODE", "", StyleString, ClassString, bttEnter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMExampleOTPAuthentication.htm");
+            GxWebStd.gx_button_ctrl( context, bttEnter_Internalname, "", context.GetMessage( "GAM_VALIDATECODE", ""), bttEnter_Jsonclick, 5, context.GetMessage( "GAM_VALIDATECODE", ""), "", StyleString, ClassString, bttEnter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMExampleOTPAuthentication.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -410,7 +422,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
             ClassString = "Button button-secondary";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttLogin_Internalname, "", "Back to Login", bttLogin_Jsonclick, 5, "Back to Login", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'LOGIN\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMExampleOTPAuthentication.htm");
+            GxWebStd.gx_button_ctrl( context, bttLogin_Internalname, "", context.GetMessage( "GAM_BacktoLogin", ""), bttLogin_Jsonclick, 5, context.GetMessage( "GAM_BacktoLogin", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'LOGIN\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMExampleOTPAuthentication.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -437,7 +449,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Insert OTP code to login", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "GAM_InsertOTPcodetologin", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -723,7 +735,7 @@ namespace GeneXus.Programs {
             AV50GAMAuthenticationTypeSimple = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).getenabledauthenticationtypebyname(AV7AuthenticationTypeName, AV51Language, out  AV49GAMErrorCollection);
             if ( ! AV50GAMAuthenticationTypeSimple.gxTpr_Istotp && ! AV50GAMAuthenticationTypeSimple.gxTpr_Twofactorauthentication_istotp )
             {
-               GX_msglist.addItem("User access code was sent");
+               GX_msglist.addItem(context.GetMessage( "GAM_Useraccesscodewassent", ""));
             }
             AV14UserName = AV13User.gxTpr_Name;
             AssignAttri("", false, "AV14UserName", AV14UserName);
@@ -882,7 +894,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254241153315", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718131956", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -897,8 +909,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamexampleotpauthentication.js", "?20254241153319", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("gamexampleotpauthentication.js", "?202542718131960", false, true);
          /* End function include_jscripts */
       }
 
@@ -929,7 +941,6 @@ namespace GeneXus.Programs {
             disableJsOutput();
          }
          init_default_properties( ) ;
-         bttLogin_Jsonclick = "";
          bttEnter_Visible = 1;
          edtavUserpassword_Jsonclick = "";
          edtavUserpassword_Enabled = 1;
@@ -990,6 +1001,7 @@ namespace GeneXus.Programs {
          bttEnter_Jsonclick = "";
          imgImage1_gximage = "";
          sImgUrl = "";
+         bttLogin_Jsonclick = "";
          Form = new GXWebForm();
          sEvt = "";
          EvtGridId = "";

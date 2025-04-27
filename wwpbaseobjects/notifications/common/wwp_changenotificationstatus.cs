@@ -114,7 +114,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          initialize();
          /* SetAllNotificationsOfLoggedUserRead Constructor */
-         AV12Udparg1 = new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context).executeUdp( );
+         AV12Udparg1 = new uwwp_getloggeduserid(context).executeUdp( );
          /* Optimized UPDATE. */
          /* Using cursor P003Q5 */
          pr_default.execute(3, new Object[] {AV12Udparg1});

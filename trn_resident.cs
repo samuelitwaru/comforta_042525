@@ -356,7 +356,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Residents", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Residents", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -562,7 +562,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
          /* Control Group */
-         GxWebStd.gx_group_start( context, grpUnnamedgroup2_Internalname, "Resident Information", 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Resident.htm");
+         GxWebStd.gx_group_start( context, grpUnnamedgroup2_Internalname, context.GetMessage( "Resident Information", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Resident.htm");
          /* Div Control */
          GxWebStd.gx_div_start( context, divUnnamedtable1_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
@@ -572,7 +572,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbResidentSalutation_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, cmbResidentSalutation_Internalname, "Salutation", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, cmbResidentSalutation_Internalname, context.GetMessage( "Salutation", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'',false,'',0)\"";
@@ -591,7 +591,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentGivenName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentGivenName_Internalname, "First Name", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentGivenName_Internalname, context.GetMessage( "First Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -608,7 +608,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentLastName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentLastName_Internalname, "Last Name", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentLastName_Internalname, context.GetMessage( "Last Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -625,7 +625,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbResidentGender_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, cmbResidentGender_Internalname, "Gender", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, cmbResidentGender_Internalname, context.GetMessage( "Gender", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'',false,'',0)\"";
@@ -644,13 +644,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentBirthDate_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentBirthDate_Internalname, "Birth Date", "col-sm-4 AttributeDateLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentBirthDate_Internalname, context.GetMessage( "Birth Date", ""), "col-sm-4 AttributeDateLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtResidentBirthDate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtResidentBirthDate_Internalname, context.localUtil.Format(A73ResidentBirthDate, "99/99/9999"), context.localUtil.Format( A73ResidentBirthDate, "99/99/9999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',0,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',0,24,'eng',false,0);"+";gx.evt.onblur(this,44);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentBirthDate_Jsonclick, 0, "AttributeDate", "", "", "", "", 1, edtResidentBirthDate_Enabled, 0, "text", "", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_Resident.htm");
+         GxWebStd.gx_single_line_edit( context, edtResidentBirthDate_Internalname, context.localUtil.Format(A73ResidentBirthDate, "99/99/9999"), context.localUtil.Format( A73ResidentBirthDate, "99/99/9999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,44);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentBirthDate_Jsonclick, 0, "AttributeDate", "", "", "", "", 1, edtResidentBirthDate_Enabled, 0, "text", "", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_Resident.htm");
          GxWebStd.gx_bitmap( context, edtResidentBirthDate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtResidentBirthDate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_Resident.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -664,7 +664,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentEmail_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentEmail_Internalname, "Email", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentEmail_Internalname, context.GetMessage( "Email", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -685,7 +685,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 gx-label AttributeLabel control-label", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblPhonelabel_Internalname, "Mobile Phone", "", "", lblPhonelabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock AttributeWeightBold", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
+         GxWebStd.gx_label_ctrl( context, lblPhonelabel_Internalname, context.GetMessage( "Mobile Phone", ""), "", "", lblPhonelabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock AttributeWeightBold", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
@@ -723,7 +723,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentPhoneCode_Internalname, "Resident Phone Code", "col-sm-3 AttributeLabel", 0, true, "");
+         GxWebStd.gx_label_element( context, edtResidentPhoneCode_Internalname, context.GetMessage( "Resident Phone Code", ""), "col-sm-3 AttributeLabel", 0, true, "");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 70,'',false,'',0)\"";
          GxWebStd.gx_single_line_edit( context, edtResidentPhoneCode_Internalname, A347ResidentPhoneCode, StringUtil.RTrim( context.localUtil.Format( A347ResidentPhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,70);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentPhoneCode_Jsonclick, 0, "Attribute", "", "", "", "", edtResidentPhoneCode_Visible, edtResidentPhoneCode_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Resident.htm");
@@ -740,7 +740,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentPhoneNumber_Internalname, "Resident Phone Number", "col-sm-3 AttributeLabel", 0, true, "");
+         GxWebStd.gx_label_element( context, edtResidentPhoneNumber_Internalname, context.GetMessage( "Resident Phone Number", ""), "col-sm-3 AttributeLabel", 0, true, "");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 73,'',false,'',0)\"";
          GxWebStd.gx_single_line_edit( context, edtResidentPhoneNumber_Internalname, A348ResidentPhoneNumber, StringUtil.RTrim( context.localUtil.Format( A348ResidentPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,73);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentPhoneNumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtResidentPhoneNumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Resident.htm");
@@ -764,7 +764,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 gx-label AttributeLabel control-label", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblPhone_Internalname, "Home Phone", "", "", lblPhone_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock AttributeWeightBold", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
+         GxWebStd.gx_label_ctrl( context, lblPhone_Internalname, context.GetMessage( "Home Phone", ""), "", "", lblPhone_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock AttributeWeightBold", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
@@ -802,7 +802,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentHomePhoneCode_Internalname, "Resident Home Phone Code", "col-sm-3 AttributeLabel", 0, true, "");
+         GxWebStd.gx_label_element( context, edtResidentHomePhoneCode_Internalname, context.GetMessage( "Resident Home Phone Code", ""), "col-sm-3 AttributeLabel", 0, true, "");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 94,'',false,'',0)\"";
          GxWebStd.gx_single_line_edit( context, edtResidentHomePhoneCode_Internalname, A431ResidentHomePhoneCode, StringUtil.RTrim( context.localUtil.Format( A431ResidentHomePhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,94);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentHomePhoneCode_Jsonclick, 0, "Attribute", "", "", "", "", edtResidentHomePhoneCode_Visible, edtResidentHomePhoneCode_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Resident.htm");
@@ -819,7 +819,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentHomePhoneNumber_Internalname, "Resident Home Phone Number", "col-sm-3 AttributeLabel", 0, true, "");
+         GxWebStd.gx_label_element( context, edtResidentHomePhoneNumber_Internalname, context.GetMessage( "Resident Home Phone Number", ""), "col-sm-3 AttributeLabel", 0, true, "");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 97,'',false,'',0)\"";
          GxWebStd.gx_single_line_edit( context, edtResidentHomePhoneNumber_Internalname, A432ResidentHomePhoneNumber, StringUtil.RTrim( context.localUtil.Format( A432ResidentHomePhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,97);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentHomePhoneNumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtResidentHomePhoneNumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Resident.htm");
@@ -839,7 +839,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", edtResidentPhone_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentPhone_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentPhone_Internalname, "Mobile Phone", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentPhone_Internalname, context.GetMessage( "Mobile Phone", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -860,7 +860,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", edtResidentHomePhone_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentHomePhone_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentHomePhone_Internalname, "Home Phone", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentHomePhone_Internalname, context.GetMessage( "Home Phone", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -881,7 +881,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentBsnNumber_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentBsnNumber_Internalname, "BSN Number", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentBsnNumber_Internalname, context.GetMessage( "BSN Number", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -903,7 +903,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Control Group */
-         GxWebStd.gx_group_start( context, grpUnnamedgroup5_Internalname, "Address Information", 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Resident.htm");
+         GxWebStd.gx_group_start( context, grpUnnamedgroup5_Internalname, context.GetMessage( "Address Information", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Resident.htm");
          /* Div Control */
          GxWebStd.gx_div_start( context, divUnnamedtable4_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
@@ -913,7 +913,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentAddressLine1_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentAddressLine1_Internalname, "Address Line 1", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentAddressLine1_Internalname, context.GetMessage( "Address Line 1", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -930,7 +930,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentAddressLine2_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentAddressLine2_Internalname, "Address Line 2", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentAddressLine2_Internalname, context.GetMessage( "Address Line 2", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -947,12 +947,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentZipCode_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentZipCode_Internalname, "Zip Code", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentZipCode_Internalname, context.GetMessage( "Zip Code", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 133,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtResidentZipCode_Internalname, A314ResidentZipCode, StringUtil.RTrim( context.localUtil.Format( A314ResidentZipCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,133);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "1234 AB", edtResidentZipCode_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtResidentZipCode_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Resident.htm");
+         GxWebStd.gx_single_line_edit( context, edtResidentZipCode_Internalname, A314ResidentZipCode, StringUtil.RTrim( context.localUtil.Format( A314ResidentZipCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,133);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "1234 AB", ""), edtResidentZipCode_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtResidentZipCode_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Resident.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -964,7 +964,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentCity_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentCity_Internalname, "City", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentCity_Internalname, context.GetMessage( "City", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -985,7 +985,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTextblockresidentcountry_Internalname, "Country", "", "", lblTextblockresidentcountry_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
+         GxWebStd.gx_label_ctrl( context, lblTextblockresidentcountry_Internalname, context.GetMessage( "Country", ""), "", "", lblTextblockresidentcountry_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
@@ -1002,7 +1002,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentCountry_Internalname, "Resident Country", "col-sm-3 AttributeLabel", 0, true, "");
+         GxWebStd.gx_label_element( context, edtResidentCountry_Internalname, context.GetMessage( "Resident Country", ""), "col-sm-3 AttributeLabel", 0, true, "");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 149,'',false,'',0)\"";
          GxWebStd.gx_single_line_edit( context, edtResidentCountry_Internalname, A312ResidentCountry, StringUtil.RTrim( context.localUtil.Format( A312ResidentCountry, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,149);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentCountry_Jsonclick, 0, "Attribute", "", "", "", "", edtResidentCountry_Visible, edtResidentCountry_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Resident.htm");
@@ -1021,7 +1021,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Control Group */
-         GxWebStd.gx_group_start( context, grpUnnamedgroup7_Internalname, "Provisioning Information", 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Resident.htm");
+         GxWebStd.gx_group_start( context, grpUnnamedgroup7_Internalname, context.GetMessage( "Provisioning Information", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Resident.htm");
          /* Div Control */
          GxWebStd.gx_div_start( context, divUnnamedtable6_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
@@ -1035,7 +1035,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTextblockresidenttypeid_Internalname, "Resident Type", "", "", lblTextblockresidenttypeid_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
+         GxWebStd.gx_label_ctrl( context, lblTextblockresidenttypeid_Internalname, context.GetMessage( "Resident Type", ""), "", "", lblTextblockresidenttypeid_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
@@ -1052,7 +1052,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentTypeId_Internalname, "Resident Type Id", "col-sm-3 AttributeLabel", 0, true, "");
+         GxWebStd.gx_label_element( context, edtResidentTypeId_Internalname, context.GetMessage( "Resident Type Id", ""), "col-sm-3 AttributeLabel", 0, true, "");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 164,'',false,'',0)\"";
          GxWebStd.gx_single_line_edit( context, edtResidentTypeId_Internalname, A96ResidentTypeId.ToString(), A96ResidentTypeId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,164);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentTypeId_Jsonclick, 0, "Attribute", "", "", "", "", edtResidentTypeId_Visible, edtResidentTypeId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Resident.htm");
@@ -1073,7 +1073,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTextblockresidentpackageid_Internalname, "Access Rights Name", "", "", lblTextblockresidentpackageid_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
+         GxWebStd.gx_label_ctrl( context, lblTextblockresidentpackageid_Internalname, context.GetMessage( "Access Rights Name", ""), "", "", lblTextblockresidentpackageid_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_Trn_Resident.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
@@ -1089,7 +1089,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentPackageId_Internalname, "Resident Package Id", "col-sm-3 AttributeLabel", 0, true, "");
+         GxWebStd.gx_label_element( context, edtResidentPackageId_Internalname, context.GetMessage( "Resident Package Id", ""), "col-sm-3 AttributeLabel", 0, true, "");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 175,'',false,'',0)\"";
          GxWebStd.gx_single_line_edit( context, edtResidentPackageId_Internalname, A527ResidentPackageId.ToString(), A527ResidentPackageId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,175);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentPackageId_Jsonclick, 0, "Attribute", "", "", "", "", edtResidentPackageId_Visible, edtResidentPackageId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Resident.htm");
@@ -1123,21 +1123,21 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 180,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", "Confirm", bttBtntrn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Resident.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Resident.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 182,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", "Cancel", bttBtntrn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Resident.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Resident.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 184,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", "Delete", bttBtntrn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Resident.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Resident.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1290,8 +1290,8 @@ namespace GeneXus.Programs {
                Z527ResidentPackageId = StringUtil.StrToGuid( cgiGet( "Z527ResidentPackageId"));
                n527ResidentPackageId = ((Guid.Empty==A527ResidentPackageId) ? true : false);
                A603ResidentLanguage = cgiGet( "Z603ResidentLanguage");
-               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
                N96ResidentTypeId = StringUtil.StrToGuid( cgiGet( "N96ResidentTypeId"));
                n96ResidentTypeId = ((Guid.Empty==A96ResidentTypeId) ? true : false);
@@ -1300,7 +1300,7 @@ namespace GeneXus.Programs {
                N527ResidentPackageId = StringUtil.StrToGuid( cgiGet( "N527ResidentPackageId"));
                n527ResidentPackageId = ((Guid.Empty==A527ResidentPackageId) ? true : false);
                AV7ResidentId = StringUtil.StrToGuid( cgiGet( "vRESIDENTID"));
-               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), ".", ","), 18, MidpointRounding.ToEven));
+               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AV8LocationId = StringUtil.StrToGuid( cgiGet( "vLOCATIONID"));
                AV9OrganisationId = StringUtil.StrToGuid( cgiGet( "vORGANISATIONID"));
                AV15Insert_ResidentTypeId = StringUtil.StrToGuid( cgiGet( "vINSERT_RESIDENTTYPEID"));
@@ -1344,7 +1344,7 @@ namespace GeneXus.Programs {
                Combo_residentphonecode_Datalistproc = cgiGet( "COMBO_RESIDENTPHONECODE_Datalistproc");
                Combo_residentphonecode_Datalistprocparametersprefix = cgiGet( "COMBO_RESIDENTPHONECODE_Datalistprocparametersprefix");
                Combo_residentphonecode_Remoteservicesparameters = cgiGet( "COMBO_RESIDENTPHONECODE_Remoteservicesparameters");
-               Combo_residentphonecode_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTPHONECODE_Datalistupdateminimumcharacters"), ".", ","), 18, MidpointRounding.ToEven));
+               Combo_residentphonecode_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTPHONECODE_Datalistupdateminimumcharacters"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_residentphonecode_Includeonlyselectedoption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTPHONECODE_Includeonlyselectedoption"));
                Combo_residentphonecode_Includeselectalloption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTPHONECODE_Includeselectalloption"));
                Combo_residentphonecode_Emptyitem = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTPHONECODE_Emptyitem"));
@@ -1358,6 +1358,7 @@ namespace GeneXus.Programs {
                Combo_residentphonecode_Selectalltext = cgiGet( "COMBO_RESIDENTPHONECODE_Selectalltext");
                Combo_residentphonecode_Multiplevaluesseparator = cgiGet( "COMBO_RESIDENTPHONECODE_Multiplevaluesseparator");
                Combo_residentphonecode_Addnewoptiontext = cgiGet( "COMBO_RESIDENTPHONECODE_Addnewoptiontext");
+               Combo_residentphonecode_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTPHONECODE_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_residenthomephonecode_Objectcall = cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Objectcall");
                Combo_residenthomephonecode_Class = cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Class");
                Combo_residenthomephonecode_Icontype = cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Icontype");
@@ -1384,7 +1385,7 @@ namespace GeneXus.Programs {
                Combo_residenthomephonecode_Datalistproc = cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Datalistproc");
                Combo_residenthomephonecode_Datalistprocparametersprefix = cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Datalistprocparametersprefix");
                Combo_residenthomephonecode_Remoteservicesparameters = cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Remoteservicesparameters");
-               Combo_residenthomephonecode_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Datalistupdateminimumcharacters"), ".", ","), 18, MidpointRounding.ToEven));
+               Combo_residenthomephonecode_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Datalistupdateminimumcharacters"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_residenthomephonecode_Includeonlyselectedoption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Includeonlyselectedoption"));
                Combo_residenthomephonecode_Includeselectalloption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Includeselectalloption"));
                Combo_residenthomephonecode_Emptyitem = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Emptyitem"));
@@ -1398,6 +1399,7 @@ namespace GeneXus.Programs {
                Combo_residenthomephonecode_Selectalltext = cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Selectalltext");
                Combo_residenthomephonecode_Multiplevaluesseparator = cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Multiplevaluesseparator");
                Combo_residenthomephonecode_Addnewoptiontext = cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Addnewoptiontext");
+               Combo_residenthomephonecode_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTHOMEPHONECODE_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_residentcountry_Objectcall = cgiGet( "COMBO_RESIDENTCOUNTRY_Objectcall");
                Combo_residentcountry_Class = cgiGet( "COMBO_RESIDENTCOUNTRY_Class");
                Combo_residentcountry_Icontype = cgiGet( "COMBO_RESIDENTCOUNTRY_Icontype");
@@ -1424,7 +1426,7 @@ namespace GeneXus.Programs {
                Combo_residentcountry_Datalistproc = cgiGet( "COMBO_RESIDENTCOUNTRY_Datalistproc");
                Combo_residentcountry_Datalistprocparametersprefix = cgiGet( "COMBO_RESIDENTCOUNTRY_Datalistprocparametersprefix");
                Combo_residentcountry_Remoteservicesparameters = cgiGet( "COMBO_RESIDENTCOUNTRY_Remoteservicesparameters");
-               Combo_residentcountry_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTCOUNTRY_Datalistupdateminimumcharacters"), ".", ","), 18, MidpointRounding.ToEven));
+               Combo_residentcountry_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTCOUNTRY_Datalistupdateminimumcharacters"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_residentcountry_Includeonlyselectedoption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTCOUNTRY_Includeonlyselectedoption"));
                Combo_residentcountry_Includeselectalloption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTCOUNTRY_Includeselectalloption"));
                Combo_residentcountry_Emptyitem = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTCOUNTRY_Emptyitem"));
@@ -1438,6 +1440,7 @@ namespace GeneXus.Programs {
                Combo_residentcountry_Selectalltext = cgiGet( "COMBO_RESIDENTCOUNTRY_Selectalltext");
                Combo_residentcountry_Multiplevaluesseparator = cgiGet( "COMBO_RESIDENTCOUNTRY_Multiplevaluesseparator");
                Combo_residentcountry_Addnewoptiontext = cgiGet( "COMBO_RESIDENTCOUNTRY_Addnewoptiontext");
+               Combo_residentcountry_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTCOUNTRY_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_residenttypeid_Objectcall = cgiGet( "COMBO_RESIDENTTYPEID_Objectcall");
                Combo_residenttypeid_Class = cgiGet( "COMBO_RESIDENTTYPEID_Class");
                Combo_residenttypeid_Icontype = cgiGet( "COMBO_RESIDENTTYPEID_Icontype");
@@ -1464,7 +1467,7 @@ namespace GeneXus.Programs {
                Combo_residenttypeid_Datalistproc = cgiGet( "COMBO_RESIDENTTYPEID_Datalistproc");
                Combo_residenttypeid_Datalistprocparametersprefix = cgiGet( "COMBO_RESIDENTTYPEID_Datalistprocparametersprefix");
                Combo_residenttypeid_Remoteservicesparameters = cgiGet( "COMBO_RESIDENTTYPEID_Remoteservicesparameters");
-               Combo_residenttypeid_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTTYPEID_Datalistupdateminimumcharacters"), ".", ","), 18, MidpointRounding.ToEven));
+               Combo_residenttypeid_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTTYPEID_Datalistupdateminimumcharacters"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_residenttypeid_Includeonlyselectedoption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTTYPEID_Includeonlyselectedoption"));
                Combo_residenttypeid_Includeselectalloption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTTYPEID_Includeselectalloption"));
                Combo_residenttypeid_Emptyitem = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTTYPEID_Emptyitem"));
@@ -1478,6 +1481,7 @@ namespace GeneXus.Programs {
                Combo_residenttypeid_Selectalltext = cgiGet( "COMBO_RESIDENTTYPEID_Selectalltext");
                Combo_residenttypeid_Multiplevaluesseparator = cgiGet( "COMBO_RESIDENTTYPEID_Multiplevaluesseparator");
                Combo_residenttypeid_Addnewoptiontext = cgiGet( "COMBO_RESIDENTTYPEID_Addnewoptiontext");
+               Combo_residenttypeid_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTTYPEID_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_residentpackageid_Objectcall = cgiGet( "COMBO_RESIDENTPACKAGEID_Objectcall");
                Combo_residentpackageid_Class = cgiGet( "COMBO_RESIDENTPACKAGEID_Class");
                Combo_residentpackageid_Icontype = cgiGet( "COMBO_RESIDENTPACKAGEID_Icontype");
@@ -1504,7 +1508,7 @@ namespace GeneXus.Programs {
                Combo_residentpackageid_Datalistproc = cgiGet( "COMBO_RESIDENTPACKAGEID_Datalistproc");
                Combo_residentpackageid_Datalistprocparametersprefix = cgiGet( "COMBO_RESIDENTPACKAGEID_Datalistprocparametersprefix");
                Combo_residentpackageid_Remoteservicesparameters = cgiGet( "COMBO_RESIDENTPACKAGEID_Remoteservicesparameters");
-               Combo_residentpackageid_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTPACKAGEID_Datalistupdateminimumcharacters"), ".", ","), 18, MidpointRounding.ToEven));
+               Combo_residentpackageid_Datalistupdateminimumcharacters = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTPACKAGEID_Datalistupdateminimumcharacters"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Combo_residentpackageid_Includeonlyselectedoption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTPACKAGEID_Includeonlyselectedoption"));
                Combo_residentpackageid_Includeselectalloption = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTPACKAGEID_Includeselectalloption"));
                Combo_residentpackageid_Emptyitem = StringUtil.StrToBool( cgiGet( "COMBO_RESIDENTPACKAGEID_Emptyitem"));
@@ -1518,6 +1522,7 @@ namespace GeneXus.Programs {
                Combo_residentpackageid_Selectalltext = cgiGet( "COMBO_RESIDENTPACKAGEID_Selectalltext");
                Combo_residentpackageid_Multiplevaluesseparator = cgiGet( "COMBO_RESIDENTPACKAGEID_Multiplevaluesseparator");
                Combo_residentpackageid_Addnewoptiontext = cgiGet( "COMBO_RESIDENTPACKAGEID_Addnewoptiontext");
+               Combo_residentpackageid_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTPACKAGEID_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                cmbResidentSalutation.CurrentValue = cgiGet( cmbResidentSalutation_Internalname);
                A72ResidentSalutation = cgiGet( cmbResidentSalutation_Internalname);
@@ -1529,9 +1534,9 @@ namespace GeneXus.Programs {
                cmbResidentGender.CurrentValue = cgiGet( cmbResidentGender_Internalname);
                A68ResidentGender = cgiGet( cmbResidentGender_Internalname);
                AssignAttri("", false, "A68ResidentGender", A68ResidentGender);
-               if ( context.localUtil.VCDate( cgiGet( edtResidentBirthDate_Internalname), 2) == 0 )
+               if ( context.localUtil.VCDate( cgiGet( edtResidentBirthDate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
                {
-                  GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"Resident Birth Date"}), 1, "RESIDENTBIRTHDATE");
+                  GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Resident Birth Date", "")}), 1, "RESIDENTBIRTHDATE");
                   AnyError = 1;
                   GX_FocusControl = edtResidentBirthDate_Internalname;
                   AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1541,7 +1546,7 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  A73ResidentBirthDate = context.localUtil.CToD( cgiGet( edtResidentBirthDate_Internalname), 2);
+                  A73ResidentBirthDate = context.localUtil.CToD( cgiGet( edtResidentBirthDate_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
                   AssignAttri("", false, "A73ResidentBirthDate", context.localUtil.Format(A73ResidentBirthDate, "99/99/9999"));
                }
                A67ResidentEmail = cgiGet( edtResidentEmail_Internalname);
@@ -2217,7 +2222,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV62Pgmname) ;
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
-            AV46Session.Set("NotificationMessage", "Resident Updated successfully");
+            AV46Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Updated successfully", ""));
             context.setWebReturnParms(new Object[] {});
             context.setWebReturnParmsMetadata(new Object[] {});
             context.wjLocDisableFrm = 1;
@@ -2227,7 +2232,7 @@ namespace GeneXus.Programs {
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) && ! AV13TrnContext.gxTpr_Callerondelete )
          {
-            AV46Session.Set("NotificationMessage", "Resident Deleted successfully");
+            AV46Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Deleted successfully", ""));
             context.setWebReturnParms(new Object[] {});
             context.setWebReturnParmsMetadata(new Object[] {});
             context.wjLocDisableFrm = 1;
@@ -2237,7 +2242,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
-            AV46Session.Set("NotificationMessage", "Resident Inserted successfully");
+            AV46Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Inserted successfully", ""));
             context.setWebReturnParms(new Object[] {});
             context.setWebReturnParmsMetadata(new Object[] {});
             context.wjLocDisableFrm = 1;
@@ -2516,14 +2521,14 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtResidentPhone_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtResidentPhone_Visible), 5, 0), true);
          if ( ! ( ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 ) || ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) ) )
          {
-            divResidentphone_cell_Class = "Invisible";
+            divResidentphone_cell_Class = context.GetMessage( "Invisible", "");
             AssignProp("", false, divResidentphone_cell_Internalname, "Class", divResidentphone_cell_Class, true);
          }
          else
          {
             if ( ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 ) || ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) )
             {
-               divResidentphone_cell_Class = "col-xs-12 DataContentCell";
+               divResidentphone_cell_Class = context.GetMessage( "col-xs-12 DataContentCell", "");
                AssignProp("", false, divResidentphone_cell_Internalname, "Class", divResidentphone_cell_Class, true);
             }
          }
@@ -2531,14 +2536,14 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtResidentHomePhone_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtResidentHomePhone_Visible), 5, 0), true);
          if ( ! ( ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 ) || ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) ) )
          {
-            divResidenthomephone_cell_Class = "Invisible";
+            divResidenthomephone_cell_Class = context.GetMessage( "Invisible", "");
             AssignProp("", false, divResidenthomephone_cell_Internalname, "Class", divResidenthomephone_cell_Class, true);
          }
          else
          {
             if ( ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 ) || ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) )
             {
-               divResidenthomephone_cell_Class = "col-xs-12 DataContentCell";
+               divResidenthomephone_cell_Class = context.GetMessage( "col-xs-12 DataContentCell", "");
                AssignProp("", false, divResidenthomephone_cell_Internalname, "Class", divResidenthomephone_cell_Class, true);
             }
          }
@@ -2881,7 +2886,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
             GX_FocusControl = edtLocationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2889,21 +2894,21 @@ namespace GeneXus.Programs {
          pr_default.close(2);
          if ( ! ( ( StringUtil.StrCmp(A72ResidentSalutation, "Mr") == 0 ) || ( StringUtil.StrCmp(A72ResidentSalutation, "Mrs") == 0 ) || ( StringUtil.StrCmp(A72ResidentSalutation, "Dr") == 0 ) || ( StringUtil.StrCmp(A72ResidentSalutation, "Miss") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Resident Salutation is out of range", "OutOfRange", 1, "RESIDENTSALUTATION");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Resident Salutation", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "RESIDENTSALUTATION");
             AnyError = 1;
             GX_FocusControl = cmbResidentSalutation_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A63ResidentBsnNumber)) && ( StringUtil.Len( A63ResidentBsnNumber) != 9 ) )
          {
-            GX_msglist.addItem("BSN number contains 9 digits", 1, "RESIDENTBSNNUMBER");
+            GX_msglist.addItem(context.GetMessage( "BSN number contains 9 digits", ""), 1, "RESIDENTBSNNUMBER");
             AnyError = 1;
             GX_FocusControl = edtResidentBsnNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A64ResidentGivenName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Given Name", "", "", "", "", "", "", "", ""), 1, "RESIDENTGIVENNAME");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Given Name", ""), "", "", "", "", "", "", "", ""), 1, "RESIDENTGIVENNAME");
             AnyError = 1;
             GX_FocusControl = edtResidentGivenName_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2912,37 +2917,37 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "A66ResidentInitials", A66ResidentInitials);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A65ResidentLastName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Last Name", "", "", "", "", "", "", "", ""), 1, "RESIDENTLASTNAME");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Last Name", ""), "", "", "", "", "", "", "", ""), 1, "RESIDENTLASTNAME");
             AnyError = 1;
             GX_FocusControl = edtResidentLastName_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          if ( ! ( GxRegex.IsMatch(A67ResidentEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Invalid email pattern", "OutOfRange", 1, "RESIDENTEMAIL");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Resident Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "RESIDENTEMAIL");
             AnyError = 1;
             GX_FocusControl = edtResidentEmail_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A67ResidentEmail)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Email", "", "", "", "", "", "", "", ""), 1, "RESIDENTEMAIL");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Email", ""), "", "", "", "", "", "", "", ""), 1, "RESIDENTEMAIL");
             AnyError = 1;
             GX_FocusControl = edtResidentEmail_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          if ( ! ( ( StringUtil.StrCmp(A68ResidentGender, "Male") == 0 ) || ( StringUtil.StrCmp(A68ResidentGender, "Female") == 0 ) || ( StringUtil.StrCmp(A68ResidentGender, "Other") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Resident Gender is out of range", "OutOfRange", 1, "RESIDENTGENDER");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Resident Gender", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "RESIDENTGENDER");
             AnyError = 1;
             GX_FocusControl = cmbResidentGender_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          A314ResidentZipCode = StringUtil.Upper( A314ResidentZipCode);
          AssignAttri("", false, "A314ResidentZipCode", A314ResidentZipCode);
-         if ( ! GxRegex.IsMatch(A314ResidentZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A314ResidentZipCode)) )
+         if ( ! GxRegex.IsMatch(A314ResidentZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A314ResidentZipCode)) )
          {
-            GX_msglist.addItem("Zip Code is incorrect", 1, "RESIDENTZIPCODE");
+            GX_msglist.addItem(context.GetMessage( "Zip Code is incorrect", ""), 1, "RESIDENTZIPCODE");
             AnyError = 1;
             GX_FocusControl = edtResidentZipCode_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2953,7 +2958,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A96ResidentTypeId) ) )
             {
-               GX_msglist.addItem("No matching 'Resident Types'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
                AnyError = 1;
                GX_FocusControl = edtResidentTypeId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2967,7 +2972,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem("No matching 'Medical Indications'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Medical Indications", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
                GX_FocusControl = edtMedicalIndicationId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2979,9 +2984,9 @@ namespace GeneXus.Programs {
          new prc_concatenateintlphone(context ).execute(  A347ResidentPhoneCode,  A348ResidentPhoneNumber, out  GXt_char2) ;
          A70ResidentPhone = GXt_char2;
          AssignAttri("", false, "A70ResidentPhone", A70ResidentPhone);
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A348ResidentPhoneNumber)) && ! GxRegex.IsMatch(A348ResidentPhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A348ResidentPhoneNumber)) && ! GxRegex.IsMatch(A348ResidentPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "RESIDENTPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "RESIDENTPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtResidentPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2990,9 +2995,9 @@ namespace GeneXus.Programs {
          new prc_concatenateintlphone(context ).execute(  A431ResidentHomePhoneCode,  A432ResidentHomePhoneNumber, out  GXt_char2) ;
          A430ResidentHomePhone = GXt_char2;
          AssignAttri("", false, "A430ResidentHomePhone", A430ResidentHomePhone);
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A432ResidentHomePhoneNumber)) && ! GxRegex.IsMatch(A432ResidentHomePhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A432ResidentHomePhoneNumber)) && ! GxRegex.IsMatch(A432ResidentHomePhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "RESIDENTHOMEPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "RESIDENTHOMEPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtResidentHomePhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3003,7 +3008,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A527ResidentPackageId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_ResidentPackage'.", "ForeignKeyNotFound", 1, "RESIDENTPACKAGEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_ResidentPackage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTPACKAGEID");
                AnyError = 1;
                GX_FocusControl = edtResidentPackageId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3036,7 +3041,7 @@ namespace GeneXus.Programs {
          pr_default.execute(7, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(7) == 101) )
          {
-            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
             GX_FocusControl = edtLocationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3061,7 +3066,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A96ResidentTypeId) ) )
             {
-               GX_msglist.addItem("No matching 'Resident Types'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
                AnyError = 1;
                GX_FocusControl = edtResidentTypeId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3089,7 +3094,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem("No matching 'Medical Indications'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Medical Indications", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
                GX_FocusControl = edtMedicalIndicationId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3117,7 +3122,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A527ResidentPackageId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_ResidentPackage'.", "ForeignKeyNotFound", 1, "RESIDENTPACKAGEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_ResidentPackage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTPACKAGEID");
                AnyError = 1;
                GX_FocusControl = edtResidentPackageId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3843,7 +3848,7 @@ namespace GeneXus.Programs {
             pr_default.execute(21, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(21) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Memo"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Memo", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(21);
@@ -4124,7 +4129,7 @@ namespace GeneXus.Programs {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4220,8 +4225,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z96ResidentTypeId", Z96ResidentTypeId.ToString());
          GxWebStd.gx_hidden_field( context, "Z98MedicalIndicationId", Z98MedicalIndicationId.ToString());
          GxWebStd.gx_hidden_field( context, "Z527ResidentPackageId", Z527ResidentPackageId.ToString());
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_Mode", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          GxWebStd.gx_hidden_field( context, "N96ResidentTypeId", A96ResidentTypeId.ToString());
@@ -4288,7 +4293,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vTRNCONTEXT", GetSecureSignedToken( "", AV13TrnContext, context));
          GxWebStd.gx_hidden_field( context, "vRESIDENTID", AV7ResidentId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTID", GetSecureSignedToken( "", AV7ResidentId, context));
-         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "vLOCATIONID", AV8LocationId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vLOCATIONID", GetSecureSignedToken( "", AV8LocationId, context));
          GxWebStd.gx_hidden_field( context, "vORGANISATIONID", AV9OrganisationId.ToString());
@@ -4365,6 +4370,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -4412,7 +4429,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Residents" ;
+         return context.GetMessage( "Residents", "") ;
       }
 
       protected void InitializeNonKey0964( )
@@ -4543,7 +4560,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254241149670", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271863644", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -4558,8 +4575,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_resident.js", "?20254241149674", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("trn_resident.js", "?20254271863650", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4671,7 +4688,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Residents";
+         Form.Caption = context.GetMessage( "Residents", "");
          Combo_residentphonecode_Htmltemplate = "";
          Combo_residenthomephonecode_Htmltemplate = "";
          Combo_residentcountry_Htmltemplate = "";
@@ -5071,10 +5088,10 @@ namespace GeneXus.Programs {
       {
          cmbResidentSalutation.Name = "RESIDENTSALUTATION";
          cmbResidentSalutation.WebTags = "";
-         cmbResidentSalutation.addItem("Mr", "Mr", 0);
-         cmbResidentSalutation.addItem("Mrs", "Mrs", 0);
-         cmbResidentSalutation.addItem("Dr", "Dr", 0);
-         cmbResidentSalutation.addItem("Miss", "Miss", 0);
+         cmbResidentSalutation.addItem("Mr", context.GetMessage( "Mr", ""), 0);
+         cmbResidentSalutation.addItem("Mrs", context.GetMessage( "Mrs", ""), 0);
+         cmbResidentSalutation.addItem("Dr", context.GetMessage( "Dr", ""), 0);
+         cmbResidentSalutation.addItem("Miss", context.GetMessage( "Miss", ""), 0);
          if ( cmbResidentSalutation.ItemCount > 0 )
          {
             A72ResidentSalutation = cmbResidentSalutation.getValidValue(A72ResidentSalutation);
@@ -5082,9 +5099,9 @@ namespace GeneXus.Programs {
          }
          cmbResidentGender.Name = "RESIDENTGENDER";
          cmbResidentGender.WebTags = "";
-         cmbResidentGender.addItem("Male", "Male", 0);
-         cmbResidentGender.addItem("Female", "Female", 0);
-         cmbResidentGender.addItem("Other", "Other", 0);
+         cmbResidentGender.addItem("Male", context.GetMessage( "Male", ""), 0);
+         cmbResidentGender.addItem("Female", context.GetMessage( "Female", ""), 0);
+         cmbResidentGender.addItem("Other", context.GetMessage( "Other", ""), 0);
          if ( cmbResidentGender.ItemCount > 0 )
          {
             A68ResidentGender = cmbResidentGender.getValidValue(A68ResidentGender);
@@ -5119,7 +5136,7 @@ namespace GeneXus.Programs {
          pr_default.execute(23, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(23) == 101) )
          {
-            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
             GX_FocusControl = edtLocationId_Internalname;
          }
@@ -5132,7 +5149,7 @@ namespace GeneXus.Programs {
       {
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A65ResidentLastName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Last Name", "", "", "", "", "", "", "", ""), 1, "RESIDENTLASTNAME");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Last Name", ""), "", "", "", "", "", "", "", ""), 1, "RESIDENTLASTNAME");
             AnyError = 1;
             GX_FocusControl = edtResidentLastName_Internalname;
          }
@@ -5147,9 +5164,9 @@ namespace GeneXus.Programs {
          GXt_char2 = A70ResidentPhone;
          new prc_concatenateintlphone(context ).execute(  A347ResidentPhoneCode,  A348ResidentPhoneNumber, out  GXt_char2) ;
          A70ResidentPhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A348ResidentPhoneNumber)) && ! GxRegex.IsMatch(A348ResidentPhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A348ResidentPhoneNumber)) && ! GxRegex.IsMatch(A348ResidentPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "RESIDENTPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "RESIDENTPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtResidentPhoneNumber_Internalname;
          }
@@ -5163,9 +5180,9 @@ namespace GeneXus.Programs {
          GXt_char2 = A430ResidentHomePhone;
          new prc_concatenateintlphone(context ).execute(  A431ResidentHomePhoneCode,  A432ResidentHomePhoneNumber, out  GXt_char2) ;
          A430ResidentHomePhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A432ResidentHomePhoneNumber)) && ! GxRegex.IsMatch(A432ResidentHomePhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A432ResidentHomePhoneNumber)) && ! GxRegex.IsMatch(A432ResidentHomePhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "RESIDENTHOMEPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "RESIDENTHOMEPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtResidentHomePhoneNumber_Internalname;
          }
@@ -5183,7 +5200,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A96ResidentTypeId) ) )
             {
-               GX_msglist.addItem("No matching 'Resident Types'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
                AnyError = 1;
                GX_FocusControl = edtResidentTypeId_Internalname;
             }
@@ -5204,7 +5221,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A527ResidentPackageId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_ResidentPackage'.", "ForeignKeyNotFound", 1, "RESIDENTPACKAGEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_ResidentPackage", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTPACKAGEID");
                AnyError = 1;
                GX_FocusControl = edtResidentPackageId_Internalname;
             }
@@ -5229,7 +5246,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem("No matching 'Medical Indications'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Medical Indications", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
                GX_FocusControl = edtMedicalIndicationId_Internalname;
             }
@@ -5891,10 +5908,15 @@ namespace GeneXus.Programs {
       private int edtMedicalIndicationId_Visible ;
       private int edtMedicalIndicationId_Enabled ;
       private int Combo_residentphonecode_Datalistupdateminimumcharacters ;
+      private int Combo_residentphonecode_Gxcontroltype ;
       private int Combo_residenthomephonecode_Datalistupdateminimumcharacters ;
+      private int Combo_residenthomephonecode_Gxcontroltype ;
       private int Combo_residentcountry_Datalistupdateminimumcharacters ;
+      private int Combo_residentcountry_Gxcontroltype ;
       private int Combo_residenttypeid_Datalistupdateminimumcharacters ;
+      private int Combo_residenttypeid_Gxcontroltype ;
       private int Combo_residentpackageid_Datalistupdateminimumcharacters ;
+      private int Combo_residentpackageid_Gxcontroltype ;
       private int AV63GXV1 ;
       private int idxLst ;
       private string sPrefix ;

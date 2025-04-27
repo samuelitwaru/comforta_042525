@@ -143,7 +143,7 @@ namespace GeneXus.Programs {
                   while ( AV35GXV1 <= AV12ColorNameCollection.Count )
                   {
                      AV14ColorSDTName = ((string)AV12ColorNameCollection.Item(AV35GXV1));
-                     AV19ColorName = StringUtil.StringReplace( AV14ColorSDTName, "Value", "");
+                     AV19ColorName = StringUtil.StringReplace( AV14ColorSDTName, context.GetMessage( "Value", ""), "");
                      AV15Index = (short)(AV12ColorNameCollection.IndexOf(AV14ColorSDTName));
                      /*
                         INSERT RECORD ON TABLE Trn_ThemeColor
@@ -319,7 +319,7 @@ namespace GeneXus.Programs {
             while ( AV44GXV5 <= AV12ColorNameCollection.Count )
             {
                AV14ColorSDTName = ((string)AV12ColorNameCollection.Item(AV44GXV5));
-               AV19ColorName = StringUtil.StringReplace( AV14ColorSDTName, "Value", "");
+               AV19ColorName = StringUtil.StringReplace( AV14ColorSDTName, context.GetMessage( "Value", ""), "");
                AV20Color = new SdtTrn_Theme_Color(context);
                AV20Color.gxTpr_Colorid = Guid.NewGuid( );
                AV20Color.gxTpr_Colorname = AV19ColorName;

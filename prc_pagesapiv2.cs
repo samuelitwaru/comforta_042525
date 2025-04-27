@@ -170,7 +170,7 @@ namespace GeneXus.Programs {
                A536PagePublishedStructure = P00DL5_A536PagePublishedStructure[0];
                A517PageName = P00DL5_A517PageName[0];
                GXt_char1 = AV21PagePublishedStructure;
-               new prc_getdynamictransation(context ).execute(  "Trn_AppVersion.Page",  A516PageId,  "PagePublishedStructure",  "Dutch",  A536PagePublishedStructure, out  GXt_char1) ;
+               new prc_getdynamictransation(context ).execute(  "Trn_AppVersion.Page",  A516PageId,  "PagePublishedStructure",  context.GetMessage( "Dutch", ""),  A536PagePublishedStructure, out  GXt_char1) ;
                AV21PagePublishedStructure = GXt_char1;
                AV15SDT_MenuPage.FromJSonString(AV21PagePublishedStructure, null);
                GXt_SdtSDT_MobilePage2 = AV16SDT_MobilePage;

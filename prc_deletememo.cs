@@ -81,8 +81,8 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV10Error.gxTpr_Status = "Error";
-            AV10Error.gxTpr_Message = "Failed to delete memo";
+            AV10Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV10Error.gxTpr_Message = context.GetMessage( "Failed to delete memo", "");
             context.RollbackDataStores("prc_deletememo",pr_default);
          }
          cleanup();

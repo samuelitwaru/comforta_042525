@@ -524,7 +524,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel)) && ! ( StringUtil.StrCmp(AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel)) && ! ( StringUtil.StrCmp(AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ResidentPackageName = ( :AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel))");
          }
@@ -532,7 +532,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ResidentPackageName))=0))");
          }
@@ -544,7 +544,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel)) && ! ( StringUtil.StrCmp(AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel)) && ! ( StringUtil.StrCmp(AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ResidentPackageModules = ( :AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel))");
          }
@@ -552,7 +552,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ResidentPackageModules))=0))");
          }
@@ -607,7 +607,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel)) && ! ( StringUtil.StrCmp(AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel)) && ! ( StringUtil.StrCmp(AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ResidentPackageName = ( :AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel))");
          }
@@ -615,7 +615,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV43Trn_residentpackagewwds_3_tfresidentpackagename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ResidentPackageName))=0))");
          }
@@ -627,7 +627,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel)) && ! ( StringUtil.StrCmp(AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel)) && ! ( StringUtil.StrCmp(AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ResidentPackageModules = ( :AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel))");
          }
@@ -635,7 +635,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV45Trn_residentpackagewwds_5_tfresidentpackagemodules_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ResidentPackageModules))=0))");
          }

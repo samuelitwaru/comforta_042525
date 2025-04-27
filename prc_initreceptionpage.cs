@@ -89,7 +89,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtoserver(context ).execute(  "AppVersionId: "+AV15AppVersionId.ToString()) ;
+         new prc_logtoserver(context ).execute(  context.GetMessage( "AppVersionId: ", "")+AV15AppVersionId.ToString()) ;
          /* Using cursor P00B92 */
          pr_default.execute(0, new Object[] {AV15AppVersionId});
          while ( (pr_default.getStatus(0) != 101) )

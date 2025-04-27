@@ -91,8 +91,8 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV8RoleNameCollection.Add("Resident", 0);
-         AV17GAMUser = AV10GAMRepository.getuserbylogin("local", "admin", out  AV11GAMErrorCollection);
+         AV8RoleNameCollection.Add(context.GetMessage( "Resident", ""), 0);
+         AV17GAMUser = AV10GAMRepository.getuserbylogin(context.GetMessage( "local", ""), context.GetMessage( "admin", ""), out  AV11GAMErrorCollection);
          AV18GAMPermissionFilter.gxTpr_Applicationid = 2;
          AV22GAMPermissionCollection = AV17GAMUser.getallpermissions(AV18GAMPermissionFilter, out  AV11GAMErrorCollection);
          AV24GXV1 = 1;
@@ -100,7 +100,7 @@ namespace GeneXus.Programs {
          {
             AV12RoleName = ((string)AV8RoleNameCollection.Item(AV24GXV1));
             AV13PermNameCollection = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-            AV14PermFile.Source = "perms/"+AV12RoleName+".json";
+            AV14PermFile.Source = context.GetMessage( "perms/", "")+AV12RoleName+context.GetMessage( ".json", "");
             AV16PermJSON = AV14PermFile.ReadAllText("");
             AV13PermNameCollection.FromJSonString(AV16PermJSON, null);
             AV9GAMRole = AV9GAMRole.getbyname(AV12RoleName, out  AV11GAMErrorCollection);

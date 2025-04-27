@@ -72,7 +72,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  "&PageUrlList : "+AV24PageUrlList.ToJSonString(false)) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "&PageUrlList : ", "")+AV24PageUrlList.ToJSonString(false)) ;
          AV34GXV1 = 1;
          while ( AV34GXV1 <= AV24PageUrlList.Count )
          {

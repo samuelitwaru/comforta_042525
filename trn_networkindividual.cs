@@ -113,7 +113,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Trn_Network Individual", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Trn_Network Individual", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -291,7 +291,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, "Trn_Network Individual", "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_Trn_NetworkIndividual.htm");
+         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, context.GetMessage( "Trn_Network Individual", ""), "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_Trn_NetworkIndividual.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -353,7 +353,7 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
          ClassString = "Button button-secondary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", "Select", bttBtn_select_Jsonclick, 5, "Select", "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_Trn_NetworkIndividual.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", context.GetMessage( "GX_BtnSelect", ""), bttBtn_select_Jsonclick, 5, context.GetMessage( "GX_BtnSelect", ""), "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_Trn_NetworkIndividual.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -366,7 +366,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualId_Internalname, "Individual Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualId_Internalname, context.GetMessage( "Individual Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -383,7 +383,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualBsnNumber_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualBsnNumber_Internalname, "Bsn Number", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualBsnNumber_Internalname, context.GetMessage( "Bsn Number", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -400,7 +400,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualGivenName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualGivenName_Internalname, "Given Name", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualGivenName_Internalname, context.GetMessage( "Given Name", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -417,7 +417,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualLastName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualLastName_Internalname, "Last Name", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualLastName_Internalname, context.GetMessage( "Last Name", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -434,7 +434,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualEmail_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualEmail_Internalname, "Individual Email", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualEmail_Internalname, context.GetMessage( "Individual Email", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -451,7 +451,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualPhone_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualPhone_Internalname, "Individual Phone", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualPhone_Internalname, context.GetMessage( "Individual Phone", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -472,7 +472,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualHomePhone_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualHomePhone_Internalname, "Home Phone", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualHomePhone_Internalname, context.GetMessage( "Home Phone", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -493,7 +493,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualPhoneCode_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualPhoneCode_Internalname, "Phone Code", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualPhoneCode_Internalname, context.GetMessage( "Phone Code", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -510,7 +510,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualHomePhoneCode_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualHomePhoneCode_Internalname, "Phone Code", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualHomePhoneCode_Internalname, context.GetMessage( "Phone Code", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -527,7 +527,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualPhoneNumber_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualPhoneNumber_Internalname, "Phone Number", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualPhoneNumber_Internalname, context.GetMessage( "Phone Number", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -544,7 +544,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualHomePhoneNumb_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualHomePhoneNumb_Internalname, "Phone Number", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualHomePhoneNumb_Internalname, context.GetMessage( "Phone Number", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -561,7 +561,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbNetworkIndividualRelationship_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, cmbNetworkIndividualRelationship_Internalname, "Relationship", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, cmbNetworkIndividualRelationship_Internalname, context.GetMessage( "Relationship", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 89,'',false,'',0)\"";
@@ -580,7 +580,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbNetworkIndividualGender_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, cmbNetworkIndividualGender_Internalname, "Individual Gender", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, cmbNetworkIndividualGender_Internalname, context.GetMessage( "Individual Gender", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 94,'',false,'',0)\"";
@@ -599,7 +599,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualCountry_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualCountry_Internalname, "Individual Country", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualCountry_Internalname, context.GetMessage( "Individual Country", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -616,7 +616,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualCity_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualCity_Internalname, "Individual City", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualCity_Internalname, context.GetMessage( "Individual City", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -633,7 +633,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualZipCode_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualZipCode_Internalname, "Zip Code", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualZipCode_Internalname, context.GetMessage( "Zip Code", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -650,7 +650,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualAddressLine1_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualAddressLine1_Internalname, "Address Line1", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualAddressLine1_Internalname, context.GetMessage( "Address Line1", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -667,7 +667,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtNetworkIndividualAddressLine2_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtNetworkIndividualAddressLine2_Internalname, "Address Line2", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtNetworkIndividualAddressLine2_Internalname, context.GetMessage( "Address Line2", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -691,21 +691,21 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 124,'',false,'',0)\"";
          ClassString = "Button button-primary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", "Confirm", bttBtn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_NetworkIndividual.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_NetworkIndividual.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 126,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", "Cancel", bttBtn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_NetworkIndividual.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_NetworkIndividual.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 128,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", "Delete", bttBtn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_NetworkIndividual.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_NetworkIndividual.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "end", "Middle", "div");
@@ -762,10 +762,10 @@ namespace GeneXus.Programs {
             Z324NetworkIndividualZipCode = cgiGet( "Z324NetworkIndividualZipCode");
             Z325NetworkIndividualAddressLine1 = cgiGet( "Z325NetworkIndividualAddressLine1");
             Z326NetworkIndividualAddressLine2 = cgiGet( "Z326NetworkIndividualAddressLine2");
-            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Gx_mode = cgiGet( "Mode");
-            Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), ".", ","), 18, MidpointRounding.ToEven));
+            Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             if ( StringUtil.StrCmp(cgiGet( edtNetworkIndividualId_Internalname), "") == 0 )
             {
@@ -1177,42 +1177,42 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A75NetworkIndividualBsnNumber)) && ( StringUtil.Len( A75NetworkIndividualBsnNumber) != 9 ) )
          {
-            GX_msglist.addItem("BSN number contains 9 digits", 1, "NETWORKINDIVIDUALBSNNUMBER");
+            GX_msglist.addItem(context.GetMessage( "BSN number contains 9 digits", ""), 1, "NETWORKINDIVIDUALBSNNUMBER");
             AnyError = 1;
             GX_FocusControl = edtNetworkIndividualBsnNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          if ( ! ( GxRegex.IsMatch(A78NetworkIndividualEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Invalid email pattern", "OutOfRange", 1, "NETWORKINDIVIDUALEMAIL");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Network Individual Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "NETWORKINDIVIDUALEMAIL");
             AnyError = 1;
             GX_FocusControl = edtNetworkIndividualEmail_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A360NetworkIndividualPhoneNumber)) && ! GxRegex.IsMatch(A360NetworkIndividualPhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A360NetworkIndividualPhoneNumber)) && ! GxRegex.IsMatch(A360NetworkIndividualPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "NETWORKINDIVIDUALPHONENUMBER");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "NETWORKINDIVIDUALPHONENUMBER");
             AnyError = 1;
             GX_FocusControl = edtNetworkIndividualPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A435NetworkIndividualHomePhoneNumb)) && ! GxRegex.IsMatch(A435NetworkIndividualHomePhoneNumb,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A435NetworkIndividualHomePhoneNumb)) && ! GxRegex.IsMatch(A435NetworkIndividualHomePhoneNumb,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "NETWORKINDIVIDUALHOMEPHONENUMB");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "NETWORKINDIVIDUALHOMEPHONENUMB");
             AnyError = 1;
             GX_FocusControl = edtNetworkIndividualHomePhoneNumb_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          if ( ! ( ( StringUtil.StrCmp(A81NetworkIndividualGender, "Male") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Female") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Other") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Network Individual Gender is out of range", "OutOfRange", 1, "NETWORKINDIVIDUALGENDER");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Network Individual Gender", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "NETWORKINDIVIDUALGENDER");
             AnyError = 1;
             GX_FocusControl = cmbNetworkIndividualGender_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
-         if ( ! GxRegex.IsMatch(A324NetworkIndividualZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A324NetworkIndividualZipCode)) )
+         if ( ! GxRegex.IsMatch(A324NetworkIndividualZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A324NetworkIndividualZipCode)) )
          {
-            GX_msglist.addItem("Zip Code is incorrect", 1, "NETWORKINDIVIDUALZIPCODE");
+            GX_msglist.addItem(context.GetMessage( "Zip Code is incorrect", ""), 1, "NETWORKINDIVIDUALZIPCODE");
             AnyError = 1;
             GX_FocusControl = edtNetworkIndividualZipCode_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2193,10 +2193,10 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z324NetworkIndividualZipCode", Z324NetworkIndividualZipCode);
          GxWebStd.gx_hidden_field( context, "Z325NetworkIndividualAddressLine1", Z325NetworkIndividualAddressLine1);
          GxWebStd.gx_hidden_field( context, "Z326NetworkIndividualAddressLine2", Z326NetworkIndividualAddressLine2);
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
-         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -2218,6 +2218,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -2263,7 +2275,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Trn_Network Individual" ;
+         return context.GetMessage( "Trn_Network Individual", "") ;
       }
 
       protected void InitializeNonKey0A17( )
@@ -2343,7 +2355,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411481581", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271841824", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2358,8 +2370,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_networkindividual.js", "?202542411481581", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("trn_networkindividual.js", "?20254271841824", false, true);
          /* End function include_jscripts */
       }
 
@@ -2411,7 +2423,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Trn_Network Individual";
+         Form.Caption = context.GetMessage( "Trn_Network Individual", "");
          bttBtn_delete_Enabled = 1;
          bttBtn_delete_Visible = 1;
          bttBtn_cancel_Visible = 1;
@@ -2474,17 +2486,17 @@ namespace GeneXus.Programs {
       {
          cmbNetworkIndividualRelationship.Name = "NETWORKINDIVIDUALRELATIONSHIP";
          cmbNetworkIndividualRelationship.WebTags = "";
-         cmbNetworkIndividualRelationship.addItem("", "Other", 0);
-         cmbNetworkIndividualRelationship.addItem("Father", "Father", 0);
-         cmbNetworkIndividualRelationship.addItem("Mother", "Mother", 0);
-         cmbNetworkIndividualRelationship.addItem("Daughter", "Daughter", 0);
-         cmbNetworkIndividualRelationship.addItem("Son", "Son", 0);
-         cmbNetworkIndividualRelationship.addItem("Aunt", "Aunt", 0);
-         cmbNetworkIndividualRelationship.addItem("Uncle", "Uncle", 0);
-         cmbNetworkIndividualRelationship.addItem("GrandMother", "GrandMother", 0);
-         cmbNetworkIndividualRelationship.addItem("GrandFather", "GrandFather", 0);
-         cmbNetworkIndividualRelationship.addItem("Cousin", "Cousin", 0);
-         cmbNetworkIndividualRelationship.addItem("Friend", "Friend", 0);
+         cmbNetworkIndividualRelationship.addItem("", context.GetMessage( "Other", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("Father", context.GetMessage( "Father", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("Mother", context.GetMessage( "Mother", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("Daughter", context.GetMessage( "Daughter", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("Son", context.GetMessage( "Son", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("Aunt", context.GetMessage( "Aunt", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("Uncle", context.GetMessage( "Uncle", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("GrandMother", context.GetMessage( "GrandMother", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("GrandFather", context.GetMessage( "GrandFather", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("Cousin", context.GetMessage( "Cousin", ""), 0);
+         cmbNetworkIndividualRelationship.addItem("Friend", context.GetMessage( "Friend", ""), 0);
          if ( cmbNetworkIndividualRelationship.ItemCount > 0 )
          {
             A495NetworkIndividualRelationship = cmbNetworkIndividualRelationship.getValidValue(A495NetworkIndividualRelationship);
@@ -2492,9 +2504,9 @@ namespace GeneXus.Programs {
          }
          cmbNetworkIndividualGender.Name = "NETWORKINDIVIDUALGENDER";
          cmbNetworkIndividualGender.WebTags = "";
-         cmbNetworkIndividualGender.addItem("Male", "Male", 0);
-         cmbNetworkIndividualGender.addItem("Female", "Female", 0);
-         cmbNetworkIndividualGender.addItem("Other", "Other", 0);
+         cmbNetworkIndividualGender.addItem("Male", context.GetMessage( "Male", ""), 0);
+         cmbNetworkIndividualGender.addItem("Female", context.GetMessage( "Female", ""), 0);
+         cmbNetworkIndividualGender.addItem("Other", context.GetMessage( "Other", ""), 0);
          if ( cmbNetworkIndividualGender.ItemCount > 0 )
          {
             A81NetworkIndividualGender = cmbNetworkIndividualGender.getValidValue(A81NetworkIndividualGender);

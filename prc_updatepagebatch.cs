@@ -83,8 +83,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV10Error.gxTpr_Status = "Error";
-            AV10Error.gxTpr_Message = "Not Authenticated";
+            AV10Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV10Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {
@@ -117,17 +117,17 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  AV27Response = "Page Not Found";
+                  AV27Response = context.GetMessage( "Page Not Found", "");
                }
                AV30GXV1 = (int)(AV30GXV1+1);
             }
             if ( AV9BC_Trn_Page.Success() )
             {
-               AV27Response = "Pages Save Successfully";
+               AV27Response = context.GetMessage( "Pages Save Successfully", "");
                if ( AV11IsNotifyResidents )
                {
-                  AV8Title = "New Updates Available";
-                  AV16NotificationMessage = "The latest updates have been published and are now live! Open the app to explore the changes";
+                  AV8Title = context.GetMessage( "New Updates Available", "");
+                  AV16NotificationMessage = context.GetMessage( "The latest updates have been published and are now live! Open the app to explore the changes", "");
                   AV14Metadata.gxTpr_Notificationcategory = "Toolbox";
                   new prc_sendresidentnotification(context ).execute(  AV8Title,  AV16NotificationMessage,  "Toolbox",  AV14Metadata,  AV26ResidentIdCollectionEmpty) ;
                }

@@ -172,11 +172,11 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV19WWPContext.gxTpr_Isreceptionist )
          {
-            AV61RoleName = "Receptionist";
+            AV61RoleName = context.GetMessage( "Receptionist", "");
          }
          if ( AV19WWPContext.gxTpr_Isorganisationmanager )
          {
-            AV61RoleName = "Manager";
+            AV61RoleName = context.GetMessage( "Manager", "");
          }
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
@@ -189,11 +189,11 @@ namespace GeneXus.Programs {
             AV64WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV63SDT_NotificationMetadata;
             GXt_char2 = AV62NotificationDescription;
             GXt_char3 = AV62NotificationDescription;
-            new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context ).execute( out  GXt_char3) ;
+            new uwwp_getloggeduserid(context ).execute( out  GXt_char3) ;
             new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char3, out  GXt_char2) ;
-            AV62NotificationDescription = StringUtil.Format( "%1 added by %2 %3", A59ProductServiceName, AV61RoleName, GXt_char2, "", "", "", "", "", "");
+            AV62NotificationDescription = StringUtil.Format( context.GetMessage( "%1 added by %2 %3", ""), A59ProductServiceName, AV61RoleName, GXt_char2, "", "", "", "", "", "");
             AV55NotificationLink = formatLink("trn_productserviceview.aspx", new object[] {UrlEncode(A58ProductServiceId.ToString()),UrlEncode(A29LocationId.ToString()),UrlEncode(A11OrganisationId.ToString()),UrlEncode(StringUtil.RTrim(""))}, new string[] {"ProductServiceId","LocationId","OrganisationId","TabCode"}) ;
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "InsertRecord",  "Trn_ProductService",  "",  "fas fa-plus NotificationFontIconSuccess",  "New Service",  AV62NotificationDescription,  AV62NotificationDescription,  AV55NotificationLink,  AV64WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "InsertRecord",  "Trn_ProductService",  "",  context.GetMessage( "fas fa-plus NotificationFontIconSuccess", ""),  context.GetMessage( "New Service", ""),  AV62NotificationDescription,  AV62NotificationDescription,  AV55NotificationLink,  AV64WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
@@ -206,11 +206,11 @@ namespace GeneXus.Programs {
             AV64WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV63SDT_NotificationMetadata;
             GXt_char3 = AV62NotificationDescription;
             GXt_char2 = AV62NotificationDescription;
-            new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context ).execute( out  GXt_char2) ;
+            new uwwp_getloggeduserid(context ).execute( out  GXt_char2) ;
             new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char2, out  GXt_char3) ;
-            AV62NotificationDescription = StringUtil.Format( "%1 updated by %2 %3", A59ProductServiceName, AV61RoleName, GXt_char3, "", "", "", "", "", "");
+            AV62NotificationDescription = StringUtil.Format( context.GetMessage( "%1 updated by %2 %3", ""), A59ProductServiceName, AV61RoleName, GXt_char3, "", "", "", "", "", "");
             AV55NotificationLink = formatLink("trn_productserviceview.aspx", new object[] {UrlEncode(A58ProductServiceId.ToString()),UrlEncode(A29LocationId.ToString()),UrlEncode(A11OrganisationId.ToString()),UrlEncode(StringUtil.RTrim(""))}, new string[] {"ProductServiceId","LocationId","OrganisationId","TabCode"}) ;
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "UpdateRecord",  "Trn_ProductService",  "",  "fas fa-pencil-alt NotificationFontIconWarning",  "Service Updated",  AV62NotificationDescription,  AV62NotificationDescription,  AV55NotificationLink,  AV64WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "UpdateRecord",  "Trn_ProductService",  "",  context.GetMessage( "fas fa-pencil-alt NotificationFontIconWarning", ""),  context.GetMessage( "Service Updated", ""),  AV62NotificationDescription,  AV62NotificationDescription,  AV55NotificationLink,  AV64WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
          if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
          {
@@ -223,10 +223,10 @@ namespace GeneXus.Programs {
             AV64WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV63SDT_NotificationMetadata;
             GXt_char3 = AV62NotificationDescription;
             GXt_char2 = AV62NotificationDescription;
-            new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context ).execute( out  GXt_char2) ;
+            new uwwp_getloggeduserid(context ).execute( out  GXt_char2) ;
             new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char2, out  GXt_char3) ;
-            AV62NotificationDescription = StringUtil.Format( "%1 deleted by %2 %3", A59ProductServiceName, AV61RoleName, GXt_char3, "", "", "", "", "", "");
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DeleteRecord",  "Trn_ProductService",  "",  "far fa-trash-alt NotificationFontIconDanger",  "Service Deleted",  AV62NotificationDescription,  AV62NotificationDescription,  "",  AV64WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
+            AV62NotificationDescription = StringUtil.Format( context.GetMessage( "%1 deleted by %2 %3", ""), A59ProductServiceName, AV61RoleName, GXt_char3, "", "", "", "", "", "");
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DeleteRecord",  "Trn_ProductService",  "",  context.GetMessage( "far fa-trash-alt NotificationFontIconDanger", ""),  context.GetMessage( "Service Deleted", ""),  AV62NotificationDescription,  AV62NotificationDescription,  "",  AV64WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( Gx_mode)) )
          {
@@ -404,18 +404,18 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A59ProductServiceName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Product Service Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Product Service Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A266ProductServiceTileName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Product Service Tile Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Product Service Tile Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00085 */
@@ -424,7 +424,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A42SupplierGenId) ) )
             {
-               GX_msglist.addItem("No matching 'General Suppliers'.", "ForeignKeyNotFound", 1, "SUPPLIERGENID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "General Suppliers", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SUPPLIERGENID");
                AnyError = 1;
             }
          }
@@ -436,7 +436,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A49SupplierAgbId) ) )
             {
-               GX_msglist.addItem("No matching 'AGB Suppliers'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "AGB Suppliers", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SUPPLIERAGBID");
                AnyError = 1;
             }
          }
@@ -760,7 +760,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {n58ProductServiceId, A58ProductServiceId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Page"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Page", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -768,7 +768,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {n58ProductServiceId, A58ProductServiceId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Call To Actions"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Call To Actions", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -906,7 +906,7 @@ namespace GeneXus.Programs {
          /* Before Validate Rules */
          if ( new prc_uniquelocationservicename(context).executeUdp(  A59ProductServiceName,  A29LocationId,  A58ProductServiceId) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  "Service name Already exists",  "error",  "",  "true",  ""), 1, "");
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Service name Already exists", ""),  "error",  "",  "true",  ""), 1, "");
             AnyError = 1;
          }
       }
@@ -1090,7 +1090,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(16) == 101) )
             {
-               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(16);
@@ -1129,7 +1129,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(16) == 101) )
             {
-               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Locations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(16);

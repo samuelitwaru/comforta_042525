@@ -96,7 +96,10 @@ namespace GeneXus.Programs {
          {
             A164WWPNotificationDefinitionName = P00982_A164WWPNotificationDefinitionName[0];
             A128WWPNotificationDefinitionId = P00982_A128WWPNotificationDefinitionId[0];
-            AV9DiscussionNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            if ( StringUtil.Contains( A164WWPNotificationDefinitionName, context.GetMessage( "Discussion", "")) )
+            {
+               AV9DiscussionNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            }
             pr_default.readNext(0);
          }
          pr_default.close(0);
@@ -107,7 +110,10 @@ namespace GeneXus.Programs {
          {
             A164WWPNotificationDefinitionName = P00983_A164WWPNotificationDefinitionName[0];
             A128WWPNotificationDefinitionId = P00983_A128WWPNotificationDefinitionId[0];
-            AV12MentionNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            if ( StringUtil.StrCmp(A164WWPNotificationDefinitionName, context.GetMessage( "Mention", "")) == 0 )
+            {
+               AV12MentionNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            }
             pr_default.readNext(1);
          }
          pr_default.close(1);
@@ -118,7 +124,10 @@ namespace GeneXus.Programs {
          {
             A164WWPNotificationDefinitionName = P00984_A164WWPNotificationDefinitionName[0];
             A128WWPNotificationDefinitionId = P00984_A128WWPNotificationDefinitionId[0];
-            AV10DynamicFormNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            if ( StringUtil.StrCmp(A164WWPNotificationDefinitionName, context.GetMessage( "DynamicFormNotification", "")) == 0 )
+            {
+               AV10DynamicFormNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            }
             pr_default.readNext(2);
          }
          pr_default.close(2);
@@ -129,7 +138,10 @@ namespace GeneXus.Programs {
          {
             A164WWPNotificationDefinitionName = P00985_A164WWPNotificationDefinitionName[0];
             A128WWPNotificationDefinitionId = P00985_A128WWPNotificationDefinitionId[0];
-            AV8AgendaNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            if ( StringUtil.StrCmp(A164WWPNotificationDefinitionName, context.GetMessage( "AgendaNotification", "")) == 0 )
+            {
+               AV8AgendaNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            }
             pr_default.readNext(3);
          }
          pr_default.close(3);
@@ -140,7 +152,10 @@ namespace GeneXus.Programs {
          {
             A164WWPNotificationDefinitionName = P00986_A164WWPNotificationDefinitionName[0];
             A128WWPNotificationDefinitionId = P00986_A128WWPNotificationDefinitionId[0];
-            AV11InsertNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            if ( StringUtil.StrCmp(A164WWPNotificationDefinitionName, context.GetMessage( "InsertRecord", "")) == 0 )
+            {
+               AV11InsertNotificationDefinitionIdCollection.Add(A128WWPNotificationDefinitionId, 0);
+            }
             pr_default.readNext(4);
          }
          pr_default.close(4);
@@ -259,11 +274,11 @@ namespace GeneXus.Programs {
           prmP00986 = new Object[] {
           };
           def= new CursorDef[] {
-              new CursorDef("P00982", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition WHERE POSITION(RTRIM('Discussion') IN WWPNotificationDefinitionName) >= 1 ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00982,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00983", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition WHERE WWPNotificationDefinitionName = ( 'Mention') ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00983,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00984", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition WHERE WWPNotificationDefinitionName = ( 'DynamicFormNotification') ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00984,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00985", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition WHERE WWPNotificationDefinitionName = ( 'AgendaNotification') ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00985,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00986", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition WHERE WWPNotificationDefinitionName = ( 'InsertRecord') ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00986,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P00982", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00982,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00983", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00983,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00984", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00984,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00985", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00985,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00986", "SELECT WWPNotificationDefinitionName, WWPNotificationDefinitionId FROM WWP_NotificationDefinition ORDER BY WWPNotificationDefinitionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00986,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

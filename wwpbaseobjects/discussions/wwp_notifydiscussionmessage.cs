@@ -103,15 +103,25 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          {
             GXt_char1 = AV10WWPNotificationShortDescription;
             new prc_getentitynamedescription(context ).execute(  StringUtil.Trim( AV24WWPEntityName)) ;
-            AV10WWPNotificationShortDescription = StringUtil.Format( "You were mentioned by %1 in a comment on %2: %3", StringUtil.Trim( AV23WWPUserExtendedFullName), GXt_char1, AV19WWPSubscriptionEntityRecordDescription, "", "", "", "", "", "");
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendmentionnotification(context ).execute(  "Mention",  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  "fas fa-at NotificationFontIconInfoLight",  "You were mentioned",  AV10WWPNotificationShortDescription,  AV10WWPNotificationShortDescription,  AV18WWPNotificationLink,  AV9WWPNotificationMetadataSDT.ToJSonString(false, true),  AV21MentionWWPUserExtendedIdCollectionJson) ;
+            AV10WWPNotificationShortDescription = StringUtil.Format( context.GetMessage( "WWP_Notifications_MentionShortMessage", ""), StringUtil.Trim( AV23WWPUserExtendedFullName), GXt_char1, AV19WWPSubscriptionEntityRecordDescription, "", "", "", "", "", "");
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendmentionnotification(context ).execute(  "Mention",  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  "fas fa-at NotificationFontIconInfoLight",  context.GetMessage( "WWP_Notifications_NewMention", ""),  AV10WWPNotificationShortDescription,  AV10WWPNotificationShortDescription,  AV18WWPNotificationLink,  AV9WWPNotificationMetadataSDT.ToJSonString(false, true),  AV21MentionWWPUserExtendedIdCollectionJson) ;
             new GeneXus.Programs.wwpbaseobjects.discussions.wwp_subscribementioneduserstodiscussion(context ).execute(  "GeneralDiscussion",  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  AV19WWPSubscriptionEntityRecordDescription,  AV21MentionWWPUserExtendedIdCollectionJson) ;
          }
-         GXt_objcol_svchar2 = AV26ReceptionistsToNotify;
+         GXt_objcol_SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem2 = AV29SDT_ReceptionistsToNotify;
          GXt_char1 = "";
-         new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context ).execute( out  GXt_char1) ;
-         new prc_getlocationreceptioniststonotify(context ).execute(  GXt_char1, out  GXt_objcol_svchar2) ;
-         AV26ReceptionistsToNotify = GXt_objcol_svchar2;
+         new uwwp_getloggeduserid(context ).execute( out  GXt_char1) ;
+         new prc_getlocationreceptioniststonotify(context ).execute(  GXt_char1, out  GXt_objcol_SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem2) ;
+         AV29SDT_ReceptionistsToNotify = GXt_objcol_SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem2;
+         if ( AV29SDT_ReceptionistsToNotify.Count > 0 )
+         {
+            AV31GXV1 = 1;
+            while ( AV31GXV1 <= AV29SDT_ReceptionistsToNotify.Count )
+            {
+               AV30SDT_ReceptionistToNotify = ((SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem)AV29SDT_ReceptionistsToNotify.Item(AV31GXV1));
+               AV26ReceptionistsToNotify.Add(AV30SDT_ReceptionistToNotify.gxTpr_Receptionistguid, 0);
+               AV31GXV1 = (int)(AV31GXV1+1);
+            }
+         }
          new prc_subscribereceptioniststodiscussion(context ).execute(  "GeneralDiscussion",  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  AV19WWPSubscriptionEntityRecordDescription,  AV26ReceptionistsToNotify.ToJSonString(false)) ;
          AV10WWPNotificationShortDescription = StringUtil.Format( "%1 added a comment on a discussion related to: %2", StringUtil.Trim( AV23WWPUserExtendedFullName), AV19WWPSubscriptionEntityRecordDescription, "", "", "", "", "", "", "");
          new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  AV25NotificationDefinitionName,  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  "far fa-comment-dots NotificationFontIconInfo",  AV8NotificationTitle,  AV10WWPNotificationShortDescription,  AV10WWPNotificationShortDescription,  AV18WWPNotificationLink,  AV9WWPNotificationMetadataSDT.ToJSonString(false, true),  AV21MentionWWPUserExtendedIdCollectionJson,  true) ;
@@ -135,12 +145,15 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          AV9WWPNotificationMetadataSDT = new SdtUSDTNotificationMetadata(context);
          AV27SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
          AV10WWPNotificationShortDescription = "";
-         AV26ReceptionistsToNotify = new GxSimpleCollection<string>();
-         GXt_objcol_svchar2 = new GxSimpleCollection<string>();
+         AV29SDT_ReceptionistsToNotify = new GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>( context, "SDT_ReceptionistToNotifiyItem", "Comforta_version20");
+         GXt_objcol_SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem2 = new GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>( context, "SDT_ReceptionistToNotifiyItem", "Comforta_version20");
          GXt_char1 = "";
+         AV30SDT_ReceptionistToNotify = new SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem(context);
+         AV26ReceptionistsToNotify = new GxSimpleCollection<string>();
          /* GeneXus formulas. */
       }
 
+      private int AV31GXV1 ;
       private string GXt_char1 ;
       private string AV21MentionWWPUserExtendedIdCollectionJson ;
       private string AV23WWPUserExtendedFullName ;
@@ -154,8 +167,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string AV10WWPNotificationShortDescription ;
       private SdtUSDTNotificationMetadata AV9WWPNotificationMetadataSDT ;
       private SdtSDT_NotificationMetadata AV27SDT_NotificationMetadata ;
+      private GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> AV29SDT_ReceptionistsToNotify ;
+      private GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> GXt_objcol_SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem2 ;
+      private SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem AV30SDT_ReceptionistToNotify ;
       private GxSimpleCollection<string> AV26ReceptionistsToNotify ;
-      private GxSimpleCollection<string> GXt_objcol_svchar2 ;
    }
 
 }

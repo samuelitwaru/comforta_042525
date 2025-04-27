@@ -44,39 +44,39 @@ namespace GeneXus.Programs {
       }
 
       public void execute( string aP0_WWPUserExtendedId ,
-                           out GxSimpleCollection<string> aP1_LocationReceptionistsGUIDCollection )
+                           out GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> aP1_SDT_ReceptionistsToNotify )
       {
          this.AV2WWPUserExtendedId = aP0_WWPUserExtendedId;
-         this.AV3LocationReceptionistsGUIDCollection = new GxSimpleCollection<string>() ;
+         this.AV3SDT_ReceptionistsToNotify = new GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>( context, "SDT_ReceptionistToNotifiyItem", "Comforta_version20") ;
          initialize();
          ExecuteImpl();
-         aP1_LocationReceptionistsGUIDCollection=this.AV3LocationReceptionistsGUIDCollection;
+         aP1_SDT_ReceptionistsToNotify=this.AV3SDT_ReceptionistsToNotify;
       }
 
-      public GxSimpleCollection<string> executeUdp( string aP0_WWPUserExtendedId )
+      public GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> executeUdp( string aP0_WWPUserExtendedId )
       {
-         execute(aP0_WWPUserExtendedId, out aP1_LocationReceptionistsGUIDCollection);
-         return AV3LocationReceptionistsGUIDCollection ;
+         execute(aP0_WWPUserExtendedId, out aP1_SDT_ReceptionistsToNotify);
+         return AV3SDT_ReceptionistsToNotify ;
       }
 
       public void executeSubmit( string aP0_WWPUserExtendedId ,
-                                 out GxSimpleCollection<string> aP1_LocationReceptionistsGUIDCollection )
+                                 out GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> aP1_SDT_ReceptionistsToNotify )
       {
          this.AV2WWPUserExtendedId = aP0_WWPUserExtendedId;
-         this.AV3LocationReceptionistsGUIDCollection = new GxSimpleCollection<string>() ;
+         this.AV3SDT_ReceptionistsToNotify = new GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>( context, "SDT_ReceptionistToNotifiyItem", "Comforta_version20") ;
          SubmitImpl();
-         aP1_LocationReceptionistsGUIDCollection=this.AV3LocationReceptionistsGUIDCollection;
+         aP1_SDT_ReceptionistsToNotify=this.AV3SDT_ReceptionistsToNotify;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         args = new Object[] {(string)AV2WWPUserExtendedId,(GxSimpleCollection<string>)AV3LocationReceptionistsGUIDCollection} ;
+         args = new Object[] {(string)AV2WWPUserExtendedId,(GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>)AV3SDT_ReceptionistsToNotify} ;
          ClassLoader.Execute("aprc_getlocationreceptioniststonotify","GeneXus.Programs","aprc_getlocationreceptioniststonotify", new Object[] {context }, "execute", args);
          if ( ( args != null ) && ( args.Length == 2 ) )
          {
-            AV3LocationReceptionistsGUIDCollection = (GxSimpleCollection<string>)(args[1]) ;
+            AV3SDT_ReceptionistsToNotify = (GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>)(args[1]) ;
          }
          cleanup();
       }
@@ -92,7 +92,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV3LocationReceptionistsGUIDCollection = new GxSimpleCollection<string>();
+         AV3SDT_ReceptionistsToNotify = new GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>( context, "SDT_ReceptionistToNotifiyItem", "Comforta_version20");
          /* GeneXus formulas. */
       }
 
@@ -100,9 +100,9 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GxSimpleCollection<string> AV3LocationReceptionistsGUIDCollection ;
+      private GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> AV3SDT_ReceptionistsToNotify ;
       private Object[] args ;
-      private GxSimpleCollection<string> aP1_LocationReceptionistsGUIDCollection ;
+      private GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> aP1_SDT_ReceptionistsToNotify ;
    }
 
 }

@@ -158,7 +158,7 @@ namespace GeneXus.Programs {
             else
             {
                AV15isSuccessful = false;
-               AV16Message = "Failed to delete user account";
+               AV16Message = context.GetMessage( "Failed to delete user account", "");
             }
             if ( GXTBW2 == 1 )
             {

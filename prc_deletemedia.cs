@@ -75,12 +75,12 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV14Error.gxTpr_Status = "Error";
-            AV14Error.gxTpr_Message = "Not Authenticated";
+            AV14Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV14Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {
-            AV10response = "failure";
+            AV10response = context.GetMessage( "failure", "");
             /* Using cursor P009L2 */
             pr_default.execute(0, new Object[] {AV8MediaId});
             while ( (pr_default.getStatus(0) != 101) )
@@ -93,8 +93,8 @@ namespace GeneXus.Programs {
                pr_default.close(1);
                pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                GXT9L2 = 1;
-               AV10response = "success";
-               AV9File.Source = "media/"+A414MediaName;
+               AV10response = context.GetMessage( "success", "");
+               AV9File.Source = context.GetMessage( "media/", "")+A414MediaName;
                if ( AV9File.Exists() )
                {
                   AV9File.Delete();

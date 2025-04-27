@@ -97,8 +97,8 @@ namespace GeneXus.Programs {
          {
             AV13Language = context.GetLanguage( );
          }
-         new prc_logtoserver(context ).execute(  "Translating to : "+AV13Language) ;
-         new prc_logtoserver(context ).execute(  "				Params : "+AV10DynamicTranslationTrnName+" : "+AV9DynamicTranslationPrimaryKey.ToString()+" : "+AV15DynamicTranslationAttributeName+" : "+AV13Language+" : "+AV16DefaultValue) ;
+         new prc_logtoserver(context ).execute(  context.GetMessage( "Translating to : ", "")+AV13Language) ;
+         new prc_logtoserver(context ).execute(  context.GetMessage( "				Params : ", "")+AV10DynamicTranslationTrnName+" : "+AV9DynamicTranslationPrimaryKey.ToString()+" : "+AV15DynamicTranslationAttributeName+" : "+AV13Language+" : "+AV16DefaultValue) ;
          AV12TranslatedValue = AV16DefaultValue;
          /* Using cursor P00EB2 */
          pr_default.execute(0, new Object[] {AV9DynamicTranslationPrimaryKey, AV10DynamicTranslationTrnName, AV15DynamicTranslationAttributeName});
@@ -111,18 +111,18 @@ namespace GeneXus.Programs {
             A582DynamicTranslationEnglish = P00EB2_A582DynamicTranslationEnglish[0];
             A578DynamicTranslationId = P00EB2_A578DynamicTranslationId[0];
             AV13Language = StringUtil.Trim( AV13Language);
-            if ( StringUtil.StrCmp(AV13Language, "Dutch") == 0 )
+            if ( StringUtil.StrCmp(AV13Language, context.GetMessage( "Dutch", "")) == 0 )
             {
                AV12TranslatedValue = A583DynamicTranslationDutch;
             }
-            if ( StringUtil.StrCmp(AV13Language, "English") == 0 )
+            if ( StringUtil.StrCmp(AV13Language, context.GetMessage( "English", "")) == 0 )
             {
                AV12TranslatedValue = A582DynamicTranslationEnglish;
             }
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         new prc_logtoserver(context ).execute(  "Final Translated Value : "+AV12TranslatedValue) ;
+         new prc_logtoserver(context ).execute(  context.GetMessage( "Final Translated Value : ", "")+AV12TranslatedValue) ;
          cleanup();
       }
 

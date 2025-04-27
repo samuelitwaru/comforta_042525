@@ -77,8 +77,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV8SDT_Error.gxTpr_Status = "Error";
-            AV8SDT_Error.gxTpr_Message = "Not Authenticated";
+            AV8SDT_Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV8SDT_Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
             cleanup();
             if (true) return;
          }
@@ -107,7 +107,10 @@ namespace GeneXus.Programs {
                {
                   A517PageName = P00E74_A517PageName[0];
                   A516PageId = P00E74_A516PageId[0];
-                  AV17GXLvl15 = 1;
+                  if ( StringUtil.StrCmp(A517PageName, context.GetMessage( "Home", "")) == 0 )
+                  {
+                     AV17GXLvl15 = 1;
+                  }
                   pr_default.readNext(2);
                }
                pr_default.close(2);
@@ -243,7 +246,7 @@ namespace GeneXus.Programs {
           def= new CursorDef[] {
               new CursorDef("P00E72", "SELECT T2.AppVersionId, T1.ActiveAppVersionId, T1.LocationId, T1.OrganisationId FROM (Trn_Location T1 LEFT JOIN Trn_AppVersion T2 ON T2.AppVersionId = T1.ActiveAppVersionId) WHERE T1.LocationId = :AV9LocationId ORDER BY T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00E72,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00E73", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :ActiveAppVersionId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00E73,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("P00E74", "SELECT AppVersionId, PageName, PageId FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (PageName = ( 'Home')) ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00E74,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00E74", "SELECT AppVersionId, PageName, PageId FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00E74,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

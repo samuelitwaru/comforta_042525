@@ -85,7 +85,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9Udparg3 = new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context).executeUdp( );
+         AV9Udparg3 = new uwwp_getloggeduserid(context).executeUdp( );
          /* Using cursor P00092 */
          pr_default.execute(0, new Object[] {AV9Udparg3});
          while ( (pr_default.getStatus(0) != 101) )

@@ -109,6 +109,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          AV14StatusCode = AV9SmtpSession.Login();
          if ( AV14StatusCode != 0 )
          {
+            new prc_logtofile(context ).execute(  context.GetMessage( "Error during SMTP Login: ", "")+AV9SmtpSession.ErrDescription) ;
             new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV15Pgmname,  "Error during SMTP Login: "+AV9SmtpSession.ErrDescription) ;
          }
          else

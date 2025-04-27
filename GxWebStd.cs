@@ -285,7 +285,7 @@ namespace GeneXus.Programs {
                }
                else if ( nJScriptCode == 3 )
                {
-                  sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+"English/"+StringUtil.Lower( sCallerPgm)) + "');";
+                  sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+context.GetLanguage( )+"/"+StringUtil.Lower( sCallerPgm)) + "');";
                }
                else if ( nJScriptCode == 7 )
                {
@@ -430,7 +430,7 @@ namespace GeneXus.Programs {
             }
             else if ( nJScriptCode == 3 )
             {
-               sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+"English/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
+               sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+context.GetLanguage( )+"/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
             }
             else if ( nJScriptCode == 7 )
             {
@@ -743,7 +743,7 @@ namespace GeneXus.Programs {
          }
          else if ( nJScriptCode == 3 )
          {
-            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+"English/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
+            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+context.GetLanguage( )+"/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
          }
          else if ( nJScriptCode == 7 )
          {
@@ -991,7 +991,7 @@ namespace GeneXus.Programs {
          }
          else if ( nJScriptCode == 3 )
          {
-            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+"English/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
+            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+context.GetLanguage( )+"/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
          }
          else if ( nJScriptCode == 7 )
          {
@@ -1213,7 +1213,7 @@ namespace GeneXus.Programs {
          }
          else if ( nJScriptCode == 3 )
          {
-            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+"English/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
+            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+context.GetLanguage( )+"/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
          }
          else if ( nJScriptCode == 7 )
          {
@@ -1399,7 +1399,7 @@ namespace GeneXus.Programs {
          }
          else if ( nJScriptCode == 3 )
          {
-            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+"English/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
+            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+context.GetLanguage( )+"/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
          }
          else if ( nJScriptCode == 7 )
          {
@@ -1676,7 +1676,7 @@ namespace GeneXus.Programs {
          }
          else if ( nJScriptCode == 3 )
          {
-            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+"English/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
+            sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+context.GetLanguage( )+"/"+StringUtil.Lower( sCallerPgm)) + "');" + "return false;";
          }
          else if ( nJScriptCode == 7 )
          {
@@ -2207,7 +2207,7 @@ namespace GeneXus.Programs {
             }
             else if ( nJScriptCode == 3 )
             {
-               sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+"English/"+StringUtil.Lower( sCallerPgm)) + "');";
+               sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+context.GetLanguage( )+"/"+StringUtil.Lower( sCallerPgm)) + "');";
             }
             else if ( nJScriptCode == 7 )
             {
@@ -2607,7 +2607,7 @@ namespace GeneXus.Programs {
          if ( nContentType == 0 )
          {
             context.WriteHtmlTextNl( GXUtil.HtmlDocType( )) ;
-            context.WriteHtmlTextNl( "<html lang=\"en\""+">") ;
+            context.WriteHtmlTextNl( "<html lang=\""+context.GetLanguageProperty( "culture")+"\""+">") ;
             context.WriteHtmlTextNl( "<head>") ;
             if ( bIsRwd )
             {
@@ -2794,7 +2794,7 @@ namespace GeneXus.Programs {
             }
             else if ( nJScriptCode == 3 )
             {
-               sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+"English/"+StringUtil.Lower( sCallerPgm)) + "');";
+               sEventJsCode = "gx.util.help(" + "'" + context.convertURL( "Help/"+context.GetLanguage( )+"/"+StringUtil.Lower( sCallerPgm)) + "');";
             }
             else if ( nJScriptCode == 7 )
             {

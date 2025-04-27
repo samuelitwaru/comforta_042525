@@ -84,7 +84,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             A164WWPNotificationDefinitionName = P003Y2_A164WWPNotificationDefinitionName[0];
             AV14GXLvl1 = 1;
             AV16GXLvl5 = 0;
-            AV17Udparg2 = new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context).executeUdp( );
+            AV17Udparg2 = new uwwp_getloggeduserid(context).executeUdp( );
             /* Optimized UPDATE. */
             /* Using cursor P003Y3 */
             pr_default.execute(1, new Object[] {AV17Udparg2, A128WWPNotificationDefinitionId, AV9WWPSubscriptionEntityRecordId});
@@ -100,7 +100,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                AV10WWPSubscription = new GeneXus.Programs.wwpbaseobjects.subscriptions.SdtWWP_Subscription(context);
                AV10WWPSubscription.gxTpr_Wwpnotificationdefinitionid = A128WWPNotificationDefinitionId;
                GXt_char1 = "";
-               new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context ).execute( out  GXt_char1) ;
+               new uwwp_getloggeduserid(context ).execute( out  GXt_char1) ;
                AV10WWPSubscription.gxTpr_Wwpuserextendedid = GXt_char1;
                AV10WWPSubscription.gxTpr_Wwpsubscriptionentityrecordid = AV9WWPSubscriptionEntityRecordId;
                AV10WWPSubscription.gxTpr_Wwpsubscriptionentityrecorddescription = AV11WWPSubscriptionEntityRecordDescription;

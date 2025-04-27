@@ -82,8 +82,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV19Error.gxTpr_Status = "Error";
-            AV19Error.gxTpr_Message = "Not Authenticated";
+            AV19Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV19Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {
@@ -118,7 +118,7 @@ namespace GeneXus.Programs {
                pr_default.readNext(0);
             }
             pr_default.close(0);
-            new prc_logtofile(context ).execute(  "Checking here: "+AV15pageId.ToString()) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Checking here: ", "")+AV15pageId.ToString()) ;
          }
          cleanup();
       }

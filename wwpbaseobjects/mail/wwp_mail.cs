@@ -132,7 +132,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Mail", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Mail", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -315,7 +315,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, "Mail", "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, context.GetMessage( "Mail", ""), "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -377,7 +377,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
          ClassString = "Button button-secondary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", "Select", bttBtn_select_Jsonclick, 5, "Select", "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", context.GetMessage( "GX_BtnSelect", ""), bttBtn_select_Jsonclick, 5, context.GetMessage( "GX_BtnSelect", ""), "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -390,12 +390,12 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailId_Internalname, "Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailId_Internalname, context.GetMessage( "Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPMailId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A185WWPMailId), 10, 0, ".", "")), StringUtil.LTrim( ((edtWWPMailId_Enabled!=0) ? context.localUtil.Format( (decimal)(A185WWPMailId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A185WWPMailId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPMailId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPMailId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPMailId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A185WWPMailId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtWWPMailId_Enabled!=0) ? context.localUtil.Format( (decimal)(A185WWPMailId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A185WWPMailId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPMailId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPMailId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -407,7 +407,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailSubject_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailSubject_Internalname, "Subject", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailSubject_Internalname, context.GetMessage( "Subject", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -424,7 +424,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailBody_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailBody_Internalname, "Body", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailBody_Internalname, context.GetMessage( "Body", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -445,7 +445,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailTo_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailTo_Internalname, "To", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailTo_Internalname, context.GetMessage( "To", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -466,7 +466,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailCC_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailCC_Internalname, "CC", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailCC_Internalname, context.GetMessage( "CC", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -487,7 +487,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailBCC_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailBCC_Internalname, "BCC", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailBCC_Internalname, context.GetMessage( "BCC", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -508,7 +508,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailSenderAddress_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailSenderAddress_Internalname, "Sender Address", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailSenderAddress_Internalname, context.GetMessage( "Sender Address", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -529,7 +529,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailSenderName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailSenderName_Internalname, "Sender Name", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailSenderName_Internalname, context.GetMessage( "Sender Name", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -550,7 +550,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbWWPMailStatus_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, cmbWWPMailStatus_Internalname, "Status", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, cmbWWPMailStatus_Internalname, context.GetMessage( "Status", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
@@ -569,13 +569,13 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailCreated_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailCreated_Internalname, "Created", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailCreated_Internalname, context.GetMessage( "Created", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 79,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtWWPMailCreated_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtWWPMailCreated_Internalname, context.localUtil.TToC( A196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "), context.localUtil.Format( A196WWPMailCreated, "99/99/9999 99:99:99.999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',12,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',12,24,'eng',false,0);"+";gx.evt.onblur(this,79);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPMailCreated_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPMailCreated_Enabled, 0, "text", "", 27, "chr", 1, "row", 27, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_DateTimeMillis", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPMailCreated_Internalname, context.localUtil.TToC( A196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A196WWPMailCreated, "99/99/9999 99:99:99.999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',12,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',12,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,79);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPMailCreated_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPMailCreated_Enabled, 0, "text", "", 27, "chr", 1, "row", 27, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_DateTimeMillis", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_bitmap( context, edtWWPMailCreated_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtWWPMailCreated_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -589,13 +589,13 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailScheduled_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailScheduled_Internalname, "Scheduled", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailScheduled_Internalname, context.GetMessage( "Scheduled", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 84,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtWWPMailScheduled_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtWWPMailScheduled_Internalname, context.localUtil.TToC( A197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "), context.localUtil.Format( A197WWPMailScheduled, "99/99/9999 99:99:99.999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',12,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',12,24,'eng',false,0);"+";gx.evt.onblur(this,84);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPMailScheduled_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPMailScheduled_Enabled, 0, "text", "", 27, "chr", 1, "row", 27, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_DateTimeMillis", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPMailScheduled_Internalname, context.localUtil.TToC( A197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A197WWPMailScheduled, "99/99/9999 99:99:99.999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',12,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',12,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,84);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPMailScheduled_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPMailScheduled_Enabled, 0, "text", "", 27, "chr", 1, "row", 27, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_DateTimeMillis", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_bitmap( context, edtWWPMailScheduled_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtWWPMailScheduled_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -609,13 +609,13 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailProcessed_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailProcessed_Internalname, "Processed", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailProcessed_Internalname, context.GetMessage( "Processed", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 89,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtWWPMailProcessed_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtWWPMailProcessed_Internalname, context.localUtil.TToC( A191WWPMailProcessed, 10, 12, 0, 3, "/", ":", " "), context.localUtil.Format( A191WWPMailProcessed, "99/99/9999 99:99:99.999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',12,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',12,24,'eng',false,0);"+";gx.evt.onblur(this,89);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPMailProcessed_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPMailProcessed_Enabled, 0, "text", "", 27, "chr", 1, "row", 27, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_DateTimeMillis", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPMailProcessed_Internalname, context.localUtil.TToC( A191WWPMailProcessed, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A191WWPMailProcessed, "99/99/9999 99:99:99.999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',12,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',12,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,89);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPMailProcessed_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPMailProcessed_Enabled, 0, "text", "", 27, "chr", 1, "row", 27, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_DateTimeMillis", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_bitmap( context, edtWWPMailProcessed_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtWWPMailProcessed_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -629,7 +629,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPMailDetail_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPMailDetail_Internalname, "Detail", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPMailDetail_Internalname, context.GetMessage( "Detail", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -650,12 +650,12 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPNotificationId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPNotificationId_Internalname, "Notification Id", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPNotificationId_Internalname, context.GetMessage( "Notification Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 99,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtWWPNotificationId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A127WWPNotificationId), 10, 0, ".", "")), StringUtil.LTrim( ((edtWWPNotificationId_Enabled!=0) ? context.localUtil.Format( (decimal)(A127WWPNotificationId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A127WWPNotificationId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,99);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPNotificationId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPNotificationId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPNotificationId_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A127WWPNotificationId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtWWPNotificationId_Enabled!=0) ? context.localUtil.Format( (decimal)(A127WWPNotificationId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A127WWPNotificationId), "ZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,99);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPNotificationId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPNotificationId_Enabled, 0, "text", "1", 10, "chr", 1, "row", 10, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_Id", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -667,13 +667,13 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPNotificationCreated_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPNotificationCreated_Internalname, "Notification Created Date", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPNotificationCreated_Internalname, context.GetMessage( "Notification Created Date", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 104,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtWWPNotificationCreated_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtWWPNotificationCreated_Internalname, context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "), context.localUtil.Format( A129WWPNotificationCreated, "99/99/9999 99:99:99.999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',12,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',12,24,'eng',false,0);"+";gx.evt.onblur(this,104);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPNotificationCreated_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPNotificationCreated_Enabled, 0, "text", "", 27, "chr", 1, "row", 27, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_DateTimeMillis", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPNotificationCreated_Internalname, context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A129WWPNotificationCreated, "99/99/9999 99:99:99.999"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',12,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',12,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,104);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPNotificationCreated_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPNotificationCreated_Enabled, 0, "text", "", 27, "chr", 1, "row", 27, 0, 0, 0, 0, -1, 0, true, "WorkWithPlus_Web\\WWP_DateTimeMillis", "end", false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_bitmap( context, edtWWPNotificationCreated_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtWWPNotificationCreated_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -691,7 +691,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 form__cell", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTitleattachments_Internalname, "Attachments", "", "", lblTitleattachments_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-04", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_label_ctrl( context, lblTitleattachments_Internalname, context.GetMessage( "Attachments", ""), "", "", lblTitleattachments_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-04", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -718,21 +718,21 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 120,'',false,'',0)\"";
          ClassString = "Button button-primary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", "Confirm", bttBtn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 122,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", "Cancel", bttBtn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 124,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", "Delete", bttBtn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Mail/WWP_Mail.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "end", "Middle", "div");
@@ -776,9 +776,9 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             {
                bGXsfl_113_Refreshing = true;
                ReadRow0Q37( ) ;
-               edtWWPMailAttachmentName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPMAILATTACHMENTNAME_"+sGXsfl_113_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtWWPMailAttachmentName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPMAILATTACHMENTNAME_"+sGXsfl_113_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtWWPMailAttachmentName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPMailAttachmentName_Enabled), 5, 0), !bGXsfl_113_Refreshing);
-               edtWWPMailAttachmentFile_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPMAILATTACHMENTFILE_"+sGXsfl_113_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtWWPMailAttachmentFile_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPMAILATTACHMENTFILE_"+sGXsfl_113_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtWWPMailAttachmentFile_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPMailAttachmentFile_Enabled), 5, 0), !bGXsfl_113_Refreshing);
                if ( ( nRcdExists_37 == 0 ) && ! IsIns( ) )
                {
@@ -889,22 +889,22 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            Z185WWPMailId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z185WWPMailId"), ".", ","), 18, MidpointRounding.ToEven));
+            Z185WWPMailId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z185WWPMailId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z174WWPMailSubject = cgiGet( "Z174WWPMailSubject");
-            Z186WWPMailStatus = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z186WWPMailStatus"), ".", ","), 18, MidpointRounding.ToEven));
+            Z186WWPMailStatus = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z186WWPMailStatus"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z196WWPMailCreated = context.localUtil.CToT( cgiGet( "Z196WWPMailCreated"), 0);
             Z197WWPMailScheduled = context.localUtil.CToT( cgiGet( "Z197WWPMailScheduled"), 0);
             Z191WWPMailProcessed = context.localUtil.CToT( cgiGet( "Z191WWPMailProcessed"), 0);
             n191WWPMailProcessed = ((DateTime.MinValue==A191WWPMailProcessed) ? true : false);
-            Z127WWPNotificationId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z127WWPNotificationId"), ".", ","), 18, MidpointRounding.ToEven));
+            Z127WWPNotificationId = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z127WWPNotificationId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             n127WWPNotificationId = ((0==A127WWPNotificationId) ? true : false);
-            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Gx_mode = cgiGet( "Mode");
-            nRC_GXsfl_113 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_113"), ".", ","), 18, MidpointRounding.ToEven));
-            Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_113 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_113"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             /* Read variables values. */
-            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPMailId_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPMailId_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPMailId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPMailId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWPMAILID");
                AnyError = 1;
@@ -916,7 +916,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             }
             else
             {
-               A185WWPMailId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPMailId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A185WWPMailId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPMailId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A185WWPMailId", StringUtil.LTrimStr( (decimal)(A185WWPMailId), 10, 0));
             }
             A174WWPMailSubject = cgiGet( edtWWPMailSubject_Internalname);
@@ -943,59 +943,59 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             cmbWWPMailStatus.CurrentValue = cgiGet( cmbWWPMailStatus_Internalname);
             A186WWPMailStatus = (short)(Math.Round(NumberUtil.Val( cgiGet( cmbWWPMailStatus_Internalname), "."), 18, MidpointRounding.ToEven));
             AssignAttri("", false, "A186WWPMailStatus", StringUtil.LTrimStr( (decimal)(A186WWPMailStatus), 4, 0));
-            if ( context.localUtil.VCDateTime( cgiGet( edtWWPMailCreated_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtWWPMailCreated_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"Mail Created"}), 1, "WWPMAILCREATED");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "Mail Created", "")}), 1, "WWPMAILCREATED");
                AnyError = 1;
                GX_FocusControl = edtWWPMailCreated_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A196WWPMailCreated = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A196WWPMailCreated = context.localUtil.CToT( cgiGet( edtWWPMailCreated_Internalname));
-               AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
-            if ( context.localUtil.VCDateTime( cgiGet( edtWWPMailScheduled_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtWWPMailScheduled_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"Mail Scheduled"}), 1, "WWPMAILSCHEDULED");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "Mail Scheduled", "")}), 1, "WWPMAILSCHEDULED");
                AnyError = 1;
                GX_FocusControl = edtWWPMailScheduled_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A197WWPMailScheduled = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A197WWPMailScheduled = context.localUtil.CToT( cgiGet( edtWWPMailScheduled_Internalname));
-               AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
-            if ( context.localUtil.VCDateTime( cgiGet( edtWWPMailProcessed_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtWWPMailProcessed_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"Mail Processed"}), 1, "WWPMAILPROCESSED");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "Mail Processed", "")}), 1, "WWPMAILPROCESSED");
                AnyError = 1;
                GX_FocusControl = edtWWPMailProcessed_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A191WWPMailProcessed = (DateTime)(DateTime.MinValue);
                n191WWPMailProcessed = false;
-               AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A191WWPMailProcessed = context.localUtil.CToT( cgiGet( edtWWPMailProcessed_Internalname));
                n191WWPMailProcessed = false;
-               AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             n191WWPMailProcessed = ((DateTime.MinValue==A191WWPMailProcessed) ? true : false);
             A192WWPMailDetail = cgiGet( edtWWPMailDetail_Internalname);
             n192WWPMailDetail = false;
             AssignAttri("", false, "A192WWPMailDetail", A192WWPMailDetail);
             n192WWPMailDetail = (String.IsNullOrEmpty(StringUtil.RTrim( A192WWPMailDetail)) ? true : false);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPNotificationId_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPNotificationId_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtWWPNotificationId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPNotificationId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWPNOTIFICATIONID");
                AnyError = 1;
@@ -1008,13 +1008,13 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             }
             else
             {
-               A127WWPNotificationId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPNotificationId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A127WWPNotificationId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPNotificationId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                n127WWPNotificationId = false;
                AssignAttri("", false, "A127WWPNotificationId", StringUtil.LTrimStr( (decimal)(A127WWPNotificationId), 10, 0));
             }
             n127WWPNotificationId = ((0==A127WWPNotificationId) ? true : false);
             A129WWPNotificationCreated = context.localUtil.CToT( cgiGet( edtWWPNotificationCreated_Internalname));
-            AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
@@ -1287,9 +1287,9 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             ChangePostValue( edtWWPMailAttachmentName_Internalname, A198WWPMailAttachmentName) ;
             ChangePostValue( edtWWPMailAttachmentFile_Internalname, A190WWPMailAttachmentFile) ;
             ChangePostValue( "ZT_"+"Z198WWPMailAttachmentName_"+sGXsfl_113_idx, Z198WWPMailAttachmentName) ;
-            ChangePostValue( "nRcdDeleted_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_37), 4, 0, ".", ""))) ;
-            ChangePostValue( "nRcdExists_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_37), 4, 0, ".", ""))) ;
-            ChangePostValue( "nIsMod_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_37), 4, 0, ".", ""))) ;
+            ChangePostValue( "nRcdDeleted_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_37), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_37), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_37), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_37 != 0 )
             {
                ChangePostValue( "WWPMAILATTACHMENTNAME_"+sGXsfl_113_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPMailAttachmentName_Enabled), 5, 0, ".", ""))) ;
@@ -1363,12 +1363,12 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          if ( IsIns( )  && (DateTime.MinValue==A196WWPMailCreated) && ( Gx_BScreen == 0 ) )
          {
             A196WWPMailCreated = DateTimeUtil.ServerNowMs( context, pr_default);
-            AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          }
          if ( IsIns( )  && (DateTime.MinValue==A197WWPMailScheduled) && ( Gx_BScreen == 0 ) )
          {
             A197WWPMailScheduled = DateTimeUtil.ServerNowMs( context, pr_default);
-            AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          }
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
@@ -1422,17 +1422,17 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             A186WWPMailStatus = T000Q7_A186WWPMailStatus[0];
             AssignAttri("", false, "A186WWPMailStatus", StringUtil.LTrimStr( (decimal)(A186WWPMailStatus), 4, 0));
             A196WWPMailCreated = T000Q7_A196WWPMailCreated[0];
-            AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A197WWPMailScheduled = T000Q7_A197WWPMailScheduled[0];
-            AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A191WWPMailProcessed = T000Q7_A191WWPMailProcessed[0];
             n191WWPMailProcessed = T000Q7_n191WWPMailProcessed[0];
-            AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A192WWPMailDetail = T000Q7_A192WWPMailDetail[0];
             n192WWPMailDetail = T000Q7_n192WWPMailDetail[0];
             AssignAttri("", false, "A192WWPMailDetail", A192WWPMailDetail);
             A129WWPNotificationCreated = T000Q7_A129WWPNotificationCreated[0];
-            AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A127WWPNotificationId = T000Q7_A127WWPNotificationId[0];
             n127WWPNotificationId = T000Q7_n127WWPNotificationId[0];
             AssignAttri("", false, "A127WWPNotificationId", StringUtil.LTrimStr( (decimal)(A127WWPNotificationId), 10, 0));
@@ -1453,7 +1453,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          standaloneModal( ) ;
          if ( ! ( ( A186WWPMailStatus == 1 ) || ( A186WWPMailStatus == 2 ) || ( A186WWPMailStatus == 3 ) ) )
          {
-            GX_msglist.addItem("Field Mail Status is out of range", "OutOfRange", 1, "WWPMAILSTATUS");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Mail Status", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "WWPMAILSTATUS");
             AnyError = 1;
             GX_FocusControl = cmbWWPMailStatus_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1464,14 +1464,14 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          {
             if ( ! ( (0==A127WWPNotificationId) ) )
             {
-               GX_msglist.addItem("No matching 'WWP_Notification'.", "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Notification", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
                AnyError = 1;
                GX_FocusControl = edtWWPNotificationId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
             }
          }
          A129WWPNotificationCreated = T000Q6_A129WWPNotificationCreated[0];
-         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          pr_default.close(4);
       }
 
@@ -1492,17 +1492,17 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          {
             if ( ! ( (0==A127WWPNotificationId) ) )
             {
-               GX_msglist.addItem("No matching 'WWP_Notification'.", "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Notification", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
                AnyError = 1;
                GX_FocusControl = edtWWPNotificationId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
             }
          }
          A129WWPNotificationCreated = T000Q8_A129WWPNotificationCreated[0];
-         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.set_html_headers( context, 0, "", "");
          AddString( "[[") ;
-         AddString( "\""+GXUtil.EncodeJSConstant( context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "))+"\"") ;
+         AddString( "\""+GXUtil.EncodeJSConstant( context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "))+"\"") ;
          AddString( "]") ;
          if ( (pr_default.getStatus(6) == 101) )
          {
@@ -1558,12 +1558,12 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             A186WWPMailStatus = T000Q5_A186WWPMailStatus[0];
             AssignAttri("", false, "A186WWPMailStatus", StringUtil.LTrimStr( (decimal)(A186WWPMailStatus), 4, 0));
             A196WWPMailCreated = T000Q5_A196WWPMailCreated[0];
-            AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A197WWPMailScheduled = T000Q5_A197WWPMailScheduled[0];
-            AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A191WWPMailProcessed = T000Q5_A191WWPMailProcessed[0];
             n191WWPMailProcessed = T000Q5_n191WWPMailProcessed[0];
-            AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A192WWPMailDetail = T000Q5_A192WWPMailDetail[0];
             n192WWPMailDetail = T000Q5_n192WWPMailDetail[0];
             AssignAttri("", false, "A192WWPMailDetail", A192WWPMailDetail);
@@ -2180,7 +2180,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             /* Using cursor T000Q16 */
             pr_default.execute(14, new Object[] {n127WWPNotificationId, A127WWPNotificationId});
             A129WWPNotificationCreated = T000Q16_A129WWPNotificationCreated[0];
-            AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             pr_default.close(14);
          }
       }
@@ -2237,9 +2237,9 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             ChangePostValue( edtWWPMailAttachmentName_Internalname, A198WWPMailAttachmentName) ;
             ChangePostValue( edtWWPMailAttachmentFile_Internalname, A190WWPMailAttachmentFile) ;
             ChangePostValue( "ZT_"+"Z198WWPMailAttachmentName_"+sGXsfl_113_idx, Z198WWPMailAttachmentName) ;
-            ChangePostValue( "nRcdDeleted_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_37), 4, 0, ".", ""))) ;
-            ChangePostValue( "nRcdExists_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_37), 4, 0, ".", ""))) ;
-            ChangePostValue( "nIsMod_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_37), 4, 0, ".", ""))) ;
+            ChangePostValue( "nRcdDeleted_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_37), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_37), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_37_"+sGXsfl_113_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_37), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_37 != 0 )
             {
                ChangePostValue( "WWPMAILATTACHMENTNAME_"+sGXsfl_113_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPMailAttachmentName_Enabled), 5, 0, ".", ""))) ;
@@ -2903,11 +2903,11 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          GXCCtl = "Z198WWPMailAttachmentName_" + sGXsfl_113_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z198WWPMailAttachmentName);
          GXCCtl = "nRcdDeleted_37_" + sGXsfl_113_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_37), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_37), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "nRcdExists_37_" + sGXsfl_113_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_37), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_37), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "nIsMod_37_" + sGXsfl_113_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_37), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_37), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "WWPMAILATTACHMENTNAME_"+sGXsfl_113_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPMailAttachmentName_Enabled), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "WWPMAILATTACHMENTFILE_"+sGXsfl_113_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPMailAttachmentFile_Enabled), 5, 0, ".", "")));
          ajax_sending_grid_row(null);
@@ -2919,18 +2919,18 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          nGXsfl_113_idx = (int)(nGXsfl_113_idx+1);
          sGXsfl_113_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_113_idx), 4, 0), 4, "0");
          SubsflControlProps_11337( ) ;
-         edtWWPMailAttachmentName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPMAILATTACHMENTNAME_"+sGXsfl_113_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtWWPMailAttachmentFile_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPMAILATTACHMENTFILE_"+sGXsfl_113_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+         edtWWPMailAttachmentName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPMAILATTACHMENTNAME_"+sGXsfl_113_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtWWPMailAttachmentFile_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPMAILATTACHMENTFILE_"+sGXsfl_113_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          A198WWPMailAttachmentName = cgiGet( edtWWPMailAttachmentName_Internalname);
          A190WWPMailAttachmentFile = cgiGet( edtWWPMailAttachmentFile_Internalname);
          GXCCtl = "Z198WWPMailAttachmentName_" + sGXsfl_113_idx;
          Z198WWPMailAttachmentName = cgiGet( GXCCtl);
          GXCCtl = "nRcdDeleted_37_" + sGXsfl_113_idx;
-         nRcdDeleted_37 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nRcdDeleted_37 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          GXCCtl = "nRcdExists_37_" + sGXsfl_113_idx;
-         nRcdExists_37 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nRcdExists_37 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          GXCCtl = "nIsMod_37_" + sGXsfl_113_idx;
-         nIsMod_37 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nIsMod_37 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
       }
 
       protected void assign_properties_default( )
@@ -2991,7 +2991,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -3036,18 +3036,18 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "Z185WWPMailId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z185WWPMailId), 10, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z185WWPMailId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z185WWPMailId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z174WWPMailSubject", Z174WWPMailSubject);
-         GxWebStd.gx_hidden_field( context, "Z186WWPMailStatus", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z186WWPMailStatus), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z186WWPMailStatus", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z186WWPMailStatus), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z196WWPMailCreated", context.localUtil.TToC( Z196WWPMailCreated, 10, 12, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z197WWPMailScheduled", context.localUtil.TToC( Z197WWPMailScheduled, 10, 12, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z191WWPMailProcessed", context.localUtil.TToC( Z191WWPMailProcessed, 10, 12, 0, 0, "/", ":", " "));
-         GxWebStd.gx_hidden_field( context, "Z127WWPNotificationId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z127WWPNotificationId), 10, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z127WWPNotificationId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z127WWPNotificationId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_113", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_113_idx), 8, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_113", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_113_idx), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -3069,6 +3069,18 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -3114,7 +3126,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
 
       public override string GetPgmdesc( )
       {
-         return "Mail" ;
+         return context.GetMessage( "Mail", "") ;
       }
 
       protected void InitializeNonKey0Q36( )
@@ -3141,7 +3153,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          AssignAttri("", false, "A177WWPMailSenderName", A177WWPMailSenderName);
          A191WWPMailProcessed = (DateTime)(DateTime.MinValue);
          n191WWPMailProcessed = false;
-         AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          n191WWPMailProcessed = ((DateTime.MinValue==A191WWPMailProcessed) ? true : false);
          A192WWPMailDetail = "";
          n192WWPMailDetail = false;
@@ -3152,13 +3164,13 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          AssignAttri("", false, "A127WWPNotificationId", StringUtil.LTrimStr( (decimal)(A127WWPNotificationId), 10, 0));
          n127WWPNotificationId = ((0==A127WWPNotificationId) ? true : false);
          A129WWPNotificationCreated = (DateTime)(DateTime.MinValue);
-         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A186WWPMailStatus = 1;
          AssignAttri("", false, "A186WWPMailStatus", StringUtil.LTrimStr( (decimal)(A186WWPMailStatus), 4, 0));
          A196WWPMailCreated = DateTimeUtil.ServerNowMs( context, pr_default);
-         AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A197WWPMailScheduled = DateTimeUtil.ServerNowMs( context, pr_default);
-         AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          Z174WWPMailSubject = "";
          Z186WWPMailStatus = 0;
          Z196WWPMailCreated = (DateTime)(DateTime.MinValue);
@@ -3179,9 +3191,9 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          A186WWPMailStatus = i186WWPMailStatus;
          AssignAttri("", false, "A186WWPMailStatus", StringUtil.LTrimStr( (decimal)(A186WWPMailStatus), 4, 0));
          A196WWPMailCreated = i196WWPMailCreated;
-         AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A197WWPMailScheduled = i197WWPMailScheduled;
-         AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
       }
 
       protected void InitializeNonKey0Q37( )
@@ -3211,7 +3223,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411503296", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025427188880", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3226,8 +3238,8 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/mail/wwp_mail.js", "?202542411503297", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/mail/wwp_mail.js", "?2025427188881", false, true);
          /* End function include_jscripts */
       }
 
@@ -3317,7 +3329,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Mail";
+         Form.Caption = context.GetMessage( "Mail", "");
          edtWWPMailAttachmentFile_Jsonclick = "";
          edtWWPMailAttachmentName_Jsonclick = "";
          subGridwwp_mail_attachments_Class = "Grid";
@@ -3396,9 +3408,9 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       {
          cmbWWPMailStatus.Name = "WWPMAILSTATUS";
          cmbWWPMailStatus.WebTags = "";
-         cmbWWPMailStatus.addItem("1", "Pending", 0);
-         cmbWWPMailStatus.addItem("2", "Sent", 0);
-         cmbWWPMailStatus.addItem("3", "Error", 0);
+         cmbWWPMailStatus.addItem("1", context.GetMessage( "Pending", ""), 0);
+         cmbWWPMailStatus.addItem("2", context.GetMessage( "Sent", ""), 0);
+         cmbWWPMailStatus.addItem("3", context.GetMessage( "Error", ""), 0);
          if ( cmbWWPMailStatus.ItemCount > 0 )
          {
             if ( IsIns( ) && (0==A186WWPMailStatus) )
@@ -3471,12 +3483,12 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          AssignAttri("", false, "A186WWPMailStatus", StringUtil.LTrim( StringUtil.NToC( (decimal)(A186WWPMailStatus), 4, 0, ".", "")));
          cmbWWPMailStatus.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(A186WWPMailStatus), 4, 0));
          AssignProp("", false, cmbWWPMailStatus_Internalname, "Values", cmbWWPMailStatus.ToJavascriptSource(), true);
-         AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "));
-         AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "));
-         AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A196WWPMailCreated", context.localUtil.TToC( A196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         AssignAttri("", false, "A197WWPMailScheduled", context.localUtil.TToC( A197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         AssignAttri("", false, "A191WWPMailProcessed", context.localUtil.TToC( A191WWPMailProcessed, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "A192WWPMailDetail", A192WWPMailDetail);
          AssignAttri("", false, "A127WWPNotificationId", StringUtil.LTrim( StringUtil.NToC( (decimal)(A127WWPNotificationId), 10, 0, ".", "")));
-         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "Gx_mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "Z185WWPMailId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z185WWPMailId), 10, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "Z174WWPMailSubject", Z174WWPMailSubject);
@@ -3487,12 +3499,12 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          GxWebStd.gx_hidden_field( context, "Z176WWPMailSenderAddress", Z176WWPMailSenderAddress);
          GxWebStd.gx_hidden_field( context, "Z177WWPMailSenderName", Z177WWPMailSenderName);
          GxWebStd.gx_hidden_field( context, "Z186WWPMailStatus", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z186WWPMailStatus), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z196WWPMailCreated", context.localUtil.TToC( Z196WWPMailCreated, 10, 12, 0, 3, "/", ":", " "));
-         GxWebStd.gx_hidden_field( context, "Z197WWPMailScheduled", context.localUtil.TToC( Z197WWPMailScheduled, 10, 12, 0, 3, "/", ":", " "));
-         GxWebStd.gx_hidden_field( context, "Z191WWPMailProcessed", context.localUtil.TToC( Z191WWPMailProcessed, 10, 12, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z196WWPMailCreated", context.localUtil.TToC( Z196WWPMailCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z197WWPMailScheduled", context.localUtil.TToC( Z197WWPMailScheduled, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z191WWPMailProcessed", context.localUtil.TToC( Z191WWPMailProcessed, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z192WWPMailDetail", Z192WWPMailDetail);
          GxWebStd.gx_hidden_field( context, "Z127WWPNotificationId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z127WWPNotificationId), 10, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z129WWPNotificationCreated", context.localUtil.TToC( Z129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z129WWPNotificationCreated", context.localUtil.TToC( Z129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignProp("", false, bttBtn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtn_delete_Enabled), 5, 0), true);
          AssignProp("", false, bttBtn_enter_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtn_enter_Enabled), 5, 0), true);
          SendCloseFormHiddens( ) ;
@@ -3507,7 +3519,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          {
             if ( ! ( (0==A127WWPNotificationId) ) )
             {
-               GX_msglist.addItem("No matching 'WWP_Notification'.", "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Notification", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
                AnyError = 1;
                GX_FocusControl = edtWWPNotificationId_Internalname;
             }
@@ -3516,7 +3528,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          pr_default.close(14);
          dynload_actions( ) ;
          /*  Sending validation outputs */
-         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A129WWPNotificationCreated", context.localUtil.TToC( A129WWPNotificationCreated, 10, 12, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
       }
 
       public override bool SupportAjaxEvent( )

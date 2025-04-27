@@ -193,14 +193,14 @@ namespace GeneXus.Programs {
          {
             AV14DynamicTranslationEnglish = AV11Attribute.gxTpr_Attributevalue;
             GXt_char1 = AV15DynamicTranslationDutch;
-            new prc_translatelanguage(context ).execute(  AV12LanguageCode,  "nl",  AV11Attribute.gxTpr_Attributevalue, out  GXt_char1) ;
+            new prc_translatelanguage(context ).execute(  AV12LanguageCode,  context.GetMessage( "nl", ""),  AV11Attribute.gxTpr_Attributevalue, out  GXt_char1) ;
             AV15DynamicTranslationDutch = GXt_char1;
          }
          else if ( StringUtil.StrCmp(AV9Language, "Dutch") == 0 )
          {
             AV15DynamicTranslationDutch = AV11Attribute.gxTpr_Attributevalue;
             GXt_char1 = AV14DynamicTranslationEnglish;
-            new prc_translatelanguage(context ).execute(  AV12LanguageCode,  "en",  AV11Attribute.gxTpr_Attributevalue, out  GXt_char1) ;
+            new prc_translatelanguage(context ).execute(  AV12LanguageCode,  context.GetMessage( "en", ""),  AV11Attribute.gxTpr_Attributevalue, out  GXt_char1) ;
             AV14DynamicTranslationEnglish = GXt_char1;
          }
       }

@@ -80,18 +80,18 @@ namespace GeneXus.Programs {
             {
                if ( AV11GAMSecurityPolicy.gxTpr_Minimumlengthpassword > 0 )
                {
-                  AV14Text = StringUtil.Format( "Password must be at least %1 characters long.", StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumlengthpassword), 2, 0)), "", "", "", "", "", "", "", "");
+                  AV14Text = StringUtil.Format( context.GetMessage( "GAM_Passwordmustbeatleast1characterslong", ""), StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumlengthpassword), 2, 0)), "", "", "", "", "", "", "", "");
                   AV8aText.Add(AV14Text, 0);
                }
                if ( AV11GAMSecurityPolicy.gxTpr_Minimumuppercasecharacterspassword > 0 )
                {
                   if ( AV11GAMSecurityPolicy.gxTpr_Minimumuppercasecharacterspassword == 1 )
                   {
-                     AV14Text = StringUtil.Format( "At least %1 must be an uppercase letter.", StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumuppercasecharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
+                     AV14Text = StringUtil.Format( context.GetMessage( "GAM_Atleast1mustbeanuppercaseletter", ""), StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumuppercasecharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
                   }
                   else
                   {
-                     AV14Text = StringUtil.Format( "At least %1 must be uppercase letters.", StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumuppercasecharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
+                     AV14Text = StringUtil.Format( context.GetMessage( "GAM_Atleast1mustbeuppercaseletters", ""), StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumuppercasecharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
                   }
                   AV8aText.Add(AV14Text, 0);
                }
@@ -99,11 +99,11 @@ namespace GeneXus.Programs {
                {
                   if ( AV11GAMSecurityPolicy.gxTpr_Minimumnumericcharacterspassword == 1 )
                   {
-                     AV14Text = StringUtil.Format( "At least %1 must be a number.", StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumnumericcharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
+                     AV14Text = StringUtil.Format( context.GetMessage( "GAM_Atleast1mustbeanumber", ""), StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumnumericcharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
                   }
                   else
                   {
-                     AV14Text = StringUtil.Format( "At least %1 must be numbers.", StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumnumericcharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
+                     AV14Text = StringUtil.Format( context.GetMessage( "GAM_Atleast1mustbenumbers", ""), StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumnumericcharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
                   }
                   AV8aText.Add(AV14Text, 0);
                }
@@ -111,11 +111,11 @@ namespace GeneXus.Programs {
                {
                   if ( AV11GAMSecurityPolicy.gxTpr_Minimumspecialcharacterspassword == 1 )
                   {
-                     AV14Text = StringUtil.Format( "At least %1 must be a special character (ej.: ! @ # $ % & *).", StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumspecialcharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
+                     AV14Text = StringUtil.Format( context.GetMessage( "GAM_Atleast1mustbeaspecialcharacter", ""), StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumspecialcharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
                   }
                   else
                   {
-                     AV14Text = StringUtil.Format( "At least %1 must be special characters (ej.: ! @ # $ % & *).", StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumspecialcharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
+                     AV14Text = StringUtil.Format( context.GetMessage( "GAM_Atleast1mustbespecialcharacters", ""), StringUtil.Trim( StringUtil.Str( (decimal)(AV11GAMSecurityPolicy.gxTpr_Minimumspecialcharacterspassword), 2, 0)), "", "", "", "", "", "", "", "");
                   }
                   AV8aText.Add(AV14Text, 0);
                }

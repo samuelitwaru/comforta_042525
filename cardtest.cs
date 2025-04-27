@@ -245,7 +245,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "Cardtest") ;
+            context.SendWebValue( context.GetMessage( "Cardtest", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -391,6 +391,18 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             include_jscripts( ) ;
+            context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+            context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+            if ( ! context.isSpaRequest( ) )
+            {
+               context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+               context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+               context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+               context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+               context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+               context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+            }
+            context.WriteHtmlText( "</script>") ;
             context.WriteHtmlTextNl( "</body>") ;
             context.WriteHtmlTextNl( "</html>") ;
             if ( context.isSpaRequest( ) )
@@ -419,7 +431,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Cardtest" ;
+         return context.GetMessage( "Cardtest", "") ;
       }
 
       protected void WBBO0( )
@@ -491,7 +503,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-6 SimpleCardIconPadding", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblIcon_Internalname, "<i class='ProgressCardIconBaseColor far fa-gem' style='font-size: 50px'></i>", "", "", lblIcon_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_Cardtest.htm");
+            GxWebStd.gx_label_ctrl( context, lblIcon_Internalname, context.GetMessage( "<i class='ProgressCardIconBaseColor far fa-gem' style='font-size: 50px'></i>", ""), "", "", lblIcon_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_Cardtest.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-6", "start", "top", "", "", "div");
@@ -554,7 +566,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "Cardtest", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "Cardtest", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -872,7 +884,7 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         lblDescription_Caption = "Services";
+         lblDescription_Caption = context.GetMessage( "Services", "");
          AssignProp(sPrefix, false, lblDescription_Internalname, "Caption", lblDescription_Caption, true);
       }
 
@@ -896,11 +908,11 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblMoreinfoicon_Internalname, "<i class='CardMaterialMoreInfoIcon far fa-clock' style='font-size: 16px'></i>", "", "", lblMoreinfoicon_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_Cardtest.htm");
+            GxWebStd.gx_label_ctrl( context, lblMoreinfoicon_Internalname, context.GetMessage( "<i class='CardMaterialMoreInfoIcon far fa-clock' style='font-size: 16px'></i>", ""), "", "", lblMoreinfoicon_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_Cardtest.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblMoreinfocaption_Internalname, "Just Updated", "", "", lblMoreinfocaption_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_Cardtest.htm");
+            GxWebStd.gx_label_ctrl( context, lblMoreinfocaption_Internalname, context.GetMessage( "Just Updated", ""), "", "", lblMoreinfocaption_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_Cardtest.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -1086,7 +1098,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254241143443", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271755440", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1104,8 +1116,8 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("cardtest.js", "?20254241143443", false, true);
+            context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+            context.AddJavascriptSource("cardtest.js", "?20254271755441", false, true);
             context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
             context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
             context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1148,7 +1160,7 @@ namespace GeneXus.Programs {
             }
          }
          init_default_properties( ) ;
-         lblDescription_Caption = "Sales";
+         lblDescription_Caption = context.GetMessage( "Sales", "");
          Dvpanel_maintable_Autoscroll = Convert.ToBoolean( 0);
          Dvpanel_maintable_Iconposition = "Right";
          Dvpanel_maintable_Showcollapseicon = Convert.ToBoolean( 0);

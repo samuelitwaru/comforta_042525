@@ -813,7 +813,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Locations"+" ("+"SG_Location Theme"+")"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")+" ("+context.GetMessage( "SG_Location Theme", "")+")"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -821,7 +821,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Locations"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -829,7 +829,7 @@ namespace GeneXus.Programs {
             pr_default.execute(15, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_OrganisationSetting"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationSetting", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);
@@ -1268,7 +1268,7 @@ namespace GeneXus.Programs {
          pr_default.execute(18, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A539CtaColorName, A538CtaColorId});
          if ( (pr_default.getStatus(18) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Cta Color Name"}), 1, "");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Cta Color Name", "")}), 1, "");
             AnyError = 1;
          }
          pr_default.close(18);
@@ -1664,13 +1664,13 @@ namespace GeneXus.Programs {
          pr_default.execute(25, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A283IconName, A443IconCategory, A282IconId});
          if ( (pr_default.getStatus(25) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Icon Name"+","+"Icon Category"}), 1, "");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Icon Name", "")+","+context.GetMessage( "Icon Category", "")}), 1, "");
             AnyError = 1;
          }
          pr_default.close(25);
          if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Icon Category is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -2066,7 +2066,7 @@ namespace GeneXus.Programs {
          pr_default.execute(32, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A276ColorName, A275ColorId});
          if ( (pr_default.getStatus(32) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Color Name"}), 1, "");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")}), 1, "");
             AnyError = 1;
          }
          pr_default.close(32);
@@ -2074,7 +2074,7 @@ namespace GeneXus.Programs {
          pr_default.execute(33, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A276ColorName, A277ColorCode, A275ColorId});
          if ( (pr_default.getStatus(33) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Color Name"+","+"Color Code"}), 1, "");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")+","+context.GetMessage( "Color Code", "")}), 1, "");
             AnyError = 1;
          }
          pr_default.close(33);

@@ -139,7 +139,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Trn_Theme", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Trn_Theme", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -359,7 +359,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Control Group */
-         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, "General Information", 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Theme.htm");
+         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "WWP_TemplateDataPanelTitle", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_Theme.htm");
          /* Div Control */
          GxWebStd.gx_div_start( context, divTablecontent_Internalname, 1, 0, "px", 0, "px", "CellMarginTop10", "start", "top", "", "", "div");
          /* Div Control */
@@ -375,7 +375,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_ThemeId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_ThemeId_Internalname, "Id", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtTrn_ThemeId_Internalname, context.GetMessage( "Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -392,7 +392,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_ThemeName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_ThemeName_Internalname, "Name", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtTrn_ThemeName_Internalname, context.GetMessage( "Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -409,7 +409,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_ThemeFontFamily_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_ThemeFontFamily_Internalname, "Font Family", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtTrn_ThemeFontFamily_Internalname, context.GetMessage( "Font Family", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -426,12 +426,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtTrn_ThemeFontSize_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtTrn_ThemeFontSize_Internalname, "Font Size", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtTrn_ThemeFontSize_Internalname, context.GetMessage( "Font Size", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtTrn_ThemeFontSize_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A405Trn_ThemeFontSize), 4, 0, ".", "")), StringUtil.LTrim( ((edtTrn_ThemeFontSize_Enabled!=0) ? context.localUtil.Format( (decimal)(A405Trn_ThemeFontSize), "ZZZ9") : context.localUtil.Format( (decimal)(A405Trn_ThemeFontSize), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,36);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtTrn_ThemeFontSize_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_ThemeFontSize_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_Theme.htm");
+         GxWebStd.gx_single_line_edit( context, edtTrn_ThemeFontSize_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A405Trn_ThemeFontSize), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtTrn_ThemeFontSize_Enabled!=0) ? context.localUtil.Format( (decimal)(A405Trn_ThemeFontSize), "ZZZ9") : context.localUtil.Format( (decimal)(A405Trn_ThemeFontSize), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,36);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtTrn_ThemeFontSize_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtTrn_ThemeFontSize_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_Theme.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -480,7 +480,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTextblock1_Internalname, "Colors", "", "", lblTextblock1_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_Theme.htm");
+         GxWebStd.gx_label_ctrl( context, lblTextblock1_Internalname, context.GetMessage( "Colors", ""), "", "", lblTextblock1_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_Theme.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -510,21 +510,21 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 72,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", "Confirm", bttBtntrn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Theme.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Theme.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", "Cancel", bttBtntrn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Theme.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Theme.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 76,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", "Delete", bttBtntrn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Theme.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Theme.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -571,11 +571,11 @@ namespace GeneXus.Programs {
             {
                bGXsfl_42_Refreshing = true;
                ReadRow0Z97( ) ;
-               edtCtaColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORID_"+sGXsfl_42_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtCtaColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORID_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtCtaColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
-               edtCtaColorName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORNAME_"+sGXsfl_42_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtCtaColorName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORNAME_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtCtaColorName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorName_Enabled), 5, 0), !bGXsfl_42_Refreshing);
-               edtCtaColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORCODE_"+sGXsfl_42_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtCtaColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORCODE_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtCtaColorCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorCode_Enabled), 5, 0), !bGXsfl_42_Refreshing);
                if ( ( nRcdExists_97 == 0 ) && ! IsIns( ) )
                {
@@ -695,13 +695,13 @@ namespace GeneXus.Programs {
             {
                bGXsfl_51_Refreshing = true;
                ReadRow0Z82( ) ;
-               edtIconId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONID_"+sGXsfl_51_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtIconId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONID_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_51_Refreshing);
-               edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_51_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtIconName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconName_Enabled), 5, 0), !bGXsfl_51_Refreshing);
-               cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_51_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, cmbIconCategory_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbIconCategory.Enabled), 5, 0), !bGXsfl_51_Refreshing);
-               edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_51_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtIconSVG_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconSVG_Enabled), 5, 0), !bGXsfl_51_Refreshing);
                if ( ( nRcdExists_82 == 0 ) && ! IsIns( ) )
                {
@@ -821,11 +821,11 @@ namespace GeneXus.Programs {
             {
                bGXsfl_64_Refreshing = true;
                ReadRow0Z53( ) ;
-               edtColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORID_"+sGXsfl_64_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORID_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorId_Enabled), 5, 0), !bGXsfl_64_Refreshing);
-               cmbColorName.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORNAME_"+sGXsfl_64_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               cmbColorName.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORNAME_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, cmbColorName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbColorName.Enabled), 5, 0), !bGXsfl_64_Refreshing);
-               edtColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORCODE_"+sGXsfl_64_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+               edtColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORCODE_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignProp("", false, edtColorCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorCode_Enabled), 5, 0), !bGXsfl_64_Refreshing);
                if ( ( nRcdExists_53 == 0 ) && ! IsIns( ) )
                {
@@ -949,17 +949,17 @@ namespace GeneXus.Programs {
                Z273Trn_ThemeId = StringUtil.StrToGuid( cgiGet( "Z273Trn_ThemeId"));
                Z274Trn_ThemeName = cgiGet( "Z274Trn_ThemeName");
                Z281Trn_ThemeFontFamily = cgiGet( "Z281Trn_ThemeFontFamily");
-               Z405Trn_ThemeFontSize = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z405Trn_ThemeFontSize"), ".", ","), 18, MidpointRounding.ToEven));
+               Z405Trn_ThemeFontSize = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z405Trn_ThemeFontSize"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Z577ThemeIsPredefined = StringUtil.StrToBool( cgiGet( "Z577ThemeIsPredefined"));
                A577ThemeIsPredefined = StringUtil.StrToBool( cgiGet( "Z577ThemeIsPredefined"));
-               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
-               nRC_GXsfl_42 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_42"), ".", ","), 18, MidpointRounding.ToEven));
-               nRC_GXsfl_51 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_51"), ".", ","), 18, MidpointRounding.ToEven));
-               nRC_GXsfl_64 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_64"), ".", ","), 18, MidpointRounding.ToEven));
+               nRC_GXsfl_42 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_42"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               nRC_GXsfl_51 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_51"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               nRC_GXsfl_64 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_64"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AV7Trn_ThemeId = StringUtil.StrToGuid( cgiGet( "vTRN_THEMEID"));
-               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), ".", ","), 18, MidpointRounding.ToEven));
+               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                A577ThemeIsPredefined = StringUtil.StrToBool( cgiGet( "THEMEISPREDEFINED"));
                /* Read variables values. */
                if ( StringUtil.StrCmp(cgiGet( edtTrn_ThemeId_Internalname), "") == 0 )
@@ -989,7 +989,7 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A274Trn_ThemeName", A274Trn_ThemeName);
                A281Trn_ThemeFontFamily = cgiGet( edtTrn_ThemeFontFamily_Internalname);
                AssignAttri("", false, "A281Trn_ThemeFontFamily", A281Trn_ThemeFontFamily);
-               if ( ( ( context.localUtil.CToN( cgiGet( edtTrn_ThemeFontSize_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtTrn_ThemeFontSize_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+               if ( ( ( context.localUtil.CToN( cgiGet( edtTrn_ThemeFontSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtTrn_ThemeFontSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
                {
                   GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "TRN_THEMEFONTSIZE");
                   AnyError = 1;
@@ -1001,7 +1001,7 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  A405Trn_ThemeFontSize = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtTrn_ThemeFontSize_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                  A405Trn_ThemeFontSize = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtTrn_ThemeFontSize_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                   AssignAttri("", false, "A405Trn_ThemeFontSize", StringUtil.LTrimStr( (decimal)(A405Trn_ThemeFontSize), 4, 0));
                }
                /* Read subfile selected row values. */
@@ -1368,9 +1368,9 @@ namespace GeneXus.Programs {
             ChangePostValue( "ZT_"+"Z275ColorId_"+sGXsfl_64_idx, Z275ColorId.ToString()) ;
             ChangePostValue( "ZT_"+"Z276ColorName_"+sGXsfl_64_idx, Z276ColorName) ;
             ChangePostValue( "ZT_"+"Z277ColorCode_"+sGXsfl_64_idx, Z277ColorCode) ;
-            ChangePostValue( "nRcdDeleted_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_53), 4, 0, ".", ""))) ;
-            ChangePostValue( "nRcdExists_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_53), 4, 0, ".", ""))) ;
-            ChangePostValue( "nIsMod_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_53), 4, 0, ".", ""))) ;
+            ChangePostValue( "nRcdDeleted_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_53), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_53), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_53), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_53 != 0 )
             {
                ChangePostValue( "COLORID_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorId_Enabled), 5, 0, ".", ""))) ;
@@ -1474,9 +1474,9 @@ namespace GeneXus.Programs {
             ChangePostValue( "ZT_"+"Z282IconId_"+sGXsfl_51_idx, Z282IconId.ToString()) ;
             ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_51_idx, Z443IconCategory) ;
             ChangePostValue( "ZT_"+"Z283IconName_"+sGXsfl_51_idx, Z283IconName) ;
-            ChangePostValue( "nRcdDeleted_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_82), 4, 0, ".", ""))) ;
-            ChangePostValue( "nRcdExists_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_82), 4, 0, ".", ""))) ;
-            ChangePostValue( "nIsMod_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_82), 4, 0, ".", ""))) ;
+            ChangePostValue( "nRcdDeleted_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_82), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_82), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_82), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_82 != 0 )
             {
                ChangePostValue( "ICONID_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", ""))) ;
@@ -1580,9 +1580,9 @@ namespace GeneXus.Programs {
             ChangePostValue( "ZT_"+"Z538CtaColorId_"+sGXsfl_42_idx, Z538CtaColorId.ToString()) ;
             ChangePostValue( "ZT_"+"Z539CtaColorName_"+sGXsfl_42_idx, Z539CtaColorName) ;
             ChangePostValue( "ZT_"+"Z540CtaColorCode_"+sGXsfl_42_idx, Z540CtaColorCode) ;
-            ChangePostValue( "nRcdDeleted_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_97), 4, 0, ".", ""))) ;
-            ChangePostValue( "nRcdExists_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_97), 4, 0, ".", ""))) ;
-            ChangePostValue( "nIsMod_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_97), 4, 0, ".", ""))) ;
+            ChangePostValue( "nRcdDeleted_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_97), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_97), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_97), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_97 != 0 )
             {
                ChangePostValue( "CTACOLORID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorId_Enabled), 5, 0, ".", ""))) ;
@@ -2265,7 +2265,7 @@ namespace GeneXus.Programs {
             pr_default.execute(15, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Locations"+" ("+"SG_Location Theme"+")"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")+" ("+context.GetMessage( "SG_Location Theme", "")+")"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);
@@ -2273,7 +2273,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(16) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Locations"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(16);
@@ -2281,7 +2281,7 @@ namespace GeneXus.Programs {
             pr_default.execute(17, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(17) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_OrganisationSetting"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationSetting", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(17);
@@ -2343,9 +2343,9 @@ namespace GeneXus.Programs {
             ChangePostValue( "ZT_"+"Z538CtaColorId_"+sGXsfl_42_idx, Z538CtaColorId.ToString()) ;
             ChangePostValue( "ZT_"+"Z539CtaColorName_"+sGXsfl_42_idx, Z539CtaColorName) ;
             ChangePostValue( "ZT_"+"Z540CtaColorCode_"+sGXsfl_42_idx, Z540CtaColorCode) ;
-            ChangePostValue( "nRcdDeleted_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_97), 4, 0, ".", ""))) ;
-            ChangePostValue( "nRcdExists_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_97), 4, 0, ".", ""))) ;
-            ChangePostValue( "nIsMod_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_97), 4, 0, ".", ""))) ;
+            ChangePostValue( "nRcdDeleted_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_97), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_97), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_97_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_97), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_97 != 0 )
             {
                ChangePostValue( "CTACOLORID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorId_Enabled), 5, 0, ".", ""))) ;
@@ -2420,9 +2420,9 @@ namespace GeneXus.Programs {
             ChangePostValue( "ZT_"+"Z282IconId_"+sGXsfl_51_idx, Z282IconId.ToString()) ;
             ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_51_idx, Z443IconCategory) ;
             ChangePostValue( "ZT_"+"Z283IconName_"+sGXsfl_51_idx, Z283IconName) ;
-            ChangePostValue( "nRcdDeleted_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_82), 4, 0, ".", ""))) ;
-            ChangePostValue( "nRcdExists_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_82), 4, 0, ".", ""))) ;
-            ChangePostValue( "nIsMod_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_82), 4, 0, ".", ""))) ;
+            ChangePostValue( "nRcdDeleted_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_82), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_82), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_82_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_82), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_82 != 0 )
             {
                ChangePostValue( "ICONID_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", ""))) ;
@@ -2496,9 +2496,9 @@ namespace GeneXus.Programs {
             ChangePostValue( "ZT_"+"Z275ColorId_"+sGXsfl_64_idx, Z275ColorId.ToString()) ;
             ChangePostValue( "ZT_"+"Z276ColorName_"+sGXsfl_64_idx, Z276ColorName) ;
             ChangePostValue( "ZT_"+"Z277ColorCode_"+sGXsfl_64_idx, Z277ColorCode) ;
-            ChangePostValue( "nRcdDeleted_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_53), 4, 0, ".", ""))) ;
-            ChangePostValue( "nRcdExists_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_53), 4, 0, ".", ""))) ;
-            ChangePostValue( "nIsMod_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_53), 4, 0, ".", ""))) ;
+            ChangePostValue( "nRcdDeleted_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_53), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_53), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_53_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_53), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_53 != 0 )
             {
                ChangePostValue( "COLORID_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorId_Enabled), 5, 0, ".", ""))) ;
@@ -2721,7 +2721,7 @@ namespace GeneXus.Programs {
          pr_default.execute(20, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A539CtaColorName, A538CtaColorId});
          if ( (pr_default.getStatus(20) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Cta Color Name"}), 1, "TRN_THEMEID");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Cta Color Name", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3171,7 +3171,7 @@ namespace GeneXus.Programs {
          pr_default.execute(27, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A283IconName, A443IconCategory, A282IconId});
          if ( (pr_default.getStatus(27) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Icon Name"+","+"Icon Category"}), 1, "TRN_THEMEID");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Icon Name", "")+","+context.GetMessage( "Icon Category", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3180,7 +3180,7 @@ namespace GeneXus.Programs {
          if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
          {
             GXCCtl = "ICONCATEGORY_" + sGXsfl_51_idx;
-            GX_msglist.addItem("Field Icon Category is out of range", "OutOfRange", 1, GXCCtl);
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = cmbIconCategory_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3622,7 +3622,7 @@ namespace GeneXus.Programs {
          pr_default.execute(34, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A276ColorName, A275ColorId});
          if ( (pr_default.getStatus(34) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Color Name"}), 1, "TRN_THEMEID");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3632,7 +3632,7 @@ namespace GeneXus.Programs {
          pr_default.execute(35, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A276ColorName, A277ColorCode, A275ColorId});
          if ( (pr_default.getStatus(35) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Color Name"+","+"Color Code"}), 1, "TRN_THEMEID");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")+","+context.GetMessage( "Color Code", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -4105,11 +4105,11 @@ namespace GeneXus.Programs {
          GXCCtl = "Z540CtaColorCode_" + sGXsfl_42_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z540CtaColorCode);
          GXCCtl = "nRcdDeleted_97_" + sGXsfl_42_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_97), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_97), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "nRcdExists_97_" + sGXsfl_42_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_97), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_97), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "nIsMod_97_" + sGXsfl_42_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_97), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_97), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "vMODE_" + sGXsfl_42_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.RTrim( Gx_mode));
          GXCCtl = "vTRNCONTEXT_" + sGXsfl_42_idx;
@@ -4135,9 +4135,9 @@ namespace GeneXus.Programs {
          nGXsfl_42_idx = (int)(nGXsfl_42_idx+1);
          sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx), 4, 0), 4, "0");
          SubsflControlProps_4297( ) ;
-         edtCtaColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORID_"+sGXsfl_42_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtCtaColorName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORNAME_"+sGXsfl_42_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtCtaColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORCODE_"+sGXsfl_42_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+         edtCtaColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORID_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtCtaColorName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORNAME_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtCtaColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORCODE_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          if ( StringUtil.StrCmp(cgiGet( edtCtaColorId_Internalname), "") == 0 )
          {
             A538CtaColorId = Guid.Empty;
@@ -4166,11 +4166,11 @@ namespace GeneXus.Programs {
          GXCCtl = "Z540CtaColorCode_" + sGXsfl_42_idx;
          Z540CtaColorCode = cgiGet( GXCCtl);
          GXCCtl = "nRcdDeleted_97_" + sGXsfl_42_idx;
-         nRcdDeleted_97 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nRcdDeleted_97 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          GXCCtl = "nRcdExists_97_" + sGXsfl_42_idx;
-         nRcdExists_97 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nRcdExists_97 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          GXCCtl = "nIsMod_97_" + sGXsfl_42_idx;
-         nIsMod_97 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nIsMod_97 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
       }
 
       protected void SubsflControlProps_5182( )
@@ -4267,10 +4267,10 @@ namespace GeneXus.Programs {
             GXCCtl = "ICONCATEGORY_" + sGXsfl_51_idx;
             cmbIconCategory.Name = GXCCtl;
             cmbIconCategory.WebTags = "";
-            cmbIconCategory.addItem("General", "General", 0);
-            cmbIconCategory.addItem("Services", "Services", 0);
-            cmbIconCategory.addItem("Living", "Living", 0);
-            cmbIconCategory.addItem("Health", "Health", 0);
+            cmbIconCategory.addItem("General", context.GetMessage( "General", ""), 0);
+            cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
+            cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
+            cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
             if ( cmbIconCategory.ItemCount > 0 )
             {
                A443IconCategory = cmbIconCategory.getValidValue(A443IconCategory);
@@ -4294,11 +4294,11 @@ namespace GeneXus.Programs {
          GXCCtl = "Z283IconName_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z283IconName);
          GXCCtl = "nRcdDeleted_82_" + sGXsfl_51_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_82), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_82), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "nRcdExists_82_" + sGXsfl_51_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_82), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_82), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "nIsMod_82_" + sGXsfl_51_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_82), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_82), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "vMODE_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.RTrim( Gx_mode));
          GXCCtl = "vTRNCONTEXT_" + sGXsfl_51_idx;
@@ -4325,10 +4325,10 @@ namespace GeneXus.Programs {
          nGXsfl_51_idx = (int)(nGXsfl_51_idx+1);
          sGXsfl_51_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_51_idx), 4, 0), 4, "0");
          SubsflControlProps_5182( ) ;
-         edtIconId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONID_"+sGXsfl_51_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_51_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_51_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_51_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+         edtIconId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONID_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          if ( StringUtil.StrCmp(cgiGet( edtIconId_Internalname), "") == 0 )
          {
             A282IconId = Guid.Empty;
@@ -4360,11 +4360,11 @@ namespace GeneXus.Programs {
          GXCCtl = "Z283IconName_" + sGXsfl_51_idx;
          Z283IconName = cgiGet( GXCCtl);
          GXCCtl = "nRcdDeleted_82_" + sGXsfl_51_idx;
-         nRcdDeleted_82 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nRcdDeleted_82 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          GXCCtl = "nRcdExists_82_" + sGXsfl_51_idx;
-         nRcdExists_82 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nRcdExists_82 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          GXCCtl = "nIsMod_82_" + sGXsfl_51_idx;
-         nIsMod_82 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nIsMod_82 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
       }
 
       protected void SubsflControlProps_6453( )
@@ -4453,16 +4453,16 @@ namespace GeneXus.Programs {
             GXCCtl = "COLORNAME_" + sGXsfl_64_idx;
             cmbColorName.Name = GXCCtl;
             cmbColorName.WebTags = "";
-            cmbColorName.addItem("cardBgColor", "Card BG Color", 0);
-            cmbColorName.addItem("ButtonBgColor", "Button Bg Color", 0);
-            cmbColorName.addItem("secondaryColor", "Secondary Color", 0);
-            cmbColorName.addItem("borderColor", "Border Color", 0);
-            cmbColorName.addItem("backgroundColor", "Background Color", 0);
-            cmbColorName.addItem("textColor", "Text Color", 0);
-            cmbColorName.addItem("cardTextColor", "Card Text Color", 0);
-            cmbColorName.addItem("accentColor", "Accent Color", 0);
-            cmbColorName.addItem("buttonTextColor", "Button Text Color", 0);
-            cmbColorName.addItem("primaryColor", "Primary Color", 0);
+            cmbColorName.addItem("cardBgColor", context.GetMessage( "Card BG Color", ""), 0);
+            cmbColorName.addItem("ButtonBgColor", context.GetMessage( "Button Bg Color", ""), 0);
+            cmbColorName.addItem("secondaryColor", context.GetMessage( "Secondary Color", ""), 0);
+            cmbColorName.addItem("borderColor", context.GetMessage( "Border Color", ""), 0);
+            cmbColorName.addItem("backgroundColor", context.GetMessage( "Background Color", ""), 0);
+            cmbColorName.addItem("textColor", context.GetMessage( "Text Color", ""), 0);
+            cmbColorName.addItem("cardTextColor", context.GetMessage( "Card Text Color", ""), 0);
+            cmbColorName.addItem("accentColor", context.GetMessage( "Accent Color", ""), 0);
+            cmbColorName.addItem("buttonTextColor", context.GetMessage( "Button Text Color", ""), 0);
+            cmbColorName.addItem("primaryColor", context.GetMessage( "Primary Color", ""), 0);
             if ( cmbColorName.ItemCount > 0 )
             {
                A276ColorName = cmbColorName.getValidValue(A276ColorName);
@@ -4486,11 +4486,11 @@ namespace GeneXus.Programs {
          GXCCtl = "Z277ColorCode_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z277ColorCode);
          GXCCtl = "nRcdDeleted_53_" + sGXsfl_64_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_53), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_53), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "nRcdExists_53_" + sGXsfl_64_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_53), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_53), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "nIsMod_53_" + sGXsfl_64_idx;
-         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_53), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_53), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GXCCtl = "vMODE_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.RTrim( Gx_mode));
          GXCCtl = "vTRNCONTEXT_" + sGXsfl_64_idx;
@@ -4516,9 +4516,9 @@ namespace GeneXus.Programs {
          nGXsfl_64_idx = (int)(nGXsfl_64_idx+1);
          sGXsfl_64_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_64_idx), 4, 0), 4, "0");
          SubsflControlProps_6453( ) ;
-         edtColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORID_"+sGXsfl_64_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         cmbColorName.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORNAME_"+sGXsfl_64_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
-         edtColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORCODE_"+sGXsfl_64_idx+"Enabled"), ".", ","), 18, MidpointRounding.ToEven));
+         edtColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORID_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         cmbColorName.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORNAME_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORCODE_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          A275ColorId = StringUtil.StrToGuid( cgiGet( edtColorId_Internalname));
          cmbColorName.Name = cmbColorName_Internalname;
          cmbColorName.CurrentValue = cgiGet( cmbColorName_Internalname);
@@ -4531,11 +4531,11 @@ namespace GeneXus.Programs {
          GXCCtl = "Z277ColorCode_" + sGXsfl_64_idx;
          Z277ColorCode = cgiGet( GXCCtl);
          GXCCtl = "nRcdDeleted_53_" + sGXsfl_64_idx;
-         nRcdDeleted_53 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nRcdDeleted_53 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          GXCCtl = "nRcdExists_53_" + sGXsfl_64_idx;
-         nRcdExists_53 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nRcdExists_53 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          GXCCtl = "nIsMod_53_" + sGXsfl_64_idx;
-         nIsMod_53 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), ".", ","), 18, MidpointRounding.ToEven));
+         nIsMod_53 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
       }
 
       protected void assign_properties_default( )
@@ -4683,15 +4683,15 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z273Trn_ThemeId", Z273Trn_ThemeId.ToString());
          GxWebStd.gx_hidden_field( context, "Z274Trn_ThemeName", Z274Trn_ThemeName);
          GxWebStd.gx_hidden_field( context, "Z281Trn_ThemeFontFamily", Z281Trn_ThemeFontFamily);
-         GxWebStd.gx_hidden_field( context, "Z405Trn_ThemeFontSize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z405Trn_ThemeFontSize), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z405Trn_ThemeFontSize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z405Trn_ThemeFontSize), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_boolean_hidden_field( context, "Z577ThemeIsPredefined", Z577ThemeIsPredefined);
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_Mode", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_42", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_42_idx), 8, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_51", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_51_idx), 8, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_64", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_64_idx), 8, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_42", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_42_idx), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_51", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_51_idx), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_64", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_64_idx), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          if ( context.isAjaxRequest( ) )
@@ -4705,7 +4705,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vTRNCONTEXT", GetSecureSignedToken( "", AV11TrnContext, context));
          GxWebStd.gx_hidden_field( context, "vTRN_THEMEID", AV7Trn_ThemeId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vTRN_THEMEID", GetSecureSignedToken( "", AV7Trn_ThemeId, context));
-         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_boolean_hidden_field( context, "THEMEISPREDEFINED", A577ThemeIsPredefined);
       }
 
@@ -4728,6 +4728,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -4773,7 +4785,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Trn_Theme" ;
+         return context.GetMessage( "Trn_Theme", "") ;
       }
 
       protected void InitializeNonKey0Z101( )
@@ -4872,7 +4884,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411511459", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271891963", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -4887,8 +4899,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_theme.js", "?202542411511460", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("trn_theme.js", "?20254271891965", false, true);
          /* End function include_jscripts */
       }
 
@@ -5062,7 +5074,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Trn_Theme";
+         Form.Caption = context.GetMessage( "Trn_Theme", "");
          edtColorCode_Jsonclick = "";
          cmbColorName_Jsonclick = "";
          edtColorId_Jsonclick = "";
@@ -5189,10 +5201,10 @@ namespace GeneXus.Programs {
          GXCCtl = "ICONCATEGORY_" + sGXsfl_51_idx;
          cmbIconCategory.Name = GXCCtl;
          cmbIconCategory.WebTags = "";
-         cmbIconCategory.addItem("General", "General", 0);
-         cmbIconCategory.addItem("Services", "Services", 0);
-         cmbIconCategory.addItem("Living", "Living", 0);
-         cmbIconCategory.addItem("Health", "Health", 0);
+         cmbIconCategory.addItem("General", context.GetMessage( "General", ""), 0);
+         cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
+         cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
+         cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
          if ( cmbIconCategory.ItemCount > 0 )
          {
             A443IconCategory = cmbIconCategory.getValidValue(A443IconCategory);
@@ -5200,16 +5212,16 @@ namespace GeneXus.Programs {
          GXCCtl = "COLORNAME_" + sGXsfl_64_idx;
          cmbColorName.Name = GXCCtl;
          cmbColorName.WebTags = "";
-         cmbColorName.addItem("cardBgColor", "Card BG Color", 0);
-         cmbColorName.addItem("ButtonBgColor", "Button Bg Color", 0);
-         cmbColorName.addItem("secondaryColor", "Secondary Color", 0);
-         cmbColorName.addItem("borderColor", "Border Color", 0);
-         cmbColorName.addItem("backgroundColor", "Background Color", 0);
-         cmbColorName.addItem("textColor", "Text Color", 0);
-         cmbColorName.addItem("cardTextColor", "Card Text Color", 0);
-         cmbColorName.addItem("accentColor", "Accent Color", 0);
-         cmbColorName.addItem("buttonTextColor", "Button Text Color", 0);
-         cmbColorName.addItem("primaryColor", "Primary Color", 0);
+         cmbColorName.addItem("cardBgColor", context.GetMessage( "Card BG Color", ""), 0);
+         cmbColorName.addItem("ButtonBgColor", context.GetMessage( "Button Bg Color", ""), 0);
+         cmbColorName.addItem("secondaryColor", context.GetMessage( "Secondary Color", ""), 0);
+         cmbColorName.addItem("borderColor", context.GetMessage( "Border Color", ""), 0);
+         cmbColorName.addItem("backgroundColor", context.GetMessage( "Background Color", ""), 0);
+         cmbColorName.addItem("textColor", context.GetMessage( "Text Color", ""), 0);
+         cmbColorName.addItem("cardTextColor", context.GetMessage( "Card Text Color", ""), 0);
+         cmbColorName.addItem("accentColor", context.GetMessage( "Accent Color", ""), 0);
+         cmbColorName.addItem("buttonTextColor", context.GetMessage( "Button Text Color", ""), 0);
+         cmbColorName.addItem("primaryColor", context.GetMessage( "Primary Color", ""), 0);
          if ( cmbColorName.ItemCount > 0 )
          {
             A276ColorName = cmbColorName.getValidValue(A276ColorName);
@@ -5244,7 +5256,7 @@ namespace GeneXus.Programs {
          pr_default.execute(41, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A539CtaColorName, A538CtaColorId});
          if ( (pr_default.getStatus(41) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Cta Color Name"}), 1, "TRN_THEMEID");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Cta Color Name", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
          }
@@ -5261,14 +5273,14 @@ namespace GeneXus.Programs {
          pr_default.execute(42, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A283IconName, A443IconCategory, A282IconId});
          if ( (pr_default.getStatus(42) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Icon Name"+","+"Icon Category"}), 1, "TRN_THEMEID");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Icon Name", "")+","+context.GetMessage( "Icon Category", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
          }
          pr_default.close(42);
          if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
          {
-            GX_msglist.addItem("Field Icon Category is out of range", "OutOfRange", 1, "ICONCATEGORY");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "ICONCATEGORY");
             AnyError = 1;
             GX_FocusControl = cmbIconCategory_Internalname;
          }
@@ -5284,7 +5296,7 @@ namespace GeneXus.Programs {
          pr_default.execute(43, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A276ColorName, A275ColorId});
          if ( (pr_default.getStatus(43) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Color Name"}), 1, "TRN_THEMEID");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
          }
@@ -5301,7 +5313,7 @@ namespace GeneXus.Programs {
          pr_default.execute(44, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId, A276ColorName, A277ColorCode, A275ColorId});
          if ( (pr_default.getStatus(44) != 101) )
          {
-            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {"Trn_Theme Id"+","+"Color Name"+","+"Color Code"}), 1, "TRN_THEMEID");
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")+","+context.GetMessage( "Color Code", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
          }

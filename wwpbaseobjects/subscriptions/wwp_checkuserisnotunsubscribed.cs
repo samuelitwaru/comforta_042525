@@ -80,7 +80,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV12Udparg1 = new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context).executeUdp( );
+         AV12Udparg1 = new uwwp_getloggeduserid(context).executeUdp( );
          /* Using cursor P00342 */
          pr_default.execute(0, new Object[] {AV12Udparg1, AV9WWPNotificationDefinitionId});
          while ( (pr_default.getStatus(0) != 101) )

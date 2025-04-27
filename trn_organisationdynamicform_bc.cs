@@ -218,7 +218,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -226,7 +226,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem("No matching 'Dynamic Form'.", "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Dynamic Form", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPFORMVERSIONNUMBER");
             AnyError = 1;
          }
          A208WWPFormReferenceName = BC001H5_A208WWPFormReferenceName[0];
@@ -832,7 +832,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {A11OrganisationId});
             if ( (pr_default.getStatus(11) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(11);
@@ -870,7 +870,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {A11OrganisationId});
             if ( (pr_default.getStatus(11) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(11);

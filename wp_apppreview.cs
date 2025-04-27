@@ -187,7 +187,7 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          context.WriteHtmlText( "<title>") ;
-         context.SendWebValue( "App Preview") ;
+         context.SendWebValue( context.GetMessage( "App Preview", "")) ;
          context.WriteHtmlTextNl( "</title>") ;
          if ( context.isSpaRequest( ) )
          {
@@ -261,11 +261,11 @@ namespace GeneXus.Programs {
          send_integrity_footer_hashes( ) ;
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vSDT_APPVERSION2", AV12SDT_AppVersion2);
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vSDT_APPPREVIEW", AV19SDT_AppPreview);
          }
          else
          {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vSDT_APPVERSION2", AV12SDT_AppVersion2);
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vSDT_APPPREVIEW", AV19SDT_AppPreview);
          }
          GxWebStd.gx_hidden_field( context, "vAPPVERSIONID", AV9AppVersionId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vAPPVERSIONID", GetSecureSignedToken( "", AV9AppVersionId, context));
@@ -293,6 +293,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -308,7 +320,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "App Preview" ;
+         return context.GetMessage( "App Preview", "") ;
       }
 
       protected void WBB00( )
@@ -351,7 +363,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* User Defined Control */
-            ucApppreview.SetProperty("AppVersion", AV12SDT_AppVersion2);
+            ucApppreview.SetProperty("AppVersion", AV19SDT_AppPreview);
             ucApppreview.Render(context, "uc_apppreview", Apppreview_Internalname, "APPPREVIEWContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -379,7 +391,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "App Preview", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "App Preview", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -581,7 +593,7 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
-            ajax_req_read_hidden_sdt(cgiGet( "vSDT_APPVERSION2"), AV12SDT_AppVersion2);
+            ajax_req_read_hidden_sdt(cgiGet( "vSDT_APPPREVIEW"), AV19SDT_AppPreview);
             /* Read saved values. */
             /* Read variables values. */
             /* Read subfile selected row values. */
@@ -745,7 +757,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254241816469", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271823541", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -762,8 +774,8 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_apppreview.js", "?20254241816470", false, true);
+            context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+            context.AddJavascriptSource("wp_apppreview.js", "?20254271823542", false, true);
             context.AddJavascriptSource("UserControls/UC_AppPreviewRender.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -828,7 +840,7 @@ namespace GeneXus.Programs {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
-         AV12SDT_AppVersion2 = new SdtSDT_AppVersion2(context);
+         AV19SDT_AppPreview = new SdtSDT_AppPreviewVersion(context);
          GX_FocusControl = "";
          sPrefix = "";
          ClassString = "";
@@ -841,7 +853,6 @@ namespace GeneXus.Programs {
          sEvtType = "";
          AV8BC_Trn_AppVersion = new SdtTrn_AppVersion(context);
          AV7SDT_AppVersion = new SdtSDT_AppVersion(context);
-         AV19SDT_AppPreview = new SdtSDT_AppPreviewVersion(context);
          H00B02_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H00B02_A29LocationId = new Guid[] {Guid.Empty} ;
          H00B02_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
@@ -977,10 +988,9 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private SdtSDT_AppVersion2 AV12SDT_AppVersion2 ;
+      private SdtSDT_AppPreviewVersion AV19SDT_AppPreview ;
       private SdtTrn_AppVersion AV8BC_Trn_AppVersion ;
       private SdtSDT_AppVersion AV7SDT_AppVersion ;
-      private SdtSDT_AppPreviewVersion AV19SDT_AppPreview ;
       private IDataStoreProvider pr_default ;
       private Guid[] H00B02_A11OrganisationId ;
       private Guid[] H00B02_A29LocationId ;

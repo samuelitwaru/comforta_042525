@@ -374,6 +374,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -416,7 +428,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Organisation Provisioning" ;
+         return context.GetMessage( "Organisation Provisioning", "") ;
       }
 
       protected void WBAW0( )
@@ -462,7 +474,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Control Group */
-            GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, "Location License", 1, 0, "px", 0, "px", "Group", "", "HLP_WP_ManageLocationBranding.htm");
+            GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "Location License", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_WP_ManageLocationBranding.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, divGroupattributes_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
@@ -478,12 +490,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavLocationhasmycare_Internalname, "Location Has My Care", "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, chkavLocationhasmycare_Internalname, context.GetMessage( "Location Has My Care", ""), "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavLocationhasmycare_Internalname, StringUtil.BoolToStr( AV35LocationHasMyCare), "", "Location Has My Care", 1, chkavLocationhasmycare.Enabled, "true", "My Care", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(23, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,23);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavLocationhasmycare_Internalname, StringUtil.BoolToStr( AV35LocationHasMyCare), "", context.GetMessage( "Location Has My Care", ""), 1, chkavLocationhasmycare.Enabled, "true", context.GetMessage( "My Care", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(23, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,23);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -494,12 +506,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavLocationhasmyliving_Internalname, "Location Has My Living", "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, chkavLocationhasmyliving_Internalname, context.GetMessage( "Location Has My Living", ""), "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 27,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavLocationhasmyliving_Internalname, StringUtil.BoolToStr( AV36LocationHasMyLiving), "", "Location Has My Living", 1, chkavLocationhasmyliving.Enabled, "true", "My Living", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(27, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,27);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavLocationhasmyliving_Internalname, StringUtil.BoolToStr( AV36LocationHasMyLiving), "", context.GetMessage( "Location Has My Living", ""), 1, chkavLocationhasmyliving.Enabled, "true", context.GetMessage( "My Living", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(27, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,27);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -510,12 +522,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavLocationhasmyservices_Internalname, "Location Has My Services", "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, chkavLocationhasmyservices_Internalname, context.GetMessage( "Location Has My Services", ""), "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavLocationhasmyservices_Internalname, StringUtil.BoolToStr( AV37LocationHasMyServices), "", "Location Has My Services", 1, chkavLocationhasmyservices.Enabled, "true", "My Services", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(31, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,31);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavLocationhasmyservices_Internalname, StringUtil.BoolToStr( AV37LocationHasMyServices), "", context.GetMessage( "Location Has My Services", ""), 1, chkavLocationhasmyservices.Enabled, "true", context.GetMessage( "My Services", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(31, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,31);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -526,12 +538,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavLocationhasownbrand_Internalname, "Location Has Own Brand", "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, chkavLocationhasownbrand_Internalname, context.GetMessage( "Location Has Own Brand", ""), "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 35,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavLocationhasownbrand_Internalname, StringUtil.BoolToStr( AV38LocationHasOwnBrand), "", "Location Has Own Brand", 1, chkavLocationhasownbrand.Enabled, "true", "My Location Brand Theme", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(35, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,35);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavLocationhasownbrand_Internalname, StringUtil.BoolToStr( AV38LocationHasOwnBrand), "", context.GetMessage( "Location Has Own Brand", ""), 1, chkavLocationhasownbrand.Enabled, "true", context.GetMessage( "My Location Brand Theme", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(35, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,35);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -552,7 +564,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblThemelabel_Internalname, "Location Brand Theme", "", "", lblThemelabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_ManageLocationBranding.htm");
+            GxWebStd.gx_label_ctrl( context, lblThemelabel_Internalname, context.GetMessage( "Location Brand Theme", ""), "", "", lblThemelabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_ManageLocationBranding.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -575,7 +587,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblCtatheme_Internalname, "Call To Action Theme", "", "", lblCtatheme_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_ManageLocationBranding.htm");
+            GxWebStd.gx_label_ctrl( context, lblCtatheme_Internalname, context.GetMessage( "Call To Action Theme", ""), "", "", lblCtatheme_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_ManageLocationBranding.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -611,14 +623,14 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 59,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Confirm", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ManageLocationBranding.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ManageLocationBranding.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 61,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ManageLocationBranding.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ManageLocationBranding.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -644,7 +656,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Organisation Provisioning", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Organisation Provisioning", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -978,7 +990,7 @@ namespace GeneXus.Programs {
             AV32Trn_Location.gxTpr_Locationctatheme = GXt_char2;
             AssignAttri("", false, "AV31LocationId", AV31LocationId.ToString());
             AssignAttri("", false, "AV38LocationHasOwnBrand", AV38LocationHasOwnBrand);
-            AV30websession.Set("NotificationMessage", "Location license updated successfully");
+            AV30websession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location license updated successfully", ""));
             context.setWebReturnParms(new Object[] {});
             context.setWebReturnParmsMetadata(new Object[] {});
             context.wjLocDisableFrm = 1;
@@ -1103,7 +1115,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025424121914", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718224332", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1118,8 +1130,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_managelocationbranding.js", "?2025424121914", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_managelocationbranding.js", "?202542718224332", false, true);
          context.AddJavascriptSource("UserControls/UC_ThemeSelectorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_CtaThemeSelectorRender.js", "", false, true);
          /* End function include_jscripts */
@@ -1129,28 +1141,28 @@ namespace GeneXus.Programs {
       {
          chkavLocationhasmycare.Name = "vLOCATIONHASMYCARE";
          chkavLocationhasmycare.WebTags = "";
-         chkavLocationhasmycare.Caption = "Location Has My Care";
+         chkavLocationhasmycare.Caption = context.GetMessage( "Location Has My Care", "");
          AssignProp("", false, chkavLocationhasmycare_Internalname, "TitleCaption", chkavLocationhasmycare.Caption, true);
          chkavLocationhasmycare.CheckedValue = "false";
          AV35LocationHasMyCare = StringUtil.StrToBool( StringUtil.BoolToStr( AV35LocationHasMyCare));
          AssignAttri("", false, "AV35LocationHasMyCare", AV35LocationHasMyCare);
          chkavLocationhasmyliving.Name = "vLOCATIONHASMYLIVING";
          chkavLocationhasmyliving.WebTags = "";
-         chkavLocationhasmyliving.Caption = "Location Has My Living";
+         chkavLocationhasmyliving.Caption = context.GetMessage( "Location Has My Living", "");
          AssignProp("", false, chkavLocationhasmyliving_Internalname, "TitleCaption", chkavLocationhasmyliving.Caption, true);
          chkavLocationhasmyliving.CheckedValue = "false";
          AV36LocationHasMyLiving = StringUtil.StrToBool( StringUtil.BoolToStr( AV36LocationHasMyLiving));
          AssignAttri("", false, "AV36LocationHasMyLiving", AV36LocationHasMyLiving);
          chkavLocationhasmyservices.Name = "vLOCATIONHASMYSERVICES";
          chkavLocationhasmyservices.WebTags = "";
-         chkavLocationhasmyservices.Caption = "Location Has My Services";
+         chkavLocationhasmyservices.Caption = context.GetMessage( "Location Has My Services", "");
          AssignProp("", false, chkavLocationhasmyservices_Internalname, "TitleCaption", chkavLocationhasmyservices.Caption, true);
          chkavLocationhasmyservices.CheckedValue = "false";
          AV37LocationHasMyServices = StringUtil.StrToBool( StringUtil.BoolToStr( AV37LocationHasMyServices));
          AssignAttri("", false, "AV37LocationHasMyServices", AV37LocationHasMyServices);
          chkavLocationhasownbrand.Name = "vLOCATIONHASOWNBRAND";
          chkavLocationhasownbrand.WebTags = "";
-         chkavLocationhasownbrand.Caption = "Location Has Own Brand";
+         chkavLocationhasownbrand.Caption = context.GetMessage( "Location Has Own Brand", "");
          AssignProp("", false, chkavLocationhasownbrand_Internalname, "TitleCaption", chkavLocationhasownbrand.Caption, true);
          chkavLocationhasownbrand.CheckedValue = "false";
          AV38LocationHasOwnBrand = StringUtil.StrToBool( StringUtil.BoolToStr( AV38LocationHasOwnBrand));
@@ -1190,10 +1202,10 @@ namespace GeneXus.Programs {
             disableJsOutput();
          }
          init_default_properties( ) ;
-         chkavLocationhasownbrand.Caption = "Location Has Own Brand";
-         chkavLocationhasmyservices.Caption = "Location Has My Services";
-         chkavLocationhasmyliving.Caption = "Location Has My Living";
-         chkavLocationhasmycare.Caption = "Location Has My Care";
+         chkavLocationhasownbrand.Caption = context.GetMessage( "Location Has Own Brand", "");
+         chkavLocationhasmyservices.Caption = context.GetMessage( "Location Has My Services", "");
+         chkavLocationhasmyliving.Caption = context.GetMessage( "Location Has My Living", "");
+         chkavLocationhasmycare.Caption = context.GetMessage( "Location Has My Care", "");
          divCtatable_Visible = 1;
          divBrandtable_Visible = 1;
          chkavLocationhasownbrand.Enabled = 1;
@@ -1219,7 +1231,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Organisation Provisioning";
+         Form.Caption = context.GetMessage( "Organisation Provisioning", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {

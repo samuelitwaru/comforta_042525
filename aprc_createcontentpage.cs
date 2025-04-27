@@ -114,8 +114,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV22Error.gxTpr_Status = "Error";
-            AV22Error.gxTpr_Message = "Not Authenticated";
+            AV22Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV22Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {
@@ -143,12 +143,12 @@ namespace GeneXus.Programs {
             if ( AV23GXLvl8 == 0 )
             {
                AV18BC_Trn_ProductService = new SdtTrn_ProductService(context);
-               AV18BC_Trn_ProductService.FromJSonString("{\"ProductServiceId_N\":0,\"LocationId\":\"a81dfcef-c383-44ce-8cad-891516e1a568\",\"OrganisationId\":\"aca3bfc6-a3ff-4130-9ebd-b30269c32aef\",\"ProductServiceName\":\"Hello World Service 1\",\"ProductServiceTileName\":\"Hello World Service \",\"ProductServiceDescription\":\"\",\"ProductServiceClass\":\"My Living\",\"ProductServiceImage\":\"\",\"ProductServiceGroup\":\"Location\",\"SupplierGenId\":\"00000000-0000-0000-0000-000000000000\",\"SupplierGenId_N\":1,\"SupplierGenCompanyName\":\"\",\"SupplierAgbId\":\"00000000-0000-0000-0000-000000000000\",\"SupplierAgbId_N\":1,\"SupplierAgbName\":\"\",\"ProductServiceImage_GXI\":\"\",\"Mode\":\"UPD\",\"Initialized\":0,\"ProductServiceId_Z\":\"c7a43bec-83bc-4a9a-ac74-9700882d6529\",\"LocationId_Z\":\"a81dfcef-c383-44ce-8cad-891516e1a568\",\"OrganisationId_Z\":\"aca3bfc6-a3ff-4130-9ebd-b30269c32aef\",\"ProductServiceName_Z\":\"Hello World Service\",\"ProductServiceTileName_Z\":\"Hello World Service \",\"ProductServiceClass_Z\":\"My Living\",\"ProductServiceGroup_Z\":\"Location\",\"SupplierGenId_Z\":\"00000000-0000-0000-0000-000000000000\",\"SupplierGenCompanyName_Z\":\"\",\"SupplierAgbId_Z\":\"00000000-0000-0000-0000-000000000000\",\"SupplierAgbName_Z\":\"\",\"ProductServiceImage_GXI_Z\":\"\"}", null);
-               AV18BC_Trn_ProductService.gxTpr_Productservicename = "Name - "+AV18BC_Trn_ProductService.gxTpr_Productserviceid.ToString();
-               AV18BC_Trn_ProductService.gxTpr_Productservicetilename = "Service Tile Name";
-               AV18BC_Trn_ProductService.gxTpr_Productservicedescription = "Product Service Description";
-               AV18BC_Trn_ProductService.gxTpr_Productserviceclass = "My Living";
-               AV18BC_Trn_ProductService.gxTpr_Productserviceimage_gxi = "/Resources/UCGrapes1/src/images/img-dummy-product.jpg";
+               AV18BC_Trn_ProductService.FromJSonString(context.GetMessage( "{\"ProductServiceId_N\":0,\"LocationId\":\"a81dfcef-c383-44ce-8cad-891516e1a568\",\"OrganisationId\":\"aca3bfc6-a3ff-4130-9ebd-b30269c32aef\",\"ProductServiceName\":\"Hello World Service 1\",\"ProductServiceTileName\":\"Hello World Service \",\"ProductServiceDescription\":\"\",\"ProductServiceClass\":\"My Living\",\"ProductServiceImage\":\"\",\"ProductServiceGroup\":\"Location\",\"SupplierGenId\":\"00000000-0000-0000-0000-000000000000\",\"SupplierGenId_N\":1,\"SupplierGenCompanyName\":\"\",\"SupplierAgbId\":\"00000000-0000-0000-0000-000000000000\",\"SupplierAgbId_N\":1,\"SupplierAgbName\":\"\",\"ProductServiceImage_GXI\":\"\",\"Mode\":\"UPD\",\"Initialized\":0,\"ProductServiceId_Z\":\"c7a43bec-83bc-4a9a-ac74-9700882d6529\",\"LocationId_Z\":\"a81dfcef-c383-44ce-8cad-891516e1a568\",\"OrganisationId_Z\":\"aca3bfc6-a3ff-4130-9ebd-b30269c32aef\",\"ProductServiceName_Z\":\"Hello World Service\",\"ProductServiceTileName_Z\":\"Hello World Service \",\"ProductServiceClass_Z\":\"My Living\",\"ProductServiceGroup_Z\":\"Location\",\"SupplierGenId_Z\":\"00000000-0000-0000-0000-000000000000\",\"SupplierGenCompanyName_Z\":\"\",\"SupplierAgbId_Z\":\"00000000-0000-0000-0000-000000000000\",\"SupplierAgbName_Z\":\"\",\"ProductServiceImage_GXI_Z\":\"\"}", ""), null);
+               AV18BC_Trn_ProductService.gxTpr_Productservicename = context.GetMessage( "Name - ", "")+AV18BC_Trn_ProductService.gxTpr_Productserviceid.ToString();
+               AV18BC_Trn_ProductService.gxTpr_Productservicetilename = context.GetMessage( "Service Tile Name", "");
+               AV18BC_Trn_ProductService.gxTpr_Productservicedescription = context.GetMessage( "Product Service Description", "");
+               AV18BC_Trn_ProductService.gxTpr_Productserviceclass = context.GetMessage( "My Living", "");
+               AV18BC_Trn_ProductService.gxTpr_Productserviceimage_gxi = context.GetMessage( "/Resources/UCGrapes1/src/images/img-dummy-product.jpg", "");
                AV18BC_Trn_ProductService.gxTpr_Productserviceimage = "";
                AV18BC_Trn_ProductService.gxTpr_Locationid = AV19LocationId;
                AV18BC_Trn_ProductService.gxTpr_Organisationid = AV20OrganisationId;
@@ -190,7 +190,7 @@ namespace GeneXus.Programs {
                if ( AV8BC_Trn_Page.Success() )
                {
                   context.CommitDataStores("prc_createcontentpage",pr_default);
-                  AV17Response = "Content page saved successfully";
+                  AV17Response = context.GetMessage( "Content page saved successfully", "");
                   new prc_logtofile(context ).execute(  AV17Response) ;
                }
                else

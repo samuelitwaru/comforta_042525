@@ -85,12 +85,12 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV8SDT_Error.gxTpr_Status = "Error";
-            AV8SDT_Error.gxTpr_Message = "Not Authenticated";
+            AV8SDT_Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV8SDT_Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
             cleanup();
             if (true) return;
          }
-         new prc_logtofile(context ).execute(  "I am here at page title update") ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "I am here at page title update", "")) ;
          AV15GXLvl8 = 0;
          /* Using cursor P00DO2 */
          pr_default.execute(0, new Object[] {AV10AppVersionId});
@@ -123,8 +123,8 @@ namespace GeneXus.Programs {
             pr_default.close(1);
             if ( AV16GXLvl10 == 0 )
             {
-               AV8SDT_Error.gxTpr_Status = "Error";
-               AV8SDT_Error.gxTpr_Message = "Version Not Found";
+               AV8SDT_Error.gxTpr_Status = context.GetMessage( "Error", "");
+               AV8SDT_Error.gxTpr_Message = context.GetMessage( "Version Not Found", "");
             }
             /* Exiting from a For First loop. */
             if (true) break;
@@ -132,8 +132,8 @@ namespace GeneXus.Programs {
          pr_default.close(0);
          if ( AV15GXLvl8 == 0 )
          {
-            AV8SDT_Error.gxTpr_Status = "Error";
-            AV8SDT_Error.gxTpr_Message = "Version Not Found";
+            AV8SDT_Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV8SDT_Error.gxTpr_Message = context.GetMessage( "Version Not Found", "");
          }
          cleanup();
       }

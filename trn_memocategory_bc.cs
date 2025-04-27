@@ -457,7 +457,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A542MemoCategoryId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Memo"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Memo", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);

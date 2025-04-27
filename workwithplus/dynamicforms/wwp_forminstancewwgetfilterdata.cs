@@ -174,8 +174,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             }
             else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFWWPFORMINSTANCEDATE") == 0 )
             {
-               AV13TFWWPFormInstanceDate = context.localUtil.CToT( AV33GridStateFilterValue.gxTpr_Value, 2);
-               AV14TFWWPFormInstanceDate_To = context.localUtil.CToT( AV33GridStateFilterValue.gxTpr_Valueto, 2);
+               AV13TFWWPFormInstanceDate = context.localUtil.CToT( AV33GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV14TFWWPFormInstanceDate_To = context.localUtil.CToT( AV33GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             }
             else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFWWPFORMVERSIONNUMBER") == 0 )
             {
@@ -471,7 +471,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             GXv_int1[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Workwithplus_dynamicforms_wwp_forminstancewwds_8_tfwwpuserextendedfullname_sel)) && ! ( StringUtil.StrCmp(AV53Workwithplus_dynamicforms_wwp_forminstancewwds_8_tfwwpuserextendedfullname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV53Workwithplus_dynamicforms_wwp_forminstancewwds_8_tfwwpuserextendedfullname_sel)) && ! ( StringUtil.StrCmp(AV53Workwithplus_dynamicforms_wwp_forminstancewwds_8_tfwwpuserextendedfullname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.WWPUserExtendedFullName = ( :AV53Workwithplus_dynamicforms_wwp_forminstancewwds_8_tfwwpusere))");
          }
@@ -479,7 +479,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             GXv_int1[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV53Workwithplus_dynamicforms_wwp_forminstancewwds_8_tfwwpuserextendedfullname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV53Workwithplus_dynamicforms_wwp_forminstancewwds_8_tfwwpuserextendedfullname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.WWPUserExtendedFullName))=0))");
          }

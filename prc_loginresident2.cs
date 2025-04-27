@@ -74,14 +74,14 @@ namespace GeneXus.Programs {
          AV21GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
          AV9clientId = AV21GAMApplication.gxTpr_Clientid;
          AV8baseUrl = AV21GAMApplication.gxTpr_Environment.gxTpr_Url;
-         AV17url = AV8baseUrl + "oauth/access_token";
-         AV10httpclient.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-         AV10httpclient.AddVariable("client_id", AV9clientId);
-         AV10httpclient.AddVariable("grant_type", "password");
-         AV10httpclient.AddVariable("scope", "gam_user_data");
-         AV10httpclient.AddVariable("username", AV18username);
-         AV10httpclient.AddVariable("password", AV13password);
-         AV10httpclient.Execute("POST", AV17url);
+         AV17url = AV8baseUrl + context.GetMessage( "oauth/access_token", "");
+         AV10httpclient.AddHeader(context.GetMessage( "Content-Type", ""), context.GetMessage( "application/x-www-form-urlencoded", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "client_id", ""), AV9clientId);
+         AV10httpclient.AddVariable(context.GetMessage( "grant_type", ""), context.GetMessage( "password", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "scope", ""), context.GetMessage( "gam_user_data", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "username", ""), AV18username);
+         AV10httpclient.AddVariable(context.GetMessage( "password", ""), AV13password);
+         AV10httpclient.Execute(context.GetMessage( "POST", ""), AV17url);
          AV15result = AV10httpclient.ToString();
          if ( AV10httpclient.StatusCode != 200 )
          {

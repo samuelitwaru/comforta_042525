@@ -390,7 +390,7 @@ namespace GeneXus.Programs {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -496,8 +496,8 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("Sdt_residents", AV28SDT_Residents);
          }
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_31", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_31), 8, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_84", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_84), 8, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_31", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_31), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_84", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_84), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vRESIDENTPACKAGEID_DATA", AV35ResidentPackageId_Data);
@@ -560,9 +560,9 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( "", AV33IsAuthorized_Delete, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_SDT_RESIDENTS", AV31IsAuthorized_SDT_Residents);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_SDT_RESIDENTS", GetSecureSignedToken( "", AV31IsAuthorized_SDT_Residents, context));
-         GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "subFreestylegrid1_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subFreestylegrid1_Recordcount), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "subFreestylegrid1_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subFreestylegrid1_Recordcount), 5, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "DVPANEL_CARDLEFTICON1_MAINTABLE_Width", StringUtil.RTrim( Dvpanel_cardlefticon1_maintable_Width));
          GxWebStd.gx_hidden_field( context, "DVPANEL_CARDLEFTICON1_MAINTABLE_Autowidth", StringUtil.BoolToStr( Dvpanel_cardlefticon1_maintable_Autowidth));
@@ -641,6 +641,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -683,7 +695,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WP_Provisioned App Dashboard" ;
+         return context.GetMessage( "WP_Provisioned App Dashboard", "") ;
       }
 
       protected void WBBM0( )
@@ -733,7 +745,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-4 SimpleCardIconPadding", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblCardlefticon1_icon_Internalname, "<i class='ProgressCardIconBaseColor fas fa-mobile-alt' style='font-size: 50px'></i>", "", "", lblCardlefticon1_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ProvisionedAppDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblCardlefticon1_icon_Internalname, context.GetMessage( "<i class='ProgressCardIconBaseColor fas fa-mobile-alt' style='font-size: 50px'></i>", ""), "", "", lblCardlefticon1_icon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ProvisionedAppDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-8", "start", "top", "", "", "div");
@@ -742,14 +754,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblCardlefticon1_description_Internalname, "Provisioned App version", "", "", lblCardlefticon1_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockDashboardDescriptionCard", 0, "", 1, 1, 0, 0, "HLP_WP_ProvisionedAppDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblCardlefticon1_description_Internalname, context.GetMessage( "Provisioned App version", ""), "", "", lblCardlefticon1_description_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockDashboardDescriptionCard", 0, "", 1, 1, 0, 0, "HLP_WP_ProvisionedAppDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;align-self:flex-start;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavCardlefticon1_value_Internalname, "Card Left Icon1_Value", "gx-form-item TextBlockDashboardDescriptionCardLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavCardlefticon1_value_Internalname, context.GetMessage( "Card Left Icon1_Value", ""), "gx-form-item TextBlockDashboardDescriptionCardLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'" + sGXsfl_31_idx + "',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavCardlefticon1_value_Internalname, AV26CardLeftIcon1_Value, StringUtil.RTrim( context.localUtil.Format( AV26CardLeftIcon1_Value, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,21);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCardlefticon1_value_Jsonclick, 0, "TextBlockDashboardDescriptionCard", "", "", "", "", 1, edtavCardlefticon1_value_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_ProvisionedAppDashboard.htm");
@@ -1091,7 +1103,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "WP_Provisioned App Dashboard", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "WP_Provisioned App Dashboard", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -1209,7 +1221,7 @@ namespace GeneXus.Programs {
                               GXCCtl = "DVPANEL_CARDCOMPONENT1_MAINTABLE_Autoscroll_" + sGXsfl_31_idx;
                               Dvpanel_cardcomponent1_maintable_Autoscroll = StringUtil.StrToBool( cgiGet( GXCCtl));
                               ucDvpanel_cardcomponent1_maintable.SendProperty(context, "", false, Dvpanel_cardcomponent1_maintable_Internalname, "AutoScroll", StringUtil.BoolToStr( Dvpanel_cardcomponent1_maintable_Autoscroll));
-                              AV23Cardcomponent1_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavCardcomponent1_value_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                              AV23Cardcomponent1_Value = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavCardcomponent1_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                               AssignAttri("", false, edtavCardcomponent1_value_Internalname, StringUtil.LTrimStr( (decimal)(AV23Cardcomponent1_Value), 12, 0));
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -1843,12 +1855,12 @@ namespace GeneXus.Programs {
             ajax_req_read_hidden_sdt(cgiGet( "vRESIDENTPACKAGEID_DATA"), AV35ResidentPackageId_Data);
             ajax_req_read_hidden_sdt(cgiGet( "vSDT_RESIDENTS"), AV28SDT_Residents);
             /* Read saved values. */
-            nRC_GXsfl_31 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_31"), ".", ","), 18, MidpointRounding.ToEven));
-            nRC_GXsfl_84 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_84"), ".", ","), 18, MidpointRounding.ToEven));
-            GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nFirstRecordOnPage"), ".", ","), 18, MidpointRounding.ToEven));
-            GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nEOF"), ".", ","), 18, MidpointRounding.ToEven));
-            subFreestylegrid1_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "subFreestylegrid1_Recordcount"), ".", ","), 18, MidpointRounding.ToEven));
-            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_31 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_31"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_84 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_84"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subFreestylegrid1_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "subFreestylegrid1_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
             Dvpanel_cardlefticon1_maintable_Width = cgiGet( "DVPANEL_CARDLEFTICON1_MAINTABLE_Width");
             Dvpanel_cardlefticon1_maintable_Autowidth = StringUtil.StrToBool( cgiGet( "DVPANEL_CARDLEFTICON1_MAINTABLE_Autowidth"));
@@ -1898,7 +1910,7 @@ namespace GeneXus.Programs {
             Dvelop_confirmpanel_udelete_Confirmtype = cgiGet( "DVELOP_CONFIRMPANEL_UDELETE_Confirmtype");
             Grid_empowerer_Gridinternalname = cgiGet( "GRID_EMPOWERER_Gridinternalname");
             Combo_residentpackageid_Selectedvalue_get = cgiGet( "COMBO_RESIDENTPACKAGEID_Selectedvalue_get");
-            nRC_GXsfl_84 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_84"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_84 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_84"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             nGXsfl_84_fel_idx = 0;
             while ( nGXsfl_84_fel_idx < nRC_GXsfl_84 )
             {
@@ -2041,7 +2053,7 @@ namespace GeneXus.Programs {
             {
                AV23Cardcomponent1_Value = (long)(AV23Cardcomponent1_Value+1);
                AssignAttri("", false, edtavCardcomponent1_value_Internalname, StringUtil.LTrimStr( (decimal)(AV23Cardcomponent1_Value), 12, 0));
-               lblCardcomponent1_icon_Fontname = "fas fa-file";
+               lblCardcomponent1_icon_Fontname = context.GetMessage( "fas fa-file", "");
                pr_default.readNext(1);
             }
             pr_default.close(1);
@@ -2399,30 +2411,30 @@ namespace GeneXus.Programs {
             cmbavActiongroup.addItem("0", ";fas fa-bars", 0);
             if ( ! AV42IsGAMActive )
             {
-               cmbavActiongroup.addItem("1", StringUtil.Format( "%1;%2", "Invite", "fas fa-share", "", "", "", "", "", "", ""), 0);
+               cmbavActiongroup.addItem("1", StringUtil.Format( "%1;%2", context.GetMessage( "Invite", ""), "fas fa-share", "", "", "", "", "", "", ""), 0);
             }
             if ( ( AV42IsGAMActive ) && ( AV43IsGAMBlocked ) )
             {
-               cmbavActiongroup.addItem("2", StringUtil.Format( "%1;%2", "Unblock", "fas fa-lock-open", "", "", "", "", "", "", ""), 0);
+               cmbavActiongroup.addItem("2", StringUtil.Format( "%1;%2", context.GetMessage( "Unblock", ""), "fas fa-lock-open", "", "", "", "", "", "", ""), 0);
             }
             if ( ( AV42IsGAMActive ) && ! AV43IsGAMBlocked )
             {
-               cmbavActiongroup.addItem("3", StringUtil.Format( "%1;%2", "Block", "fas fa-lock", "", "", "", "", "", "", ""), 0);
+               cmbavActiongroup.addItem("3", StringUtil.Format( "%1;%2", context.GetMessage( "Block", ""), "fas fa-lock", "", "", "", "", "", "", ""), 0);
             }
             if ( 1 == 0 )
             {
-               cmbavActiongroup.addItem("4", StringUtil.Format( "%1;%2", "QR code", "fas fa-qrcode", "", "", "", "", "", "", ""), 0);
+               cmbavActiongroup.addItem("4", StringUtil.Format( "%1;%2", context.GetMessage( "QR code", ""), "fas fa-qrcode", "", "", "", "", "", "", ""), 0);
             }
-            cmbavActiongroup.addItem("5", StringUtil.Format( "%1;%2", "Display", "fa fa-search", "", "", "", "", "", "", ""), 0);
-            cmbavActiongroup.addItem("6", StringUtil.Format( "%1;%2", "Edit", "fa fa-pen", "", "", "", "", "", "", ""), 0);
+            cmbavActiongroup.addItem("5", StringUtil.Format( "%1;%2", context.GetMessage( "GXM_display", ""), "fa fa-search", "", "", "", "", "", "", ""), 0);
+            cmbavActiongroup.addItem("6", StringUtil.Format( "%1;%2", context.GetMessage( "Edit", ""), "fa fa-pen", "", "", "", "", "", "", ""), 0);
             if ( AV33IsAuthorized_Delete )
             {
                if ( false )
                {
-                  cmbavActiongroup.addItem("7", StringUtil.Format( "%1;%2", "Delete", "fa fa-times", "", "", "", "", "", "", ""), 0);
+                  cmbavActiongroup.addItem("7", StringUtil.Format( "%1;%2", context.GetMessage( "GX_BtnDelete", ""), "fa fa-times", "", "", "", "", "", "", ""), 0);
                }
             }
-            cmbavActiongroup.addItem("8", StringUtil.Format( "%1;%2", "Delete", "fas fa-x", "", "", "", "", "", "", ""), 0);
+            cmbavActiongroup.addItem("8", StringUtil.Format( "%1;%2", context.GetMessage( "Delete", ""), "fas fa-x", "", "", "", "", "", "", ""), 0);
             if ( AV31IsAuthorized_SDT_Residents )
             {
                edtavSdt_residents__residentgivenname_Link = formatLink("trn_residentview.aspx", new object[] {UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Residentid.ToString()),UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Locationid.ToString()),UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Organisationid.ToString())}, new string[] {"ResidentId","LocationId","OrganisationId","TabCode"}) ;
@@ -2615,11 +2627,11 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblCardlefticon1_moreinfoicon_Internalname, "<i class='CardMaterialMoreInfoIcon far fa-clock' style='font-size: 16px'></i>", "", "", lblCardlefticon1_moreinfoicon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ProvisionedAppDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblCardlefticon1_moreinfoicon_Internalname, context.GetMessage( "<i class='CardMaterialMoreInfoIcon far fa-clock' style='font-size: 16px'></i>", ""), "", "", lblCardlefticon1_moreinfoicon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ProvisionedAppDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblCardlefticon1_moreinfocaption_Internalname, "Just Updated", "", "", lblCardlefticon1_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ProvisionedAppDashboard.htm");
+            GxWebStd.gx_label_ctrl( context, lblCardlefticon1_moreinfocaption_Internalname, context.GetMessage( "Just Updated", ""), "", "", lblCardlefticon1_moreinfocaption_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockMoreInfoCard", 0, "", 1, 1, 0, 0, "HLP_WP_ProvisionedAppDashboard.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2676,7 +2688,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542418164350", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718234182", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2693,8 +2705,8 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_provisionedappdashboard.js", "?202542418164351", false, true);
+            context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+            context.AddJavascriptSource("wp_provisionedappdashboard.js", "?202542718234183", false, true);
             context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
             context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
             context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -2822,7 +2834,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          Freestylegrid1Row.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)"col-xs-6 SimpleCardIconPadding",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
          /* Text block */
-         Freestylegrid1Row.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblCardcomponent1_icon_Internalname,(string)"<i class='ProgressCardIconBaseColor far fa-gem' style='font-size: 50px'></i>",(string)"",(string)"",(string)lblCardcomponent1_icon_Jsonclick,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"font-family:'"+lblCardcomponent1_icon_Fontname+"';",(string)"TextBlock",(short)0,(string)"",(short)1,(short)1,(short)0,(short)2});
+         Freestylegrid1Row.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblCardcomponent1_icon_Internalname,context.GetMessage( "<i class='ProgressCardIconBaseColor far fa-gem' style='font-size: 50px'></i>", ""),(string)"",(string)"",(string)lblCardcomponent1_icon_Jsonclick,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"font-family:'"+lblCardcomponent1_icon_Fontname+"';",(string)"TextBlock",(short)0,(string)"",(short)1,(short)1,(short)0,(short)2});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          /* Div Control */
          Freestylegrid1Row.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)"col-xs-6",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
@@ -2838,11 +2850,11 @@ namespace GeneXus.Programs {
          /* Div Control */
          Freestylegrid1Row.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
          /* Attribute/Variable Label */
-         Freestylegrid1Row.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavCardcomponent1_value_Internalname,(string)"Cardcomponent1_Value",(string)"gx-form-item DashboardNumberCardLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         Freestylegrid1Row.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavCardcomponent1_value_Internalname,context.GetMessage( "Cardcomponent1_Value", ""),(string)"gx-form-item DashboardNumberCardLabel",(short)0,(bool)true,(string)"width: 25%;"});
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 47,'',false,'" + sGXsfl_31_idx + "',31)\"";
          ROClassString = "DashboardNumberCard";
-         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCardcomponent1_value_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(AV23Cardcomponent1_Value), 15, 0, ".", "")),StringUtil.LTrim( ((edtavCardcomponent1_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV23Cardcomponent1_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV23Cardcomponent1_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))),TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,47);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCardcomponent1_value_Jsonclick,(short)0,(string)"DashboardNumberCard",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavCardcomponent1_value_Enabled,(short)0,(string)"text",(string)"",(short)15,(string)"chr",(short)1,(string)"row",(short)15,(short)0,(short)0,(short)31,(short)0,(short)-1,(short)0,(bool)true,(string)"WorkWithPlus_Web\\KPINumericValue",(string)"end",(bool)false,(string)""});
+         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavCardcomponent1_value_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(AV23Cardcomponent1_Value), 15, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( ((edtavCardcomponent1_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV23Cardcomponent1_Value), "ZZZ,ZZZ,ZZZ,ZZ9") : context.localUtil.Format( (decimal)(AV23Cardcomponent1_Value), "ZZZ,ZZZ,ZZZ,ZZ9"))),TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,47);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavCardcomponent1_value_Jsonclick,(short)0,(string)"DashboardNumberCard",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavCardcomponent1_value_Enabled,(short)0,(string)"text",(string)"",(short)15,(string)"chr",(short)1,(string)"row",(short)15,(short)0,(short)0,(short)31,(short)0,(short)-1,(short)0,(bool)true,(string)"WorkWithPlus_Web\\KPINumericValue",(string)"end",(bool)false,(string)""});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
@@ -2857,14 +2869,14 @@ namespace GeneXus.Programs {
          Freestylegrid1Row.AddColumnProperties("row", -1, isAjaxCallMode( ), new Object[] {(string)"",(string)"",(string)""});
          Freestylegrid1Row.AddColumnProperties("cell", -1, isAjaxCallMode( ), new Object[] {(string)"",(string)"",(string)""});
          /* Text block */
-         Freestylegrid1Row.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblCardcomponent1_moreinfoicon_Internalname,(string)"<i class='CardMaterialMoreInfoIcon far fa-clock' style='font-size: 16px'></i>",(string)"",(string)"",(string)lblCardcomponent1_moreinfoicon_Jsonclick,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"TextBlock",(short)0,(string)"",(short)1,(short)1,(short)0,(short)2});
+         Freestylegrid1Row.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblCardcomponent1_moreinfoicon_Internalname,context.GetMessage( "<i class='CardMaterialMoreInfoIcon far fa-clock' style='font-size: 16px'></i>", ""),(string)"",(string)"",(string)lblCardcomponent1_moreinfoicon_Jsonclick,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"TextBlock",(short)0,(string)"",(short)1,(short)1,(short)0,(short)2});
          if ( Freestylegrid1Container.GetWrapped() == 1 )
          {
             Freestylegrid1Container.CloseTag("cell");
          }
          Freestylegrid1Row.AddColumnProperties("cell", -1, isAjaxCallMode( ), new Object[] {(string)"",(string)"",(string)""});
          /* Text block */
-         Freestylegrid1Row.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblCardcomponent1_moreinfocaption_Internalname,(string)"Just Updated",(string)"",(string)"",(string)lblCardcomponent1_moreinfocaption_Jsonclick,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"TextBlockMoreInfoCard",(short)0,(string)"",(short)1,(short)1,(short)0,(short)0});
+         Freestylegrid1Row.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblCardcomponent1_moreinfocaption_Internalname,context.GetMessage( "Just Updated", ""),(string)"",(string)"",(string)lblCardcomponent1_moreinfocaption_Jsonclick,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"TextBlockMoreInfoCard",(short)0,(string)"",(short)1,(short)1,(short)0,(short)0});
          if ( Freestylegrid1Container.GetWrapped() == 1 )
          {
             Freestylegrid1Container.CloseTag("cell");
@@ -3067,10 +3079,10 @@ namespace GeneXus.Programs {
                GXCCtl = "SDT_RESIDENTS__RESIDENTSALUTATION_" + sGXsfl_84_idx;
                cmbavSdt_residents__residentsalutation.Name = GXCCtl;
                cmbavSdt_residents__residentsalutation.WebTags = "";
-               cmbavSdt_residents__residentsalutation.addItem("Mr", "Mr", 0);
-               cmbavSdt_residents__residentsalutation.addItem("Mrs", "Mrs", 0);
-               cmbavSdt_residents__residentsalutation.addItem("Dr", "Dr", 0);
-               cmbavSdt_residents__residentsalutation.addItem("Miss", "Miss", 0);
+               cmbavSdt_residents__residentsalutation.addItem("Mr", context.GetMessage( "Mr", ""), 0);
+               cmbavSdt_residents__residentsalutation.addItem("Mrs", context.GetMessage( "Mrs", ""), 0);
+               cmbavSdt_residents__residentsalutation.addItem("Dr", context.GetMessage( "Dr", ""), 0);
+               cmbavSdt_residents__residentsalutation.addItem("Miss", context.GetMessage( "Miss", ""), 0);
                if ( cmbavSdt_residents__residentsalutation.ItemCount > 0 )
                {
                   if ( ( AV48GXV1 > 0 ) && ( AV28SDT_Residents.Count >= AV48GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((SdtSDT_Resident)AV28SDT_Residents.Item(AV48GXV1)).gxTpr_Residentsalutation)) )
@@ -3120,9 +3132,9 @@ namespace GeneXus.Programs {
                GXCCtl = "SDT_RESIDENTS__RESIDENTGENDER_" + sGXsfl_84_idx;
                cmbavSdt_residents__residentgender.Name = GXCCtl;
                cmbavSdt_residents__residentgender.WebTags = "";
-               cmbavSdt_residents__residentgender.addItem("Male", "Male", 0);
-               cmbavSdt_residents__residentgender.addItem("Female", "Female", 0);
-               cmbavSdt_residents__residentgender.addItem("Other", "Other", 0);
+               cmbavSdt_residents__residentgender.addItem("Male", context.GetMessage( "Male", ""), 0);
+               cmbavSdt_residents__residentgender.addItem("Female", context.GetMessage( "Female", ""), 0);
+               cmbavSdt_residents__residentgender.addItem("Other", context.GetMessage( "Other", ""), 0);
                if ( cmbavSdt_residents__residentgender.ItemCount > 0 )
                {
                   if ( ( AV48GXV1 > 0 ) && ( AV28SDT_Residents.Count >= AV48GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((SdtSDT_Resident)AV28SDT_Residents.Item(AV48GXV1)).gxTpr_Residentgender)) )
@@ -3142,7 +3154,7 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residents__residentbirthdate_Internalname,context.localUtil.Format(((SdtSDT_Resident)AV28SDT_Residents.Item(AV48GXV1)).gxTpr_Residentbirthdate, "99/99/9999"),context.localUtil.Format( ((SdtSDT_Resident)AV28SDT_Residents.Item(AV48GXV1)).gxTpr_Residentbirthdate, "99/99/9999"),""+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',0,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residents__residentbirthdate_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_residents__residentbirthdate_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)10,(short)0,(short)0,(short)84,(short)0,(short)-1,(short)0,(bool)false,(string)"",(string)"end",(bool)false,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residents__residentbirthdate_Internalname,context.localUtil.Format(((SdtSDT_Resident)AV28SDT_Residents.Item(AV48GXV1)).gxTpr_Residentbirthdate, "99/99/9999"),context.localUtil.Format( ((SdtSDT_Resident)AV28SDT_Residents.Item(AV48GXV1)).gxTpr_Residentbirthdate, "99/99/9999"),""+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residents__residentbirthdate_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavSdt_residents__residentbirthdate_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)10,(short)0,(short)0,(short)84,(short)0,(short)-1,(short)0,(bool)false,(string)"",(string)"end",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -3256,10 +3268,10 @@ namespace GeneXus.Programs {
          GXCCtl = "SDT_RESIDENTS__RESIDENTSALUTATION_" + sGXsfl_84_idx;
          cmbavSdt_residents__residentsalutation.Name = GXCCtl;
          cmbavSdt_residents__residentsalutation.WebTags = "";
-         cmbavSdt_residents__residentsalutation.addItem("Mr", "Mr", 0);
-         cmbavSdt_residents__residentsalutation.addItem("Mrs", "Mrs", 0);
-         cmbavSdt_residents__residentsalutation.addItem("Dr", "Dr", 0);
-         cmbavSdt_residents__residentsalutation.addItem("Miss", "Miss", 0);
+         cmbavSdt_residents__residentsalutation.addItem("Mr", context.GetMessage( "Mr", ""), 0);
+         cmbavSdt_residents__residentsalutation.addItem("Mrs", context.GetMessage( "Mrs", ""), 0);
+         cmbavSdt_residents__residentsalutation.addItem("Dr", context.GetMessage( "Dr", ""), 0);
+         cmbavSdt_residents__residentsalutation.addItem("Miss", context.GetMessage( "Miss", ""), 0);
          if ( cmbavSdt_residents__residentsalutation.ItemCount > 0 )
          {
             if ( ( AV48GXV1 > 0 ) && ( AV28SDT_Residents.Count >= AV48GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((SdtSDT_Resident)AV28SDT_Residents.Item(AV48GXV1)).gxTpr_Residentsalutation)) )
@@ -3270,9 +3282,9 @@ namespace GeneXus.Programs {
          GXCCtl = "SDT_RESIDENTS__RESIDENTGENDER_" + sGXsfl_84_idx;
          cmbavSdt_residents__residentgender.Name = GXCCtl;
          cmbavSdt_residents__residentgender.WebTags = "";
-         cmbavSdt_residents__residentgender.addItem("Male", "Male", 0);
-         cmbavSdt_residents__residentgender.addItem("Female", "Female", 0);
-         cmbavSdt_residents__residentgender.addItem("Other", "Other", 0);
+         cmbavSdt_residents__residentgender.addItem("Male", context.GetMessage( "Male", ""), 0);
+         cmbavSdt_residents__residentgender.addItem("Female", context.GetMessage( "Female", ""), 0);
+         cmbavSdt_residents__residentgender.addItem("Other", context.GetMessage( "Other", ""), 0);
          if ( cmbavSdt_residents__residentgender.ItemCount > 0 )
          {
             if ( ( AV48GXV1 > 0 ) && ( AV28SDT_Residents.Count >= AV48GXV1 ) && String.IsNullOrEmpty(StringUtil.RTrim( ((SdtSDT_Resident)AV28SDT_Residents.Item(AV48GXV1)).gxTpr_Residentgender)) )
@@ -3376,61 +3388,61 @@ namespace GeneXus.Programs {
                }
             }
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Resident Id") ;
+            context.SendWebValue( context.GetMessage( "Resident Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Location Id") ;
+            context.SendWebValue( context.GetMessage( "Location Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Organisation Id") ;
+            context.SendWebValue( context.GetMessage( "Organisation Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "BSN Number") ;
+            context.SendWebValue( context.GetMessage( "BSN Number", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Salutation") ;
+            context.SendWebValue( context.GetMessage( "Salutation", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "First Name") ;
+            context.SendWebValue( context.GetMessage( "First Name", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Last Name") ;
+            context.SendWebValue( context.GetMessage( "Last Name", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Initials") ;
+            context.SendWebValue( context.GetMessage( "Initials", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Gender") ;
+            context.SendWebValue( context.GetMessage( "Gender", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Date Of Birth") ;
+            context.SendWebValue( context.GetMessage( "Date Of Birth", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Email") ;
+            context.SendWebValue( context.GetMessage( "Email", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Phone") ;
+            context.SendWebValue( context.GetMessage( "Phone", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Resident GUID") ;
+            context.SendWebValue( context.GetMessage( "Resident GUID", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Resident Type Id") ;
+            context.SendWebValue( context.GetMessage( "Resident Type Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Resident Type") ;
+            context.SendWebValue( context.GetMessage( "Resident Type", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Medical Indication Id") ;
+            context.SendWebValue( context.GetMessage( "Medical Indication Id", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Medical Indication") ;
+            context.SendWebValue( context.GetMessage( "Medical Indication", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Address") ;
+            context.SendWebValue( context.GetMessage( "Address", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Account Status") ;
+            context.SendWebValue( context.GetMessage( "Account Status", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"ConvertToDDO"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "") ;
@@ -3651,7 +3663,7 @@ namespace GeneXus.Programs {
          subGrid_Backcolorstyle = 0;
          edtavCardcomponent1_value_Jsonclick = "";
          edtavCardcomponent1_value_Enabled = 0;
-         lblCardcomponent1_description_Caption = "Sales";
+         lblCardcomponent1_description_Caption = context.GetMessage( "Sales", "");
          lblCardcomponent1_icon_Fontname = "";
          subFreestylegrid1_Class = "FreeStyleGrid";
          edtavAccountstatus_Columnheaderclass = "";
@@ -3697,28 +3709,28 @@ namespace GeneXus.Programs {
          Dvelop_confirmpanel_udelete_Nobuttoncaption = "WWP_ConfirmTextNo";
          Dvelop_confirmpanel_udelete_Yesbuttoncaption = "WWP_ConfirmTextYes";
          Dvelop_confirmpanel_udelete_Confirmationtext = "The following data associated with the resident will be deleted: Memos";
-         Dvelop_confirmpanel_udelete_Title = "Confirm delete action";
+         Dvelop_confirmpanel_udelete_Title = context.GetMessage( "Confirm delete action", "");
          Dvelop_confirmpanel_useractionblock_Confirmtype = "1";
          Dvelop_confirmpanel_useractionblock_Yesbuttonposition = "left";
          Dvelop_confirmpanel_useractionblock_Cancelbuttoncaption = "WWP_ConfirmTextCancel";
          Dvelop_confirmpanel_useractionblock_Nobuttoncaption = "WWP_ConfirmTextNo";
          Dvelop_confirmpanel_useractionblock_Yesbuttoncaption = "WWP_ConfirmTextYes";
          Dvelop_confirmpanel_useractionblock_Confirmationtext = "Are you sure you want to block resident?";
-         Dvelop_confirmpanel_useractionblock_Title = "Block Resident";
+         Dvelop_confirmpanel_useractionblock_Title = context.GetMessage( "Block Resident", "");
          Dvelop_confirmpanel_useractionunblock_Confirmtype = "1";
          Dvelop_confirmpanel_useractionunblock_Yesbuttonposition = "left";
          Dvelop_confirmpanel_useractionunblock_Cancelbuttoncaption = "WWP_ConfirmTextCancel";
          Dvelop_confirmpanel_useractionunblock_Nobuttoncaption = "WWP_ConfirmTextNo";
          Dvelop_confirmpanel_useractionunblock_Yesbuttoncaption = "WWP_ConfirmTextYes";
          Dvelop_confirmpanel_useractionunblock_Confirmationtext = "Are you sure you want to unblock Resident?";
-         Dvelop_confirmpanel_useractionunblock_Title = "Unblock user";
+         Dvelop_confirmpanel_useractionunblock_Title = context.GetMessage( "Unblock user", "");
          Dvelop_confirmpanel_resendinvite_Confirmtype = "1";
          Dvelop_confirmpanel_resendinvite_Yesbuttonposition = "left";
          Dvelop_confirmpanel_resendinvite_Cancelbuttoncaption = "WWP_ConfirmTextCancel";
          Dvelop_confirmpanel_resendinvite_Nobuttoncaption = "WWP_ConfirmTextNo";
          Dvelop_confirmpanel_resendinvite_Yesbuttoncaption = "WWP_ConfirmTextYes";
          Dvelop_confirmpanel_resendinvite_Confirmationtext = "Are you sure you want to re-send an invititation to this resident?";
-         Dvelop_confirmpanel_resendinvite_Title = "Re - Send Invitation";
+         Dvelop_confirmpanel_resendinvite_Title = context.GetMessage( "Re - Send Invitation", "");
          Ddo_managefilters_Cls = "ManageFilters";
          Ddo_managefilters_Tooltip = "WWP_ManageFiltersTooltip";
          Ddo_managefilters_Icon = "fas fa-filter";
@@ -3740,7 +3752,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "WP_Provisioned App Dashboard";
+         Form.Caption = context.GetMessage( "WP_Provisioned App Dashboard", "");
          subGrid_Rows = 0;
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )

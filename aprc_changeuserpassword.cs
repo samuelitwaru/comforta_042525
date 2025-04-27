@@ -142,7 +142,7 @@ namespace GeneXus.Programs {
             {
                context.CommitDataStores("prc_changeuserpassword",pr_default);
                AV16result = new SdtSDT_ChangeYourPassword(context);
-               AV16result.gxTpr_Success_message = "Password changed successfully";
+               AV16result.gxTpr_Success_message = context.GetMessage( "Password changed successfully", "");
             }
             else
             {

@@ -145,8 +145,8 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
-         AV12WebSession.Remove("SelectedBaseColor");
-         GX_msglist.addItem("Saved successfully");
+         AV12WebSession.Remove(context.GetMessage( "SelectedBaseColor", ""));
+         GX_msglist.addItem(context.GetMessage( "Saved successfully", ""));
       }
 
       protected void ZM0F90( short GX_JID )
@@ -201,9 +201,9 @@ namespace GeneXus.Programs {
          {
             A100OrganisationSettingid = Guid.NewGuid( );
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12WebSession.Get("SelectedBaseColor"))) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12WebSession.Get(context.GetMessage( context.GetMessage( "SelectedBaseColor", ""), "")))) )
          {
-            A103OrganisationSettingBaseColor = AV12WebSession.Get("SelectedBaseColor");
+            A103OrganisationSettingBaseColor = AV12WebSession.Get(context.GetMessage( context.GetMessage( "SelectedBaseColor", ""), ""));
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
@@ -256,7 +256,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -272,7 +272,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A273Trn_ThemeId) ) )
             {
-               GX_msglist.addItem("No matching ''.", "ForeignKeyNotFound", 1, "TRN_THEMEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), "", "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_THEMEID");
                AnyError = 1;
             }
          }
@@ -697,7 +697,7 @@ namespace GeneXus.Programs {
          /* Before Insert Rules */
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A103OrganisationSettingBaseColor)) )
          {
-            A103OrganisationSettingBaseColor = "Teal";
+            A103OrganisationSettingBaseColor = context.GetMessage( "Teal", "");
          }
       }
 
@@ -898,7 +898,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {A11OrganisationId});
             if ( (pr_default.getStatus(12) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -936,7 +936,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {A11OrganisationId});
             if ( (pr_default.getStatus(12) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(12);

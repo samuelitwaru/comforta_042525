@@ -108,17 +108,20 @@ namespace GeneXus.Programs {
             A268AgendaCalendarId = P008R2_A268AgendaCalendarId[0];
             A272AgendaCalendarAllDay = P008R2_A272AgendaCalendarAllDay[0];
             A269AgendaCalendarTitle = P008R2_A269AgendaCalendarTitle[0];
-            AV11Day = A270AgendaCalendarStartDate;
-            while ( AV11Day <= AV9RealLoadToDate )
+            if ( StringUtil.StrCmp(A438AgendaCalendarRecurringType, context.GetMessage( "EveryDay", "")) == 0 )
             {
-               AV12CalendarEvent = new WorkWithPlus.workwithplus_web.SdtWWP_Calendar_Events_Item(context);
-               AV12CalendarEvent.gxTpr_Id = A268AgendaCalendarId.ToString();
-               AV12CalendarEvent.gxTpr_Allday = A272AgendaCalendarAllDay;
-               AV12CalendarEvent.gxTpr_Start = AV11Day;
-               AV12CalendarEvent.gxTpr_End = AV11Day;
-               AV12CalendarEvent.gxTpr_Title = A269AgendaCalendarTitle;
-               AV14CalendarEvents.Add(AV12CalendarEvent, 0);
-               AV11Day = DateTimeUtil.TAdd( AV11Day, 86400*(1));
+               AV11Day = A270AgendaCalendarStartDate;
+               while ( AV11Day <= AV9RealLoadToDate )
+               {
+                  AV12CalendarEvent = new WorkWithPlus.workwithplus_web.SdtWWP_Calendar_Events_Item(context);
+                  AV12CalendarEvent.gxTpr_Id = A268AgendaCalendarId.ToString();
+                  AV12CalendarEvent.gxTpr_Allday = A272AgendaCalendarAllDay;
+                  AV12CalendarEvent.gxTpr_Start = AV11Day;
+                  AV12CalendarEvent.gxTpr_End = AV11Day;
+                  AV12CalendarEvent.gxTpr_Title = A269AgendaCalendarTitle;
+                  AV14CalendarEvents.Add(AV12CalendarEvent, 0);
+                  AV11Day = DateTimeUtil.TAdd( AV11Day, 86400*(1));
+               }
             }
             pr_default.readNext(0);
          }
@@ -215,7 +218,7 @@ namespace GeneXus.Programs {
           new ParDef("AV18Udparg1",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008R2", "SELECT AgendaCalendarRecurringType, AgendaCalendarRecurring, LocationId, AgendaCalendarStartDate, AgendaCalendarId, AgendaCalendarAllDay, AgendaCalendarTitle FROM Trn_AgendaCalendar WHERE (LocationId = :AV18Udparg1) AND (AgendaCalendarRecurring = TRUE) AND (AgendaCalendarRecurringType = ( 'EveryDay')) ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008R2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P008R2", "SELECT AgendaCalendarRecurringType, AgendaCalendarRecurring, LocationId, AgendaCalendarStartDate, AgendaCalendarId, AgendaCalendarAllDay, AgendaCalendarTitle FROM Trn_AgendaCalendar WHERE (LocationId = :AV18Udparg1) AND (AgendaCalendarRecurring = TRUE) ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008R2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

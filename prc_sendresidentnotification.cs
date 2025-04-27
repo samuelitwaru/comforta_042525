@@ -112,25 +112,43 @@ namespace GeneXus.Programs {
                {
                   A62ResidentId = P00932_A62ResidentId[0];
                   A71ResidentGUID = P00932_A71ResidentGUID[0];
+                  A603ResidentLanguage = P00932_A603ResidentLanguage[0];
                   A29LocationId = P00932_A29LocationId[0];
                   A11OrganisationId = P00932_A11OrganisationId[0];
                   AV19ResidentGUIDCollection.Add(A71ResidentGUID, 0);
+                  if ( ( StringUtil.StrCmp(A603ResidentLanguage, "en") == 0 ) || ( StringUtil.StrCmp(A603ResidentLanguage, "English") == 0 ) )
+                  {
+                     AV33EnglishResidentGUIDCollection.Add(A71ResidentGUID, 0);
+                  }
+                  else
+                  {
+                     AV34DutchResidentGUIDCollection.Add(A71ResidentGUID, 0);
+                  }
                   pr_default.readNext(0);
                }
                pr_default.close(0);
             }
             else
             {
-               AV33Udparg1 = new prc_getuserlocationid(context).executeUdp( );
+               AV39Udparg1 = new prc_getuserlocationid(context).executeUdp( );
                /* Using cursor P00933 */
-               pr_default.execute(1, new Object[] {AV33Udparg1});
+               pr_default.execute(1, new Object[] {AV39Udparg1});
                while ( (pr_default.getStatus(1) != 101) )
                {
                   A29LocationId = P00933_A29LocationId[0];
                   A71ResidentGUID = P00933_A71ResidentGUID[0];
+                  A603ResidentLanguage = P00933_A603ResidentLanguage[0];
                   A62ResidentId = P00933_A62ResidentId[0];
                   A11OrganisationId = P00933_A11OrganisationId[0];
                   AV19ResidentGUIDCollection.Add(A71ResidentGUID, 0);
+                  if ( ( StringUtil.StrCmp(A603ResidentLanguage, "en") == 0 ) || ( StringUtil.StrCmp(A603ResidentLanguage, "English") == 0 ) )
+                  {
+                     AV33EnglishResidentGUIDCollection.Add(A71ResidentGUID, 0);
+                  }
+                  else
+                  {
+                     AV34DutchResidentGUIDCollection.Add(A71ResidentGUID, 0);
+                  }
                   pr_default.readNext(1);
                }
                pr_default.close(1);
@@ -139,51 +157,103 @@ namespace GeneXus.Programs {
             {
                if ( AV22Trn_AppNotification.Success() && ! AV30isToolboxNotification )
                {
-                  AV34GXV1 = 1;
-                  while ( AV34GXV1 <= AV19ResidentGUIDCollection.Count )
+                  AV40GXV1 = 1;
+                  while ( AV40GXV1 <= AV19ResidentGUIDCollection.Count )
                   {
-                     AV25ResidentGUIDItem = ((string)AV19ResidentGUIDCollection.Item(AV34GXV1));
+                     AV25ResidentGUIDItem = ((string)AV19ResidentGUIDCollection.Item(AV40GXV1));
                      AV24Trn_ResidentNotification.gxTpr_Appnotificationid = AV22Trn_AppNotification.gxTpr_Appnotificationid;
                      GXt_guid1 = Guid.Empty;
                      new prc_getresidentidfromguid(context ).execute(  AV25ResidentGUIDItem, out  GXt_guid1) ;
                      AV24Trn_ResidentNotification.gxTpr_Residentid = GXt_guid1;
                      AV24Trn_ResidentNotification.gxTpr_Residentnotificationid = Guid.NewGuid( );
                      AV24Trn_ResidentNotification.Insert();
-                     AV34GXV1 = (int)(AV34GXV1+1);
+                     AV40GXV1 = (int)(AV40GXV1+1);
                   }
                }
                context.CommitDataStores("prc_sendresidentnotification",pr_default);
                if ( StringUtil.StrCmp(AV10title, "New Filled Form") != 0 )
                {
-                  pr_default.dynParam(2, new Object[]{ new Object[]{
-                                                       A337DeviceUserId ,
-                                                       AV19ResidentGUIDCollection } ,
-                                                       new int[]{
-                                                       }
-                  });
-                  /* Using cursor P00934 */
-                  pr_default.execute(2);
-                  while ( (pr_default.getStatus(2) != 101) )
+                  if ( AV33EnglishResidentGUIDCollection.Count > 0 )
                   {
-                     A337DeviceUserId = P00934_A337DeviceUserId[0];
-                     A335DeviceToken = P00934_A335DeviceToken[0];
-                     A333DeviceId = P00934_A333DeviceId[0];
-                     AV27Token = "";
-                     if ( AV29SDT_OneSignalRegistration.FromJSonString(A335DeviceToken, null) )
+                     pr_default.dynParam(2, new Object[]{ new Object[]{
+                                                          A337DeviceUserId ,
+                                                          AV33EnglishResidentGUIDCollection } ,
+                                                          new int[]{
+                                                          }
+                     });
+                     /* Using cursor P00934 */
+                     pr_default.execute(2);
+                     while ( (pr_default.getStatus(2) != 101) )
                      {
-                        AV27Token = AV29SDT_OneSignalRegistration.gxTpr_Notificationplatformid;
-                        if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27Token)) )
+                        A337DeviceUserId = P00934_A337DeviceUserId[0];
+                        A335DeviceToken = P00934_A335DeviceToken[0];
+                        A333DeviceId = P00934_A333DeviceId[0];
+                        AV27Token = "";
+                        if ( AV29SDT_OneSignalRegistration.FromJSonString(A335DeviceToken, null) )
                         {
-                           AV21DeviceTokenCollection.Add(AV27Token, 0);
+                           AV27Token = AV29SDT_OneSignalRegistration.gxTpr_Notificationplatformid;
+                           if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27Token)) )
+                           {
+                              AV35EnglishDeviceTokenCollection.Add(AV27Token, 0);
+                           }
                         }
+                        pr_default.readNext(2);
                      }
-                     pr_default.readNext(2);
+                     pr_default.close(2);
+                     if ( AV35EnglishDeviceTokenCollection.Count > 0 )
+                     {
+                        AV30isToolboxNotification = false;
+                        new prc_sendonesignalnotification(context ).execute(  AV35EnglishDeviceTokenCollection,  AV10title,  AV9message,  AV28Metadata,  AV30isToolboxNotification, out  AV13OutMessages, out  AV14IsSuccessful) ;
+                     }
                   }
-                  pr_default.close(2);
-                  if ( AV21DeviceTokenCollection.Count > 0 )
+                  if ( AV34DutchResidentGUIDCollection.Count > 0 )
                   {
-                     AV30isToolboxNotification = false;
-                     new prc_sendonesignalnotification(context ).execute(  AV21DeviceTokenCollection,  AV10title,  AV9message,  AV28Metadata,  AV30isToolboxNotification, out  AV13OutMessages, out  AV14IsSuccessful) ;
+                     pr_default.dynParam(3, new Object[]{ new Object[]{
+                                                          A337DeviceUserId ,
+                                                          AV34DutchResidentGUIDCollection } ,
+                                                          new int[]{
+                                                          }
+                     });
+                     /* Using cursor P00935 */
+                     pr_default.execute(3);
+                     while ( (pr_default.getStatus(3) != 101) )
+                     {
+                        A337DeviceUserId = P00935_A337DeviceUserId[0];
+                        A335DeviceToken = P00935_A335DeviceToken[0];
+                        A333DeviceId = P00935_A333DeviceId[0];
+                        AV27Token = "";
+                        if ( AV29SDT_OneSignalRegistration.FromJSonString(A335DeviceToken, null) )
+                        {
+                           AV27Token = AV29SDT_OneSignalRegistration.gxTpr_Notificationplatformid;
+                           if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27Token)) )
+                           {
+                              AV36DutchDeviceTokenCollection.Add(AV27Token, 0);
+                           }
+                        }
+                        pr_default.readNext(3);
+                     }
+                     pr_default.close(3);
+                     if ( AV36DutchDeviceTokenCollection.Count > 0 )
+                     {
+                        AV30isToolboxNotification = false;
+                        if ( StringUtil.StrCmp(AV10title, "New Updates Available") == 0 )
+                        {
+                           AV31translatedTitle = "Nieuwe updates beschikbaar";
+                        }
+                        else
+                        {
+                           AV31translatedTitle = AV10title;
+                        }
+                        if ( StringUtil.StrCmp(AV9message, "The latest updates have been published and are now live! Open the app to explore the changes") == 0 )
+                        {
+                           AV32translatedMessage = "De nieuwste updates zijn gepubliceerd en zijn nu live! Open de app om de wijzigingen te bekijken";
+                        }
+                        else
+                        {
+                           AV32translatedMessage = AV9message;
+                        }
+                        new prc_sendonesignalnotification(context ).execute(  AV36DutchDeviceTokenCollection,  AV31translatedTitle,  AV32translatedMessage,  AV28Metadata,  AV30isToolboxNotification, out  AV13OutMessages, out  AV14IsSuccessful) ;
+                     }
                   }
                }
             }
@@ -208,15 +278,20 @@ namespace GeneXus.Programs {
          A62ResidentId = Guid.Empty;
          P00932_A62ResidentId = new Guid[] {Guid.Empty} ;
          P00932_A71ResidentGUID = new string[] {""} ;
+         P00932_A603ResidentLanguage = new string[] {""} ;
          P00932_A29LocationId = new Guid[] {Guid.Empty} ;
          P00932_A11OrganisationId = new Guid[] {Guid.Empty} ;
          A71ResidentGUID = "";
+         A603ResidentLanguage = "";
          A29LocationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
          AV19ResidentGUIDCollection = new GxSimpleCollection<string>();
-         AV33Udparg1 = Guid.Empty;
+         AV33EnglishResidentGUIDCollection = new GxSimpleCollection<string>();
+         AV34DutchResidentGUIDCollection = new GxSimpleCollection<string>();
+         AV39Udparg1 = Guid.Empty;
          P00933_A29LocationId = new Guid[] {Guid.Empty} ;
          P00933_A71ResidentGUID = new string[] {""} ;
+         P00933_A603ResidentLanguage = new string[] {""} ;
          P00933_A62ResidentId = new Guid[] {Guid.Empty} ;
          P00933_A11OrganisationId = new Guid[] {Guid.Empty} ;
          AV25ResidentGUIDItem = "";
@@ -230,8 +305,14 @@ namespace GeneXus.Programs {
          A333DeviceId = "";
          AV27Token = "";
          AV29SDT_OneSignalRegistration = new SdtSDT_OneSignalRegistration(context);
-         AV21DeviceTokenCollection = new GxSimpleCollection<string>();
+         AV35EnglishDeviceTokenCollection = new GxSimpleCollection<string>();
          AV13OutMessages = "";
+         P00935_A337DeviceUserId = new string[] {""} ;
+         P00935_A335DeviceToken = new string[] {""} ;
+         P00935_A333DeviceId = new string[] {""} ;
+         AV36DutchDeviceTokenCollection = new GxSimpleCollection<string>();
+         AV31translatedTitle = "";
+         AV32translatedMessage = "";
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_sendresidentnotification__datastore1(),
             new Object[][] {
             }
@@ -243,20 +324,24 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_sendresidentnotification__default(),
             new Object[][] {
                 new Object[] {
-               P00932_A62ResidentId, P00932_A71ResidentGUID, P00932_A29LocationId, P00932_A11OrganisationId
+               P00932_A62ResidentId, P00932_A71ResidentGUID, P00932_A603ResidentLanguage, P00932_A29LocationId, P00932_A11OrganisationId
                }
                , new Object[] {
-               P00933_A29LocationId, P00933_A71ResidentGUID, P00933_A62ResidentId, P00933_A11OrganisationId
+               P00933_A29LocationId, P00933_A71ResidentGUID, P00933_A603ResidentLanguage, P00933_A62ResidentId, P00933_A11OrganisationId
                }
                , new Object[] {
                P00934_A337DeviceUserId, P00934_A335DeviceToken, P00934_A333DeviceId
+               }
+               , new Object[] {
+               P00935_A337DeviceUserId, P00935_A335DeviceToken, P00935_A333DeviceId
                }
             }
          );
          /* GeneXus formulas. */
       }
 
-      private int AV34GXV1 ;
+      private int AV40GXV1 ;
+      private string A603ResidentLanguage ;
       private string A335DeviceToken ;
       private string A333DeviceId ;
       private string AV27Token ;
@@ -269,10 +354,12 @@ namespace GeneXus.Programs {
       private string A71ResidentGUID ;
       private string AV25ResidentGUIDItem ;
       private string A337DeviceUserId ;
+      private string AV31translatedTitle ;
+      private string AV32translatedMessage ;
       private Guid A62ResidentId ;
       private Guid A29LocationId ;
       private Guid A11OrganisationId ;
-      private Guid AV33Udparg1 ;
+      private Guid AV39Udparg1 ;
       private Guid GXt_guid1 ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
@@ -283,11 +370,15 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] P00932_A62ResidentId ;
       private string[] P00932_A71ResidentGUID ;
+      private string[] P00932_A603ResidentLanguage ;
       private Guid[] P00932_A29LocationId ;
       private Guid[] P00932_A11OrganisationId ;
       private GxSimpleCollection<string> AV19ResidentGUIDCollection ;
+      private GxSimpleCollection<string> AV33EnglishResidentGUIDCollection ;
+      private GxSimpleCollection<string> AV34DutchResidentGUIDCollection ;
       private Guid[] P00933_A29LocationId ;
       private string[] P00933_A71ResidentGUID ;
+      private string[] P00933_A603ResidentLanguage ;
       private Guid[] P00933_A62ResidentId ;
       private Guid[] P00933_A11OrganisationId ;
       private SdtTrn_ResidentNotification AV24Trn_ResidentNotification ;
@@ -295,7 +386,11 @@ namespace GeneXus.Programs {
       private string[] P00934_A335DeviceToken ;
       private string[] P00934_A333DeviceId ;
       private SdtSDT_OneSignalRegistration AV29SDT_OneSignalRegistration ;
-      private GxSimpleCollection<string> AV21DeviceTokenCollection ;
+      private GxSimpleCollection<string> AV35EnglishDeviceTokenCollection ;
+      private string[] P00935_A337DeviceUserId ;
+      private string[] P00935_A335DeviceToken ;
+      private string[] P00935_A333DeviceId ;
+      private GxSimpleCollection<string> AV36DutchDeviceTokenCollection ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -373,7 +468,7 @@ public class prc_sendresidentnotification__default : DataStoreHelperBase, IDataS
       System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
       string scmdbuf;
       Object[] GXv_Object2 = new Object[2];
-      scmdbuf = "SELECT ResidentId, ResidentGUID, LocationId, OrganisationId FROM Trn_Resident";
+      scmdbuf = "SELECT ResidentId, ResidentGUID, ResidentLanguage, LocationId, OrganisationId FROM Trn_Resident";
       AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV16ResidentIdCollection, "ResidentId IN (", ")")+")");
       scmdbuf += sWhereString;
       scmdbuf += " ORDER BY ResidentId, LocationId, OrganisationId";
@@ -383,17 +478,32 @@ public class prc_sendresidentnotification__default : DataStoreHelperBase, IDataS
 
    protected Object[] conditional_P00934( IGxContext context ,
                                           string A337DeviceUserId ,
-                                          GxSimpleCollection<string> AV19ResidentGUIDCollection )
+                                          GxSimpleCollection<string> AV33EnglishResidentGUIDCollection )
    {
       System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
       string scmdbuf;
       Object[] GXv_Object4 = new Object[2];
       scmdbuf = "SELECT DeviceUserId, DeviceToken, DeviceId FROM Trn_Device";
-      AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV19ResidentGUIDCollection, "DeviceUserId IN (", ")")+")");
+      AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV33EnglishResidentGUIDCollection, "DeviceUserId IN (", ")")+")");
       scmdbuf += sWhereString;
       scmdbuf += " ORDER BY DeviceId";
       GXv_Object4[0] = scmdbuf;
       return GXv_Object4 ;
+   }
+
+   protected Object[] conditional_P00935( IGxContext context ,
+                                          string A337DeviceUserId ,
+                                          GxSimpleCollection<string> AV34DutchResidentGUIDCollection )
+   {
+      System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
+      string scmdbuf;
+      Object[] GXv_Object6 = new Object[2];
+      scmdbuf = "SELECT DeviceUserId, DeviceToken, DeviceId FROM Trn_Device";
+      AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV34DutchResidentGUIDCollection, "DeviceUserId IN (", ")")+")");
+      scmdbuf += sWhereString;
+      scmdbuf += " ORDER BY DeviceId";
+      GXv_Object6[0] = scmdbuf;
+      return GXv_Object6 ;
    }
 
    public override Object [] getDynamicStatement( int cursor ,
@@ -406,6 +516,8 @@ public class prc_sendresidentnotification__default : DataStoreHelperBase, IDataS
                   return conditional_P00932(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] );
             case 2 :
                   return conditional_P00934(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] );
+            case 3 :
+                  return conditional_P00935(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] );
       }
       return base.getDynamicStatement(cursor, context, dynConstraints);
    }
@@ -417,6 +529,7 @@ public class prc_sendresidentnotification__default : DataStoreHelperBase, IDataS
        new ForEachCursor(def[0])
       ,new ForEachCursor(def[1])
       ,new ForEachCursor(def[2])
+      ,new ForEachCursor(def[3])
     };
  }
 
@@ -427,7 +540,7 @@ public class prc_sendresidentnotification__default : DataStoreHelperBase, IDataS
     {
        Object[] prmP00933;
        prmP00933 = new Object[] {
-       new ParDef("AV33Udparg1",GXType.UniqueIdentifier,36,0)
+       new ParDef("AV39Udparg1",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmP00932;
        prmP00932 = new Object[] {
@@ -435,10 +548,14 @@ public class prc_sendresidentnotification__default : DataStoreHelperBase, IDataS
        Object[] prmP00934;
        prmP00934 = new Object[] {
        };
+       Object[] prmP00935;
+       prmP00935 = new Object[] {
+       };
        def= new CursorDef[] {
            new CursorDef("P00932", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00932,100, GxCacheFrequency.OFF ,false,false )
-          ,new CursorDef("P00933", "SELECT LocationId, ResidentGUID, ResidentId, OrganisationId FROM Trn_Resident WHERE LocationId = :AV33Udparg1 ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00933,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("P00933", "SELECT LocationId, ResidentGUID, ResidentLanguage, ResidentId, OrganisationId FROM Trn_Resident WHERE LocationId = :AV39Udparg1 ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00933,100, GxCacheFrequency.OFF ,false,false )
           ,new CursorDef("P00934", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00934,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("P00935", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00935,100, GxCacheFrequency.OFF ,false,false )
        };
     }
  }
@@ -452,16 +569,23 @@ public class prc_sendresidentnotification__default : DataStoreHelperBase, IDataS
           case 0 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+             ((Guid[]) buf[4])[0] = rslt.getGuid(5);
              return;
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+             ((Guid[]) buf[4])[0] = rslt.getGuid(5);
              return;
           case 2 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getString(2, 1000);
+             ((string[]) buf[2])[0] = rslt.getString(3, 128);
+             return;
+          case 3 :
              ((string[]) buf[0])[0] = rslt.getVarchar(1);
              ((string[]) buf[1])[0] = rslt.getString(2, 1000);
              ((string[]) buf[2])[0] = rslt.getString(3, 128);

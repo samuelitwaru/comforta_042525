@@ -118,7 +118,7 @@ namespace GeneXus.Programs {
                {
                   AV8GAMErrorItem = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
                   AV8GAMErrorItem.gxTpr_Code = 462;
-                  AV8GAMErrorItem.gxTpr_Message = "Activation error - "+AV13ErrDescription;
+                  AV8GAMErrorItem.gxTpr_Message = context.GetMessage( "Activation error - ", "")+AV13ErrDescription;
                   AV14GAMErrorCollection.Add(AV8GAMErrorItem, 0);
                }
             }

@@ -161,13 +161,13 @@ namespace GeneXus.Programs {
          if ( AV21Trn_Memo.Success() )
          {
             context.CommitDataStores("prc_creatememo",pr_default);
-            AV9Error.gxTpr_Status = "Success";
-            AV9Error.gxTpr_Message = "Memo created successfully";
+            AV9Error.gxTpr_Status = context.GetMessage( "Success", "");
+            AV9Error.gxTpr_Message = context.GetMessage( "Memo created successfully", "");
          }
          else
          {
-            AV9Error.gxTpr_Status = "Error";
-            AV9Error.gxTpr_Message = "Failed to create memo";
+            AV9Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV9Error.gxTpr_Message = context.GetMessage( "Failed to create memo", "");
             context.RollbackDataStores("prc_creatememo",pr_default);
          }
          cleanup();

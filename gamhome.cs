@@ -205,7 +205,7 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          context.WriteHtmlText( "<title>") ;
-         context.SendWebValue( "Home") ;
+         context.SendWebValue( context.GetMessage( "GAM_Home", "")) ;
          context.WriteHtmlTextNl( "</title>") ;
          if ( context.isSpaRequest( ) )
          {
@@ -262,7 +262,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV42Id), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV42Id), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV42Id), "ZZZ9"), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISJAVAENVIRONMENT", AV39isJavaEnvironment);
          GxWebStd.gx_hidden_field( context, "gxhash_vISJAVAENVIRONMENT", GetSecureSignedToken( "", AV39isJavaEnvironment, context));
@@ -274,7 +274,7 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV42Id), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV42Id), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV42Id), "ZZZ9"), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISJAVAENVIRONMENT", AV39isJavaEnvironment);
          GxWebStd.gx_hidden_field( context, "gxhash_vISJAVAENVIRONMENT", GetSecureSignedToken( "", AV39isJavaEnvironment, context));
@@ -300,6 +300,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -315,7 +327,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Home" ;
+         return context.GetMessage( "GAM_Home", "") ;
       }
 
       protected void WB0R0( )
@@ -344,7 +356,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 stack-bottom-xxxl", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblWelcome_Internalname, "WELCOME TO GENEXUS ACCESS MANAGER", "", "", lblWelcome_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Title", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
+            GxWebStd.gx_label_ctrl( context, lblWelcome_Internalname, context.GetMessage( "GAM_WELCOMETOGENEXUSACCESSMANAGER", ""), "", "", lblWelcome_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Title", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -352,7 +364,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 stack-bottom-xxl stack-top-l", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblock2_Internalname, "You were redirected to this panel because you don't have the Home Object configured for the application.", "", "", lblTextblock2_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblock2_Internalname, context.GetMessage( "GAM_YouwereredirectedtothispanelbecauseyoudonthavetheHomeObjectconfiguredfortheapplication", ""), "", "", lblTextblock2_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -366,12 +378,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 30, "px", "col-xs-12 col-sm-5", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblock4_Internalname, "If you want to go to the GAM's Backoffice", "", "", lblTextblock4_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblock4_Internalname, context.GetMessage( "GAM_IfyouwanttogototheGAMsBackoffice", ""), "", "", lblTextblock4_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 30, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblock7_Internalname, "click here", "", "", lblTextblock7_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'GOBACKEND\\'."+"'", "", "TextBlock", 5, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblock7_Internalname, context.GetMessage( "GAM_clickhere", ""), "", "", lblTextblock7_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'GOBACKEND\\'."+"'", "", "TextBlock", 5, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -379,12 +391,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 30, "px", "col-xs-12 col-sm-5", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblock5_Internalname, "If you want to go to the Developer Menu", "", "", lblTextblock5_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblock5_Internalname, context.GetMessage( "GAM_IfyouwanttogototheDeveloperMenu", ""), "", "", lblTextblock5_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 30, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblock8_Internalname, "click here", "", "", lblTextblock8_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'GODEVMENU\\'."+"'", "", "TextBlock", 5, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblock8_Internalname, context.GetMessage( "GAM_clickhere", ""), "", "", lblTextblock8_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'GODEVMENU\\'."+"'", "", "TextBlock", 5, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -392,12 +404,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 30, "px", "col-xs-12 col-sm-5", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblock3_Internalname, "For more information about this, you can", "", "", lblTextblock3_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblock3_Internalname, context.GetMessage( "GAM_Formoreinformationaboutthisyoucan", ""), "", "", lblTextblock3_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 30, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblock6_Internalname, "click here", "", "", lblTextblock6_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'GODOC\\'."+"'", "", "TextBlock", 5, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblock6_Internalname, context.GetMessage( "GAM_clickhere", ""), "", "", lblTextblock6_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'GODOC\\'."+"'", "", "TextBlock", 5, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -408,7 +420,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 stack-bottom-l stack-top-l", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblock9_Internalname, "If you want to configure the Home Object you can write it's name here (you have to specify the qualified name if the object is inside a module):", "", "", lblTextblock9_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblock9_Internalname, context.GetMessage( "GAM_IfyouwanttoconfiguretheHomeObjectyoucanwriteitsnamehere", ""), "", "", lblTextblock9_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -418,10 +430,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavApplicationhomeobject_Internalname, "Home Object", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavApplicationhomeobject_Internalname, context.GetMessage( "GAM_HomeObject", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 37,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavApplicationhomeobject_Internalname, StringUtil.RTrim( AV36ApplicationHomeObject), StringUtil.RTrim( context.localUtil.Format( AV36ApplicationHomeObject, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,37);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "Home Object Name", edtavApplicationhomeobject_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavApplicationhomeobject_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_GAMHome.htm");
+            GxWebStd.gx_single_line_edit( context, edtavApplicationhomeobject_Internalname, StringUtil.RTrim( AV36ApplicationHomeObject), StringUtil.RTrim( context.localUtil.Format( AV36ApplicationHomeObject, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,37);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "GAM_HomeObjectName", ""), edtavApplicationhomeobject_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavApplicationhomeobject_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -429,7 +441,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'',false,'',0)\"";
             ClassString = "Button Primary";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttConfirm_Internalname, "", "Save and Go", bttConfirm_Jsonclick, 5, "Save and Go", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'CONFIRM\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMHome.htm");
+            GxWebStd.gx_button_ctrl( context, bttConfirm_Internalname, "", context.GetMessage( "GAM_SaveandGo", ""), bttConfirm_Jsonclick, 5, context.GetMessage( "GAM_SaveandGo", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'CONFIRM\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMHome.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -453,7 +465,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Home", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "GAM_Home", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -665,7 +677,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_lvl_hashes0R2( )
       {
-         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV42Id), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV42Id), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV42Id), "ZZZ9"), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISJAVAENVIRONMENT", AV39isJavaEnvironment);
          GxWebStd.gx_hidden_field( context, "gxhash_vISJAVAENVIRONMENT", GetSecureSignedToken( "", AV39isJavaEnvironment, context));
@@ -840,7 +852,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254241153997", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271813454", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -855,8 +867,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamhome.js", "?20254241153998", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("gamhome.js", "?20254271813455", false, true);
          /* End function include_jscripts */
       }
 

@@ -281,7 +281,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A542MemoCategoryId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_MemoCategory'.", "ForeignKeyNotFound", 1, "MEMOCATEGORYID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_MemoCategory", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEMOCATEGORYID");
             AnyError = 1;
          }
          A543MemoCategoryName = BC001P4_A543MemoCategoryName[0];
@@ -290,7 +290,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {A62ResidentId, A528SG_LocationId, A529SG_OrganisationId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Resident'.", "ForeignKeyNotFound", 1, "SG_ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SG_ORGANISATIONID");
             AnyError = 1;
          }
          A72ResidentSalutation = BC001P5_A72ResidentSalutation[0];

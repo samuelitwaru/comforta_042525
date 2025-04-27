@@ -80,7 +80,7 @@ namespace GeneXus.Programs {
          pr_default.close(0);
          if ( AV32GXLvl4 == 0 )
          {
-            AV30AppVersionName = "Version 1";
+            AV30AppVersionName = context.GetMessage( "Version 1", "");
             AV31IsActive = true;
             new prc_createappversion(context ).execute(  AV30AppVersionName,  AV31IsActive, out  AV28SDT_AppVersion, out  AV29SDT_Error) ;
          }

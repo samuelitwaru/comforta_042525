@@ -124,7 +124,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Trn_Dynamic Form Translation", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Trn_Dynamic Form Translation", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -292,7 +292,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Control Group */
-         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, "General Information", 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_DynamicFormTranslation.htm");
+         GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "WWP_TemplateDataPanelTitle", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_Trn_DynamicFormTranslation.htm");
          /* Div Control */
          GxWebStd.gx_div_start( context, divTablecontent_Internalname, 1, 0, "px", 0, "px", "CellMarginTop10", "start", "top", "", "", "div");
          /* Div Control */
@@ -308,7 +308,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtDynamicFormTranslationId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtDynamicFormTranslationId_Internalname, "Translation Id", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtDynamicFormTranslationId_Internalname, context.GetMessage( "Translation Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -325,12 +325,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtDynamicFormTranslationWWpFormI_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtDynamicFormTranslationWWpFormI_Internalname, "Form Id", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtDynamicFormTranslationWWpFormI_Internalname, context.GetMessage( "Form Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtDynamicFormTranslationWWpFormI_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A588DynamicFormTranslationWWpFormI), 6, 0, ".", "")), StringUtil.LTrim( ((edtDynamicFormTranslationWWpFormI_Enabled!=0) ? context.localUtil.Format( (decimal)(A588DynamicFormTranslationWWpFormI), "ZZZZZ9") : context.localUtil.Format( (decimal)(A588DynamicFormTranslationWWpFormI), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,26);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtDynamicFormTranslationWWpFormI_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtDynamicFormTranslationWWpFormI_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_DynamicFormTranslation.htm");
+         GxWebStd.gx_single_line_edit( context, edtDynamicFormTranslationWWpFormI_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A588DynamicFormTranslationWWpFormI), 6, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtDynamicFormTranslationWWpFormI_Enabled!=0) ? context.localUtil.Format( (decimal)(A588DynamicFormTranslationWWpFormI), "ZZZZZ9") : context.localUtil.Format( (decimal)(A588DynamicFormTranslationWWpFormI), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,26);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtDynamicFormTranslationWWpFormI_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtDynamicFormTranslationWWpFormI_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_DynamicFormTranslation.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -342,12 +342,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtDynamicFormTranslationWWPFormV_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtDynamicFormTranslationWWPFormV_Internalname, "Version Number", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtDynamicFormTranslationWWPFormV_Internalname, context.GetMessage( "Version Number", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtDynamicFormTranslationWWPFormV_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A589DynamicFormTranslationWWPFormV), 6, 0, ".", "")), StringUtil.LTrim( ((edtDynamicFormTranslationWWPFormV_Enabled!=0) ? context.localUtil.Format( (decimal)(A589DynamicFormTranslationWWPFormV), "ZZZZZ9") : context.localUtil.Format( (decimal)(A589DynamicFormTranslationWWPFormV), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,31);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtDynamicFormTranslationWWPFormV_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtDynamicFormTranslationWWPFormV_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_DynamicFormTranslation.htm");
+         GxWebStd.gx_single_line_edit( context, edtDynamicFormTranslationWWPFormV_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A589DynamicFormTranslationWWPFormV), 6, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtDynamicFormTranslationWWPFormV_Enabled!=0) ? context.localUtil.Format( (decimal)(A589DynamicFormTranslationWWPFormV), "ZZZZZ9") : context.localUtil.Format( (decimal)(A589DynamicFormTranslationWWPFormV), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,31);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtDynamicFormTranslationWWPFormV_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtDynamicFormTranslationWWPFormV_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_DynamicFormTranslation.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -359,12 +359,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtDynamicFormTranslationWWPFormE_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtDynamicFormTranslationWWPFormE_Internalname, "Element Id", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtDynamicFormTranslationWWPFormE_Internalname, context.GetMessage( "Element Id", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtDynamicFormTranslationWWPFormE_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A590DynamicFormTranslationWWPFormE), 6, 0, ".", "")), StringUtil.LTrim( ((edtDynamicFormTranslationWWPFormE_Enabled!=0) ? context.localUtil.Format( (decimal)(A590DynamicFormTranslationWWPFormE), "ZZZZZ9") : context.localUtil.Format( (decimal)(A590DynamicFormTranslationWWPFormE), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,36);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtDynamicFormTranslationWWPFormE_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtDynamicFormTranslationWWPFormE_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_DynamicFormTranslation.htm");
+         GxWebStd.gx_single_line_edit( context, edtDynamicFormTranslationWWPFormE_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A590DynamicFormTranslationWWPFormE), 6, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtDynamicFormTranslationWWPFormE_Enabled!=0) ? context.localUtil.Format( (decimal)(A590DynamicFormTranslationWWPFormE), "ZZZZZ9") : context.localUtil.Format( (decimal)(A590DynamicFormTranslationWWPFormE), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,36);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtDynamicFormTranslationWWPFormE_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtDynamicFormTranslationWWPFormE_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_DynamicFormTranslation.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -376,7 +376,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtDynamicFormTranslationTrnName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtDynamicFormTranslationTrnName_Internalname, "Trn Name", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtDynamicFormTranslationTrnName_Internalname, context.GetMessage( "Trn Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -397,7 +397,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtDynamicFormTranslationAttribut_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtDynamicFormTranslationAttribut_Internalname, "Attribute Name", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtDynamicFormTranslationAttribut_Internalname, context.GetMessage( "Attribute Name", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -414,7 +414,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtDynamicFormTranslationEnglish_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtDynamicFormTranslationEnglish_Internalname, "Translation English", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtDynamicFormTranslationEnglish_Internalname, context.GetMessage( "Translation English", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -435,7 +435,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtDynamicFormTranslationDutch_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtDynamicFormTranslationDutch_Internalname, "Translation Dutch", "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtDynamicFormTranslationDutch_Internalname, context.GetMessage( "Translation Dutch", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -467,21 +467,21 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 61,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", "Confirm", bttBtntrn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_DynamicFormTranslation.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_DynamicFormTranslation.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 63,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", "Cancel", bttBtntrn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_DynamicFormTranslation.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_DynamicFormTranslation.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 65,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", "Delete", bttBtntrn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_DynamicFormTranslation.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_DynamicFormTranslation.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -530,16 +530,16 @@ namespace GeneXus.Programs {
                /* Read saved SDTs. */
                /* Read saved values. */
                Z587DynamicFormTranslationId = StringUtil.StrToGuid( cgiGet( "Z587DynamicFormTranslationId"));
-               Z588DynamicFormTranslationWWpFormI = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z588DynamicFormTranslationWWpFormI"), ".", ","), 18, MidpointRounding.ToEven));
-               Z589DynamicFormTranslationWWPFormV = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z589DynamicFormTranslationWWPFormV"), ".", ","), 18, MidpointRounding.ToEven));
-               Z590DynamicFormTranslationWWPFormE = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z590DynamicFormTranslationWWPFormE"), ".", ","), 18, MidpointRounding.ToEven));
+               Z588DynamicFormTranslationWWpFormI = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z588DynamicFormTranslationWWpFormI"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               Z589DynamicFormTranslationWWPFormV = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z589DynamicFormTranslationWWPFormV"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               Z590DynamicFormTranslationWWPFormE = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z590DynamicFormTranslationWWPFormE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Z591DynamicFormTranslationTrnName = cgiGet( "Z591DynamicFormTranslationTrnName");
                Z592DynamicFormTranslationAttribut = cgiGet( "Z592DynamicFormTranslationAttribut");
-               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+               IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
                AV7DynamicFormTranslationId = StringUtil.StrToGuid( cgiGet( "vDYNAMICFORMTRANSLATIONID"));
-               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), ".", ","), 18, MidpointRounding.ToEven));
+               Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                if ( StringUtil.StrCmp(cgiGet( edtDynamicFormTranslationId_Internalname), "") == 0 )
                {
@@ -562,7 +562,7 @@ namespace GeneXus.Programs {
                      wbErr = true;
                   }
                }
-               if ( ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWpFormI_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWpFormI_Internalname), ".", ",") > Convert.ToDecimal( 999999 )) ) )
+               if ( ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWpFormI_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWpFormI_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999 )) ) )
                {
                   GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "DYNAMICFORMTRANSLATIONWWPFORMI");
                   AnyError = 1;
@@ -574,10 +574,10 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  A588DynamicFormTranslationWWpFormI = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWpFormI_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                  A588DynamicFormTranslationWWpFormI = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWpFormI_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                   AssignAttri("", false, "A588DynamicFormTranslationWWpFormI", StringUtil.LTrimStr( (decimal)(A588DynamicFormTranslationWWpFormI), 6, 0));
                }
-               if ( ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormV_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormV_Internalname), ".", ",") > Convert.ToDecimal( 999999 )) ) )
+               if ( ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormV_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormV_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999 )) ) )
                {
                   GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "DYNAMICFORMTRANSLATIONWWPFORMV");
                   AnyError = 1;
@@ -589,10 +589,10 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  A589DynamicFormTranslationWWPFormV = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormV_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                  A589DynamicFormTranslationWWPFormV = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormV_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                   AssignAttri("", false, "A589DynamicFormTranslationWWPFormV", StringUtil.LTrimStr( (decimal)(A589DynamicFormTranslationWWPFormV), 6, 0));
                }
-               if ( ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormE_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormE_Internalname), ".", ",") > Convert.ToDecimal( 999999 )) ) )
+               if ( ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormE_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormE_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999 )) ) )
                {
                   GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "DYNAMICFORMTRANSLATIONWWPFORME");
                   AnyError = 1;
@@ -604,7 +604,7 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  A590DynamicFormTranslationWWPFormE = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormE_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                  A590DynamicFormTranslationWWPFormE = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtDynamicFormTranslationWWPFormE_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                   AssignAttri("", false, "A590DynamicFormTranslationWWPFormE", StringUtil.LTrimStr( (decimal)(A590DynamicFormTranslationWWPFormE), 6, 0));
                }
                A591DynamicFormTranslationTrnName = cgiGet( edtDynamicFormTranslationTrnName_Internalname);
@@ -1719,13 +1719,13 @@ namespace GeneXus.Programs {
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "Z587DynamicFormTranslationId", Z587DynamicFormTranslationId.ToString());
-         GxWebStd.gx_hidden_field( context, "Z588DynamicFormTranslationWWpFormI", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z588DynamicFormTranslationWWpFormI), 6, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z589DynamicFormTranslationWWPFormV", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z589DynamicFormTranslationWWPFormV), 6, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z590DynamicFormTranslationWWPFormE", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z590DynamicFormTranslationWWPFormE), 6, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z588DynamicFormTranslationWWpFormI", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z588DynamicFormTranslationWWpFormI), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "Z589DynamicFormTranslationWWPFormV", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z589DynamicFormTranslationWWPFormV), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "Z590DynamicFormTranslationWWPFormE", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z590DynamicFormTranslationWWPFormE), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z591DynamicFormTranslationTrnName", Z591DynamicFormTranslationTrnName);
          GxWebStd.gx_hidden_field( context, "Z592DynamicFormTranslationAttribut", Z592DynamicFormTranslationAttribut);
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_Mode", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
@@ -1741,7 +1741,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vTRNCONTEXT", GetSecureSignedToken( "", AV11TrnContext, context));
          GxWebStd.gx_hidden_field( context, "vDYNAMICFORMTRANSLATIONID", AV7DynamicFormTranslationId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vDYNAMICFORMTRANSLATIONID", GetSecureSignedToken( "", AV7DynamicFormTranslationId, context));
-         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -1763,6 +1763,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -1808,7 +1820,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Trn_Dynamic Form Translation" ;
+         return context.GetMessage( "Trn_Dynamic Form Translation", "") ;
       }
 
       protected void InitializeNonKey1R105( )
@@ -1856,7 +1868,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254241152599", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718124749", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1871,8 +1883,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_dynamicformtranslation.js", "?20254241152599", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("trn_dynamicformtranslation.js", "?202542718124750", false, true);
          /* End function include_jscripts */
       }
 
@@ -1909,7 +1921,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Trn_Dynamic Form Translation";
+         Form.Caption = context.GetMessage( "Trn_Dynamic Form Translation", "");
          bttBtntrn_delete_Enabled = 0;
          bttBtntrn_delete_Visible = 1;
          bttBtntrn_cancel_Visible = 1;

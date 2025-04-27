@@ -118,7 +118,7 @@ namespace GeneXus.Programs {
          AV15SDT_OneSignalCustomBody.gxTpr_Data = AV24NotificationMetadata;
          AV8body = AV15SDT_OneSignalCustomBody.ToJSonString(false, true);
          AV11HttpClient.AddString(AV8body);
-         AV11HttpClient.Execute("POST", "notifications");
+         AV11HttpClient.Execute(context.GetMessage( "POST", ""), "notifications");
          if ( AV11HttpClient.StatusCode == 200 )
          {
             AV22IsSuccessful = true;

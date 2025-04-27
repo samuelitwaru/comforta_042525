@@ -95,7 +95,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                AV13WWPSubscription.gxTpr_Wwpsubscriptionentityrecorddescription = AV11WWPSubscriptionEntityRecordDescription;
                AV13WWPSubscription.gxTpr_Wwpsubscriptionsubscribed = true;
                GXt_char1 = "";
-               new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context ).execute( out  GXt_char1) ;
+               new uwwp_getloggeduserid(context ).execute( out  GXt_char1) ;
                AV13WWPSubscription.gxTpr_Wwpuserextendedid = GXt_char1;
                AV13WWPSubscription.Save();
                AV8WWPSubscriptionId = AV13WWPSubscription.gxTpr_Wwpsubscriptionid;
@@ -116,7 +116,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             else
             {
                AV13WWPSubscription.Load(AV8WWPSubscriptionId);
-               if ( StringUtil.StrCmp(AV13WWPSubscription.gxTpr_Wwpuserextendedid, new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context).executeUdp( )) == 0 )
+               if ( StringUtil.StrCmp(AV13WWPSubscription.gxTpr_Wwpuserextendedid, new uwwp_getloggeduserid(context).executeUdp( )) == 0 )
                {
                   AV13WWPSubscription.Delete();
                }
@@ -149,7 +149,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          AV13WWPSubscription.gxTpr_Wwpsubscriptionentityrecorddescription = AV11WWPSubscriptionEntityRecordDescription;
          AV13WWPSubscription.gxTpr_Wwpsubscriptionsubscribed = false;
          GXt_char1 = "";
-         new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context ).execute( out  GXt_char1) ;
+         new uwwp_getloggeduserid(context ).execute( out  GXt_char1) ;
          AV13WWPSubscription.gxTpr_Wwpuserextendedid = GXt_char1;
          AV13WWPSubscription.Save();
          AV8WWPSubscriptionId = AV13WWPSubscription.gxTpr_Wwpsubscriptionid;

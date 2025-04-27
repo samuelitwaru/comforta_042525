@@ -113,7 +113,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Trn_Gam Session", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Trn_Gam Session", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -251,7 +251,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, "Trn_Gam Session", "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, context.GetMessage( "Trn_Gam Session", ""), "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -313,7 +313,7 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
          ClassString = "Button button-secondary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", "Select", bttBtn_select_Jsonclick, 5, "Select", "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", context.GetMessage( "GX_BtnSelect", ""), bttBtn_select_Jsonclick, 5, context.GetMessage( "GX_BtnSelect", ""), "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -326,12 +326,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtrepid_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtrepid_Internalname, "repid", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtrepid_Internalname, context.GetMessage( "repid", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtrepid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A449repid), 9, 0, ".", "")), StringUtil.LTrim( ((edtrepid_Enabled!=0) ? context.localUtil.Format( (decimal)(A449repid), "ZZZZZZZZ9") : context.localUtil.Format( (decimal)(A449repid), "ZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtrepid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtrepid_Enabled, 0, "text", "1", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtrepid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A449repid), 9, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtrepid_Enabled!=0) ? context.localUtil.Format( (decimal)(A449repid), "ZZZZZZZZ9") : context.localUtil.Format( (decimal)(A449repid), "ZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtrepid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtrepid_Enabled, 0, "text", "1", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -343,7 +343,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsestoken_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsestoken_Internalname, "sestoken", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsestoken_Internalname, context.GetMessage( "sestoken", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -360,13 +360,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesdate_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesdate_Internalname, "sesdate", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesdate_Internalname, context.GetMessage( "sesdate", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtsesdate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtsesdate_Internalname, context.localUtil.TToC( A457sesdate, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( A457sesdate, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onblur(this,44);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesdate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesdate_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsesdate_Internalname, context.localUtil.TToC( A457sesdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A457sesdate, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,44);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesdate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesdate_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_bitmap( context, edtsesdate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtsesdate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_GamSession.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -380,7 +380,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsessts_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsessts_Internalname, "sessts", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsessts_Internalname, context.GetMessage( "sessts", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -397,12 +397,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsestype_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsestype_Internalname, "sestype", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsestype_Internalname, context.GetMessage( "sestype", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 54,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtsestype_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A451sestype), 4, 0, ".", "")), StringUtil.LTrim( ((edtsestype_Enabled!=0) ? context.localUtil.Format( (decimal)(A451sestype), "ZZZ9") : context.localUtil.Format( (decimal)(A451sestype), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,54);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsestype_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsestype_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsestype_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A451sestype), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtsestype_Enabled!=0) ? context.localUtil.Format( (decimal)(A451sestype), "ZZZ9") : context.localUtil.Format( (decimal)(A451sestype), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,54);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsestype_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsestype_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -414,7 +414,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesurl_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesurl_Internalname, "sesurl", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesurl_Internalname, context.GetMessage( "sesurl", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -435,7 +435,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesipadd_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesipadd_Internalname, "sesipadd", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesipadd_Internalname, context.GetMessage( "sesipadd", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -452,12 +452,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtopesysid_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtopesysid_Internalname, "opesysid", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtopesysid_Internalname, context.GetMessage( "opesysid", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtopesysid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A454opesysid), 4, 0, ".", "")), StringUtil.LTrim( ((edtopesysid_Enabled!=0) ? context.localUtil.Format( (decimal)(A454opesysid), "ZZZ9") : context.localUtil.Format( (decimal)(A454opesysid), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,69);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtopesysid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtopesysid_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtopesysid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A454opesysid), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtopesysid_Enabled!=0) ? context.localUtil.Format( (decimal)(A454opesysid), "ZZZ9") : context.localUtil.Format( (decimal)(A454opesysid), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,69);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtopesysid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtopesysid_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -469,13 +469,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtseslastacc_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtseslastacc_Internalname, "seslastacc", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtseslastacc_Internalname, context.GetMessage( "seslastacc", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtseslastacc_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtseslastacc_Internalname, context.localUtil.TToC( A463seslastacc, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( A463seslastacc, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onblur(this,74);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtseslastacc_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtseslastacc_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtseslastacc_Internalname, context.localUtil.TToC( A463seslastacc, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A463seslastacc, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,74);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtseslastacc_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtseslastacc_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_bitmap( context, edtseslastacc_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtseslastacc_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_GamSession.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -489,12 +489,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsestimeout_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsestimeout_Internalname, "sestimeout", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsestimeout_Internalname, context.GetMessage( "sestimeout", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 79,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtsestimeout_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A464sestimeout), 4, 0, ".", "")), StringUtil.LTrim( ((edtsestimeout_Enabled!=0) ? context.localUtil.Format( (decimal)(A464sestimeout), "ZZZ9") : context.localUtil.Format( (decimal)(A464sestimeout), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,79);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsestimeout_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsestimeout_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsestimeout_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A464sestimeout), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtsestimeout_Enabled!=0) ? context.localUtil.Format( (decimal)(A464sestimeout), "ZZZ9") : context.localUtil.Format( (decimal)(A464sestimeout), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,79);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsestimeout_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsestimeout_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -506,12 +506,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtseslogatt_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtseslogatt_Internalname, "seslogatt", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtseslogatt_Internalname, context.GetMessage( "seslogatt", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 84,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtseslogatt_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A465seslogatt), 9, 0, ".", "")), StringUtil.LTrim( ((edtseslogatt_Enabled!=0) ? context.localUtil.Format( (decimal)(A465seslogatt), "ZZZZZZZZ9") : context.localUtil.Format( (decimal)(A465seslogatt), "ZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,84);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtseslogatt_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtseslogatt_Enabled, 0, "text", "1", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtseslogatt_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A465seslogatt), 9, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtseslogatt_Enabled!=0) ? context.localUtil.Format( (decimal)(A465seslogatt), "ZZZZZZZZ9") : context.localUtil.Format( (decimal)(A465seslogatt), "ZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,84);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtseslogatt_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtseslogatt_Enabled, 0, "text", "1", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -523,13 +523,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtseslogdate_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtseslogdate_Internalname, "seslogdate", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtseslogdate_Internalname, context.GetMessage( "seslogdate", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 89,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtseslogdate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtseslogdate_Internalname, context.localUtil.TToC( A466seslogdate, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( A466seslogdate, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onblur(this,89);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtseslogdate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtseslogdate_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtseslogdate_Internalname, context.localUtil.TToC( A466seslogdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A466seslogdate, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,89);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtseslogdate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtseslogdate_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_bitmap( context, edtseslogdate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtseslogdate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_GamSession.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -543,7 +543,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesshareddata_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesshareddata_Internalname, "sesshareddata", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesshareddata_Internalname, context.GetMessage( "sesshareddata", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -564,13 +564,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesenddate_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesenddate_Internalname, "sesenddate", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesenddate_Internalname, context.GetMessage( "sesenddate", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 99,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtsesenddate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtsesenddate_Internalname, context.localUtil.TToC( A468sesenddate, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( A468sesenddate, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onblur(this,99);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesenddate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesenddate_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsesenddate_Internalname, context.localUtil.TToC( A468sesenddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A468sesenddate, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,99);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesenddate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesenddate_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_bitmap( context, edtsesenddate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtsesenddate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_GamSession.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -584,14 +584,14 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chksesreload_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, chksesreload_Internalname, "sesreload", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, chksesreload_Internalname, context.GetMessage( "sesreload", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Check box */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 104,'',false,'',0)\"";
          ClassString = "Attribute";
          StyleString = "";
-         GxWebStd.gx_checkbox_ctrl( context, chksesreload_Internalname, StringUtil.BoolToStr( A469sesreload), "", "sesreload", 1, chksesreload.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(104, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,104);\"");
+         GxWebStd.gx_checkbox_ctrl( context, chksesreload_Internalname, StringUtil.BoolToStr( A469sesreload), "", context.GetMessage( "sesreload", ""), 1, chksesreload.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(104, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,104);\"");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -603,12 +603,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtbrwid_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtbrwid_Internalname, "brwid", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtbrwid_Internalname, context.GetMessage( "brwid", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 109,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtbrwid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A460brwid), 4, 0, ".", "")), StringUtil.LTrim( ((edtbrwid_Enabled!=0) ? context.localUtil.Format( (decimal)(A460brwid), "ZZZ9") : context.localUtil.Format( (decimal)(A460brwid), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,109);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtbrwid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtbrwid_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtbrwid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A460brwid), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtbrwid_Enabled!=0) ? context.localUtil.Format( (decimal)(A460brwid), "ZZZ9") : context.localUtil.Format( (decimal)(A460brwid), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,109);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtbrwid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtbrwid_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -620,7 +620,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtseslasturl_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtseslasturl_Internalname, "seslasturl", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtseslasturl_Internalname, context.GetMessage( "seslasturl", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -641,7 +641,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtseslogin_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtseslogin_Internalname, "seslogin", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtseslogin_Internalname, context.GetMessage( "seslogin", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -662,7 +662,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesexttoken_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesexttoken_Internalname, "sesexttoken", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesexttoken_Internalname, context.GetMessage( "sesexttoken", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -679,7 +679,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtuserguid_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtuserguid_Internalname, "userguid", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtuserguid_Internalname, context.GetMessage( "userguid", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -696,13 +696,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesapptokenexp_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesapptokenexp_Internalname, "sesapptokenexp", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesapptokenexp_Internalname, context.GetMessage( "sesapptokenexp", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 134,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtsesapptokenexp_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtsesapptokenexp_Internalname, context.localUtil.TToC( A472sesapptokenexp, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( A472sesapptokenexp, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onblur(this,134);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesapptokenexp_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesapptokenexp_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsesapptokenexp_Internalname, context.localUtil.TToC( A472sesapptokenexp, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A472sesapptokenexp, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,134);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesapptokenexp_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesapptokenexp_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_bitmap( context, edtsesapptokenexp_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtsesapptokenexp_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_GamSession.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -716,7 +716,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesrefreshtoken_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesrefreshtoken_Internalname, "sesrefreshtoken", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesrefreshtoken_Internalname, context.GetMessage( "sesrefreshtoken", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -733,12 +733,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesappid_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesappid_Internalname, "sesappid", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesappid_Internalname, context.GetMessage( "sesappid", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 144,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtsesappid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A453sesappid), 18, 0, ".", "")), StringUtil.LTrim( ((edtsesappid_Enabled!=0) ? context.localUtil.Format( (decimal)(A453sesappid), "ZZZZZZZZZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A453sesappid), "ZZZZZZZZZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,144);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesappid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesappid_Enabled, 0, "text", "1", 18, "chr", 1, "row", 18, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsesappid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A453sesappid), 18, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtsesappid_Enabled!=0) ? context.localUtil.Format( (decimal)(A453sesappid), "ZZZZZZZZZZZZZZZZZ9") : context.localUtil.Format( (decimal)(A453sesappid), "ZZZZZZZZZZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,144);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesappid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesappid_Enabled, 0, "text", "1", 18, "chr", 1, "row", 18, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -750,7 +750,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesdeviceid_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesdeviceid_Internalname, "sesdeviceid", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesdeviceid_Internalname, context.GetMessage( "sesdeviceid", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -767,7 +767,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesexttoken2_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesexttoken2_Internalname, "sesexttoken2", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesexttoken2_Internalname, context.GetMessage( "sesexttoken2", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -788,7 +788,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesauttypename_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesauttypename_Internalname, "sesauttypename", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesauttypename_Internalname, context.GetMessage( "sesauttypename", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -805,12 +805,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesoauthtokenmaxrenew_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesoauthtokenmaxrenew_Internalname, "sesoauthtokenmaxrenew", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesoauthtokenmaxrenew_Internalname, context.GetMessage( "sesoauthtokenmaxrenew", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 164,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtsesoauthtokenmaxrenew_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A475sesoauthtokenmaxrenew), 4, 0, ".", "")), StringUtil.LTrim( ((edtsesoauthtokenmaxrenew_Enabled!=0) ? context.localUtil.Format( (decimal)(A475sesoauthtokenmaxrenew), "ZZZ9") : context.localUtil.Format( (decimal)(A475sesoauthtokenmaxrenew), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,164);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesoauthtokenmaxrenew_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesoauthtokenmaxrenew_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsesoauthtokenmaxrenew_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A475sesoauthtokenmaxrenew), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtsesoauthtokenmaxrenew_Enabled!=0) ? context.localUtil.Format( (decimal)(A475sesoauthtokenmaxrenew), "ZZZ9") : context.localUtil.Format( (decimal)(A475sesoauthtokenmaxrenew), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,164);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesoauthtokenmaxrenew_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesoauthtokenmaxrenew_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -822,12 +822,12 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesoauthtokenexpires_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesoauthtokenexpires_Internalname, "sesoauthtokenexpires", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesoauthtokenexpires_Internalname, context.GetMessage( "sesoauthtokenexpires", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 169,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtsesoauthtokenexpires_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A476sesoauthtokenexpires), 9, 0, ".", "")), StringUtil.LTrim( ((edtsesoauthtokenexpires_Enabled!=0) ? context.localUtil.Format( (decimal)(A476sesoauthtokenexpires), "ZZZZZZZZ9") : context.localUtil.Format( (decimal)(A476sesoauthtokenexpires), "ZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,169);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesoauthtokenexpires_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesoauthtokenexpires_Enabled, 0, "text", "1", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsesoauthtokenexpires_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A476sesoauthtokenexpires), 9, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtsesoauthtokenexpires_Enabled!=0) ? context.localUtil.Format( (decimal)(A476sesoauthtokenexpires), "ZZZZZZZZ9") : context.localUtil.Format( (decimal)(A476sesoauthtokenexpires), "ZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,169);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesoauthtokenexpires_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesoauthtokenexpires_Enabled, 0, "text", "1", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -839,7 +839,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesoauthscope_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesoauthscope_Internalname, "sesoauthscope", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesoauthscope_Internalname, context.GetMessage( "sesoauthscope", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -860,7 +860,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesexttoken3_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesexttoken3_Internalname, "sesexttoken3", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesexttoken3_Internalname, context.GetMessage( "sesexttoken3", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -881,13 +881,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesexttokenexpires_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesexttokenexpires_Internalname, "sesexttokenexpires", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesexttokenexpires_Internalname, context.GetMessage( "sesexttokenexpires", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 184,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtsesexttokenexpires_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtsesexttokenexpires_Internalname, context.localUtil.TToC( A479sesexttokenexpires, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( A479sesexttokenexpires, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onblur(this,184);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesexttokenexpires_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesexttokenexpires_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsesexttokenexpires_Internalname, context.localUtil.TToC( A479sesexttokenexpires, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A479sesexttokenexpires, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,184);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesexttokenexpires_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesexttokenexpires_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_bitmap( context, edtsesexttokenexpires_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtsesexttokenexpires_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_GamSession.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -901,7 +901,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesexttokenrefresh_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesexttokenrefresh_Internalname, "sesexttokenrefresh", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesexttokenrefresh_Internalname, context.GetMessage( "sesexttokenrefresh", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -922,7 +922,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesjson_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesjson_Internalname, "sesjson", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesjson_Internalname, context.GetMessage( "sesjson", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -943,7 +943,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesidtoken_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesidtoken_Internalname, "sesidtoken", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesidtoken_Internalname, context.GetMessage( "sesidtoken", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -969,7 +969,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesotp_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesotp_Internalname, "sesotp", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesotp_Internalname, context.GetMessage( "sesotp", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Multiple line edit */
@@ -990,13 +990,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtsesotpexpire_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtsesotpexpire_Internalname, "sesotpexpire", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtsesotpexpire_Internalname, context.GetMessage( "sesotpexpire", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 209,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtsesotpexpire_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtsesotpexpire_Internalname, context.localUtil.TToC( A483sesotpexpire, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( A483sesotpexpire, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'DMY',8,24,'eng',false,0);"+";gx.evt.onblur(this,209);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesotpexpire_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesotpexpire_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_single_line_edit( context, edtsesotpexpire_Internalname, context.localUtil.TToC( A483sesotpexpire, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A483sesotpexpire, "99/99/9999 99:99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',8,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,209);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtsesotpexpire_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtsesotpexpire_Enabled, 0, "text", "", 22, "chr", 1, "row", 22, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_GamSession.htm");
          GxWebStd.gx_bitmap( context, edtsesotpexpire_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtsesotpexpire_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_GamSession.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1010,14 +1010,14 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chksesendedbyotherlogin_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, chksesendedbyotherlogin_Internalname, "sesendedbyotherlogin", "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, chksesendedbyotherlogin_Internalname, context.GetMessage( "sesendedbyotherlogin", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Check box */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 214,'',false,'',0)\"";
          ClassString = "Attribute";
          StyleString = "";
-         GxWebStd.gx_checkbox_ctrl( context, chksesendedbyotherlogin_Internalname, StringUtil.BoolToStr( A484sesendedbyotherlogin), "", "sesendedbyotherlogin", 1, chksesendedbyotherlogin.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(214, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,214);\"");
+         GxWebStd.gx_checkbox_ctrl( context, chksesendedbyotherlogin_Internalname, StringUtil.BoolToStr( A484sesendedbyotherlogin), "", context.GetMessage( "sesendedbyotherlogin", ""), 1, chksesendedbyotherlogin.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(214, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,214);\"");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1036,21 +1036,21 @@ namespace GeneXus.Programs {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 219,'',false,'',0)\"";
          ClassString = "Button button-primary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", "Confirm", bttBtn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 221,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", "Cancel", bttBtn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 223,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", "Delete", bttBtn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_GamSession.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_GamSession.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "end", "Middle", "div");
@@ -1089,33 +1089,33 @@ namespace GeneXus.Programs {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            Z449repid = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z449repid"), ".", ","), 18, MidpointRounding.ToEven));
+            Z449repid = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z449repid"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z448sestoken = cgiGet( "Z448sestoken");
             Z457sesdate = context.localUtil.CToT( cgiGet( "Z457sesdate"), 0);
             Z450sessts = cgiGet( "Z450sessts");
-            Z451sestype = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z451sestype"), ".", ","), 18, MidpointRounding.ToEven));
+            Z451sestype = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z451sestype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z461sesurl = cgiGet( "Z461sesurl");
             Z462sesipadd = cgiGet( "Z462sesipadd");
-            Z454opesysid = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z454opesysid"), ".", ","), 18, MidpointRounding.ToEven));
+            Z454opesysid = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z454opesysid"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z463seslastacc = context.localUtil.CToT( cgiGet( "Z463seslastacc"), 0);
-            Z464sestimeout = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z464sestimeout"), ".", ","), 18, MidpointRounding.ToEven));
-            Z465seslogatt = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z465seslogatt"), ".", ","), 18, MidpointRounding.ToEven));
+            Z464sestimeout = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z464sestimeout"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Z465seslogatt = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z465seslogatt"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z466seslogdate = context.localUtil.CToT( cgiGet( "Z466seslogdate"), 0);
             Z468sesenddate = context.localUtil.CToT( cgiGet( "Z468sesenddate"), 0);
             Z469sesreload = StringUtil.StrToBool( cgiGet( "Z469sesreload"));
-            Z460brwid = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z460brwid"), ".", ","), 18, MidpointRounding.ToEven));
+            Z460brwid = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z460brwid"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z470seslasturl = cgiGet( "Z470seslasturl");
             Z471seslogin = cgiGet( "Z471seslogin");
             Z455sesexttoken = cgiGet( "Z455sesexttoken");
             Z456userguid = cgiGet( "Z456userguid");
             Z472sesapptokenexp = context.localUtil.CToT( cgiGet( "Z472sesapptokenexp"), 0);
             Z452sesrefreshtoken = cgiGet( "Z452sesrefreshtoken");
-            Z453sesappid = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z453sesappid"), ".", ","), 18, MidpointRounding.ToEven));
+            Z453sesappid = (long)(Math.Round(context.localUtil.CToN( cgiGet( "Z453sesappid"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z473sesdeviceid = cgiGet( "Z473sesdeviceid");
             Z474sesexttoken2 = cgiGet( "Z474sesexttoken2");
             Z458sesauttypename = cgiGet( "Z458sesauttypename");
-            Z475sesoauthtokenmaxrenew = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z475sesoauthtokenmaxrenew"), ".", ","), 18, MidpointRounding.ToEven));
-            Z476sesoauthtokenexpires = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z476sesoauthtokenexpires"), ".", ","), 18, MidpointRounding.ToEven));
+            Z475sesoauthtokenmaxrenew = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z475sesoauthtokenmaxrenew"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Z476sesoauthtokenexpires = (int)(Math.Round(context.localUtil.CToN( cgiGet( "Z476sesoauthtokenexpires"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Z477sesoauthscope = cgiGet( "Z477sesoauthscope");
             Z479sesexttokenexpires = context.localUtil.CToT( cgiGet( "Z479sesexttokenexpires"), 0);
             Z480sesexttokenrefresh = cgiGet( "Z480sesexttokenrefresh");
@@ -1123,11 +1123,11 @@ namespace GeneXus.Programs {
             Z459sesotp = cgiGet( "Z459sesotp");
             Z483sesotpexpire = context.localUtil.CToT( cgiGet( "Z483sesotpexpire"), 0);
             Z484sesendedbyotherlogin = StringUtil.StrToBool( cgiGet( "Z484sesendedbyotherlogin"));
-            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
-            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
+            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Gx_mode = cgiGet( "Mode");
             /* Read variables values. */
-            if ( ( ( context.localUtil.CToN( cgiGet( edtrepid_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtrepid_Internalname), ".", ",") > Convert.ToDecimal( 999999999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtrepid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtrepid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "REPID");
                AnyError = 1;
@@ -1139,29 +1139,29 @@ namespace GeneXus.Programs {
             }
             else
             {
-               A449repid = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtrepid_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A449repid = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtrepid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A449repid", StringUtil.LTrimStr( (decimal)(A449repid), 9, 0));
             }
             A448sestoken = cgiGet( edtsestoken_Internalname);
             AssignAttri("", false, "A448sestoken", A448sestoken);
-            if ( context.localUtil.VCDateTime( cgiGet( edtsesdate_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtsesdate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"sesdate"}), 1, "SESDATE");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "sesdate", "")}), 1, "SESDATE");
                AnyError = 1;
                GX_FocusControl = edtsesdate_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A457sesdate = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A457sesdate = context.localUtil.CToT( cgiGet( edtsesdate_Internalname));
-               AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             A450sessts = cgiGet( edtsessts_Internalname);
             AssignAttri("", false, "A450sessts", A450sessts);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtsestype_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsestype_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtsestype_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsestype_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "SESTYPE");
                AnyError = 1;
@@ -1173,14 +1173,14 @@ namespace GeneXus.Programs {
             }
             else
             {
-               A451sestype = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtsestype_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A451sestype = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtsestype_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A451sestype", StringUtil.LTrimStr( (decimal)(A451sestype), 4, 0));
             }
             A461sesurl = cgiGet( edtsesurl_Internalname);
             AssignAttri("", false, "A461sesurl", A461sesurl);
             A462sesipadd = cgiGet( edtsesipadd_Internalname);
             AssignAttri("", false, "A462sesipadd", A462sesipadd);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtopesysid_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtopesysid_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtopesysid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtopesysid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "OPESYSID");
                AnyError = 1;
@@ -1192,25 +1192,25 @@ namespace GeneXus.Programs {
             }
             else
             {
-               A454opesysid = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtopesysid_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A454opesysid = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtopesysid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A454opesysid", StringUtil.LTrimStr( (decimal)(A454opesysid), 4, 0));
             }
-            if ( context.localUtil.VCDateTime( cgiGet( edtseslastacc_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtseslastacc_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"seslastacc"}), 1, "SESLASTACC");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "seslastacc", "")}), 1, "SESLASTACC");
                AnyError = 1;
                GX_FocusControl = edtseslastacc_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A463seslastacc = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A463seslastacc = context.localUtil.CToT( cgiGet( edtseslastacc_Internalname));
-               AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtsestimeout_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsestimeout_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtsestimeout_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsestimeout_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "SESTIMEOUT");
                AnyError = 1;
@@ -1222,10 +1222,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               A464sestimeout = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtsestimeout_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A464sestimeout = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtsestimeout_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A464sestimeout", StringUtil.LTrimStr( (decimal)(A464sestimeout), 4, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtseslogatt_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtseslogatt_Internalname), ".", ",") > Convert.ToDecimal( 999999999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtseslogatt_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtseslogatt_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "SESLOGATT");
                AnyError = 1;
@@ -1237,44 +1237,44 @@ namespace GeneXus.Programs {
             }
             else
             {
-               A465seslogatt = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtseslogatt_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A465seslogatt = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtseslogatt_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A465seslogatt", StringUtil.LTrimStr( (decimal)(A465seslogatt), 9, 0));
             }
-            if ( context.localUtil.VCDateTime( cgiGet( edtseslogdate_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtseslogdate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"seslogdate"}), 1, "SESLOGDATE");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "seslogdate", "")}), 1, "SESLOGDATE");
                AnyError = 1;
                GX_FocusControl = edtseslogdate_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A466seslogdate = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A466seslogdate = context.localUtil.CToT( cgiGet( edtseslogdate_Internalname));
-               AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             A467sesshareddata = cgiGet( edtsesshareddata_Internalname);
             AssignAttri("", false, "A467sesshareddata", A467sesshareddata);
-            if ( context.localUtil.VCDateTime( cgiGet( edtsesenddate_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtsesenddate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"sesenddate"}), 1, "SESENDDATE");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "sesenddate", "")}), 1, "SESENDDATE");
                AnyError = 1;
                GX_FocusControl = edtsesenddate_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A468sesenddate = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A468sesenddate = context.localUtil.CToT( cgiGet( edtsesenddate_Internalname));
-               AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             A469sesreload = StringUtil.StrToBool( cgiGet( chksesreload_Internalname));
             AssignAttri("", false, "A469sesreload", A469sesreload);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtbrwid_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtbrwid_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtbrwid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtbrwid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "BRWID");
                AnyError = 1;
@@ -1286,7 +1286,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               A460brwid = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtbrwid_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A460brwid = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtbrwid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A460brwid", StringUtil.LTrimStr( (decimal)(A460brwid), 4, 0));
             }
             A470seslasturl = cgiGet( edtseslasturl_Internalname);
@@ -1297,24 +1297,24 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A455sesexttoken", A455sesexttoken);
             A456userguid = cgiGet( edtuserguid_Internalname);
             AssignAttri("", false, "A456userguid", A456userguid);
-            if ( context.localUtil.VCDateTime( cgiGet( edtsesapptokenexp_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtsesapptokenexp_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"sesapptokenexp"}), 1, "SESAPPTOKENEXP");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "sesapptokenexp", "")}), 1, "SESAPPTOKENEXP");
                AnyError = 1;
                GX_FocusControl = edtsesapptokenexp_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A472sesapptokenexp = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A472sesapptokenexp = context.localUtil.CToT( cgiGet( edtsesapptokenexp_Internalname));
-               AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             A452sesrefreshtoken = cgiGet( edtsesrefreshtoken_Internalname);
             AssignAttri("", false, "A452sesrefreshtoken", A452sesrefreshtoken);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtsesappid_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsesappid_Internalname), ".", ",") > Convert.ToDecimal( 999999999999999999L )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtsesappid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsesappid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999999999999999L )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "SESAPPID");
                AnyError = 1;
@@ -1326,7 +1326,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               A453sesappid = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtsesappid_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A453sesappid = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtsesappid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A453sesappid", StringUtil.LTrimStr( (decimal)(A453sesappid), 18, 0));
             }
             A473sesdeviceid = cgiGet( edtsesdeviceid_Internalname);
@@ -1335,7 +1335,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A474sesexttoken2", A474sesexttoken2);
             A458sesauttypename = cgiGet( edtsesauttypename_Internalname);
             AssignAttri("", false, "A458sesauttypename", A458sesauttypename);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtsesoauthtokenmaxrenew_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsesoauthtokenmaxrenew_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtsesoauthtokenmaxrenew_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsesoauthtokenmaxrenew_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "SESOAUTHTOKENMAXRENEW");
                AnyError = 1;
@@ -1347,10 +1347,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               A475sesoauthtokenmaxrenew = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtsesoauthtokenmaxrenew_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A475sesoauthtokenmaxrenew = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtsesoauthtokenmaxrenew_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A475sesoauthtokenmaxrenew", StringUtil.LTrimStr( (decimal)(A475sesoauthtokenmaxrenew), 4, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtsesoauthtokenexpires_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsesoauthtokenexpires_Internalname), ".", ",") > Convert.ToDecimal( 999999999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtsesoauthtokenexpires_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtsesoauthtokenexpires_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "SESOAUTHTOKENEXPIRES");
                AnyError = 1;
@@ -1362,27 +1362,27 @@ namespace GeneXus.Programs {
             }
             else
             {
-               A476sesoauthtokenexpires = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtsesoauthtokenexpires_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               A476sesoauthtokenexpires = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtsesoauthtokenexpires_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "A476sesoauthtokenexpires", StringUtil.LTrimStr( (decimal)(A476sesoauthtokenexpires), 9, 0));
             }
             A477sesoauthscope = cgiGet( edtsesoauthscope_Internalname);
             AssignAttri("", false, "A477sesoauthscope", A477sesoauthscope);
             A478sesexttoken3 = cgiGet( edtsesexttoken3_Internalname);
             AssignAttri("", false, "A478sesexttoken3", A478sesexttoken3);
-            if ( context.localUtil.VCDateTime( cgiGet( edtsesexttokenexpires_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtsesexttokenexpires_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"sesexttokenexpires"}), 1, "SESEXTTOKENEXPIRES");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "sesexttokenexpires", "")}), 1, "SESEXTTOKENEXPIRES");
                AnyError = 1;
                GX_FocusControl = edtsesexttokenexpires_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A479sesexttokenexpires = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A479sesexttokenexpires = context.localUtil.CToT( cgiGet( edtsesexttokenexpires_Internalname));
-               AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             A480sesexttokenrefresh = cgiGet( edtsesexttokenrefresh_Internalname);
             AssignAttri("", false, "A480sesexttokenrefresh", A480sesexttokenrefresh);
@@ -1392,20 +1392,20 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A482sesidtoken", A482sesidtoken);
             A459sesotp = cgiGet( edtsesotp_Internalname);
             AssignAttri("", false, "A459sesotp", A459sesotp);
-            if ( context.localUtil.VCDateTime( cgiGet( edtsesotpexpire_Internalname), 2, 0) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtsesotpexpire_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"sesotpexpire"}), 1, "SESOTPEXPIRE");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "sesotpexpire", "")}), 1, "SESOTPEXPIRE");
                AnyError = 1;
                GX_FocusControl = edtsesotpexpire_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A483sesotpexpire = (DateTime)(DateTime.MinValue);
-               AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             else
             {
                A483sesotpexpire = context.localUtil.CToT( cgiGet( edtsesotpexpire_Internalname));
-               AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, 0, 3, "/", ":", " "));
+               AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
             A484sesendedbyotherlogin = StringUtil.StrToBool( cgiGet( chksesendedbyotherlogin_Internalname));
             AssignAttri("", false, "A484sesendedbyotherlogin", A484sesendedbyotherlogin);
@@ -1749,7 +1749,7 @@ namespace GeneXus.Programs {
          {
             RcdFound84 = 1;
             A457sesdate = T001D4_A457sesdate[0];
-            AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A450sessts = T001D4_A450sessts[0];
             AssignAttri("", false, "A450sessts", A450sessts);
             A451sestype = T001D4_A451sestype[0];
@@ -1761,17 +1761,17 @@ namespace GeneXus.Programs {
             A454opesysid = T001D4_A454opesysid[0];
             AssignAttri("", false, "A454opesysid", StringUtil.LTrimStr( (decimal)(A454opesysid), 4, 0));
             A463seslastacc = T001D4_A463seslastacc[0];
-            AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A464sestimeout = T001D4_A464sestimeout[0];
             AssignAttri("", false, "A464sestimeout", StringUtil.LTrimStr( (decimal)(A464sestimeout), 4, 0));
             A465seslogatt = T001D4_A465seslogatt[0];
             AssignAttri("", false, "A465seslogatt", StringUtil.LTrimStr( (decimal)(A465seslogatt), 9, 0));
             A466seslogdate = T001D4_A466seslogdate[0];
-            AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A467sesshareddata = T001D4_A467sesshareddata[0];
             AssignAttri("", false, "A467sesshareddata", A467sesshareddata);
             A468sesenddate = T001D4_A468sesenddate[0];
-            AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A469sesreload = T001D4_A469sesreload[0];
             AssignAttri("", false, "A469sesreload", A469sesreload);
             A460brwid = T001D4_A460brwid[0];
@@ -1785,7 +1785,7 @@ namespace GeneXus.Programs {
             A456userguid = T001D4_A456userguid[0];
             AssignAttri("", false, "A456userguid", A456userguid);
             A472sesapptokenexp = T001D4_A472sesapptokenexp[0];
-            AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A452sesrefreshtoken = T001D4_A452sesrefreshtoken[0];
             AssignAttri("", false, "A452sesrefreshtoken", A452sesrefreshtoken);
             A453sesappid = T001D4_A453sesappid[0];
@@ -1805,7 +1805,7 @@ namespace GeneXus.Programs {
             A478sesexttoken3 = T001D4_A478sesexttoken3[0];
             AssignAttri("", false, "A478sesexttoken3", A478sesexttoken3);
             A479sesexttokenexpires = T001D4_A479sesexttokenexpires[0];
-            AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A480sesexttokenrefresh = T001D4_A480sesexttokenrefresh[0];
             AssignAttri("", false, "A480sesexttokenrefresh", A480sesexttokenrefresh);
             A481sesjson = T001D4_A481sesjson[0];
@@ -1815,7 +1815,7 @@ namespace GeneXus.Programs {
             A459sesotp = T001D4_A459sesotp[0];
             AssignAttri("", false, "A459sesotp", A459sesotp);
             A483sesotpexpire = T001D4_A483sesotpexpire[0];
-            AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A484sesendedbyotherlogin = T001D4_A484sesendedbyotherlogin[0];
             AssignAttri("", false, "A484sesendedbyotherlogin", A484sesendedbyotherlogin);
             ZM1D84( -1) ;
@@ -1870,7 +1870,7 @@ namespace GeneXus.Programs {
             A448sestoken = T001D3_A448sestoken[0];
             AssignAttri("", false, "A448sestoken", A448sestoken);
             A457sesdate = T001D3_A457sesdate[0];
-            AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A450sessts = T001D3_A450sessts[0];
             AssignAttri("", false, "A450sessts", A450sessts);
             A451sestype = T001D3_A451sestype[0];
@@ -1882,17 +1882,17 @@ namespace GeneXus.Programs {
             A454opesysid = T001D3_A454opesysid[0];
             AssignAttri("", false, "A454opesysid", StringUtil.LTrimStr( (decimal)(A454opesysid), 4, 0));
             A463seslastacc = T001D3_A463seslastacc[0];
-            AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A464sestimeout = T001D3_A464sestimeout[0];
             AssignAttri("", false, "A464sestimeout", StringUtil.LTrimStr( (decimal)(A464sestimeout), 4, 0));
             A465seslogatt = T001D3_A465seslogatt[0];
             AssignAttri("", false, "A465seslogatt", StringUtil.LTrimStr( (decimal)(A465seslogatt), 9, 0));
             A466seslogdate = T001D3_A466seslogdate[0];
-            AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A467sesshareddata = T001D3_A467sesshareddata[0];
             AssignAttri("", false, "A467sesshareddata", A467sesshareddata);
             A468sesenddate = T001D3_A468sesenddate[0];
-            AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A469sesreload = T001D3_A469sesreload[0];
             AssignAttri("", false, "A469sesreload", A469sesreload);
             A460brwid = T001D3_A460brwid[0];
@@ -1906,7 +1906,7 @@ namespace GeneXus.Programs {
             A456userguid = T001D3_A456userguid[0];
             AssignAttri("", false, "A456userguid", A456userguid);
             A472sesapptokenexp = T001D3_A472sesapptokenexp[0];
-            AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A452sesrefreshtoken = T001D3_A452sesrefreshtoken[0];
             AssignAttri("", false, "A452sesrefreshtoken", A452sesrefreshtoken);
             A453sesappid = T001D3_A453sesappid[0];
@@ -1926,7 +1926,7 @@ namespace GeneXus.Programs {
             A478sesexttoken3 = T001D3_A478sesexttoken3[0];
             AssignAttri("", false, "A478sesexttoken3", A478sesexttoken3);
             A479sesexttokenexpires = T001D3_A479sesexttokenexpires[0];
-            AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A480sesexttokenrefresh = T001D3_A480sesexttokenrefresh[0];
             AssignAttri("", false, "A480sesexttokenrefresh", A480sesexttokenrefresh);
             A481sesjson = T001D3_A481sesjson[0];
@@ -1936,7 +1936,7 @@ namespace GeneXus.Programs {
             A459sesotp = T001D3_A459sesotp[0];
             AssignAttri("", false, "A459sesotp", A459sesotp);
             A483sesotpexpire = T001D3_A483sesotpexpire[0];
-            AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, 0, 3, "/", ":", " "));
+            AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A484sesendedbyotherlogin = T001D3_A484sesendedbyotherlogin[0];
             AssignAttri("", false, "A484sesendedbyotherlogin", A484sesendedbyotherlogin);
             Z449repid = A449repid;
@@ -2921,7 +2921,7 @@ namespace GeneXus.Programs {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -2966,33 +2966,33 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "Z449repid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z449repid), 9, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z449repid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z449repid), 9, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z448sestoken", StringUtil.RTrim( Z448sestoken));
          GxWebStd.gx_hidden_field( context, "Z457sesdate", context.localUtil.TToC( Z457sesdate, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z450sessts", StringUtil.RTrim( Z450sessts));
-         GxWebStd.gx_hidden_field( context, "Z451sestype", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z451sestype), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z451sestype", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z451sestype), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z461sesurl", Z461sesurl);
          GxWebStd.gx_hidden_field( context, "Z462sesipadd", StringUtil.RTrim( Z462sesipadd));
-         GxWebStd.gx_hidden_field( context, "Z454opesysid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z454opesysid), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z454opesysid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z454opesysid), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z463seslastacc", context.localUtil.TToC( Z463seslastacc, 10, 8, 0, 0, "/", ":", " "));
-         GxWebStd.gx_hidden_field( context, "Z464sestimeout", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z464sestimeout), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z465seslogatt", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z465seslogatt), 9, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z464sestimeout", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z464sestimeout), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "Z465seslogatt", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z465seslogatt), 9, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z466seslogdate", context.localUtil.TToC( Z466seslogdate, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z468sesenddate", context.localUtil.TToC( Z468sesenddate, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_boolean_hidden_field( context, "Z469sesreload", Z469sesreload);
-         GxWebStd.gx_hidden_field( context, "Z460brwid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z460brwid), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z460brwid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z460brwid), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z470seslasturl", Z470seslasturl);
          GxWebStd.gx_hidden_field( context, "Z471seslogin", Z471seslogin);
          GxWebStd.gx_hidden_field( context, "Z455sesexttoken", StringUtil.RTrim( Z455sesexttoken));
          GxWebStd.gx_hidden_field( context, "Z456userguid", StringUtil.RTrim( Z456userguid));
          GxWebStd.gx_hidden_field( context, "Z472sesapptokenexp", context.localUtil.TToC( Z472sesapptokenexp, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z452sesrefreshtoken", StringUtil.RTrim( Z452sesrefreshtoken));
-         GxWebStd.gx_hidden_field( context, "Z453sesappid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z453sesappid), 18, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z453sesappid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z453sesappid), 18, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z473sesdeviceid", StringUtil.RTrim( Z473sesdeviceid));
          GxWebStd.gx_hidden_field( context, "Z474sesexttoken2", Z474sesexttoken2);
          GxWebStd.gx_hidden_field( context, "Z458sesauttypename", StringUtil.RTrim( Z458sesauttypename));
-         GxWebStd.gx_hidden_field( context, "Z475sesoauthtokenmaxrenew", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z475sesoauthtokenmaxrenew), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z476sesoauthtokenexpires", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z476sesoauthtokenexpires), 9, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "Z475sesoauthtokenmaxrenew", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z475sesoauthtokenmaxrenew), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "Z476sesoauthtokenexpires", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z476sesoauthtokenexpires), 9, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Z477sesoauthscope", Z477sesoauthscope);
          GxWebStd.gx_hidden_field( context, "Z479sesexttokenexpires", context.localUtil.TToC( Z479sesexttokenexpires, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z480sesexttokenrefresh", Z480sesexttokenrefresh);
@@ -3000,8 +3000,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z459sesotp", Z459sesotp);
          GxWebStd.gx_hidden_field( context, "Z483sesotpexpire", context.localUtil.TToC( Z483sesotpexpire, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_boolean_hidden_field( context, "Z484sesendedbyotherlogin", Z484sesendedbyotherlogin);
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
       }
 
@@ -3024,6 +3024,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -3069,13 +3081,13 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Trn_Gam Session" ;
+         return context.GetMessage( "Trn_Gam Session", "") ;
       }
 
       protected void InitializeNonKey1D84( )
       {
          A457sesdate = (DateTime)(DateTime.MinValue);
-         AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A450sessts = "";
          AssignAttri("", false, "A450sessts", A450sessts);
          A451sestype = 0;
@@ -3087,17 +3099,17 @@ namespace GeneXus.Programs {
          A454opesysid = 0;
          AssignAttri("", false, "A454opesysid", StringUtil.LTrimStr( (decimal)(A454opesysid), 4, 0));
          A463seslastacc = (DateTime)(DateTime.MinValue);
-         AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A464sestimeout = 0;
          AssignAttri("", false, "A464sestimeout", StringUtil.LTrimStr( (decimal)(A464sestimeout), 4, 0));
          A465seslogatt = 0;
          AssignAttri("", false, "A465seslogatt", StringUtil.LTrimStr( (decimal)(A465seslogatt), 9, 0));
          A466seslogdate = (DateTime)(DateTime.MinValue);
-         AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A467sesshareddata = "";
          AssignAttri("", false, "A467sesshareddata", A467sesshareddata);
          A468sesenddate = (DateTime)(DateTime.MinValue);
-         AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A469sesreload = false;
          AssignAttri("", false, "A469sesreload", A469sesreload);
          A460brwid = 0;
@@ -3111,7 +3123,7 @@ namespace GeneXus.Programs {
          A456userguid = "";
          AssignAttri("", false, "A456userguid", A456userguid);
          A472sesapptokenexp = (DateTime)(DateTime.MinValue);
-         AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A452sesrefreshtoken = "";
          AssignAttri("", false, "A452sesrefreshtoken", A452sesrefreshtoken);
          A453sesappid = 0;
@@ -3131,7 +3143,7 @@ namespace GeneXus.Programs {
          A478sesexttoken3 = "";
          AssignAttri("", false, "A478sesexttoken3", A478sesexttoken3);
          A479sesexttokenexpires = (DateTime)(DateTime.MinValue);
-         AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A480sesexttokenrefresh = "";
          AssignAttri("", false, "A480sesexttokenrefresh", A480sesexttokenrefresh);
          A481sesjson = "";
@@ -3141,7 +3153,7 @@ namespace GeneXus.Programs {
          A459sesotp = "";
          AssignAttri("", false, "A459sesotp", A459sesotp);
          A483sesotpexpire = (DateTime)(DateTime.MinValue);
-         AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          A484sesendedbyotherlogin = false;
          AssignAttri("", false, "A484sesendedbyotherlogin", A484sesendedbyotherlogin);
          Z457sesdate = (DateTime)(DateTime.MinValue);
@@ -3203,7 +3215,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411515565", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718112215", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3218,9 +3230,9 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("trn_gamsession.js", "?202542411515565", false, true);
+         context.AddJavascriptSource("trn_gamsession.js", "?202542718112216", false, true);
          /* End function include_jscripts */
       }
 
@@ -3291,7 +3303,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Trn_Gam Session";
+         Form.Caption = context.GetMessage( "Trn_Gam Session", "");
          bttBtn_delete_Enabled = 1;
          bttBtn_delete_Visible = 1;
          bttBtn_cancel_Visible = 1;
@@ -3379,14 +3391,14 @@ namespace GeneXus.Programs {
       {
          chksesreload.Name = "SESRELOAD";
          chksesreload.WebTags = "";
-         chksesreload.Caption = "sesreload";
+         chksesreload.Caption = context.GetMessage( "sesreload", "");
          AssignProp("", false, chksesreload_Internalname, "TitleCaption", chksesreload.Caption, true);
          chksesreload.CheckedValue = "false";
          A469sesreload = StringUtil.StrToBool( StringUtil.BoolToStr( A469sesreload));
          AssignAttri("", false, "A469sesreload", A469sesreload);
          chksesendedbyotherlogin.Name = "SESENDEDBYOTHERLOGIN";
          chksesendedbyotherlogin.WebTags = "";
-         chksesendedbyotherlogin.Caption = "sesendedbyotherlogin";
+         chksesendedbyotherlogin.Caption = context.GetMessage( "sesendedbyotherlogin", "");
          AssignProp("", false, chksesendedbyotherlogin_Internalname, "TitleCaption", chksesendedbyotherlogin.Caption, true);
          chksesendedbyotherlogin.CheckedValue = "false";
          A484sesendedbyotherlogin = StringUtil.StrToBool( StringUtil.BoolToStr( A484sesendedbyotherlogin));
@@ -3436,25 +3448,25 @@ namespace GeneXus.Programs {
          A469sesreload = StringUtil.StrToBool( StringUtil.BoolToStr( A469sesreload));
          A484sesendedbyotherlogin = StringUtil.StrToBool( StringUtil.BoolToStr( A484sesendedbyotherlogin));
          /*  Sending validation outputs */
-         AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A457sesdate", context.localUtil.TToC( A457sesdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "A450sessts", StringUtil.RTrim( A450sessts));
          AssignAttri("", false, "A451sestype", StringUtil.LTrim( StringUtil.NToC( (decimal)(A451sestype), 4, 0, ".", "")));
          AssignAttri("", false, "A461sesurl", A461sesurl);
          AssignAttri("", false, "A462sesipadd", StringUtil.RTrim( A462sesipadd));
          AssignAttri("", false, "A454opesysid", StringUtil.LTrim( StringUtil.NToC( (decimal)(A454opesysid), 4, 0, ".", "")));
-         AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A463seslastacc", context.localUtil.TToC( A463seslastacc, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "A464sestimeout", StringUtil.LTrim( StringUtil.NToC( (decimal)(A464sestimeout), 4, 0, ".", "")));
          AssignAttri("", false, "A465seslogatt", StringUtil.LTrim( StringUtil.NToC( (decimal)(A465seslogatt), 9, 0, ".", "")));
-         AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A466seslogdate", context.localUtil.TToC( A466seslogdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "A467sesshareddata", A467sesshareddata);
-         AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A468sesenddate", context.localUtil.TToC( A468sesenddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "A469sesreload", A469sesreload);
          AssignAttri("", false, "A460brwid", StringUtil.LTrim( StringUtil.NToC( (decimal)(A460brwid), 4, 0, ".", "")));
          AssignAttri("", false, "A470seslasturl", A470seslasturl);
          AssignAttri("", false, "A471seslogin", A471seslogin);
          AssignAttri("", false, "A455sesexttoken", StringUtil.RTrim( A455sesexttoken));
          AssignAttri("", false, "A456userguid", StringUtil.RTrim( A456userguid));
-         AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A472sesapptokenexp", context.localUtil.TToC( A472sesapptokenexp, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "A452sesrefreshtoken", StringUtil.RTrim( A452sesrefreshtoken));
          AssignAttri("", false, "A453sesappid", StringUtil.LTrim( StringUtil.NToC( (decimal)(A453sesappid), 18, 0, ".", "")));
          AssignAttri("", false, "A473sesdeviceid", StringUtil.RTrim( A473sesdeviceid));
@@ -3464,35 +3476,35 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "A476sesoauthtokenexpires", StringUtil.LTrim( StringUtil.NToC( (decimal)(A476sesoauthtokenexpires), 9, 0, ".", "")));
          AssignAttri("", false, "A477sesoauthscope", A477sesoauthscope);
          AssignAttri("", false, "A478sesexttoken3", A478sesexttoken3);
-         AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A479sesexttokenexpires", context.localUtil.TToC( A479sesexttokenexpires, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "A480sesexttokenrefresh", A480sesexttokenrefresh);
          AssignAttri("", false, "A481sesjson", A481sesjson);
          AssignAttri("", false, "A482sesidtoken", A482sesidtoken);
          AssignAttri("", false, "A459sesotp", A459sesotp);
-         AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, 0, 3, "/", ":", " "));
+         AssignAttri("", false, "A483sesotpexpire", context.localUtil.TToC( A483sesotpexpire, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          AssignAttri("", false, "A484sesendedbyotherlogin", A484sesendedbyotherlogin);
          AssignAttri("", false, "Gx_mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "Z449repid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z449repid), 9, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "Z448sestoken", StringUtil.RTrim( Z448sestoken));
-         GxWebStd.gx_hidden_field( context, "Z457sesdate", context.localUtil.TToC( Z457sesdate, 10, 8, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z457sesdate", context.localUtil.TToC( Z457sesdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z450sessts", StringUtil.RTrim( Z450sessts));
          GxWebStd.gx_hidden_field( context, "Z451sestype", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z451sestype), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "Z461sesurl", Z461sesurl);
          GxWebStd.gx_hidden_field( context, "Z462sesipadd", StringUtil.RTrim( Z462sesipadd));
          GxWebStd.gx_hidden_field( context, "Z454opesysid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z454opesysid), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z463seslastacc", context.localUtil.TToC( Z463seslastacc, 10, 8, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z463seslastacc", context.localUtil.TToC( Z463seslastacc, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z464sestimeout", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z464sestimeout), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "Z465seslogatt", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z465seslogatt), 9, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "Z466seslogdate", context.localUtil.TToC( Z466seslogdate, 10, 8, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z466seslogdate", context.localUtil.TToC( Z466seslogdate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z467sesshareddata", Z467sesshareddata);
-         GxWebStd.gx_hidden_field( context, "Z468sesenddate", context.localUtil.TToC( Z468sesenddate, 10, 8, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z468sesenddate", context.localUtil.TToC( Z468sesenddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z469sesreload", StringUtil.BoolToStr( Z469sesreload));
          GxWebStd.gx_hidden_field( context, "Z460brwid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z460brwid), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "Z470seslasturl", Z470seslasturl);
          GxWebStd.gx_hidden_field( context, "Z471seslogin", Z471seslogin);
          GxWebStd.gx_hidden_field( context, "Z455sesexttoken", StringUtil.RTrim( Z455sesexttoken));
          GxWebStd.gx_hidden_field( context, "Z456userguid", StringUtil.RTrim( Z456userguid));
-         GxWebStd.gx_hidden_field( context, "Z472sesapptokenexp", context.localUtil.TToC( Z472sesapptokenexp, 10, 8, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z472sesapptokenexp", context.localUtil.TToC( Z472sesapptokenexp, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z452sesrefreshtoken", StringUtil.RTrim( Z452sesrefreshtoken));
          GxWebStd.gx_hidden_field( context, "Z453sesappid", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z453sesappid), 18, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "Z473sesdeviceid", StringUtil.RTrim( Z473sesdeviceid));
@@ -3502,12 +3514,12 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z476sesoauthtokenexpires", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z476sesoauthtokenexpires), 9, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "Z477sesoauthscope", Z477sesoauthscope);
          GxWebStd.gx_hidden_field( context, "Z478sesexttoken3", Z478sesexttoken3);
-         GxWebStd.gx_hidden_field( context, "Z479sesexttokenexpires", context.localUtil.TToC( Z479sesexttokenexpires, 10, 8, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z479sesexttokenexpires", context.localUtil.TToC( Z479sesexttokenexpires, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z480sesexttokenrefresh", Z480sesexttokenrefresh);
          GxWebStd.gx_hidden_field( context, "Z481sesjson", Z481sesjson);
          GxWebStd.gx_hidden_field( context, "Z482sesidtoken", Z482sesidtoken);
          GxWebStd.gx_hidden_field( context, "Z459sesotp", Z459sesotp);
-         GxWebStd.gx_hidden_field( context, "Z483sesotpexpire", context.localUtil.TToC( Z483sesotpexpire, 10, 8, 0, 3, "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z483sesotpexpire", context.localUtil.TToC( Z483sesotpexpire, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z484sesendedbyotherlogin", StringUtil.BoolToStr( Z484sesendedbyotherlogin));
          AssignProp("", false, bttBtn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtn_delete_Enabled), 5, 0), true);
          AssignProp("", false, bttBtn_enter_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtn_enter_Enabled), 5, 0), true);

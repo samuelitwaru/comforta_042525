@@ -424,6 +424,18 @@ namespace GeneXus.Programs {
          {
             WebComp_Wcwc_notificationfilteredlist.componentjscripts();
          }
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -466,7 +478,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Notifications" ;
+         return context.GetMessage( "Notifications", "") ;
       }
 
       protected void WB7X0( )
@@ -511,7 +523,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", "Notification Types", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "Notification Types", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Radio button */
             ClassString = "Attribute";
             StyleString = "";
@@ -528,35 +540,35 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 20,'',false,'',0)\"";
             ClassString = "BtnInsert";
             StyleString = ((bttBtnfilterbymentions_Backcolor==-1) ? "" : "background-color:"+context.BuildHTMLColor( bttBtnfilterbymentions_Backcolor)+";");
-            GxWebStd.gx_button_ctrl( context, bttBtnfilterbymentions_Internalname, "", "Mentions", bttBtnfilterbymentions_Jsonclick, 5, "Mentions", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYMENTIONS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnfilterbymentions_Internalname, "", context.GetMessage( "Mentions", ""), bttBtnfilterbymentions_Jsonclick, 5, context.GetMessage( "Mentions", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYMENTIONS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 22,'',false,'',0)\"";
             ClassString = "BtnInsert";
             StyleString = ((bttBtnfilterbydiscussions_Backcolor==-1) ? "" : "background-color:"+context.BuildHTMLColor( bttBtnfilterbydiscussions_Backcolor)+";");
-            GxWebStd.gx_button_ctrl( context, bttBtnfilterbydiscussions_Internalname, "", "Discussions", bttBtnfilterbydiscussions_Jsonclick, 5, "Discussions", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYDISCUSSIONS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnfilterbydiscussions_Internalname, "", context.GetMessage( "Discussions", ""), bttBtnfilterbydiscussions_Jsonclick, 5, context.GetMessage( "Discussions", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYDISCUSSIONS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'',false,'',0)\"";
             ClassString = "BtnInsert";
             StyleString = ((bttBtnfilterbydynamicforms_Backcolor==-1) ? "" : "background-color:"+context.BuildHTMLColor( bttBtnfilterbydynamicforms_Backcolor)+";");
-            GxWebStd.gx_button_ctrl( context, bttBtnfilterbydynamicforms_Internalname, "", "Resident Forms", bttBtnfilterbydynamicforms_Jsonclick, 5, "Resident Forms", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYDYNAMICFORMS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnfilterbydynamicforms_Internalname, "", context.GetMessage( "Resident Forms", ""), bttBtnfilterbydynamicforms_Jsonclick, 5, context.GetMessage( "Resident Forms", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYDYNAMICFORMS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'',false,'',0)\"";
             ClassString = "BtnInsert";
             StyleString = ((bttBtnfilterbyagenda_Backcolor==-1) ? "" : "background-color:"+context.BuildHTMLColor( bttBtnfilterbyagenda_Backcolor)+";");
-            GxWebStd.gx_button_ctrl( context, bttBtnfilterbyagenda_Internalname, "", "Agenda", bttBtnfilterbyagenda_Jsonclick, 5, "Agenda", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYAGENDA\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnfilterbyagenda_Internalname, "", context.GetMessage( "Agenda", ""), bttBtnfilterbyagenda_Jsonclick, 5, context.GetMessage( "Agenda", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYAGENDA\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
             ClassString = "BtnClearActiveFilter";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnclearfilters_Internalname, "", "Clear Filters", bttBtnclearfilters_Jsonclick, 5, "Clear Filters", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOCLEARFILTERS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnclearfilters_Internalname, "", context.GetMessage( "Clear Filters", ""), bttBtnclearfilters_Jsonclick, 5, context.GetMessage( "Clear Filters", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOCLEARFILTERS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -571,10 +583,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSearchkey_Internalname, "Search Key", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavSearchkey_Internalname, context.GetMessage( "Search Key", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSearchkey_Internalname, AV41SearchKey, StringUtil.RTrim( context.localUtil.Format( AV41SearchKey, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,33);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "Search", edtavSearchkey_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSearchkey_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_NotificationDashboard.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSearchkey_Internalname, AV41SearchKey, StringUtil.RTrim( context.localUtil.Format( AV41SearchKey, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,33);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_Search", ""), edtavSearchkey_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSearchkey_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_NotificationDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -702,7 +714,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Notifications", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Notifications", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -1072,8 +1084,8 @@ namespace GeneXus.Programs {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( "vNOTIFICATIONINFO"), AV26NotificationInfo);
             /* Read saved values. */
-            divGroupedtablecontent_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GROUPEDTABLECONTENT_Visible"), ".", ","), 18, MidpointRounding.ToEven));
-            divFilteredtablecontent_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( "FILTEREDTABLECONTENT_Visible"), ".", ","), 18, MidpointRounding.ToEven));
+            divGroupedtablecontent_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GROUPEDTABLECONTENT_Visible"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            divFilteredtablecontent_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( "FILTEREDTABLECONTENT_Visible"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             lblNotificationmessage_Caption = cgiGet( "NOTIFICATIONMESSAGE_Caption");
             /* Read variables values. */
             AV37NotificationTypes = cgiGet( radavNotificationtypes_Internalname);
@@ -1355,6 +1367,7 @@ namespace GeneXus.Programs {
       {
          /* Onmessage_gx1 Routine */
          returnInSub = false;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Notification *****", "")+AV26NotificationInfo.ToJSonString(false, true)) ;
          if ( StringUtil.Contains( AV26NotificationInfo.gxTpr_Id, "WebNotification") )
          {
             AV25WWP_SDTNotificationsData = new GXBaseCollection<SdtUSDTNotificationsData_USDTNotificationsDataItem>( context, "USDTNotificationsDataItem", "Comforta_version20");
@@ -1432,7 +1445,7 @@ namespace GeneXus.Programs {
          new dp_getusernotifications(context ).execute(  "UnRead",  AV35NotificationDefinitionIdEmptyCollection,  "", out  GXt_objcol_SdtUSDTNotificationsData_USDTNotificationsDataItem1) ;
          AV40WWP_SDTNotificationsData_UnRead = GXt_objcol_SdtUSDTNotificationsData_USDTNotificationsDataItem1;
          AV38NumberOfUnRead = StringUtil.Str( (decimal)(AV40WWP_SDTNotificationsData_UnRead.Count), 9, 0);
-         lblNotificationmessage_Caption = "YOU HAVE "+AV38NumberOfUnRead+" UNREAD MESSAGES";
+         lblNotificationmessage_Caption = context.GetMessage( "YOU HAVE ", "")+AV38NumberOfUnRead+context.GetMessage( " UNREAD MESSAGES", "");
          AssignProp("", false, lblNotificationmessage_Internalname, "Caption", lblNotificationmessage_Caption, true);
       }
 
@@ -1594,7 +1607,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411561618", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025427181775", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1609,8 +1622,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_notificationdashboard.js", "?202542411561619", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_notificationdashboard.js", "?2025427181776", false, true);
          /* End function include_jscripts */
       }
 
@@ -1618,9 +1631,9 @@ namespace GeneXus.Programs {
       {
          radavNotificationtypes.Name = "vNOTIFICATIONTYPES";
          radavNotificationtypes.WebTags = "";
-         radavNotificationtypes.addItem("UnRead", "UnRead", 0);
-         radavNotificationtypes.addItem("Read", "Read", 0);
-         radavNotificationtypes.addItem("All", "All", 0);
+         radavNotificationtypes.addItem("UnRead", context.GetMessage( "UnRead", ""), 0);
+         radavNotificationtypes.addItem("Read", context.GetMessage( "Read", ""), 0);
+         radavNotificationtypes.addItem("All", context.GetMessage( "All", ""), 0);
          /* End function init_web_controls */
       }
 
@@ -1663,12 +1676,12 @@ namespace GeneXus.Programs {
          bttBtnfilterbydiscussions_Backcolor = (int)(0xF0F0F0);
          bttBtnfilterbymentions_Backcolor = (int)(0xF0F0F0);
          radavNotificationtypes_Jsonclick = "";
-         lblNotificationmessage_Caption = "YOU HAVE 8 UNREAD NOTIFICATIONS";
+         lblNotificationmessage_Caption = context.GetMessage( "YOU HAVE 8 UNREAD NOTIFICATIONS", "");
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Notifications";
+         Form.Caption = context.GetMessage( "Notifications", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {

@@ -168,7 +168,7 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( ! ( ( A334DeviceType == 0 ) || ( A334DeviceType == 1 ) || ( A334DeviceType == 2 ) || ( A334DeviceType == 3 ) ) )
          {
-            GX_msglist.addItem("Field Device Type is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Device Type", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
       }

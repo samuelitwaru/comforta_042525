@@ -140,7 +140,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          returnInSub = false;
          AV8FormattedMessage = "";
          GXt_char1 = AV11WWPUserExtendedId;
-         new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context ).execute( out  GXt_char1) ;
+         new uwwp_getloggeduserid(context ).execute( out  GXt_char1) ;
          AV11WWPUserExtendedId = GXt_char1;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11WWPUserExtendedId)) )
          {

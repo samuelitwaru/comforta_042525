@@ -123,8 +123,8 @@ namespace GeneXus.Programs {
             AV17RecordsToSkip = (short)(AV14PageSize*(AV13PageNumber-1));
          }
          AV20TotalRecords = (short)(A40000GXC1);
-         new prc_logtofile(context ).execute(  "Location"+AV11LocationId.ToString()) ;
-         new prc_logtofile(context ).execute(  "Records"+StringUtil.Str( (decimal)(AV20TotalRecords), 4, 0)) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Location", "")+AV11LocationId.ToString()) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Records", "")+StringUtil.Str( (decimal)(AV20TotalRecords), 4, 0)) ;
          GXPagingFrom3 = AV17RecordsToSkip;
          GXPagingTo3 = AV16RecordsPerPage;
          /* Using cursor P00D05 */

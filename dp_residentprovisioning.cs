@@ -97,7 +97,7 @@ namespace GeneXus.Programs {
             A11OrganisationId = P000S2_A11OrganisationId[0];
             Gxm1sdt_residentprovisioning = new SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem(context);
             Gxm2rootcol.Add(Gxm1sdt_residentprovisioning, 0);
-            Gxm1sdt_residentprovisioning.gxTpr_Residentprovisiondescription = "My Care";
+            Gxm1sdt_residentprovisioning.gxTpr_Residentprovisiondescription = context.GetMessage( "My Care", "");
             Gxm1sdt_residentprovisioning.gxTpr_Residentprovisionvalue = "My Care";
             pr_default.readNext(0);
          }
@@ -111,7 +111,7 @@ namespace GeneXus.Programs {
             A11OrganisationId = P000S3_A11OrganisationId[0];
             Gxm1sdt_residentprovisioning = new SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem(context);
             Gxm2rootcol.Add(Gxm1sdt_residentprovisioning, 0);
-            Gxm1sdt_residentprovisioning.gxTpr_Residentprovisiondescription = "My Living";
+            Gxm1sdt_residentprovisioning.gxTpr_Residentprovisiondescription = context.GetMessage( "My Living", "");
             Gxm1sdt_residentprovisioning.gxTpr_Residentprovisionvalue = "My Living";
             pr_default.readNext(1);
          }
@@ -125,7 +125,7 @@ namespace GeneXus.Programs {
             A11OrganisationId = P000S4_A11OrganisationId[0];
             Gxm1sdt_residentprovisioning = new SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem(context);
             Gxm2rootcol.Add(Gxm1sdt_residentprovisioning, 0);
-            Gxm1sdt_residentprovisioning.gxTpr_Residentprovisiondescription = "My Services";
+            Gxm1sdt_residentprovisioning.gxTpr_Residentprovisiondescription = context.GetMessage( "My Services", "");
             Gxm1sdt_residentprovisioning.gxTpr_Residentprovisionvalue = "My Services";
             pr_default.readNext(2);
          }

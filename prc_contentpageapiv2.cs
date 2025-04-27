@@ -140,7 +140,7 @@ namespace GeneXus.Programs {
                      else if ( StringUtil.StrCmp(AV15ContentItem.gxTpr_Contenttype, "Description") == 0 )
                      {
                         GXt_char1 = "";
-                        new prc_getdynamictransation(context ).execute(  "Trn_ProductService",  AV9PageId,  "ProductServiceDescription",  "Dutch",  AV12BC_Trn_ProductService.gxTpr_Productservicedescription, out  GXt_char1) ;
+                        new prc_getdynamictransation(context ).execute(  "Trn_ProductService",  AV9PageId,  "ProductServiceDescription",  context.GetMessage( "Dutch", ""),  AV12BC_Trn_ProductService.gxTpr_Productservicedescription, out  GXt_char1) ;
                         AV15ContentItem.gxTpr_Contentvalue = GXt_char1;
                      }
                      else
@@ -199,7 +199,7 @@ namespace GeneXus.Programs {
                      AV15ContentItem = new SdtSDT_ContentPage_ContentItem(context);
                      AV15ContentItem.gxTpr_Contenttype = "Description";
                      GXt_char1 = "";
-                     new prc_getdynamictransation(context ).execute(  "Trn_Location",  AV10LocationId,  "LocationDescription",  "Dutch",  AV14BC_Trn_Location.gxTpr_Locationdescription, out  GXt_char1) ;
+                     new prc_getdynamictransation(context ).execute(  "Trn_Location",  AV10LocationId,  "LocationDescription",  context.GetMessage( "Dutch", ""),  AV14BC_Trn_Location.gxTpr_Locationdescription, out  GXt_char1) ;
                      AV15ContentItem.gxTpr_Contentvalue = GXt_char1;
                      AV11SDT_ContentPage.gxTpr_Content.Add(AV15ContentItem, 0);
                   }
@@ -214,7 +214,7 @@ namespace GeneXus.Programs {
                      AV15ContentItem = new SdtSDT_ContentPage_ContentItem(context);
                      AV15ContentItem.gxTpr_Contenttype = "Description";
                      GXt_char1 = "";
-                     new prc_getdynamictransation(context ).execute(  "Trn_Location",  AV10LocationId,  "ReceptionDescription",  "Dutch",  AV14BC_Trn_Location.gxTpr_Receptiondescription, out  GXt_char1) ;
+                     new prc_getdynamictransation(context ).execute(  "Trn_Location",  AV10LocationId,  "ReceptionDescription",  context.GetMessage( "Dutch", ""),  AV14BC_Trn_Location.gxTpr_Receptiondescription, out  GXt_char1) ;
                      AV15ContentItem.gxTpr_Contentvalue = GXt_char1;
                      AV11SDT_ContentPage.gxTpr_Content.Add(AV15ContentItem, 0);
                   }
@@ -248,11 +248,11 @@ namespace GeneXus.Programs {
                      AV30GXV3 = (int)(AV30GXV3+1);
                   }
                }
-               new prc_logtoserver(context ).execute(  "Content:3 "+AV11SDT_ContentPage.ToJSonString(false, true)) ;
+               new prc_logtoserver(context ).execute(  context.GetMessage( "Content:3 ", "")+AV11SDT_ContentPage.ToJSonString(false, true)) ;
                GXt_SdtSDT_ContentPageV12 = AV20SDT_ContentPageV1;
                new prc_convertnewtooldcontentstructure(context ).execute(  AV11SDT_ContentPage,  AV9PageId,  AV22PageName, out  GXt_SdtSDT_ContentPageV12) ;
                AV20SDT_ContentPageV1 = GXt_SdtSDT_ContentPageV12;
-               new prc_logtoserver(context ).execute(  "Content:3 "+AV20SDT_ContentPageV1.ToJSonString(false, true)) ;
+               new prc_logtoserver(context ).execute(  context.GetMessage( "Content:3 ", "")+AV20SDT_ContentPageV1.ToJSonString(false, true)) ;
                /* Exiting from a For First loop. */
                if (true) break;
             }

@@ -77,35 +77,35 @@ namespace GeneXus.Programs {
       }
 
       public void execute( string aP0_WWPUserExtendedId ,
-                           out GxSimpleCollection<string> aP1_LocationReceptionistsGUIDCollection )
+                           out GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> aP1_SDT_ReceptionistsToNotify )
       {
          this.AV10WWPUserExtendedId = aP0_WWPUserExtendedId;
-         this.AV13LocationReceptionistsGUIDCollection = new GxSimpleCollection<string>() ;
+         this.AV15SDT_ReceptionistsToNotify = new GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>( context, "SDT_ReceptionistToNotifiyItem", "Comforta_version20") ;
          initialize();
          ExecuteImpl();
-         aP1_LocationReceptionistsGUIDCollection=this.AV13LocationReceptionistsGUIDCollection;
+         aP1_SDT_ReceptionistsToNotify=this.AV15SDT_ReceptionistsToNotify;
       }
 
-      public GxSimpleCollection<string> executeUdp( string aP0_WWPUserExtendedId )
+      public GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> executeUdp( string aP0_WWPUserExtendedId )
       {
-         execute(aP0_WWPUserExtendedId, out aP1_LocationReceptionistsGUIDCollection);
-         return AV13LocationReceptionistsGUIDCollection ;
+         execute(aP0_WWPUserExtendedId, out aP1_SDT_ReceptionistsToNotify);
+         return AV15SDT_ReceptionistsToNotify ;
       }
 
       public void executeSubmit( string aP0_WWPUserExtendedId ,
-                                 out GxSimpleCollection<string> aP1_LocationReceptionistsGUIDCollection )
+                                 out GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> aP1_SDT_ReceptionistsToNotify )
       {
          this.AV10WWPUserExtendedId = aP0_WWPUserExtendedId;
-         this.AV13LocationReceptionistsGUIDCollection = new GxSimpleCollection<string>() ;
+         this.AV15SDT_ReceptionistsToNotify = new GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>( context, "SDT_ReceptionistToNotifiyItem", "Comforta_version20") ;
          SubmitImpl();
-         aP1_LocationReceptionistsGUIDCollection=this.AV13LocationReceptionistsGUIDCollection;
+         aP1_SDT_ReceptionistsToNotify=this.AV15SDT_ReceptionistsToNotify;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV15GXLvl2 = 0;
+         AV18GXLvl2 = 0;
          /* Using cursor P009G2 */
          pr_default.execute(0, new Object[] {AV10WWPUserExtendedId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -114,7 +114,7 @@ namespace GeneXus.Programs {
             A29LocationId = P009G2_A29LocationId[0];
             A89ReceptionistId = P009G2_A89ReceptionistId[0];
             A11OrganisationId = P009G2_A11OrganisationId[0];
-            AV15GXLvl2 = 1;
+            AV18GXLvl2 = 1;
             AV12LocationId = A29LocationId;
             AV14isRecordFound = true;
             /* Exit For each command. Update data (if necessary), close cursors & exit. */
@@ -122,7 +122,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         if ( AV15GXLvl2 == 0 )
+         if ( AV18GXLvl2 == 0 )
          {
             AV14isRecordFound = false;
          }
@@ -141,7 +141,7 @@ namespace GeneXus.Programs {
             }
             pr_default.close(1);
          }
-         AV17GXLvl20 = 0;
+         AV20GXLvl20 = 0;
          /* Using cursor P009G4 */
          pr_default.execute(2, new Object[] {AV12LocationId});
          while ( (pr_default.getStatus(2) != 101) )
@@ -150,15 +150,24 @@ namespace GeneXus.Programs {
             A95ReceptionistGAMGUID = P009G4_A95ReceptionistGAMGUID[0];
             A89ReceptionistId = P009G4_A89ReceptionistId[0];
             A11OrganisationId = P009G4_A11OrganisationId[0];
-            AV17GXLvl20 = 1;
+            AV20GXLvl20 = 1;
             AV13LocationReceptionistsGUIDCollection.Add(A95ReceptionistGAMGUID, 0);
+            AV16SDT_ReceptionistToNotifyItem.gxTpr_Receptionistid = A89ReceptionistId;
+            AV16SDT_ReceptionistToNotifyItem.gxTpr_Receptionistguid = A95ReceptionistGAMGUID;
+            AV17GAMUser.load( A95ReceptionistGAMGUID);
+            if ( AV17GAMUser.success() )
+            {
+               AV16SDT_ReceptionistToNotifyItem.gxTpr_Receptionistlanguage = AV17GAMUser.gxTpr_Language;
+            }
+            AV15SDT_ReceptionistsToNotify.Add(AV16SDT_ReceptionistToNotifyItem, 0);
             pr_default.readNext(2);
          }
          pr_default.close(2);
-         if ( AV17GXLvl20 == 0 )
+         if ( AV20GXLvl20 == 0 )
          {
-            AV13LocationReceptionistsGUIDCollection.Clear();
+            AV15SDT_ReceptionistsToNotify.Clear();
          }
+         new prc_logtofile(context ).execute(  context.GetMessage( "Receptionists ------------------>", "")+AV15SDT_ReceptionistsToNotify.ToJSonString(false)) ;
          cleanup();
       }
 
@@ -174,7 +183,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV13LocationReceptionistsGUIDCollection = new GxSimpleCollection<string>();
+         AV15SDT_ReceptionistsToNotify = new GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem>( context, "SDT_ReceptionistToNotifiyItem", "Comforta_version20");
          P009G2_A95ReceptionistGAMGUID = new string[] {""} ;
          P009G2_A29LocationId = new Guid[] {Guid.Empty} ;
          P009G2_A89ReceptionistId = new Guid[] {Guid.Empty} ;
@@ -194,6 +203,9 @@ namespace GeneXus.Programs {
          P009G4_A95ReceptionistGAMGUID = new string[] {""} ;
          P009G4_A89ReceptionistId = new Guid[] {Guid.Empty} ;
          P009G4_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         AV13LocationReceptionistsGUIDCollection = new GxSimpleCollection<string>();
+         AV16SDT_ReceptionistToNotifyItem = new SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem(context);
+         AV17GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_getlocationreceptioniststonotify__default(),
             new Object[][] {
                 new Object[] {
@@ -210,8 +222,8 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private short AV15GXLvl2 ;
-      private short AV17GXLvl20 ;
+      private short AV18GXLvl2 ;
+      private short AV20GXLvl20 ;
       private string AV10WWPUserExtendedId ;
       private bool AV14isRecordFound ;
       private string A95ReceptionistGAMGUID ;
@@ -224,7 +236,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GxSimpleCollection<string> AV13LocationReceptionistsGUIDCollection ;
+      private GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> AV15SDT_ReceptionistsToNotify ;
       private IDataStoreProvider pr_default ;
       private string[] P009G2_A95ReceptionistGAMGUID ;
       private Guid[] P009G2_A29LocationId ;
@@ -238,7 +250,10 @@ namespace GeneXus.Programs {
       private string[] P009G4_A95ReceptionistGAMGUID ;
       private Guid[] P009G4_A89ReceptionistId ;
       private Guid[] P009G4_A11OrganisationId ;
-      private GxSimpleCollection<string> aP1_LocationReceptionistsGUIDCollection ;
+      private GxSimpleCollection<string> AV13LocationReceptionistsGUIDCollection ;
+      private SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem AV16SDT_ReceptionistToNotifyItem ;
+      private GeneXus.Programs.genexussecurity.SdtGAMUser AV17GAMUser ;
+      private GXBaseCollection<SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem> aP1_SDT_ReceptionistsToNotify ;
    }
 
    public class aprc_getlocationreceptioniststonotify__default : DataStoreHelperBase, IDataStoreHelper
@@ -273,7 +288,7 @@ namespace GeneXus.Programs {
           def= new CursorDef[] {
               new CursorDef("P009G2", "SELECT ReceptionistGAMGUID, LocationId, ReceptionistId, OrganisationId FROM Trn_Receptionist WHERE ReceptionistGAMGUID = ( :AV10WWPUserExtendedId) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009G2,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P009G3", "SELECT ResidentGUID, LocationId, ResidentId, OrganisationId FROM Trn_Resident WHERE ResidentGUID = ( :AV10WWPUserExtendedId) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009G3,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P009G4", "SELECT LocationId, ReceptionistGAMGUID, ReceptionistId, OrganisationId FROM Trn_Receptionist WHERE LocationId = :AV12LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009G4,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P009G4", "SELECT LocationId, ReceptionistGAMGUID, ReceptionistId, OrganisationId FROM Trn_Receptionist WHERE LocationId = :AV12LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009G4,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

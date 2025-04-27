@@ -97,18 +97,18 @@ namespace GeneXus.Programs {
             }
             if ( AV23isNotFound )
             {
-               AV11Message = "User not found";
+               AV11Message = context.GetMessage( "User not found", "");
             }
             else
             {
-               new prc_logtofile(context ).execute(  "Labguage : "+AV18Language) ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "Labguage : ", "")+AV18Language) ;
                context.CommitDataStores("prc_registerresidentlanguage",pr_default);
-               AV11Message = "Language preference updated.";
+               AV11Message = context.GetMessage( "Language preference updated.", "");
             }
          }
          else
          {
-            AV11Message = "Language preference not provided.";
+            AV11Message = context.GetMessage( "Language preference not provided.", "");
          }
          cleanup();
       }

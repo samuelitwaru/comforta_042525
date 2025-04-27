@@ -200,13 +200,13 @@ namespace GeneXus.Programs {
             }
             else if ( StringUtil.StrCmp(AV37GridStateFilterValue.gxTpr_Name, "TFMEMOSTARTDATETIME") == 0 )
             {
-               AV15TFMemoStartDateTime = context.localUtil.CToT( AV37GridStateFilterValue.gxTpr_Value, 2);
-               AV16TFMemoStartDateTime_To = context.localUtil.CToT( AV37GridStateFilterValue.gxTpr_Valueto, 2);
+               AV15TFMemoStartDateTime = context.localUtil.CToT( AV37GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV16TFMemoStartDateTime_To = context.localUtil.CToT( AV37GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             }
             else if ( StringUtil.StrCmp(AV37GridStateFilterValue.gxTpr_Name, "TFMEMOENDDATETIME") == 0 )
             {
-               AV17TFMemoEndDateTime = context.localUtil.CToT( AV37GridStateFilterValue.gxTpr_Value, 2);
-               AV18TFMemoEndDateTime_To = context.localUtil.CToT( AV37GridStateFilterValue.gxTpr_Valueto, 2);
+               AV17TFMemoEndDateTime = context.localUtil.CToT( AV37GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV18TFMemoEndDateTime_To = context.localUtil.CToT( AV37GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             }
             else if ( StringUtil.StrCmp(AV37GridStateFilterValue.gxTpr_Name, "TFMEMODURATION") == 0 )
             {
@@ -215,8 +215,8 @@ namespace GeneXus.Programs {
             }
             else if ( StringUtil.StrCmp(AV37GridStateFilterValue.gxTpr_Name, "TFMEMOREMOVEDATE") == 0 )
             {
-               AV21TFMemoRemoveDate = context.localUtil.CToD( AV37GridStateFilterValue.gxTpr_Value, 2);
-               AV22TFMemoRemoveDate_To = context.localUtil.CToD( AV37GridStateFilterValue.gxTpr_Valueto, 2);
+               AV21TFMemoRemoveDate = context.localUtil.CToD( AV37GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV22TFMemoRemoveDate_To = context.localUtil.CToD( AV37GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             }
             AV46GXV1 = (int)(AV46GXV1+1);
          }
@@ -658,7 +658,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_memowwds_3_tfmemocategoryname_sel)) && ! ( StringUtil.StrCmp(AV50Trn_memowwds_3_tfmemocategoryname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_memowwds_3_tfmemocategoryname_sel)) && ! ( StringUtil.StrCmp(AV50Trn_memowwds_3_tfmemocategoryname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.MemoCategoryName = ( :AV50Trn_memowwds_3_tfmemocategoryname_sel))");
          }
@@ -666,7 +666,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV50Trn_memowwds_3_tfmemocategoryname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV50Trn_memowwds_3_tfmemocategoryname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.MemoCategoryName))=0))");
          }
@@ -678,7 +678,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_memowwds_5_tfmemotitle_sel)) && ! ( StringUtil.StrCmp(AV52Trn_memowwds_5_tfmemotitle_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_memowwds_5_tfmemotitle_sel)) && ! ( StringUtil.StrCmp(AV52Trn_memowwds_5_tfmemotitle_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.MemoTitle = ( :AV52Trn_memowwds_5_tfmemotitle_sel))");
          }
@@ -686,7 +686,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV52Trn_memowwds_5_tfmemotitle_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV52Trn_memowwds_5_tfmemotitle_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.MemoTitle))=0))");
          }
@@ -805,7 +805,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_memowwds_3_tfmemocategoryname_sel)) && ! ( StringUtil.StrCmp(AV50Trn_memowwds_3_tfmemocategoryname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV50Trn_memowwds_3_tfmemocategoryname_sel)) && ! ( StringUtil.StrCmp(AV50Trn_memowwds_3_tfmemocategoryname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.MemoCategoryName = ( :AV50Trn_memowwds_3_tfmemocategoryname_sel))");
          }
@@ -813,7 +813,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV50Trn_memowwds_3_tfmemocategoryname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV50Trn_memowwds_3_tfmemocategoryname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.MemoCategoryName))=0))");
          }
@@ -825,7 +825,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_memowwds_5_tfmemotitle_sel)) && ! ( StringUtil.StrCmp(AV52Trn_memowwds_5_tfmemotitle_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Trn_memowwds_5_tfmemotitle_sel)) && ! ( StringUtil.StrCmp(AV52Trn_memowwds_5_tfmemotitle_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.MemoTitle = ( :AV52Trn_memowwds_5_tfmemotitle_sel))");
          }
@@ -833,7 +833,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV52Trn_memowwds_5_tfmemotitle_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV52Trn_memowwds_5_tfmemotitle_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.MemoTitle))=0))");
          }

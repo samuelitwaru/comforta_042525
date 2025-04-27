@@ -71,8 +71,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV13Error.gxTpr_Status = "Error";
-            AV13Error.gxTpr_Message = "Not Authenticated";
+            AV13Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV13Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {
@@ -99,10 +99,10 @@ namespace GeneXus.Programs {
                AV8SDT_Media.gxTpr_Mediasize = A417MediaSize;
                AV8SDT_Media.gxTpr_Mediatype = A418MediaType;
                AV8SDT_Media.gxTpr_Mediaurl = A416MediaUrl;
-               AV15MediaPath = "media/" + A414MediaName;
+               AV15MediaPath = context.GetMessage( "media/", "") + A414MediaName;
                AV14File = new GxFile(context.GetPhysicalPath());
-               AV14File.Source = "media/"+A414MediaName;
-               new prc_logtofile(context ).execute(  "Media: "+AV15MediaPath+" "+StringUtil.BoolToStr( AV14File.Exists())) ;
+               AV14File.Source = context.GetMessage( "media/", "")+A414MediaName;
+               new prc_logtofile(context ).execute(  context.GetMessage( "Media: ", "")+AV15MediaPath+" "+StringUtil.BoolToStr( AV14File.Exists())) ;
                if ( AV14File.Exists() )
                {
                   AV9SDT_MediaCollection.Add(AV8SDT_Media, 0);

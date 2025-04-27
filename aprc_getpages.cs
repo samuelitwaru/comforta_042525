@@ -115,8 +115,8 @@ namespace GeneXus.Programs {
          AV16OrganisationId = GXt_guid1;
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV18Error.gxTpr_Status = "Error";
-            AV18Error.gxTpr_Message = "Not Authenticated";
+            AV18Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV18Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {

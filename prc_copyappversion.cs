@@ -87,8 +87,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV9SDT_Error.gxTpr_Status = "Error";
-            AV9SDT_Error.gxTpr_Message = "Not Authenticated";
+            AV9SDT_Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV9SDT_Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
             cleanup();
             if (true) return;
          }
@@ -121,7 +121,7 @@ namespace GeneXus.Programs {
             while ( AV28GXV3 <= AV27GXV2.Count )
             {
                AV21Message = ((GeneXus.Utils.SdtMessages_Message)AV27GXV2.Item(AV28GXV3));
-               new prc_logtofile(context ).execute(  "&Message.Description"+AV21Message.gxTpr_Description) ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "&Message.Description", "")+AV21Message.gxTpr_Description) ;
                AV28GXV3 = (int)(AV28GXV3+1);
             }
          }

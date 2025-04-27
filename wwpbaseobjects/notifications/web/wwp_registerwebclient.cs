@@ -77,7 +77,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV15UserGUID)) )
          {
             GXt_char1 = AV15UserGUID;
-            new WorkWithPlus.workwithplus_commongam.wwp_getloggeduserid(context ).execute( out  GXt_char1) ;
+            new uwwp_getloggeduserid(context ).execute( out  GXt_char1) ;
             AV15UserGUID = GXt_char1;
          }
          if ( ! new GeneXus.Programs.wwpbaseobjects.wwp_existsuserextended(context).executeUdp(  AV15UserGUID) )

@@ -210,7 +210,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV31VatPattern = "[A-Za-z]{2}\\d{9}[A-Za-z]\\d{2}";
+         AV31VatPattern = context.GetMessage( context.GetMessage( "[A-Za-z]{2}\\d{9}[A-Za-z]\\d{2}", ""), "");
          AV34Pgmname = "Trn_Organisation_BC";
       }
 
@@ -260,50 +260,50 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( ! ( GxRegex.IsMatch(A12OrganisationKvkNumber,"\\b\\d{8}\\b") ) )
          {
-            GX_msglist.addItem("KvK number should contain 8 digits", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "KvK number should contain 8 digits", ""), context.GetMessage( "Organisation Kvk Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A12OrganisationKvkNumber) != 8 )
          {
-            GX_msglist.addItem("KVK number must contain 8 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "KVK number must contain 8 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A16OrganisationEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Invalid email pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Organisation Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          GXt_char1 = A17OrganisationPhone;
          new prc_concatenateintlphone(context ).execute(  A361OrganisationPhoneCode,  A362OrganisationPhoneNumber, out  GXt_char1) ;
          A17OrganisationPhone = GXt_char1;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A362OrganisationPhoneNumber)) && ! GxRegex.IsMatch(A362OrganisationPhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A362OrganisationPhoneNumber)) && ! GxRegex.IsMatch(A362OrganisationPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A18OrganisationVATNumber) != 14 )
          {
-            GX_msglist.addItem("VAT number must contain 14 characters", 1, "");
+            GX_msglist.addItem(context.GetMessage( "VAT number must contain 14 characters", ""), 1, "");
             AnyError = 1;
          }
          A251OrganisationAddressZipCode = StringUtil.Upper( A251OrganisationAddressZipCode);
-         if ( ! GxRegex.IsMatch(A251OrganisationAddressZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A251OrganisationAddressZipCode)) )
+         if ( ! GxRegex.IsMatch(A251OrganisationAddressZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A251OrganisationAddressZipCode)) )
          {
-            GX_msglist.addItem("Zip Code is incorrect", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Zip Code is incorrect", ""), 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00014 */
          pr_default.execute(2, new Object[] {A19OrganisationTypeId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Organisation Types'.", "ForeignKeyNotFound", 1, "ORGANISATIONTYPEID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Organisation Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONTYPEID");
             AnyError = 1;
          }
          A20OrganisationTypeName = BC00014_A20OrganisationTypeName[0];
          pr_default.close(2);
          if ( GxRegex.IsMatch(A18OrganisationVATNumber,AV31VatPattern) != true )
          {
-            GX_msglist.addItem("VAT number is incorrect", 1, "");
+            GX_msglist.addItem(context.GetMessage( "VAT number is incorrect", ""), 1, "");
             AnyError = 1;
          }
       }
@@ -622,7 +622,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"General Suppliers"+" ("+"SG_Organisation Supplier"+")"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "General Suppliers", "")+" ("+context.GetMessage( "SG_Organisation Supplier", "")+")"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -630,7 +630,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Audits"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Audits", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);
@@ -638,7 +638,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Locations"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -646,7 +646,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_OrganisationSetting"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationSetting", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -654,7 +654,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_OrganisationDynamicForm"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationDynamicForm", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -662,7 +662,7 @@ namespace GeneXus.Programs {
             pr_default.execute(15, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Managers"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Managers", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);

@@ -83,8 +83,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV18Error.gxTpr_Status = "Error";
-            AV18Error.gxTpr_Message = "Not Authenticated";
+            AV18Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV18Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {
@@ -96,8 +96,8 @@ namespace GeneXus.Programs {
                if ( AV12BC_Trn_Location.Success() )
                {
                   context.CommitDataStores("prc_updatelocationtheme",pr_default);
-                  AV19websession.Remove("NotificationMessage");
-                  new prc_logtofile(context ).execute(  "Saved") ;
+                  AV19websession.Remove(context.GetMessage( "NotificationMessage", ""));
+                  new prc_logtofile(context ).execute(  context.GetMessage( "Saved", "")) ;
                }
                else
                {
@@ -106,7 +106,7 @@ namespace GeneXus.Programs {
                   while ( AV21GXV2 <= AV20GXV1.Count )
                   {
                      AV13Message = ((GeneXus.Utils.SdtMessages_Message)AV20GXV1.Item(AV21GXV2));
-                     new prc_logtofile(context ).execute(  "Not saved: "+AV13Message.gxTpr_Description) ;
+                     new prc_logtofile(context ).execute(  context.GetMessage( "Not saved: ", "")+AV13Message.gxTpr_Description) ;
                      AV21GXV2 = (int)(AV21GXV2+1);
                   }
                }

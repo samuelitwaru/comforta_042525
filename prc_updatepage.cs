@@ -126,8 +126,8 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            AV27Error.gxTpr_Status = "Error";
-            AV27Error.gxTpr_Message = "Not Authenticated";
+            AV27Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV27Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
          else
          {
@@ -149,12 +149,12 @@ namespace GeneXus.Programs {
                AV9BC_Trn_Page.Save();
                if ( AV9BC_Trn_Page.Success() )
                {
-                  AV10Response = "Page Save Successfully";
+                  AV10Response = context.GetMessage( "Page Save Successfully", "");
                   context.CommitDataStores("prc_updatepage",pr_default);
                   if ( AV22IsNotifyResidents )
                   {
-                     AV24Title = "New Updates Available";
-                     AV25NotificationMessage = "The latest updates have been published and are now live! Open the app to explore the changes";
+                     AV24Title = context.GetMessage( "New Updates Available", "");
+                     AV25NotificationMessage = context.GetMessage( "The latest updates have been published and are now live! Open the app to explore the changes", "");
                      AV23Metadata = new SdtSDT_OneSignalCustomData(context);
                      AV23Metadata.gxTpr_Notificationcategory = "Toolbox";
                   }
@@ -173,7 +173,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV10Response = "Page Not Found";
+               AV10Response = context.GetMessage( "Page Not Found", "");
             }
          }
          cleanup();

@@ -78,17 +78,17 @@ namespace GeneXus.Programs {
          AV14LanguageFrom = AV15LanguageTo;
          cleanup();
          if (true) return;
-         AV16HttpClient.BaseURL = "https://api-b2b.backenster.com";
-         AV16HttpClient.AddHeader("Content-type", "application/json");
-         AV16HttpClient.AddHeader("Authorization", "Bearer a_FPErHAYaF0j7aGdubWnroJR40Q9TvO4X7ciQCdwnQv5lw3tPDnoGVL2LlsaiIXxykUJ7uMwWpU4Co6Mv");
+         AV16HttpClient.BaseURL = context.GetMessage( "https://api-b2b.backenster.com", "");
+         AV16HttpClient.AddHeader(context.GetMessage( "Content-type", ""), context.GetMessage( "application/json", ""));
+         AV16HttpClient.AddHeader(context.GetMessage( "Authorization", ""), context.GetMessage( "Bearer a_FPErHAYaF0j7aGdubWnroJR40Q9TvO4X7ciQCdwnQv5lw3tPDnoGVL2LlsaiIXxykUJ7uMwWpU4Co6Mv", ""));
          AV17RequestBody.gxTpr_From = AV12from;
          AV17RequestBody.gxTpr_To = AV13to;
          AV17RequestBody.gxTpr_Data = AV14LanguageFrom;
-         AV17RequestBody.gxTpr_Platform = "api";
-         AV17RequestBody.gxTpr_Translatemode = "html";
+         AV17RequestBody.gxTpr_Platform = context.GetMessage( "api", "");
+         AV17RequestBody.gxTpr_Translatemode = context.GetMessage( "html", "");
          AV18body = AV17RequestBody.ToJSonString(false, true);
          AV16HttpClient.AddString(AV18body);
-         AV16HttpClient.Execute("POST", "/b1/api/v3/translate");
+         AV16HttpClient.Execute(context.GetMessage( "POST", ""), context.GetMessage( "/b1/api/v3/translate", ""));
          AV19responsejson = AV16HttpClient.ToString();
          if ( AV16HttpClient.StatusCode == 200 )
          {
@@ -100,7 +100,7 @@ namespace GeneXus.Programs {
             new prc_logtofile(context ).execute(  AV20Translated.gxTpr_Err) ;
             new prc_logtofile(context ).execute(  StringUtil.Str( (decimal)(AV16HttpClient.StatusCode), 10, 2)) ;
          }
-         new prc_logtoserver(context ).execute(  "				Translated: "+AV12from+" to "+AV13to+" >> "+AV14LanguageFrom+" >> "+AV15LanguageTo) ;
+         new prc_logtoserver(context ).execute(  context.GetMessage( "				Translated: ", "")+AV12from+context.GetMessage( " to ", "")+AV13to+" >> "+AV14LanguageFrom+" >> "+AV15LanguageTo) ;
          cleanup();
       }
 

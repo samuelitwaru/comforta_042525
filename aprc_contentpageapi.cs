@@ -144,11 +144,11 @@ namespace GeneXus.Programs {
                while ( AV31GXV1 <= AV14SDT_ContentPage.gxTpr_Content.Count )
                {
                   AV26ContentItem = ((SdtSDT_ContentPageV1_ContentItem)AV14SDT_ContentPage.gxTpr_Content.Item(AV31GXV1));
-                  if ( StringUtil.StrCmp(AV26ContentItem.gxTpr_Contenttype, "Image") == 0 )
+                  if ( StringUtil.StrCmp(AV26ContentItem.gxTpr_Contenttype, context.GetMessage( "Image", "")) == 0 )
                   {
                      AV26ContentItem.gxTpr_Contentvalue = A40000ProductServiceImage_GXI;
                   }
-                  else if ( StringUtil.StrCmp(AV26ContentItem.gxTpr_Contenttype, "Description") == 0 )
+                  else if ( StringUtil.StrCmp(AV26ContentItem.gxTpr_Contenttype, context.GetMessage( "Description", "")) == 0 )
                   {
                      AV26ContentItem.gxTpr_Contentvalue = A60ProductServiceDescription;
                   }
@@ -191,11 +191,11 @@ namespace GeneXus.Programs {
                   AV29BC_Trn_Location.Load(AV8LocationId, AV9OrganisationId);
                   AV14SDT_ContentPage.gxTpr_Content.Clear();
                   AV26ContentItem = new SdtSDT_ContentPageV1_ContentItem(context);
-                  AV26ContentItem.gxTpr_Contenttype = "Image";
+                  AV26ContentItem.gxTpr_Contenttype = context.GetMessage( "Image", "");
                   AV26ContentItem.gxTpr_Contentvalue = AV29BC_Trn_Location.gxTpr_Locationimage_gxi;
                   AV14SDT_ContentPage.gxTpr_Content.Add(AV26ContentItem, 0);
                   AV26ContentItem = new SdtSDT_ContentPageV1_ContentItem(context);
-                  AV26ContentItem.gxTpr_Contenttype = "Description";
+                  AV26ContentItem.gxTpr_Contenttype = context.GetMessage( "Description", "");
                   AV26ContentItem.gxTpr_Contentvalue = AV29BC_Trn_Location.gxTpr_Locationdescription;
                   AV14SDT_ContentPage.gxTpr_Content.Add(AV26ContentItem, 0);
                }

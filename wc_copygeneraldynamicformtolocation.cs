@@ -248,7 +248,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "Copy To Location") ;
+            context.SendWebValue( context.GetMessage( "Copy To Location", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -339,7 +339,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_WWPFORMVERSIONNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(A207WWPFormVersionNumber), "ZZZ9"), context));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMREFERENCENAME", A208WWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_WWPFORMREFERENCENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( A208WWPFormReferenceName, "")), context));
@@ -352,8 +352,8 @@ namespace GeneXus.Programs {
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vCHECKREQUIREDFIELDSRESULT", AV5CheckRequiredFieldsResult);
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A206WWPFormId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A206WWPFormId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_WWPFORMVERSIONNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(A207WWPFormVersionNumber), "ZZZ9"), context));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMREFERENCENAME", A208WWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_WWPFORMREFERENCENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( A208WWPFormReferenceName, "")), context));
@@ -414,7 +414,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Copy To Location" ;
+         return context.GetMessage( "Copy To Location", "") ;
       }
 
       protected void WB9R0( )
@@ -466,7 +466,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", dynavOrganisation.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+dynavOrganisation_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, dynavOrganisation_Internalname, "Organisation", "col-sm-3 AddressAttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, dynavOrganisation_Internalname, context.GetMessage( "Organisation", ""), "col-sm-3 AddressAttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 17,'" + sPrefix + "',false,'',0)\"";
@@ -485,7 +485,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+dynavLocation_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, dynavLocation_Internalname, "Location", "col-sm-3 AddressAttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, dynavLocation_Internalname, context.GetMessage( "Location", ""), "col-sm-3 AddressAttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 22,'" + sPrefix + "',false,'',0)\"";
@@ -511,14 +511,14 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 27,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Confirm", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WC_CopyGeneralDynamicFormToLocation.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WC_CopyGeneralDynamicFormToLocation.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnucancel_Internalname, "", "Cancel", bttBtnucancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e119r1_client"+"'", TempTags, "", 2, "HLP_WC_CopyGeneralDynamicFormToLocation.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnucancel_Internalname, "", context.GetMessage( "Cancel", ""), bttBtnucancel_Jsonclick, 7, context.GetMessage( "Cancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e119r1_client"+"'", TempTags, "", 2, "HLP_WC_CopyGeneralDynamicFormToLocation.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -546,7 +546,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "Copy To Location", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "Copy To Location", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -811,7 +811,7 @@ namespace GeneXus.Programs {
          gxdynajaxctrlcodr.Clear();
          gxdynajaxctrldescr.Clear();
          gxdynajaxctrlcodr.Add(Guid.Empty.ToString());
-         gxdynajaxctrldescr.Add("Select Organisation");
+         gxdynajaxctrldescr.Add(context.GetMessage( "Select Organisation", ""));
          /* Using cursor H009R2 */
          pr_default.execute(0);
          while ( (pr_default.getStatus(0) != 101) )
@@ -868,7 +868,7 @@ namespace GeneXus.Programs {
          gxdynajaxctrlcodr.Clear();
          gxdynajaxctrldescr.Clear();
          gxdynajaxctrlcodr.Add(Guid.Empty.ToString());
-         gxdynajaxctrldescr.Add("Select Location");
+         gxdynajaxctrldescr.Add(context.GetMessage( "Select Location", ""));
          /* Using cursor H009R3 */
          pr_default.execute(1, new Object[] {AV12Organisation});
          while ( (pr_default.getStatus(1) != 101) )
@@ -962,7 +962,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_lvl_hashes9R2( )
       {
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(A207WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_WWPFORMVERSIONNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(A207WWPFormVersionNumber), "ZZZ9"), context));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMREFERENCENAME", A208WWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_WWPFORMREFERENCENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( A208WWPFormReferenceName, "")), context));
@@ -1050,13 +1050,13 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV5CheckRequiredFieldsResult", AV5CheckRequiredFieldsResult);
          if ( (Guid.Empty==AV12Organisation) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Organisation", "", "", "", "", "", "", "", ""),  "error",  dynavOrganisation_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Organisation", ""), "", "", "", "", "", "", "", ""),  "error",  dynavOrganisation_Internalname,  "true",  ""));
             AV5CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV5CheckRequiredFieldsResult", AV5CheckRequiredFieldsResult);
          }
          if ( (Guid.Empty==AV9Location) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Location", "", "", "", "", "", "", "", ""),  "error",  dynavLocation_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Location", ""), "", "", "", "", "", "", "", ""),  "error",  dynavLocation_Internalname,  "true",  ""));
             AV5CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV5CheckRequiredFieldsResult", AV5CheckRequiredFieldsResult);
          }
@@ -1154,7 +1154,7 @@ namespace GeneXus.Programs {
                if ( AV15Trn_LocationDynamicForm.Insert() )
                {
                   context.CommitDataStores("wc_copygeneraldynamicformtolocation",pr_default);
-                  GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Copy form",  "The form was successfully copied.",  "success",  "",  "na",  ""));
+                  GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_DF_Copy_SuccessTitle", ""),  context.GetMessage( "WWP_DF_Copy_Success", ""),  "success",  "",  "na",  ""));
                   CallWebObject(formatLink("wp_locationdynamicform.aspx") );
                   context.wjLocDisableFrm = 1;
                }
@@ -1165,7 +1165,7 @@ namespace GeneXus.Programs {
                   while ( AV22GXV3 <= AV21GXV2.Count )
                   {
                      AV10Message = ((GeneXus.Utils.SdtMessages_Message)AV21GXV2.Item(AV22GXV3));
-                     GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error cloning a form",  AV10Message.gxTpr_Description,  "error",  "",  "false",  ""));
+                     GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_DF_ErrorCloning", ""),  AV10Message.gxTpr_Description,  "error",  "",  "false",  ""));
                      AV22GXV3 = (int)(AV22GXV3+1);
                   }
                }
@@ -1187,7 +1187,7 @@ namespace GeneXus.Programs {
                AssignAttri(sPrefix, false, "AV13ResultMsg", AV13ResultMsg);
                AV24GXV5 = (int)(AV24GXV5+1);
             }
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error cloning a form",  AV13ResultMsg,  "error",  "",  "false",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_DF_ErrorCloning", ""),  AV13ResultMsg,  "error",  "",  "false",  ""));
          }
       }
 
@@ -1371,7 +1371,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411511849", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271893593", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1387,7 +1387,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_copygeneraldynamicformtolocation.js", "?202542411511849", false, true);
+         context.AddJavascriptSource("wc_copygeneraldynamicformtolocation.js", "?20254271893594", false, true);
          /* End function include_jscripts */
       }
 

@@ -128,8 +128,8 @@ namespace GeneXus.Programs {
          /* Start Routine */
          returnInSub = false;
          AV39trnName = "Trn_Location";
-         AV37AttributeDescription = "LocationDescription";
-         AV31ReceptionDescriptionVar = "Welkom bij de receptie van onze app. Hier kunt u al uw vragen stellen en krijgt u direct hulp van ons team. Of het nu gaat om technische ondersteuning, informatie over diensten, of algemene vragen, wij zijn er om u te helpen.";
+         AV37AttributeDescription = context.GetMessage( "LocationDescription", "");
+         AV31ReceptionDescriptionVar = context.GetMessage( "Welkom bij de receptie van onze app. Hier kunt u al uw vragen stellen en krijgt u direct hulp van ons team. Of het nu gaat om technische ondersteuning, informatie over diensten, of algemene vragen, wij zijn er om u te helpen.", "");
          imgReceptionimagevar_gximage = "ReceptionImageFile";
          AV30ReceptionImageVar = context.GetImagePath( "7a779875-7e6f-4e4f-8ef6-6c9464d2a2f0", "", context.GetTheme( ));
          AV44Receptionimagevar_GXI = GXDbFile.PathToUrl( context.GetImagePath( "7a779875-7e6f-4e4f-8ef6-6c9464d2a2f0", "", context.GetTheme( )), context);
@@ -185,15 +185,15 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
             new prc_updatelocationimages(context ).execute(  AV7LocationId,  AV42UploadedFiles,  AV41FilesToUpdate) ;
-            AV13WebSession.Set("NotificationMessage", "Location Updated successfully");
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location Updated successfully", ""));
          }
          if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
          {
-            AV13WebSession.Set("NotificationMessage", "Location Deleted successfully");
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location Deleted successfully", ""));
          }
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
-            AV13WebSession.Set("NotificationMessage", "Location Inserted successfully");
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location Inserted successfully", ""));
          }
       }
 
@@ -438,32 +438,32 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
          A329LocationZipCode = StringUtil.Upper( A329LocationZipCode);
-         if ( ! GxRegex.IsMatch(A329LocationZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A329LocationZipCode)) )
+         if ( ! GxRegex.IsMatch(A329LocationZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A329LocationZipCode)) )
          {
-            GX_msglist.addItem("Zip Code is incorrect", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Zip Code is incorrect", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A34LocationEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem("Invalid email pattern", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Location Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A34LocationEmail)) && ! GxRegex.IsMatch(A34LocationEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A34LocationEmail)) && ! GxRegex.IsMatch(A34LocationEmail,context.GetMessage( "^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$", "")) )
          {
-            GX_msglist.addItem("Email format is invalid", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Email format is invalid", ""), 1, "");
             AnyError = 1;
          }
          GXt_char2 = A35LocationPhone;
          new prc_concatenateintlphone(context ).execute(  A355LocationPhoneCode,  A356LocationPhoneNumber, out  GXt_char2) ;
          A35LocationPhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A356LocationPhoneNumber)) && ! GxRegex.IsMatch(A356LocationPhoneNumber,"^\\d{9}$") )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A356LocationPhoneNumber)) && ! GxRegex.IsMatch(A356LocationPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
-            GX_msglist.addItem("Phone contains 9 digits", 1, "");
+            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
          }
          if ( (Guid.Empty==A584ActiveAppVersionId) )
@@ -478,7 +478,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A584ActiveAppVersionId) ) )
             {
-               GX_msglist.addItem("No matching ''.", "ForeignKeyNotFound", 1, "ACTIVEAPPVERSIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), "", "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ACTIVEAPPVERSIONID");
                AnyError = 1;
             }
          }
@@ -495,7 +495,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A598PublishedActiveAppVersionId) ) )
             {
-               GX_msglist.addItem("No matching ''.", "ForeignKeyNotFound", 1, "PUBLISHEDACTIVEAPPVERSIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), "", "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "PUBLISHEDACTIVEAPPVERSIONID");
                AnyError = 1;
             }
          }
@@ -512,7 +512,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A576LocationThemeId) ) )
             {
-               GX_msglist.addItem("No matching 'SG_Location Theme'.", "ForeignKeyNotFound", 1, "LOCATIONTHEMEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "SG_Location Theme", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "LOCATIONTHEMEID");
                AnyError = 1;
             }
          }
@@ -539,7 +539,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A273Trn_ThemeId) ) )
             {
-               GX_msglist.addItem("No matching ''.", "ForeignKeyNotFound", 1, "TRN_THEMEID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), "", "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "TRN_THEMEID");
                AnyError = 1;
             }
          }
@@ -911,7 +911,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(16) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"General Suppliers"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "General Suppliers", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(16);
@@ -919,7 +919,7 @@ namespace GeneXus.Programs {
             pr_default.execute(17, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(17) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ResidentPackage"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_ResidentPackage", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(17);
@@ -927,7 +927,7 @@ namespace GeneXus.Programs {
             pr_default.execute(18, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(18) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Agenda/Calendar"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Agenda/Calendar", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(18);
@@ -943,7 +943,7 @@ namespace GeneXus.Programs {
             pr_default.execute(20, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(20) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Location Dynamic Forms"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Location Dynamic Forms", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(20);
@@ -951,7 +951,7 @@ namespace GeneXus.Programs {
             pr_default.execute(21, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(21) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Services"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Services", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(21);
@@ -959,7 +959,7 @@ namespace GeneXus.Programs {
             pr_default.execute(22, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(22) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Resident"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Resident", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(22);
@@ -967,7 +967,7 @@ namespace GeneXus.Programs {
             pr_default.execute(23, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(23) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Receptionists"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Receptionists", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(23);
@@ -1475,7 +1475,7 @@ namespace GeneXus.Programs {
             pr_default.execute(25, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(25) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(25);
@@ -1513,7 +1513,7 @@ namespace GeneXus.Programs {
             pr_default.execute(25, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(25) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(25);

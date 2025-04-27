@@ -69,23 +69,23 @@ namespace GeneXus.Programs {
          AV13GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
          AV10clientId = AV13GAMApplication.gxTpr_Clientid;
          AV9client_secret = AV13GAMApplication.gxTpr_Clientsecret;
-         if ( StringUtil.StrCmp(AV15HttpRequest.ServerHost, "localhost") == 0 )
+         if ( StringUtil.StrCmp(AV15HttpRequest.ServerHost, context.GetMessage( "localhost", "")) == 0 )
          {
-            AV8baseUrl = "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL";
+            AV8baseUrl = context.GetMessage( "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL", "");
          }
          else
          {
-            AV8baseUrl = "https://staging.comforta.yukon.software";
+            AV8baseUrl = context.GetMessage( "https://staging.comforta.yukon.software", "");
          }
-         AV21url = AV8baseUrl + "/oauth/gam/v2.0/access_token";
-         AV14httpclient.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-         AV14httpclient.AddVariable("client_id", AV10clientId);
-         AV14httpclient.AddVariable("client_secret", AV9client_secret);
-         AV14httpclient.AddVariable("grant_type", "password");
-         AV14httpclient.AddVariable("username", AV22username);
-         AV14httpclient.AddVariable("authentication_type_name", "otp");
-         AV14httpclient.AddVariable("otp_step", "1");
-         AV14httpclient.Execute("POST", AV21url);
+         AV21url = AV8baseUrl + context.GetMessage( "/oauth/gam/v2.0/access_token", "");
+         AV14httpclient.AddHeader(context.GetMessage( "Content-Type", ""), context.GetMessage( "application/x-www-form-urlencoded", ""));
+         AV14httpclient.AddVariable(context.GetMessage( "client_id", ""), AV10clientId);
+         AV14httpclient.AddVariable(context.GetMessage( "client_secret", ""), AV9client_secret);
+         AV14httpclient.AddVariable(context.GetMessage( "grant_type", ""), context.GetMessage( "password", ""));
+         AV14httpclient.AddVariable(context.GetMessage( "username", ""), AV22username);
+         AV14httpclient.AddVariable(context.GetMessage( "authentication_type_name", ""), context.GetMessage( "otp", ""));
+         AV14httpclient.AddVariable(context.GetMessage( "otp_step", ""), "1");
+         AV14httpclient.Execute(context.GetMessage( "POST", ""), AV21url);
          AV18response = AV14httpclient.ToString();
          if ( AV14httpclient.StatusCode != 200 )
          {

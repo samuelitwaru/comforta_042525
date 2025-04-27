@@ -75,7 +75,7 @@ namespace GeneXus.Programs {
          while ( AV21GXV1 <= AV14SDT_TrnAttributesCollection.Count )
          {
             AV8SDT_TrnAttributes = ((SdtSDT_TrnAttributes)AV14SDT_TrnAttributesCollection.Item(AV21GXV1));
-            new prc_logtoserver(context ).execute(  "&SDT_TrnAttributes: "+AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Primarykeyid.ToString()) ;
+            new prc_logtoserver(context ).execute(  context.GetMessage( "&SDT_TrnAttributes: ", "")+AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Primarykeyid.ToString()) ;
             AV22GXLvl14 = 0;
             /* Using cursor P00E52 */
             pr_default.execute(0, new Object[] {AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Primarykeyid});
@@ -87,7 +87,7 @@ namespace GeneXus.Programs {
                A583DynamicTranslationDutch = P00E52_A583DynamicTranslationDutch[0];
                A578DynamicTranslationId = P00E52_A578DynamicTranslationId[0];
                AV22GXLvl14 = 1;
-               new prc_logtoserver(context ).execute(  "	Found: "+A580DynamicTranslationPrimaryKey.ToString()) ;
+               new prc_logtoserver(context ).execute(  context.GetMessage( "	Found: ", "")+A580DynamicTranslationPrimaryKey.ToString()) ;
                AV23GXV2 = 1;
                while ( AV23GXV2 <= AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Attribute.Count )
                {
@@ -121,7 +121,7 @@ namespace GeneXus.Programs {
             pr_default.close(0);
             if ( AV22GXLvl14 == 0 )
             {
-               new prc_logtoserver(context ).execute(  "	Not Found: "+AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Primarykeyid.ToString()+" : "+AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Pagetypeapp) ;
+               new prc_logtoserver(context ).execute(  context.GetMessage( "	Not Found: ", "")+AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Primarykeyid.ToString()+" : "+AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Pagetypeapp) ;
                AV24GXV3 = 1;
                while ( AV24GXV3 <= AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Attribute.Count )
                {
@@ -188,7 +188,7 @@ namespace GeneXus.Programs {
                {
                   AV17Tile = ((SdtSDT_MenuPage_RowsItem_TilesItem)AV15RowItem.gxTpr_Tiles.Item(AV26GXV5));
                   GXt_char1 = "";
-                  new prc_translatelanguage(context ).execute(  AV12LanguageCode,  "nl",  AV17Tile.gxTpr_Text, out  GXt_char1) ;
+                  new prc_translatelanguage(context ).execute(  AV12LanguageCode,  context.GetMessage( "nl", ""),  AV17Tile.gxTpr_Text, out  GXt_char1) ;
                   AV17Tile.gxTpr_Text = GXt_char1;
                   AV17Tile.gxTpr_Name = AV17Tile.gxTpr_Text;
                   AV26GXV5 = (int)(AV26GXV5+1);
@@ -209,7 +209,7 @@ namespace GeneXus.Programs {
                {
                   AV17Tile = ((SdtSDT_MenuPage_RowsItem_TilesItem)AV15RowItem.gxTpr_Tiles.Item(AV28GXV7));
                   GXt_char1 = "";
-                  new prc_translatelanguage(context ).execute(  AV12LanguageCode,  "en",  AV17Tile.gxTpr_Text, out  GXt_char1) ;
+                  new prc_translatelanguage(context ).execute(  AV12LanguageCode,  context.GetMessage( "en", ""),  AV17Tile.gxTpr_Text, out  GXt_char1) ;
                   AV17Tile.gxTpr_Text = GXt_char1;
                   AV17Tile.gxTpr_Name = AV17Tile.gxTpr_Text;
                   AV28GXV7 = (int)(AV28GXV7+1);
@@ -218,7 +218,7 @@ namespace GeneXus.Programs {
             }
             AV19DynamicTranslationEnglish = AV16SDT_MenuPage.ToJSonString(false, true);
          }
-         new prc_logtoserver(context ).execute(  "		Translated "+AV11Attribute.gxTpr_Attributename+"("+AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Primarykeyid.ToString()+") from "+AV9Language+" : "+AV20DynamicTranslationDutch) ;
+         new prc_logtoserver(context ).execute(  context.GetMessage( "		Translated ", "")+AV11Attribute.gxTpr_Attributename+"("+AV8SDT_TrnAttributes.gxTpr_Transaction.gxTpr_Primarykeyid.ToString()+context.GetMessage( ") from ", "")+AV9Language+" : "+AV20DynamicTranslationDutch) ;
       }
 
       public override void cleanup( )

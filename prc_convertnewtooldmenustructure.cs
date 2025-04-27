@@ -131,7 +131,7 @@ namespace GeneXus.Programs {
                AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecturl = AV15TilesItem.gxTpr_Action.gxTpr_Objecturl;
                if ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "DynamicForm") == 0 )
                {
-                  new prc_logtoserver(context ).execute(  "Found form: "+AV15TilesItem.gxTpr_Action.gxTpr_Objectid) ;
+                  new prc_logtoserver(context ).execute(  context.GetMessage( "Found form: ", "")+AV15TilesItem.gxTpr_Action.gxTpr_Objectid) ;
                   /* Using cursor P00DJ3 */
                   pr_default.execute(1, new Object[] {AV15TilesItem.gxTpr_Action.gxTpr_Objectid, AV19LocationId, AV22OrganisationId});
                   while ( (pr_default.getStatus(1) != 101) )
@@ -169,27 +169,27 @@ namespace GeneXus.Programs {
          }
          else if ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "Menu") == 0 )
          {
-            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = "Page";
+            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = context.GetMessage( "Page", "");
          }
-         else if ( ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "Content") == 0 ) ) || ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "Location") == 0 ) ) || ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "Reception") == 0 ) ) )
+         else if ( ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, context.GetMessage( "Content", "")) == 0 ) ) || ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, context.GetMessage( "Location", "")) == 0 ) ) || ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, context.GetMessage( "Reception", "")) == 0 ) ) )
          {
-            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = "Service/Product Page";
+            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = context.GetMessage( "Service/Product Page", "");
          }
-         else if ( ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "MyActivity") == 0 ) ) || ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "My Activity") == 0 ) ) )
+         else if ( ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "MyActivity") == 0 ) ) || ( ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, context.GetMessage( "My Activity", "")) == 0 ) ) )
          {
-            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = "Predefined Page, Mailbox";
+            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = context.GetMessage( "Predefined Page, Mailbox", "");
          }
          else if ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "Calendar") == 0 )
          {
-            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = "Predefined Page, Calendar";
+            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = context.GetMessage( "Predefined Page, Calendar", "");
          }
-         else if ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "Dynamic Form") == 0 )
+         else if ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, context.GetMessage( "Dynamic Form", "")) == 0 )
          {
-            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = "Dynamic Forms";
+            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = context.GetMessage( "Dynamic Forms", "");
          }
-         else if ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, "Web Link") == 0 )
+         else if ( StringUtil.StrCmp(AV15TilesItem.gxTpr_Action.gxTpr_Objecttype, context.GetMessage( "Web Link", "")) == 0 )
          {
-            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = "Web Link";
+            AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = context.GetMessage( "Web Link", "");
          }
          else
          {

@@ -331,7 +331,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "Add Element") ;
+            context.SendWebValue( context.GetMessage( "Add Element", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -533,11 +533,11 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"Validations", AV39Validations);
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_276", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_276), 8, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_276", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_276), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV54WWPDynamicFormMode", StringUtil.RTrim( wcpOAV54WWPDynamicFormMode));
-         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV61WWPFormElementParentId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV61WWPFormElementParentId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV60WWPFormElementId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV60WWPFormElementId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV33SessionId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV33SessionId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV61WWPFormElementParentId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV61WWPFormElementParentId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV60WWPFormElementId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV60WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV33SessionId", StringUtil.LTrim( StringUtil.NToC( (decimal)(wcpOAV33SessionId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vVALIDATIONS", AV39Validations);
@@ -547,10 +547,10 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vVALIDATIONS", AV39Validations);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"vWWPDYNAMICFORMMODE", StringUtil.RTrim( AV54WWPDynamicFormMode));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMELEMENTPARENTID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV61WWPFormElementParentId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMELEMENTID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV60WWPFormElementId), 4, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMELEMENTDATATYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV58WWPFormElementDataType), 2, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSESSIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV33SessionId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMELEMENTPARENTID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV61WWPFormElementParentId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMELEMENTID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV60WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPFORMELEMENTDATATYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV58WWPFormElementDataType), 2, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSESSIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV33SessionId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vVALIDATIONJSON", AV38ValidationJson);
          GxWebStd.gx_hidden_field( context, sPrefix+"vCONDITIONERROR", AV9ConditionError);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vEXECUTECONDITIONTOTEST", AV16ExecuteConditionToTest);
@@ -570,7 +570,7 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vVISIBLECONDITIONEXPRESSION", AV44VisibleConditionExpression);
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"vCURRENTVALIDATIONINDEX", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13CurrentValidationIndex), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vCURRENTVALIDATIONINDEX", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13CurrentValidationIndex), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vCHECKREQUIREDFIELDSRESULT", AV7CheckRequiredFieldsResult);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISFORMSETTINGS", AV22IsFormSettings);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISFORMSETTINGS", GetSecureSignedToken( sPrefix, AV22IsFormSettings, context));
@@ -578,8 +578,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWPFORMTITLE", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV65WWPFormTitle, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vPARENTISGRIDMULTIPLEDATA", AV28ParentIsGridMultipleData);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPARENTISGRIDMULTIPLEDATA", GetSecureSignedToken( sPrefix, AV28ParentIsGridMultipleData, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"GRIDVALIDATIONS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDVALIDATIONS_nFirstRecordOnPage), 15, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"GRIDVALIDATIONS_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDVALIDATIONS_nEOF), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"GRIDVALIDATIONS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDVALIDATIONS_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"GRIDVALIDATIONS_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDVALIDATIONS_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWWPFORM", AV55WWPForm);
@@ -717,7 +717,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Add Element" ;
+         return context.GetMessage( "Add Element", "") ;
       }
 
       protected void WB9S0( )
@@ -782,7 +782,7 @@ namespace GeneXus.Programs {
             ucGxuitabspanel_tabs1.Render(context, "tab", Gxuitabspanel_tabs1_Internalname, sPrefix+"GXUITABSPANEL_TABS1Container");
             context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+sPrefix+"GXUITABSPANEL_TABS1Container"+"title1"+"\" style=\"display:none;\">") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTab1_title_Internalname, "General Information", "", "", lblTab1_title_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
+            GxWebStd.gx_label_ctrl( context, lblTab1_title_Internalname, context.GetMessage( "WWP_DF_GeneralInformation", ""), "", "", lblTab1_title_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
             context.WriteHtmlText( "Tab1") ;
@@ -798,7 +798,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", radavFormtype.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+radavFormtype_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", "Form type", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "WWP_DF_FormType", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Radio button */
@@ -817,7 +817,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwpform_wwpformtitle_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwpform_wwpformtitle_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwpform_wwpformtitle_Internalname, "Title", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwpform_wwpformtitle_Internalname, context.GetMessage( "WWP_DF_Title", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -834,7 +834,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwpform_wwpformreferencename_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwpform_wwpformreferencename_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwpform_wwpformreferencename_Internalname, "Reference Name", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwpform_wwpformreferencename_Internalname, context.GetMessage( "WWP_DF_ReferenceName", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -851,7 +851,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwpform_wwpformresumemessage_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwpform_wwpformresumemessage_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwpform_wwpformresumemessage_Internalname, "Resume message", " SmallTextAreaLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwpform_wwpformresumemessage_Internalname, context.GetMessage( "WWP_DF_ResumeMessage", ""), " SmallTextAreaLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
@@ -872,7 +872,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavWwpformelementtype.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavWwpformelementtype_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavWwpformelementtype_Internalname, "Element type", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavWwpformelementtype_Internalname, context.GetMessage( "WWP_DF_ElementType", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 42,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
@@ -891,7 +891,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavWwpformelementcaption.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavWwpformelementcaption_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavWwpformelementcaption_Internalname, "Title type", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavWwpformelementcaption_Internalname, context.GetMessage( "WWP_DF_TitleType", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 47,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
@@ -910,7 +910,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwpformelementtitle_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwpformelementtitle_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwpformelementtitle_Internalname, "Title", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwpformelementtitle_Internalname, context.GetMessage( "WWP_DF_Title", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
@@ -935,7 +935,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divTextblockwwpformelementreferenceid_cell_Internalname, 1, 0, "px", 0, "px", divTextblockwwpformelementreferenceid_cell_Class, "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockwwpformelementreferenceid_Internalname, "Reference Id", "", "", lblTextblockwwpformelementreferenceid_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblockwwpformelementreferenceid_Internalname, context.GetMessage( "WWP_DF_ReferenceId", ""), "", "", lblTextblockwwpformelementreferenceid_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
@@ -964,7 +964,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavControl.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavControl_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavControl_Internalname, "Control", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavControl_Internalname, context.GetMessage( "WWP_DF_Control", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 71,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
@@ -983,7 +983,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+radavText_format_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", "Format", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "WWP_DF_Format", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Radio button */
@@ -1002,7 +1002,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+radavTextarea_format_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", "Format", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "WWP_DF_Format", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Radio button */
@@ -1021,14 +1021,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", chkavDate_includetime.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavDate_includetime_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavDate_includetime_Internalname, "Include time", " AttributeCheckBoxLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavDate_includetime_Internalname, context.GetMessage( "WWP_DF_IncludeTime", ""), " AttributeCheckBoxLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 86,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavDate_includetime_Internalname, StringUtil.BoolToStr( AV14Date_IncludeTime), "", "Include time", chkavDate_includetime.Visible, chkavDate_includetime.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,86);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavDate_includetime_Internalname, StringUtil.BoolToStr( AV14Date_IncludeTime), "", context.GetMessage( "WWP_DF_IncludeTime", ""), chkavDate_includetime.Visible, chkavDate_includetime.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,86);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1059,14 +1059,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection_Internalname, "Allow multiple selection", " AttributeCheckBoxLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection_Internalname, context.GetMessage( "WWP_DF_AllowMultipleSelection", ""), " AttributeCheckBoxLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 96,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection_Internalname, StringUtil.BoolToStr( AV46WWP_DF_CharMetadata.gxTpr_Multipleoptions.gxTpr_Allowmultipleselection), "", "Allow multiple selection", chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Visible, chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,96);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection_Internalname, StringUtil.BoolToStr( AV46WWP_DF_CharMetadata.gxTpr_Multipleoptions.gxTpr_Allowmultipleselection), "", context.GetMessage( "WWP_DF_AllowMultipleSelection", ""), chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Visible, chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,96);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1078,7 +1078,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavPredoptions_type.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavPredoptions_type_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavPredoptions_type_Internalname, "Control type", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavPredoptions_type_Internalname, context.GetMessage( "WWP_DF_ControlType", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 101,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
@@ -1097,7 +1097,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+radavPredoptions_values_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", "Options type", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "WWP_DF_OptionsType", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Radio button */
@@ -1116,7 +1116,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_charmetadata_multipleoptions_dynamic_getoptionsservice_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_charmetadata_multipleoptions_dynamic_getoptionsservice_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_charmetadata_multipleoptions_dynamic_getoptionsservice_Internalname, "Service URL", " SmallTextAreaLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_charmetadata_multipleoptions_dynamic_getoptionsservice_Internalname, context.GetMessage( "WWP_DF_ServiceURL", ""), " SmallTextAreaLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
@@ -1137,7 +1137,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavPredoptions_options_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavPredoptions_options_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavPredoptions_options_Internalname, "Options", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavPredoptions_options_Internalname, context.GetMessage( "WWP_DF_Options", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
@@ -1146,7 +1146,7 @@ namespace GeneXus.Programs {
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavPredoptions_options_Internalname, AV29PredOptions_Options, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,116);\"", 0, edtavPredoptions_options_Visible, edtavPredoptions_options_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "Include one option per line", -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_UAddElement.htm");
+            GxWebStd.gx_html_textarea( context, edtavPredoptions_options_Internalname, AV29PredOptions_Options, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,116);\"", 0, edtavPredoptions_options_Visible, edtavPredoptions_options_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", context.GetMessage( "Include one option per line", ""), -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1158,14 +1158,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue_Internalname, "Include empty value", " AttributeCheckBoxLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue_Internalname, context.GetMessage( "WWP_DF_IncludeEmptyValue", ""), " AttributeCheckBoxLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 121,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue_Internalname, StringUtil.BoolToStr( AV46WWP_DF_CharMetadata.gxTpr_Multipleoptions.gxTpr_Combobox.gxTpr_Includeemptyvalue), "", "Include empty value", chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Visible, chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,121);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue_Internalname, StringUtil.BoolToStr( AV46WWP_DF_CharMetadata.gxTpr_Multipleoptions.gxTpr_Combobox.gxTpr_Includeemptyvalue), "", context.GetMessage( "WWP_DF_IncludeEmptyValue", ""), chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Visible, chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,121);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1177,7 +1177,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_charmetadata_multipleoptions_combobox_emptytext_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_charmetadata_multipleoptions_combobox_emptytext_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_charmetadata_multipleoptions_combobox_emptytext_Internalname, "Empty text", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_charmetadata_multipleoptions_combobox_emptytext_Internalname, context.GetMessage( "WWP_DF_EmptyText", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -1194,12 +1194,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_charmetadata_length_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_charmetadata_length_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_charmetadata_length_Internalname, "Length", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_charmetadata_length_Internalname, context.GetMessage( "WWP_DF_Lenght", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 131,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavWwp_df_charmetadata_length_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV46WWP_DF_CharMetadata.gxTpr_Length), 4, 0, ".", "")), StringUtil.LTrim( ((edtavWwp_df_charmetadata_length_Enabled!=0) ? context.localUtil.Format( (decimal)(AV46WWP_DF_CharMetadata.gxTpr_Length), "ZZZ9") : context.localUtil.Format( (decimal)(AV46WWP_DF_CharMetadata.gxTpr_Length), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,131);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_charmetadata_length_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_charmetadata_length_Visible, edtavWwp_df_charmetadata_length_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
+            GxWebStd.gx_single_line_edit( context, edtavWwp_df_charmetadata_length_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV46WWP_DF_CharMetadata.gxTpr_Length), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavWwp_df_charmetadata_length_Enabled!=0) ? context.localUtil.Format( (decimal)(AV46WWP_DF_CharMetadata.gxTpr_Length), "ZZZ9") : context.localUtil.Format( (decimal)(AV46WWP_DF_CharMetadata.gxTpr_Length), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,131);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_charmetadata_length_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_charmetadata_length_Visible, edtavWwp_df_charmetadata_length_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1211,7 +1211,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_charmetadata_defaultvalue_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_charmetadata_defaultvalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_charmetadata_defaultvalue_Internalname, "Default Value", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_charmetadata_defaultvalue_Internalname, context.GetMessage( "WWP_DF_DefaultValue", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -1228,14 +1228,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", chkavWwp_df_containermetadata_collapsable.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavWwp_df_containermetadata_collapsable_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavWwp_df_containermetadata_collapsable_Internalname, "Collapsable", " AttributeCheckBoxLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavWwp_df_containermetadata_collapsable_Internalname, context.GetMessage( "WWP_DF_Collapsable", ""), " AttributeCheckBoxLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 141,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_containermetadata_collapsable_Internalname, StringUtil.BoolToStr( AV47WWP_DF_ContainerMetadata.gxTpr_Collapsable), "", "Collapsable", chkavWwp_df_containermetadata_collapsable.Visible, chkavWwp_df_containermetadata_collapsable.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,141);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_containermetadata_collapsable_Internalname, StringUtil.BoolToStr( AV47WWP_DF_ContainerMetadata.gxTpr_Collapsable), "", context.GetMessage( "WWP_DF_Collapsable", ""), chkavWwp_df_containermetadata_collapsable.Visible, chkavWwp_df_containermetadata_collapsable.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,141);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1247,14 +1247,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", chkavWwp_df_containermetadata_collapsedbydefault.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavWwp_df_containermetadata_collapsedbydefault_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavWwp_df_containermetadata_collapsedbydefault_Internalname, "Collapsed By Default", " AttributeCheckBoxLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavWwp_df_containermetadata_collapsedbydefault_Internalname, context.GetMessage( "WWP_DF_CollapsedByDefault", ""), " AttributeCheckBoxLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 146,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_containermetadata_collapsedbydefault_Internalname, StringUtil.BoolToStr( AV47WWP_DF_ContainerMetadata.gxTpr_Collapsedbydefault), "", "Collapsed By Default", chkavWwp_df_containermetadata_collapsedbydefault.Visible, chkavWwp_df_containermetadata_collapsedbydefault.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(146, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,146);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_containermetadata_collapsedbydefault_Internalname, StringUtil.BoolToStr( AV47WWP_DF_ContainerMetadata.gxTpr_Collapsedbydefault), "", context.GetMessage( "WWP_DF_CollapsedByDefault", ""), chkavWwp_df_containermetadata_collapsedbydefault.Visible, chkavWwp_df_containermetadata_collapsedbydefault.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(146, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,146);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1266,7 +1266,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+radavFile_format_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", "Format", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "WWP_DF_Format", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Radio button */
@@ -1285,12 +1285,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_numericmetadata_length_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_numericmetadata_length_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_numericmetadata_length_Internalname, "Length", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_numericmetadata_length_Internalname, context.GetMessage( "WWP_DF_Lenght", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 156,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavWwp_df_numericmetadata_length_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Length), 2, 0, ".", "")), StringUtil.LTrim( ((edtavWwp_df_numericmetadata_length_Enabled!=0) ? context.localUtil.Format( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Length), "Z9") : context.localUtil.Format( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Length), "Z9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,156);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_numericmetadata_length_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_numericmetadata_length_Visible, edtavWwp_df_numericmetadata_length_Enabled, 0, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
+            GxWebStd.gx_single_line_edit( context, edtavWwp_df_numericmetadata_length_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Length), 2, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavWwp_df_numericmetadata_length_Enabled!=0) ? context.localUtil.Format( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Length), "Z9") : context.localUtil.Format( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Length), "Z9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,156);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_numericmetadata_length_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_numericmetadata_length_Visible, edtavWwp_df_numericmetadata_length_Enabled, 0, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1302,12 +1302,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_numericmetadata_decimals_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_numericmetadata_decimals_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_numericmetadata_decimals_Internalname, "Decimals", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_numericmetadata_decimals_Internalname, context.GetMessage( "WWP_DF_Decimals", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 161,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavWwp_df_numericmetadata_decimals_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Decimals), 1, 0, ".", "")), StringUtil.LTrim( ((edtavWwp_df_numericmetadata_decimals_Enabled!=0) ? context.localUtil.Format( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Decimals), "9") : context.localUtil.Format( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Decimals), "9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,161);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_numericmetadata_decimals_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_numericmetadata_decimals_Visible, edtavWwp_df_numericmetadata_decimals_Enabled, 0, "text", "1", 1, "chr", 1, "row", 1, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
+            GxWebStd.gx_single_line_edit( context, edtavWwp_df_numericmetadata_decimals_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Decimals), 1, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavWwp_df_numericmetadata_decimals_Enabled!=0) ? context.localUtil.Format( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Decimals), "9") : context.localUtil.Format( (decimal)(AV52WWP_DF_NumericMetadata.gxTpr_Decimals), "9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,161);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_numericmetadata_decimals_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_numericmetadata_decimals_Visible, edtavWwp_df_numericmetadata_decimals_Enabled, 0, "text", "1", 1, "chr", 1, "row", 1, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1319,12 +1319,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_numericmetadata_defaultvalue_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_numericmetadata_defaultvalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_numericmetadata_defaultvalue_Internalname, "Default Value", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_numericmetadata_defaultvalue_Internalname, context.GetMessage( "WWP_DF_DefaultValue", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 166,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavWwp_df_numericmetadata_defaultvalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV52WWP_DF_NumericMetadata.gxTpr_Defaultvalue, 18, 5, ".", "")), StringUtil.LTrim( ((edtavWwp_df_numericmetadata_defaultvalue_Enabled!=0) ? context.localUtil.Format( AV52WWP_DF_NumericMetadata.gxTpr_Defaultvalue, "ZZZZZZZZZZZ9.99999") : context.localUtil.Format( AV52WWP_DF_NumericMetadata.gxTpr_Defaultvalue, "ZZZZZZZZZZZ9.99999"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, ',','.','5');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, ',','.','5');"+";gx.evt.onblur(this,166);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_numericmetadata_defaultvalue_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_numericmetadata_defaultvalue_Visible, edtavWwp_df_numericmetadata_defaultvalue_Enabled, 0, "text", "", 18, "chr", 1, "row", 18, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
+            GxWebStd.gx_single_line_edit( context, edtavWwp_df_numericmetadata_defaultvalue_Internalname, StringUtil.LTrim( StringUtil.NToC( AV52WWP_DF_NumericMetadata.gxTpr_Defaultvalue, 18, 5, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavWwp_df_numericmetadata_defaultvalue_Enabled!=0) ? context.localUtil.Format( AV52WWP_DF_NumericMetadata.gxTpr_Defaultvalue, "ZZZZZZZZZZZ9.99999") : context.localUtil.Format( AV52WWP_DF_NumericMetadata.gxTpr_Defaultvalue, "ZZZZZZZZZZZ9.99999"))), TempTags+" onchange=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'5');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_decimal( this, gx.thousandSeparator,gx.decimalPoint,'5');"+";gx.evt.onblur(this,166);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_numericmetadata_defaultvalue_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_numericmetadata_defaultvalue_Visible, edtavWwp_df_numericmetadata_defaultvalue_Enabled, 0, "text", "", 18, "chr", 1, "row", 18, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1336,7 +1336,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+radavRadio_direction_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", "Format", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "WWP_DF_Format", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Radio button */
@@ -1355,7 +1355,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_booleanmetadata_checkbox_controltitle_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_booleanmetadata_checkbox_controltitle_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_booleanmetadata_checkbox_controltitle_Internalname, "Checkbox text", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_booleanmetadata_checkbox_controltitle_Internalname, context.GetMessage( "WWP_DF_CheckboxText", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -1372,14 +1372,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", chkavWwp_df_booleanmetadata_defaultvalue.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavWwp_df_booleanmetadata_defaultvalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavWwp_df_booleanmetadata_defaultvalue_Internalname, "Default Value", " AttributeCheckBoxLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavWwp_df_booleanmetadata_defaultvalue_Internalname, context.GetMessage( "WWP_DF_DefaultValue", ""), " AttributeCheckBoxLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 181,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_booleanmetadata_defaultvalue_Internalname, StringUtil.BoolToStr( AV45WWP_DF_BooleanMetadata.gxTpr_Defaultvalue), "", "Default Value", chkavWwp_df_booleanmetadata_defaultvalue.Visible, chkavWwp_df_booleanmetadata_defaultvalue.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(181, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,181);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_booleanmetadata_defaultvalue_Internalname, StringUtil.BoolToStr( AV45WWP_DF_BooleanMetadata.gxTpr_Defaultvalue), "", context.GetMessage( "WWP_DF_DefaultValue", ""), chkavWwp_df_booleanmetadata_defaultvalue.Visible, chkavWwp_df_booleanmetadata_defaultvalue.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(181, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,181);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1391,7 +1391,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_stepmetadata_description_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_stepmetadata_description_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_stepmetadata_description_Internalname, "Description", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_stepmetadata_description_Internalname, context.GetMessage( "WWP_DF_Description", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
@@ -1412,7 +1412,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype_Internalname, "Display type", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype_Internalname, context.GetMessage( "WWP_DF_DisplayType", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 191,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
@@ -1431,7 +1431,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavWwp_df_elementsrepeatermetadata_repetitionstype.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavWwp_df_elementsrepeatermetadata_repetitionstype_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavWwp_df_elementsrepeatermetadata_repetitionstype_Internalname, "Repetitions Type", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavWwp_df_elementsrepeatermetadata_repetitionstype_Internalname, context.GetMessage( "WWP_DF_RepetitionsType", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 196,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
@@ -1450,7 +1450,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildcaption_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildcaption_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildcaption_Internalname, "Insert Child Caption", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildcaption_Internalname, context.GetMessage( "WWP_DF_InsertChildCaption", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -1467,14 +1467,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel_Internalname, "Insert child button aligned to label", " AttributeCheckBoxLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel_Internalname, context.GetMessage( "WWP_DF_InsertChildButtonAlignedToLabel", ""), " AttributeCheckBoxLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 206,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel_Internalname, StringUtil.BoolToStr( AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Insertchildbutton_isalignedtolabel), "", "Insert child button aligned to label", chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Visible, chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(206, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,206);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel_Internalname, StringUtil.BoolToStr( AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Insertchildbutton_isalignedtolabel), "", context.GetMessage( "WWP_DF_InsertChildButtonAlignedToLabel", ""), chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Visible, chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(206, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,206);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1486,7 +1486,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_removechildtooltip_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_removechildtooltip_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_removechildtooltip_Internalname, "Remove child button tooltip", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_removechildtooltip_Internalname, context.GetMessage( "WWP_DF_RemoveChildButtonTooltip", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -1503,12 +1503,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname, "Max Repetitions", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname, context.GetMessage( "WWP_DF_MaxRepetitions", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 216,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Maxrepetitions), 4, 0, ".", "")), StringUtil.LTrim( ((edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Enabled!=0) ? context.localUtil.Format( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Maxrepetitions), "ZZZ9") : context.localUtil.Format( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Maxrepetitions), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,216);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Visible, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
+            GxWebStd.gx_single_line_edit( context, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Maxrepetitions), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Enabled!=0) ? context.localUtil.Format( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Maxrepetitions), "ZZZ9") : context.localUtil.Format( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Maxrepetitions), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,216);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Visible, edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1520,12 +1520,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname, "Repetitions value", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname, context.GetMessage( "WWP_DF_RepetitionsValue", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 221,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_fixedvalue.gxTpr_Value), 4, 0, ".", "")), StringUtil.LTrim( ((edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_fixedvalue.gxTpr_Value), "ZZZ9") : context.localUtil.Format( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_fixedvalue.gxTpr_Value), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,221);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Visible, edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
+            GxWebStd.gx_single_line_edit( context, edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_fixedvalue.gxTpr_Value), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Enabled!=0) ? context.localUtil.Format( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_fixedvalue.gxTpr_Value), "ZZZ9") : context.localUtil.Format( (decimal)(AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_fixedvalue.gxTpr_Value), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,221);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Visible, edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1537,7 +1537,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid_Internalname, "Repetitions count variable", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid_Internalname, context.GetMessage( "WWP_DF_RepetitionsCountVariable", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 226,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
@@ -1556,7 +1556,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", cmbavWwp_df_labelmetadata_style.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavWwp_df_labelmetadata_style_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavWwp_df_labelmetadata_style_Internalname, "Style", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavWwp_df_labelmetadata_style_Internalname, context.GetMessage( "WWP_DF_Style", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 231,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
@@ -1575,14 +1575,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", chkavIsrequired.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavIsrequired_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavIsrequired_Internalname, "Is Required", " AttributeCheckBoxLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavIsrequired_Internalname, context.GetMessage( "WWP_DF_IsRequired", ""), " AttributeCheckBoxLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 236,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavIsrequired_Internalname, StringUtil.BoolToStr( AV24IsRequired), "", "Is Required", chkavIsrequired.Visible, chkavIsrequired.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(236, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,236);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavIsrequired_Internalname, StringUtil.BoolToStr( AV24IsRequired), "", context.GetMessage( "WWP_DF_IsRequired", ""), chkavIsrequired.Visible, chkavIsrequired.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(236, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,236);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1591,7 +1591,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</div>") ;
             context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+sPrefix+"GXUITABSPANEL_TABS1Container"+"title2"+"\" style=\"display:none;\">") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTab2_title_Internalname, "Visibility", "", "", lblTab2_title_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
+            GxWebStd.gx_label_ctrl( context, lblTab2_title_Internalname, context.GetMessage( "WWP_DF_Visibility", ""), "", "", lblTab2_title_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
             context.WriteHtmlText( "Tab2") ;
@@ -1607,14 +1607,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", chkavWwpformelementexcludefromexport.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavWwpformelementexcludefromexport_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavWwpformelementexcludefromexport_Internalname, "Exclude from export", " AttributeCheckBoxLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, chkavWwpformelementexcludefromexport_Internalname, context.GetMessage( "WWP_DF_ExcludeFromExport", ""), " AttributeCheckBoxLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 246,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavWwpformelementexcludefromexport_Internalname, StringUtil.BoolToStr( AV59WWPFormElementExcludeFromExport), "", "Exclude from export", chkavWwpformelementexcludefromexport.Visible, chkavWwpformelementexcludefromexport.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(246, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,246);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavWwpformelementexcludefromexport_Internalname, StringUtil.BoolToStr( AV59WWPFormElementExcludeFromExport), "", context.GetMessage( "WWP_DF_ExcludeFromExport", ""), chkavWwpformelementexcludefromexport.Visible, chkavWwpformelementexcludefromexport.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(246, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,246);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1630,7 +1630,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 MergeLabelCell", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockvisiblecondition_Internalname, "Visible condition", "", "", lblTextblockvisiblecondition_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblockvisiblecondition_Internalname, context.GetMessage( "WWP_DF_VisibleCondition", ""), "", "", lblTextblockvisiblecondition_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
@@ -1677,7 +1677,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</div>") ;
             context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+sPrefix+"GXUITABSPANEL_TABS1Container"+"title3"+"\" style=\"display:none;\">") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTab3_title_Internalname, "Validations", "", "", lblTab3_title_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
+            GxWebStd.gx_label_ctrl( context, lblTab3_title_Internalname, context.GetMessage( "Validations", ""), "", "", lblTab3_title_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_UAddElement.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
             context.WriteHtmlText( "Tab3") ;
@@ -1760,14 +1760,14 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 284,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(276), 3, 0)+","+"null"+");", "Confirm", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_UAddElement.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(276), 3, 0)+","+"null"+");", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 286,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuacancel_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(276), 3, 0)+","+"null"+");", "Cancel", bttBtnuacancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e119s1_client"+"'", TempTags, "", 2, "HLP_UAddElement.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuacancel_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(276), 3, 0)+","+"null"+");", context.GetMessage( "GX_BtnCancel", ""), bttBtnuacancel_Jsonclick, 7, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e119s1_client"+"'", TempTags, "", 2, "HLP_UAddElement.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1793,7 +1793,7 @@ namespace GeneXus.Programs {
             AssignProp(sPrefix, false, cmbavWwp_df_containermetadata_style_Internalname, "Values", (string)(cmbavWwp_df_containermetadata_style.ToJavascriptSource()), true);
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 292,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavColumns_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8Columns), 2, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV8Columns), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,292);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavColumns_Jsonclick, 0, "Attribute", "", "", "", "", edtavColumns_Visible, 1, 0, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
+            GxWebStd.gx_single_line_edit( context, edtavColumns_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8Columns), 2, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV8Columns), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,292);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavColumns_Jsonclick, 0, "Attribute", "", "", "", "", edtavColumns_Visible, 1, 0, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_UAddElement.htm");
             wb_table3_293_9S2( true) ;
          }
          else
@@ -1913,7 +1913,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "Add Element", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "Add Element", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -2947,24 +2947,24 @@ namespace GeneXus.Programs {
             ajax_req_read_hidden_sdt(cgiGet( sPrefix+"Validations"), AV39Validations);
             ajax_req_read_hidden_sdt(cgiGet( sPrefix+"vVALIDATIONS"), AV39Validations);
             /* Read saved values. */
-            nRC_GXsfl_276 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_276"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_276 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_276"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             wcpOAV54WWPDynamicFormMode = cgiGet( sPrefix+"wcpOAV54WWPDynamicFormMode");
-            wcpOAV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV61WWPFormElementParentId"), ".", ","), 18, MidpointRounding.ToEven));
-            wcpOAV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV60WWPFormElementId"), ".", ","), 18, MidpointRounding.ToEven));
-            wcpOAV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV33SessionId"), ".", ","), 18, MidpointRounding.ToEven));
+            wcpOAV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV61WWPFormElementParentId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            wcpOAV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV60WWPFormElementId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            wcpOAV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV33SessionId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV38ValidationJson = cgiGet( sPrefix+"vVALIDATIONJSON");
-            AV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vSESSIONID"), ".", ","), 18, MidpointRounding.ToEven));
-            AV58WWPFormElementDataType = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vWWPFORMELEMENTDATATYPE"), ".", ","), 18, MidpointRounding.ToEven));
-            AV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vWWPFORMELEMENTID"), ".", ","), 18, MidpointRounding.ToEven));
-            AV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vWWPFORMELEMENTPARENTID"), ".", ","), 18, MidpointRounding.ToEven));
+            AV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vSESSIONID"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            AV58WWPFormElementDataType = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vWWPFORMELEMENTDATATYPE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            AV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vWWPFORMELEMENTID"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            AV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vWWPFORMELEMENTPARENTID"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV54WWPDynamicFormMode = cgiGet( sPrefix+"vWWPDYNAMICFORMMODE");
-            GRIDVALIDATIONS_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDVALIDATIONS_nFirstRecordOnPage"), ".", ","), 18, MidpointRounding.ToEven));
-            GRIDVALIDATIONS_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDVALIDATIONS_nEOF"), ".", ","), 18, MidpointRounding.ToEven));
-            subGridvalidations_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDVALIDATIONS_Rows"), ".", ","), 18, MidpointRounding.ToEven));
+            GRIDVALIDATIONS_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDVALIDATIONS_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRIDVALIDATIONS_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDVALIDATIONS_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGridvalidations_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDVALIDATIONS_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, sPrefix+"GRIDVALIDATIONS_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridvalidations_Rows), 6, 0, ".", "")));
             Updatevalidation_modal_Result = cgiGet( sPrefix+"UPDATEVALIDATION_MODAL_Result");
             Addvalidation_modal_Result = cgiGet( sPrefix+"ADDVALIDATION_MODAL_Result");
-            nRC_GXsfl_276 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_276"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_276 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_276"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             nGXsfl_276_fel_idx = 0;
             while ( nGXsfl_276_fel_idx < nRC_GXsfl_276 )
             {
@@ -3029,7 +3029,7 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "AV29PredOptions_Options", AV29PredOptions_Options);
             AV46WWP_DF_CharMetadata.gxTpr_Multipleoptions.gxTpr_Combobox.gxTpr_Includeemptyvalue = StringUtil.StrToBool( cgiGet( chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue_Internalname));
             AV46WWP_DF_CharMetadata.gxTpr_Multipleoptions.gxTpr_Combobox.gxTpr_Emptytext = cgiGet( edtavWwp_df_charmetadata_multipleoptions_combobox_emptytext_Internalname);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_charmetadata_length_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_charmetadata_length_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_charmetadata_length_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_charmetadata_length_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWP_DF_CHARMETADATA_LENGTH");
                GX_FocusControl = edtavWwp_df_charmetadata_length_Internalname;
@@ -3039,14 +3039,14 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV46WWP_DF_CharMetadata.gxTpr_Length = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_charmetadata_length_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV46WWP_DF_CharMetadata.gxTpr_Length = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_charmetadata_length_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             }
             AV46WWP_DF_CharMetadata.gxTpr_Defaultvalue = cgiGet( edtavWwp_df_charmetadata_defaultvalue_Internalname);
             AV47WWP_DF_ContainerMetadata.gxTpr_Collapsable = StringUtil.StrToBool( cgiGet( chkavWwp_df_containermetadata_collapsable_Internalname));
             AV47WWP_DF_ContainerMetadata.gxTpr_Collapsedbydefault = StringUtil.StrToBool( cgiGet( chkavWwp_df_containermetadata_collapsedbydefault_Internalname));
             AV17File_Format = cgiGet( radavFile_format_Internalname);
             AssignAttri(sPrefix, false, "AV17File_Format", AV17File_Format);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_length_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_length_Internalname), ".", ",") > Convert.ToDecimal( 99 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_length_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_length_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 99 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWP_DF_NUMERICMETADATA_LENGTH");
                GX_FocusControl = edtavWwp_df_numericmetadata_length_Internalname;
@@ -3056,9 +3056,9 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV52WWP_DF_NumericMetadata.gxTpr_Length = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_length_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV52WWP_DF_NumericMetadata.gxTpr_Length = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_length_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_decimals_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_decimals_Internalname), ".", ",") > Convert.ToDecimal( 9 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_decimals_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_decimals_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWP_DF_NUMERICMETADATA_DECIMALS");
                GX_FocusControl = edtavWwp_df_numericmetadata_decimals_Internalname;
@@ -3068,9 +3068,9 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV52WWP_DF_NumericMetadata.gxTpr_Decimals = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_decimals_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV52WWP_DF_NumericMetadata.gxTpr_Decimals = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_decimals_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_defaultvalue_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_defaultvalue_Internalname), ".", ",") > 999999999999.99999m ) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_defaultvalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_defaultvalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > 999999999999.99999m ) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWP_DF_NUMERICMETADATA_DEFAULTVALUE");
                GX_FocusControl = edtavWwp_df_numericmetadata_defaultvalue_Internalname;
@@ -3080,7 +3080,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV52WWP_DF_NumericMetadata.gxTpr_Defaultvalue = context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_defaultvalue_Internalname), ".", ",");
+               AV52WWP_DF_NumericMetadata.gxTpr_Defaultvalue = context.localUtil.CToN( cgiGet( edtavWwp_df_numericmetadata_defaultvalue_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep"));
             }
             AV32Radio_Direction = cgiGet( radavRadio_direction_Internalname);
             AssignAttri(sPrefix, false, "AV32Radio_Direction", AV32Radio_Direction);
@@ -3096,7 +3096,7 @@ namespace GeneXus.Programs {
             AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Insertchildcaption = cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildcaption_Internalname);
             AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Insertchildbutton_isalignedtolabel = StringUtil.StrToBool( cgiGet( chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel_Internalname));
             AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Removechildtooltip = cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_removechildtooltip_Internalname);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWP_DF_ELEMENTSREPEATERMETADATA_REPETITIONS_USERADDED_MAXREPETITIONS");
                GX_FocusControl = edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname;
@@ -3106,9 +3106,9 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Maxrepetitions = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Maxrepetitions = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "WWP_DF_ELEMENTSREPEATERMETADATA_REPETITIONS_FIXEDVALUE_VALUE");
                GX_FocusControl = edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname;
@@ -3118,7 +3118,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_fixedvalue.gxTpr_Value = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_fixedvalue.gxTpr_Value = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             }
             cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid.Name = cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid_Internalname;
             cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid.CurrentValue = cgiGet( cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid_Internalname);
@@ -3138,7 +3138,7 @@ namespace GeneXus.Programs {
             cmbavWwp_df_containermetadata_style.Name = cmbavWwp_df_containermetadata_style_Internalname;
             cmbavWwp_df_containermetadata_style.CurrentValue = cgiGet( cmbavWwp_df_containermetadata_style_Internalname);
             AV47WWP_DF_ContainerMetadata.gxTpr_Style = (short)(Math.Round(NumberUtil.Val( cgiGet( cmbavWwp_df_containermetadata_style_Internalname), "."), 18, MidpointRounding.ToEven));
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavColumns_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavColumns_Internalname), ".", ",") > Convert.ToDecimal( 99 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavColumns_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavColumns_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 99 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vCOLUMNS");
                GX_FocusControl = edtavColumns_Internalname;
@@ -3149,7 +3149,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV8Columns = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavColumns_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+               AV8Columns = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavColumns_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri(sPrefix, false, "AV8Columns", StringUtil.LTrimStr( (decimal)(AV8Columns), 2, 0));
             }
             /* Read subfile selected row values. */
@@ -3194,7 +3194,7 @@ namespace GeneXus.Programs {
          AV17File_Format = "Any";
          AssignAttri(sPrefix, false, "AV17File_Format", AV17File_Format);
          AV46WWP_DF_CharMetadata.gxTpr_Length = 40;
-         cmbavPredoptions_type.addItem("Combo", "Combo box", 0);
+         cmbavPredoptions_type.addItem("Combo", context.GetMessage( "Combo box", ""), 0);
          AV30PredOptions_Type = "Combo";
          AssignAttri(sPrefix, false, "AV30PredOptions_Type", AV30PredOptions_Type);
          AV32Radio_Direction = "Horizontal";
@@ -3517,7 +3517,7 @@ namespace GeneXus.Programs {
                AV103GXV33 = (int)(AV103GXV33+1);
             }
          }
-         lblVisibleconditionhelpicon_Caption = StringUtil.StringReplace( lblVisibleconditionhelpicon_Caption, "VisibleConditionHelpText", "The condition can reference other fields using the & character.<br/>If the operators \"and\" or \"or\" are used, both sides of the condition must be wrapped between parentesis. E.g.: (Condition_1) and ((Condition_2) or (Condition_3)).<br/>&Today can be used to reference the current date, DateSum(&value, days, months, years) to operate with dates and 0 is the value of an empty date.");
+         lblVisibleconditionhelpicon_Caption = StringUtil.StringReplace( lblVisibleconditionhelpicon_Caption, "VisibleConditionHelpText", context.GetMessage( "WWP_DF_VisibleConditionTooltip", ""));
          AssignProp(sPrefix, false, lblVisibleconditionhelpicon_Internalname, "Caption", lblVisibleconditionhelpicon_Caption, true);
          if ( (0==AV8Columns) )
          {
@@ -3567,21 +3567,21 @@ namespace GeneXus.Programs {
             AV23IsLastValidation = (bool)(((AV39Validations.IndexOf(((WorkWithPlus.workwithplus_dynamicforms.SdtWWP_DF_Validation)(AV39Validations.CurrentItem)))==AV39Validations.Count)));
             cmbavGridactiongroup1.removeAllItems();
             cmbavGridactiongroup1.addItem("0", ";fas fa-bars", 0);
-            cmbavGridactiongroup1.addItem("1", StringUtil.Format( "%1;%2", "Update", "fas fa-pencil", "", "", "", "", "", "", ""), 0);
-            cmbavGridactiongroup1.addItem("2", StringUtil.Format( "%1;%2", "Delete", "far fa-trash-can", "", "", "", "", "", "", ""), 0);
+            cmbavGridactiongroup1.addItem("1", StringUtil.Format( "%1;%2", context.GetMessage( "GXM_update", ""), "fas fa-pencil", "", "", "", "", "", "", ""), 0);
+            cmbavGridactiongroup1.addItem("2", StringUtil.Format( "%1;%2", context.GetMessage( "GX_BtnDelete", ""), "far fa-trash-can", "", "", "", "", "", "", ""), 0);
             if ( ! AV21IsFirstValidation )
             {
-               cmbavGridactiongroup1.addItem("3", StringUtil.Format( "%1;%2", "Move up", "fas fa-arrow-up", "", "", "", "", "", "", ""), 0);
+               cmbavGridactiongroup1.addItem("3", StringUtil.Format( "%1;%2", context.GetMessage( "WWP_DF_MoveUp", ""), "fas fa-arrow-up", "", "", "", "", "", "", ""), 0);
             }
             if ( ! AV23IsLastValidation )
             {
-               cmbavGridactiongroup1.addItem("4", StringUtil.Format( "%1;%2", "Move down", "fas fa-arrow-down", "", "", "", "", "", "", ""), 0);
+               cmbavGridactiongroup1.addItem("4", StringUtil.Format( "%1;%2", context.GetMessage( "WWP_DF_MoveDown", ""), "fas fa-arrow-down", "", "", "", "", "", "", ""), 0);
             }
             AV40Validations__MessageWithTags = ((WorkWithPlus.workwithplus_dynamicforms.SdtWWP_DF_Validation)(AV39Validations.CurrentItem)).gxTpr_Message;
             AssignAttri(sPrefix, false, edtavValidations__messagewithtags_Internalname, AV40Validations__MessageWithTags);
             if ( 1 == 1 )
             {
-               AV40Validations__MessageWithTags = StringUtil.Format( "<i class='fa fa-check-circle FontColorIconSuccess	 TagBeforeText BootstrapTooltipTop' title='%1'></i>", "ValidationTooltip", "", "", "", "", "", "", "", "") + AV40Validations__MessageWithTags;
+               AV40Validations__MessageWithTags = StringUtil.Format( "<i class='fa fa-check-circle FontColorIconSuccess	 TagBeforeText BootstrapTooltipTop' title='%1'></i>", context.GetMessage( "ValidationTooltip", ""), "", "", "", "", "", "", "", "") + AV40Validations__MessageWithTags;
                AssignAttri(sPrefix, false, edtavValidations__messagewithtags_Internalname, AV40Validations__MessageWithTags);
             }
             AV34Text = ((WorkWithPlus.workwithplus_dynamicforms.SdtWWP_DF_Validation)(AV39Validations.CurrentItem)).gxTpr_Condition.gxTpr_Expression;
@@ -3661,7 +3661,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV43VisibleCondition))) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "Enter a condition to validate",  "error",  edtavVisiblecondition_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "WWP_DF_EnterConditionToValidate", ""),  "error",  edtavVisiblecondition_Internalname,  "true",  ""));
          }
          else
          {
@@ -3676,7 +3676,7 @@ namespace GeneXus.Programs {
             if (returnInSub) return;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9ConditionError)) )
             {
-               GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "Condition executed successfully",  "success",  "",  "true",  ""));
+               GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "WWP_DF_ConditionExecSuccessfully", ""),  "success",  "",  "true",  ""));
             }
          }
          /*  Sending Event outputs  */
@@ -3751,67 +3751,67 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          if ( ( AV22IsFormSettings ) && String.IsNullOrEmpty(StringUtil.RTrim( AV55WWPForm.gxTpr_Wwpformtitle)) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Title", "", "", "", "", "", "", "", ""),  "error",  edtavWwpform_wwpformtitle_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_Title", ""), "", "", "", "", "", "", "", ""),  "error",  edtavWwpform_wwpformtitle_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( AV22IsFormSettings ) && String.IsNullOrEmpty(StringUtil.RTrim( AV55WWPForm.gxTpr_Wwpformreferencename)) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Reference Name", "", "", "", "", "", "", "", ""),  "error",  edtavWwpform_wwpformreferencename_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_ReferenceName", ""), "", "", "", "", "", "", "", ""),  "error",  edtavWwpform_wwpformreferencename_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( AV22IsFormSettings && ( AV55WWPForm.gxTpr_Wwpformresume == 1 ) ) && String.IsNullOrEmpty(StringUtil.RTrim( AV55WWPForm.gxTpr_Wwpformresumemessage)) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Resume message", "", "", "", "", "", "", "", ""),  "error",  edtavWwpform_wwpformresumemessage_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_ResumeMessage", ""), "", "", "", "", "", "", "", ""),  "error",  edtavWwpform_wwpformresumemessage_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( ! AV22IsFormSettings && ( AV64WWPFormElementType != 3 ) && ( ( AV64WWPFormElementType != 2 ) || ( AV47WWP_DF_ContainerMetadata.gxTpr_Style == 2 ) ) ) && String.IsNullOrEmpty(StringUtil.RTrim( AV63WWPFormElementTitle)) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Title", "", "", "", "", "", "", "", ""),  "error",  edtavWwpformelementtitle_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_Title", ""), "", "", "", "", "", "", "", ""),  "error",  edtavWwpformelementtitle_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( ( ( AV64WWPFormElementType == 1 ) || ( AV64WWPFormElementType == 3 ) ) && ( AV55WWPForm.gxTpr_Wwpformtype == 1 ) ) && String.IsNullOrEmpty(StringUtil.RTrim( AV62WWPFormElementReferenceId)) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Reference Id", "", "", "", "", "", "", "", ""),  "error",  edtavWwpformelementreferenceid_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_ReferenceId", ""), "", "", "", "", "", "", "", ""),  "error",  edtavWwpformelementreferenceid_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( ( AV64WWPFormElementType == 1 ) && ( StringUtil.StrCmp(AV10Control, "Options") == 0 ) && ( StringUtil.StrCmp(AV31PredOptions_Values, "Service") == 0 ) ) && String.IsNullOrEmpty(StringUtil.RTrim( AV46WWP_DF_CharMetadata.gxTpr_Multipleoptions.gxTpr_Dynamic.gxTpr_Getoptionsservice)) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Service URL", "", "", "", "", "", "", "", ""),  "error",  edtavWwp_df_charmetadata_multipleoptions_dynamic_getoptionsservice_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_ServiceURL", ""), "", "", "", "", "", "", "", ""),  "error",  edtavWwp_df_charmetadata_multipleoptions_dynamic_getoptionsservice_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( ( AV64WWPFormElementType == 1 ) && ( StringUtil.StrCmp(AV10Control, "Options") == 0 ) && ( StringUtil.StrCmp(AV31PredOptions_Values, "Fixed") == 0 ) ) && String.IsNullOrEmpty(StringUtil.RTrim( AV29PredOptions_Options)) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Options", "", "", "", "", "", "", "", ""),  "error",  edtavPredoptions_options_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_Options", ""), "", "", "", "", "", "", "", ""),  "error",  edtavPredoptions_options_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( ( AV64WWPFormElementType == 3 ) && ( AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitionstype == 1 ) ) && String.IsNullOrEmpty(StringUtil.RTrim( AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Insertchildcaption)) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Insert Child Caption", "", "", "", "", "", "", "", ""),  "error",  edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildcaption_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_InsertChildCaption", ""), "", "", "", "", "", "", "", ""),  "error",  edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildcaption_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( ( AV64WWPFormElementType == 3 ) && ( AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitionstype == 1 ) ) && (0==AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_useradded.gxTpr_Maxrepetitions) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Max Repetitions", "", "", "", "", "", "", "", ""),  "error",  edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_MaxRepetitions", ""), "", "", "", "", "", "", "", ""),  "error",  edtavWwp_df_elementsrepeatermetadata_repetitions_useradded_maxrepetitions_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( ( AV64WWPFormElementType == 3 ) && ( AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitionstype == 2 ) ) && (0==AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_fixedvalue.gxTpr_Value) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Repetitions value", "", "", "", "", "", "", "", ""),  "error",  edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_RepetitionsValue", ""), "", "", "", "", "", "", "", ""),  "error",  edtavWwp_df_elementsrepeatermetadata_repetitions_fixedvalue_value_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
          if ( ( ( AV64WWPFormElementType == 3 ) && ( AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitionstype == 3 ) ) && (0==AV49WWP_DF_ElementsRepeaterMetadata.gxTpr_Repetitions_variable.gxTpr_Elementid) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Repetitions count variable", "", "", "", "", "", "", "", ""),  "error",  cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_DF_RepetitionsCountVariable", ""), "", "", "", "", "", "", "", ""),  "error",  cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
@@ -4430,20 +4430,20 @@ namespace GeneXus.Programs {
             divRadio_direction_cell_Class = "col-xs-12 DataContentCell DscTop";
             AssignProp(sPrefix, false, divRadio_direction_cell_Internalname, "Class", divRadio_direction_cell_Class, true);
          }
-         chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption = (AV14Date_IncludeTime ? "Set now as default value" : "Set today as default value");
+         chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption = (AV14Date_IncludeTime ? context.GetMessage( "WWP_DF_SetNowAsDefaultValue", "") : context.GetMessage( "WWP_DF_SetTodayAsDefaultValue", ""));
          AssignProp(sPrefix, false, chkavWwp_df_datemetadata_isdefaultvaluetoday_Internalname, "TitleCaption", chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption, true);
          if ( StringUtil.StrCmp(AV10Control, "Options") == 0 )
          {
             cmbavPredoptions_type.removeAllItems();
-            cmbavPredoptions_type.addItem("Combo", "Combo box", 0);
+            cmbavPredoptions_type.addItem("Combo", context.GetMessage( "WWP_DF_Combo", ""), 0);
             if ( AV46WWP_DF_CharMetadata.gxTpr_Multipleoptions.gxTpr_Allowmultipleselection )
             {
-               cmbavPredoptions_type.addItem("CheckB", "Checkboxes", 0);
+               cmbavPredoptions_type.addItem("CheckB", context.GetMessage( "WWP_DF_Checkboxes", ""), 0);
             }
             else
             {
-               cmbavPredoptions_type.addItem("Radio", "Radio buttons", 0);
-               cmbavPredoptions_type.addItem("Suggest", "Text with suggestions", 0);
+               cmbavPredoptions_type.addItem("Radio", context.GetMessage( "WWP_DF_RadioButtons", ""), 0);
+               cmbavPredoptions_type.addItem("Suggest", context.GetMessage( "WWP_DF_TextWithSuggestions", ""), 0);
             }
          }
          divTablesplittedwwpformelementreferenceid_Visible = edtavWwpformelementreferenceid_Visible;
@@ -4629,7 +4629,7 @@ namespace GeneXus.Programs {
                            {
                               AV7CheckRequiredFieldsResult = false;
                               AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
-                              GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "To change the form type to Wizard, all elements in the first level must be containers.",  "error",  radavFormtype_Internalname,  "true",  ""));
+                              GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "WWP_DF_ChangeFormTypeWizardRequirement", ""),  "error",  radavFormtype_Internalname,  "true",  ""));
                               if (true) break;
                            }
                         }
@@ -4639,7 +4639,7 @@ namespace GeneXus.Programs {
                }
                if ( ! new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_validateuniquereferencename(context).executeUdp(  AV55WWPForm.gxTpr_Wwpformid,  AV55WWPForm.gxTpr_Wwpformreferencename) )
                {
-                  GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "The Reference name must be unique.",  "error",  edtavWwpform_wwpformreferencename_Internalname,  "true",  ""));
+                  GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "WWP_DF_ReferenceMustBeUnique", ""),  "error",  edtavWwpform_wwpformreferencename_Internalname,  "true",  ""));
                   AV7CheckRequiredFieldsResult = false;
                   AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
                }
@@ -5397,7 +5397,7 @@ namespace GeneXus.Programs {
             if ( StringUtil.StrCmp(StringUtil.Lower( StringUtil.Trim( AV62WWPFormElementReferenceId)), "value") == 0 )
             {
                this.executeUsercontrolMethod(sPrefix, false, "GXUITABSPANEL_TABS1Container", "SelectTab", "", new Object[] {(short)1});
-               GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "Invalid reference id: %1", AV62WWPFormElementReferenceId, "", "", "", "", "", "", "", ""),  "error",  edtavWwpformelementreferenceid_Internalname,  "true",  ""));
+               GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_DF_InvalidReferenceId", ""), AV62WWPFormElementReferenceId, "", "", "", "", "", "", "", ""),  "error",  edtavWwpformelementreferenceid_Internalname,  "true",  ""));
                AV7CheckRequiredFieldsResult = false;
                AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
             }
@@ -5410,7 +5410,7 @@ namespace GeneXus.Programs {
                   if ( ( ( StringUtil.StrCmp(AV54WWPDynamicFormMode, "INS") == 0 ) || ( AV15ElementAux.gxTpr_Wwpformelementid != AV60WWPFormElementId ) ) && ( StringUtil.StrCmp(StringUtil.Lower( StringUtil.Trim( AV15ElementAux.gxTpr_Wwpformelementreferenceid)), StringUtil.Lower( StringUtil.Trim( AV62WWPFormElementReferenceId))) == 0 ) )
                   {
                      this.executeUsercontrolMethod(sPrefix, false, "GXUITABSPANEL_TABS1Container", "SelectTab", "", new Object[] {(short)1});
-                     GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "Duplicated reference id: %1", AV62WWPFormElementReferenceId, "", "", "", "", "", "", "", ""),  "error",  edtavWwpformelementreferenceid_Internalname,  "true",  ""));
+                     GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_DF_DuplicatedReferenceId", ""), AV62WWPFormElementReferenceId, "", "", "", "", "", "", "", ""),  "error",  edtavWwpformelementreferenceid_Internalname,  "true",  ""));
                      AV7CheckRequiredFieldsResult = false;
                      AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
                   }
@@ -5420,7 +5420,7 @@ namespace GeneXus.Programs {
          }
          if ( AV7CheckRequiredFieldsResult && ( AV64WWPFormElementType == 1 ) && ( StringUtil.StrCmp(AV10Control, "Number") == 0 ) && ( AV52WWP_DF_NumericMetadata.gxTpr_Decimals > 5 ) )
          {
-            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "Decimals cannot be greater than 5",  "error",  edtavWwp_df_numericmetadata_decimals_Internalname,  "true",  ""));
+            GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "WWP_DF_DecimalsGreater5", ""),  "error",  edtavWwp_df_numericmetadata_decimals_Internalname,  "true",  ""));
             AV7CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
          }
@@ -5463,7 +5463,7 @@ namespace GeneXus.Programs {
                         {
                            AV7CheckRequiredFieldsResult = false;
                            AssignAttri(sPrefix, false, "AV7CheckRequiredFieldsResult", AV7CheckRequiredFieldsResult);
-                           GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "To change the \"Display type\" to Grid, every contained item must be of type \"Simple\".",  "error",  "",  "true",  ""));
+                           GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "WWP_DF_ChangeDisplayTypeRequirement", ""),  "error",  "",  "true",  ""));
                            if (true) break;
                         }
                         else
@@ -5576,7 +5576,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavVisiblecondition_Internalname, "Visible Condition", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavVisiblecondition_Internalname, context.GetMessage( "Visible Condition", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Multiple line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 258,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             ClassString = "Attribute";
@@ -5613,7 +5613,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavWwpformelementreferenceid_Internalname, "WWPForm Element Reference Id", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavWwpformelementreferenceid_Internalname, context.GetMessage( "WWPForm Element Reference Id", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'" + sPrefix + "',false,'" + sGXsfl_276_idx + "',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavWwpformelementreferenceid_Internalname, AV62WWPFormElementReferenceId, StringUtil.RTrim( context.localUtil.Format( AV62WWPFormElementReferenceId, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavWwpformelementreferenceid_Jsonclick, 0, "Attribute", "", "", "", "", edtavWwpformelementreferenceid_Visible, edtavWwpformelementreferenceid_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_UAddElement.htm");
@@ -5621,7 +5621,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td class='DynFormConditionHelpCell'>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblReferencieidhelpicon_Internalname, "<i class='BootstrapTooltipLeft fas fa-circle-info' title='The \"Reference id\" is used to reference this field in the visible conditions or validation of other fields of the form. If this field will not be referenced, it is recommended to leave it blank.'></i>", "", "", lblReferencieidhelpicon_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblReferencieidhelpicon_Visible, 1, 0, 2, "HLP_UAddElement.htm");
+            GxWebStd.gx_label_ctrl( context, lblReferencieidhelpicon_Internalname, context.GetMessage( "<i class='BootstrapTooltipLeft fas fa-circle-info' title='The \"Reference id\" is used to reference this field in the visible conditions or validation of other fields of the form. If this field will not be referenced, it is recommended to leave it blank.'></i>", ""), "", "", lblReferencieidhelpicon_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblReferencieidhelpicon_Visible, 1, 0, 2, "HLP_UAddElement.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -5724,9 +5724,9 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "AV33SessionId", StringUtil.LTrimStr( (decimal)(AV33SessionId), 4, 0));
          }
          wcpOAV54WWPDynamicFormMode = cgiGet( sPrefix+"wcpOAV54WWPDynamicFormMode");
-         wcpOAV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV61WWPFormElementParentId"), ".", ","), 18, MidpointRounding.ToEven));
-         wcpOAV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV60WWPFormElementId"), ".", ","), 18, MidpointRounding.ToEven));
-         wcpOAV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV33SessionId"), ".", ","), 18, MidpointRounding.ToEven));
+         wcpOAV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV61WWPFormElementParentId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         wcpOAV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV60WWPFormElementId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         wcpOAV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV33SessionId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          if ( ! GetJustCreated( ) && ( ( StringUtil.StrCmp(AV54WWPDynamicFormMode, wcpOAV54WWPDynamicFormMode) != 0 ) || ( AV61WWPFormElementParentId != wcpOAV61WWPFormElementParentId ) || ( AV60WWPFormElementId != wcpOAV60WWPFormElementId ) || ( AV33SessionId != wcpOAV33SessionId ) ) )
          {
             setjustcreated();
@@ -5753,32 +5753,32 @@ namespace GeneXus.Programs {
          sCtrlAV61WWPFormElementParentId = cgiGet( sPrefix+"AV61WWPFormElementParentId_CTRL");
          if ( StringUtil.Len( sCtrlAV61WWPFormElementParentId) > 0 )
          {
-            AV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV61WWPFormElementParentId), ".", ","), 18, MidpointRounding.ToEven));
+            AV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV61WWPFormElementParentId), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AssignAttri(sPrefix, false, "AV61WWPFormElementParentId", StringUtil.LTrimStr( (decimal)(AV61WWPFormElementParentId), 4, 0));
          }
          else
          {
-            AV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV61WWPFormElementParentId_PARM"), ".", ","), 18, MidpointRounding.ToEven));
+            AV61WWPFormElementParentId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV61WWPFormElementParentId_PARM"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          }
          sCtrlAV60WWPFormElementId = cgiGet( sPrefix+"AV60WWPFormElementId_CTRL");
          if ( StringUtil.Len( sCtrlAV60WWPFormElementId) > 0 )
          {
-            AV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV60WWPFormElementId), ".", ","), 18, MidpointRounding.ToEven));
+            AV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV60WWPFormElementId), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AssignAttri(sPrefix, false, "AV60WWPFormElementId", StringUtil.LTrimStr( (decimal)(AV60WWPFormElementId), 4, 0));
          }
          else
          {
-            AV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV60WWPFormElementId_PARM"), ".", ","), 18, MidpointRounding.ToEven));
+            AV60WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV60WWPFormElementId_PARM"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          }
          sCtrlAV33SessionId = cgiGet( sPrefix+"AV33SessionId_CTRL");
          if ( StringUtil.Len( sCtrlAV33SessionId) > 0 )
          {
-            AV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV33SessionId), ".", ","), 18, MidpointRounding.ToEven));
+            AV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sCtrlAV33SessionId), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AssignAttri(sPrefix, false, "AV33SessionId", StringUtil.LTrimStr( (decimal)(AV33SessionId), 4, 0));
          }
          else
          {
-            AV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV33SessionId_PARM"), ".", ","), 18, MidpointRounding.ToEven));
+            AV33SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"AV33SessionId_PARM"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          }
       }
 
@@ -5830,17 +5830,17 @@ namespace GeneXus.Programs {
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV54WWPDynamicFormMode_CTRL", StringUtil.RTrim( sCtrlAV54WWPDynamicFormMode));
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"AV61WWPFormElementParentId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV61WWPFormElementParentId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"AV61WWPFormElementParentId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV61WWPFormElementParentId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV61WWPFormElementParentId)) > 0 )
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV61WWPFormElementParentId_CTRL", StringUtil.RTrim( sCtrlAV61WWPFormElementParentId));
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"AV60WWPFormElementId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV60WWPFormElementId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"AV60WWPFormElementId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV60WWPFormElementId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV60WWPFormElementId)) > 0 )
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV60WWPFormElementId_CTRL", StringUtil.RTrim( sCtrlAV60WWPFormElementId));
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"AV33SessionId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV33SessionId), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"AV33SessionId_PARM", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV33SessionId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV33SessionId)) > 0 )
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV33SessionId_CTRL", StringUtil.RTrim( sCtrlAV33SessionId));
@@ -5909,7 +5909,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542411461564", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542717594645", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -5925,7 +5925,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("uaddelement.js", "?202542411461568", false, true);
+         context.AddJavascriptSource("uaddelement.js", "?202542717594654", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -6078,62 +6078,62 @@ namespace GeneXus.Programs {
       {
          radavFormtype.Name = "vFORMTYPE";
          radavFormtype.WebTags = "";
-         radavFormtype.addItem("Plain", "Plain", 0);
-         radavFormtype.addItem("Wizard", "Wizard", 0);
+         radavFormtype.addItem("Plain", context.GetMessage( "Plain", ""), 0);
+         radavFormtype.addItem("Wizard", context.GetMessage( "Wizard", ""), 0);
          cmbavWwpformelementtype.Name = "vWWPFORMELEMENTTYPE";
          cmbavWwpformelementtype.WebTags = "";
-         cmbavWwpformelementtype.addItem("1", "Simple", 0);
-         cmbavWwpformelementtype.addItem("2", "Container", 0);
-         cmbavWwpformelementtype.addItem("3", "Elements Repeater", 0);
-         cmbavWwpformelementtype.addItem("4", "Label", 0);
-         cmbavWwpformelementtype.addItem("5", "Step", 0);
+         cmbavWwpformelementtype.addItem("1", context.GetMessage( "WWP_DF_ElementType_Simple", ""), 0);
+         cmbavWwpformelementtype.addItem("2", context.GetMessage( "WWP_DF_ElementType_Container", ""), 0);
+         cmbavWwpformelementtype.addItem("3", context.GetMessage( "WWP_DF_ElementType_ElementsRepeater", ""), 0);
+         cmbavWwpformelementtype.addItem("4", context.GetMessage( "WWP_DF_ElementType_Label", ""), 0);
+         cmbavWwpformelementtype.addItem("5", context.GetMessage( "WWP_DF_ElementType_Step", ""), 0);
          if ( cmbavWwpformelementtype.ItemCount > 0 )
          {
          }
          cmbavWwpformelementcaption.Name = "vWWPFORMELEMENTCAPTION";
          cmbavWwpformelementcaption.WebTags = "";
-         cmbavWwpformelementcaption.addItem("1", "Label", 0);
-         cmbavWwpformelementcaption.addItem("2", "Title", 0);
-         cmbavWwpformelementcaption.addItem("3", "None", 0);
+         cmbavWwpformelementcaption.addItem("1", context.GetMessage( "WWP_DF_ElementCaptionType_Label", ""), 0);
+         cmbavWwpformelementcaption.addItem("2", context.GetMessage( "WWP_DF_ElementCaptionType_Title", ""), 0);
+         cmbavWwpformelementcaption.addItem("3", context.GetMessage( "WWP_DF_ElementCaptionType_None", ""), 0);
          if ( cmbavWwpformelementcaption.ItemCount > 0 )
          {
          }
          cmbavControl.Name = "vCONTROL";
          cmbavControl.WebTags = "";
-         cmbavControl.addItem("Text", "Text", 0);
-         cmbavControl.addItem("Textarea", "Textarea", 0);
-         cmbavControl.addItem("Number", "Number", 0);
-         cmbavControl.addItem("Date", "Date picker", 0);
-         cmbavControl.addItem("Checkbox", "Checkbox", 0);
-         cmbavControl.addItem("Switch", "Switch (on/off)", 0);
-         cmbavControl.addItem("Password", "Password", 0);
-         cmbavControl.addItem("Options", "Predefined options", 0);
-         cmbavControl.addItem("File", "File upload", 0);
+         cmbavControl.addItem("Text", context.GetMessage( "Text", ""), 0);
+         cmbavControl.addItem("Textarea", context.GetMessage( "Textarea", ""), 0);
+         cmbavControl.addItem("Number", context.GetMessage( "Number", ""), 0);
+         cmbavControl.addItem("Date", context.GetMessage( "Date picker", ""), 0);
+         cmbavControl.addItem("Checkbox", context.GetMessage( "Checkbox", ""), 0);
+         cmbavControl.addItem("Switch", context.GetMessage( "Switch (on/off)", ""), 0);
+         cmbavControl.addItem("Password", context.GetMessage( "Password", ""), 0);
+         cmbavControl.addItem("Options", context.GetMessage( "Predefined options", ""), 0);
+         cmbavControl.addItem("File", context.GetMessage( "File upload", ""), 0);
          if ( cmbavControl.ItemCount > 0 )
          {
          }
          radavText_format.Name = "vTEXT_FORMAT";
          radavText_format.WebTags = "";
-         radavText_format.addItem("Any", "Any", 0);
-         radavText_format.addItem("Email", "Email", 0);
-         radavText_format.addItem("Url", "Url", 0);
+         radavText_format.addItem("Any", context.GetMessage( "Any", ""), 0);
+         radavText_format.addItem("Email", context.GetMessage( "Email", ""), 0);
+         radavText_format.addItem("Url", context.GetMessage( "Url", ""), 0);
          radavTextarea_format.Name = "vTEXTAREA_FORMAT";
          radavTextarea_format.WebTags = "";
-         radavTextarea_format.addItem("Any", "Any", 0);
-         radavTextarea_format.addItem("Rich", "Formatted text/html", 0);
+         radavTextarea_format.addItem("Any", context.GetMessage( "Any", ""), 0);
+         radavTextarea_format.addItem("Rich", context.GetMessage( "Formatted text/html", ""), 0);
          chkavDate_includetime.Name = "vDATE_INCLUDETIME";
          chkavDate_includetime.WebTags = "";
-         chkavDate_includetime.Caption = "Include time";
+         chkavDate_includetime.Caption = context.GetMessage( "WWP_DF_IncludeTime", "");
          AssignProp(sPrefix, false, chkavDate_includetime_Internalname, "TitleCaption", chkavDate_includetime.Caption, true);
          chkavDate_includetime.CheckedValue = "false";
          chkavWwp_df_datemetadata_isdefaultvaluetoday.Name = "WWP_DF_DATEMETADATA_ISDEFAULTVALUETODAY";
          chkavWwp_df_datemetadata_isdefaultvaluetoday.WebTags = "";
-         chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption = "Set today as default value";
+         chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption = context.GetMessage( "WWP_DF_SetTodayAsDefaultValue", "");
          AssignProp(sPrefix, false, chkavWwp_df_datemetadata_isdefaultvaluetoday_Internalname, "TitleCaption", chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption, true);
          chkavWwp_df_datemetadata_isdefaultvaluetoday.CheckedValue = "false";
          chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Name = "WWP_DF_CHARMETADATA_MULTIPLEOPTIONS_ALLOWMULTIPLESELECTION";
          chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.WebTags = "";
-         chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Caption = "Allow multiple selection";
+         chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Caption = context.GetMessage( "WWP_DF_AllowMultipleSelection", "");
          AssignProp(sPrefix, false, chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection_Internalname, "TitleCaption", chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Caption, true);
          chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.CheckedValue = "false";
          cmbavPredoptions_type.Name = "vPREDOPTIONS_TYPE";
@@ -6143,54 +6143,54 @@ namespace GeneXus.Programs {
          }
          radavPredoptions_values.Name = "vPREDOPTIONS_VALUES";
          radavPredoptions_values.WebTags = "";
-         radavPredoptions_values.addItem("Fixed", "Fixed values", 0);
-         radavPredoptions_values.addItem("Service", "Web service", 0);
+         radavPredoptions_values.addItem("Fixed", context.GetMessage( "Fixed values", ""), 0);
+         radavPredoptions_values.addItem("Service", context.GetMessage( "Web service", ""), 0);
          chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Name = "WWP_DF_CHARMETADATA_MULTIPLEOPTIONS_COMBOBOX_INCLUDEEMPTYVALUE";
          chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.WebTags = "";
-         chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Caption = "Include empty value";
+         chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Caption = context.GetMessage( "WWP_DF_IncludeEmptyValue", "");
          AssignProp(sPrefix, false, chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue_Internalname, "TitleCaption", chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Caption, true);
          chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.CheckedValue = "false";
          chkavWwp_df_containermetadata_collapsable.Name = "WWP_DF_CONTAINERMETADATA_COLLAPSABLE";
          chkavWwp_df_containermetadata_collapsable.WebTags = "";
-         chkavWwp_df_containermetadata_collapsable.Caption = "Collapsable";
+         chkavWwp_df_containermetadata_collapsable.Caption = context.GetMessage( "WWP_DF_Collapsable", "");
          AssignProp(sPrefix, false, chkavWwp_df_containermetadata_collapsable_Internalname, "TitleCaption", chkavWwp_df_containermetadata_collapsable.Caption, true);
          chkavWwp_df_containermetadata_collapsable.CheckedValue = "false";
          chkavWwp_df_containermetadata_collapsedbydefault.Name = "WWP_DF_CONTAINERMETADATA_COLLAPSEDBYDEFAULT";
          chkavWwp_df_containermetadata_collapsedbydefault.WebTags = "";
-         chkavWwp_df_containermetadata_collapsedbydefault.Caption = "Collapsed By Default";
+         chkavWwp_df_containermetadata_collapsedbydefault.Caption = context.GetMessage( "WWP_DF_CollapsedByDefault", "");
          AssignProp(sPrefix, false, chkavWwp_df_containermetadata_collapsedbydefault_Internalname, "TitleCaption", chkavWwp_df_containermetadata_collapsedbydefault.Caption, true);
          chkavWwp_df_containermetadata_collapsedbydefault.CheckedValue = "false";
          radavFile_format.Name = "vFILE_FORMAT";
          radavFile_format.WebTags = "";
-         radavFile_format.addItem("Any", "Any", 0);
-         radavFile_format.addItem("Image", "Image", 0);
+         radavFile_format.addItem("Any", context.GetMessage( "Any", ""), 0);
+         radavFile_format.addItem("Image", context.GetMessage( "Image", ""), 0);
          radavRadio_direction.Name = "vRADIO_DIRECTION";
          radavRadio_direction.WebTags = "";
-         radavRadio_direction.addItem("Horizontal", "Horizontal", 0);
-         radavRadio_direction.addItem("Vertical", "Vertical", 0);
+         radavRadio_direction.addItem("Horizontal", context.GetMessage( "Horizontal", ""), 0);
+         radavRadio_direction.addItem("Vertical", context.GetMessage( "Vertical", ""), 0);
          chkavWwp_df_booleanmetadata_defaultvalue.Name = "WWP_DF_BOOLEANMETADATA_DEFAULTVALUE";
          chkavWwp_df_booleanmetadata_defaultvalue.WebTags = "";
-         chkavWwp_df_booleanmetadata_defaultvalue.Caption = "Default Value";
+         chkavWwp_df_booleanmetadata_defaultvalue.Caption = context.GetMessage( "WWP_DF_DefaultValue", "");
          AssignProp(sPrefix, false, chkavWwp_df_booleanmetadata_defaultvalue_Internalname, "TitleCaption", chkavWwp_df_booleanmetadata_defaultvalue.Caption, true);
          chkavWwp_df_booleanmetadata_defaultvalue.CheckedValue = "false";
          cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype.Name = "WWP_DF_ELEMENTSREPEATERMETADATA_REPETITIONSDATATYPE";
          cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype.WebTags = "";
-         cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype.addItem("1", "Plain", 0);
-         cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype.addItem("2", "Grid", 0);
+         cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype.addItem("1", context.GetMessage( "WWP_DF_ElementRepeater_Type_Plain", ""), 0);
+         cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype.addItem("2", context.GetMessage( "WWP_DF_ElementRepeater_Type_Grid", ""), 0);
          if ( cmbavWwp_df_elementsrepeatermetadata_repetitionsdatatype.ItemCount > 0 )
          {
          }
          cmbavWwp_df_elementsrepeatermetadata_repetitionstype.Name = "WWP_DF_ELEMENTSREPEATERMETADATA_REPETITIONSTYPE";
          cmbavWwp_df_elementsrepeatermetadata_repetitionstype.WebTags = "";
-         cmbavWwp_df_elementsrepeatermetadata_repetitionstype.addItem("1", "Added By User", 0);
-         cmbavWwp_df_elementsrepeatermetadata_repetitionstype.addItem("2", "Fixed Value", 0);
-         cmbavWwp_df_elementsrepeatermetadata_repetitionstype.addItem("3", "Variable", 0);
+         cmbavWwp_df_elementsrepeatermetadata_repetitionstype.addItem("1", context.GetMessage( "WWP_DF_ElementRepeater_Repetitions_AddedByUser", ""), 0);
+         cmbavWwp_df_elementsrepeatermetadata_repetitionstype.addItem("2", context.GetMessage( "WWP_DF_ElementRepeater_Repetitions_FixedValue", ""), 0);
+         cmbavWwp_df_elementsrepeatermetadata_repetitionstype.addItem("3", context.GetMessage( "WWP_DF_ElementRepeater_Repetitions_Variable", ""), 0);
          if ( cmbavWwp_df_elementsrepeatermetadata_repetitionstype.ItemCount > 0 )
          {
          }
          chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Name = "WWP_DF_ELEMENTSREPEATERMETADATA_REPETITIONS_USERADDED_INSERTCHILDBUTTON_ISALIGNEDTOLABEL";
          chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.WebTags = "";
-         chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Caption = "Insert child button aligned to label";
+         chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Caption = context.GetMessage( "WWP_DF_InsertChildButtonAlignedToLabel", "");
          AssignProp(sPrefix, false, chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel_Internalname, "TitleCaption", chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Caption, true);
          chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.CheckedValue = "false";
          cmbavWwp_df_elementsrepeatermetadata_repetitions_variable_elementid.Name = "WWP_DF_ELEMENTSREPEATERMETADATA_REPETITIONS_VARIABLE_ELEMENTID";
@@ -6200,19 +6200,19 @@ namespace GeneXus.Programs {
          }
          cmbavWwp_df_labelmetadata_style.Name = "WWP_DF_LABELMETADATA_STYLE";
          cmbavWwp_df_labelmetadata_style.WebTags = "";
-         cmbavWwp_df_labelmetadata_style.addItem("0", "Text", 0);
-         cmbavWwp_df_labelmetadata_style.addItem("1", "Title", 0);
+         cmbavWwp_df_labelmetadata_style.addItem("0", context.GetMessage( "WWP_DF_LabelMetadata_Style_Text", ""), 0);
+         cmbavWwp_df_labelmetadata_style.addItem("1", context.GetMessage( "WWP_DF_LabelMetadata_Style_Title", ""), 0);
          if ( cmbavWwp_df_labelmetadata_style.ItemCount > 0 )
          {
          }
          chkavIsrequired.Name = "vISREQUIRED";
          chkavIsrequired.WebTags = "";
-         chkavIsrequired.Caption = "Is Required";
+         chkavIsrequired.Caption = context.GetMessage( "WWP_DF_IsRequired", "");
          AssignProp(sPrefix, false, chkavIsrequired_Internalname, "TitleCaption", chkavIsrequired.Caption, true);
          chkavIsrequired.CheckedValue = "false";
          chkavWwpformelementexcludefromexport.Name = "vWWPFORMELEMENTEXCLUDEFROMEXPORT";
          chkavWwpformelementexcludefromexport.WebTags = "";
-         chkavWwpformelementexcludefromexport.Caption = "Exclude from export";
+         chkavWwpformelementexcludefromexport.Caption = context.GetMessage( "WWP_DF_ExcludeFromExport", "");
          AssignProp(sPrefix, false, chkavWwpformelementexcludefromexport_Internalname, "TitleCaption", chkavWwpformelementexcludefromexport.Caption, true);
          chkavWwpformelementexcludefromexport.CheckedValue = "false";
          GXCCtl = "vGRIDACTIONGROUP1_" + sGXsfl_276_idx;
@@ -6226,17 +6226,17 @@ namespace GeneXus.Programs {
          }
          cmbavWwpform_wwpformresume.Name = "WWPFORM_WWPFORMRESUME";
          cmbavWwpform_wwpformresume.WebTags = "";
-         cmbavWwpform_wwpformresume.addItem("0", "Never", 0);
-         cmbavWwpform_wwpformresume.addItem("1", "Ask user", 0);
-         cmbavWwpform_wwpformresume.addItem("2", "Always", 0);
+         cmbavWwpform_wwpformresume.addItem("0", context.GetMessage( "WWP_DF_Resume_Never", ""), 0);
+         cmbavWwpform_wwpformresume.addItem("1", context.GetMessage( "WWP_DF_Resume_AskUser", ""), 0);
+         cmbavWwpform_wwpformresume.addItem("2", context.GetMessage( "WWP_DF_Resume_Always", ""), 0);
          if ( cmbavWwpform_wwpformresume.ItemCount > 0 )
          {
          }
          cmbavWwp_df_containermetadata_style.Name = "WWP_DF_CONTAINERMETADATA_STYLE";
          cmbavWwp_df_containermetadata_style.WebTags = "";
-         cmbavWwp_df_containermetadata_style.addItem("0", "None", 0);
-         cmbavWwp_df_containermetadata_style.addItem("1", "Panel", 0);
-         cmbavWwp_df_containermetadata_style.addItem("2", "Panel with title", 0);
+         cmbavWwp_df_containermetadata_style.addItem("0", context.GetMessage( "WWP_DF_ContainerMetadata_Style_None", ""), 0);
+         cmbavWwp_df_containermetadata_style.addItem("1", context.GetMessage( "WWP_DF_ContainerMetadata_Style_Panel", ""), 0);
+         cmbavWwp_df_containermetadata_style.addItem("2", context.GetMessage( "WWP_DF_ContainerMetadata_Style_PanelWithTitle", ""), 0);
          if ( cmbavWwp_df_containermetadata_style.ItemCount > 0 )
          {
          }
@@ -6288,10 +6288,10 @@ namespace GeneXus.Programs {
             context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Validations") ;
+            context.SendWebValue( context.GetMessage( "WWP_DF_Validations", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Validations") ;
+            context.SendWebValue( context.GetMessage( "WWP_DF_Validations", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
             GridvalidationsContainer.AddObjectProperty("GridName", "Gridvalidations");
@@ -6475,15 +6475,15 @@ namespace GeneXus.Programs {
          subGridvalidations_Allowcollapsing = 0;
          subGridvalidations_Allowselection = 0;
          subGridvalidations_Header = "";
-         chkavWwpformelementexcludefromexport.Caption = "Exclude from export";
-         chkavIsrequired.Caption = "Is Required";
-         chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Caption = "Insert child button aligned to label";
-         chkavWwp_df_booleanmetadata_defaultvalue.Caption = "Default Value";
-         chkavWwp_df_containermetadata_collapsedbydefault.Caption = "Collapsed By Default";
-         chkavWwp_df_containermetadata_collapsable.Caption = "Collapsable";
-         chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Caption = "Include empty value";
-         chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Caption = "Allow multiple selection";
-         chkavDate_includetime.Caption = "Include time";
+         chkavWwpformelementexcludefromexport.Caption = context.GetMessage( "WWP_DF_ExcludeFromExport", "");
+         chkavIsrequired.Caption = context.GetMessage( "WWP_DF_IsRequired", "");
+         chkavWwp_df_elementsrepeatermetadata_repetitions_useradded_insertchildbutton_isalignedtolabel.Caption = context.GetMessage( "WWP_DF_InsertChildButtonAlignedToLabel", "");
+         chkavWwp_df_booleanmetadata_defaultvalue.Caption = context.GetMessage( "WWP_DF_DefaultValue", "");
+         chkavWwp_df_containermetadata_collapsedbydefault.Caption = context.GetMessage( "WWP_DF_CollapsedByDefault", "");
+         chkavWwp_df_containermetadata_collapsable.Caption = context.GetMessage( "WWP_DF_Collapsable", "");
+         chkavWwp_df_charmetadata_multipleoptions_combobox_includeemptyvalue.Caption = context.GetMessage( "WWP_DF_IncludeEmptyValue", "");
+         chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Caption = context.GetMessage( "WWP_DF_AllowMultipleSelection", "");
+         chkavDate_includetime.Caption = context.GetMessage( "WWP_DF_IncludeTime", "");
          edtavValidations__message_Jsonclick = "";
          edtavValidations__message_Enabled = 0;
          edtavValidations__messagewithtags_Jsonclick = "";
@@ -6498,17 +6498,17 @@ namespace GeneXus.Programs {
          edtavVisiblecondition_Enabled = 1;
          Addvalidation_modal_Bodytype = "WebComponent";
          Addvalidation_modal_Confirmtype = "";
-         Addvalidation_modal_Title = "Validation";
+         Addvalidation_modal_Title = context.GetMessage( "Validation", "");
          Addvalidation_modal_Width = "800";
          Updatevalidation_modal_Bodytype = "WebComponent";
          Updatevalidation_modal_Confirmtype = "";
-         Updatevalidation_modal_Title = "Validation";
+         Updatevalidation_modal_Title = context.GetMessage( "Validation", "");
          Updatevalidation_modal_Width = "800";
          edtavWwpformelementtitle_Height = 10;
-         chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption = "Set today as default value";
+         chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption = context.GetMessage( "WWP_DF_SetTodayAsDefaultValue", "");
          edtavWwpformelementreferenceid_Visible = 1;
          Btnaddvalidation_Visible = Convert.ToBoolean( -1);
-         lblVisibleconditionhelpicon_Caption = "<i class='BootstrapTooltipLeft fas fa-circle-info' title='VisibleConditionHelpText'></i>";
+         lblVisibleconditionhelpicon_Caption = context.GetMessage( "<i class='BootstrapTooltipLeft fas fa-circle-info' title='VisibleConditionHelpText'></i>", "");
          Ucmentionsvisibility_Datalistprocextrapartameters = "";
          edtavColumns_Jsonclick = "";
          edtavColumns_Visible = 1;
@@ -6518,12 +6518,12 @@ namespace GeneXus.Programs {
          cmbavWwpform_wwpformresume.Visible = 1;
          subGridvalidations_Visible = 1;
          Btnaddvalidation_Class = "ButtonGray";
-         Btnaddvalidation_Caption = "Add validation";
+         Btnaddvalidation_Caption = context.GetMessage( "WWP_DF_AddValidation", "");
          Btnaddvalidation_Beforeiconclass = "fas fa-circle-plus";
          Btnaddvalidation_Tooltiptext = "";
          Ucmentionsvisibility_Datalistproc = "WorkWithPlus.DynamicForms.WWP_DF_GetAvailableVariables";
          Btntestvisiblecondition_Class = "ButtonGray";
-         Btntestvisiblecondition_Caption = "Test condition";
+         Btntestvisiblecondition_Caption = context.GetMessage( "WWP_DF_TestCondition", "");
          Btntestvisiblecondition_Beforeiconclass = "fas fa-circle-play";
          Btntestvisiblecondition_Tooltiptext = "";
          chkavWwpformelementexcludefromexport.Enabled = 1;
@@ -6630,7 +6630,7 @@ namespace GeneXus.Programs {
          chkavWwp_df_charmetadata_multipleoptions_allowmultipleselection.Visible = 1;
          divWwp_df_charmetadata_multipleoptions_allowmultipleselection_cell_Class = "col-xs-12";
          chkavWwp_df_datemetadata_isdefaultvaluetoday.Enabled = 1;
-         chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption = "Set today as default value";
+         chkavWwp_df_datemetadata_isdefaultvaluetoday.Caption = context.GetMessage( "WWP_DF_SetTodayAsDefaultValue", "");
          chkavWwp_df_datemetadata_isdefaultvaluetoday.Visible = 1;
          divWwp_df_datemetadata_isdefaultvaluetoday_cell_Class = "col-xs-12";
          chkavDate_includetime.Enabled = 1;

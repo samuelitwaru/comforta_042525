@@ -185,7 +185,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                else
                {
                   AV10IsOk = false;
-                  new WorkWithPlus.workwithplus_web.wwp_addmessage(context ).execute(  "WWP_DF_Import_ReferenceExistentTitle",  1,  "Existing Reference Name", ref  AV11Messages) ;
+                  new WorkWithPlus.workwithplus_web.wwp_addmessage(context ).execute(  "WWP_DF_Import_ReferenceExistentTitle",  1,  context.GetMessage( "WWP_DF_Import_ReferenceExistent", ""), ref  AV11Messages) ;
                }
             }
          }

@@ -228,18 +228,18 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A528SG_LocationId, A529SG_OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'SG_Location'.", "ForeignKeyNotFound", 1, "SG_ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "SG_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SG_ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A531ResidentPackageName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Package Name", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Package Name", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A532ResidentPackageModules) <= 2 )
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Package Modules", "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Package Modules", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
       }
@@ -525,7 +525,7 @@ namespace GeneXus.Programs {
             pr_default.execute(8, new Object[] {n527ResidentPackageId, A527ResidentPackageId});
             if ( (pr_default.getStatus(8) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Resident"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Resident", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(8);

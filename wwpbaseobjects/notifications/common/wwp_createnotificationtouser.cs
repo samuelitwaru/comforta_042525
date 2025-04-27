@@ -120,9 +120,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             AV18WWPNotificationID = AV23WWP_Notification.gxTpr_Wwpnotificationid;
             AV30SmsAndMailUrl = formatLink("wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx", new object[] {GXUtil.UrlEncode(StringUtil.LTrimStr(AV18WWPNotificationID,10,0))}, new string[] {"WWPNotificationId"}) ;
             new WorkWithPlus.workwithplus_notificationscommon.wwp_cleannotificationurl(context ).execute( ref  AV30SmsAndMailUrl) ;
-            new GeneXus.Programs.wwpbaseobjects.wwp_getparameter(context ).gxep_text(  "Notification_BaseURL", ref  AV26Notification_BaseUrl) ;
+            new GeneXus.Programs.wwpbaseobjects.wwp_getparameter(context ).gxep_text(  context.GetMessage( "Notification_BaseURL", ""), ref  AV26Notification_BaseUrl) ;
             AV30SmsAndMailUrl = StringUtil.Format( "%1%2", AV26Notification_BaseUrl, AV30SmsAndMailUrl, "", "", "", "", "", "", "");
-            if ( A116WWPUserExtendedEmaiNotif && ( StringUtil.Contains( AV12WWPNotificationDefinitionShortDescription, "Meldingen Helmweg") || StringUtil.Contains( AV12WWPNotificationDefinitionShortDescription, "eTicket") || StringUtil.Contains( AV12WWPNotificationDefinitionShortDescription, "E-Ticket") ) && StringUtil.Contains( AV11WWPNotificationDefinitionTitle, "New Form Response") )
+            if ( A116WWPUserExtendedEmaiNotif && ( StringUtil.Contains( AV12WWPNotificationDefinitionShortDescription, context.GetMessage( "Meldingen Helmweg", "")) || StringUtil.Contains( AV12WWPNotificationDefinitionShortDescription, context.GetMessage( "eTicket", "")) || StringUtil.Contains( AV12WWPNotificationDefinitionShortDescription, context.GetMessage( "E-Ticket", "")) ) && StringUtil.Contains( AV11WWPNotificationDefinitionTitle, context.GetMessage( "New Form Response", "")) )
             {
                AV28WWPUserExtendedEmail = A114WWPUserExtendedEmail;
                /* Execute user subroutine: 'CREATEMAIL' */
@@ -206,7 +206,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          AV22MailBody = StringUtil.StringReplace( AV22MailBody, "[BASE_URL]", AV26Notification_BaseUrl);
          AV19Mail.gxTpr_Wwpmailbody = AV22MailBody;
          AV19Mail.gxTpr_Wwpmailto = AV28WWPUserExtendedEmail;
-         AV19Mail.gxTpr_Wwpmailsubject = "Comforta - "+AV11WWPNotificationDefinitionTitle;
+         AV19Mail.gxTpr_Wwpmailsubject = context.GetMessage( "Comforta - ", "")+AV11WWPNotificationDefinitionTitle;
          AV19Mail.Save();
       }
 

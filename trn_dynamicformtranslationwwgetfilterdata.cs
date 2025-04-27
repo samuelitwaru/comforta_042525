@@ -986,7 +986,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[13] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationTrnName = ( :AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtr))");
          }
@@ -994,7 +994,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[14] = 1;
          }
-         if ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationTrnName))=0))");
          }
@@ -1006,7 +1006,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[15] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationAttribut = ( :AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationa))");
          }
@@ -1014,7 +1014,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[16] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationAttribut))=0))");
          }
@@ -1026,7 +1026,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[17] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel)) && ! ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel)) && ! ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationEnglish = ( :AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslatione))");
          }
@@ -1034,7 +1034,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[18] = 1;
          }
-         if ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationEnglish))=0))");
          }
@@ -1046,7 +1046,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[19] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel)) && ! ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel)) && ! ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationDutch = ( :AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationd))");
          }
@@ -1054,7 +1054,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[20] = 1;
          }
-         if ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationDutch))=0))");
          }
@@ -1164,7 +1164,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[13] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationTrnName = ( :AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtr))");
          }
@@ -1172,7 +1172,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[14] = 1;
          }
-         if ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationTrnName))=0))");
          }
@@ -1184,7 +1184,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[15] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationAttribut = ( :AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationa))");
          }
@@ -1192,7 +1192,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[16] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationAttribut))=0))");
          }
@@ -1204,7 +1204,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[17] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel)) && ! ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel)) && ! ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationEnglish = ( :AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslatione))");
          }
@@ -1212,7 +1212,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[18] = 1;
          }
-         if ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationEnglish))=0))");
          }
@@ -1224,7 +1224,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[19] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel)) && ! ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel)) && ! ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationDutch = ( :AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationd))");
          }
@@ -1232,7 +1232,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[20] = 1;
          }
-         if ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationDutch))=0))");
          }
@@ -1342,7 +1342,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[13] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationTrnName = ( :AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtr))");
          }
@@ -1350,7 +1350,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[14] = 1;
          }
-         if ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationTrnName))=0))");
          }
@@ -1362,7 +1362,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[15] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationAttribut = ( :AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationa))");
          }
@@ -1370,7 +1370,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[16] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationAttribut))=0))");
          }
@@ -1382,7 +1382,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[17] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel)) && ! ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel)) && ! ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationEnglish = ( :AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslatione))");
          }
@@ -1390,7 +1390,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[18] = 1;
          }
-         if ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationEnglish))=0))");
          }
@@ -1402,7 +1402,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[19] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel)) && ! ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel)) && ! ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationDutch = ( :AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationd))");
          }
@@ -1410,7 +1410,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[20] = 1;
          }
-         if ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationDutch))=0))");
          }
@@ -1520,7 +1520,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[13] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel)) && ! ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationTrnName = ( :AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtr))");
          }
@@ -1528,7 +1528,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[14] = 1;
          }
-         if ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV58Trn_dynamicformtranslationwwds_9_tfdynamicformtranslationtrnname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationTrnName))=0))");
          }
@@ -1540,7 +1540,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[15] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationAttribut = ( :AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationa))");
          }
@@ -1548,7 +1548,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[16] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_dynamicformtranslationwwds_11_tfdynamicformtranslationattributename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationAttribut))=0))");
          }
@@ -1560,7 +1560,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[17] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel)) && ! ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel)) && ! ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationEnglish = ( :AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslatione))");
          }
@@ -1568,7 +1568,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[18] = 1;
          }
-         if ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_dynamicformtranslationwwds_13_tfdynamicformtranslationenglish_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationEnglish))=0))");
          }
@@ -1580,7 +1580,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[19] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel)) && ! ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel)) && ! ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(DynamicFormTranslationDutch = ( :AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationd))");
          }
@@ -1588,7 +1588,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[20] = 1;
          }
-         if ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV64Trn_dynamicformtranslationwwds_15_tfdynamicformtranslationdutch_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from DynamicFormTranslationDutch))=0))");
          }
