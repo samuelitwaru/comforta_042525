@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250427152557"
+  version: "20250428072500"
 servers:
   - url: http://localhost:8083/Comforta_version20DevelopmentNETPostgreSQL1/rest
 paths:
@@ -626,6 +626,29 @@ paths:
                 $ref: "#/components/schemas/Trn_SupplierAgbWWGetFilterDataOutput"
         404:
           description: "Not found"
+  /Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterData:
+    post:
+      tags:
+        - Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterData
+      operationId: "Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterData"
+      summary: "Trn_Supplier Gen Trn_Supplier Dynamic Form WCGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterDataOutput"
+        404:
+          description: "Not found"
   /Trn_SupplierGenTypeWWGetFilterData:
     post:
       tags:
@@ -988,6 +1011,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WP_DynamicFormTrn_OrganisationDynamicFormWCGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /WP_DynamicFormTrn_SupplierDynamicFormGetFilterData:
+    post:
+      tags:
+        - WP_DynamicFormTrn_SupplierDynamicFormGetFilterData
+      operationId: "WP_DynamicFormTrn_SupplierDynamicFormGetFilterData"
+      summary: "WP_Dynamic Form Trn_Supplier Dynamic Form Get Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WP_DynamicFormTrn_SupplierDynamicFormGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WP_DynamicFormTrn_SupplierDynamicFormGetFilterDataOutput"
         404:
           description: "Not found"
   /WP_LocationDynamicFormGetFilterData:
@@ -1475,6 +1521,14 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
+    Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
     Trn_SupplierGenTypeWWGetFilterDataOutput:
       properties:
         OptionsJson:
@@ -1581,6 +1635,14 @@ components:
         OptionIndexesJson:
           type: "string"
     WP_DynamicFormTrn_OrganisationDynamicFormWCGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
+    WP_DynamicFormTrn_SupplierDynamicFormGetFilterDataOutput:
       properties:
         OptionsJson:
           type: "string"
@@ -1882,6 +1944,14 @@ components:
           type: "string"
         SearchTxtTo:
           type: "string"
+    Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
     Trn_SupplierGenTypeWWGetFilterDataInput:  
       properties:
         DDOName:
@@ -2015,6 +2085,14 @@ components:
         SearchTxtTo:
           type: "string"
     WP_DynamicFormTrn_OrganisationDynamicFormWCGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    WP_DynamicFormTrn_SupplierDynamicFormGetFilterDataInput:  
       properties:
         DDOName:
           type: "string"
@@ -2552,12 +2630,12 @@ components:
         PageName:
           description: "Page Name"
           type: "string"
-        PageInfoStructure:
+        InfoContent:
           type: array
           items:
-            description: PageInfoStructureItem
-            $ref: "#/components/schemas/SDT_InfoPage.PageInfoStructure_PageInfoStructureItem"
-    SDT_InfoPage.PageInfoStructure_PageInfoStructureItem:
+            description: InfoContentItem
+            $ref: "#/components/schemas/SDT_InfoPage.InfoContent_InfoContentItem"
+    SDT_InfoPage.InfoContent_InfoContentItem:
       properties:
         InfoId:
           description: "Info Id"
@@ -2573,10 +2651,15 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SDT_InfoTile_SDT_InfoTileItem"
+        Images:
+          description: "Images"
+          type: array
+          items:
+            type: "string"
         CtaAttributes:
-          $ref: "#/components/schemas/SDT_InfoPage.PageInfoStructure.CtaAttributes"
+          $ref: "#/components/schemas/SDT_InfoPage.InfoContent.CtaAttributes"
       x-gx-level: "SDT_InfoPage"
-    SDT_InfoPage.PageInfoStructure.CtaAttributes:
+    SDT_InfoPage.InfoContent.CtaAttributes:
       properties:
         CtaId:
           description: "Cta Id"
@@ -2612,7 +2695,7 @@ components:
           description: "Cta Connected Supplier Id"
           type: "string"
           format: "uuid"
-      x-gx-level: "SDT_InfoPage.PageInfoStructure"
+      x-gx-level: "SDT_InfoPage.InfoContent"
     SDT_InfoTile_SDT_InfoTileItem:
       properties:
         Id:

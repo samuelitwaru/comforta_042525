@@ -186,6 +186,9 @@ namespace GeneXus.Programs {
          obj = new SdtTrn_LocationImage(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
+         obj = new SdtTrn_SupplierDynamicForm(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
          return 1 ;
       }
 

@@ -125,6 +125,7 @@ namespace GeneXus.Programs {
                A536PagePublishedStructure = P00G34_A536PagePublishedStructure[0];
                A517PageName = P00G34_A517PageName[0];
                AV8SDT_InfoPage = new SdtSDT_InfoPage(context);
+               new prc_logtoserver(context ).execute(  ">>"+A536PagePublishedStructure) ;
                AV8SDT_InfoPage.FromJSonString(A536PagePublishedStructure, null);
                AV8SDT_InfoPage.gxTpr_Pageid = A516PageId;
                AV8SDT_InfoPage.gxTpr_Pagename = A517PageName;
@@ -270,7 +271,7 @@ namespace GeneXus.Programs {
           def= new CursorDef[] {
               new CursorDef("P00G32", "SELECT LocationId, PublishedActiveAppVersionId, ActiveAppVersionId, OrganisationId FROM Trn_Location WHERE LocationId = :AV9LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00G32,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00G33", "SELECT AppVersionId, OrganisationId, LocationId FROM Trn_AppVersion WHERE (LocationId = :AV9LocationId and OrganisationId = :AV11OrganisationId) AND (AppVersionId = :AV10AppVersionId) ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00G33,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00G34", "SELECT AppVersionId, PageId, PagePublishedStructure, PageName FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId and PageId = :AV12PageId ORDER BY AppVersionId, PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00G34,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00G34", "SELECT AppVersionId, PageId, PagePublishedStructure, PageName FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId and PageId = :AV12PageId ORDER BY AppVersionId, PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00G34,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }

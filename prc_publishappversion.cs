@@ -102,8 +102,6 @@ namespace GeneXus.Programs {
                   A518PageStructure = P00BL3_A518PageStructure[0];
                   A516PageId = P00BL3_A516PageId[0];
                   A517PageName = P00BL3_A517PageName[0];
-                  new prc_logtoserver(context ).execute(  "1:"+A518PageStructure) ;
-                  new prc_logtoserver(context ).execute(  "1:"+A536PagePublishedStructure) ;
                   A536PagePublishedStructure = A518PageStructure;
                   AV25MetadataToolboxDetails = new SdtSDT_OneSignalCustomData_toolboxDetailsItem(context);
                   AV25MetadataToolboxDetails.gxTpr_Pageid = A516PageId;

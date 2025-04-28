@@ -2406,7 +2406,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          returnInSub = false;
          if ( AV55IsAuthorized_Insert )
          {
-            CallWebObject(formatLink("workwithplus.dynamicforms.wwp_createdynamicform.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(0,1,0)),UrlEncode(StringUtil.RTrim("INS")),UrlEncode(StringUtil.RTrim("")),UrlEncode(StringUtil.LTrimStr(AV44WWPFormType,1,0))}, new string[] {"WWPFormId","WWPDynamicFormMode","DefaultFormType","WWPFormType"}) );
+            CallWebObject(formatLink("workwithplus.dynamicforms.wwp_createdynamicform.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(0,1,0)),UrlEncode(StringUtil.RTrim("INS")),UrlEncode(StringUtil.RTrim("")),UrlEncode(StringUtil.LTrimStr(AV44WWPFormType,1,0))}, new string[] {"WWPFormId","WWPDynamicFormMode","DefaultFormType","WWPFormType","SupplierGenId"}) );
             context.wjLocDisableFrm = 1;
          }
          else
@@ -2560,7 +2560,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             if ( AV51IsAuthorized_Update )
             {
-               CallWebObject(formatLink("workwithplus.dynamicforms.wwp_createdynamicform.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(A206WWPFormId,4,0)),UrlEncode(StringUtil.RTrim("UPD")),UrlEncode(StringUtil.RTrim("")),UrlEncode(StringUtil.LTrimStr(A240WWPFormType,1,0))}, new string[] {"WWPFormId","WWPDynamicFormMode","DefaultFormType","WWPFormType"}) );
+               CallWebObject(formatLink("workwithplus.dynamicforms.wwp_createdynamicform.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(A206WWPFormId,4,0)),UrlEncode(StringUtil.RTrim("UPD")),UrlEncode(StringUtil.RTrim("")),UrlEncode(StringUtil.LTrimStr(A240WWPFormType,1,0))}, new string[] {"WWPFormId","WWPDynamicFormMode","DefaultFormType","WWPFormType","SupplierGenId"}) );
                context.wjLocDisableFrm = 1;
             }
             else
@@ -2598,7 +2598,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          returnInSub = false;
          if ( AV52IsAuthorized_Display )
          {
-            CallWebObject(formatLink("workwithplus.dynamicforms.wwp_createdynamicform.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(A206WWPFormId,4,0)),UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.RTrim("")),UrlEncode(StringUtil.LTrimStr(AV44WWPFormType,1,0))}, new string[] {"WWPFormId","WWPDynamicFormMode","DefaultFormType","WWPFormType"}) );
+            CallWebObject(formatLink("workwithplus.dynamicforms.wwp_createdynamicform.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(A206WWPFormId,4,0)),UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.RTrim("")),UrlEncode(StringUtil.LTrimStr(AV44WWPFormType,1,0))}, new string[] {"WWPFormId","WWPDynamicFormMode","DefaultFormType","WWPFormType","SupplierGenId"}) );
             context.wjLocDisableFrm = 1;
          }
          else
@@ -3028,7 +3028,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718145611", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254289383016", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3044,7 +3044,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_formww.js", "?202542718145615", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_formww.js", "?20254289383018", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

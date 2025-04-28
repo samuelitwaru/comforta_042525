@@ -1,0 +1,1 @@
+<%@ServiceHost Service= "GeneXus.Programs.trn_suppliergentrn_supplierdynamicformwcgetfilterdata,trn_suppliergentrn_supplierdynamicformwcgetfilterdata" %>

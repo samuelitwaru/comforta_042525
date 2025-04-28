@@ -1335,3 +1335,5 @@ WWP_GAM_ForgotPassword=Wachtwoord vergeten?
 WWP_GAM_Keepmeloggedin=Blijf ingelogd
 Back To Login=Terug naar inloggen
 Comfirm Password=Bevestig wachtwoord
+WWP_GAM_Email=Email
+password=Wachtwoord

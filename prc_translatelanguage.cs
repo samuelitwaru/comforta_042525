@@ -76,8 +76,6 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV14LanguageFrom = AV15LanguageTo;
-         cleanup();
-         if (true) return;
          AV16HttpClient.BaseURL = context.GetMessage( "https://api-b2b.backenster.com", "");
          AV16HttpClient.AddHeader(context.GetMessage( "Content-type", ""), context.GetMessage( "application/json", ""));
          AV16HttpClient.AddHeader(context.GetMessage( "Authorization", ""), context.GetMessage( "Bearer a_FPErHAYaF0j7aGdubWnroJR40Q9TvO4X7ciQCdwnQv5lw3tPDnoGVL2LlsaiIXxykUJ7uMwWpU4Co6Mv", ""));

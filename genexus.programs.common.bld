@@ -74,6 +74,7 @@ type_SdtTrn_DynamicTranslation.cs
 type_SdtTrn_Memo.cs
 type_SdtTrn_ServiceImage.cs
 type_SdtTrn_LocationImage.cs
+type_SdtTrn_SupplierDynamicForm.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 type_SdtRandomStringGenerator.cs

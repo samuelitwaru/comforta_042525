@@ -64,9 +64,9 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("PageName", gxTpr_Pagename, false);
 
-			if (gxTv_SdtSDT_InfoPage_Pageinfostructure != null)
+			if (gxTv_SdtSDT_InfoPage_Infocontent != null)
 			{
-				AddObjectProperty("PageInfoStructure", gxTv_SdtSDT_InfoPage_Pageinfostructure, false);
+				AddObjectProperty("InfoContent", gxTv_SdtSDT_InfoPage_Infocontent, false);
 			}
 			return;
 		}
@@ -106,38 +106,38 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="PageInfoStructure" )]
-		[XmlArray(ElementName="PageInfoStructure"  )]
-		[XmlArrayItemAttribute(ElementName="PageInfoStructureItem" , IsNullable=false )]
-		public GXBaseCollection<SdtSDT_InfoPage_PageInfoStructureItem> gxTpr_Pageinfostructure
+		[SoapElement(ElementName="InfoContent" )]
+		[XmlArray(ElementName="InfoContent"  )]
+		[XmlArrayItemAttribute(ElementName="InfoContentItem" , IsNullable=false )]
+		public GXBaseCollection<SdtSDT_InfoPage_InfoContentItem> gxTpr_Infocontent
 		{
 			get {
-				if ( gxTv_SdtSDT_InfoPage_Pageinfostructure == null )
+				if ( gxTv_SdtSDT_InfoPage_Infocontent == null )
 				{
-					gxTv_SdtSDT_InfoPage_Pageinfostructure = new GXBaseCollection<SdtSDT_InfoPage_PageInfoStructureItem>( context, "SDT_InfoPage.PageInfoStructureItem", "");
+					gxTv_SdtSDT_InfoPage_Infocontent = new GXBaseCollection<SdtSDT_InfoPage_InfoContentItem>( context, "SDT_InfoPage.InfoContentItem", "");
 				}
-				return gxTv_SdtSDT_InfoPage_Pageinfostructure;
+				return gxTv_SdtSDT_InfoPage_Infocontent;
 			}
 			set {
-				gxTv_SdtSDT_InfoPage_Pageinfostructure_N = false;
-				gxTv_SdtSDT_InfoPage_Pageinfostructure = value;
-				SetDirty("Pageinfostructure");
+				gxTv_SdtSDT_InfoPage_Infocontent_N = false;
+				gxTv_SdtSDT_InfoPage_Infocontent = value;
+				SetDirty("Infocontent");
 			}
 		}
 
-		public void gxTv_SdtSDT_InfoPage_Pageinfostructure_SetNull()
+		public void gxTv_SdtSDT_InfoPage_Infocontent_SetNull()
 		{
-			gxTv_SdtSDT_InfoPage_Pageinfostructure_N = true;
-			gxTv_SdtSDT_InfoPage_Pageinfostructure = null;
+			gxTv_SdtSDT_InfoPage_Infocontent_N = true;
+			gxTv_SdtSDT_InfoPage_Infocontent = null;
 		}
 
-		public bool gxTv_SdtSDT_InfoPage_Pageinfostructure_IsNull()
+		public bool gxTv_SdtSDT_InfoPage_Infocontent_IsNull()
 		{
-			return gxTv_SdtSDT_InfoPage_Pageinfostructure == null;
+			return gxTv_SdtSDT_InfoPage_Infocontent == null;
 		}
-		public bool ShouldSerializegxTpr_Pageinfostructure_GxSimpleCollection_Json()
+		public bool ShouldSerializegxTpr_Infocontent_GxSimpleCollection_Json()
 		{
-			return gxTv_SdtSDT_InfoPage_Pageinfostructure != null && gxTv_SdtSDT_InfoPage_Pageinfostructure.Count > 0;
+			return gxTv_SdtSDT_InfoPage_Infocontent != null && gxTv_SdtSDT_InfoPage_Infocontent.Count > 0;
 
 		}
 
@@ -165,7 +165,7 @@ namespace GeneXus.Programs
 		{
 			gxTv_SdtSDT_InfoPage_Pagename = "";
 
-			gxTv_SdtSDT_InfoPage_Pageinfostructure_N = true;
+			gxTv_SdtSDT_InfoPage_Infocontent_N = true;
 
 			return  ;
 		}
@@ -181,8 +181,8 @@ namespace GeneXus.Programs
 
 		protected string gxTv_SdtSDT_InfoPage_Pagename;
 		 
-		protected bool gxTv_SdtSDT_InfoPage_Pageinfostructure_N;
-		protected GXBaseCollection<SdtSDT_InfoPage_PageInfoStructureItem> gxTv_SdtSDT_InfoPage_Pageinfostructure = null; 
+		protected bool gxTv_SdtSDT_InfoPage_Infocontent_N;
+		protected GXBaseCollection<SdtSDT_InfoPage_InfoContentItem> gxTv_SdtSDT_InfoPage_Infocontent = null; 
 
 
 
@@ -226,18 +226,18 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageInfoStructure", Order=2, EmitDefaultValue=false)]
-		public GxGenericCollection<SdtSDT_InfoPage_PageInfoStructureItem_RESTInterface> gxTpr_Pageinfostructure
+		[DataMember(Name="InfoContent", Order=2, EmitDefaultValue=false)]
+		public GxGenericCollection<SdtSDT_InfoPage_InfoContentItem_RESTInterface> gxTpr_Infocontent
 		{
 			get {
-				if (sdt.ShouldSerializegxTpr_Pageinfostructure_GxSimpleCollection_Json())
-					return new GxGenericCollection<SdtSDT_InfoPage_PageInfoStructureItem_RESTInterface>(sdt.gxTpr_Pageinfostructure);
+				if (sdt.ShouldSerializegxTpr_Infocontent_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtSDT_InfoPage_InfoContentItem_RESTInterface>(sdt.gxTpr_Infocontent);
 				else
 					return null;
 
 			}
 			set {
-				value.LoadCollection(sdt.gxTpr_Pageinfostructure);
+				value.LoadCollection(sdt.gxTpr_Infocontent);
 			}
 		}
 

@@ -1,3 +1,4 @@
+trn_supplierdynamicform
 trn_locationimage
 trn_serviceimage
 trn_discussiontranslation
@@ -56,6 +57,9 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wp_dynamicformtrn_supplierdynamicform
+trn_suppliergentrn_supplierdynamicformwc
+wc_createsupplierform
 cardtest
 wp_receptionistdashboard
 wp_receptionistdashboard
@@ -393,6 +397,8 @@ gx0050
 gx0040
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+trn_suppliergentrn_supplierdynamicformwcgetfilterdata
+wp_dynamicformtrn_supplierdynamicformgetfilterdata
 aprc_migrateserviceimage
 trn_dynamicformtranslationwwgetfilterdata
 trn_appversionwwgetfilterdata

@@ -178,6 +178,12 @@
       <ObjLink>trn_locationimage.aspx</ObjLink>
    </Object>
    <Object>
+      <ObjCls>0</ObjCls>
+      <ObjName>Trn_SupplierDynamicForm</ObjName>
+      <ObjDesc>Trn_Supplier Dynamic Form</ObjDesc>
+      <ObjLink>trn_supplierdynamicform.aspx</ObjLink>
+   </Object>
+   <Object>
       <ObjCls>13</ObjCls>
       <ObjName>GAMExampleLogin</ObjName>
       <ObjDesc>GAM_Login</ObjDesc>

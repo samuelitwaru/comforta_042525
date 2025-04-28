@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250427152557"
+  version: "20250428072500"
 servers:
-  - url: https://staging.comforta.yukon.software/api
+  - url: http://localhost:8083/Comforta_version20DevelopmentNETPostgreSQL1/api
 paths:
   /auth/resident-login:
     post:
@@ -1904,7 +1904,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8083/Comforta_version20DevelopmentNETPostgreSQL1/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -3055,14 +3055,14 @@ components:
           description: "Page Name"
           type: "string"
 
-        PageInfoStructure:
+        InfoContent:
           type: array
           items:
-            description: PageInfoStructureItem
-            $ref: "#/components/schemas/SDT_InfoPage.PageInfoStructure_PageInfoStructureItem"
+            description: InfoContentItem
+            $ref: "#/components/schemas/SDT_InfoPage.InfoContent_InfoContentItem"
 
 
-    SDT_InfoPage.PageInfoStructure_PageInfoStructureItem:
+    SDT_InfoPage.InfoContent_InfoContentItem:
       properties:
         InfoId:
           description: "Info Id"
@@ -3078,13 +3078,18 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SDT_InfoTile_SDT_InfoTileItem"
+        Images:
+          description: "Images"
+          type: array
+          items:
+            type: "string"
 
         CtaAttributes:
-          $ref: "#/components/schemas/SDT_InfoPage.PageInfoStructure.CtaAttributes"
+          $ref: "#/components/schemas/SDT_InfoPage.InfoContent.CtaAttributes"
 
       x-gx-level: "SDT_InfoPage"
 
-    SDT_InfoPage.PageInfoStructure.CtaAttributes:
+    SDT_InfoPage.InfoContent.CtaAttributes:
       properties:
         CtaId:
           description: "Cta Id"
@@ -3122,7 +3127,7 @@ components:
           format: "uuid"
 
 
-      x-gx-level: "SDT_InfoPage.PageInfoStructure"
+      x-gx-level: "SDT_InfoPage.InfoContent"
 
     SDT_ContentPage:
       properties:
