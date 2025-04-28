@@ -154,7 +154,7 @@ namespace GeneXus.Programs {
                AV19Path = context.GetMessage( "media/", "");
                if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, context.GetMessage( "http://localhost", "")) )
                {
-                  AV19Path = context.GetMessage( "C:\\KBs\\Comforta_version20\\Data018\\Web\\media\\", "");
+                  AV19Path = context.GetMessage( "C:\\KBs\\Comforta_version20\\NETPostgreSQL1039\\Web\\media\\", "");
                }
                new SdtEO_Base64Image(context).saveimage(AV15MediaImageData, AV19Path+AV11MediaName) ;
                new prc_logtofile(context ).execute(  AV19Path+AV11MediaName) ;

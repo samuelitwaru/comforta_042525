@@ -130,7 +130,7 @@
 .tbap-tile {
   border: 1px solid #4c535726;
   border-radius: 8px;
-  height: 4rem;
+  height: 4.5rem;
   padding: 0.4rem;
   background-color: transparent;
   display: flex;
@@ -154,7 +154,7 @@
     height: 680px;
   }
   .tbap-tile {
-    height: 4.5rem;
+    height: 5rem;
   }
   .tbap-tile.high-priority-tile {
     height: 7.5rem;
