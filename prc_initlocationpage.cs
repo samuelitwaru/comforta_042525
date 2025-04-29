@@ -94,19 +94,19 @@ namespace GeneXus.Programs {
          while ( (pr_default.getStatus(0) != 101) )
          {
             A523AppVersionId = P00BA2_A523AppVersionId[0];
-            AV17GXLvl3 = 0;
+            AV19GXLvl3 = 0;
             /* Using cursor P00BA3 */
             pr_default.execute(1, new Object[] {A523AppVersionId});
             while ( (pr_default.getStatus(1) != 101) )
             {
                A517PageName = P00BA3_A517PageName[0];
                A516PageId = P00BA3_A516PageId[0];
-               AV17GXLvl3 = 1;
+               AV19GXLvl3 = 1;
                AV8BC_Page.gxTpr_Pageid = A516PageId;
                pr_default.readNext(1);
             }
             pr_default.close(1);
-            if ( AV17GXLvl3 == 0 )
+            if ( AV19GXLvl3 == 0 )
             {
                AV8BC_Page.gxTpr_Pageid = Guid.NewGuid( );
             }
@@ -118,32 +118,39 @@ namespace GeneXus.Programs {
          AV8BC_Page.gxTpr_Pageid = Guid.NewGuid( );
          AV8BC_Page.gxTpr_Pagename = "Location";
          AV8BC_Page.gxTpr_Ispredefined = true;
-         AV8BC_Page.gxTpr_Pagetype = "Location";
-         AV11ContentItem = new SdtSDT_ContentPage_ContentItem(context);
-         AV11ContentItem.gxTpr_Contentid = new SdtRandomStringGenerator(context).generate(12);
-         AV11ContentItem.gxTpr_Contenttype = "Image";
-         AV11ContentItem.gxTpr_Contentvalue = AV9BC_Trn_Location.gxTpr_Locationimage_gxi;
-         AV10SDT_ContentPage.gxTpr_Content.Add(AV11ContentItem, 0);
-         AV11ContentItem = new SdtSDT_ContentPage_ContentItem(context);
-         AV11ContentItem.gxTpr_Contentid = new SdtRandomStringGenerator(context).generate(12);
-         AV11ContentItem.gxTpr_Contenttype = "Description";
-         AV11ContentItem.gxTpr_Contentvalue = AV9BC_Trn_Location.gxTpr_Locationdescription;
-         AV10SDT_ContentPage.gxTpr_Content.Add(AV11ContentItem, 0);
-         AV12CtaItem = new SdtSDT_ContentPage_CtaItem(context);
-         AV12CtaItem.gxTpr_Ctaid = new SdtRandomStringGenerator(context).generate(15);
-         AV12CtaItem.gxTpr_Ctalabel = "CALL US";
-         AV12CtaItem.gxTpr_Ctatype = "Phone";
-         AV12CtaItem.gxTpr_Ctaaction = AV9BC_Trn_Location.gxTpr_Locationphone;
-         AV12CtaItem.gxTpr_Ctabuttontype = "Round";
-         AV10SDT_ContentPage.gxTpr_Cta.Add(AV12CtaItem, 0);
-         AV12CtaItem = new SdtSDT_ContentPage_CtaItem(context);
-         AV12CtaItem.gxTpr_Ctaid = new SdtRandomStringGenerator(context).generate(15);
-         AV12CtaItem.gxTpr_Ctalabel = "EMAIL US";
-         AV12CtaItem.gxTpr_Ctatype = "Email";
-         AV12CtaItem.gxTpr_Ctaaction = AV9BC_Trn_Location.gxTpr_Locationphone;
-         AV12CtaItem.gxTpr_Ctabuttontype = "Round";
-         AV10SDT_ContentPage.gxTpr_Cta.Add(AV12CtaItem, 0);
-         AV8BC_Page.gxTpr_Pagestructure = AV10SDT_ContentPage.ToJSonString(false, true);
+         AV8BC_Page.gxTpr_Pagetype = "Information";
+         AV16SDT_InfoContent = new SdtSDT_InfoContent(context);
+         AV17InfoContentItem = new SdtSDT_InfoContent_InfoContentItem(context);
+         AV17InfoContentItem.gxTpr_Infoid = new SdtRandomStringGenerator(context).generate(15);
+         AV17InfoContentItem.gxTpr_Infotype = "Image";
+         AV17InfoContentItem.gxTpr_Infovalue = AV9BC_Trn_Location.gxTpr_Locationimage_gxi;
+         AV16SDT_InfoContent.gxTpr_Infocontent.Add(AV17InfoContentItem, 0);
+         AV17InfoContentItem = new SdtSDT_InfoContent_InfoContentItem(context);
+         AV17InfoContentItem.gxTpr_Infoid = new SdtRandomStringGenerator(context).generate(15);
+         AV17InfoContentItem.gxTpr_Infotype = "Description";
+         AV17InfoContentItem.gxTpr_Infovalue = AV9BC_Trn_Location.gxTpr_Locationdescription;
+         AV16SDT_InfoContent.gxTpr_Infocontent.Add(AV17InfoContentItem, 0);
+         AV17InfoContentItem = new SdtSDT_InfoContent_InfoContentItem(context);
+         AV17InfoContentItem.gxTpr_Infoid = new SdtRandomStringGenerator(context).generate(15);
+         AV17InfoContentItem.gxTpr_Infotype = "Cta";
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaid = new SdtRandomStringGenerator(context).generate(15);
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctalabel = "CALL US";
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctatype = "Phone";
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaaction = AV9BC_Trn_Location.gxTpr_Locationphone;
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabuttontype = "FullWidth";
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = "CtaColorOne";
+         AV16SDT_InfoContent.gxTpr_Infocontent.Add(AV17InfoContentItem, 0);
+         AV17InfoContentItem = new SdtSDT_InfoContent_InfoContentItem(context);
+         AV17InfoContentItem.gxTpr_Infoid = new SdtRandomStringGenerator(context).generate(15);
+         AV17InfoContentItem.gxTpr_Infotype = "Cta";
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaid = new SdtRandomStringGenerator(context).generate(15);
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctalabel = "EMAIL US";
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctatype = "Email";
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaaction = AV9BC_Trn_Location.gxTpr_Locationemail;
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabuttontype = "FullWidth";
+         AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = "CtaColorTwo";
+         AV16SDT_InfoContent.gxTpr_Infocontent.Add(AV17InfoContentItem, 0);
+         AV8BC_Page.gxTpr_Pagestructure = AV16SDT_InfoContent.ToJSonString(false, true);
          cleanup();
       }
 
@@ -168,9 +175,8 @@ namespace GeneXus.Programs {
          A517PageName = "";
          A516PageId = Guid.Empty;
          AV9BC_Trn_Location = new SdtTrn_Location(context);
-         AV11ContentItem = new SdtSDT_ContentPage_ContentItem(context);
-         AV10SDT_ContentPage = new SdtSDT_ContentPage(context);
-         AV12CtaItem = new SdtSDT_ContentPage_CtaItem(context);
+         AV16SDT_InfoContent = new SdtSDT_InfoContent(context);
+         AV17InfoContentItem = new SdtSDT_InfoContent_InfoContentItem(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_initlocationpage__default(),
             new Object[][] {
                 new Object[] {
@@ -184,7 +190,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private short AV17GXLvl3 ;
+      private short AV19GXLvl3 ;
       private string A517PageName ;
       private Guid AV13LocationId ;
       private Guid AV14OrganisationId ;
@@ -204,9 +210,8 @@ namespace GeneXus.Programs {
       private string[] P00BA3_A517PageName ;
       private Guid[] P00BA3_A516PageId ;
       private SdtTrn_Location AV9BC_Trn_Location ;
-      private SdtSDT_ContentPage_ContentItem AV11ContentItem ;
-      private SdtSDT_ContentPage AV10SDT_ContentPage ;
-      private SdtSDT_ContentPage_CtaItem AV12CtaItem ;
+      private SdtSDT_InfoContent AV16SDT_InfoContent ;
+      private SdtSDT_InfoContent_InfoContentItem AV17InfoContentItem ;
       private SdtTrn_AppVersion_Page aP3_BC_Page ;
    }
 

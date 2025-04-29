@@ -88,13 +88,14 @@ namespace GeneXus.Programs {
             pr_default.execute(1, new Object[] {A523AppVersionId});
             while ( (pr_default.getStatus(1) != 101) )
             {
+               A517PageName = P00BC3_A517PageName[0];
                A525PageType = P00BC3_A525PageType[0];
                A516PageId = P00BC3_A516PageId[0];
-               if ( StringUtil.StrCmp(A525PageType, "Reception") == 0 )
+               if ( ( StringUtil.StrCmp(A525PageType, "Information") == 0 ) && ( StringUtil.StrCmp(A517PageName, "Reception") == 0 ) )
                {
                   AV8ReceptionPageId = A516PageId;
                }
-               else if ( StringUtil.StrCmp(A525PageType, "Location") == 0 )
+               else if ( ( StringUtil.StrCmp(A525PageType, "Information") == 0 ) && ( StringUtil.StrCmp(A517PageName, "Location") == 0 ) )
                {
                   AV9LocationPageId = A516PageId;
                }
@@ -185,7 +186,7 @@ namespace GeneXus.Programs {
          AV16RowsItem = new SdtSDT_MenuPage_RowsItem(context);
          AV16RowsItem.gxTpr_Id = new SdtRandomStringGenerator(context).generate(15);
          GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV15TilesItem;
-         new prc_createpagetile(context ).execute(  context.GetMessage( "Reception", ""),  "#ffffff",  "left",  "Reception",  0,  "accentColor",  AV23BC_Trn_Location.gxTpr_Receptionimage_gxi,  AV8ReceptionPageId.ToString(),  "Reception",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "Reception", ""),  "#ffffff",  "left",  "Reception",  0,  "accentColor",  AV23BC_Trn_Location.gxTpr_Receptionimage_gxi,  AV8ReceptionPageId.ToString(),  "Information",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
          AV15TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
          AV16RowsItem.gxTpr_Tiles.Add(AV15TilesItem, 0);
          AV14SDT_MenuPage.gxTpr_Rows.Add(AV16RowsItem, 0);
@@ -215,7 +216,7 @@ namespace GeneXus.Programs {
          AV16RowsItem = new SdtSDT_MenuPage_RowsItem(context);
          AV16RowsItem.gxTpr_Id = new SdtRandomStringGenerator(context).generate(15);
          GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV15TilesItem;
-         new prc_createpagetile(context ).execute(  context.GetMessage( "Location", ""),  "#ffffff",  "left",  "",  0,  "accentColor",  AV23BC_Trn_Location.gxTpr_Locationimage_gxi,  AV9LocationPageId.ToString(),  "Location",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "Location", ""),  "#ffffff",  "left",  "",  0,  "accentColor",  AV23BC_Trn_Location.gxTpr_Locationimage_gxi,  AV9LocationPageId.ToString(),  "Information",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
          AV15TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
          AV16RowsItem.gxTpr_Tiles.Add(AV15TilesItem, 0);
          AV14SDT_MenuPage.gxTpr_Rows.Add(AV16RowsItem, 0);
@@ -279,8 +280,10 @@ namespace GeneXus.Programs {
          AV21LocationId = Guid.Empty;
          AV22OrganisationId = Guid.Empty;
          P00BC3_A523AppVersionId = new Guid[] {Guid.Empty} ;
+         P00BC3_A517PageName = new string[] {""} ;
          P00BC3_A525PageType = new string[] {""} ;
          P00BC3_A516PageId = new Guid[] {Guid.Empty} ;
+         A517PageName = "";
          A525PageType = "";
          A516PageId = Guid.Empty;
          AV8ReceptionPageId = Guid.Empty;
@@ -304,7 +307,7 @@ namespace GeneXus.Programs {
                P00BC2_A523AppVersionId, P00BC2_A29LocationId, P00BC2_n29LocationId, P00BC2_A11OrganisationId, P00BC2_n11OrganisationId
                }
                , new Object[] {
-               P00BC3_A523AppVersionId, P00BC3_A525PageType, P00BC3_A516PageId
+               P00BC3_A523AppVersionId, P00BC3_A517PageName, P00BC3_A525PageType, P00BC3_A516PageId
                }
             }
          );
@@ -314,6 +317,7 @@ namespace GeneXus.Programs {
       private bool n29LocationId ;
       private bool n11OrganisationId ;
       private bool returnInSub ;
+      private string A517PageName ;
       private string A525PageType ;
       private string AV18baseUrl ;
       private Guid AV25AppVersionId ;
@@ -342,6 +346,7 @@ namespace GeneXus.Programs {
       private Guid[] P00BC2_A11OrganisationId ;
       private bool[] P00BC2_n11OrganisationId ;
       private Guid[] P00BC3_A523AppVersionId ;
+      private string[] P00BC3_A517PageName ;
       private string[] P00BC3_A525PageType ;
       private Guid[] P00BC3_A516PageId ;
       private GeneXus.Programs.genexussecurity.SdtGAMApplication AV17GAMApplication ;
@@ -379,7 +384,7 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("P00BC2", "SELECT AppVersionId, LocationId, OrganisationId FROM Trn_AppVersion WHERE AppVersionId = :AV25AppVersionId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BC2,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("P00BC3", "SELECT AppVersionId, PageType, PageId FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BC3,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00BC3", "SELECT AppVersionId, PageName, PageType, PageId FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BC3,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -400,7 +405,8 @@ namespace GeneXus.Programs {
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 return;
        }
     }
