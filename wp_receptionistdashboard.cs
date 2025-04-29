@@ -374,7 +374,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vCALENDAREVENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV15CalendarEventId, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_USERACTION1", AV32IsAuthorized_UserAction1);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_USERACTION1", GetSecureSignedToken( "", AV32IsAuthorized_UserAction1, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -1197,26 +1197,54 @@ namespace GeneXus.Programs {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "USERCONTROL1.EVENTSELECTED") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Usercontrol1.Eventselected */
+                              E11BN2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "CREATEEVENT_MODAL.CLOSE") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Createevent_modal.Close */
-                              E11BN2 ();
+                              E12BN2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "CREATEEVENT_MODAL.ONLOADCOMPONENT") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Createevent_modal.Onloadcomponent */
+                              E13BN2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'DOCREATEEVENT'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'DoCreateEvent' */
-                              E12BN2 ();
+                              E14BN2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'DOUSERACTION1'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'DoUserAction1' */
-                              E13BN2 ();
+                              E15BN2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "TABLENOTIFICATIONS.CLICK") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Tablenotifications.Click */
+                              E16BN2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "TABLEAGENDA.CLICK") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Tableagenda.Click */
+                              E17BN2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
                            {
@@ -1271,28 +1299,28 @@ namespace GeneXus.Programs {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E14BN2 ();
+                                    E18BN2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Refresh */
-                                    E15BN2 ();
+                                    E19BN2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "GRIDUSDTNOTIFICATIONSDATAS.LOAD") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Gridusdtnotificationsdatas.Load */
-                                    E16BN2 ();
+                                    E20BN2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "GRIDUSDTNOTIFICATIONSDATAS.ONLINEACTIVATE") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Gridusdtnotificationsdatas.Onlineactivate */
-                                    E17BN2 ();
+                                    E21BN2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -1368,11 +1396,7 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -1436,9 +1460,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRIDUSDTNOTIFICATIONSDATAS_nCurrentRecord = 0;
          RFBN2( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGridusdtnotificationsdatas_refresh */
       }
 
@@ -1510,7 +1534,7 @@ namespace GeneXus.Programs {
          }
          wbStart = 139;
          /* Execute user event: Refresh */
-         E15BN2 ();
+         E19BN2 ();
          nGXsfl_139_idx = 1;
          sGXsfl_139_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_139_idx), 4, 0), 4, "0");
          SubsflControlProps_1392( ) ;
@@ -1540,14 +1564,14 @@ namespace GeneXus.Programs {
          {
             SubsflControlProps_1392( ) ;
             /* Execute user event: Gridusdtnotificationsdatas.Load */
-            E16BN2 ();
+            E20BN2 ();
             if ( ( subGridusdtnotificationsdatas_Islastpage == 0 ) && ( GRIDUSDTNOTIFICATIONSDATAS_nCurrentRecord > 0 ) && ( GRIDUSDTNOTIFICATIONSDATAS_nGridOutOfScope == 0 ) && ( nGXsfl_139_idx == 1 ) )
             {
                GRIDUSDTNOTIFICATIONSDATAS_nCurrentRecord = 0;
                GRIDUSDTNOTIFICATIONSDATAS_nGridOutOfScope = 1;
                subgridusdtnotificationsdatas_firstpage( ) ;
                /* Execute user event: Gridusdtnotificationsdatas.Load */
-               E16BN2 ();
+               E20BN2 ();
             }
             wbEnd = 139;
             WBBN0( ) ;
@@ -1753,7 +1777,7 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E14BN2 ();
+         E18BN2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -1767,10 +1791,6 @@ namespace GeneXus.Programs {
             nRC_GXsfl_139 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_139"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV5CalendarLoadFromDate = context.localUtil.CToD( cgiGet( "vCALENDARLOADFROMDATE"), 0);
             AV6CalendarLoadToDate = context.localUtil.CToD( cgiGet( "vCALENDARLOADTODATE"), 0);
-            AV21DisabledDaysJson = cgiGet( "vDISABLEDDAYSJSON");
-            AV15CalendarEventId = cgiGet( "vCALENDAREVENTID");
-            AV17CalendarEventsJson = cgiGet( "vCALENDAREVENTSJSON");
-            Gx_mode = cgiGet( "vMODE");
             GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GRIDUSDTNOTIFICATIONSDATAS_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             subGridusdtnotificationsdatas_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDUSDTNOTIFICATIONSDATAS_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
@@ -1978,7 +1998,7 @@ namespace GeneXus.Programs {
                }
             }
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -1990,11 +2010,11 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E14BN2 ();
+         E18BN2 ();
          if (returnInSub) return;
       }
 
-      protected void E14BN2( )
+      protected void E18BN2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -2140,7 +2160,7 @@ namespace GeneXus.Programs {
          if (returnInSub) return;
       }
 
-      protected void E15BN2( )
+      protected void E19BN2( )
       {
          if ( gx_refresh_fired )
          {
@@ -2161,7 +2181,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV20DisabledDays", AV20DisabledDays);
       }
 
-      private void E16BN2( )
+      private void E20BN2( )
       {
          /* Gridusdtnotificationsdatas_Load Routine */
          returnInSub = false;
@@ -2193,7 +2213,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E12BN2( )
+      protected void E14BN2( )
       {
          /* 'DoCreateEvent' Routine */
          returnInSub = false;
@@ -2212,6 +2232,37 @@ namespace GeneXus.Programs {
       }
 
       protected void E13BN2( )
+      {
+         /* Createevent_modal_Onloadcomponent Routine */
+         returnInSub = false;
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Wwpaux_wc = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wwpaux_wc_Component), StringUtil.Lower( "WorkWithPlus.WWP_EventInfoWC")) != 0 )
+         {
+            WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", "workwithplus.wwp_eventinfowc", new Object[] {context} );
+            WebComp_Wwpaux_wc.ComponentInit();
+            WebComp_Wwpaux_wc.Name = "WorkWithPlus.WWP_EventInfoWC";
+            WebComp_Wwpaux_wc_Component = "WorkWithPlus.WWP_EventInfoWC";
+         }
+         if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
+         {
+            WebComp_Wwpaux_wc.setjustcreated();
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0175",(string)"",(string)Gx_mode,(string)AV17CalendarEventsJson,(string)AV15CalendarEventId,(string)AV21DisabledDaysJson});
+            WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)""});
+         }
+         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
+         {
+            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0175"+"");
+            WebComp_Wwpaux_wc.componentdraw();
+            context.httpAjaxContext.ajax_rspEndCmp();
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E15BN2( )
       {
          /* 'DoUserAction1' Routine */
          returnInSub = false;
@@ -2246,7 +2297,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E11BN2( )
+      protected void E12BN2( )
       {
          /* Createevent_modal_Close Routine */
          returnInSub = false;
@@ -2258,7 +2309,31 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV20DisabledDays", AV20DisabledDays);
       }
 
+      protected void E11BN2( )
+      {
+         /* Usercontrol1_Eventselected Routine */
+         returnInSub = false;
+         CallWebObject(formatLink("wp_calendaragenda.aspx") );
+         context.wjLocDisableFrm = 1;
+      }
+
+      protected void E16BN2( )
+      {
+         /* Tablenotifications_Click Routine */
+         returnInSub = false;
+         CallWebObject(formatLink("wp_notificationdashboard.aspx") );
+         context.wjLocDisableFrm = 1;
+      }
+
       protected void E17BN2( )
+      {
+         /* Tableagenda_Click Routine */
+         returnInSub = false;
+         CallWebObject(formatLink("wp_calendaragenda.aspx") );
+         context.wjLocDisableFrm = 1;
+      }
+
+      protected void E21BN2( )
       {
          AV73GXV1 = (int)(nGXsfl_139_idx+GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage);
          if ( ( AV73GXV1 > 0 ) && ( AV70USDTNotificationsData.Count >= AV73GXV1 ) )
@@ -2680,7 +2755,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718241061", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254281319485", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2696,7 +2771,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_receptionistdashboard.js", "?202542718241062", false, true);
+         context.AddJavascriptSource("wp_receptionistdashboard.js", "?20254281319486", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -3260,15 +3335,20 @@ namespace GeneXus.Programs {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"},{"av":"GRIDUSDTNOTIFICATIONSDATAS_nEOF"},{"av":"subGridusdtnotificationsdatas_Rows","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"Rows"},{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV5CalendarLoadFromDate","fld":"vCALENDARLOADFROMDATE"},{"av":"AV6CalendarLoadToDate","fld":"vCALENDARLOADTODATE"},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"Usercontrol1_Defaulteventstyle","ctrl":"USERCONTROL1","prop":"DefaultEventStyle"},{"av":"AV25Events","fld":"vEVENTS"},{"av":"AV70USDTNotificationsData","fld":"vUSDTNOTIFICATIONSDATA","grid":139,"hsh":true},{"av":"nGXsfl_139_idx","ctrl":"GRID","prop":"GridCurrRow","grid":139},{"av":"nRC_GXsfl_139","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"GridRC","grid":139},{"av":"AV71WWPContext","fld":"vWWPCONTEXT","hsh":true},{"av":"AV19Date_ShowingDatesFrom","fld":"vDATE_SHOWINGDATESFROM","hsh":true},{"av":"AV18Date","fld":"vDATE","hsh":true},{"av":"AV15CalendarEventId","fld":"vCALENDAREVENTID","hsh":true},{"av":"AV32IsAuthorized_UserAction1","fld":"vISAUTHORIZED_USERACTION1","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"AV25Events","fld":"vEVENTS"},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV20DisabledDays","fld":"vDISABLEDDAYS"},{"av":"AV21DisabledDaysJson","fld":"vDISABLEDDAYSJSON"},{"av":"AV32IsAuthorized_UserAction1","fld":"vISAUTHORIZED_USERACTION1","hsh":true},{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
-         setEventMetadata("GRIDUSDTNOTIFICATIONSDATAS.LOAD","""{"handler":"E16BN2","iparms":[{"av":"AV70USDTNotificationsData","fld":"vUSDTNOTIFICATIONSDATA","grid":139,"hsh":true},{"av":"nGXsfl_139_idx","ctrl":"GRID","prop":"GridCurrRow","grid":139},{"av":"GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_139","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"GridRC","grid":139}]""");
+         setEventMetadata("GRIDUSDTNOTIFICATIONSDATAS.LOAD","""{"handler":"E20BN2","iparms":[{"av":"AV70USDTNotificationsData","fld":"vUSDTNOTIFICATIONSDATA","grid":139,"hsh":true},{"av":"nGXsfl_139_idx","ctrl":"GRID","prop":"GridCurrRow","grid":139},{"av":"GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_139","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"GridRC","grid":139}]""");
          setEventMetadata("GRIDUSDTNOTIFICATIONSDATAS.LOAD",""","oparms":[{"av":"edtavNotificationicon1_Format","ctrl":"vNOTIFICATIONICON1","prop":"Format"},{"av":"AV56NotificationIcon1","fld":"vNOTIFICATIONICON1"}]}""");
-         setEventMetadata("'DOCREATEEVENT'","""{"handler":"E12BN2","iparms":[{"av":"AV18Date","fld":"vDATE","hsh":true}]""");
+         setEventMetadata("'DOCREATEEVENT'","""{"handler":"E14BN2","iparms":[{"av":"AV18Date","fld":"vDATE","hsh":true}]""");
          setEventMetadata("'DOCREATEEVENT'",""","oparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"AV17CalendarEventsJson","fld":"vCALENDAREVENTSJSON"}]}""");
-         setEventMetadata("'DOUSERACTION1'","""{"handler":"E13BN2","iparms":[{"av":"GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"},{"av":"GRIDUSDTNOTIFICATIONSDATAS_nEOF"},{"av":"subGridusdtnotificationsdatas_Rows","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"Rows"},{"av":"AV71WWPContext","fld":"vWWPCONTEXT","hsh":true},{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV5CalendarLoadFromDate","fld":"vCALENDARLOADFROMDATE"},{"av":"AV6CalendarLoadToDate","fld":"vCALENDARLOADTODATE"},{"av":"AV19Date_ShowingDatesFrom","fld":"vDATE_SHOWINGDATESFROM","hsh":true},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"AV25Events","fld":"vEVENTS"},{"av":"AV70USDTNotificationsData","fld":"vUSDTNOTIFICATIONSDATA","grid":139,"hsh":true},{"av":"nGXsfl_139_idx","ctrl":"GRID","prop":"GridCurrRow","grid":139},{"av":"nRC_GXsfl_139","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"GridRC","grid":139},{"av":"AV18Date","fld":"vDATE","hsh":true},{"av":"AV15CalendarEventId","fld":"vCALENDAREVENTID","hsh":true},{"av":"AV32IsAuthorized_UserAction1","fld":"vISAUTHORIZED_USERACTION1","hsh":true},{"av":"Usercontrol1_Defaulteventstyle","ctrl":"USERCONTROL1","prop":"DefaultEventStyle"}]""");
+         setEventMetadata("CREATEEVENT_MODAL.ONLOADCOMPONENT","""{"handler":"E13BN2","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"AV17CalendarEventsJson","fld":"vCALENDAREVENTSJSON"},{"av":"AV15CalendarEventId","fld":"vCALENDAREVENTID","hsh":true},{"av":"AV21DisabledDaysJson","fld":"vDISABLEDDAYSJSON"}]""");
+         setEventMetadata("CREATEEVENT_MODAL.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
+         setEventMetadata("'DOUSERACTION1'","""{"handler":"E15BN2","iparms":[{"av":"GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"},{"av":"GRIDUSDTNOTIFICATIONSDATAS_nEOF"},{"av":"subGridusdtnotificationsdatas_Rows","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"Rows"},{"av":"AV71WWPContext","fld":"vWWPCONTEXT","hsh":true},{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV5CalendarLoadFromDate","fld":"vCALENDARLOADFROMDATE"},{"av":"AV6CalendarLoadToDate","fld":"vCALENDARLOADTODATE"},{"av":"AV19Date_ShowingDatesFrom","fld":"vDATE_SHOWINGDATESFROM","hsh":true},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"AV25Events","fld":"vEVENTS"},{"av":"AV70USDTNotificationsData","fld":"vUSDTNOTIFICATIONSDATA","grid":139,"hsh":true},{"av":"nGXsfl_139_idx","ctrl":"GRID","prop":"GridCurrRow","grid":139},{"av":"nRC_GXsfl_139","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"GridRC","grid":139},{"av":"AV18Date","fld":"vDATE","hsh":true},{"av":"AV15CalendarEventId","fld":"vCALENDAREVENTID","hsh":true},{"av":"AV32IsAuthorized_UserAction1","fld":"vISAUTHORIZED_USERACTION1","hsh":true},{"av":"Usercontrol1_Defaulteventstyle","ctrl":"USERCONTROL1","prop":"DefaultEventStyle"}]""");
          setEventMetadata("'DOUSERACTION1'",""","oparms":[{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"AV25Events","fld":"vEVENTS"},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV20DisabledDays","fld":"vDISABLEDDAYS"},{"av":"AV21DisabledDaysJson","fld":"vDISABLEDDAYSJSON"},{"av":"AV32IsAuthorized_UserAction1","fld":"vISAUTHORIZED_USERACTION1","hsh":true},{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
-         setEventMetadata("CREATEEVENT_MODAL.CLOSE","""{"handler":"E11BN2","iparms":[{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV5CalendarLoadFromDate","fld":"vCALENDARLOADFROMDATE"},{"av":"AV6CalendarLoadToDate","fld":"vCALENDARLOADTODATE"},{"av":"AV19Date_ShowingDatesFrom","fld":"vDATE_SHOWINGDATESFROM","hsh":true},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"Usercontrol1_Defaulteventstyle","ctrl":"USERCONTROL1","prop":"DefaultEventStyle"},{"av":"AV25Events","fld":"vEVENTS"}]""");
+         setEventMetadata("CREATEEVENT_MODAL.CLOSE","""{"handler":"E12BN2","iparms":[{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV5CalendarLoadFromDate","fld":"vCALENDARLOADFROMDATE"},{"av":"AV6CalendarLoadToDate","fld":"vCALENDARLOADTODATE"},{"av":"AV19Date_ShowingDatesFrom","fld":"vDATE_SHOWINGDATESFROM","hsh":true},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"Usercontrol1_Defaulteventstyle","ctrl":"USERCONTROL1","prop":"DefaultEventStyle"},{"av":"AV25Events","fld":"vEVENTS"}]""");
          setEventMetadata("CREATEEVENT_MODAL.CLOSE",""","oparms":[{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"AV25Events","fld":"vEVENTS"},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV20DisabledDays","fld":"vDISABLEDDAYS"},{"av":"AV21DisabledDaysJson","fld":"vDISABLEDDAYSJSON"}]}""");
-         setEventMetadata("GRIDUSDTNOTIFICATIONSDATAS.ONLINEACTIVATE","""{"handler":"E17BN2","iparms":[{"av":"AV70USDTNotificationsData","fld":"vUSDTNOTIFICATIONSDATA","grid":139,"hsh":true},{"av":"nGXsfl_139_idx","ctrl":"GRID","prop":"GridCurrRow","grid":139},{"av":"GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_139","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"GridRC","grid":139}]}""");
+         setEventMetadata("USERCONTROL1.EVENTSELECTED","""{"handler":"E11BN2","iparms":[]}""");
+         setEventMetadata("TABLENOTIFICATIONS.CLICK","""{"handler":"E16BN2","iparms":[]}""");
+         setEventMetadata("TABLEAGENDA.CLICK","""{"handler":"E17BN2","iparms":[]}""");
+         setEventMetadata("GRIDUSDTNOTIFICATIONSDATAS.ONLINEACTIVATE","""{"handler":"E21BN2","iparms":[{"av":"AV70USDTNotificationsData","fld":"vUSDTNOTIFICATIONSDATA","grid":139,"hsh":true},{"av":"nGXsfl_139_idx","ctrl":"GRID","prop":"GridCurrRow","grid":139},{"av":"GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_139","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"GridRC","grid":139}]}""");
          setEventMetadata("GRIDUSDTNOTIFICATIONSDATAS_FIRSTPAGE","""{"handler":"subgridusdtnotificationsdatas_firstpage","iparms":[{"av":"GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"},{"av":"GRIDUSDTNOTIFICATIONSDATAS_nEOF"},{"av":"subGridusdtnotificationsdatas_Rows","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"Rows"},{"av":"AV70USDTNotificationsData","fld":"vUSDTNOTIFICATIONSDATA","grid":139,"hsh":true},{"av":"nGXsfl_139_idx","ctrl":"GRID","prop":"GridCurrRow","grid":139},{"av":"nRC_GXsfl_139","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"GridRC","grid":139},{"av":"AV18Date","fld":"vDATE","hsh":true},{"av":"AV15CalendarEventId","fld":"vCALENDAREVENTID","hsh":true},{"av":"AV32IsAuthorized_UserAction1","fld":"vISAUTHORIZED_USERACTION1","hsh":true},{"av":"AV71WWPContext","fld":"vWWPCONTEXT","hsh":true},{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV5CalendarLoadFromDate","fld":"vCALENDARLOADFROMDATE"},{"av":"AV6CalendarLoadToDate","fld":"vCALENDARLOADTODATE"},{"av":"AV19Date_ShowingDatesFrom","fld":"vDATE_SHOWINGDATESFROM","hsh":true},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"Usercontrol1_Defaulteventstyle","ctrl":"USERCONTROL1","prop":"DefaultEventStyle"},{"av":"AV25Events","fld":"vEVENTS"}]""");
          setEventMetadata("GRIDUSDTNOTIFICATIONSDATAS_FIRSTPAGE",""","oparms":[{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"AV25Events","fld":"vEVENTS"},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV20DisabledDays","fld":"vDISABLEDDAYS"},{"av":"AV21DisabledDaysJson","fld":"vDISABLEDDAYSJSON"},{"av":"AV32IsAuthorized_UserAction1","fld":"vISAUTHORIZED_USERACTION1","hsh":true},{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
          setEventMetadata("GRIDUSDTNOTIFICATIONSDATAS_PREVPAGE","""{"handler":"subgridusdtnotificationsdatas_previouspage","iparms":[{"av":"GRIDUSDTNOTIFICATIONSDATAS_nFirstRecordOnPage"},{"av":"GRIDUSDTNOTIFICATIONSDATAS_nEOF"},{"av":"subGridusdtnotificationsdatas_Rows","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"Rows"},{"av":"AV70USDTNotificationsData","fld":"vUSDTNOTIFICATIONSDATA","grid":139,"hsh":true},{"av":"nGXsfl_139_idx","ctrl":"GRID","prop":"GridCurrRow","grid":139},{"av":"nRC_GXsfl_139","ctrl":"GRIDUSDTNOTIFICATIONSDATAS","prop":"GridRC","grid":139},{"av":"AV18Date","fld":"vDATE","hsh":true},{"av":"AV15CalendarEventId","fld":"vCALENDAREVENTID","hsh":true},{"av":"AV32IsAuthorized_UserAction1","fld":"vISAUTHORIZED_USERACTION1","hsh":true},{"av":"AV71WWPContext","fld":"vWWPCONTEXT","hsh":true},{"av":"AV29ForceLoadDots","fld":"vFORCELOADDOTS"},{"av":"AV27EventsLoaded","fld":"vEVENTSLOADED"},{"av":"AV5CalendarLoadFromDate","fld":"vCALENDARLOADFROMDATE"},{"av":"AV6CalendarLoadToDate","fld":"vCALENDARLOADTODATE"},{"av":"AV19Date_ShowingDatesFrom","fld":"vDATE_SHOWINGDATESFROM","hsh":true},{"av":"AV10LoadedDotsFromDate","fld":"vLOADEDDOTSFROMDATE"},{"av":"AV11LoadedDotsToDate","fld":"vLOADEDDOTSTODATE"},{"av":"AV12LoadedFromDate","fld":"vLOADEDFROMDATE"},{"av":"AV13LoadedToDate","fld":"vLOADEDTODATE"},{"av":"Usercontrol1_Defaulteventstyle","ctrl":"USERCONTROL1","prop":"DefaultEventStyle"},{"av":"AV25Events","fld":"vEVENTS"}]""");
@@ -3412,7 +3492,6 @@ namespace GeneXus.Programs {
       private short wbStart ;
       private short nCmpId ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGridusdtnotificationsdatas_Backcolorstyle ;
       private short GXt_int2 ;
       private short AV60Progress1_Value ;
@@ -3706,6 +3785,7 @@ namespace GeneXus.Programs {
       private bool AV43KPI3_IsSuccessfulValue ;
       private bool AV49KPI5_IsSuccessfulValue ;
       private bool gx_refresh_fired ;
+      private bool bDynCreated_Wwpaux_wc ;
       private bool GXt_boolean1 ;
       private string AV17CalendarEventsJson ;
       private string AV21DisabledDaysJson ;

@@ -112,11 +112,6 @@ namespace GeneXus.Programs {
                }
                gxfirstwebparm = gxfirstwebparm_bkp;
             }
-            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-            {
-               AV7IDP_State = gxfirstwebparm;
-               AssignAttri("", false, "AV7IDP_State", AV7IDP_State);
-            }
             if ( toggleJsOutput )
             {
                if ( context.isSpaRequest( ) )
@@ -229,7 +224,9 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal FormBackgroundImage\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal FormBackgroundImage\" data-gx-class=\"form-horizontal FormBackgroundImage\" novalidate action=\""+formatLink("gamexamplerecoverpasswordstep1.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV7IDP_State))}, new string[] {"IDP_State"}) +"\">") ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamexamplerecoverpasswordstep1.aspx"+UrlEncode(StringUtil.RTrim(AV7IDP_State));
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal FormBackgroundImage\" data-gx-class=\"form-horizontal FormBackgroundImage\" novalidate action=\""+formatLink("gamexamplerecoverpasswordstep1.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -246,7 +243,7 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, "vUSERAUTHTYPENAME", StringUtil.RTrim( AV10UserAuthTypeName));
          GxWebStd.gx_hidden_field( context, "gxhash_vUSERAUTHTYPENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV10UserAuthTypeName, "")), context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -543,11 +540,49 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+            GXKey = Crypto.GetSiteKey( );
+            if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+               GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+               if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "gamexamplerecoverpasswordstep1.aspx")), "gamexamplerecoverpasswordstep1.aspx") == 0 ) )
+               {
+                  SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "gamexamplerecoverpasswordstep1.aspx")))) ;
+               }
+               else
+               {
+                  GxWebError = 1;
+                  context.HttpContext.Response.StatusCode = 403;
+                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                  context.WriteHtmlText( "<p /><hr />") ;
+                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+               }
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               if ( nGotPars == 0 )
+               {
+                  entryPointCalled = false;
+                  gxfirstwebparm = GetFirstPar( "IDP_State");
+                  toggleJsOutput = isJsOutputEnabled( );
+                  if ( context.isSpaRequest( ) )
+                  {
+                     disableJsOutput();
+                  }
+                  if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+                  {
+                     AV7IDP_State = gxfirstwebparm;
+                     AssignAttri("", false, "AV7IDP_State", AV7IDP_State);
+                  }
+                  if ( toggleJsOutput )
+                  {
+                     if ( context.isSpaRequest( ) )
+                     {
+                        enableJsOutput();
+                     }
+                  }
+               }
+            }
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -652,7 +687,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV11UserName", AV11UserName);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -688,7 +723,9 @@ namespace GeneXus.Programs {
          if ( AV35GAMErrorCollection.Count == 0 )
          {
             GXt_char1 = AV8LinkURL;
-            new gam_buildappurl(context ).execute(  formatLink("gamexamplerecoverpasswordstep2.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV7IDP_State)),UrlEncode(StringUtil.RTrim(""))}, new string[] {"IDP_State","KeyToChangePassword"}) , out  GXt_char1) ;
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "gamexamplerecoverpasswordstep2.aspx"+UrlEncode(StringUtil.RTrim(AV7IDP_State)) + "," + UrlEncode(StringUtil.RTrim(""));
+            new gam_buildappurl(context ).execute(  formatLink("gamexamplerecoverpasswordstep2.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), out  GXt_char1) ;
             AV8LinkURL = GXt_char1;
             AV8LinkURL += "%1";
             AV33GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
@@ -721,7 +758,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).isremoteauthentication(AV7IDP_State) )
          {
-            CallWebObject(formatLink("gamexampleidplogin.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV7IDP_State))}, new string[] {"IDP_State"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "gamexampleidplogin.aspx"+UrlEncode(StringUtil.RTrim(AV7IDP_State));
+            CallWebObject(formatLink("gamexampleidplogin.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -796,7 +835,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271813995", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025428134146", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -812,7 +851,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamexamplerecoverpasswordstep1.js", "?20254271813998", false, true);
+         context.AddJavascriptSource("gamexamplerecoverpasswordstep1.js", "?2025428134155", false, true);
          /* End function include_jscripts */
       }
 
@@ -886,8 +925,9 @@ namespace GeneXus.Programs {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
-         AV10UserAuthTypeName = "";
          GXKey = "";
+         GXEncryptionTmp = "";
+         AV10UserAuthTypeName = "";
          GX_FocusControl = "";
          sPrefix = "";
          ClassString = "";
@@ -904,6 +944,7 @@ namespace GeneXus.Programs {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         GXDecQS = "";
          AV9User = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV35GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV8LinkURL = "";
@@ -921,7 +962,6 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short nGXWrapped ;
       private int edtavUsername_Enabled ;
       private int AV38GXV1 ;
@@ -933,8 +973,9 @@ namespace GeneXus.Programs {
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
-      private string AV10UserAuthTypeName ;
       private string GXKey ;
+      private string GXEncryptionTmp ;
+      private string AV10UserAuthTypeName ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divLayoutmaintable_Internalname ;
@@ -962,6 +1003,7 @@ namespace GeneXus.Programs {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
+      private string GXDecQS ;
       private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;

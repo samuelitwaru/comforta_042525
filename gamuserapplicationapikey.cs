@@ -118,18 +118,6 @@ namespace GeneXus.Programs {
                }
                gxfirstwebparm = gxfirstwebparm_bkp;
             }
-            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-            {
-               AV13UserGUID = gxfirstwebparm;
-               AssignAttri("", false, "AV13UserGUID", AV13UserGUID);
-               GxWebStd.gx_hidden_field( context, "gxhash_vUSERGUID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13UserGUID, "")), context));
-               if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
-               {
-                  AV6ClientID = GetPar( "ClientID");
-                  AssignAttri("", false, "AV6ClientID", AV6ClientID);
-                  GxWebStd.gx_hidden_field( context, "gxhash_vCLIENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6ClientID, "")), context));
-               }
-            }
             if ( toggleJsOutput )
             {
                if ( context.isSpaRequest( ) )
@@ -282,7 +270,9 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal FormNoBackgroundColor\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal FormNoBackgroundColor\" data-gx-class=\"form-horizontal FormNoBackgroundColor\" novalidate action=\""+formatLink("gamuserapplicationapikey.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV13UserGUID)),UrlEncode(StringUtil.RTrim(AV6ClientID))}, new string[] {"UserGUID","ClientID"}) +"\">") ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamuserapplicationapikey.aspx"+UrlEncode(StringUtil.RTrim(AV13UserGUID)) + "," + UrlEncode(StringUtil.RTrim(AV6ClientID));
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal FormNoBackgroundColor\" data-gx-class=\"form-horizontal FormNoBackgroundColor\" novalidate action=\""+formatLink("gamuserapplicationapikey.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -306,7 +296,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vUSERAPIKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV22UserAPIkey, "")), context));
          GxWebStd.gx_hidden_field( context, "vUSERAPIKEYEXPIRES", context.localUtil.TToC( AV23UserAPIkeyExpires, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "gxhash_vUSERAPIKEYEXPIRES", GetSecureSignedToken( "", context.localUtil.Format( AV23UserAPIkeyExpires, "99/99/9999 99:99"), context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -387,7 +377,9 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         return formatLink("gamuserapplicationapikey.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV13UserGUID)),UrlEncode(StringUtil.RTrim(AV6ClientID))}, new string[] {"UserGUID","ClientID"})  ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamuserapplicationapikey.aspx"+UrlEncode(StringUtil.RTrim(AV13UserGUID)) + "," + UrlEncode(StringUtil.RTrim(AV6ClientID));
+         return formatLink("gamuserapplicationapikey.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
       public override string GetPgmname( )
@@ -792,11 +784,56 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+            GXKey = Crypto.GetSiteKey( );
+            if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+               GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+               if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "gamuserapplicationapikey.aspx")), "gamuserapplicationapikey.aspx") == 0 ) )
+               {
+                  SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "gamuserapplicationapikey.aspx")))) ;
+               }
+               else
+               {
+                  GxWebError = 1;
+                  context.HttpContext.Response.StatusCode = 403;
+                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                  context.WriteHtmlText( "<p /><hr />") ;
+                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+               }
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               if ( nGotPars == 0 )
+               {
+                  entryPointCalled = false;
+                  gxfirstwebparm = GetFirstPar( "UserGUID");
+                  toggleJsOutput = isJsOutputEnabled( );
+                  if ( context.isSpaRequest( ) )
+                  {
+                     disableJsOutput();
+                  }
+                  if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+                  {
+                     AV13UserGUID = gxfirstwebparm;
+                     AssignAttri("", false, "AV13UserGUID", AV13UserGUID);
+                     GxWebStd.gx_hidden_field( context, "gxhash_vUSERGUID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV13UserGUID, "")), context));
+                     if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+                     {
+                        AV6ClientID = GetPar( "ClientID");
+                        AssignAttri("", false, "AV6ClientID", AV6ClientID);
+                        GxWebStd.gx_hidden_field( context, "gxhash_vCLIENTID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV6ClientID, "")), context));
+                     }
+                  }
+                  if ( toggleJsOutput )
+                  {
+                     if ( context.isSpaRequest( ) )
+                     {
+                        enableJsOutput();
+                     }
+                  }
+               }
+            }
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -959,7 +996,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV5APIkey", AV5APIkey);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -1182,7 +1219,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718174647", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813123379", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1198,7 +1235,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamuserapplicationapikey.js", "?202542718174653", false, true);
+         context.AddJavascriptSource("gamuserapplicationapikey.js", "?202542813123384", false, true);
          /* End function include_jscripts */
       }
 
@@ -1348,10 +1385,11 @@ namespace GeneXus.Programs {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
+         GXKey = "";
+         GXEncryptionTmp = "";
          AV20DetailedScope = "";
          AV22UserAPIkey = "";
          AV23UserAPIkeyExpires = (DateTime)(DateTime.MinValue);
-         GXKey = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -1369,6 +1407,7 @@ namespace GeneXus.Programs {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         GXDecQS = "";
          AV11GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV9GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
          AV10GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
@@ -1399,7 +1438,6 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short nGXWrapped ;
       private int edtavGamuseremail_Enabled ;
       private int edtavClientid_Enabled ;
@@ -1421,6 +1459,7 @@ namespace GeneXus.Programs {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string GXEncryptionTmp ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divLayoutmaintable_Internalname ;
@@ -1459,6 +1498,7 @@ namespace GeneXus.Programs {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
+      private string GXDecQS ;
       private DateTime AV23UserAPIkeyExpires ;
       private DateTime AV8Expires ;
       private bool entryPointCalled ;

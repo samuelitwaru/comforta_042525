@@ -155,17 +155,6 @@ namespace GeneXus.Programs {
             }
             gxfirstwebparm = gxfirstwebparm_bkp;
          }
-         if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-         {
-            Gx_mode = gxfirstwebparm;
-            AssignAttri("", false, "Gx_mode", Gx_mode);
-            if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
-            {
-               AV7SupplierGenId = StringUtil.StrToGuid( GetPar( "SupplierGenId"));
-               AssignAttri("", false, "AV7SupplierGenId", AV7SupplierGenId.ToString());
-               GxWebStd.gx_hidden_field( context, "gxhash_vSUPPLIERGENID", GetSecureSignedToken( "", AV7SupplierGenId, context));
-            }
-         }
          if ( toggleJsOutput )
          {
             if ( context.isSpaRequest( ) )
@@ -173,11 +162,52 @@ namespace GeneXus.Programs {
                enableJsOutput();
             }
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+         GXKey = Crypto.GetSiteKey( );
+         if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
          {
-            gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+            GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+            if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "trn_suppliergen.aspx")), "trn_suppliergen.aspx") == 0 ) )
+            {
+               SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "trn_suppliergen.aspx")))) ;
+            }
+            else
+            {
+               GxWebError = 1;
+               context.HttpContext.Response.StatusCode = 403;
+               context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+               context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+               context.WriteHtmlText( "<p /><hr />") ;
+               GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+            }
          }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+         {
+            entryPointCalled = false;
+            gxfirstwebparm = GetFirstPar( "Mode");
+            toggleJsOutput = isJsOutputEnabled( );
+            if ( context.isSpaRequest( ) )
+            {
+               disableJsOutput();
+            }
+            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               Gx_mode = gxfirstwebparm;
+               AssignAttri("", false, "Gx_mode", Gx_mode);
+               if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+               {
+                  AV7SupplierGenId = StringUtil.StrToGuid( GetPar( "SupplierGenId"));
+                  AssignAttri("", false, "AV7SupplierGenId", AV7SupplierGenId.ToString());
+                  GxWebStd.gx_hidden_field( context, "gxhash_vSUPPLIERGENID", GetSecureSignedToken( "", AV7SupplierGenId, context));
+               }
+            }
+            if ( toggleJsOutput )
+            {
+               if ( context.isSpaRequest( ) )
+               {
+                  enableJsOutput();
+               }
+            }
+         }
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -1329,7 +1359,7 @@ namespace GeneXus.Programs {
                }
                /* Read subfile selected row values. */
                /* Read hidden variables. */
-               GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+               GXKey = Crypto.GetSiteKey( );
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_SupplierGen");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -1839,7 +1869,9 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(Combo_suppliergentypeid_Selectedvalue_get, "<#NEW#>") == 0 )
          {
             AV31DefaultSupplierGenTypeName = Combo_suppliergentypeid_Selectedtext_get;
-            context.PopUp(formatLink("wp_createnewsuppliergentype.aspx", new object[] {UrlEncode(StringUtil.RTrim("INS")),UrlEncode(A253SupplierGenTypeId.ToString()),UrlEncode(StringUtil.RTrim(AV31DefaultSupplierGenTypeName))}, new string[] {"TrnMode","SupplierGenTypeId","DefaultSupplierGenTypeName"}) , new Object[] {});
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wp_createnewsuppliergentype.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(A253SupplierGenTypeId.ToString()) + "," + UrlEncode(StringUtil.RTrim(AV31DefaultSupplierGenTypeName));
+            context.PopUp(formatLink("wp_createnewsuppliergentype.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
          }
          else if ( StringUtil.StrCmp(Combo_suppliergentypeid_Selectedvalue_get, "<#POPUP_CLOSED#>") == 0 )
          {
@@ -3130,6 +3162,14 @@ namespace GeneXus.Programs {
                AnyError = 1;
             }
             pr_default.close(16);
+            /* Using cursor T000619 */
+            pr_default.execute(17, new Object[] {n42SupplierGenId, A42SupplierGenId});
+            if ( (pr_default.getStatus(17) != 101) )
+            {
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_SupplierDynamicForm", "")}), "CannotDeleteReferencedRecord", 1, "");
+               AnyError = 1;
+            }
+            pr_default.close(17);
          }
       }
 
@@ -3169,14 +3209,14 @@ namespace GeneXus.Programs {
       public void ScanStart069( )
       {
          /* Scan By routine */
-         /* Using cursor T000619 */
-         pr_default.execute(17);
+         /* Using cursor T000620 */
+         pr_default.execute(18);
          RcdFound9 = 0;
-         if ( (pr_default.getStatus(17) != 101) )
+         if ( (pr_default.getStatus(18) != 101) )
          {
             RcdFound9 = 1;
-            A42SupplierGenId = T000619_A42SupplierGenId[0];
-            n42SupplierGenId = T000619_n42SupplierGenId[0];
+            A42SupplierGenId = T000620_A42SupplierGenId[0];
+            n42SupplierGenId = T000620_n42SupplierGenId[0];
             AssignAttri("", false, "A42SupplierGenId", A42SupplierGenId.ToString());
          }
          /* Load Subordinate Levels */
@@ -3185,20 +3225,20 @@ namespace GeneXus.Programs {
       protected void ScanNext069( )
       {
          /* Scan next routine */
-         pr_default.readNext(17);
+         pr_default.readNext(18);
          RcdFound9 = 0;
-         if ( (pr_default.getStatus(17) != 101) )
+         if ( (pr_default.getStatus(18) != 101) )
          {
             RcdFound9 = 1;
-            A42SupplierGenId = T000619_A42SupplierGenId[0];
-            n42SupplierGenId = T000619_n42SupplierGenId[0];
+            A42SupplierGenId = T000620_A42SupplierGenId[0];
+            n42SupplierGenId = T000620_n42SupplierGenId[0];
             AssignAttri("", false, "A42SupplierGenId", A42SupplierGenId.ToString());
          }
       }
 
       protected void ScanEnd069( )
       {
-         pr_default.close(17);
+         pr_default.close(18);
       }
 
       protected void AfterConfirm069( )
@@ -3364,7 +3404,9 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("trn_suppliergen.aspx", new object[] {UrlEncode(StringUtil.RTrim(Gx_mode)),UrlEncode(AV7SupplierGenId.ToString())}, new string[] {"Gx_mode","SupplierGenId"}) +"\">") ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "trn_suppliergen.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV7SupplierGenId.ToString());
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("trn_suppliergen.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -3379,7 +3421,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_SupplierGen");
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -3596,7 +3638,9 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         return formatLink("trn_suppliergen.aspx", new object[] {UrlEncode(StringUtil.RTrim(Gx_mode)),UrlEncode(AV7SupplierGenId.ToString())}, new string[] {"Gx_mode","SupplierGenId"})  ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "trn_suppliergen.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(AV7SupplierGenId.ToString());
+         return formatLink("trn_suppliergen.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
       public override string GetPgmname( )
@@ -3712,7 +3756,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271831044", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542812541311", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3728,7 +3772,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_suppliergen.js", "?20254271831048", false, true);
+         context.AddJavascriptSource("trn_suppliergen.js", "?202542812541314", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4148,6 +4192,7 @@ namespace GeneXus.Programs {
          A601SG_LocationSupplierLocationId = Guid.Empty;
          A602SG_LocationSupplierOrganisatio = Guid.Empty;
          GXKey = "";
+         GXDecQS = "";
          PreviousTooltip = "";
          PreviousCaption = "";
          Form = new GXWebForm();
@@ -4331,6 +4376,7 @@ namespace GeneXus.Programs {
          AV26defaultCountryPhoneCode = "";
          GXt_guid3 = Guid.Empty;
          AV31DefaultSupplierGenTypeName = "";
+         GXEncryptionTmp = "";
          AV17ComboSelectedValue = "";
          AV18ComboSelectedText = "";
          GXt_objcol_SdtDVB_SDTComboData_Item4 = new GXBaseCollection<WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item>( context, "Item", "");
@@ -4435,8 +4481,11 @@ namespace GeneXus.Programs {
          T000618_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          T000618_A29LocationId = new Guid[] {Guid.Empty} ;
          T000618_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         T000619_A616SupplierDynamicFormId = new Guid[] {Guid.Empty} ;
          T000619_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          T000619_n42SupplierGenId = new bool[] {false} ;
+         T000620_A42SupplierGenId = new Guid[] {Guid.Empty} ;
+         T000620_n42SupplierGenId = new bool[] {false} ;
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -4509,7 +4558,10 @@ namespace GeneXus.Programs {
                T000618_A58ProductServiceId, T000618_A29LocationId, T000618_A11OrganisationId
                }
                , new Object[] {
-               T000619_A42SupplierGenId
+               T000619_A616SupplierDynamicFormId, T000619_A42SupplierGenId
+               }
+               , new Object[] {
+               T000620_A42SupplierGenId
                }
             }
          );
@@ -4521,7 +4573,6 @@ namespace GeneXus.Programs {
       }
 
       private short GxWebError ;
-      private short gxcookieaux ;
       private short AnyError ;
       private short IsModified ;
       private short IsConfirmed ;
@@ -4593,8 +4644,9 @@ namespace GeneXus.Programs {
       private string Combo_suppliergentypeid_Selectedtext_get ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
-      private string Gx_mode ;
       private string GXKey ;
+      private string GXDecQS ;
+      private string Gx_mode ;
       private string PreviousTooltip ;
       private string PreviousCaption ;
       private string GX_FocusControl ;
@@ -4842,6 +4894,7 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
+      private string GXEncryptionTmp ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
@@ -5089,8 +5142,11 @@ namespace GeneXus.Programs {
       private Guid[] T000618_A58ProductServiceId ;
       private Guid[] T000618_A29LocationId ;
       private Guid[] T000618_A11OrganisationId ;
+      private Guid[] T000619_A616SupplierDynamicFormId ;
       private Guid[] T000619_A42SupplierGenId ;
       private bool[] T000619_n42SupplierGenId ;
+      private Guid[] T000620_A42SupplierGenId ;
+      private bool[] T000620_n42SupplierGenId ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -5183,6 +5239,7 @@ public class trn_suppliergen__default : DataStoreHelperBase, IDataStoreHelper
       ,new ForEachCursor(def[15])
       ,new ForEachCursor(def[16])
       ,new ForEachCursor(def[17])
+      ,new ForEachCursor(def[18])
     };
  }
 
@@ -5305,6 +5362,10 @@ public class trn_suppliergen__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmT000619;
        prmT000619 = new Object[] {
+       new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmT000620;
+       prmT000620 = new Object[] {
        };
        def= new CursorDef[] {
            new CursorDef("T00062", "SELECT SupplierGenId, SupplierGenAddressCountry, SupplierGenLandlineCode, SupplierGenPhoneCode, SupplierGenContactPhone, SupplierGenLandlineNumber, SupplierGenAddressZipCode, SupplierGenKvkNumber, SupplierGenCompanyName, SupplierGenAddressCity, SupplierGenAddressLine1, SupplierGenAddressLine2, SupplierGenContactName, SupplierGenPhoneNumber, SupplierGenLandlineSubNumber, SupplierGenEmail, SupplierGenWebsite, SupplierGenDescription, SupplierGenTypeId, SG_OrganisationSupplierId, SG_LocationSupplierOrganisatio, SG_LocationSupplierLocationId FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId  FOR UPDATE OF Trn_SupplierGen NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT00062,1, GxCacheFrequency.OFF ,true,false )
@@ -5324,7 +5385,8 @@ public class trn_suppliergen__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("T000616", "SAVEPOINT gxupdate;DELETE FROM Trn_SupplierGen  WHERE SupplierGenId = :SupplierGenId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000616)
           ,new CursorDef("T000617", "SELECT SupplierGenTypeName FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000617,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T000618", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000618,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T000619", "SELECT SupplierGenId FROM Trn_SupplierGen ORDER BY SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000619,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000619", "SELECT SupplierDynamicFormId, SupplierGenId FROM Trn_SupplierDynamicForm WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000619,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000620", "SELECT SupplierGenId FROM Trn_SupplierGen ORDER BY SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000620,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -5453,6 +5515,10 @@ public class trn_suppliergen__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              return;
           case 17 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 18 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
     }

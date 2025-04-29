@@ -27,11 +27,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context.SetDefaultTheme("WorkWithPlusDS", true);
          initialize();
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-         {
-            gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-         }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          if ( nGotPars == 0 )
          {
             entryPointCalled = false;
@@ -131,7 +127,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* GeneXus formulas. */
       }
 
-      private short gxcookieaux ;
       private short nGotPars ;
       private short GxWebError ;
       private string GXKey ;

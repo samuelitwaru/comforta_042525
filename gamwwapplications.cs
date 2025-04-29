@@ -356,7 +356,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_NAME", GetSecureSignedToken( "", AV20IsAuthorized_Name, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV52IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV52IsAuthorized_Insert, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -914,11 +914,7 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -977,9 +973,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
          RF812( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGrid_refresh */
       }
 
@@ -1271,7 +1267,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV11FilName", AV11FilName);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -1426,35 +1422,47 @@ namespace GeneXus.Programs {
             AssignAttri("", false, edtavDisplay_Internalname, AV47Display);
             if ( AV48IsAuthorized_Display )
             {
-               edtavDisplay_Link = formatLink("gamapplicationentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.LTrimStr(AV16Id,12,0))}, new string[] {"Mode","Id"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gamapplicationentry.aspx"+UrlEncode(StringUtil.RTrim("DSP")) + "," + UrlEncode(StringUtil.LTrimStr(AV16Id,12,0));
+               edtavDisplay_Link = formatLink("gamapplicationentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             AV49Update = "<i class=\"fa fa-pen\"></i>";
             AssignAttri("", false, edtavUpdate_Internalname, AV49Update);
             if ( AV50IsAuthorized_Update )
             {
-               edtavUpdate_Link = formatLink("gamapplicationentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("UPD")),UrlEncode(StringUtil.LTrimStr(AV16Id,12,0))}, new string[] {"Mode","Id"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gamapplicationentry.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(StringUtil.LTrimStr(AV16Id,12,0));
+               edtavUpdate_Link = formatLink("gamapplicationentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             AV5Delete = "<i class=\"fa fa-times\"></i>";
             AssignAttri("", false, edtavDelete_Internalname, AV5Delete);
             if ( AV51IsAuthorized_Delete )
             {
-               edtavDelete_Link = formatLink("gamapplicationentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("DLT")),UrlEncode(StringUtil.LTrimStr(AV16Id,12,0))}, new string[] {"Mode","Id"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gamapplicationentry.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(StringUtil.LTrimStr(AV16Id,12,0));
+               edtavDelete_Link = formatLink("gamapplicationentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             AV13GAMActionPermission = "<i class=\"fa fa-lock\"></i>";
             AssignAttri("", false, edtavGamactionpermission_Internalname, AV13GAMActionPermission);
             if ( AV19IsAuthorized_GAMActionPermission )
             {
-               edtavGamactionpermission_Link = formatLink("gamwwapppermissions.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(AV16Id,12,0))}, new string[] {"ApplicationId"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gamwwapppermissions.aspx"+UrlEncode(StringUtil.LTrimStr(AV16Id,12,0));
+               edtavGamactionpermission_Link = formatLink("gamwwapppermissions.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             AV28UAMenus = "<i class=\"fa fa-bars\"></i>";
             AssignAttri("", false, edtavUamenus_Internalname, AV28UAMenus);
             if ( AV27IsAuthorized_UAMenus )
             {
-               edtavUamenus_Link = formatLink("gamwwappmenus.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(AV16Id,12,0))}, new string[] {"ApplicationId"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gamwwappmenus.aspx"+UrlEncode(StringUtil.LTrimStr(AV16Id,12,0));
+               edtavUamenus_Link = formatLink("gamwwappmenus.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             if ( AV20IsAuthorized_Name )
             {
-               edtavName_Link = formatLink("gamapplicationentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.LTrimStr(AV16Id,12,0))}, new string[] {"Mode","Id"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gamapplicationentry.aspx"+UrlEncode(StringUtil.RTrim("DSP")) + "," + UrlEncode(StringUtil.LTrimStr(AV16Id,12,0));
+               edtavName_Link = formatLink("gamapplicationentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             /* Load Method */
             if ( wbStart != -1 )
@@ -1495,14 +1503,18 @@ namespace GeneXus.Programs {
             /* Execute user subroutine: 'SAVEGRIDSTATE' */
             S142 ();
             if (returnInSub) return;
-            context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx", new object[] {UrlEncode(StringUtil.RTrim("GAMWWApplicationsFilters")),UrlEncode(StringUtil.RTrim(AV53Pgmname+"GridState"))}, new string[] {"UserKey","GridStateKey"}) , new Object[] {});
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("GAMWWApplicationsFilters")) + "," + UrlEncode(StringUtil.RTrim(AV53Pgmname+"GridState"));
+            context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV38ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV38ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV38ManageFiltersExecutionStep), 1, 0));
             context.DoAjaxRefresh();
          }
          else if ( StringUtil.StrCmp(Ddo_managefilters_Activeeventkey, "<#Manage#>") == 0 )
          {
-            context.PopUp(formatLink("wwpbaseobjects.managefilters.aspx", new object[] {UrlEncode(StringUtil.RTrim("GAMWWApplicationsFilters"))}, new string[] {"UserKey"}) , new Object[] {});
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wwpbaseobjects.managefilters.aspx"+UrlEncode(StringUtil.RTrim("GAMWWApplicationsFilters"));
+            context.PopUp(formatLink("wwpbaseobjects.managefilters.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV38ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV38ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV38ManageFiltersExecutionStep), 1, 0));
             context.DoAjaxRefresh();
@@ -1540,7 +1552,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV52IsAuthorized_Insert )
          {
-            CallWebObject(formatLink("gamapplicationentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("INS")),UrlEncode(StringUtil.LTrimStr(0,1,0))}, new string[] {"Mode","Id"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "gamapplicationentry.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(StringUtil.LTrimStr(0,1,0));
+            CallWebObject(formatLink("gamapplicationentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -1804,7 +1818,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718174949", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813124216", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1820,7 +1834,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamwwapplications.js", "?202542718174956", false, true);
+         context.AddJavascriptSource("gamwwapplications.js", "?202542813124223", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2314,6 +2328,7 @@ namespace GeneXus.Programs {
          AV24GAMApplications = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMApplication>( context, "GeneXus.Programs.genexussecurity.SdtGAMApplication", "GeneXus.Programs");
          AV10Errors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV6Application = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
+         GXEncryptionTmp = "";
          GridRow = new GXWebRow();
          AV39ManageFiltersXml = "";
          GXt_char2 = "";
@@ -2348,7 +2363,6 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGrid_Backcolorstyle ;
       private short nGXWrapped ;
       private short subGrid_Backstyle ;
@@ -2463,6 +2477,7 @@ namespace GeneXus.Programs {
       private string edtavName_Internalname ;
       private string edtavFilname_Internalname ;
       private string edtavDisplay_Link ;
+      private string GXEncryptionTmp ;
       private string edtavUpdate_Link ;
       private string edtavDelete_Link ;
       private string edtavGamactionpermission_Link ;

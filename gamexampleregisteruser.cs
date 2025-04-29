@@ -242,7 +242,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -341,7 +341,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-3", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTblogin_Internalname, context.GetMessage( "GAM_Login", ""), "", "", lblTblogin_Jsonclick, "'"+""+"'"+",false,"+"'"+"e110w1_client"+"'", "", "TextBlock", 7, "", 1, 1, 0, 0, "HLP_GAMExampleRegisterUser.htm");
+            GxWebStd.gx_label_ctrl( context, lblTblogin_Internalname, context.GetMessage( "GAM_Login", ""), "", "", lblTblogin_Jsonclick, "'"+""+"'"+",false,"+"'"+"E\\'LOGIN\\'."+"'", "", "TextBlock", 5, "", 1, 1, 0, 0, "HLP_GAMExampleRegisterUser.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -715,7 +715,7 @@ namespace GeneXus.Programs {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
                            /* Execute user event: Start */
-                           E120W2 ();
+                           E110W2 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                         {
@@ -726,10 +726,17 @@ namespace GeneXus.Programs {
                               if ( ! Rfr0gs )
                               {
                                  /* Execute user event: Enter */
-                                 E130W2 ();
+                                 E120W2 ();
                               }
                               dynload_actions( ) ;
                            }
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "'LOGIN'") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: 'Login' */
+                           E130W2 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                         {
@@ -773,11 +780,7 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -888,7 +891,7 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E120W2 ();
+         E110W2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -944,7 +947,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV111URLImage", AV111URLImage);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -955,11 +958,11 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E120W2 ();
+         E110W2 ();
          if (returnInSub) return;
       }
 
-      protected void E120W2( )
+      protected void E110W2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -981,11 +984,11 @@ namespace GeneXus.Programs {
       public void GXEnter( )
       {
          /* Execute user event: Enter */
-         E130W2 ();
+         E120W2 ();
          if (returnInSub) return;
       }
 
-      protected void E130W2( )
+      protected void E120W2( )
       {
          /* Enter Routine */
          returnInSub = false;
@@ -1231,6 +1234,14 @@ namespace GeneXus.Programs {
          }
       }
 
+      protected void E130W2( )
+      {
+         /* 'Login' Routine */
+         returnInSub = false;
+         CallWebObject(formatLink("gamexamplelogin.aspx") );
+         context.wjLocDisableFrm = 1;
+      }
+
       protected void S132( )
       {
          /* 'LOADLANGUAGES' Routine */
@@ -1319,7 +1330,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271814046", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025428136596", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1335,7 +1346,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamexampleregisteruser.js", "?20254271814051", false, true);
+         context.AddJavascriptSource("gamexampleregisteruser.js", "?202542813665", false, true);
          /* End function include_jscripts */
       }
 
@@ -1482,9 +1493,9 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("ENTER","""{"handler":"E130W2","iparms":[{"av":"AV19Password","fld":"vPASSWORD"},{"av":"AV20PasswordConf","fld":"vPASSWORDCONF"},{"av":"AV18Name","fld":"vNAME"},{"av":"AV5EMail","fld":"vEMAIL"},{"av":"AV6FirstName","fld":"vFIRSTNAME"},{"av":"AV13LastName","fld":"vLASTNAME"},{"av":"AV102Phone","fld":"vPHONE"},{"av":"AV22Birthday","fld":"vBIRTHDAY"},{"av":"cmbavGender"},{"av":"AV23Gender","fld":"vGENDER"},{"av":"AV103Address","fld":"vADDRESS"},{"av":"AV104City","fld":"vCITY"},{"av":"AV105State","fld":"vSTATE"},{"av":"AV106PostCode","fld":"vPOSTCODE"},{"av":"cmbavLanguage"},{"av":"AV107Language","fld":"vLANGUAGE"},{"av":"AV108Timezone","fld":"vTIMEZONE"},{"av":"AV111URLImage","fld":"vURLIMAGE"},{"av":"AV17Messages","fld":"vMESSAGES"}]""");
+         setEventMetadata("ENTER","""{"handler":"E120W2","iparms":[{"av":"AV19Password","fld":"vPASSWORD"},{"av":"AV20PasswordConf","fld":"vPASSWORDCONF"},{"av":"AV18Name","fld":"vNAME"},{"av":"AV5EMail","fld":"vEMAIL"},{"av":"AV6FirstName","fld":"vFIRSTNAME"},{"av":"AV13LastName","fld":"vLASTNAME"},{"av":"AV102Phone","fld":"vPHONE"},{"av":"AV22Birthday","fld":"vBIRTHDAY"},{"av":"cmbavGender"},{"av":"AV23Gender","fld":"vGENDER"},{"av":"AV103Address","fld":"vADDRESS"},{"av":"AV104City","fld":"vCITY"},{"av":"AV105State","fld":"vSTATE"},{"av":"AV106PostCode","fld":"vPOSTCODE"},{"av":"cmbavLanguage"},{"av":"AV107Language","fld":"vLANGUAGE"},{"av":"AV108Timezone","fld":"vTIMEZONE"},{"av":"AV111URLImage","fld":"vURLIMAGE"},{"av":"AV17Messages","fld":"vMESSAGES"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV18Name","fld":"vNAME"},{"av":"AV17Messages","fld":"vMESSAGES"},{"av":"edtavName_Enabled","ctrl":"vNAME","prop":"Enabled"},{"av":"edtavEmail_Enabled","ctrl":"vEMAIL","prop":"Enabled"},{"av":"edtavPassword_Enabled","ctrl":"vPASSWORD","prop":"Enabled"},{"av":"edtavPasswordconf_Enabled","ctrl":"vPASSWORDCONF","prop":"Enabled"},{"av":"edtavFirstname_Enabled","ctrl":"vFIRSTNAME","prop":"Enabled"},{"av":"edtavLastname_Enabled","ctrl":"vLASTNAME","prop":"Enabled"},{"av":"edtavPhone_Enabled","ctrl":"vPHONE","prop":"Enabled"},{"av":"edtavBirthday_Enabled","ctrl":"vBIRTHDAY","prop":"Enabled"},{"av":"cmbavGender"},{"av":"edtavAddress_Enabled","ctrl":"vADDRESS","prop":"Enabled"},{"av":"edtavCity_Enabled","ctrl":"vCITY","prop":"Enabled"},{"av":"edtavState_Enabled","ctrl":"vSTATE","prop":"Enabled"},{"av":"edtavPostcode_Enabled","ctrl":"vPOSTCODE","prop":"Enabled"},{"av":"cmbavLanguage"},{"av":"edtavTimezone_Enabled","ctrl":"vTIMEZONE","prop":"Enabled"},{"av":"edtavUrlimage_Enabled","ctrl":"vURLIMAGE","prop":"Enabled"},{"ctrl":"LOGIN","prop":"Visible"}]}""");
-         setEventMetadata("'LOGIN'","""{"handler":"E110W1","iparms":[]}""");
+         setEventMetadata("'LOGIN'","""{"handler":"E130W2","iparms":[]}""");
          setEventMetadata("VALIDV_GENDER","""{"handler":"Validv_Gender","iparms":[]}""");
          return  ;
       }
@@ -1571,7 +1582,6 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short nGXWrapped ;
       private int edtavName_Visible ;
       private int edtavName_Enabled ;

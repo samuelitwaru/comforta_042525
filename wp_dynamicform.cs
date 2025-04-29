@@ -115,21 +115,6 @@ namespace GeneXus.Programs {
                }
                gxfirstwebparm = gxfirstwebparm_bkp;
             }
-            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-            {
-               AV20WWPFormType = (short)(Math.Round(NumberUtil.Val( gxfirstwebparm, "."), 18, MidpointRounding.ToEven));
-               AssignAttri("", false, "AV20WWPFormType", StringUtil.Str( (decimal)(AV20WWPFormType), 1, 0));
-               GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMTYPE", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV20WWPFormType), "9"), context));
-               if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
-               {
-                  AV21WWPFormIsForDynamicValidations = StringUtil.StrToBool( GetPar( "WWPFormIsForDynamicValidations"));
-                  AssignAttri("", false, "AV21WWPFormIsForDynamicValidations", AV21WWPFormIsForDynamicValidations);
-                  GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMISFORDYNAMICVALIDATIONS", GetSecureSignedToken( "", AV21WWPFormIsForDynamicValidations, context));
-                  AV8TabCode = GetPar( "TabCode");
-                  AssignAttri("", false, "AV8TabCode", AV8TabCode);
-                  GxWebStd.gx_hidden_field( context, "gxhash_vTABCODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV8TabCode, "")), context));
-               }
-            }
             if ( toggleJsOutput )
             {
                if ( context.isSpaRequest( ) )
@@ -290,7 +275,9 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(AV20WWPFormType,1,0)),UrlEncode(StringUtil.BoolToStr(AV21WWPFormIsForDynamicValidations)),UrlEncode(StringUtil.RTrim(AV8TabCode))}, new string[] {"WWPFormType","WWPFormIsForDynamicValidations","TabCode"}) +"\">") ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "wp_dynamicform.aspx"+UrlEncode(StringUtil.LTrimStr(AV20WWPFormType,1,0)) + "," + UrlEncode(StringUtil.BoolToStr(AV21WWPFormIsForDynamicValidations)) + "," + UrlEncode(StringUtil.RTrim(AV8TabCode));
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_dynamicform.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -319,7 +306,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMISFORDYNAMICVALIDATIONS", GetSecureSignedToken( "", AV21WWPFormIsForDynamicValidations, context));
          GxWebStd.gx_hidden_field( context, "vTABCODE", StringUtil.RTrim( AV8TabCode));
          GxWebStd.gx_hidden_field( context, "gxhash_vTABCODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV8TabCode, "")), context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -358,6 +345,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "TABS_Pagecount", StringUtil.LTrim( StringUtil.NToC( (decimal)(Tabs_Pagecount), 9, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "TABS_Class", StringUtil.RTrim( Tabs_Class));
          GxWebStd.gx_hidden_field( context, "TABS_Historymanagement", StringUtil.BoolToStr( Tabs_Historymanagement));
+         GxWebStd.gx_hidden_field( context, "TABS_Activepagecontrolname", StringUtil.RTrim( Tabs_Activepagecontrolname));
          GxWebStd.gx_hidden_field( context, "TABS_Activepagecontrolname", StringUtil.RTrim( Tabs_Activepagecontrolname));
       }
 
@@ -444,7 +432,9 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(AV20WWPFormType,1,0)),UrlEncode(StringUtil.BoolToStr(AV21WWPFormIsForDynamicValidations)),UrlEncode(StringUtil.RTrim(AV8TabCode))}, new string[] {"WWPFormType","WWPFormIsForDynamicValidations","TabCode"})  ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "wp_dynamicform.aspx"+UrlEncode(StringUtil.LTrimStr(AV20WWPFormType,1,0)) + "," + UrlEncode(StringUtil.BoolToStr(AV21WWPFormIsForDynamicValidations)) + "," + UrlEncode(StringUtil.RTrim(AV8TabCode));
+         return formatLink("wp_dynamicform.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
       public override string GetPgmname( )
@@ -793,33 +783,47 @@ namespace GeneXus.Programs {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "DDC_SUBSCRIPTIONS.ONLOADCOMPONENT") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Ddc_subscriptions.Onloadcomponent */
+                              E11B82 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "DDC_DISCUSSIONS.ONLOADCOMPONENT") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Ddc_discussions.Onloadcomponent */
-                              E11B82 ();
+                              E12B82 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "TABS.TABCHANGED") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Tabs.Tabchanged */
+                              E13B82 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E12B82 ();
+                              E14B82 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Refresh */
-                              E13B82 ();
+                              E15B82 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E14B82 ();
+                              E16B82 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -958,11 +962,59 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+            GXKey = Crypto.GetSiteKey( );
+            if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+               GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+               if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "wp_dynamicform.aspx")), "wp_dynamicform.aspx") == 0 ) )
+               {
+                  SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "wp_dynamicform.aspx")))) ;
+               }
+               else
+               {
+                  GxWebError = 1;
+                  context.HttpContext.Response.StatusCode = 403;
+                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                  context.WriteHtmlText( "<p /><hr />") ;
+                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+               }
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               if ( nGotPars == 0 )
+               {
+                  entryPointCalled = false;
+                  gxfirstwebparm = GetFirstPar( "WWPFormType");
+                  toggleJsOutput = isJsOutputEnabled( );
+                  if ( context.isSpaRequest( ) )
+                  {
+                     disableJsOutput();
+                  }
+                  if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+                  {
+                     AV20WWPFormType = (short)(Math.Round(NumberUtil.Val( gxfirstwebparm, "."), 18, MidpointRounding.ToEven));
+                     AssignAttri("", false, "AV20WWPFormType", StringUtil.Str( (decimal)(AV20WWPFormType), 1, 0));
+                     GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMTYPE", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV20WWPFormType), "9"), context));
+                     if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+                     {
+                        AV21WWPFormIsForDynamicValidations = StringUtil.StrToBool( GetPar( "WWPFormIsForDynamicValidations"));
+                        AssignAttri("", false, "AV21WWPFormIsForDynamicValidations", AV21WWPFormIsForDynamicValidations);
+                        GxWebStd.gx_hidden_field( context, "gxhash_vWWPFORMISFORDYNAMICVALIDATIONS", GetSecureSignedToken( "", AV21WWPFormIsForDynamicValidations, context));
+                        AV8TabCode = GetPar( "TabCode");
+                        AssignAttri("", false, "AV8TabCode", AV8TabCode);
+                        GxWebStd.gx_hidden_field( context, "gxhash_vTABCODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV8TabCode, "")), context));
+                     }
+                  }
+                  if ( toggleJsOutput )
+                  {
+                     if ( context.isSpaRequest( ) )
+                     {
+                        enableJsOutput();
+                     }
+                  }
+               }
+            }
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -1025,7 +1077,7 @@ namespace GeneXus.Programs {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
          /* Execute user event: Refresh */
-         E13B82 ();
+         E15B82 ();
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             if ( 1 != 0 )
@@ -1089,7 +1141,7 @@ namespace GeneXus.Programs {
                A206WWPFormId = H00B82_A206WWPFormId[0];
                A240WWPFormType = H00B82_A240WWPFormType[0];
                /* Execute user event: Load */
-               E14B82 ();
+               E16B82 ();
                pr_default.readNext(0);
             }
             pr_default.close(0);
@@ -1121,20 +1173,13 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E12B82 ();
+         E14B82 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            AV20WWPFormType = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vWWPFORMTYPE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            AV21WWPFormIsForDynamicValidations = StringUtil.StrToBool( cgiGet( "vWWPFORMISFORDYNAMICVALIDATIONS"));
-            AV12LoadAllTabs = StringUtil.StrToBool( cgiGet( "vLOADALLTABS"));
-            AV13SelectedTabCode = cgiGet( "vSELECTEDTABCODE");
-            AV17RecordDescription = cgiGet( "vRECORDDESCRIPTION");
-            A207WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( "WWPFORMVERSIONNUMBER"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            A206WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( "WWPFORMID"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Ddc_subscriptions_Icontype = cgiGet( "DDC_SUBSCRIPTIONS_Icontype");
             Ddc_subscriptions_Icon = cgiGet( "DDC_SUBSCRIPTIONS_Icon");
             Ddc_subscriptions_Tooltip = cgiGet( "DDC_SUBSCRIPTIONS_Tooltip");
@@ -1149,10 +1194,11 @@ namespace GeneXus.Programs {
             Tabs_Pagecount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "TABS_Pagecount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Tabs_Class = cgiGet( "TABS_Class");
             Tabs_Historymanagement = StringUtil.StrToBool( cgiGet( "TABS_Historymanagement"));
+            Tabs_Activepagecontrolname = cgiGet( "TABS_Activepagecontrolname");
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -1163,7 +1209,7 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E12B82 ();
+         E14B82 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1171,7 +1217,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E12B82( )
+      protected void E14B82( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1227,7 +1273,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E13B82( )
+      protected void E15B82( )
       {
          /* Refresh Routine */
          returnInSub = false;
@@ -1268,13 +1314,44 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E14B82( )
+      protected void E16B82( )
       {
          /* Load Routine */
          returnInSub = false;
       }
 
       protected void E11B82( )
+      {
+         /* Ddc_subscriptions_Onloadcomponent Routine */
+         returnInSub = false;
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Wwpaux_wc = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wwpaux_wc_Component), StringUtil.Lower( "WWPBaseObjects.Subscriptions.WWP_SubscriptionsPanel")) != 0 )
+         {
+            WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", "wwpbaseobjects.subscriptions.wwp_subscriptionspanel", new Object[] {context} );
+            WebComp_Wwpaux_wc.ComponentInit();
+            WebComp_Wwpaux_wc.Name = "WWPBaseObjects.Subscriptions.WWP_SubscriptionsPanel";
+            WebComp_Wwpaux_wc_Component = "WWPBaseObjects.Subscriptions.WWP_SubscriptionsPanel";
+         }
+         if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
+         {
+            WebComp_Wwpaux_wc.setjustcreated();
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0056",(string)"",(string)"WWP_Form",(short)2,StringUtil.Trim( StringUtil.Str( (decimal)(A206WWPFormId), 4, 0))+";"+StringUtil.Trim( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0)),(string)AV17RecordDescription});
+            WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)""+""+"",(string)"",(string)""+""+""+""+""+""+""+""+"",(string)"",(string)""+""+"",(string)""});
+         }
+         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
+         {
+            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0056"+"");
+            WebComp_Wwpaux_wc.componentdraw();
+            context.httpAjaxContext.ajax_rspEndCmp();
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E12B82( )
       {
          /* Ddc_discussions_Onloadcomponent Routine */
          returnInSub = false;
@@ -1295,7 +1372,9 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
             {
                WebComp_Wwpaux_wc.setjustcreated();
-               WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0056",(string)"",(string)"WWP_Form",StringUtil.Trim( StringUtil.Str( (decimal)(A206WWPFormId), 4, 0))+";"+StringUtil.Trim( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0)),(string)AV17RecordDescription,formatLink("wp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(A240WWPFormType,1,0)),UrlEncode(StringUtil.BoolToStr(AV21WWPFormIsForDynamicValidations)),UrlEncode(StringUtil.RTrim(""))}, new string[] {"WWPFormType","WWPFormIsForDynamicValidations","TabCode"}) });
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "wp_dynamicform.aspx"+UrlEncode(StringUtil.LTrimStr(A240WWPFormType,1,0)) + "," + UrlEncode(StringUtil.BoolToStr(AV21WWPFormIsForDynamicValidations)) + "," + UrlEncode(StringUtil.RTrim(""));
+               WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0056",(string)"",(string)"WWP_Form",StringUtil.Trim( StringUtil.Str( (decimal)(A206WWPFormId), 4, 0))+";"+StringUtil.Trim( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0)),(string)AV17RecordDescription,formatLink("wp_dynamicform.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)});
                WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)""+""+"",(string)"",(string)""+""+""+""+""+""+""+""+"",(string)"",(string)""+""+"",(string)"",(string)""+"",(string)"",(string)"",(string)""+""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
@@ -1309,6 +1388,24 @@ namespace GeneXus.Programs {
          {
             GX_msglist.addItem(context.GetMessage( "WWP_ActionNoLongerAvailable", ""));
             context.DoAjaxRefresh();
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E13B82( )
+      {
+         /* Tabs_Tabchanged Routine */
+         returnInSub = false;
+         AV13SelectedTabCode = Tabs_Activepagecontrolname;
+         AssignAttri("", false, "AV13SelectedTabCode", AV13SelectedTabCode);
+         AV12LoadAllTabs = false;
+         AssignAttri("", false, "AV12LoadAllTabs", AV12LoadAllTabs);
+         /* Execute user subroutine: 'LOADTABS' */
+         S112 ();
+         if ( returnInSub )
+         {
+            returnInSub = true;
+            if (true) return;
          }
          /*  Sending Event outputs  */
       }
@@ -1510,7 +1607,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254289375713", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254281318482", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1526,7 +1623,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_dynamicform.js", "?20254289375713", false, true);
+         context.AddJavascriptSource("wp_dynamicform.js", "?20254281318482", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1611,8 +1708,12 @@ namespace GeneXus.Programs {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV17RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"AV19IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"AV21WWPFormIsForDynamicValidations","fld":"vWWPFORMISFORDYNAMICVALIDATIONS","hsh":true},{"av":"AV20WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"AV8TabCode","fld":"vTABCODE","hsh":true},{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9","hsh":true},{"av":"A207WWPFormVersionNumber","fld":"WWPFORMVERSIONNUMBER","pic":"ZZZ9","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"Ddc_discussions_Icon","ctrl":"DDC_DISCUSSIONS","prop":"Icon"},{"av":"Ddc_subscriptions_Visible","ctrl":"DDC_SUBSCRIPTIONS","prop":"Visible"},{"av":"AV19IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"Ddc_discussions_Visible","ctrl":"DDC_DISCUSSIONS","prop":"Visible"}]}""");
-         setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT","""{"handler":"E11B82","iparms":[{"av":"AV19IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9","hsh":true},{"av":"A207WWPFormVersionNumber","fld":"WWPFORMVERSIONNUMBER","pic":"ZZZ9","hsh":true},{"av":"AV17RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"A240WWPFormType","fld":"WWPFORMTYPE","pic":"9"},{"av":"AV21WWPFormIsForDynamicValidations","fld":"vWWPFORMISFORDYNAMICVALIDATIONS","hsh":true}]""");
+         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E11B82","iparms":[{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9","hsh":true},{"av":"A207WWPFormVersionNumber","fld":"WWPFORMVERSIONNUMBER","pic":"ZZZ9","hsh":true},{"av":"AV17RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true}]""");
+         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
+         setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT","""{"handler":"E12B82","iparms":[{"av":"AV19IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9","hsh":true},{"av":"A207WWPFormVersionNumber","fld":"WWPFORMVERSIONNUMBER","pic":"ZZZ9","hsh":true},{"av":"AV17RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"A240WWPFormType","fld":"WWPFORMTYPE","pic":"9"},{"av":"AV21WWPFormIsForDynamicValidations","fld":"vWWPFORMISFORDYNAMICVALIDATIONS","hsh":true}]""");
          setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
+         setEventMetadata("TABS.TABCHANGED","""{"handler":"E13B82","iparms":[{"av":"Tabs_Activepagecontrolname","ctrl":"TABS","prop":"ActivePageControlName"},{"av":"AV12LoadAllTabs","fld":"vLOADALLTABS"},{"av":"AV13SelectedTabCode","fld":"vSELECTEDTABCODE"},{"av":"AV20WWPFormType","fld":"vWWPFORMTYPE","pic":"9","hsh":true},{"av":"AV21WWPFormIsForDynamicValidations","fld":"vWWPFORMISFORDYNAMICVALIDATIONS","hsh":true}]""");
+         setEventMetadata("TABS.TABCHANGED",""","oparms":[{"av":"AV13SelectedTabCode","fld":"vSELECTEDTABCODE"},{"av":"AV12LoadAllTabs","fld":"vLOADALLTABS"},{"ctrl":"GENERALDYNAMICFORMWC"},{"ctrl":"ORGANISATIONDYNAMICFORMWC"},{"ctrl":"LOCATIONDYNAMICFORMWC"},{"ctrl":"SUPPLIERDYNAMICFORMWC"}]}""");
          return  ;
       }
 
@@ -1634,8 +1735,9 @@ namespace GeneXus.Programs {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
-         AV17RecordDescription = "";
          GXKey = "";
+         GXEncryptionTmp = "";
+         AV17RecordDescription = "";
          AV13SelectedTabCode = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
@@ -1661,6 +1763,7 @@ namespace GeneXus.Programs {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         GXDecQS = "";
          H00B82_A207WWPFormVersionNumber = new short[1] ;
          H00B82_A206WWPFormId = new short[1] ;
          H00B82_A240WWPFormType = new short[1] ;
@@ -1703,7 +1806,6 @@ namespace GeneXus.Programs {
       private short wbStart ;
       private short nCmpId ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short AV22GXLvl8 ;
       private short nGXWrapped ;
       private int Tabs_Pagecount ;
@@ -1717,6 +1819,7 @@ namespace GeneXus.Programs {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string GXEncryptionTmp ;
       private string AV13SelectedTabCode ;
       private string Ddc_subscriptions_Icontype ;
       private string Ddc_subscriptions_Icon ;
@@ -1766,6 +1869,7 @@ namespace GeneXus.Programs {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
+      private string GXDecQS ;
       private bool AV21WWPFormIsForDynamicValidations ;
       private bool wcpOAV21WWPFormIsForDynamicValidations ;
       private bool entryPointCalled ;

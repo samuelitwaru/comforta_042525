@@ -166,20 +166,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                   }
                   gxfirstwebparm = gxfirstwebparm_bkp;
                }
-               if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-               {
-                  AV26WWPEntityName = gxfirstwebparm;
-                  AssignAttri(sPrefix, false, "AV26WWPEntityName", AV26WWPEntityName);
-                  if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
-                  {
-                     AV24WWPDiscussionMessageEntityRecordId = GetPar( "WWPDiscussionMessageEntityRecordId");
-                     AssignAttri(sPrefix, false, "AV24WWPDiscussionMessageEntityRecordId", AV24WWPDiscussionMessageEntityRecordId);
-                     AV28WWPSubscriptionEntityRecordDescription = GetPar( "WWPSubscriptionEntityRecordDescription");
-                     AssignAttri(sPrefix, false, "AV28WWPSubscriptionEntityRecordDescription", AV28WWPSubscriptionEntityRecordDescription);
-                     AV27WWPNotificationLink = GetPar( "WWPNotificationLink");
-                     AssignAttri(sPrefix, false, "AV27WWPNotificationLink", AV27WWPNotificationLink);
-                  }
-               }
                if ( toggleJsOutput )
                {
                   if ( context.isSpaRequest( ) )
@@ -391,7 +377,9 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wwpbaseobjects.discussions.wwp_discussionswc.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV26WWPEntityName)),UrlEncode(StringUtil.RTrim(AV24WWPDiscussionMessageEntityRecordId)),UrlEncode(StringUtil.RTrim(AV28WWPSubscriptionEntityRecordDescription)),UrlEncode(StringUtil.RTrim(AV27WWPNotificationLink))}, new string[] {"WWPEntityName","WWPDiscussionMessageEntityRecordId","WWPSubscriptionEntityRecordDescription","WWPNotificationLink"}) +"\">") ;
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wwpbaseobjects.discussions.wwp_discussionswc.aspx"+UrlEncode(StringUtil.RTrim(AV26WWPEntityName)) + "," + UrlEncode(StringUtil.RTrim(AV24WWPDiscussionMessageEntityRecordId)) + "," + UrlEncode(StringUtil.RTrim(AV28WWPSubscriptionEntityRecordDescription)) + "," + UrlEncode(StringUtil.RTrim(AV27WWPNotificationLink));
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wwpbaseobjects.discussions.wwp_discussionswc.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -454,7 +442,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWPDISCUSSIONMESSAGE", GetSecureSignedToken( sPrefix, AV7WWPDiscussionMessage, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_WWPDISCUSSIONMESSAGEENTITYRECO", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( A205WWPDiscussionMessageEntityReco, "")), context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WWP_DiscussionsWC");
          forbiddenHiddens.Add("WWPDiscussionMessageEntityReco", StringUtil.RTrim( context.localUtil.Format( A205WWPDiscussionMessageEntityReco, "")));
@@ -773,6 +761,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          wbLoad = false;
          wbEnd = 0;
          wbStart = 0;
+         if ( StringUtil.Len( sPrefix) != 0 )
+         {
+            GXKey = Crypto.GetSiteKey( );
+         }
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             if ( ! context.isSpaRequest( ) )
@@ -1093,14 +1085,64 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             {
                initialize_properties( ) ;
             }
+            GXKey = Crypto.GetSiteKey( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+               if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
                {
-                  gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+                  GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+                  if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "wwpbaseobjects.discussions.wwp_discussionswc.aspx")), "wwpbaseobjects.discussions.wwp_discussionswc.aspx") == 0 ) )
+                  {
+                     SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "wwpbaseobjects.discussions.wwp_discussionswc.aspx")))) ;
+                  }
+                  else
+                  {
+                     GxWebError = 1;
+                     context.HttpContext.Response.StatusCode = 403;
+                     context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                     context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                     context.WriteHtmlText( "<p /><hr />") ;
+                     GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+                  }
                }
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               if ( StringUtil.Len( sPrefix) == 0 )
+               {
+                  if ( nGotPars == 0 )
+                  {
+                     entryPointCalled = false;
+                     gxfirstwebparm = GetFirstPar( "WWPEntityName");
+                     toggleJsOutput = isJsOutputEnabled( );
+                     if ( context.isSpaRequest( ) )
+                     {
+                        disableJsOutput();
+                     }
+                     if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+                     {
+                        AV26WWPEntityName = gxfirstwebparm;
+                        AssignAttri(sPrefix, false, "AV26WWPEntityName", AV26WWPEntityName);
+                        if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+                        {
+                           AV24WWPDiscussionMessageEntityRecordId = GetPar( "WWPDiscussionMessageEntityRecordId");
+                           AssignAttri(sPrefix, false, "AV24WWPDiscussionMessageEntityRecordId", AV24WWPDiscussionMessageEntityRecordId);
+                           AV28WWPSubscriptionEntityRecordDescription = GetPar( "WWPSubscriptionEntityRecordDescription");
+                           AssignAttri(sPrefix, false, "AV28WWPSubscriptionEntityRecordDescription", AV28WWPSubscriptionEntityRecordDescription);
+                           AV27WWPNotificationLink = GetPar( "WWPNotificationLink");
+                           AssignAttri(sPrefix, false, "AV27WWPNotificationLink", AV27WWPNotificationLink);
+                        }
+                     }
+                     if ( toggleJsOutput )
+                     {
+                        if ( context.isSpaRequest( ) )
+                        {
+                           enableJsOutput();
+                        }
+                     }
+                  }
+               }
+            }
             toggleJsOutput = isJsOutputEnabled( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
@@ -1165,9 +1207,9 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
          RF1S2( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WWP_DiscussionsWC");
          forbiddenHiddens.Add("WWPDiscussionMessageEntityReco", StringUtil.RTrim( context.localUtil.Format( A205WWPDiscussionMessageEntityReco, "")));
@@ -1514,7 +1556,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_WWPDISCUSSIONMESSAGEENTITYRECO", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( A205WWPDiscussionMessageEntityReco, "")), context));
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             forbiddenHiddens = new GXProperties();
             forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WWP_DiscussionsWC");
             A205WWPDiscussionMessageEntityReco = cgiGet( edtWWPDiscussionMessageEntityReco_Internalname);
@@ -1899,6 +1941,11 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
       }
 
+      protected override EncryptionType GetEncryptionType( )
+      {
+         return EncryptionType.SITE ;
+      }
+
       public override void componentbind( Object[] obj )
       {
          if ( IsUrlCreated( ) )
@@ -2154,7 +2201,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271884717", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542812575171", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2171,7 +2218,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?20254271884722", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?202542812575176", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
@@ -2890,6 +2937,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
+         GXEncryptionTmp = "";
          forbiddenHiddens = new GXProperties();
          A40000WWPUserExtendedPhoto_GXI = "";
          Ucmentions_Gamoauthtoken = "";
@@ -2920,6 +2968,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          sCmpCtrl = "";
          WebComp_GX_Process_Component = "";
          OldDiscussionsonethreadcollapsedwc = "";
+         GXDecQS = "";
          WebComp_Wcdiscussionsonethreadwc_Component = "";
          WebComp_Discussionsonethreadcollapsedwc_Component = "";
          H001S2_A112WWPUserExtendedId = new string[] {""} ;
@@ -2997,7 +3046,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private short nDoneStart ;
       private short nCmpId ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGrid_Backcolorstyle ;
       private short nGXWrapped ;
       private short subGrid_Backstyle ;
@@ -3059,6 +3107,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string GXEncryptionTmp ;
       private string Ucmentions_Gamoauthtoken ;
       private string Ucmentions_Datalistproc ;
       private string Ucmentions_Itemhtmltemplate ;
@@ -3098,6 +3147,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string WebComp_GX_Process_Component ;
       private string WebCompHandler="" ;
       private string OldDiscussionsonethreadcollapsedwc ;
+      private string GXDecQS ;
       private string WebComp_Wcdiscussionsonethreadwc_Component ;
       private string WebComp_Discussionsonethreadcollapsedwc_Component ;
       private string A112WWPUserExtendedId ;

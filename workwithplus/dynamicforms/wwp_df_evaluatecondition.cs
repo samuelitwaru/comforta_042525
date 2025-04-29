@@ -244,7 +244,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             AV12CleanedExpression = StringUtil.StringReplace( AV12CleanedExpression, "\"", "'");
             AV12CleanedExpression = StringUtil.StringReplace( AV12CleanedExpression, "\\'", "\"");
             AV12CleanedExpression = StringUtil.StringReplace( AV12CleanedExpression, "[']", "'");
-            AV29WWPDateSumCall = formatLink("workwithplus_dynamicforms.wwp_df_datesum", new object[] {GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)),GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)),GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)),GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)),GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0))}, new string[] {"DateNum","DaysToAdd","MonthsToAdd","YearToAdd","DateResult"}) ;
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + GXUtil.UrlEncode(StringUtil.LTrimStr(0,1,0));
+            AV29WWPDateSumCall = formatLink("workwithplus_dynamicforms.wwp_df_datesum") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             AV29WWPDateSumCall = StringUtil.Substring( AV29WWPDateSumCall, 1, StringUtil.StringSearch( AV29WWPDateSumCall, "?", 1)-1);
             AV12CleanedExpression = StringUtil.StringReplace( AV12CleanedExpression, "DateSum (", AV29WWPDateSumCall+"(");
             AV12CleanedExpression = StringUtil.StringReplace( AV12CleanedExpression, " iif (", " iif(");
@@ -353,6 +355,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AV25SectionReferencedElements = new GXProperties();
          Gx_date = DateTime.MinValue;
          AV29WWPDateSumCall = "";
+         GXKey = "";
+         GXEncryptionTmp = "";
          AV18ExpressionEvaluator = new ExpressionEvaluator(context);
          AV17ExceptionMessage = "";
          AV44Pgmname = "";
@@ -391,6 +395,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private int AV45GXV3 ;
       private decimal AV24Result ;
       private string GXt_char1 ;
+      private string GXKey ;
+      private string GXEncryptionTmp ;
       private string AV44Pgmname ;
       private DateTime Gx_date ;
       private bool AV26TestingCondition ;

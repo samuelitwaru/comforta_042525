@@ -126,16 +126,6 @@ namespace GeneXus.Programs {
                }
                gxfirstwebparm = gxfirstwebparm_bkp;
             }
-            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-            {
-               Gx_mode = gxfirstwebparm;
-               AssignAttri("", false, "Gx_mode", Gx_mode);
-               if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
-               {
-                  AV19pConnectionName = GetPar( "pConnectionName");
-                  AssignAttri("", false, "AV19pConnectionName", AV19pConnectionName);
-               }
-            }
             if ( toggleJsOutput )
             {
                if ( context.isSpaRequest( ) )
@@ -328,7 +318,9 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("gamconnectionentry.aspx", new object[] {UrlEncode(StringUtil.RTrim(Gx_mode)),UrlEncode(StringUtil.RTrim(AV19pConnectionName))}, new string[] {"Gx_mode","pConnectionName"}) +"\">") ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamconnectionentry.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(StringUtil.RTrim(AV19pConnectionName));
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("gamconnectionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -349,7 +341,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTCONNECTIONKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV23CurrentConnectionKey, "")), context));
          GxWebStd.gx_hidden_field( context, "vFILEXML", StringUtil.RTrim( AV12FileXML));
          GxWebStd.gx_hidden_field( context, "gxhash_vFILEXML", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12FileXML, "")), context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -464,7 +456,9 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         return formatLink("gamconnectionentry.aspx", new object[] {UrlEncode(StringUtil.RTrim(Gx_mode)),UrlEncode(StringUtil.RTrim(AV19pConnectionName))}, new string[] {"Gx_mode","pConnectionName"})  ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamconnectionentry.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(StringUtil.RTrim(AV19pConnectionName));
+         return formatLink("gamconnectionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
       public override string GetPgmname( )
@@ -831,7 +825,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 101,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuacancel_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", context.GetMessage( "GX_BtnCancel", ""), bttBtnuacancel_Jsonclick, 7, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e118x1_client"+"'", TempTags, "", 2, "HLP_GAMConnectionEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuacancel_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", context.GetMessage( "GX_BtnCancel", ""), bttBtnuacancel_Jsonclick, 5, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUACANCEL\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -949,6 +943,13 @@ namespace GeneXus.Programs {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "'DOUACANCEL'") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: 'DoUACancel' */
+                              E118X2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "'DOUSEAUTOMATICKEY'") == 0 )
                            {
                               context.wbHandled = 1;
@@ -1023,7 +1024,7 @@ namespace GeneXus.Programs {
                         {
                            sEvtType = StringUtil.Right( sEvt, 4);
                            sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
-                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 19), "GRIDWWSYSCONNS.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "VDELETECONNECTION.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 21), "VCONNECTIONFILE.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 21), "VCONNECTIONFILE.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "VDELETECONNECTION.CLICK") == 0 ) )
+                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 19), "GRIDWWSYSCONNS.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 12), "'WWCONNKEYS'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "VDELETECONNECTION.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 21), "VCONNECTIONFILE.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 21), "VCONNECTIONFILE.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "VDELETECONNECTION.CLICK") == 0 ) )
                            {
                               nGXsfl_85_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_85_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_85_idx), 4, 0), 4, "0");
@@ -1062,17 +1063,24 @@ namespace GeneXus.Programs {
                                     /* Execute user event: Gridwwsysconns.Load */
                                     E198X2 ();
                                  }
+                                 else if ( StringUtil.StrCmp(sEvt, "'WWCONNKEYS'") == 0 )
+                                 {
+                                    context.wbHandled = 1;
+                                    dynload_actions( ) ;
+                                    /* Execute user event: 'WWConnKeys' */
+                                    E208X2 ();
+                                 }
                                  else if ( StringUtil.StrCmp(sEvt, "VDELETECONNECTION.CLICK") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
-                                    E208X2 ();
+                                    E218X2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "VCONNECTIONFILE.CLICK") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
-                                    E218X2 ();
+                                    E228X2 ();
                                     /* No code required for Cancel button. It is implemented as the Reset button. */
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
@@ -1114,11 +1122,54 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+            GXKey = Crypto.GetSiteKey( );
+            if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+               GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+               if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "gamconnectionentry.aspx")), "gamconnectionentry.aspx") == 0 ) )
+               {
+                  SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "gamconnectionentry.aspx")))) ;
+               }
+               else
+               {
+                  GxWebError = 1;
+                  context.HttpContext.Response.StatusCode = 403;
+                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                  context.WriteHtmlText( "<p /><hr />") ;
+                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+               }
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               if ( nGotPars == 0 )
+               {
+                  entryPointCalled = false;
+                  gxfirstwebparm = GetFirstPar( "Mode");
+                  toggleJsOutput = isJsOutputEnabled( );
+                  if ( context.isSpaRequest( ) )
+                  {
+                     disableJsOutput();
+                  }
+                  if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+                  {
+                     Gx_mode = gxfirstwebparm;
+                     AssignAttri("", false, "Gx_mode", Gx_mode);
+                     if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+                     {
+                        AV19pConnectionName = GetPar( "pConnectionName");
+                        AssignAttri("", false, "AV19pConnectionName", AV19pConnectionName);
+                     }
+                  }
+                  if ( toggleJsOutput )
+                  {
+                     if ( context.isSpaRequest( ) )
+                     {
+                        enableJsOutput();
+                     }
+                  }
+               }
+            }
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -1170,9 +1221,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRIDWWSYSCONNS_nCurrentRecord = 0;
          RF8X2( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGridwwsysconns_refresh */
       }
 
@@ -1459,7 +1510,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV19pConnectionName", AV19pConnectionName);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -1621,6 +1672,14 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
+      protected void E118X2( )
+      {
+         /* 'DoUACancel' Routine */
+         returnInSub = false;
+         CallWebObject(formatLink("gamwwconnections.aspx") );
+         context.wjLocDisableFrm = 1;
+      }
+
       protected void E128X2( )
       {
          /* 'DoUseAutomaticKey' Routine */
@@ -1647,7 +1706,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( new GeneXus.Programs.genexussecurity.SdtGAM(context).addconnectiontofilekey(AV18NewConnectionKey, AV8ConnectionName, out  AV11Errors) )
          {
-            CallWebObject(formatLink("gamconnectionentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("KEY")),UrlEncode(StringUtil.RTrim(AV19pConnectionName))}, new string[] {"Mode","pConnectionName"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "gamconnectionentry.aspx"+UrlEncode(StringUtil.RTrim("KEY")) + "," + UrlEncode(StringUtil.RTrim(AV19pConnectionName));
+            CallWebObject(formatLink("gamconnectionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -1781,11 +1842,24 @@ namespace GeneXus.Programs {
 
       protected void E208X2( )
       {
+         /* 'WWConnKeys' Routine */
+         returnInSub = false;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamconnectionentry.aspx"+UrlEncode(StringUtil.RTrim("KEY")) + "," + UrlEncode(StringUtil.RTrim(AV19pConnectionName));
+         CallWebObject(formatLink("gamconnectionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
+         context.wjLocDisableFrm = 1;
+         /*  Sending Event outputs  */
+      }
+
+      protected void E218X2( )
+      {
          /* Deleteconnection_Click Routine */
          returnInSub = false;
          if ( new GeneXus.Programs.genexussecurity.SdtGAM(context).deleteconnectionfromfilekey(AV7ConnectionKey, AV8ConnectionName, out  AV11Errors) )
          {
-            CallWebObject(formatLink("gamconnectionentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("KEY")),UrlEncode(StringUtil.RTrim(AV19pConnectionName))}, new string[] {"Mode","pConnectionName"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "gamconnectionentry.aspx"+UrlEncode(StringUtil.RTrim("KEY")) + "," + UrlEncode(StringUtil.RTrim(AV19pConnectionName));
+            CallWebObject(formatLink("gamconnectionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -1797,7 +1871,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E218X2( )
+      protected void E228X2( )
       {
          /* Connectionfile_Click Routine */
          returnInSub = false;
@@ -1926,7 +2000,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718203626", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813165224", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1942,7 +2016,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamconnectionentry.js", "?202542718203631", false, true);
+         context.AddJavascriptSource("gamconnectionentry.js", "?202542813165230", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -2324,7 +2398,7 @@ namespace GeneXus.Programs {
          setEventMetadata("REFRESH",""","oparms":[{"ctrl":"BTNENTER","prop":"Visible"},{"ctrl":"BTNGENKEY","prop":"Visible"}]}""");
          setEventMetadata("GRIDWWSYSCONNS.LOAD","""{"handler":"E198X2","iparms":[{"av":"AV23CurrentConnectionKey","fld":"vCURRENTCONNECTIONKEY","hsh":true}]""");
          setEventMetadata("GRIDWWSYSCONNS.LOAD",""","oparms":[{"av":"AV7ConnectionKey","fld":"vCONNECTIONKEY","hsh":true},{"av":"AV24IsCurrentKey","fld":"vISCURRENTKEY"},{"av":"AV32ConnectionFile","fld":"vCONNECTIONFILE"},{"av":"AV33DeleteConnection","fld":"vDELETECONNECTION"},{"ctrl":"BTNUSECURRENTKEY","prop":"Visible"}]}""");
-         setEventMetadata("'DOUACANCEL'","""{"handler":"E118X1","iparms":[]}""");
+         setEventMetadata("'DOUACANCEL'","""{"handler":"E118X2","iparms":[]}""");
          setEventMetadata("'DOUSEAUTOMATICKEY'","""{"handler":"E128X2","iparms":[]""");
          setEventMetadata("'DOUSEAUTOMATICKEY'",""","oparms":[{"av":"AV18NewConnectionKey","fld":"vNEWCONNECTIONKEY"}]}""");
          setEventMetadata("'DOUSECURRENTKEY'","""{"handler":"E138X2","iparms":[{"av":"AV23CurrentConnectionKey","fld":"vCURRENTCONNECTIONKEY","hsh":true}]""");
@@ -2334,9 +2408,11 @@ namespace GeneXus.Programs {
          setEventMetadata("'DOGENKEY'","""{"handler":"E158X2","iparms":[]""");
          setEventMetadata("'DOGENKEY'",""","oparms":[{"av":"AV9EncryptionKey","fld":"vENCRYPTIONKEY"}]}""");
          setEventMetadata("ENTER","""{"handler":"E168X2","iparms":[{"av":"AV8ConnectionName","fld":"vCONNECTIONNAME"},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV20UserName","fld":"vUSERNAME"},{"av":"AV21UserPassword","fld":"vUSERPASSWORD"},{"av":"AV9EncryptionKey","fld":"vENCRYPTIONKEY"},{"av":"AV19pConnectionName","fld":"vPCONNECTIONNAME"}]}""");
-         setEventMetadata("VDELETECONNECTION.CLICK","""{"handler":"E208X2","iparms":[{"av":"AV7ConnectionKey","fld":"vCONNECTIONKEY","hsh":true},{"av":"AV8ConnectionName","fld":"vCONNECTIONNAME"},{"av":"AV19pConnectionName","fld":"vPCONNECTIONNAME"}]""");
+         setEventMetadata("'WWCONNKEYS'","""{"handler":"E208X2","iparms":[{"av":"AV19pConnectionName","fld":"vPCONNECTIONNAME"}]""");
+         setEventMetadata("'WWCONNKEYS'",""","oparms":[{"av":"AV19pConnectionName","fld":"vPCONNECTIONNAME"}]}""");
+         setEventMetadata("VDELETECONNECTION.CLICK","""{"handler":"E218X2","iparms":[{"av":"AV7ConnectionKey","fld":"vCONNECTIONKEY","hsh":true},{"av":"AV8ConnectionName","fld":"vCONNECTIONNAME"},{"av":"AV19pConnectionName","fld":"vPCONNECTIONNAME"}]""");
          setEventMetadata("VDELETECONNECTION.CLICK",""","oparms":[{"av":"AV19pConnectionName","fld":"vPCONNECTIONNAME"}]}""");
-         setEventMetadata("VCONNECTIONFILE.CLICK","""{"handler":"E218X2","iparms":[{"av":"AV25FileConnectionKey","fld":"vFILECONNECTIONKEY"},{"av":"AV7ConnectionKey","fld":"vCONNECTIONKEY","hsh":true},{"av":"AV8ConnectionName","fld":"vCONNECTIONNAME"},{"av":"AV12FileXML","fld":"vFILEXML","hsh":true}]""");
+         setEventMetadata("VCONNECTIONFILE.CLICK","""{"handler":"E228X2","iparms":[{"av":"AV25FileConnectionKey","fld":"vFILECONNECTIONKEY"},{"av":"AV7ConnectionKey","fld":"vCONNECTIONKEY","hsh":true},{"av":"AV8ConnectionName","fld":"vCONNECTIONNAME"},{"av":"AV12FileXML","fld":"vFILEXML","hsh":true}]""");
          setEventMetadata("VCONNECTIONFILE.CLICK",""","oparms":[{"av":"AV6ConnectionFileXML","fld":"vCONNECTIONFILEXML"},{"av":"AV25FileConnectionKey","fld":"vFILECONNECTIONKEY"},{"av":"edtavConnectionfilexml_Visible","ctrl":"vCONNECTIONFILEXML","prop":"Visible"}]}""");
          setEventMetadata("GRIDWWSYSCONNS_FIRSTPAGE","""{"handler":"subgridwwsysconns_firstpage","iparms":[{"av":"GRIDWWSYSCONNS_nFirstRecordOnPage"},{"av":"GRIDWWSYSCONNS_nEOF"},{"av":"subGridwwsysconns_Rows","ctrl":"GRIDWWSYSCONNS","prop":"Rows"},{"av":"AV23CurrentConnectionKey","fld":"vCURRENTCONNECTIONKEY","hsh":true},{"av":"AV12FileXML","fld":"vFILEXML","hsh":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true}]""");
          setEventMetadata("GRIDWWSYSCONNS_FIRSTPAGE",""","oparms":[{"ctrl":"BTNENTER","prop":"Visible"},{"ctrl":"BTNGENKEY","prop":"Visible"}]}""");
@@ -2371,6 +2447,7 @@ namespace GeneXus.Programs {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
+         GXEncryptionTmp = "";
          Gridwwsysconns_empowerer_Gridinternalname = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
@@ -2405,6 +2482,7 @@ namespace GeneXus.Programs {
          AV24IsCurrentKey = "";
          AV32ConnectionFile = "";
          AV33DeleteConnection = "";
+         GXDecQS = "";
          AV9EncryptionKey = "";
          AV13GAMRepositoryConnection = new GeneXus.Programs.genexussecurity.SdtGAMRepositoryConnection(context);
          AV40GXV1 = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMSystemConnection>( context, "GeneXus.Programs.genexussecurity.SdtGAMSystemConnection", "GeneXus.Programs");
@@ -2445,7 +2523,6 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGridwwsysconns_Backcolorstyle ;
       private short nGXWrapped ;
       private short subGridwwsysconns_Backstyle ;
@@ -2504,6 +2581,7 @@ namespace GeneXus.Programs {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string GXEncryptionTmp ;
       private string Dvpanel_unnamedtable3_Width ;
       private string Dvpanel_unnamedtable3_Cls ;
       private string Dvpanel_unnamedtable3_Title ;
@@ -2590,6 +2668,7 @@ namespace GeneXus.Programs {
       private string edtavConnectionfile_Internalname ;
       private string AV33DeleteConnection ;
       private string edtavDeleteconnection_Internalname ;
+      private string GXDecQS ;
       private string AV9EncryptionKey ;
       private string edtavEncryptionkey_Internalname ;
       private string bttBtngenkey_Internalname ;

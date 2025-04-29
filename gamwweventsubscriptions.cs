@@ -343,7 +343,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DESCRIPTION", GetSecureSignedToken( "", AV29IsAuthorized_Description, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV67IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV67IsAuthorized_Insert, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -934,11 +934,7 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -992,9 +988,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
          RF932( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGrid_refresh */
       }
 
@@ -1296,7 +1292,7 @@ namespace GeneXus.Programs {
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -1460,25 +1456,33 @@ namespace GeneXus.Programs {
             AssignAttri("", false, edtavDisplay_Internalname, AV62Display);
             if ( AV63IsAuthorized_Display )
             {
-               edtavDisplay_Link = formatLink("gameventsubscriptionentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.RTrim(AV14Id))}, new string[] {"Mode","Id"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gameventsubscriptionentry.aspx"+UrlEncode(StringUtil.RTrim("DSP")) + "," + UrlEncode(StringUtil.RTrim(AV14Id));
+               edtavDisplay_Link = formatLink("gameventsubscriptionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             AV64Update = "<i class=\"fa fa-pen\"></i>";
             AssignAttri("", false, edtavUpdate_Internalname, AV64Update);
             if ( AV65IsAuthorized_Update )
             {
-               edtavUpdate_Link = formatLink("gameventsubscriptionentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("UPD")),UrlEncode(StringUtil.RTrim(AV14Id))}, new string[] {"Mode","Id"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gameventsubscriptionentry.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(StringUtil.RTrim(AV14Id));
+               edtavUpdate_Link = formatLink("gameventsubscriptionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             AV5Delete = "<i class=\"fa fa-times\"></i>";
             AssignAttri("", false, edtavDelete_Internalname, AV5Delete);
             if ( AV66IsAuthorized_Delete )
             {
-               edtavDelete_Link = formatLink("gameventsubscriptionentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("DLT")),UrlEncode(StringUtil.RTrim(AV14Id))}, new string[] {"Mode","Id"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gameventsubscriptionentry.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(StringUtil.RTrim(AV14Id));
+               edtavDelete_Link = formatLink("gameventsubscriptionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             AV24Subscribe = "<i class=\"fa fa-plus\"></i>";
             AssignAttri("", false, edtavSubscribe_Internalname, AV24Subscribe);
             if ( AV29IsAuthorized_Description )
             {
-               edtavDescription_Link = formatLink("gameventsubscriptionentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.RTrim(AV14Id))}, new string[] {"Mode","Id"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gameventsubscriptionentry.aspx"+UrlEncode(StringUtil.RTrim("DSP")) + "," + UrlEncode(StringUtil.RTrim(AV14Id));
+               edtavDescription_Link = formatLink("gameventsubscriptionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             if ( StringUtil.StrCmp(AV16Status, "s") == 0 )
             {
@@ -1528,7 +1532,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV67IsAuthorized_Insert )
          {
-            CallWebObject(formatLink("gameventsubscriptionentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("INS")),UrlEncode(StringUtil.RTrim(""))}, new string[] {"Mode","Id"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "gameventsubscriptionentry.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(StringUtil.RTrim(""));
+            CallWebObject(formatLink("gameventsubscriptionentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -1743,7 +1749,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718204072", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813161674", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1759,7 +1765,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamwweventsubscriptions.js", "?202542718204077", false, true);
+         context.AddJavascriptSource("gamwweventsubscriptions.js", "?202542813161680", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -2401,6 +2407,7 @@ namespace GeneXus.Programs {
          AV11EventSubscriptionFilter = new GeneXus.Programs.genexussecurity.SdtGAMEventSubscriptionFilter(context);
          AV9Errors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV12EventSuscription = new GeneXus.Programs.genexussecurity.SdtGAMEventSubscription(context);
+         GXEncryptionTmp = "";
          GridRow = new GXWebRow();
          AV45UserCustomValue = "";
          GXt_char3 = "";
@@ -2448,7 +2455,6 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGrid_Backcolorstyle ;
       private short AV28GridPageSize ;
       private short nGXWrapped ;
@@ -2574,6 +2580,7 @@ namespace GeneXus.Programs {
       private string AV14Id ;
       private string edtavId_Internalname ;
       private string edtavDisplay_Link ;
+      private string GXEncryptionTmp ;
       private string edtavUpdate_Link ;
       private string edtavDelete_Link ;
       private string edtavDescription_Link ;

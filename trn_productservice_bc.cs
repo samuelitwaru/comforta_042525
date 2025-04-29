@@ -192,7 +192,9 @@ namespace GeneXus.Programs {
             new uwwp_getloggeduserid(context ).execute( out  GXt_char3) ;
             new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char3, out  GXt_char2) ;
             AV62NotificationDescription = StringUtil.Format( context.GetMessage( "%1 added by %2 %3", ""), A59ProductServiceName, AV61RoleName, GXt_char2, "", "", "", "", "", "");
-            AV55NotificationLink = formatLink("trn_productserviceview.aspx", new object[] {UrlEncode(A58ProductServiceId.ToString()),UrlEncode(A29LocationId.ToString()),UrlEncode(A11OrganisationId.ToString()),UrlEncode(StringUtil.RTrim(""))}, new string[] {"ProductServiceId","LocationId","OrganisationId","TabCode"}) ;
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
+            AV55NotificationLink = formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "InsertRecord",  "Trn_ProductService",  "",  context.GetMessage( "fas fa-plus NotificationFontIconSuccess", ""),  context.GetMessage( "New Service", ""),  AV62NotificationDescription,  AV62NotificationDescription,  AV55NotificationLink,  AV64WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
@@ -209,7 +211,9 @@ namespace GeneXus.Programs {
             new uwwp_getloggeduserid(context ).execute( out  GXt_char2) ;
             new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char2, out  GXt_char3) ;
             AV62NotificationDescription = StringUtil.Format( context.GetMessage( "%1 updated by %2 %3", ""), A59ProductServiceName, AV61RoleName, GXt_char3, "", "", "", "", "", "");
-            AV55NotificationLink = formatLink("trn_productserviceview.aspx", new object[] {UrlEncode(A58ProductServiceId.ToString()),UrlEncode(A29LocationId.ToString()),UrlEncode(A11OrganisationId.ToString()),UrlEncode(StringUtil.RTrim(""))}, new string[] {"ProductServiceId","LocationId","OrganisationId","TabCode"}) ;
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
+            AV55NotificationLink = formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "UpdateRecord",  "Trn_ProductService",  "",  context.GetMessage( "fas fa-pencil-alt NotificationFontIconWarning", ""),  context.GetMessage( "Service Updated", ""),  AV62NotificationDescription,  AV62NotificationDescription,  AV55NotificationLink,  AV64WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
          if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
@@ -1554,6 +1558,8 @@ namespace GeneXus.Programs {
          AV62NotificationDescription = "";
          A59ProductServiceName = "";
          AV55NotificationLink = "";
+         GXKey = "";
+         GXEncryptionTmp = "";
          GXt_char3 = "";
          GXt_char2 = "";
          A338ProductServiceGroup = "";
@@ -1749,6 +1755,8 @@ namespace GeneXus.Programs {
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
       private string AV71Pgmname ;
+      private string GXKey ;
+      private string GXEncryptionTmp ;
       private string GXt_char3 ;
       private string GXt_char2 ;
       private string Z266ProductServiceTileName ;

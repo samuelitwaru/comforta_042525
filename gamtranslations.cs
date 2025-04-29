@@ -132,29 +132,6 @@ namespace GeneXus.Programs {
                }
                gxfirstwebparm = gxfirstwebparm_bkp;
             }
-            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-            {
-               Gx_mode = gxfirstwebparm;
-               AssignAttri("", false, "Gx_mode", Gx_mode);
-               if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
-               {
-                  AV24Type = GetPar( "Type");
-                  AssignAttri("", false, "AV24Type", AV24Type);
-                  GxWebStd.gx_hidden_field( context, "gxhash_vTYPE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV24Type, "")), context));
-                  AV23Title = GetPar( "Title");
-                  AssignAttri("", false, "AV23Title", AV23Title);
-                  GxWebStd.gx_hidden_field( context, "gxhash_vTITLE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV23Title, "")), context));
-                  AV18PrimaryID = (long)(Math.Round(NumberUtil.Val( GetPar( "PrimaryID"), "."), 18, MidpointRounding.ToEven));
-                  AssignAttri("", false, "AV18PrimaryID", StringUtil.LTrimStr( (decimal)(AV18PrimaryID), 12, 0));
-                  GxWebStd.gx_hidden_field( context, "gxhash_vPRIMARYID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV18PrimaryID), "ZZZZZZZZZZZ9"), context));
-                  AV20SecondaryID = (long)(Math.Round(NumberUtil.Val( GetPar( "SecondaryID"), "."), 18, MidpointRounding.ToEven));
-                  AssignAttri("", false, "AV20SecondaryID", StringUtil.LTrimStr( (decimal)(AV20SecondaryID), 12, 0));
-                  GxWebStd.gx_hidden_field( context, "gxhash_vSECONDARYID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV20SecondaryID), "ZZZZZZZZZZZ9"), context));
-                  AV21TertiaryID = (long)(Math.Round(NumberUtil.Val( GetPar( "TertiaryID"), "."), 18, MidpointRounding.ToEven));
-                  AssignAttri("", false, "AV21TertiaryID", StringUtil.LTrimStr( (decimal)(AV21TertiaryID), 12, 0));
-                  GxWebStd.gx_hidden_field( context, "gxhash_vTERTIARYID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV21TertiaryID), "ZZZZZZZZZZZ9"), context));
-               }
-            }
             if ( toggleJsOutput )
             {
                if ( context.isSpaRequest( ) )
@@ -345,7 +322,9 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("gamtranslations.aspx", new object[] {UrlEncode(StringUtil.RTrim(Gx_mode)),UrlEncode(StringUtil.RTrim(AV24Type)),UrlEncode(StringUtil.RTrim(AV23Title)),UrlEncode(StringUtil.LTrimStr(AV18PrimaryID,12,0)),UrlEncode(StringUtil.LTrimStr(AV20SecondaryID,12,0)),UrlEncode(StringUtil.LTrimStr(AV21TertiaryID,12,0))}, new string[] {"Gx_mode","Type","Title","PrimaryID","SecondaryID","TertiaryID"}) +"\">") ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamtranslations.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(StringUtil.RTrim(AV24Type)) + "," + UrlEncode(StringUtil.RTrim(AV23Title)) + "," + UrlEncode(StringUtil.LTrimStr(AV18PrimaryID,12,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV20SecondaryID,12,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV21TertiaryID,12,0));
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("gamtranslations.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -374,7 +353,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          GxWebStd.gx_hidden_field( context, "vTITLE", AV23Title);
          GxWebStd.gx_hidden_field( context, "gxhash_vTITLE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV23Title, "")), context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -493,7 +472,9 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         return formatLink("gamtranslations.aspx", new object[] {UrlEncode(StringUtil.RTrim(Gx_mode)),UrlEncode(StringUtil.RTrim(AV24Type)),UrlEncode(StringUtil.RTrim(AV23Title)),UrlEncode(StringUtil.LTrimStr(AV18PrimaryID,12,0)),UrlEncode(StringUtil.LTrimStr(AV20SecondaryID,12,0)),UrlEncode(StringUtil.LTrimStr(AV21TertiaryID,12,0))}, new string[] {"Gx_mode","Type","Title","PrimaryID","SecondaryID","TertiaryID"})  ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamtranslations.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(StringUtil.RTrim(AV24Type)) + "," + UrlEncode(StringUtil.RTrim(AV23Title)) + "," + UrlEncode(StringUtil.LTrimStr(AV18PrimaryID,12,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV20SecondaryID,12,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV21TertiaryID,12,0));
+         return formatLink("gamtranslations.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
       public override string GetPgmname( )
@@ -857,11 +838,67 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+            GXKey = Crypto.GetSiteKey( );
+            if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+               GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+               if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "gamtranslations.aspx")), "gamtranslations.aspx") == 0 ) )
+               {
+                  SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "gamtranslations.aspx")))) ;
+               }
+               else
+               {
+                  GxWebError = 1;
+                  context.HttpContext.Response.StatusCode = 403;
+                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                  context.WriteHtmlText( "<p /><hr />") ;
+                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+               }
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               if ( nGotPars == 0 )
+               {
+                  entryPointCalled = false;
+                  gxfirstwebparm = GetFirstPar( "Mode");
+                  toggleJsOutput = isJsOutputEnabled( );
+                  if ( context.isSpaRequest( ) )
+                  {
+                     disableJsOutput();
+                  }
+                  if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+                  {
+                     Gx_mode = gxfirstwebparm;
+                     AssignAttri("", false, "Gx_mode", Gx_mode);
+                     if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+                     {
+                        AV24Type = GetPar( "Type");
+                        AssignAttri("", false, "AV24Type", AV24Type);
+                        GxWebStd.gx_hidden_field( context, "gxhash_vTYPE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV24Type, "")), context));
+                        AV23Title = GetPar( "Title");
+                        AssignAttri("", false, "AV23Title", AV23Title);
+                        GxWebStd.gx_hidden_field( context, "gxhash_vTITLE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV23Title, "")), context));
+                        AV18PrimaryID = (long)(Math.Round(NumberUtil.Val( GetPar( "PrimaryID"), "."), 18, MidpointRounding.ToEven));
+                        AssignAttri("", false, "AV18PrimaryID", StringUtil.LTrimStr( (decimal)(AV18PrimaryID), 12, 0));
+                        GxWebStd.gx_hidden_field( context, "gxhash_vPRIMARYID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV18PrimaryID), "ZZZZZZZZZZZ9"), context));
+                        AV20SecondaryID = (long)(Math.Round(NumberUtil.Val( GetPar( "SecondaryID"), "."), 18, MidpointRounding.ToEven));
+                        AssignAttri("", false, "AV20SecondaryID", StringUtil.LTrimStr( (decimal)(AV20SecondaryID), 12, 0));
+                        GxWebStd.gx_hidden_field( context, "gxhash_vSECONDARYID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV20SecondaryID), "ZZZZZZZZZZZ9"), context));
+                        AV21TertiaryID = (long)(Math.Round(NumberUtil.Val( GetPar( "TertiaryID"), "."), 18, MidpointRounding.ToEven));
+                        AssignAttri("", false, "AV21TertiaryID", StringUtil.LTrimStr( (decimal)(AV21TertiaryID), 12, 0));
+                        GxWebStd.gx_hidden_field( context, "gxhash_vTERTIARYID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV21TertiaryID), "ZZZZZZZZZZZ9"), context));
+                     }
+                  }
+                  if ( toggleJsOutput )
+                  {
+                     if ( context.isSpaRequest( ) )
+                     {
+                        enableJsOutput();
+                     }
+                  }
+               }
+            }
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -915,9 +952,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
          RF822( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGrid_refresh */
       }
 
@@ -1182,7 +1219,7 @@ namespace GeneXus.Programs {
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -1941,7 +1978,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718175727", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813122281", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1957,7 +1994,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamtranslations.js", "?202542718175730", false, true);
+         context.AddJavascriptSource("gamtranslations.js", "?202542813122283", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -2317,6 +2354,7 @@ namespace GeneXus.Programs {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
+         GXEncryptionTmp = "";
          AV40GridAppliedFilters = "";
          Grid_empowerer_Gridinternalname = "";
          GX_FocusControl = "";
@@ -2340,6 +2378,7 @@ namespace GeneXus.Programs {
          AV17Name = "";
          AV22Text = "";
          AV6Delete = "";
+         GXDecQS = "";
          AV29WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          GXt_char1 = "";
          AV7GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
@@ -2391,7 +2430,6 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGrid_Backcolorstyle ;
       private short nGXWrapped ;
       private short subGrid_Backstyle ;
@@ -2447,6 +2485,7 @@ namespace GeneXus.Programs {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string GXEncryptionTmp ;
       private string Gridpaginationbar_Class ;
       private string Gridpaginationbar_Pagingbuttonsposition ;
       private string Gridpaginationbar_Pagingcaptionposition ;
@@ -2488,6 +2527,7 @@ namespace GeneXus.Programs {
       private string edtavText_Internalname ;
       private string AV6Delete ;
       private string edtavDelete_Internalname ;
+      private string GXDecQS ;
       private string GXt_char1 ;
       private string sGXsfl_12_fel_idx="0001" ;
       private string subGrid_Class ;

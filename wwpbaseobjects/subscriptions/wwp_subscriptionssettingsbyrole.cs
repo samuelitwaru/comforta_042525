@@ -123,12 +123,6 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                }
                gxfirstwebparm = gxfirstwebparm_bkp;
             }
-            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-            {
-               AV36WWPSubscriptionRoleId = gxfirstwebparm;
-               AssignAttri("", false, "AV36WWPSubscriptionRoleId", AV36WWPSubscriptionRoleId);
-               GxWebStd.gx_hidden_field( context, "gxhash_vWWPSUBSCRIPTIONROLEID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV36WWPSubscriptionRoleId, "")), context));
-            }
             if ( toggleJsOutput )
             {
                if ( context.isSpaRequest( ) )
@@ -321,7 +315,9 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrole.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV36WWPSubscriptionRoleId))}, new string[] {"WWPSubscriptionRoleId"}) +"\">") ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrole.aspx"+UrlEncode(StringUtil.RTrim(AV36WWPSubscriptionRoleId));
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrole.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -340,7 +336,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV39Pgmname, "")), context));
          GxWebStd.gx_hidden_field( context, "vWWPSUBSCRIPTIONROLEID", StringUtil.RTrim( AV36WWPSubscriptionRoleId));
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPSUBSCRIPTIONROLEID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV36WWPSubscriptionRoleId, "")), context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -465,7 +461,9 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
 
       public override string GetSelfLink( )
       {
-         return formatLink("wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrole.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV36WWPSubscriptionRoleId))}, new string[] {"WWPSubscriptionRoleId"})  ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrole.aspx"+UrlEncode(StringUtil.RTrim(AV36WWPSubscriptionRoleId));
+         return formatLink("wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrole.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
       public override string GetPgmname( )
@@ -799,7 +797,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                         {
                            sEvtType = StringUtil.Right( sEvt, 4);
                            sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
-                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "GRID.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) )
+                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "GRID.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 25), "VDETAILWEBCOMPONENT.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 25), "VDETAILWEBCOMPONENT.CLICK") == 0 ) )
                            {
                               nGXsfl_26_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_26_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_26_idx), 4, 0), 4, "0");
@@ -848,6 +846,12 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                                     dynload_actions( ) ;
                                     /* Execute user event: Grid.Load */
                                     E161M2 ();
+                                 }
+                                 else if ( StringUtil.StrCmp(sEvt, "VDETAILWEBCOMPONENT.CLICK") == 0 )
+                                 {
+                                    context.wbHandled = 1;
+                                    dynload_actions( ) ;
+                                    E171M2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -923,11 +927,50 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+            GXKey = Crypto.GetSiteKey( );
+            if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+               GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+               if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrole.aspx")), "wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrole.aspx") == 0 ) )
+               {
+                  SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrole.aspx")))) ;
+               }
+               else
+               {
+                  GxWebError = 1;
+                  context.HttpContext.Response.StatusCode = 403;
+                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                  context.WriteHtmlText( "<p /><hr />") ;
+                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+               }
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               if ( nGotPars == 0 )
+               {
+                  entryPointCalled = false;
+                  gxfirstwebparm = GetFirstPar( "WWPSubscriptionRoleId");
+                  toggleJsOutput = isJsOutputEnabled( );
+                  if ( context.isSpaRequest( ) )
+                  {
+                     disableJsOutput();
+                  }
+                  if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+                  {
+                     AV36WWPSubscriptionRoleId = gxfirstwebparm;
+                     AssignAttri("", false, "AV36WWPSubscriptionRoleId", AV36WWPSubscriptionRoleId);
+                     GxWebStd.gx_hidden_field( context, "gxhash_vWWPSUBSCRIPTIONROLEID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV36WWPSubscriptionRoleId, "")), context));
+                  }
+                  if ( toggleJsOutput )
+                  {
+                     if ( context.isSpaRequest( ) )
+                     {
+                        enableJsOutput();
+                     }
+                  }
+               }
+            }
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -982,9 +1025,9 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
          RF1M2( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGrid_refresh */
       }
 
@@ -1227,7 +1270,6 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             AV8GridCurrentPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDCURRENTPAGE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV9GridPageCount = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDPAGECOUNT"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV38GridAppliedFilters = cgiGet( "vGRIDAPPLIEDFILTERS");
-            AV36WWPSubscriptionRoleId = cgiGet( "vWWPSUBSCRIPTIONROLEID");
             GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             subGrid_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "subGrid_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
@@ -1272,7 +1314,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             AssignAttri("", false, "AV7FilterFullText", AV7FilterFullText);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -1431,6 +1473,37 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          /*  Sending Event outputs  */
       }
 
+      protected void E171M2( )
+      {
+         /* Detailwebcomponent_Click Routine */
+         returnInSub = false;
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Grid_dwc = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Grid_dwc_Component), StringUtil.Lower( "WWPBaseObjects.Subscriptions.WWP_SubscriptionsSettingsByRoleWC")) != 0 )
+         {
+            WebComp_Grid_dwc = getWebComponent(GetType(), "GeneXus.Programs", "wwpbaseobjects.subscriptions.wwp_subscriptionssettingsbyrolewc", new Object[] {context} );
+            WebComp_Grid_dwc.ComponentInit();
+            WebComp_Grid_dwc.Name = "WWPBaseObjects.Subscriptions.WWP_SubscriptionsSettingsByRoleWC";
+            WebComp_Grid_dwc_Component = "WWPBaseObjects.Subscriptions.WWP_SubscriptionsSettingsByRoleWC";
+         }
+         if ( StringUtil.Len( WebComp_Grid_dwc_Component) != 0 )
+         {
+            WebComp_Grid_dwc.setjustcreated();
+            WebComp_Grid_dwc.componentprepare(new Object[] {(string)"W0035",(string)"",(long)AV29WWPEntityId,(bool)AV17NotifShowOnlySubscribedEvents,(string)AV36WWPSubscriptionRoleId});
+            WebComp_Grid_dwc.componentbind(new Object[] {(string)"vWWPENTITYID_"+sGXsfl_26_idx,(string)"vNOTIFSHOWONLYSUBSCRIBEDEVENTS",(string)""});
+         }
+         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Grid_dwc )
+         {
+            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0035"+"");
+            WebComp_Grid_dwc.componentdraw();
+            context.httpAjaxContext.ajax_rspEndCmp();
+         }
+         /*  Sending Event outputs  */
+      }
+
       protected void S112( )
       {
          /* 'LOADGRIDSTATE' Routine */
@@ -1537,7 +1610,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718134391", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254281351120", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1553,7 +1626,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/subscriptions/wwp_subscriptionssettingsbyrole.js", "?202542718134391", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/subscriptions/wwp_subscriptionssettingsbyrole.js", "?20254281351121", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1668,7 +1741,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'" + sGXsfl_26_idx + "',26)\"";
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDetailwebcomponent_Internalname,StringUtil.RTrim( AV6DetailWebComponent),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"",(string)"'"+""+"'"+",false,"+"'"+"e171m2_client"+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDetailwebcomponent_Jsonclick,(short)7,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn WCD_ActionColumn",(string)"",(short)-1,(int)edtavDetailwebcomponent_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)26,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDetailwebcomponent_Internalname,StringUtil.RTrim( AV6DetailWebComponent),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"","'"+""+"'"+",false,"+"'"+"EVDETAILWEBCOMPONENT.CLICK."+sGXsfl_26_idx+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavDetailwebcomponent_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn WCD_ActionColumn",(string)"",(short)-1,(int)edtavDetailwebcomponent_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)26,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             send_integrity_lvl_hashes1M2( ) ;
             GridContainer.AddRow(GridRow);
             nGXsfl_26_idx = ((subGrid_Islastpage==1)&&(nGXsfl_26_idx+1>subGrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_26_idx+1);
@@ -1898,6 +1971,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
+         GXEncryptionTmp = "";
          AV38GridAppliedFilters = "";
          Grid_empowerer_Gridinternalname = "";
          GX_FocusControl = "";
@@ -1919,6 +1993,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          sEvtType = "";
          AV30WWPEntityName = "";
          AV6DetailWebComponent = "";
+         GXDecQS = "";
          AV27WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          GXt_char1 = "";
          H001M4_A126WWPEntityName = new string[] {""} ;
@@ -1962,7 +2037,6 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private short wbStart ;
       private short nCmpId ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGrid_Backcolorstyle ;
       private short AV10GridRecordCount ;
       private short AV16NotificationsForEntityCount ;
@@ -2014,6 +2088,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string GXEncryptionTmp ;
       private string Gridpaginationbar_Class ;
       private string Gridpaginationbar_Pagingbuttonsposition ;
       private string Gridpaginationbar_Pagingcaptionposition ;
@@ -2060,6 +2135,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private string edtavWwpentityid_Internalname ;
       private string AV6DetailWebComponent ;
       private string edtavDetailwebcomponent_Internalname ;
+      private string GXDecQS ;
       private string GXt_char1 ;
       private string sGXsfl_26_fel_idx="0001" ;
       private string subGrid_Class ;
@@ -2093,6 +2169,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private bool n40000GXC1 ;
       private bool n40001GXC2 ;
       private bool AV31EntityHasItemsToShow ;
+      private bool bDynCreated_Grid_dwc ;
       private string AV7FilterFullText ;
       private string A126WWPEntityName ;
       private string AV38GridAppliedFilters ;

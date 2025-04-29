@@ -334,7 +334,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vSTEP", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV36Step), "ZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "vORGANISATIONID", AV47OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONID", GetSecureSignedToken( "", AV47OrganisationId, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -1419,11 +1419,7 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -1537,9 +1533,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRIDSDT_CALLTOACTIONS_nCurrentRecord = 0;
          RFA02( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGridsdt_calltoactions_refresh */
       }
 
@@ -2043,7 +2039,7 @@ namespace GeneXus.Programs {
             }
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -2188,7 +2184,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( StringUtil.StrCmp(Combo_suppliergenid_Selectedvalue_get, "<#NEW#>") == 0 )
          {
-            context.PopUp(formatLink("wp_createnewgeneralsupplier.aspx", new object[] {UrlEncode(StringUtil.RTrim("INS")),UrlEncode(AV39SupplierGenId.ToString())}, new string[] {"TrnMode","SupplierGenId"}) , new Object[] {});
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wp_createnewgeneralsupplier.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(AV39SupplierGenId.ToString());
+            context.PopUp(formatLink("wp_createnewgeneralsupplier.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
          }
          else if ( StringUtil.StrCmp(Combo_suppliergenid_Selectedvalue_get, "<#POPUP_CLOSED#>") == 0 )
          {
@@ -2755,7 +2753,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271823030", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813181470", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2771,7 +2769,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wc_productservice.js", "?20254271823031", false, true);
+         context.AddJavascriptSource("wc_productservice.js", "?202542813181471", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
@@ -3635,6 +3633,7 @@ namespace GeneXus.Programs {
          GXt_char4 = "";
          Gridsdt_calltoactions_empowerer_Gridinternalname = "";
          Gridsdt_calltoactionsRow = new GXWebRow();
+         GXEncryptionTmp = "";
          AV44ComboSelectedValue = "";
          AV45Session = context.GetSession();
          Combo_suppliergenid_Selectedvalue_set = "";
@@ -3780,7 +3779,6 @@ namespace GeneXus.Programs {
       private short wbStart ;
       private short AV51GridActionGroup1 ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGridsdt_calltoactions_Backcolorstyle ;
       private short nGXWrapped ;
       private short subGridsdt_calltoactions_Backstyle ;
@@ -3985,6 +3983,7 @@ namespace GeneXus.Programs {
       private string Combo_phonecode_Htmltemplate ;
       private string GXt_char4 ;
       private string Gridsdt_calltoactions_empowerer_Gridinternalname ;
+      private string GXEncryptionTmp ;
       private string Combo_suppliergenid_Selectedvalue_set ;
       private string Combo_suppliergenid_Internalname ;
       private string Combo_locationdynamicformid_Ddointernalname ;

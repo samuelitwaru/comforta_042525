@@ -29,11 +29,24 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context.SetDefaultTheme("WorkWithPlusDS", true);
          initialize();
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+         GXKey = Crypto.GetSiteKey( );
+         if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) )
          {
-            gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+            GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+            if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "workwithplus.dynamicforms.wwp_df_export.aspx")), "workwithplus.dynamicforms.wwp_df_export.aspx") == 0 ) )
+            {
+               SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "workwithplus.dynamicforms.wwp_df_export.aspx")))) ;
+            }
+            else
+            {
+               GxWebError = 1;
+               context.HttpContext.Response.StatusCode = 403;
+               context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+               context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+               context.WriteHtmlText( "<p /><hr />") ;
+               GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+            }
          }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
          if ( nGotPars == 0 )
          {
             entryPointCalled = false;
@@ -168,6 +181,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       public override void initialize( )
       {
          GXKey = "";
+         GXDecQS = "";
          gxfirstwebparm = "";
          P004I2_A206WWPFormId = new short[1] ;
          P004I2_A208WWPFormReferenceName = new string[] {""} ;
@@ -189,13 +203,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* GeneXus formulas. */
       }
 
-      private short gxcookieaux ;
+      private short GxWebError ;
       private short nGotPars ;
       private short AV13WWPFormId ;
-      private short GxWebError ;
       private short A206WWPFormId ;
       private short A207WWPFormVersionNumber ;
       private string GXKey ;
+      private string GXDecQS ;
       private string gxfirstwebparm ;
       private bool entryPointCalled ;
       private bool returnInSub ;

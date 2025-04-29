@@ -2297,7 +2297,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( StringUtil.StrCmp(Combo_residenttypeid_Selectedvalue_get, "<#NEW#>") == 0 )
          {
-            context.PopUp(formatLink("wp_createnewresidenttype.aspx", new object[] {UrlEncode(StringUtil.RTrim("INS")),UrlEncode(A96ResidentTypeId.ToString())}, new string[] {"TrnMode","ResidentTypeId","DefaultResidentTypeName"}) , new Object[] {});
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wp_createnewresidenttype.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(A96ResidentTypeId.ToString());
+            context.PopUp(formatLink("wp_createnewresidenttype.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
          }
          else if ( StringUtil.StrCmp(Combo_residenttypeid_Selectedvalue_get, "<#POPUP_CLOSED#>") == 0 )
          {
@@ -4560,7 +4562,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254271863644", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542812554951", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -4576,7 +4578,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_resident.js", "?20254271863650", false, true);
+         context.AddJavascriptSource("trn_resident.js", "?202542812554954", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -5592,6 +5594,7 @@ namespace GeneXus.Programs {
          AV54ResidentPackageIdVariable = Guid.Empty;
          AV55residentPackageNameVariable = "";
          AV46Session = context.GetSession();
+         GXEncryptionTmp = "";
          AV20ComboSelectedValue = "";
          AV21ComboSelectedText = "";
          GXt_objcol_SdtDVB_SDTComboData_Item3 = new GXBaseCollection<WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item>( context, "Item", "");
@@ -5742,7 +5745,6 @@ namespace GeneXus.Programs {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
-         GXEncryptionTmp = "";
          GXt_guid5 = Guid.Empty;
          T000925_A29LocationId = new Guid[] {Guid.Empty} ;
          GXt_char2 = "";
@@ -6222,10 +6224,10 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
+      private string GXEncryptionTmp ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
-      private string GXEncryptionTmp ;
       private string GXt_char2 ;
       private DateTime Z73ResidentBirthDate ;
       private DateTime A73ResidentBirthDate ;

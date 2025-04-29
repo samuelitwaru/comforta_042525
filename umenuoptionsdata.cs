@@ -305,7 +305,9 @@ namespace GeneXus.Programs {
          new prc_organizationsettingtrnmode(context ).execute( out  GXt_char1) ;
          GXt_guid2 = Guid.Empty;
          new prc_organizationsettingid(context ).execute( out  GXt_guid2) ;
-         Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_organisationsetting.aspx", new object[] {GXUtil.UrlEncode(StringUtil.RTrim(GXt_char1)),GXUtil.UrlEncode(GXt_guid2.ToString())}, new string[] {"Mode","OrganisationSettingid","OrganisationId"}) ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "trn_organisationsetting.aspx"+GXUtil.UrlEncode(StringUtil.RTrim(GXt_char1)) + "," + GXUtil.UrlEncode(GXt_guid2.ToString());
+         Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_organisationsetting.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-eye-dropper";
          Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Customization", "");
@@ -340,11 +342,15 @@ namespace GeneXus.Programs {
          Gxm3dvelop_menu_subitems = new WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item(context);
          GXt_char1 = "";
          GXt_guid2 = Guid.Empty;
+         GXKey = "";
+         GXEncryptionTmp = "";
          /* GeneXus formulas. */
       }
 
       private short AV5id ;
       private string GXt_char1 ;
+      private string GXKey ;
+      private string GXEncryptionTmp ;
       private Guid GXt_guid2 ;
       private GXBaseCollection<WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item> Gxm2rootcol ;
       private WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item Gxm1dvelop_menu ;

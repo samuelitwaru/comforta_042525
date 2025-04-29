@@ -480,7 +480,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( "", AV33IsAuthorized_Delete, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_SDT_RESIDENTS", AV31IsAuthorized_SDT_Residents);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_SDT_RESIDENTS", GetSecureSignedToken( "", AV31IsAuthorized_SDT_Residents, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -1337,11 +1337,7 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -1438,9 +1434,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          FREESTYLEGRID1_nCurrentRecord = 0;
          RFBM2( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrFreestylegrid1_refresh */
       }
 
@@ -1482,9 +1478,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
          RFBM5( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGrid_refresh */
       }
 
@@ -1959,7 +1955,7 @@ namespace GeneXus.Programs {
             }
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -2437,11 +2433,15 @@ namespace GeneXus.Programs {
             cmbavActiongroup.addItem("8", StringUtil.Format( "%1;%2", context.GetMessage( "Delete", ""), "fas fa-x", "", "", "", "", "", "", ""), 0);
             if ( AV31IsAuthorized_SDT_Residents )
             {
-               edtavSdt_residents__residentgivenname_Link = formatLink("trn_residentview.aspx", new object[] {UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Residentid.ToString()),UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Locationid.ToString()),UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Organisationid.ToString())}, new string[] {"ResidentId","LocationId","OrganisationId","TabCode"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "trn_residentview.aspx"+UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Residentid.ToString()) + "," + UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Locationid.ToString()) + "," + UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Organisationid.ToString());
+               edtavSdt_residents__residentgivenname_Link = formatLink("trn_residentview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             if ( AV31IsAuthorized_SDT_Residents )
             {
-               edtavSdt_residents__residentlastname_Link = formatLink("trn_residentview.aspx", new object[] {UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Residentid.ToString()),UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Locationid.ToString()),UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Organisationid.ToString())}, new string[] {"ResidentId","LocationId","OrganisationId","TabCode"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "trn_residentview.aspx"+UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Residentid.ToString()) + "," + UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Locationid.ToString()) + "," + UrlEncode(((SdtSDT_Resident)(AV28SDT_Residents.CurrentItem)).gxTpr_Organisationid.ToString());
+               edtavSdt_residents__residentlastname_Link = formatLink("trn_residentview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             if ( ( AV42IsGAMActive ) && ! AV43IsGAMBlocked )
             {
@@ -2688,7 +2688,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718234182", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254281319535", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2706,7 +2706,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_provisionedappdashboard.js", "?202542718234183", false, true);
+            context.AddJavascriptSource("wp_provisionedappdashboard.js", "?20254281319536", false, true);
             context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
             context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
             context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -3951,6 +3951,7 @@ namespace GeneXus.Programs {
          H00BM6_n96ResidentTypeId = new bool[] {false} ;
          H00BM6_A71ResidentGUID = new string[] {""} ;
          GXt_char2 = "";
+         GXEncryptionTmp = "";
          GridRow = new GXWebRow();
          ucDvelop_confirmpanel_udelete = new GXUserControl();
          ucDvelop_confirmpanel_useractionblock = new GXUserControl();
@@ -4038,7 +4039,6 @@ namespace GeneXus.Programs {
       private short wbStart ;
       private short AV32ActionGroup ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subFreestylegrid1_Backcolorstyle ;
       private short subGrid_Backcolorstyle ;
       private short FREESTYLEGRID1_nEOF ;
@@ -4216,6 +4216,7 @@ namespace GeneXus.Programs {
       private string lblCardcomponent1_description_Caption ;
       private string GXt_char2 ;
       private string edtavSdt_residents__residentgivenname_Link ;
+      private string GXEncryptionTmp ;
       private string edtavSdt_residents__residentlastname_Link ;
       private string edtavAccountstatus_Columnclass ;
       private string tblTabledvelop_confirmpanel_udelete_Internalname ;

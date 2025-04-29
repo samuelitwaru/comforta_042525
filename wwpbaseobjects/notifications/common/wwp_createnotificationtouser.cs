@@ -118,7 +118,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             AV23WWP_Notification.gxTpr_Wwpnotificationmetadata = AV15WWPNotificationMetadata;
             AV23WWP_Notification.Save();
             AV18WWPNotificationID = AV23WWP_Notification.gxTpr_Wwpnotificationid;
-            AV30SmsAndMailUrl = formatLink("wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx", new object[] {GXUtil.UrlEncode(StringUtil.LTrimStr(AV18WWPNotificationID,10,0))}, new string[] {"WWPNotificationId"}) ;
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx"+GXUtil.UrlEncode(StringUtil.LTrimStr(AV18WWPNotificationID,10,0));
+            AV30SmsAndMailUrl = formatLink("wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             new WorkWithPlus.workwithplus_notificationscommon.wwp_cleannotificationurl(context ).execute( ref  AV30SmsAndMailUrl) ;
             new GeneXus.Programs.wwpbaseobjects.wwp_getparameter(context ).gxep_text(  context.GetMessage( "Notification_BaseURL", ""), ref  AV26Notification_BaseUrl) ;
             AV30SmsAndMailUrl = StringUtil.Format( "%1%2", AV26Notification_BaseUrl, AV30SmsAndMailUrl, "", "", "", "", "", "", "");
@@ -277,6 +279,8 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          A120WWPUserExtendedPhone = "";
          AV23WWP_Notification = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_Notification(context);
          AV30SmsAndMailUrl = "";
+         GXKey = "";
+         GXEncryptionTmp = "";
          AV26Notification_BaseUrl = "";
          AV28WWPUserExtendedEmail = "";
          AV29WWPUserExtendedPhone = "";
@@ -310,6 +314,8 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private string AV16WWPUserExtendedId ;
       private string A112WWPUserExtendedId ;
       private string A120WWPUserExtendedPhone ;
+      private string GXKey ;
+      private string GXEncryptionTmp ;
       private string AV29WWPUserExtendedPhone ;
       private string A153WWPWebClientId ;
       private bool AV25IsDiscussionNotification ;

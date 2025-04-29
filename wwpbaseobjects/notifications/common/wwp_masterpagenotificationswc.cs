@@ -366,7 +366,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_CHECKALLNOTIF", AV5IsAuthorized_CheckAllNotif);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_CHECKALLNOTIF", GetSecureSignedToken( sPrefix, AV5IsAuthorized_CheckAllNotif, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -605,6 +605,10 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          wbLoad = false;
          wbEnd = 0;
          wbStart = 0;
+         if ( StringUtil.Len( sPrefix) != 0 )
+         {
+            GXKey = Crypto.GetSiteKey( );
+         }
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             if ( ! context.isSpaRequest( ) )
@@ -877,14 +881,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             {
                initialize_properties( ) ;
             }
-            if ( StringUtil.Len( sPrefix) == 0 )
-            {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-               {
-                  gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-               }
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
@@ -939,9 +936,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRIDSDTNOTIFICATIONSDATAS_nCurrentRecord = 0;
          RF1R2( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGridsdtnotificationsdatas_refresh */
       }
 
@@ -1096,7 +1093,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -1227,7 +1224,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          /* Notificationitem_Click Routine */
          returnInSub = false;
          this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "DropDownComponent_Close", new Object[] {(string)divLayoutmaintable_Internalname}, false);
-         CallWebObject(formatLink("wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(((WorkWithPlus.workwithplus_notificationscommon.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)(AV6SDTNotificationsData.CurrentItem)).gxTpr_Notificationid,5,0))}, new string[] {"WWPNotificationId"}) );
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx"+UrlEncode(StringUtil.LTrimStr(((WorkWithPlus.workwithplus_notificationscommon.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)(AV6SDTNotificationsData.CurrentItem)).gxTpr_Notificationid,5,0));
+         CallWebObject(formatLink("wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
          context.wjLocDisableFrm = 1;
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV6SDTNotificationsData", AV6SDTNotificationsData);
@@ -1265,6 +1264,11 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
 
       public void responsestatic( string sGXDynURL )
       {
+      }
+
+      protected override EncryptionType GetEncryptionType( )
+      {
+         return EncryptionType.SITE ;
       }
 
       public override void componentbind( Object[] obj )
@@ -1409,7 +1413,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542717553342", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542812502786", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1425,7 +1429,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_masterpagenotificationswc.js", "?202542717553343", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_masterpagenotificationswc.js", "?202542812502787", false, true);
          /* End function include_jscripts */
       }
 
@@ -1883,6 +1887,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          sEvtType = "";
          GXt_objcol_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem1 = new GXBaseCollection<WorkWithPlus.workwithplus_notificationscommon.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version20");
          GridsdtnotificationsdatasRow = new GXWebRow();
+         GXEncryptionTmp = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subGridsdtnotificationsdatas_Linesclass = "";
@@ -1904,7 +1909,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private short nDraw ;
       private short nDoneStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGridsdtnotificationsdatas_Backcolorstyle ;
       private short GRIDSDTNOTIFICATIONSDATAS_nEOF ;
       private short nGXWrapped ;
@@ -1968,6 +1972,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private string sGXsfl_15_fel_idx="0001" ;
       private string edtavSdtnotificationsdata__notificationid_Internalname ;
       private string lblNotificationitemicon_Caption ;
+      private string GXEncryptionTmp ;
       private string lblNotificationitemicon_Internalname ;
       private string subGridsdtnotificationsdatas_Class ;
       private string subGridsdtnotificationsdatas_Linesclass ;

@@ -178,7 +178,9 @@ namespace GeneXus.Programs {
          new prc_organizationsettingtrnmode(context ).execute( out  GXt_char1) ;
          GXt_guid2 = Guid.Empty;
          new prc_organizationsettingid(context ).execute( out  GXt_guid2) ;
-         Gxm1uhomemodulessdt.gxTpr_Optionwclink = formatLink("trn_organisationsetting.aspx", new object[] {GXUtil.UrlEncode(StringUtil.RTrim(GXt_char1)),GXUtil.UrlEncode(GXt_guid2.ToString())}, new string[] {"Mode","OrganisationSettingid","OrganisationId"}) ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "trn_organisationsetting.aspx"+GXUtil.UrlEncode(StringUtil.RTrim(GXt_char1)) + "," + GXUtil.UrlEncode(GXt_guid2.ToString());
+         Gxm1uhomemodulessdt.gxTpr_Optionwclink = formatLink("trn_organisationsetting.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
          Gxm1uhomemodulessdt.gxTpr_Optionbackgroundimage = context.convertURL( (string)(context.GetImagePath( "3ff1b1cd-90c1-4922-90c7-923fe81ed0ed", "", context.GetTheme( ))));
          Gxm1uhomemodulessdt.gxTpr_Optiondescription = "Customization";
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
@@ -242,10 +244,14 @@ namespace GeneXus.Programs {
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
          GXt_char1 = "";
          GXt_guid2 = Guid.Empty;
+         GXKey = "";
+         GXEncryptionTmp = "";
          /* GeneXus formulas. */
       }
 
       private string GXt_char1 ;
+      private string GXKey ;
+      private string GXEncryptionTmp ;
       private Guid GXt_guid2 ;
       private GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem> Gxm2rootcol ;
       private SdtUHomeModulesSDT_UHomeModulesSDTItem Gxm1uhomemodulessdt ;

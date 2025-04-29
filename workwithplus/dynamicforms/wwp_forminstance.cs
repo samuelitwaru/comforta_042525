@@ -172,16 +172,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                }
                gxfirstwebparm = gxfirstwebparm_bkp;
             }
-            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-            {
-               Gx_mode = gxfirstwebparm;
-               AssignAttri(sPrefix, false, "Gx_mode", Gx_mode);
-               if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
-               {
-                  AV7WWPFormInstanceId = (int)(Math.Round(NumberUtil.Val( GetPar( "WWPFormInstanceId"), "."), 18, MidpointRounding.ToEven));
-                  AssignAttri(sPrefix, false, "AV7WWPFormInstanceId", StringUtil.LTrimStr( (decimal)(AV7WWPFormInstanceId), 6, 0));
-               }
-            }
             if ( toggleJsOutput )
             {
                if ( context.isSpaRequest( ) )
@@ -190,14 +180,57 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                }
             }
          }
+         GXKey = Crypto.GetSiteKey( );
          if ( StringUtil.Len( sPrefix) == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+            if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+               GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+               if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "workwithplus.dynamicforms.wwp_forminstance.aspx")), "workwithplus.dynamicforms.wwp_forminstance.aspx") == 0 ) )
+               {
+                  SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "workwithplus.dynamicforms.wwp_forminstance.aspx")))) ;
+               }
+               else
+               {
+                  GxWebError = 1;
+                  context.HttpContext.Response.StatusCode = 403;
+                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                  context.WriteHtmlText( "<p /><hr />") ;
+                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+               }
             }
          }
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+         {
+            if ( StringUtil.Len( sPrefix) == 0 )
+            {
+               entryPointCalled = false;
+               gxfirstwebparm = GetFirstPar( "Mode");
+               toggleJsOutput = isJsOutputEnabled( );
+               if ( context.isSpaRequest( ) )
+               {
+                  disableJsOutput();
+               }
+               if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+               {
+                  Gx_mode = gxfirstwebparm;
+                  AssignAttri(sPrefix, false, "Gx_mode", Gx_mode);
+                  if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+                  {
+                     AV7WWPFormInstanceId = (int)(Math.Round(NumberUtil.Val( GetPar( "WWPFormInstanceId"), "."), 18, MidpointRounding.ToEven));
+                     AssignAttri(sPrefix, false, "AV7WWPFormInstanceId", StringUtil.LTrimStr( (decimal)(AV7WWPFormInstanceId), 6, 0));
+                  }
+               }
+               if ( toggleJsOutput )
+               {
+                  if ( context.isSpaRequest( ) )
+                  {
+                     enableJsOutput();
+                  }
+               }
+            }
+         }
          toggleJsOutput = isJsOutputEnabled( );
          if ( StringUtil.Len( sPrefix) == 0 )
          {
@@ -883,7 +916,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                AssignAttri(sPrefix, false, "A209WWPFormTitle", A209WWPFormTitle);
                /* Read subfile selected row values. */
                /* Read hidden variables. */
-               GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+               GXKey = Crypto.GetSiteKey( );
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WWP_FormInstance");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -3497,7 +3530,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("workwithplus.dynamicforms.wwp_forminstance.aspx", new object[] {UrlEncode(StringUtil.RTrim(Gx_mode)),UrlEncode(StringUtil.LTrimStr(AV7WWPFormInstanceId,6,0))}, new string[] {"Gx_mode","WWPFormInstanceId"}) +"\">") ;
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "workwithplus.dynamicforms.wwp_forminstance.aspx"+UrlEncode(StringUtil.RTrim(Gx_mode)) + "," + UrlEncode(StringUtil.LTrimStr(AV7WWPFormInstanceId,6,0));
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("workwithplus.dynamicforms.wwp_forminstance.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -3544,7 +3579,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void send_integrity_footer_hashes( )
       {
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WWP_FormInstance");
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
@@ -3746,6 +3781,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void StandaloneModalInsert0U43( )
       {
+      }
+
+      protected override EncryptionType GetEncryptionType( )
+      {
+         return EncryptionType.SITE ;
       }
 
       public override void componentbind( Object[] obj )
@@ -3951,7 +3991,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542717555733", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542812505163", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3969,7 +4009,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
          context.AddJavascriptSource("gxdec.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_forminstance.js", "?202542717555735", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_forminstance.js", "?202542812505163", false, true);
          /* End function include_jscripts */
       }
 
@@ -4378,6 +4418,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          gxfirstwebparm_bkp = "";
          A112WWPUserExtendedId = "";
          GXKey = "";
+         GXDecQS = "";
          PreviousTooltip = "";
          PreviousCaption = "";
          Form = new GXWebForm();
@@ -4588,6 +4629,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
+         GXEncryptionTmp = "";
          i239WWPFormInstanceDate = (DateTime)(DateTime.MinValue);
          sCtrlGx_mode = "";
          sCtrlAV7WWPFormInstanceId = "";
@@ -4721,7 +4763,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private short A207WWPFormVersionNumber ;
       private short A210WWPFormElementId ;
       private short A211WWPFormElementParentId ;
-      private short gxcookieaux ;
       private short AnyError ;
       private short IsModified ;
       private short IsConfirmed ;
@@ -4807,6 +4848,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string Gx_mode ;
       private string A112WWPUserExtendedId ;
       private string GXKey ;
+      private string GXDecQS ;
       private string PreviousTooltip ;
       private string PreviousCaption ;
       private string sXEvt ;
@@ -4891,6 +4933,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
+      private string GXEncryptionTmp ;
       private string sCtrlGx_mode ;
       private string sCtrlAV7WWPFormInstanceId ;
       private string subGridlevel_element_Header ;

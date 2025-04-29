@@ -338,7 +338,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV20Pgmname, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_MANAGESUBSCRIPTIONS", AV15IsAuthorized_ManageSubscriptions);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_MANAGESUBSCRIPTIONS", GetSecureSignedToken( "", AV15IsAuthorized_ManageSubscriptions, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -707,7 +707,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                         {
                            sEvtType = StringUtil.Right( sEvt, 4);
                            sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
-                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "GRID.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "'DOMARKASREAD'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "'DOMARKASREAD'") == 0 ) )
+                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "GRID.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'DOVISUALIZE'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "'DOMARKASREAD'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "ENTER") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 13), "'DOVISUALIZE'") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 14), "'DOMARKASREAD'") == 0 ) )
                            {
                               nGXsfl_24_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_24_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_24_idx), 4, 0), 4, "0");
@@ -757,12 +757,19 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                                     /* Execute user event: Grid.Load */
                                     E151N2 ();
                                  }
+                                 else if ( StringUtil.StrCmp(sEvt, "'DOVISUALIZE'") == 0 )
+                                 {
+                                    context.wbHandled = 1;
+                                    dynload_actions( ) ;
+                                    /* Execute user event: 'DoVisualize' */
+                                    E161N2 ();
+                                 }
                                  else if ( StringUtil.StrCmp(sEvt, "'DOMARKASREAD'") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoMarkAsRead' */
-                                    E161N2 ();
+                                    E171N2 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -816,11 +823,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -869,9 +872,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
          RF1N2( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGrid_refresh */
       }
 
@@ -1159,7 +1162,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -1287,6 +1290,17 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       }
 
       protected void E161N2( )
+      {
+         /* 'DoVisualize' Routine */
+         returnInSub = false;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx"+UrlEncode(StringUtil.LTrimStr(A127WWPNotificationId,10,0));
+         CallWebObject(formatLink("wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
+         context.wjLocDisableFrm = 1;
+         /*  Sending Event outputs  */
+      }
+
+      protected void E171N2( )
       {
          /* 'DoMarkAsRead' Routine */
          returnInSub = false;
@@ -1421,7 +1435,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718134594", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254281351487", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1439,7 +1453,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_visualizeallnotifications.js", "?202542718134594", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_visualizeallnotifications.js", "?20254281351488", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1591,7 +1605,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Text block */
-            GridRow.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblVisualize_Internalname,context.GetMessage( "<i class=\"fas fa-search DiscussionsSendIcon\"></i>", ""),(string)"",(string)"",(string)lblVisualize_Jsonclick,(string)"'"+""+"'"+",false,"+"'"+"e171n2_client"+"'",(string)"",(string)"TextBlock",(short)7,(string)"",(int)lblVisualize_Visible,(short)1,(short)0,(short)1});
+            GridRow.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblVisualize_Internalname,context.GetMessage( "<i class=\"fas fa-search DiscussionsSendIcon\"></i>", ""),(string)"",(string)"",(string)lblVisualize_Jsonclick,"'"+""+"'"+",false,"+"'"+"E\\'DOVISUALIZE\\'."+sGXsfl_24_idx+"'",(string)"",(string)"TextBlock",(short)5,(string)"",(int)lblVisualize_Visible,(short)1,(short)0,(short)1});
             GridRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)"CellMarginLeft",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
@@ -2000,9 +2014,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          setEventMetadata("REFRESH",""","oparms":[{"av":"lblNonotifications_Visible","ctrl":"NONOTIFICATIONS","prop":"Visible"},{"av":"subGrid_Visible","ctrl":"GRID","prop":"Visible"},{"av":"AV15IsAuthorized_ManageSubscriptions","fld":"vISAUTHORIZED_MANAGESUBSCRIPTIONS","hsh":true},{"ctrl":"BTNMANAGESUBSCRIPTIONS","prop":"Visible"}]}""");
          setEventMetadata("GRID.LOAD","""{"handler":"E151N2","iparms":[{"av":"A184WWPNotificationLink","fld":"WWPNOTIFICATIONLINK"},{"av":"A181WWPNotificationIcon","fld":"WWPNOTIFICATIONICON"},{"av":"A129WWPNotificationCreated","fld":"WWPNOTIFICATIONCREATED","pic":"99/99/9999 99:99:99.999"},{"av":"A187WWPNotificationIsRead","fld":"WWPNOTIFICATIONISREAD"}]""");
          setEventMetadata("GRID.LOAD",""","oparms":[{"av":"lblNonotifications_Visible","ctrl":"NONOTIFICATIONS","prop":"Visible"},{"av":"subGrid_Visible","ctrl":"GRID","prop":"Visible"},{"av":"lblVisualize_Visible","ctrl":"VISUALIZE","prop":"Visible"},{"av":"lblNotificationitemicon_Caption","ctrl":"NOTIFICATIONITEMICON","prop":"Caption"},{"av":"AV18WWPNotificationCreated","fld":"vWWPNOTIFICATIONCREATED","pic":"99/99/99 99:99"},{"av":"lblMarkasread_Caption","ctrl":"MARKASREAD","prop":"Caption"},{"av":"lblMarkasread_Tooltiptext","ctrl":"MARKASREAD","prop":"Tooltiptext"},{"av":"edtWWPNotificationTitle_Class","ctrl":"WWPNOTIFICATIONTITLE","prop":"Class"}]}""");
-         setEventMetadata("'DOVISUALIZE'","""{"handler":"E171N2","iparms":[{"av":"A127WWPNotificationId","fld":"WWPNOTIFICATIONID","pic":"ZZZZZZZZZ9"}]""");
+         setEventMetadata("'DOVISUALIZE'","""{"handler":"E161N2","iparms":[{"av":"A127WWPNotificationId","fld":"WWPNOTIFICATIONID","pic":"ZZZZZZZZZ9"}]""");
          setEventMetadata("'DOVISUALIZE'",""","oparms":[{"av":"A127WWPNotificationId","fld":"WWPNOTIFICATIONID","pic":"ZZZZZZZZZ9"}]}""");
-         setEventMetadata("'DOMARKASREAD'","""{"handler":"E161N2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20Pgmname","fld":"vPGMNAME","hsh":true},{"av":"edtWWPNotificationId_Visible","ctrl":"WWPNOTIFICATIONID","prop":"Visible"},{"av":"edtWWPNotificationLink_Visible","ctrl":"WWPNOTIFICATIONLINK","prop":"Visible"},{"av":"edtWWPNotificationMetadata_Visible","ctrl":"WWPNOTIFICATIONMETADATA","prop":"Visible"},{"av":"AV15IsAuthorized_ManageSubscriptions","fld":"vISAUTHORIZED_MANAGESUBSCRIPTIONS","hsh":true},{"av":"A127WWPNotificationId","fld":"WWPNOTIFICATIONID","pic":"ZZZZZZZZZ9"}]""");
+         setEventMetadata("'DOMARKASREAD'","""{"handler":"E171N2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20Pgmname","fld":"vPGMNAME","hsh":true},{"av":"edtWWPNotificationId_Visible","ctrl":"WWPNOTIFICATIONID","prop":"Visible"},{"av":"edtWWPNotificationLink_Visible","ctrl":"WWPNOTIFICATIONLINK","prop":"Visible"},{"av":"edtWWPNotificationMetadata_Visible","ctrl":"WWPNOTIFICATIONMETADATA","prop":"Visible"},{"av":"AV15IsAuthorized_ManageSubscriptions","fld":"vISAUTHORIZED_MANAGESUBSCRIPTIONS","hsh":true},{"av":"A127WWPNotificationId","fld":"WWPNOTIFICATIONID","pic":"ZZZZZZZZZ9"}]""");
          setEventMetadata("'DOMARKASREAD'",""","oparms":[{"av":"lblNonotifications_Visible","ctrl":"NONOTIFICATIONS","prop":"Visible"},{"av":"subGrid_Visible","ctrl":"GRID","prop":"Visible"},{"av":"AV15IsAuthorized_ManageSubscriptions","fld":"vISAUTHORIZED_MANAGESUBSCRIPTIONS","hsh":true},{"ctrl":"BTNMANAGESUBSCRIPTIONS","prop":"Visible"}]}""");
          setEventMetadata("'DOMARKALLASREAD'","""{"handler":"E111N2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20Pgmname","fld":"vPGMNAME","hsh":true},{"av":"edtWWPNotificationId_Visible","ctrl":"WWPNOTIFICATIONID","prop":"Visible"},{"av":"edtWWPNotificationLink_Visible","ctrl":"WWPNOTIFICATIONLINK","prop":"Visible"},{"av":"edtWWPNotificationMetadata_Visible","ctrl":"WWPNOTIFICATIONMETADATA","prop":"Visible"},{"av":"AV15IsAuthorized_ManageSubscriptions","fld":"vISAUTHORIZED_MANAGESUBSCRIPTIONS","hsh":true}]""");
          setEventMetadata("'DOMARKALLASREAD'",""","oparms":[{"av":"lblNonotifications_Visible","ctrl":"NONOTIFICATIONS","prop":"Visible"},{"av":"subGrid_Visible","ctrl":"GRID","prop":"Visible"},{"av":"AV15IsAuthorized_ManageSubscriptions","fld":"vISAUTHORIZED_MANAGESUBSCRIPTIONS","hsh":true},{"ctrl":"BTNMANAGESUBSCRIPTIONS","prop":"Visible"}]}""");
@@ -2077,6 +2091,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          H001N3_AGRID_nRecordCount = new long[1] ;
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          GridRow = new GXWebRow();
+         GXEncryptionTmp = "";
          AV13Session = context.GetSession();
          AV11GridState = new WorkWithPlus.workwithplus_web.SdtWWPGridState(context);
          AV9TrnContext = new WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext(context);
@@ -2115,7 +2130,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGrid_Backcolorstyle ;
       private short subGrid_Backstyle ;
       private short subGrid_Allowselection ;
@@ -2192,6 +2206,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private string lblMarkasread_Caption ;
       private string lblMarkasread_Tooltiptext ;
       private string edtWWPNotificationTitle_Class ;
+      private string GXEncryptionTmp ;
       private string lblNotificationitemicon_Internalname ;
       private string lblVisualize_Internalname ;
       private string lblMarkasread_Internalname ;

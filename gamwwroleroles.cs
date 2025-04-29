@@ -124,18 +124,6 @@ namespace GeneXus.Programs {
                }
                gxfirstwebparm = gxfirstwebparm_bkp;
             }
-            if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
-            {
-               AV20RoleId = (long)(Math.Round(NumberUtil.Val( gxfirstwebparm, "."), 18, MidpointRounding.ToEven));
-               AssignAttri("", false, "AV20RoleId", StringUtil.LTrimStr( (decimal)(AV20RoleId), 12, 0));
-               GxWebStd.gx_hidden_field( context, "gxhash_vROLEID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV20RoleId), "ZZZZZZZZZZZ9"), context));
-               if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
-               {
-                  AV21RoleIdAux = (long)(Math.Round(NumberUtil.Val( GetPar( "RoleIdAux"), "."), 18, MidpointRounding.ToEven));
-                  AssignAttri("", false, "AV21RoleIdAux", StringUtil.LTrimStr( (decimal)(AV21RoleIdAux), 12, 0));
-                  GxWebStd.gx_hidden_field( context, "gxhash_vROLEIDAUX", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV21RoleIdAux), "ZZZZZZZZZZZ9"), context));
-               }
-            }
             if ( toggleJsOutput )
             {
                if ( context.isSpaRequest( ) )
@@ -332,7 +320,9 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("gamwwroleroles.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(AV20RoleId,12,0)),UrlEncode(StringUtil.LTrimStr(AV21RoleIdAux,12,0))}, new string[] {"RoleId","RoleIdAux"}) +"\">") ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamwwroleroles.aspx"+UrlEncode(StringUtil.LTrimStr(AV20RoleId,12,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV21RoleIdAux,12,0));
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("gamwwroleroles.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
          GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -361,7 +351,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vROLEID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV20RoleId), "ZZZZZZZZZZZ9"), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV46IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV46IsAuthorized_Insert, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -512,7 +502,9 @@ namespace GeneXus.Programs {
 
       public override string GetSelfLink( )
       {
-         return formatLink("gamwwroleroles.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(AV20RoleId,12,0)),UrlEncode(StringUtil.LTrimStr(AV21RoleIdAux,12,0))}, new string[] {"RoleId","RoleIdAux"})  ;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "gamwwroleroles.aspx"+UrlEncode(StringUtil.LTrimStr(AV20RoleId,12,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV21RoleIdAux,12,0));
+         return formatLink("gamwwroleroles.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
       public override string GetPgmname( )
@@ -949,11 +941,56 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+            GXKey = Crypto.GetSiteKey( );
+            if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
             {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+               GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+               if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "gamwwroleroles.aspx")), "gamwwroleroles.aspx") == 0 ) )
+               {
+                  SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "gamwwroleroles.aspx")))) ;
+               }
+               else
+               {
+                  GxWebError = 1;
+                  context.HttpContext.Response.StatusCode = 403;
+                  context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                  context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                  context.WriteHtmlText( "<p /><hr />") ;
+                  GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+               }
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               if ( nGotPars == 0 )
+               {
+                  entryPointCalled = false;
+                  gxfirstwebparm = GetFirstPar( "RoleId");
+                  toggleJsOutput = isJsOutputEnabled( );
+                  if ( context.isSpaRequest( ) )
+                  {
+                     disableJsOutput();
+                  }
+                  if ( ! entryPointCalled && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+                  {
+                     AV20RoleId = (long)(Math.Round(NumberUtil.Val( gxfirstwebparm, "."), 18, MidpointRounding.ToEven));
+                     AssignAttri("", false, "AV20RoleId", StringUtil.LTrimStr( (decimal)(AV20RoleId), 12, 0));
+                     GxWebStd.gx_hidden_field( context, "gxhash_vROLEID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV20RoleId), "ZZZZZZZZZZZ9"), context));
+                     if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+                     {
+                        AV21RoleIdAux = (long)(Math.Round(NumberUtil.Val( GetPar( "RoleIdAux"), "."), 18, MidpointRounding.ToEven));
+                        AssignAttri("", false, "AV21RoleIdAux", StringUtil.LTrimStr( (decimal)(AV21RoleIdAux), 12, 0));
+                        GxWebStd.gx_hidden_field( context, "gxhash_vROLEIDAUX", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV21RoleIdAux), "ZZZZZZZZZZZ9"), context));
+                     }
+                  }
+                  if ( toggleJsOutput )
+                  {
+                     if ( context.isSpaRequest( ) )
+                     {
+                        enableJsOutput();
+                     }
+                  }
+               }
+            }
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -1012,9 +1049,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
          RF8M2( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGrid_refresh */
       }
 
@@ -1297,7 +1334,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV9FilExternalId", AV9FilExternalId);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -1453,7 +1490,9 @@ namespace GeneXus.Programs {
             AssignAttri("", false, edtavUpdate_Internalname, AV50Update);
             if ( AV51IsAuthorized_Update )
             {
-               edtavUpdate_Link = formatLink("gamroleentry.aspx", new object[] {UrlEncode(StringUtil.RTrim("UPD")),UrlEncode(StringUtil.LTrimStr(AV14Id,12,0))}, new string[] {"Mode","Id"}) ;
+               GXKey = Crypto.GetSiteKey( );
+               GXEncryptionTmp = "gamroleentry.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(StringUtil.LTrimStr(AV14Id,12,0));
+               edtavUpdate_Link = formatLink("gamroleentry.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             }
             /* Load Method */
             if ( wbStart != -1 )
@@ -1494,14 +1533,18 @@ namespace GeneXus.Programs {
             /* Execute user subroutine: 'SAVEGRIDSTATE' */
             S152 ();
             if (returnInSub) return;
-            context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx", new object[] {UrlEncode(StringUtil.RTrim("GAMWWRoleRolesFilters")),UrlEncode(StringUtil.RTrim(AV55Pgmname+"GridState"))}, new string[] {"UserKey","GridStateKey"}) , new Object[] {});
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("GAMWWRoleRolesFilters")) + "," + UrlEncode(StringUtil.RTrim(AV55Pgmname+"GridState"));
+            context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV36ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV36ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV36ManageFiltersExecutionStep), 1, 0));
             context.DoAjaxRefresh();
          }
          else if ( StringUtil.StrCmp(Ddo_managefilters_Activeeventkey, "<#Manage#>") == 0 )
          {
-            context.PopUp(formatLink("wwpbaseobjects.managefilters.aspx", new object[] {UrlEncode(StringUtil.RTrim("GAMWWRoleRolesFilters"))}, new string[] {"UserKey"}) , new Object[] {});
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wwpbaseobjects.managefilters.aspx"+UrlEncode(StringUtil.RTrim("GAMWWRoleRolesFilters"));
+            context.PopUp(formatLink("wwpbaseobjects.managefilters.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV36ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV36ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV36ManageFiltersExecutionStep), 1, 0));
             context.DoAjaxRefresh();
@@ -1552,7 +1595,9 @@ namespace GeneXus.Programs {
             AV48RoleList.RemoveItem(AV53ListCount);
             AV54RoleIdList = (long)(AV48RoleList.GetNumeric(AV53ListCount-1));
             AV47WebSession.Set(context.GetMessage( "RoleList", ""), AV48RoleList.ToJSonString(false));
-            CallWebObject(formatLink("gamwwroleroles.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(AV20RoleId,12,0)),UrlEncode(StringUtil.LTrimStr(AV54RoleIdList,12,0))}, new string[] {"RoleId","RoleIdAux"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "gamwwroleroles.aspx"+UrlEncode(StringUtil.LTrimStr(AV20RoleId,12,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV54RoleIdList,12,0));
+            CallWebObject(formatLink("gamwwroleroles.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          /*  Sending Event outputs  */
@@ -1565,7 +1610,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV46IsAuthorized_Insert )
          {
-            CallWebObject(formatLink("gamroleselect.aspx", new object[] {UrlEncode(StringUtil.LTrimStr(AV20RoleId,12,0)),UrlEncode(StringUtil.LTrimStr(AV21RoleIdAux,12,0))}, new string[] {"RoleId","RoleIdAux"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "gamroleselect.aspx"+UrlEncode(StringUtil.LTrimStr(AV20RoleId,12,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV21RoleIdAux,12,0));
+            CallWebObject(formatLink("gamroleselect.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -1878,7 +1925,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718184440", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254281313293", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1894,7 +1941,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamwwroleroles.js", "?202542718184442", false, true);
+         context.AddJavascriptSource("gamwwroleroles.js", "?20254281313296", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2261,6 +2308,7 @@ namespace GeneXus.Programs {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
+         GXEncryptionTmp = "";
          AV40ManageFiltersData = new GXBaseCollection<WorkWithPlus.workwithplus_web.SdtDVB_SDTDropDownOptionsData_Item>( context, "Item", "");
          AV44GridAppliedFilters = "";
          AV33GridState = new WorkWithPlus.workwithplus_web.SdtWWPGridState(context);
@@ -2285,6 +2333,7 @@ namespace GeneXus.Programs {
          AV5Delete = "";
          AV50Update = "";
          AV16Name = "";
+         GXDecQS = "";
          AV29HTTPRequest = new GxHttpRequest( context);
          AV12GAMRole = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
          AV30WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
@@ -2338,7 +2387,6 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGrid_Backcolorstyle ;
       private short nGXWrapped ;
       private short subGrid_Backstyle ;
@@ -2399,6 +2447,7 @@ namespace GeneXus.Programs {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string GXEncryptionTmp ;
       private string Ddo_managefilters_Icontype ;
       private string Ddo_managefilters_Icon ;
       private string Ddo_managefilters_Tooltip ;
@@ -2444,6 +2493,7 @@ namespace GeneXus.Programs {
       private string edtavId_Internalname ;
       private string AV16Name ;
       private string edtavName_Internalname ;
+      private string GXDecQS ;
       private string edtavFilname_Internalname ;
       private string edtavFilexternalid_Internalname ;
       private string edtavUpdate_Link ;

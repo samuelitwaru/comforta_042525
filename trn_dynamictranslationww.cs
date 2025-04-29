@@ -363,7 +363,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME", GetSecureSignedToken( "", AV40IsAuthorized_DynamicTranslationTrnName, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV45IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV45IsAuthorized_Insert, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -962,26 +962,33 @@ namespace GeneXus.Programs {
                               /* Execute user event: Gridpaginationbar.Changerowsperpage */
                               E13B72 ();
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "DDC_SUBSCRIPTIONS.ONLOADCOMPONENT") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Ddc_subscriptions.Onloadcomponent */
+                              E14B72 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "DDO_GRID.ONOPTIONCLICKED") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Ddo_grid.Onoptionclicked */
-                              E14B72 ();
+                              E15B72 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Ddo_gridcolumnsselector.Oncolumnschanged */
-                              E15B72 ();
+                              E16B72 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'DOINSERT'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'DoInsert' */
-                              E16B72 ();
+                              E17B72 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
                            {
@@ -1018,27 +1025,27 @@ namespace GeneXus.Programs {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Start */
-                                    E17B72 ();
+                                    E18B72 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Refresh */
-                                    E18B72 ();
+                                    E19B72 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "GRID.LOAD") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
                                     /* Execute user event: Grid.Load */
-                                    E19B72 ();
+                                    E20B72 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "VACTIONGROUP.CLICK") == 0 )
                                  {
                                     context.wbHandled = 1;
                                     dynload_actions( ) ;
-                                    E20B72 ();
+                                    E21B72 ();
                                  }
                                  else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                                  {
@@ -1129,11 +1136,7 @@ namespace GeneXus.Programs {
       {
          if ( nDonePA == 0 )
          {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
-            {
-               gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
-            }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             toggleJsOutput = isJsOutputEnabled( );
             if ( context.isSpaRequest( ) )
             {
@@ -1201,9 +1204,9 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          GRID_nCurrentRecord = 0;
          RFB72( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrGrid_refresh */
       }
 
@@ -1252,7 +1255,7 @@ namespace GeneXus.Programs {
          }
          wbStart = 39;
          /* Execute user event: Refresh */
-         E18B72 ();
+         E19B72 ();
          nGXsfl_39_idx = 1;
          sGXsfl_39_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_39_idx), 4, 0), 4, "0");
          SubsflControlProps_392( ) ;
@@ -1326,7 +1329,7 @@ namespace GeneXus.Programs {
                A579DynamicTranslationTrnName = H00B72_A579DynamicTranslationTrnName[0];
                A578DynamicTranslationId = H00B72_A578DynamicTranslationId[0];
                /* Execute user event: Grid.Load */
-               E19B72 ();
+               E20B72 ();
                pr_default.readNext(0);
             }
             GRID_nEOF = (short)(((pr_default.getStatus(0) == 101) ? 1 : 0));
@@ -1590,7 +1593,7 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E17B72 ();
+         E18B72 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -1693,7 +1696,7 @@ namespace GeneXus.Programs {
                AssignAttri("", false, cmbavActiongroup_Internalname, StringUtil.LTrimStr( (decimal)(AV41ActionGroup), 4, 0));
             }
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
             /* Check if conditions changed and reset current page numbers */
             if ( ( context.localUtil.CToN( cgiGet( "GXH_vORDEREDBY"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) != Convert.ToDecimal( AV13OrderedBy )) )
             {
@@ -1717,7 +1720,7 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E17B72 ();
+         E18B72 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1725,7 +1728,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E17B72( )
+      protected void E18B72( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1794,7 +1797,7 @@ namespace GeneXus.Programs {
          ucGridpaginationbar.SendProperty(context, "", false, Gridpaginationbar_Internalname, "RowsPerPageSelectedValue", StringUtil.LTrimStr( (decimal)(Gridpaginationbar_Rowsperpageselectedvalue), 9, 0));
       }
 
-      protected void E18B72( )
+      protected void E19B72( )
       {
          if ( gx_refresh_fired )
          {
@@ -1910,7 +1913,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E14B72( )
+      protected void E15B72( )
       {
          /* Ddo_grid_Onoptionclicked Routine */
          returnInSub = false;
@@ -1964,7 +1967,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      private void E19B72( )
+      private void E20B72( )
       {
          /* Grid_Load Routine */
          returnInSub = false;
@@ -1992,7 +1995,9 @@ namespace GeneXus.Programs {
          }
          if ( AV40IsAuthorized_DynamicTranslationTrnName )
          {
-            edtDynamicTranslationTrnName_Link = formatLink("trn_dynamictranslationview.aspx", new object[] {UrlEncode(A578DynamicTranslationId.ToString()),UrlEncode(StringUtil.RTrim(""))}, new string[] {"DynamicTranslationId","TabCode"}) ;
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_dynamictranslationview.aspx"+UrlEncode(A578DynamicTranslationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
+            edtDynamicTranslationTrnName_Link = formatLink("trn_dynamictranslationview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
          }
          /* Load Method */
          if ( wbStart != -1 )
@@ -2009,7 +2014,7 @@ namespace GeneXus.Programs {
          cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV41ActionGroup), 4, 0));
       }
 
-      protected void E15B72( )
+      protected void E16B72( )
       {
          /* Ddo_gridcolumnsselector_Oncolumnschanged Routine */
          returnInSub = false;
@@ -2047,14 +2052,18 @@ namespace GeneXus.Programs {
                returnInSub = true;
                if (true) return;
             }
-            context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx", new object[] {UrlEncode(StringUtil.RTrim("Trn_DynamicTranslationWWFilters")),UrlEncode(StringUtil.RTrim(AV46Pgmname+"GridState"))}, new string[] {"UserKey","GridStateKey"}) , new Object[] {});
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("Trn_DynamicTranslationWWFilters")) + "," + UrlEncode(StringUtil.RTrim(AV46Pgmname+"GridState"));
+            context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV24ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV24ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV24ManageFiltersExecutionStep), 1, 0));
             context.DoAjaxRefresh();
          }
          else if ( StringUtil.StrCmp(Ddo_managefilters_Activeeventkey, "<#Manage#>") == 0 )
          {
-            context.PopUp(formatLink("wwpbaseobjects.managefilters.aspx", new object[] {UrlEncode(StringUtil.RTrim("Trn_DynamicTranslationWWFilters"))}, new string[] {"UserKey"}) , new Object[] {});
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "wwpbaseobjects.managefilters.aspx"+UrlEncode(StringUtil.RTrim("Trn_DynamicTranslationWWFilters"));
+            context.PopUp(formatLink("wwpbaseobjects.managefilters.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV24ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV24ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV24ManageFiltersExecutionStep), 1, 0));
             context.DoAjaxRefresh();
@@ -2106,7 +2115,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV22ManageFiltersData", AV22ManageFiltersData);
       }
 
-      protected void E20B72( )
+      protected void E21B72( )
       {
          /* Actiongroup_Click Routine */
          returnInSub = false;
@@ -2150,13 +2159,15 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
       }
 
-      protected void E16B72( )
+      protected void E17B72( )
       {
          /* 'DoInsert' Routine */
          returnInSub = false;
          if ( AV45IsAuthorized_Insert )
          {
-            CallWebObject(formatLink("trn_dynamictranslation.aspx", new object[] {UrlEncode(StringUtil.RTrim("INS")),UrlEncode(Guid.Empty.ToString())}, new string[] {"Mode","DynamicTranslationId"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_dynamictranslation.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(Guid.Empty.ToString());
+            CallWebObject(formatLink("trn_dynamictranslation.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -2168,6 +2179,37 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV19ColumnsSelector", AV19ColumnsSelector);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV22ManageFiltersData", AV22ManageFiltersData);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11GridState", AV11GridState);
+      }
+
+      protected void E14B72( )
+      {
+         /* Ddc_subscriptions_Onloadcomponent Routine */
+         returnInSub = false;
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Wwpaux_wc = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wwpaux_wc_Component), StringUtil.Lower( "WWPBaseObjects.Subscriptions.WWP_SubscriptionsPanel")) != 0 )
+         {
+            WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", "wwpbaseobjects.subscriptions.wwp_subscriptionspanel", new Object[] {context} );
+            WebComp_Wwpaux_wc.ComponentInit();
+            WebComp_Wwpaux_wc.Name = "WWPBaseObjects.Subscriptions.WWP_SubscriptionsPanel";
+            WebComp_Wwpaux_wc_Component = "WWPBaseObjects.Subscriptions.WWP_SubscriptionsPanel";
+         }
+         if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
+         {
+            WebComp_Wwpaux_wc.setjustcreated();
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0058",(string)"",(string)"Trn_DynamicTranslation",(short)1,(string)"",(string)""});
+            WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)""});
+         }
+         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
+         {
+            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0058"+"");
+            WebComp_Wwpaux_wc.componentdraw();
+            context.httpAjaxContext.ajax_rspEndCmp();
+         }
+         /*  Sending Event outputs  */
       }
 
       protected void S142( )
@@ -2276,7 +2318,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV42IsAuthorized_Display )
          {
-            CallWebObject(formatLink("trn_dynamictranslationview.aspx", new object[] {UrlEncode(A578DynamicTranslationId.ToString()),UrlEncode(StringUtil.RTrim(""))}, new string[] {"DynamicTranslationId","TabCode"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_dynamictranslationview.aspx"+UrlEncode(A578DynamicTranslationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
+            CallWebObject(formatLink("trn_dynamictranslationview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -2292,7 +2336,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV43IsAuthorized_Update )
          {
-            CallWebObject(formatLink("trn_dynamictranslation.aspx", new object[] {UrlEncode(StringUtil.RTrim("UPD")),UrlEncode(A578DynamicTranslationId.ToString())}, new string[] {"Mode","DynamicTranslationId"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_dynamictranslation.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A578DynamicTranslationId.ToString());
+            CallWebObject(formatLink("trn_dynamictranslation.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -2308,7 +2354,9 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV44IsAuthorized_Delete )
          {
-            CallWebObject(formatLink("trn_dynamictranslation.aspx", new object[] {UrlEncode(StringUtil.RTrim("DLT")),UrlEncode(A578DynamicTranslationId.ToString())}, new string[] {"Mode","DynamicTranslationId"}) );
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_dynamictranslation.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A578DynamicTranslationId.ToString());
+            CallWebObject(formatLink("trn_dynamictranslation.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
          else
@@ -2510,7 +2558,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718233511", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813183719", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2526,7 +2574,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_dynamictranslationww.js", "?202542718233513", false, true);
+         context.AddJavascriptSource("trn_dynamictranslationww.js", "?202542813183722", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2983,18 +3031,20 @@ namespace GeneXus.Programs {
          setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E12B72","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
          setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E13B72","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
          setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE",""","oparms":[{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"}]}""");
-         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E14B72","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"}]""");
+         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E15B72","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"}]""");
          setEventMetadata("DDO_GRID.ONOPTIONCLICKED",""","oparms":[{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"}]}""");
-         setEventMetadata("GRID.LOAD","""{"handler":"E19B72","iparms":[{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"A578DynamicTranslationId","fld":"DYNAMICTRANSLATIONID","hsh":true}]""");
+         setEventMetadata("GRID.LOAD","""{"handler":"E20B72","iparms":[{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"A578DynamicTranslationId","fld":"DYNAMICTRANSLATIONID","hsh":true}]""");
          setEventMetadata("GRID.LOAD",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV41ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"edtDynamicTranslationTrnName_Link","ctrl":"DYNAMICTRANSLATIONTRNNAME","prop":"Link"}]}""");
-         setEventMetadata("DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED","""{"handler":"E15B72","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_gridcolumnsselector_Columnsselectorvalues","ctrl":"DDO_GRIDCOLUMNSSELECTOR","prop":"ColumnsSelectorValues"}]""");
+         setEventMetadata("DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED","""{"handler":"E16B72","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_gridcolumnsselector_Columnsselectorvalues","ctrl":"DDO_GRIDCOLUMNSSELECTOR","prop":"ColumnsSelectorValues"}]""");
          setEventMetadata("DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED",""","oparms":[{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"edtDynamicTranslationTrnName_Visible","ctrl":"DYNAMICTRANSLATIONTRNNAME","prop":"Visible"},{"av":"edtDynamicTranslationAttributeNam_Visible","ctrl":"DYNAMICTRANSLATIONATTRIBUTENAM","prop":"Visible"},{"av":"edtDynamicTranslationEnglish_Visible","ctrl":"DYNAMICTRANSLATIONENGLISH","prop":"Visible"},{"av":"edtDynamicTranslationDutch_Visible","ctrl":"DYNAMICTRANSLATIONDUTCH","prop":"Visible"},{"av":"AV37GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV38GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV39GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV22ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
          setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E11B72","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]""");
          setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED",""","oparms":[{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"Ddo_grid_Selectedvalue_set","ctrl":"DDO_GRID","prop":"SelectedValue_set"},{"av":"Ddo_grid_Filteredtext_set","ctrl":"DDO_GRID","prop":"FilteredText_set"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtDynamicTranslationTrnName_Visible","ctrl":"DYNAMICTRANSLATIONTRNNAME","prop":"Visible"},{"av":"edtDynamicTranslationAttributeNam_Visible","ctrl":"DYNAMICTRANSLATIONATTRIBUTENAM","prop":"Visible"},{"av":"edtDynamicTranslationEnglish_Visible","ctrl":"DYNAMICTRANSLATIONENGLISH","prop":"Visible"},{"av":"edtDynamicTranslationDutch_Visible","ctrl":"DYNAMICTRANSLATIONDUTCH","prop":"Visible"},{"av":"AV37GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV38GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV39GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV22ManageFiltersData","fld":"vMANAGEFILTERSDATA"}]}""");
-         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E20B72","iparms":[{"av":"cmbavActiongroup"},{"av":"AV41ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A578DynamicTranslationId","fld":"DYNAMICTRANSLATIONID","hsh":true}]""");
+         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E21B72","iparms":[{"av":"cmbavActiongroup"},{"av":"AV41ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A578DynamicTranslationId","fld":"DYNAMICTRANSLATIONID","hsh":true}]""");
          setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV41ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtDynamicTranslationTrnName_Visible","ctrl":"DYNAMICTRANSLATIONTRNNAME","prop":"Visible"},{"av":"edtDynamicTranslationAttributeNam_Visible","ctrl":"DYNAMICTRANSLATIONATTRIBUTENAM","prop":"Visible"},{"av":"edtDynamicTranslationEnglish_Visible","ctrl":"DYNAMICTRANSLATIONENGLISH","prop":"Visible"},{"av":"edtDynamicTranslationDutch_Visible","ctrl":"DYNAMICTRANSLATIONDUTCH","prop":"Visible"},{"av":"AV37GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV38GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV39GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV22ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("'DOINSERT'","""{"handler":"E16B72","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A578DynamicTranslationId","fld":"DYNAMICTRANSLATIONID","hsh":true}]""");
+         setEventMetadata("'DOINSERT'","""{"handler":"E17B72","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV16FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV46Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV25TFDynamicTranslationTrnName","fld":"vTFDYNAMICTRANSLATIONTRNNAME"},{"av":"AV26TFDynamicTranslationTrnName_Sel","fld":"vTFDYNAMICTRANSLATIONTRNNAME_SEL"},{"av":"AV27TFDynamicTranslationAttributeName","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME"},{"av":"AV28TFDynamicTranslationAttributeName_Sel","fld":"vTFDYNAMICTRANSLATIONATTRIBUTENAME_SEL"},{"av":"AV29TFDynamicTranslationEnglish","fld":"vTFDYNAMICTRANSLATIONENGLISH"},{"av":"AV30TFDynamicTranslationEnglish_Sel","fld":"vTFDYNAMICTRANSLATIONENGLISH_SEL"},{"av":"AV31TFDynamicTranslationDutch","fld":"vTFDYNAMICTRANSLATIONDUTCH"},{"av":"AV32TFDynamicTranslationDutch_Sel","fld":"vTFDYNAMICTRANSLATIONDUTCH_SEL"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_DynamicTranslationTrnName","fld":"vISAUTHORIZED_DYNAMICTRANSLATIONTRNNAME","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A578DynamicTranslationId","fld":"DYNAMICTRANSLATIONID","hsh":true}]""");
          setEventMetadata("'DOINSERT'",""","oparms":[{"av":"AV24ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV19ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtDynamicTranslationTrnName_Visible","ctrl":"DYNAMICTRANSLATIONTRNNAME","prop":"Visible"},{"av":"edtDynamicTranslationAttributeNam_Visible","ctrl":"DYNAMICTRANSLATIONATTRIBUTENAM","prop":"Visible"},{"av":"edtDynamicTranslationEnglish_Visible","ctrl":"DYNAMICTRANSLATIONENGLISH","prop":"Visible"},{"av":"edtDynamicTranslationDutch_Visible","ctrl":"DYNAMICTRANSLATIONDUTCH","prop":"Visible"},{"av":"AV37GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV38GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV39GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV42IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV43IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV44IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV45IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV22ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
+         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E14B72","iparms":[]""");
+         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Actiongroup","iparms":[]}""");
          return  ;
       }
@@ -3103,6 +3153,7 @@ namespace GeneXus.Programs {
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV21Session = context.GetSession();
          AV17ColumnsSelectorXML = "";
+         GXEncryptionTmp = "";
          GridRow = new GXWebRow();
          AV23ManageFiltersXml = "";
          AV18UserCustomValue = "";
@@ -3147,7 +3198,6 @@ namespace GeneXus.Programs {
       private short AV41ActionGroup ;
       private short nCmpId ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subGrid_Backcolorstyle ;
       private short subGrid_Sortable ;
       private short nGXWrapped ;
@@ -3297,6 +3347,7 @@ namespace GeneXus.Programs {
       private string cmbavActiongroup_Internalname ;
       private string cmbavActiongroup_Class ;
       private string edtDynamicTranslationTrnName_Link ;
+      private string GXEncryptionTmp ;
       private string GXt_char7 ;
       private string GXt_char6 ;
       private string GXt_char5 ;
@@ -3336,6 +3387,7 @@ namespace GeneXus.Programs {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool gx_refresh_fired ;
+      private bool bDynCreated_Wwpaux_wc ;
       private bool GXt_boolean1 ;
       private string A582DynamicTranslationEnglish ;
       private string A583DynamicTranslationDutch ;

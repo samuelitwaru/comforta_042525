@@ -582,12 +582,19 @@ namespace GeneXus.Programs {
                                  dynload_actions( ) ;
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "GOTOLOGIN.CLICK") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Gotologin.Click */
+                              E139U2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E139U2 ();
+                              E149U2 ();
                               /* No code required for Cancel button. It is implemented as the Reset button. */
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
@@ -702,7 +709,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E139U2 ();
+            E149U2 ();
             WB9U0( ) ;
          }
       }
@@ -876,6 +883,14 @@ namespace GeneXus.Programs {
          }
       }
 
+      protected void E139U2( )
+      {
+         /* Gotologin_Click Routine */
+         returnInSub = false;
+         CallWebObject(formatLink("ulogin.aspx") );
+         context.wjLocDisableFrm = 1;
+      }
+
       protected void S122( )
       {
          /* 'DISPLAYMESSAGES' Routine */
@@ -893,7 +908,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E139U2( )
+      protected void E149U2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -909,7 +924,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<tr>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblGotologin_Internalname, context.GetMessage( "Back to login", ""), "", "", lblGotologin_Jsonclick, "'"+""+"'"+",false,"+"'"+"e149u1_client"+"'", "", "DataDescriptionLogin", 7, "", 1, 1, 0, 0, "HLP_URecoverPasswordStep2.htm");
+            GxWebStd.gx_label_ctrl( context, lblGotologin_Internalname, context.GetMessage( "Back to login", ""), "", "", lblGotologin_Jsonclick, "'"+""+"'"+",false,"+"'"+"EGOTOLOGIN.CLICK."+"'", "", "DataDescriptionLogin", 5, "", 1, 1, 0, 0, "HLP_URecoverPasswordStep2.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -967,7 +982,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542718221444", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813171732", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -983,7 +998,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("urecoverpasswordstep2.js", "?202542718221448", false, true);
+         context.AddJavascriptSource("urecoverpasswordstep2.js", "?202542813171737", false, true);
          /* End function include_jscripts */
       }
 
@@ -1043,7 +1058,7 @@ namespace GeneXus.Programs {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV21UserGAMGUID","fld":"vUSERGAMGUID","hsh":true},{"av":"AV22KeyToChangePassword","fld":"vKEYTOCHANGEPASSWORD","hsh":true}]}""");
          setEventMetadata("ENTER","""{"handler":"E129U2","iparms":[{"av":"AV19CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV7UserPassword","fld":"vUSERPASSWORD"},{"av":"AV8UserPasswordComfirmation","fld":"vUSERPASSWORDCOMFIRMATION"},{"av":"AV21UserGAMGUID","fld":"vUSERGAMGUID","hsh":true},{"av":"AV22KeyToChangePassword","fld":"vKEYTOCHANGEPASSWORD","hsh":true},{"av":"AV20WWPContext","fld":"vWWPCONTEXT"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV20WWPContext","fld":"vWWPCONTEXT"},{"av":"AV19CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
-         setEventMetadata("GOTOLOGIN.CLICK","""{"handler":"E149U1","iparms":[]}""");
+         setEventMetadata("GOTOLOGIN.CLICK","""{"handler":"E139U2","iparms":[]}""");
          setEventMetadata("VALIDV_USERPASSWORD","""{"handler":"Validv_Userpassword","iparms":[]}""");
          return  ;
       }

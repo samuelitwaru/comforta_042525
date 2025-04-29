@@ -344,7 +344,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("workwithplus.dynamicforms.wwp_dfc_multipledatagrid_wc.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV18WWPDynamicFormMode)),UrlEncode(StringUtil.LTrimStr(AV21WWPFormElementId,4,0)),UrlEncode(StringUtil.LTrimStr(AV13SessionId,4,0))}, new string[] {"WWPDynamicFormMode","WWPFormElementId","SessionId","WWPForm"}) +"\">") ;
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "workwithplus.dynamicforms.wwp_dfc_multipledatagrid_wc.aspx"+UrlEncode(StringUtil.RTrim(AV18WWPDynamicFormMode)) + "," + UrlEncode(StringUtil.LTrimStr(AV21WWPFormElementId,4,0)) + "," + UrlEncode(StringUtil.LTrimStr(AV13SessionId,4,0));
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("workwithplus.dynamicforms.wwp_dfc_multipledatagrid_wc.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
@@ -415,7 +417,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWPFORMINSTANCE", GetSecureSignedToken( sPrefix, AV22WWPFormInstance, context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISSTEP", AV11IsStep);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISSTEP", GetSecureSignedToken( sPrefix, AV11IsStep, context));
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
       }
 
       protected void SendCloseFormHiddens( )
@@ -784,6 +786,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          wbLoad = false;
          wbEnd = 0;
          wbStart = 0;
+         if ( StringUtil.Len( sPrefix) != 0 )
+         {
+            GXKey = Crypto.GetSiteKey( );
+         }
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             if ( ! context.isSpaRequest( ) )
@@ -896,6 +902,23 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                  }
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "SETTINGS_MODAL.ONLOADCOMPONENT") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP360( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    /* Execute user event: Settings_modal.Onloadcomponent */
+                                    E14362 ();
+                                 }
+                              }
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "ADDELEMENT_MODAL.CLOSE") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -909,7 +932,24 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Addelement_modal.Close */
-                                    E14362 ();
+                                    E15362 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "ADDELEMENT_MODAL.ONLOADCOMPONENT") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP360( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    /* Execute user event: Addelement_modal.Onloadcomponent */
+                                    E16362 ();
                                  }
                               }
                            }
@@ -926,7 +966,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoRefreshGrid' */
-                                    E15362 ();
+                                    E17362 ();
                                  }
                               }
                            }
@@ -943,7 +983,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoMoveUp' */
-                                    E16362 ();
+                                    E18362 ();
                                  }
                               }
                            }
@@ -960,7 +1000,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoMoveDown' */
-                                    E17362 ();
+                                    E19362 ();
                                  }
                               }
                            }
@@ -1007,7 +1047,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                        {
                                           dynload_actions( ) ;
                                           /* Execute user event: Start */
-                                          E18362 ();
+                                          E20362 ();
                                        }
                                     }
                                  }
@@ -1020,7 +1060,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                        {
                                           dynload_actions( ) ;
                                           /* Execute user event: Refresh */
-                                          E19362 ();
+                                          E21362 ();
                                        }
                                     }
                                  }
@@ -1033,7 +1073,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                        {
                                           dynload_actions( ) ;
                                           /* Execute user event: Fsgrid.Load */
-                                          E20362 ();
+                                          E22362 ();
                                        }
                                     }
                                  }
@@ -1149,14 +1189,50 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             {
                initialize_properties( ) ;
             }
+            GXKey = Crypto.GetSiteKey( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( context.GetCookie( "GX_SESSION_ID"))) )
+               if ( ( StringUtil.StrCmp(context.GetRequestQueryString( ), "") != 0 ) && ( GxWebError == 0 ) && ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
                {
-                  gxcookieaux = context.SetCookie( "GX_SESSION_ID", Encrypt64( Crypto.GetEncryptionKey( ), Crypto.GetServerKey( )), "", (DateTime)(DateTime.MinValue), "", (short)(context.GetHttpSecure( )));
+                  GXDecQS = UriDecrypt64( context.GetRequestQueryString( ), GXKey);
+                  if ( ( StringUtil.StrCmp(StringUtil.Right( GXDecQS, 6), Crypto.CheckSum( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), 6)) == 0 ) && ( StringUtil.StrCmp(StringUtil.Substring( GXDecQS, 1, StringUtil.Len( "workwithplus.dynamicforms.wwp_dfc_multipledatagrid_wc.aspx")), "workwithplus.dynamicforms.wwp_dfc_multipledatagrid_wc.aspx") == 0 ) )
+                  {
+                     SetQueryString( StringUtil.Right( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)), (short)(StringUtil.Len( StringUtil.Left( GXDecQS, (short)(StringUtil.Len( GXDecQS)-6)))-StringUtil.Len( "workwithplus.dynamicforms.wwp_dfc_multipledatagrid_wc.aspx")))) ;
+                  }
+                  else
+                  {
+                     GxWebError = 1;
+                     context.HttpContext.Response.StatusCode = 403;
+                     context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+                     context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+                     context.WriteHtmlText( "<p /><hr />") ;
+                     GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+                  }
                }
             }
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            if ( ! ( isAjaxCallMode( ) || isFullAjaxMode( ) ) )
+            {
+               if ( StringUtil.Len( sPrefix) == 0 )
+               {
+                  if ( nGotPars == 0 )
+                  {
+                     entryPointCalled = false;
+                     gxfirstwebparm = GetFirstPar( "WWPDynamicFormMode");
+                     toggleJsOutput = isJsOutputEnabled( );
+                     if ( context.isSpaRequest( ) )
+                     {
+                        disableJsOutput();
+                     }
+                     if ( toggleJsOutput )
+                     {
+                        if ( context.isSpaRequest( ) )
+                        {
+                           enableJsOutput();
+                        }
+                     }
+                  }
+               }
+            }
             toggleJsOutput = isJsOutputEnabled( );
             if ( StringUtil.Len( sPrefix) == 0 )
             {
@@ -1218,9 +1294,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.set_html_headers( context, 0, "", "");
          FSGRID_nCurrentRecord = 0;
          RF362( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
-         GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+         GXKey = Crypto.GetSiteKey( );
          /* End function gxgrFsgrid_refresh */
       }
 
@@ -1266,7 +1342,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          wbStart = 9;
          /* Execute user event: Refresh */
-         E19362 ();
+         E21362 ();
          nGXsfl_9_idx = 1;
          sGXsfl_9_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_9_idx), 4, 0), 4, "0");
          SubsflControlProps_92( ) ;
@@ -1326,7 +1402,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             SubsflControlProps_92( ) ;
             /* Execute user event: Fsgrid.Load */
-            E20362 ();
+            E22362 ();
             wbEnd = 9;
             WB360( ) ;
          }
@@ -1393,7 +1469,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E18362 ();
+         E20362 ();
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -1406,8 +1482,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             wcpOAV18WWPDynamicFormMode = cgiGet( sPrefix+"wcpOAV18WWPDynamicFormMode");
             wcpOAV21WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV21WWPFormElementId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             wcpOAV13SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV13SessionId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            AV13SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vSESSIONID"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            AV21WWPFormElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vWWPFORMELEMENTID"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             subFsgrid_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"subFsgrid_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Dvelop_confirmpanel_btndeleteelement_Result = cgiGet( sPrefix+"DVELOP_CONFIRMPANEL_BTNDELETEELEMENT_Result");
             Settings_modal_Result = cgiGet( sPrefix+"SETTINGS_MODAL_Result");
@@ -1415,7 +1489,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
-            GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
+            GXKey = Crypto.GetSiteKey( );
          }
          else
          {
@@ -1426,11 +1500,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E18362 ();
+         E20362 ();
          if (returnInSub) return;
       }
 
-      protected void E18362( )
+      protected void E20362( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1463,7 +1537,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          if (returnInSub) return;
       }
 
-      protected void E19362( )
+      protected void E21362( )
       {
          if ( gx_refresh_fired )
          {
@@ -1494,7 +1568,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /*  Sending Event outputs  */
       }
 
-      private void E20362( )
+      private void E22362( )
       {
          /* Fsgrid_Load Routine */
          returnInSub = false;
@@ -1886,7 +1960,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /*  Sending Event outputs  */
       }
 
-      protected void E15362( )
+      protected void E17362( )
       {
          /* 'DoRefreshGrid' Routine */
          returnInSub = false;
@@ -1898,7 +1972,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV19WWPForm", AV19WWPForm);
       }
 
-      protected void E16362( )
+      protected void E18362( )
       {
          /* 'DoMoveUp' Routine */
          returnInSub = false;
@@ -1906,7 +1980,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "DynamicForms_RefreshParentGrid", new Object[] {(string)divLayoutmaintable_Internalname,(string)"LayoutMainTable"}, false);
       }
 
-      protected void E17362( )
+      protected void E19362( )
       {
          /* 'DoMoveDown' Routine */
          returnInSub = false;
@@ -1932,6 +2006,70 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV19WWPForm", AV19WWPForm);
+      }
+
+      protected void E14362( )
+      {
+         /* Settings_modal_Onloadcomponent Routine */
+         returnInSub = false;
+         /* Object Property */
+         if ( StringUtil.Len( sPrefix) == 0 )
+         {
+            bDynCreated_Wwpaux_wc = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wwpaux_wc_Component), StringUtil.Lower( "UAddElement")) != 0 )
+         {
+            WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", "uaddelement", new Object[] {context} );
+            WebComp_Wwpaux_wc.ComponentInit();
+            WebComp_Wwpaux_wc.Name = "UAddElement";
+            WebComp_Wwpaux_wc_Component = "UAddElement";
+         }
+         if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
+         {
+            WebComp_Wwpaux_wc.setjustcreated();
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)sPrefix+"W0063",(string)"",(string)"UPD",(short)0,(short)AV21WWPFormElementId,(short)AV13SessionId});
+            WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)""});
+         }
+         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
+         {
+            context.httpAjaxContext.ajax_rspStartCmp(sPrefix+"gxHTMLWrpW0063"+"");
+            WebComp_Wwpaux_wc.componentdraw();
+            context.httpAjaxContext.ajax_rspEndCmp();
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E16362( )
+      {
+         /* Addelement_modal_Onloadcomponent Routine */
+         returnInSub = false;
+         Addelement_modal_Title = context.GetMessage( "Add element", "");
+         ucAddelement_modal.SendProperty(context, sPrefix, false, Addelement_modal_Internalname, "Title", Addelement_modal_Title);
+         /* Object Property */
+         if ( StringUtil.Len( sPrefix) == 0 )
+         {
+            bDynCreated_Wwpaux_wc = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wwpaux_wc_Component), StringUtil.Lower( "WorkWithPlus.DynamicForms.WWP_DF_AddElement")) != 0 )
+         {
+            WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", "workwithplus.dynamicforms.wwp_df_addelement", new Object[] {context} );
+            WebComp_Wwpaux_wc.ComponentInit();
+            WebComp_Wwpaux_wc.Name = "WorkWithPlus.DynamicForms.WWP_DF_AddElement";
+            WebComp_Wwpaux_wc_Component = "WorkWithPlus.DynamicForms.WWP_DF_AddElement";
+         }
+         if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
+         {
+            WebComp_Wwpaux_wc.setjustcreated();
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)sPrefix+"W0063",(string)"",(string)"INS",(short)AV21WWPFormElementId,(short)0,(short)AV13SessionId});
+            WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)""});
+         }
+         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
+         {
+            context.httpAjaxContext.ajax_rspStartCmp(sPrefix+"gxHTMLWrpW0063"+"");
+            WebComp_Wwpaux_wc.componentdraw();
+            context.httpAjaxContext.ajax_rspEndCmp();
+         }
+         /*  Sending Event outputs  */
       }
 
       protected void S122( )
@@ -2002,7 +2140,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV19WWPForm", AV19WWPForm);
       }
 
-      protected void E14362( )
+      protected void E15362( )
       {
          /* Addelement_modal_Close Routine */
          returnInSub = false;
@@ -2210,6 +2348,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       public void responsestatic( string sGXDynURL )
       {
+      }
+
+      protected override EncryptionType GetEncryptionType( )
+      {
+         return EncryptionType.SITE ;
       }
 
       public override void componentbind( Object[] obj )
@@ -2469,7 +2612,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542717561333", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542812512095", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2485,7 +2628,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dfc_multipledatagrid_wc.js", "?202542717561334", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dfc_multipledatagrid_wc.js", "?202542812512096", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
@@ -2855,12 +2998,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Settings_modal_Width = "800";
          Addelement_modal_Bodytype = "WebComponent";
          Addelement_modal_Confirmtype = "";
-         Addelement_modal_Title = context.GetMessage( "Element settings", "");
          Addelement_modal_Width = "800";
          tblUnnamedtable2_Visible = 1;
          Btnsettings_Visible = Convert.ToBoolean( -1);
          Btnmovedown_Visible = Convert.ToBoolean( -1);
          Btnmoveup_Visible = Convert.ToBoolean( -1);
+         Addelement_modal_Title = context.GetMessage( "Element settings", "");
          Btnsettings_Caption = context.GetMessage( "WWP_DF_Settings", "");
          Btndeleteelement_Caption = context.GetMessage( "GX_BtnDelete", "");
          Btnmovedown_Caption = context.GetMessage( "WWP_DF_MoveDown", "");
@@ -2888,18 +3031,22 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"FSGRID_nFirstRecordOnPage"},{"av":"FSGRID_nEOF"},{"av":"AV18WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"sPrefix"},{"av":"AV19WWPForm","fld":"vWWPFORM"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"},{"av":"AV17WWP_DF_ElementsRepeaterMetadata","fld":"vWWP_DF_ELEMENTSREPEATERMETADATA","hsh":true},{"av":"AV9IsFirstElement","fld":"vISFIRSTELEMENT","hsh":true},{"av":"AV10IsLastElement","fld":"vISLASTELEMENT","hsh":true},{"av":"AV22WWPFormInstance","fld":"vWWPFORMINSTANCE","hsh":true},{"av":"AV11IsStep","fld":"vISSTEP","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"subFsgrid_Columns","ctrl":"FSGRID","prop":"Columns"},{"ctrl":"BTNADDCHILD","prop":"Visible"},{"av":"Btnmoveup_Visible","ctrl":"BTNMOVEUP","prop":"Visible"},{"av":"Btnmovedown_Visible","ctrl":"BTNMOVEDOWN","prop":"Visible"},{"av":"Btnsettings_Visible","ctrl":"BTNSETTINGS","prop":"Visible"}]}""");
-         setEventMetadata("FSGRID.LOAD","""{"handler":"E20362","iparms":[{"av":"AV19WWPForm","fld":"vWWPFORM"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"},{"av":"AV17WWP_DF_ElementsRepeaterMetadata","fld":"vWWP_DF_ELEMENTSREPEATERMETADATA","hsh":true},{"av":"AV18WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV22WWPFormInstance","fld":"vWWPFORMINSTANCE","hsh":true}]""");
+         setEventMetadata("FSGRID.LOAD","""{"handler":"E22362","iparms":[{"av":"AV19WWPForm","fld":"vWWPFORM"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"},{"av":"AV17WWP_DF_ElementsRepeaterMetadata","fld":"vWWP_DF_ELEMENTSREPEATERMETADATA","hsh":true},{"av":"AV18WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV22WWPFormInstance","fld":"vWWPFORMINSTANCE","hsh":true}]""");
          setEventMetadata("FSGRID.LOAD",""","oparms":[{"av":"divDatatablecell_Visible","ctrl":"DATATABLECELL","prop":"Visible"},{"av":"lblTitletextblocktitle_Caption","ctrl":"TITLETEXTBLOCKTITLE","prop":"Caption"},{"av":"divTitletablecell_Visible","ctrl":"TITLETABLECELL","prop":"Visible"},{"ctrl":"DATAWCCHILDREN"}]}""");
          setEventMetadata("'DOADDCHILD'","""{"handler":"E11361","iparms":[]}""");
-         setEventMetadata("'DOREFRESHGRID'","""{"handler":"E15362","iparms":[{"av":"FSGRID_nFirstRecordOnPage"},{"av":"FSGRID_nEOF"},{"av":"AV19WWPForm","fld":"vWWPFORM"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"},{"av":"AV17WWP_DF_ElementsRepeaterMetadata","fld":"vWWP_DF_ELEMENTSREPEATERMETADATA","hsh":true},{"av":"AV9IsFirstElement","fld":"vISFIRSTELEMENT","hsh":true},{"av":"AV10IsLastElement","fld":"vISLASTELEMENT","hsh":true},{"av":"AV18WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV22WWPFormInstance","fld":"vWWPFORMINSTANCE","hsh":true},{"av":"AV11IsStep","fld":"vISSTEP","hsh":true},{"av":"sPrefix"}]""");
+         setEventMetadata("'DOREFRESHGRID'","""{"handler":"E17362","iparms":[{"av":"FSGRID_nFirstRecordOnPage"},{"av":"FSGRID_nEOF"},{"av":"AV19WWPForm","fld":"vWWPFORM"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"},{"av":"AV17WWP_DF_ElementsRepeaterMetadata","fld":"vWWP_DF_ELEMENTSREPEATERMETADATA","hsh":true},{"av":"AV9IsFirstElement","fld":"vISFIRSTELEMENT","hsh":true},{"av":"AV10IsLastElement","fld":"vISLASTELEMENT","hsh":true},{"av":"AV18WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV22WWPFormInstance","fld":"vWWPFORMINSTANCE","hsh":true},{"av":"AV11IsStep","fld":"vISSTEP","hsh":true},{"av":"sPrefix"}]""");
          setEventMetadata("'DOREFRESHGRID'",""","oparms":[{"av":"AV19WWPForm","fld":"vWWPFORM"},{"av":"subFsgrid_Columns","ctrl":"FSGRID","prop":"Columns"},{"ctrl":"BTNADDCHILD","prop":"Visible"},{"av":"Btnmoveup_Visible","ctrl":"BTNMOVEUP","prop":"Visible"},{"av":"Btnmovedown_Visible","ctrl":"BTNMOVEDOWN","prop":"Visible"},{"av":"Btnsettings_Visible","ctrl":"BTNSETTINGS","prop":"Visible"}]}""");
-         setEventMetadata("'DOMOVEUP'","""{"handler":"E16362","iparms":[{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"}]}""");
-         setEventMetadata("'DOMOVEDOWN'","""{"handler":"E17362","iparms":[{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"}]}""");
+         setEventMetadata("'DOMOVEUP'","""{"handler":"E18362","iparms":[{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"}]}""");
+         setEventMetadata("'DOMOVEDOWN'","""{"handler":"E19362","iparms":[{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"}]}""");
          setEventMetadata("DVELOP_CONFIRMPANEL_BTNDELETEELEMENT.CLOSE","""{"handler":"E12362","iparms":[{"av":"Dvelop_confirmpanel_btndeleteelement_Result","ctrl":"DVELOP_CONFIRMPANEL_BTNDELETEELEMENT","prop":"Result"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"}]""");
          setEventMetadata("DVELOP_CONFIRMPANEL_BTNDELETEELEMENT.CLOSE",""","oparms":[{"av":"AV19WWPForm","fld":"vWWPFORM"}]}""");
+         setEventMetadata("SETTINGS_MODAL.ONLOADCOMPONENT","""{"handler":"E14362","iparms":[{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"}]""");
+         setEventMetadata("SETTINGS_MODAL.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
+         setEventMetadata("ADDELEMENT_MODAL.ONLOADCOMPONENT","""{"handler":"E16362","iparms":[{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"}]""");
+         setEventMetadata("ADDELEMENT_MODAL.ONLOADCOMPONENT",""","oparms":[{"av":"Addelement_modal_Title","ctrl":"ADDELEMENT_MODAL","prop":"Title"},{"ctrl":"WWPAUX_WC"}]}""");
          setEventMetadata("SETTINGS_MODAL.CLOSE","""{"handler":"E13362","iparms":[{"av":"Settings_modal_Result","ctrl":"SETTINGS_MODAL","prop":"Result"},{"av":"AV11IsStep","fld":"vISSTEP","hsh":true},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"}]""");
          setEventMetadata("SETTINGS_MODAL.CLOSE",""","oparms":[{"av":"AV19WWPForm","fld":"vWWPFORM"}]}""");
-         setEventMetadata("ADDELEMENT_MODAL.CLOSE","""{"handler":"E14362","iparms":[{"av":"FSGRID_nFirstRecordOnPage"},{"av":"FSGRID_nEOF"},{"av":"AV19WWPForm","fld":"vWWPFORM"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"},{"av":"AV17WWP_DF_ElementsRepeaterMetadata","fld":"vWWP_DF_ELEMENTSREPEATERMETADATA","hsh":true},{"av":"AV9IsFirstElement","fld":"vISFIRSTELEMENT","hsh":true},{"av":"AV10IsLastElement","fld":"vISLASTELEMENT","hsh":true},{"av":"AV18WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV22WWPFormInstance","fld":"vWWPFORMINSTANCE","hsh":true},{"av":"AV11IsStep","fld":"vISSTEP","hsh":true},{"av":"sPrefix"},{"av":"Addelement_modal_Result","ctrl":"ADDELEMENT_MODAL","prop":"Result"}]""");
+         setEventMetadata("ADDELEMENT_MODAL.CLOSE","""{"handler":"E15362","iparms":[{"av":"FSGRID_nFirstRecordOnPage"},{"av":"FSGRID_nEOF"},{"av":"AV19WWPForm","fld":"vWWPFORM"},{"av":"AV21WWPFormElementId","fld":"vWWPFORMELEMENTID","pic":"ZZZ9"},{"av":"AV17WWP_DF_ElementsRepeaterMetadata","fld":"vWWP_DF_ELEMENTSREPEATERMETADATA","hsh":true},{"av":"AV9IsFirstElement","fld":"vISFIRSTELEMENT","hsh":true},{"av":"AV10IsLastElement","fld":"vISLASTELEMENT","hsh":true},{"av":"AV18WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV22WWPFormInstance","fld":"vWWPFORMINSTANCE","hsh":true},{"av":"AV11IsStep","fld":"vISSTEP","hsh":true},{"av":"sPrefix"},{"av":"Addelement_modal_Result","ctrl":"ADDELEMENT_MODAL","prop":"Result"}]""");
          setEventMetadata("ADDELEMENT_MODAL.CLOSE",""","oparms":[{"av":"AV19WWPForm","fld":"vWWPFORM"},{"av":"subFsgrid_Columns","ctrl":"FSGRID","prop":"Columns"},{"ctrl":"BTNADDCHILD","prop":"Visible"},{"av":"Btnmoveup_Visible","ctrl":"BTNMOVEUP","prop":"Visible"},{"av":"Btnmovedown_Visible","ctrl":"BTNMOVEDOWN","prop":"Visible"},{"av":"Btnsettings_Visible","ctrl":"BTNSETTINGS","prop":"Visible"}]}""");
          return  ;
       }
@@ -2929,6 +3076,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
+         GXEncryptionTmp = "";
          GX_FocusControl = "";
          FsgridContainer = new GXWebGrid( context);
          sStyleString = "";
@@ -2948,6 +3096,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          OldDatawcchildren = "";
          sCmpCtrl = "";
          WebComp_GX_Process_Component = "";
+         GXDecQS = "";
          WebComp_Datawcchildren_Component = "";
          AV6CurrentElement = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element(context);
          ucDvelop_confirmpanel_btndeleteelement = new GXUserControl();
@@ -2960,10 +3109,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AV5WWP_DF_BooleanMetadata = new WorkWithPlus.workwithplus_dynamicforms.SdtWWP_DF_BooleanMetadata(context);
          AV16WWP_DF_CharMetadata = new WorkWithPlus.workwithplus_dynamicforms.SdtWWP_DF_CharMetadata(context);
          GXt_SdtWWP_Form_Element1 = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element(context);
+         ucAddelement_modal = new GXUserControl();
          AV8Element = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element(context);
          AV15WebSession = context.GetSession();
          GXt_SdtWWP_Form2 = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form(context);
-         ucAddelement_modal = new GXUserControl();
          ucSettings_modal = new GXUserControl();
          ucBtnaddelement = new GXUserControl();
          BackMsgLst = new msglist();
@@ -2995,7 +3144,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private short nDoneStart ;
       private short nCmpId ;
       private short nDonePA ;
-      private short gxcookieaux ;
       private short subFsgrid_Columns ;
       private short subFsgrid_Backcolorstyle ;
       private short AV12MultipleDataElements ;
@@ -3043,6 +3191,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string GXEncryptionTmp ;
       private string GX_FocusControl ;
       private string divLayoutmaintable_Internalname ;
       private string divTablemain_Internalname ;
@@ -3070,6 +3219,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string sCmpCtrl ;
       private string WebComp_GX_Process_Component ;
       private string WebCompHandler="" ;
+      private string GXDecQS ;
       private string WebComp_Datawcchildren_Component ;
       private string Dvelop_confirmpanel_btndeleteelement_Confirmationtext ;
       private string Dvelop_confirmpanel_btndeleteelement_Internalname ;
@@ -3084,13 +3234,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string divDatatablecell_Internalname ;
       private string lblTitletextblocktitle_Caption ;
       private string divTitletablecell_Internalname ;
+      private string Addelement_modal_Title ;
+      private string Addelement_modal_Internalname ;
       private string tblUnnamedtable2_Internalname ;
       private string tblTableaddelement_modal_Internalname ;
       private string Addelement_modal_Width ;
-      private string Addelement_modal_Title ;
       private string Addelement_modal_Confirmtype ;
       private string Addelement_modal_Bodytype ;
-      private string Addelement_modal_Internalname ;
       private string tblTablesettings_modal_Internalname ;
       private string Settings_modal_Width ;
       private string Settings_modal_Title ;
@@ -3148,6 +3298,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private bool gx_refresh_fired ;
       private bool AV14TitlesAreLoaded ;
       private bool bDynCreated_Datawcchildren ;
+      private bool bDynCreated_Wwpaux_wc ;
       private bool Btnmoveup_Visible ;
       private bool Btnmovedown_Visible ;
       private bool Btnsettings_Visible ;

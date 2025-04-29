@@ -801,6 +801,14 @@ namespace GeneXus.Programs {
                AnyError = 1;
             }
             pr_default.close(11);
+            /* Using cursor BC000614 */
+            pr_default.execute(12, new Object[] {n42SupplierGenId, A42SupplierGenId});
+            if ( (pr_default.getStatus(12) != 101) )
+            {
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_SupplierDynamicForm", "")}), "CannotDeleteReferencedRecord", 1, "");
+               AnyError = 1;
+            }
+            pr_default.close(12);
          }
       }
 
@@ -833,39 +841,39 @@ namespace GeneXus.Programs {
       public void ScanKeyStart069( )
       {
          /* Scan By routine */
-         /* Using cursor BC000614 */
-         pr_default.execute(12, new Object[] {n42SupplierGenId, A42SupplierGenId});
+         /* Using cursor BC000615 */
+         pr_default.execute(13, new Object[] {n42SupplierGenId, A42SupplierGenId});
          RcdFound9 = 0;
-         if ( (pr_default.getStatus(12) != 101) )
+         if ( (pr_default.getStatus(13) != 101) )
          {
             RcdFound9 = 1;
-            A42SupplierGenId = BC000614_A42SupplierGenId[0];
-            n42SupplierGenId = BC000614_n42SupplierGenId[0];
-            A48SupplierGenContactPhone = BC000614_A48SupplierGenContactPhone[0];
-            A607SupplierGenLandlineNumber = BC000614_A607SupplierGenLandlineNumber[0];
-            A259SupplierGenAddressZipCode = BC000614_A259SupplierGenAddressZipCode[0];
-            A43SupplierGenKvkNumber = BC000614_A43SupplierGenKvkNumber[0];
-            A254SupplierGenTypeName = BC000614_A254SupplierGenTypeName[0];
-            A44SupplierGenCompanyName = BC000614_A44SupplierGenCompanyName[0];
-            A309SupplierGenAddressCountry = BC000614_A309SupplierGenAddressCountry[0];
-            A260SupplierGenAddressCity = BC000614_A260SupplierGenAddressCity[0];
-            A310SupplierGenAddressLine1 = BC000614_A310SupplierGenAddressLine1[0];
-            A311SupplierGenAddressLine2 = BC000614_A311SupplierGenAddressLine2[0];
-            A47SupplierGenContactName = BC000614_A47SupplierGenContactName[0];
-            A353SupplierGenPhoneCode = BC000614_A353SupplierGenPhoneCode[0];
-            A354SupplierGenPhoneNumber = BC000614_A354SupplierGenPhoneNumber[0];
-            A605SupplierGenLandlineCode = BC000614_A605SupplierGenLandlineCode[0];
-            A606SupplierGenLandlineSubNumber = BC000614_A606SupplierGenLandlineSubNumber[0];
-            A501SupplierGenEmail = BC000614_A501SupplierGenEmail[0];
-            A428SupplierGenWebsite = BC000614_A428SupplierGenWebsite[0];
-            A604SupplierGenDescription = BC000614_A604SupplierGenDescription[0];
-            A253SupplierGenTypeId = BC000614_A253SupplierGenTypeId[0];
-            A600SG_OrganisationSupplierId = BC000614_A600SG_OrganisationSupplierId[0];
-            n600SG_OrganisationSupplierId = BC000614_n600SG_OrganisationSupplierId[0];
-            A602SG_LocationSupplierOrganisatio = BC000614_A602SG_LocationSupplierOrganisatio[0];
-            n602SG_LocationSupplierOrganisatio = BC000614_n602SG_LocationSupplierOrganisatio[0];
-            A601SG_LocationSupplierLocationId = BC000614_A601SG_LocationSupplierLocationId[0];
-            n601SG_LocationSupplierLocationId = BC000614_n601SG_LocationSupplierLocationId[0];
+            A42SupplierGenId = BC000615_A42SupplierGenId[0];
+            n42SupplierGenId = BC000615_n42SupplierGenId[0];
+            A48SupplierGenContactPhone = BC000615_A48SupplierGenContactPhone[0];
+            A607SupplierGenLandlineNumber = BC000615_A607SupplierGenLandlineNumber[0];
+            A259SupplierGenAddressZipCode = BC000615_A259SupplierGenAddressZipCode[0];
+            A43SupplierGenKvkNumber = BC000615_A43SupplierGenKvkNumber[0];
+            A254SupplierGenTypeName = BC000615_A254SupplierGenTypeName[0];
+            A44SupplierGenCompanyName = BC000615_A44SupplierGenCompanyName[0];
+            A309SupplierGenAddressCountry = BC000615_A309SupplierGenAddressCountry[0];
+            A260SupplierGenAddressCity = BC000615_A260SupplierGenAddressCity[0];
+            A310SupplierGenAddressLine1 = BC000615_A310SupplierGenAddressLine1[0];
+            A311SupplierGenAddressLine2 = BC000615_A311SupplierGenAddressLine2[0];
+            A47SupplierGenContactName = BC000615_A47SupplierGenContactName[0];
+            A353SupplierGenPhoneCode = BC000615_A353SupplierGenPhoneCode[0];
+            A354SupplierGenPhoneNumber = BC000615_A354SupplierGenPhoneNumber[0];
+            A605SupplierGenLandlineCode = BC000615_A605SupplierGenLandlineCode[0];
+            A606SupplierGenLandlineSubNumber = BC000615_A606SupplierGenLandlineSubNumber[0];
+            A501SupplierGenEmail = BC000615_A501SupplierGenEmail[0];
+            A428SupplierGenWebsite = BC000615_A428SupplierGenWebsite[0];
+            A604SupplierGenDescription = BC000615_A604SupplierGenDescription[0];
+            A253SupplierGenTypeId = BC000615_A253SupplierGenTypeId[0];
+            A600SG_OrganisationSupplierId = BC000615_A600SG_OrganisationSupplierId[0];
+            n600SG_OrganisationSupplierId = BC000615_n600SG_OrganisationSupplierId[0];
+            A602SG_LocationSupplierOrganisatio = BC000615_A602SG_LocationSupplierOrganisatio[0];
+            n602SG_LocationSupplierOrganisatio = BC000615_n602SG_LocationSupplierOrganisatio[0];
+            A601SG_LocationSupplierLocationId = BC000615_A601SG_LocationSupplierLocationId[0];
+            n601SG_LocationSupplierLocationId = BC000615_n601SG_LocationSupplierLocationId[0];
          }
          /* Load Subordinate Levels */
       }
@@ -873,7 +881,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext069( )
       {
          /* Scan next routine */
-         pr_default.readNext(12);
+         pr_default.readNext(13);
          RcdFound9 = 0;
          ScanKeyLoad069( ) ;
       }
@@ -882,43 +890,43 @@ namespace GeneXus.Programs {
       {
          sMode9 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(12) != 101) )
+         if ( (pr_default.getStatus(13) != 101) )
          {
             RcdFound9 = 1;
-            A42SupplierGenId = BC000614_A42SupplierGenId[0];
-            n42SupplierGenId = BC000614_n42SupplierGenId[0];
-            A48SupplierGenContactPhone = BC000614_A48SupplierGenContactPhone[0];
-            A607SupplierGenLandlineNumber = BC000614_A607SupplierGenLandlineNumber[0];
-            A259SupplierGenAddressZipCode = BC000614_A259SupplierGenAddressZipCode[0];
-            A43SupplierGenKvkNumber = BC000614_A43SupplierGenKvkNumber[0];
-            A254SupplierGenTypeName = BC000614_A254SupplierGenTypeName[0];
-            A44SupplierGenCompanyName = BC000614_A44SupplierGenCompanyName[0];
-            A309SupplierGenAddressCountry = BC000614_A309SupplierGenAddressCountry[0];
-            A260SupplierGenAddressCity = BC000614_A260SupplierGenAddressCity[0];
-            A310SupplierGenAddressLine1 = BC000614_A310SupplierGenAddressLine1[0];
-            A311SupplierGenAddressLine2 = BC000614_A311SupplierGenAddressLine2[0];
-            A47SupplierGenContactName = BC000614_A47SupplierGenContactName[0];
-            A353SupplierGenPhoneCode = BC000614_A353SupplierGenPhoneCode[0];
-            A354SupplierGenPhoneNumber = BC000614_A354SupplierGenPhoneNumber[0];
-            A605SupplierGenLandlineCode = BC000614_A605SupplierGenLandlineCode[0];
-            A606SupplierGenLandlineSubNumber = BC000614_A606SupplierGenLandlineSubNumber[0];
-            A501SupplierGenEmail = BC000614_A501SupplierGenEmail[0];
-            A428SupplierGenWebsite = BC000614_A428SupplierGenWebsite[0];
-            A604SupplierGenDescription = BC000614_A604SupplierGenDescription[0];
-            A253SupplierGenTypeId = BC000614_A253SupplierGenTypeId[0];
-            A600SG_OrganisationSupplierId = BC000614_A600SG_OrganisationSupplierId[0];
-            n600SG_OrganisationSupplierId = BC000614_n600SG_OrganisationSupplierId[0];
-            A602SG_LocationSupplierOrganisatio = BC000614_A602SG_LocationSupplierOrganisatio[0];
-            n602SG_LocationSupplierOrganisatio = BC000614_n602SG_LocationSupplierOrganisatio[0];
-            A601SG_LocationSupplierLocationId = BC000614_A601SG_LocationSupplierLocationId[0];
-            n601SG_LocationSupplierLocationId = BC000614_n601SG_LocationSupplierLocationId[0];
+            A42SupplierGenId = BC000615_A42SupplierGenId[0];
+            n42SupplierGenId = BC000615_n42SupplierGenId[0];
+            A48SupplierGenContactPhone = BC000615_A48SupplierGenContactPhone[0];
+            A607SupplierGenLandlineNumber = BC000615_A607SupplierGenLandlineNumber[0];
+            A259SupplierGenAddressZipCode = BC000615_A259SupplierGenAddressZipCode[0];
+            A43SupplierGenKvkNumber = BC000615_A43SupplierGenKvkNumber[0];
+            A254SupplierGenTypeName = BC000615_A254SupplierGenTypeName[0];
+            A44SupplierGenCompanyName = BC000615_A44SupplierGenCompanyName[0];
+            A309SupplierGenAddressCountry = BC000615_A309SupplierGenAddressCountry[0];
+            A260SupplierGenAddressCity = BC000615_A260SupplierGenAddressCity[0];
+            A310SupplierGenAddressLine1 = BC000615_A310SupplierGenAddressLine1[0];
+            A311SupplierGenAddressLine2 = BC000615_A311SupplierGenAddressLine2[0];
+            A47SupplierGenContactName = BC000615_A47SupplierGenContactName[0];
+            A353SupplierGenPhoneCode = BC000615_A353SupplierGenPhoneCode[0];
+            A354SupplierGenPhoneNumber = BC000615_A354SupplierGenPhoneNumber[0];
+            A605SupplierGenLandlineCode = BC000615_A605SupplierGenLandlineCode[0];
+            A606SupplierGenLandlineSubNumber = BC000615_A606SupplierGenLandlineSubNumber[0];
+            A501SupplierGenEmail = BC000615_A501SupplierGenEmail[0];
+            A428SupplierGenWebsite = BC000615_A428SupplierGenWebsite[0];
+            A604SupplierGenDescription = BC000615_A604SupplierGenDescription[0];
+            A253SupplierGenTypeId = BC000615_A253SupplierGenTypeId[0];
+            A600SG_OrganisationSupplierId = BC000615_A600SG_OrganisationSupplierId[0];
+            n600SG_OrganisationSupplierId = BC000615_n600SG_OrganisationSupplierId[0];
+            A602SG_LocationSupplierOrganisatio = BC000615_A602SG_LocationSupplierOrganisatio[0];
+            n602SG_LocationSupplierOrganisatio = BC000615_n602SG_LocationSupplierOrganisatio[0];
+            A601SG_LocationSupplierLocationId = BC000615_A601SG_LocationSupplierLocationId[0];
+            n601SG_LocationSupplierLocationId = BC000615_n601SG_LocationSupplierLocationId[0];
          }
          Gx_mode = sMode9;
       }
 
       protected void ScanKeyEnd069( )
       {
-         pr_default.close(12);
+         pr_default.close(13);
       }
 
       protected void AfterConfirm069( )
@@ -1762,33 +1770,36 @@ namespace GeneXus.Programs {
          BC000613_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          BC000613_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000613_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000614_A616SupplierDynamicFormId = new Guid[] {Guid.Empty} ;
          BC000614_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          BC000614_n42SupplierGenId = new bool[] {false} ;
-         BC000614_A48SupplierGenContactPhone = new string[] {""} ;
-         BC000614_A607SupplierGenLandlineNumber = new string[] {""} ;
-         BC000614_A259SupplierGenAddressZipCode = new string[] {""} ;
-         BC000614_A43SupplierGenKvkNumber = new string[] {""} ;
-         BC000614_A254SupplierGenTypeName = new string[] {""} ;
-         BC000614_A44SupplierGenCompanyName = new string[] {""} ;
-         BC000614_A309SupplierGenAddressCountry = new string[] {""} ;
-         BC000614_A260SupplierGenAddressCity = new string[] {""} ;
-         BC000614_A310SupplierGenAddressLine1 = new string[] {""} ;
-         BC000614_A311SupplierGenAddressLine2 = new string[] {""} ;
-         BC000614_A47SupplierGenContactName = new string[] {""} ;
-         BC000614_A353SupplierGenPhoneCode = new string[] {""} ;
-         BC000614_A354SupplierGenPhoneNumber = new string[] {""} ;
-         BC000614_A605SupplierGenLandlineCode = new string[] {""} ;
-         BC000614_A606SupplierGenLandlineSubNumber = new string[] {""} ;
-         BC000614_A501SupplierGenEmail = new string[] {""} ;
-         BC000614_A428SupplierGenWebsite = new string[] {""} ;
-         BC000614_A604SupplierGenDescription = new string[] {""} ;
-         BC000614_A253SupplierGenTypeId = new Guid[] {Guid.Empty} ;
-         BC000614_A600SG_OrganisationSupplierId = new Guid[] {Guid.Empty} ;
-         BC000614_n600SG_OrganisationSupplierId = new bool[] {false} ;
-         BC000614_A602SG_LocationSupplierOrganisatio = new Guid[] {Guid.Empty} ;
-         BC000614_n602SG_LocationSupplierOrganisatio = new bool[] {false} ;
-         BC000614_A601SG_LocationSupplierLocationId = new Guid[] {Guid.Empty} ;
-         BC000614_n601SG_LocationSupplierLocationId = new bool[] {false} ;
+         BC000615_A42SupplierGenId = new Guid[] {Guid.Empty} ;
+         BC000615_n42SupplierGenId = new bool[] {false} ;
+         BC000615_A48SupplierGenContactPhone = new string[] {""} ;
+         BC000615_A607SupplierGenLandlineNumber = new string[] {""} ;
+         BC000615_A259SupplierGenAddressZipCode = new string[] {""} ;
+         BC000615_A43SupplierGenKvkNumber = new string[] {""} ;
+         BC000615_A254SupplierGenTypeName = new string[] {""} ;
+         BC000615_A44SupplierGenCompanyName = new string[] {""} ;
+         BC000615_A309SupplierGenAddressCountry = new string[] {""} ;
+         BC000615_A260SupplierGenAddressCity = new string[] {""} ;
+         BC000615_A310SupplierGenAddressLine1 = new string[] {""} ;
+         BC000615_A311SupplierGenAddressLine2 = new string[] {""} ;
+         BC000615_A47SupplierGenContactName = new string[] {""} ;
+         BC000615_A353SupplierGenPhoneCode = new string[] {""} ;
+         BC000615_A354SupplierGenPhoneNumber = new string[] {""} ;
+         BC000615_A605SupplierGenLandlineCode = new string[] {""} ;
+         BC000615_A606SupplierGenLandlineSubNumber = new string[] {""} ;
+         BC000615_A501SupplierGenEmail = new string[] {""} ;
+         BC000615_A428SupplierGenWebsite = new string[] {""} ;
+         BC000615_A604SupplierGenDescription = new string[] {""} ;
+         BC000615_A253SupplierGenTypeId = new Guid[] {Guid.Empty} ;
+         BC000615_A600SG_OrganisationSupplierId = new Guid[] {Guid.Empty} ;
+         BC000615_n600SG_OrganisationSupplierId = new bool[] {false} ;
+         BC000615_A602SG_LocationSupplierOrganisatio = new Guid[] {Guid.Empty} ;
+         BC000615_n602SG_LocationSupplierOrganisatio = new bool[] {false} ;
+         BC000615_A601SG_LocationSupplierLocationId = new Guid[] {Guid.Empty} ;
+         BC000615_n601SG_LocationSupplierLocationId = new bool[] {false} ;
          i600SG_OrganisationSupplierId = Guid.Empty;
          i602SG_LocationSupplierOrganisatio = Guid.Empty;
          i601SG_LocationSupplierLocationId = Guid.Empty;
@@ -1844,9 +1855,12 @@ namespace GeneXus.Programs {
                BC000613_A58ProductServiceId, BC000613_A29LocationId, BC000613_A11OrganisationId
                }
                , new Object[] {
-               BC000614_A42SupplierGenId, BC000614_A48SupplierGenContactPhone, BC000614_A607SupplierGenLandlineNumber, BC000614_A259SupplierGenAddressZipCode, BC000614_A43SupplierGenKvkNumber, BC000614_A254SupplierGenTypeName, BC000614_A44SupplierGenCompanyName, BC000614_A309SupplierGenAddressCountry, BC000614_A260SupplierGenAddressCity, BC000614_A310SupplierGenAddressLine1,
-               BC000614_A311SupplierGenAddressLine2, BC000614_A47SupplierGenContactName, BC000614_A353SupplierGenPhoneCode, BC000614_A354SupplierGenPhoneNumber, BC000614_A605SupplierGenLandlineCode, BC000614_A606SupplierGenLandlineSubNumber, BC000614_A501SupplierGenEmail, BC000614_A428SupplierGenWebsite, BC000614_A604SupplierGenDescription, BC000614_A253SupplierGenTypeId,
-               BC000614_A600SG_OrganisationSupplierId, BC000614_n600SG_OrganisationSupplierId, BC000614_A602SG_LocationSupplierOrganisatio, BC000614_n602SG_LocationSupplierOrganisatio, BC000614_A601SG_LocationSupplierLocationId, BC000614_n601SG_LocationSupplierLocationId
+               BC000614_A616SupplierDynamicFormId, BC000614_A42SupplierGenId
+               }
+               , new Object[] {
+               BC000615_A42SupplierGenId, BC000615_A48SupplierGenContactPhone, BC000615_A607SupplierGenLandlineNumber, BC000615_A259SupplierGenAddressZipCode, BC000615_A43SupplierGenKvkNumber, BC000615_A254SupplierGenTypeName, BC000615_A44SupplierGenCompanyName, BC000615_A309SupplierGenAddressCountry, BC000615_A260SupplierGenAddressCity, BC000615_A310SupplierGenAddressLine1,
+               BC000615_A311SupplierGenAddressLine2, BC000615_A47SupplierGenContactName, BC000615_A353SupplierGenPhoneCode, BC000615_A354SupplierGenPhoneNumber, BC000615_A605SupplierGenLandlineCode, BC000615_A606SupplierGenLandlineSubNumber, BC000615_A501SupplierGenEmail, BC000615_A428SupplierGenWebsite, BC000615_A604SupplierGenDescription, BC000615_A253SupplierGenTypeId,
+               BC000615_A600SG_OrganisationSupplierId, BC000615_n600SG_OrganisationSupplierId, BC000615_A602SG_LocationSupplierOrganisatio, BC000615_n602SG_LocationSupplierOrganisatio, BC000615_A601SG_LocationSupplierLocationId, BC000615_n601SG_LocationSupplierLocationId
                }
             }
          );
@@ -2034,33 +2048,36 @@ namespace GeneXus.Programs {
       private Guid[] BC000613_A58ProductServiceId ;
       private Guid[] BC000613_A29LocationId ;
       private Guid[] BC000613_A11OrganisationId ;
+      private Guid[] BC000614_A616SupplierDynamicFormId ;
       private Guid[] BC000614_A42SupplierGenId ;
       private bool[] BC000614_n42SupplierGenId ;
-      private string[] BC000614_A48SupplierGenContactPhone ;
-      private string[] BC000614_A607SupplierGenLandlineNumber ;
-      private string[] BC000614_A259SupplierGenAddressZipCode ;
-      private string[] BC000614_A43SupplierGenKvkNumber ;
-      private string[] BC000614_A254SupplierGenTypeName ;
-      private string[] BC000614_A44SupplierGenCompanyName ;
-      private string[] BC000614_A309SupplierGenAddressCountry ;
-      private string[] BC000614_A260SupplierGenAddressCity ;
-      private string[] BC000614_A310SupplierGenAddressLine1 ;
-      private string[] BC000614_A311SupplierGenAddressLine2 ;
-      private string[] BC000614_A47SupplierGenContactName ;
-      private string[] BC000614_A353SupplierGenPhoneCode ;
-      private string[] BC000614_A354SupplierGenPhoneNumber ;
-      private string[] BC000614_A605SupplierGenLandlineCode ;
-      private string[] BC000614_A606SupplierGenLandlineSubNumber ;
-      private string[] BC000614_A501SupplierGenEmail ;
-      private string[] BC000614_A428SupplierGenWebsite ;
-      private string[] BC000614_A604SupplierGenDescription ;
-      private Guid[] BC000614_A253SupplierGenTypeId ;
-      private Guid[] BC000614_A600SG_OrganisationSupplierId ;
-      private bool[] BC000614_n600SG_OrganisationSupplierId ;
-      private Guid[] BC000614_A602SG_LocationSupplierOrganisatio ;
-      private bool[] BC000614_n602SG_LocationSupplierOrganisatio ;
-      private Guid[] BC000614_A601SG_LocationSupplierLocationId ;
-      private bool[] BC000614_n601SG_LocationSupplierLocationId ;
+      private Guid[] BC000615_A42SupplierGenId ;
+      private bool[] BC000615_n42SupplierGenId ;
+      private string[] BC000615_A48SupplierGenContactPhone ;
+      private string[] BC000615_A607SupplierGenLandlineNumber ;
+      private string[] BC000615_A259SupplierGenAddressZipCode ;
+      private string[] BC000615_A43SupplierGenKvkNumber ;
+      private string[] BC000615_A254SupplierGenTypeName ;
+      private string[] BC000615_A44SupplierGenCompanyName ;
+      private string[] BC000615_A309SupplierGenAddressCountry ;
+      private string[] BC000615_A260SupplierGenAddressCity ;
+      private string[] BC000615_A310SupplierGenAddressLine1 ;
+      private string[] BC000615_A311SupplierGenAddressLine2 ;
+      private string[] BC000615_A47SupplierGenContactName ;
+      private string[] BC000615_A353SupplierGenPhoneCode ;
+      private string[] BC000615_A354SupplierGenPhoneNumber ;
+      private string[] BC000615_A605SupplierGenLandlineCode ;
+      private string[] BC000615_A606SupplierGenLandlineSubNumber ;
+      private string[] BC000615_A501SupplierGenEmail ;
+      private string[] BC000615_A428SupplierGenWebsite ;
+      private string[] BC000615_A604SupplierGenDescription ;
+      private Guid[] BC000615_A253SupplierGenTypeId ;
+      private Guid[] BC000615_A600SG_OrganisationSupplierId ;
+      private bool[] BC000615_n600SG_OrganisationSupplierId ;
+      private Guid[] BC000615_A602SG_LocationSupplierOrganisatio ;
+      private bool[] BC000615_n602SG_LocationSupplierOrganisatio ;
+      private Guid[] BC000615_A601SG_LocationSupplierLocationId ;
+      private bool[] BC000615_n601SG_LocationSupplierLocationId ;
       private SdtTrn_SupplierGen bcTrn_SupplierGen ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -2151,6 +2168,7 @@ public class trn_suppliergen_bc__default : DataStoreHelperBase, IDataStoreHelper
       ,new ForEachCursor(def[10])
       ,new ForEachCursor(def[11])
       ,new ForEachCursor(def[12])
+      ,new ForEachCursor(def[13])
     };
  }
 
@@ -2254,6 +2272,10 @@ public class trn_suppliergen_bc__default : DataStoreHelperBase, IDataStoreHelper
        prmBC000614 = new Object[] {
        new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
+       Object[] prmBC000615;
+       prmBC000615 = new Object[] {
+       new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
        def= new CursorDef[] {
            new CursorDef("BC00062", "SELECT SupplierGenId, SupplierGenContactPhone, SupplierGenLandlineNumber, SupplierGenAddressZipCode, SupplierGenKvkNumber, SupplierGenCompanyName, SupplierGenAddressCountry, SupplierGenAddressCity, SupplierGenAddressLine1, SupplierGenAddressLine2, SupplierGenContactName, SupplierGenPhoneCode, SupplierGenPhoneNumber, SupplierGenLandlineCode, SupplierGenLandlineSubNumber, SupplierGenEmail, SupplierGenWebsite, SupplierGenDescription, SupplierGenTypeId, SG_OrganisationSupplierId, SG_LocationSupplierOrganisatio, SG_LocationSupplierLocationId FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId  FOR UPDATE OF Trn_SupplierGen",true, GxErrorMask.GX_NOMASK, false, this,prmBC00062,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00063", "SELECT SupplierGenId, SupplierGenContactPhone, SupplierGenLandlineNumber, SupplierGenAddressZipCode, SupplierGenKvkNumber, SupplierGenCompanyName, SupplierGenAddressCountry, SupplierGenAddressCity, SupplierGenAddressLine1, SupplierGenAddressLine2, SupplierGenContactName, SupplierGenPhoneCode, SupplierGenPhoneNumber, SupplierGenLandlineCode, SupplierGenLandlineSubNumber, SupplierGenEmail, SupplierGenWebsite, SupplierGenDescription, SupplierGenTypeId, SG_OrganisationSupplierId, SG_LocationSupplierOrganisatio, SG_LocationSupplierLocationId FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00063,1, GxCacheFrequency.OFF ,true,false )
@@ -2267,7 +2289,8 @@ public class trn_suppliergen_bc__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("BC000611", "SAVEPOINT gxupdate;DELETE FROM Trn_SupplierGen  WHERE SupplierGenId = :SupplierGenId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000611)
           ,new CursorDef("BC000612", "SELECT SupplierGenTypeName FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000612,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000613", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000613,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000614", "SELECT TM1.SupplierGenId, TM1.SupplierGenContactPhone, TM1.SupplierGenLandlineNumber, TM1.SupplierGenAddressZipCode, TM1.SupplierGenKvkNumber, T2.SupplierGenTypeName, TM1.SupplierGenCompanyName, TM1.SupplierGenAddressCountry, TM1.SupplierGenAddressCity, TM1.SupplierGenAddressLine1, TM1.SupplierGenAddressLine2, TM1.SupplierGenContactName, TM1.SupplierGenPhoneCode, TM1.SupplierGenPhoneNumber, TM1.SupplierGenLandlineCode, TM1.SupplierGenLandlineSubNumber, TM1.SupplierGenEmail, TM1.SupplierGenWebsite, TM1.SupplierGenDescription, TM1.SupplierGenTypeId, TM1.SG_OrganisationSupplierId AS SG_OrganisationSupplierId, TM1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, TM1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId FROM (Trn_SupplierGen TM1 INNER JOIN Trn_SupplierGenType T2 ON T2.SupplierGenTypeId = TM1.SupplierGenTypeId) WHERE TM1.SupplierGenId = :SupplierGenId ORDER BY TM1.SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000614,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000614", "SELECT SupplierDynamicFormId, SupplierGenId FROM Trn_SupplierDynamicForm WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000614,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000615", "SELECT TM1.SupplierGenId, TM1.SupplierGenContactPhone, TM1.SupplierGenLandlineNumber, TM1.SupplierGenAddressZipCode, TM1.SupplierGenKvkNumber, T2.SupplierGenTypeName, TM1.SupplierGenCompanyName, TM1.SupplierGenAddressCountry, TM1.SupplierGenAddressCity, TM1.SupplierGenAddressLine1, TM1.SupplierGenAddressLine2, TM1.SupplierGenContactName, TM1.SupplierGenPhoneCode, TM1.SupplierGenPhoneNumber, TM1.SupplierGenLandlineCode, TM1.SupplierGenLandlineSubNumber, TM1.SupplierGenEmail, TM1.SupplierGenWebsite, TM1.SupplierGenDescription, TM1.SupplierGenTypeId, TM1.SG_OrganisationSupplierId AS SG_OrganisationSupplierId, TM1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, TM1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId FROM (Trn_SupplierGen TM1 INNER JOIN Trn_SupplierGenType T2 ON T2.SupplierGenTypeId = TM1.SupplierGenTypeId) WHERE TM1.SupplierGenId = :SupplierGenId ORDER BY TM1.SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000615,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -2381,6 +2404,10 @@ public class trn_suppliergen_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              return;
           case 12 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 13 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
