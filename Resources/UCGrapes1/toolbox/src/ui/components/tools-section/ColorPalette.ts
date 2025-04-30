@@ -109,7 +109,7 @@ export class ColorPalette {
       ).infoContentMapper.getInfoContent(selectedComponent.parent().parent().getId());
       
       return tileInfoSectionAttributes?.Tiles?.find(
-        (tile) => tile.TileId === selectedComponent.parent().getId()
+        (tile) => tile.Id === selectedComponent.parent().getId()
       );
     } else {
       return (globalThis as any).tileMapper.getTile(

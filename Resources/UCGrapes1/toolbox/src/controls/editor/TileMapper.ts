@@ -262,7 +262,7 @@ export class TileMapper {
     }
 
     // if current page is Menu type
-    else if (data.PageType === "Menu") {
+    else if (data.PageType === "Menu" || data.PageType === "MyCare"  || data.PageType === "MyLiving"  || data.PageType === "MyServices") {
       if (rowId) {
         const row = data?.PageMenuStructure?.Rows?.find(
           (r: any) => r.Id === rowId

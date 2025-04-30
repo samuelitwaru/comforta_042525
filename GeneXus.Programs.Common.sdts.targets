@@ -81,6 +81,9 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage_RowsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage_RowsItem_TilesItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage_RowsItem_TilesItem_Action.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_MobileInfoPage.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_MobileInfoPage_InfoContentItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_MobileInfoPage_InfoContentItem_CtaAttributes.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MobilePage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NotificationGroup_SDT_NotificationGroupItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NotificationMetadata.cs" />

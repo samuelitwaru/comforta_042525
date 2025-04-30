@@ -142,10 +142,10 @@ namespace GeneXus.Programs {
             cleanup();
             if (true) return;
          }
-         AV21GXV1 = 1;
-         while ( AV21GXV1 <= AV8SDT_InfoPage.gxTpr_Infocontent.Count )
+         AV24GXV1 = 1;
+         while ( AV24GXV1 <= AV8SDT_InfoPage.gxTpr_Infocontent.Count )
          {
-            AV16InfoContent = ((SdtSDT_InfoPage_InfoContentItem)AV8SDT_InfoPage.gxTpr_Infocontent.Item(AV21GXV1));
+            AV16InfoContent = ((SdtSDT_InfoPage_InfoContentItem)AV8SDT_InfoPage.gxTpr_Infocontent.Item(AV24GXV1));
             if ( StringUtil.StrCmp(AV16InfoContent.gxTpr_Infotype, "Image") == 0 )
             {
                AV16InfoContent.gxTpr_Images.Add(AV16InfoContent.gxTpr_Infovalue, 0);
@@ -168,7 +168,7 @@ namespace GeneXus.Programs {
             else
             {
             }
-            AV21GXV1 = (int)(AV21GXV1+1);
+            AV24GXV1 = (int)(AV24GXV1+1);
          }
          cleanup();
       }
@@ -261,7 +261,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV21GXV1 ;
+      private int AV24GXV1 ;
       private string GXt_char1 ;
       private bool n29LocationId ;
       private bool n598PublishedActiveAppVersionId ;

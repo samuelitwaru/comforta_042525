@@ -109,11 +109,11 @@ export class InfoSectionController {
         InfoType: "TileRow",
         Tiles: [
           {
-            TileId: tileId || randomIdGenerator(15),
-            TileName: "Title",
-            TileText: "Title",
-            TileColor: "#333333",
-            TileAlign: "left",
+            Id: tileId || randomIdGenerator(15),
+            Name: "Title",
+            Text: "Title",
+            Color: "#333333",
+            Align: "left",
             Action: {
               ObjectType: "",
               ObjectId: "",
@@ -240,7 +240,7 @@ export class InfoSectionController {
 
     if (tileInfoSectionAttributes) {
       const tile = tileInfoSectionAttributes.Tiles?.find(
-        (tile) => tile.TileId === tileId
+        (tile) => tile.Id === tileId
       );
       if (tile) {
         this.setNestedProperty(tile, attributePath, value);

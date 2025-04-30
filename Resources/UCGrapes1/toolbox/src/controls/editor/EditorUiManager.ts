@@ -388,6 +388,7 @@ export class EditorUIManager {
   }
 
   async createChildEditor() {
+    
     const selectedComponent = (globalThis as any).selectedComponent;
     const tileWrapper = selectedComponent.parent();
     const rowComponent = tileWrapper.parent();
@@ -414,13 +415,13 @@ export class EditorUIManager {
         tileAttributes?.Action?.ObjectType === "Phone" ||
         tileAttributes?.Action?.ObjectType === "Email"
       ) {
+
         return;
       }
       const objectId = tileAttributes.Action.ObjectId;
       const data: any = JSON.parse(
         localStorage.getItem(`data-${objectId}`) || "{}"
       );
-
       let childPage;
       if (Object.keys(data).length > 0) {
         childPage = data;
@@ -436,7 +437,7 @@ export class EditorUIManager {
             ?.find((page: any) => page.PageId === objectId);
         }
       }
-
+      console.log("childPage", childPage);
       if (childPage) {
         new ChildEditor(objectId, childPage).init(tileAttributes);
       }
