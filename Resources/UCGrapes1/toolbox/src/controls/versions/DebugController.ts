@@ -74,11 +74,11 @@ export class DebugController {
                     if (item.InfoType === "TileRow" && item.Tiles) {
                         item.Tiles?.forEach((tile: Tile) => {
                             if (tile.Action?.ObjectUrl) {
-                                urls.push({ url: tile.Action.ObjectUrl, affectedType: "Tile", affectedName: tile.Name || "Unnamed Tile" });
+                                urls.push({ url: tile.Action.ObjectUrl, affectedType: "Tile", affectedName: tile.TileName || "Unnamed Tile" });
                             }
 
-                            if (tile.BGImageUrl) {
-                                urls.push({ url: tile.BGImageUrl, affectedType: "Tile", affectedName: tile.Name || "Unnamed Tile" });
+                            if (tile.TileBGImageUrl) {
+                                urls.push({ url: tile.TileBGImageUrl, affectedType: "Tile", affectedName: tile.TileName || "Unnamed Tile" });
                             } 
                         });
                     }

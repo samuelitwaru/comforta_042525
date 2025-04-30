@@ -1,13 +1,13 @@
 export interface Tile {
-    Id: string;
-    Name?: string;
-    Text?: string;
-    Color?: string;
-    Align?: string;
-    Icon?: string;
-    BGColor?: string;
-    BGImageUrl?: string;
-    Opacity?: number;
+    TileId: string;
+    TileName?: string;
+    TileText?: string;
+    TileColor?: string;
+    TileAlign?: string;
+    TileIcon?: string;
+    TileBGColor?: string;
+    TileBGImageUrl?: string;
+    TileBGImageOpacity?: number;
     Permissions?: [];
     Action?: {
         ObjectType?: string;

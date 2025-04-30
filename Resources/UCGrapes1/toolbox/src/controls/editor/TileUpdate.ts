@@ -85,6 +85,8 @@ export class TileUpdate {
       }
     
       private updateTileTitleLength(tile: any, length: number) {
+        alert()
+        console.log('tile', tile)
           const tileTitle = tile.find(".tile-title")[0];
           if (tileTitle) {
             const textLength = length === 3 ? 11 : (length === 2 ? 15 : 20);

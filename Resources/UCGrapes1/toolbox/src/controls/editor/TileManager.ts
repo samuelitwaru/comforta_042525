@@ -174,11 +174,11 @@ export class TileManager {
     if (tileSection) {
       if (method === "add") {
         tileSection.Tiles?.push({
-          Id: tileId,
-          Name: "Title",
-          Text: "Title",
-          Color: "#333333",
-          Align: "left",
+          TileId: tileId,
+          TileName: "Title",
+          TileText: "Title",
+          TileColor: "#333333",
+          TileAlign: "left",
           Action: {
             ObjectType: "",
             ObjectId: "",

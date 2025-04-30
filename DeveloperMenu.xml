@@ -579,4 +579,10 @@
       <ObjDesc>WWPBaseObjects.Download Report</ObjDesc>
       <ObjLink>wwpbaseobjects.wwp_downloadreport.aspx</ObjLink>
    </Object>
+   <Object>
+      <ObjCls>1</ObjCls>
+      <ObjName>Prc_ConvertContentPages</ObjName>
+      <ObjDesc>Prc_Convert Content Pages</ObjDesc>
+      <ObjLink>aprc_convertcontentpages.aspx</ObjLink>
+   </Object>
 </Objects>

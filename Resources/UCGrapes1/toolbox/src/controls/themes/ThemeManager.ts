@@ -183,11 +183,11 @@ export class ThemeManager {
                   } else if (info.InfoType === "TileRow") {
                     const tiles = info?.Tiles;
                     tiles?.forEach((tile: Tile) => {
-                      const tileWrapper = iframeDoc.getElementById(tile.Id);
+                      const tileWrapper = iframeDoc.getElementById(tile.TileId);
                       if (tileWrapper) {
                         const tileEl = tileWrapper.querySelector('.template-block') as HTMLElement;
                         if (tileEl) {
-                          tileEl.style.backgroundColor = theme?.ThemeColors?.[tile.BGColor as keyof ThemeColors];
+                          tileEl.style.backgroundColor = theme?.ThemeColors?.[tile.TileBGColor as keyof ThemeColors];
                         }   
                         this.updateTileIcon(tile, tileWrapper);
                       }

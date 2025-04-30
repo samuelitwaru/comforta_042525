@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250430095954"
+  version: "20250430120023"
 servers:
   - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/rest
 paths:
@@ -2698,32 +2698,32 @@ components:
       x-gx-level: "SDT_InfoPage.InfoContent"
     SDT_InfoTile_SDT_InfoTileItem:
       properties:
-        Id:
-          description: "Id"
+        TileId:
+          description: "Tile Id"
           type: "string"
-        Name:
-          description: "Name"
+        TielName:
+          description: "Tiel Name"
           type: "string"
-        Text:
-          description: "Text"
+        TileText:
+          description: "Tile Text"
           type: "string"
-        Color:
-          description: "Color"
+        TileColor:
+          description: "Tile Color"
           type: "string"
-        Align:
-          description: "Align"
+        TileAlign:
+          description: "Tile Align"
           type: "string"
-        Icon:
-          description: "Icon"
+        TileIcon:
+          description: "Tile Icon"
           type: "string"
-        BGColor:
-          description: "BGColor"
+        TileBGColor:
+          description: "Tile BGColor"
           type: "string"
-        BGImageUrl:
-          description: "BGImage Url"
+        TileBGImageUrl:
+          description: "Tile BGImage Url"
           type: "string"
-        Opacity:
-          description: "Opacity"
+        TileBGImageOpacity:
+          description: "Tile BGImage Opacity"
           type: "number"
           format: "double"
         Action:
