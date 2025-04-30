@@ -152,9 +152,14 @@ namespace GeneXus.Programs {
             }
             else if ( StringUtil.StrCmp(AV16InfoContent.gxTpr_Infotype, "Cta") == 0 )
             {
+               new prc_logtoserver(context ).execute(  context.GetMessage( "ThemeId: ", "")+AV17ThemeId.ToString()) ;
                GXt_char1 = "";
                new prc_getthemecolorbyname(context ).execute(  AV17ThemeId,  AV16InfoContent.gxTpr_Ctaattributes.gxTpr_Ctacolor, out  GXt_char1) ;
                AV16InfoContent.gxTpr_Ctaattributes.gxTpr_Ctacolor = GXt_char1;
+               GXt_char1 = "";
+               new prc_getthemecolorbyname(context ).execute(  AV17ThemeId,  AV16InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor, out  GXt_char1) ;
+               AV16InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = GXt_char1;
+               new prc_logtoserver(context ).execute(  context.GetMessage( "CTA: ", "")+AV16InfoContent.ToJSonString(false, true)) ;
             }
             else
             {
@@ -224,8 +229,8 @@ namespace GeneXus.Programs {
          A536PagePublishedStructure = "";
          A517PageName = "";
          AV16InfoContent = new SdtSDT_InfoPage_InfoContentItem(context);
-         GXt_char1 = "";
          AV17ThemeId = Guid.Empty;
+         GXt_char1 = "";
          P00G35_A29LocationId = new Guid[] {Guid.Empty} ;
          P00G35_n29LocationId = new bool[] {false} ;
          P00G35_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;

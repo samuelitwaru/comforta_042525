@@ -150,7 +150,6 @@ namespace GeneXus.Programs {
          AV17InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = "CtaColorTwo";
          AV16SDT_InfoContent.gxTpr_Infocontent.Add(AV17InfoContentItem, 0);
          AV8BC_Page.gxTpr_Pagestructure = AV16SDT_InfoContent.ToJSonString(false, true);
-         new prc_logtoserver(context ).execute(  context.GetMessage( ">>>> Reception Page : ", "")+AV8BC_Page.gxTpr_Pageid.ToString()) ;
          cleanup();
       }
 
