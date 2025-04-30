@@ -201,6 +201,7 @@ export class ActionListController {
       tileId
     );
 
+
     new ChildEditor(childPage?.PageId, childPage).init(tileAttributes);
   }
 

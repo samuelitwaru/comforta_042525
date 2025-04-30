@@ -97,8 +97,6 @@ namespace GeneXus.Programs {
          {
             AV13Language = context.GetLanguage( );
          }
-         new prc_logtoserver(context ).execute(  context.GetMessage( "Translating to : ", "")+AV13Language) ;
-         new prc_logtoserver(context ).execute(  context.GetMessage( "				Params : ", "")+AV10DynamicTranslationTrnName+" : "+AV9DynamicTranslationPrimaryKey.ToString()+" : "+AV15DynamicTranslationAttributeName+" : "+AV13Language+" : "+AV16DefaultValue) ;
          AV12TranslatedValue = AV16DefaultValue;
          /* Using cursor P00EB2 */
          pr_default.execute(0, new Object[] {AV9DynamicTranslationPrimaryKey, AV10DynamicTranslationTrnName, AV15DynamicTranslationAttributeName});
@@ -122,7 +120,6 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         new prc_logtoserver(context ).execute(  context.GetMessage( "Final Translated Value : ", "")+AV12TranslatedValue) ;
          cleanup();
       }
 

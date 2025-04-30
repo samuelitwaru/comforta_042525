@@ -106,6 +106,7 @@ export class InfoSectionPopup {
             subMenuItem.textContent = subItem.label;
 
             subMenuItem.addEventListener("click", (e) => {
+              alert()
               e.stopPropagation();
               subItem.action();
               this.menuContainer.remove();
