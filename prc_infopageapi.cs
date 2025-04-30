@@ -165,6 +165,18 @@ namespace GeneXus.Programs {
                AV16InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = GXt_char1;
                new prc_logtoserver(context ).execute(  context.GetMessage( "CTA: ", "")+AV16InfoContent.ToJSonString(false, true)) ;
             }
+            else if ( StringUtil.StrCmp(AV16InfoContent.gxTpr_Infotype, "TileRow") == 0 )
+            {
+               AV25GXV2 = 1;
+               while ( AV25GXV2 <= AV16InfoContent.gxTpr_Tiles.Count )
+               {
+                  AV19SDT_InfoTile = ((SdtSDT_InfoTile_SDT_InfoTileItem)AV16InfoContent.gxTpr_Tiles.Item(AV25GXV2));
+                  GXt_char1 = "";
+                  new prc_getthemecolorbyname(context ).execute(  AV17ThemeId,  AV19SDT_InfoTile.gxTpr_Bgcolor, out  GXt_char1) ;
+                  AV19SDT_InfoTile.gxTpr_Bgcolor = GXt_char1;
+                  AV25GXV2 = (int)(AV25GXV2+1);
+               }
+            }
             else
             {
             }
@@ -234,6 +246,7 @@ namespace GeneXus.Programs {
          A517PageName = "";
          AV16InfoContent = new SdtSDT_InfoPage_InfoContentItem(context);
          AV17ThemeId = Guid.Empty;
+         AV19SDT_InfoTile = new SdtSDT_InfoTile_SDT_InfoTileItem(context);
          GXt_char1 = "";
          P00G35_A29LocationId = new Guid[] {Guid.Empty} ;
          P00G35_n29LocationId = new bool[] {false} ;
@@ -262,6 +275,7 @@ namespace GeneXus.Programs {
       }
 
       private int AV24GXV1 ;
+      private int AV25GXV2 ;
       private string GXt_char1 ;
       private bool n29LocationId ;
       private bool n598PublishedActiveAppVersionId ;
@@ -307,6 +321,7 @@ namespace GeneXus.Programs {
       private string[] P00G34_A536PagePublishedStructure ;
       private string[] P00G34_A517PageName ;
       private SdtSDT_InfoPage_InfoContentItem AV16InfoContent ;
+      private SdtSDT_InfoTile_SDT_InfoTileItem AV19SDT_InfoTile ;
       private Guid[] P00G35_A29LocationId ;
       private bool[] P00G35_n29LocationId ;
       private Guid[] P00G35_A273Trn_ThemeId ;
