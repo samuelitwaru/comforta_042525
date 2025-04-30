@@ -33,7 +33,6 @@ export class ContentDataUi {
 
     private openContentEditModal() {
         if ((this.e.target as Element).closest('.tb-edit-content-icon')) {
-            alert()
             const modalBody = document.createElement('div');
             const infoDescSection = this.e.target.closest('[data-gjs-type="info-desc-section"].info-desc-section');
             console.log("infoDescSection", infoDescSection);
