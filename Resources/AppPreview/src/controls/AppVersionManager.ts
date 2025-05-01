@@ -38,6 +38,9 @@ export class AppVersionManager {
         return this._appVersion?.Pages || null;
     } 
 
+    get OrganisationLogo(): string | null {
+        return this._appVersion?.OrganisationLogo || null;
+    } 
     get theme(): SDT_Theme | null {
         return this._appVersion?.SDT_Theme || null;
     } 

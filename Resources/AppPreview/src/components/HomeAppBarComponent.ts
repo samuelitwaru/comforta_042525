@@ -1,3 +1,5 @@
+import { AppVersionManager } from "../controls/AppVersionManager";
+
 export class HomeAppBarComponent {
     appBar: HTMLElement;
     constructor() {
@@ -12,7 +14,16 @@ export class HomeAppBarComponent {
         logoSection.classList.add('logo-section');
 
         const logo = document.createElement('img');
-        logo.src = '/Resources/AppPreview/public/logo.png';
+
+        const organisationLogo = AppVersionManager.getInstance().OrganisationLogo;
+
+        if (organisationLogo) {
+            logo.src = organisationLogo;
+        } else {
+            logo.src = '/Resources/AppPreview/public/logo.png'; // fallback
+        }
+
+
         logo.style.height = '35px';
 
         logoSection.appendChild(logo);

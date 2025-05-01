@@ -32,6 +32,8 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtSDT_AppPreviewVersion_Appversionname = "";
 
+			gxTv_SdtSDT_AppPreviewVersion_Organisationlogo = "";
+
 		}
 
 		public SdtSDT_AppPreviewVersion(IGxContext context)
@@ -69,6 +71,9 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("IsActive", gxTpr_Isactive, false);
+
+
+			AddObjectProperty("OrganisationLogo", gxTpr_Organisationlogo, false);
 
 			if (gxTv_SdtSDT_AppPreviewVersion_Sdt_theme != null)
 			{
@@ -142,6 +147,22 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtSDT_AppPreviewVersion_Isactive = value;
 				SetDirty("Isactive");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationLogo")]
+		[XmlElement(ElementName="OrganisationLogo")]
+		public string gxTpr_Organisationlogo
+		{
+			get {
+				return gxTv_SdtSDT_AppPreviewVersion_Organisationlogo; 
+			}
+			set {
+				gxTv_SdtSDT_AppPreviewVersion_Organisationlogo = value;
+				SetDirty("Organisationlogo");
 			}
 		}
 
@@ -245,6 +266,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_AppPreviewVersion_Appversionname = "";
 
 
+			gxTv_SdtSDT_AppPreviewVersion_Organisationlogo = "";
 
 			gxTv_SdtSDT_AppPreviewVersion_Sdt_theme_N = true;
 
@@ -270,6 +292,9 @@ namespace GeneXus.Programs
 		 
 
 		protected bool gxTv_SdtSDT_AppPreviewVersion_Isactive;
+		 
+
+		protected string gxTv_SdtSDT_AppPreviewVersion_Organisationlogo;
 		 
 		protected bool gxTv_SdtSDT_AppPreviewVersion_Sdt_theme_N;
 		protected SdtSDT_AppPreviewVersion_SDT_Theme gxTv_SdtSDT_AppPreviewVersion_Sdt_theme = null; 
@@ -343,7 +368,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="SDT_Theme", Order=4, EmitDefaultValue=false)]
+		[DataMember(Name="OrganisationLogo", Order=4)]
+		public  string gxTpr_Organisationlogo
+		{
+			get { 
+				return sdt.gxTpr_Organisationlogo;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationlogo = value;
+			}
+		}
+
+		[DataMember(Name="SDT_Theme", Order=5, EmitDefaultValue=false)]
 		public SdtSDT_AppPreviewVersion_SDT_Theme_RESTInterface gxTpr_Sdt_theme
 		{
 			get {
@@ -360,7 +397,7 @@ namespace GeneXus.Programs
 
 		}
 
-		[DataMember(Name="Pages", Order=5, EmitDefaultValue=false)]
+		[DataMember(Name="Pages", Order=6, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtSDT_AppPreviewVersion_PagesItem_RESTInterface> gxTpr_Pages
 		{
 			get {

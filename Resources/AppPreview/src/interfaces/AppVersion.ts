@@ -6,4 +6,5 @@ export interface AppVersion {
     IsActive: boolean;
     Pages: Page[];
     SDT_Theme: any;
+    OrganisationLogo :string;
 }

@@ -629,11 +629,15 @@ namespace GeneXus.Programs {
          pr_default.execute(0, new Object[] {AV8BC_Trn_AppVersion.gxTpr_Locationid});
          while ( (pr_default.getStatus(0) != 101) )
          {
+            A11OrganisationId = H00B02_A11OrganisationId[0];
             A29LocationId = H00B02_A29LocationId[0];
             A273Trn_ThemeId = H00B02_A273Trn_ThemeId[0];
             n273Trn_ThemeId = H00B02_n273Trn_ThemeId[0];
+            A40000OrganisationLogo_GXI = H00B02_A40000OrganisationLogo_GXI[0];
+            A40000OrganisationLogo_GXI = H00B02_A40000OrganisationLogo_GXI[0];
             AV11Current_Theme = A273Trn_ThemeId;
             AssignAttri("", false, "AV11Current_Theme", AV11Current_Theme.ToString());
+            AV19SDT_AppPreview.gxTpr_Organisationlogo = A40000OrganisationLogo_GXI;
             pr_default.readNext(0);
          }
          pr_default.close(0);
@@ -757,7 +761,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202543016401985", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255115115971", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -775,7 +779,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_apppreview.js", "?202543016401986", false, true);
+            context.AddJavascriptSource("wp_apppreview.js", "?20255115115972", false, true);
             context.AddJavascriptSource("UserControls/UC_AppPreviewRender.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -857,8 +861,11 @@ namespace GeneXus.Programs {
          H00B02_A29LocationId = new Guid[] {Guid.Empty} ;
          H00B02_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
          H00B02_n273Trn_ThemeId = new bool[] {false} ;
+         H00B02_A40000OrganisationLogo_GXI = new string[] {""} ;
+         A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A273Trn_ThemeId = Guid.Empty;
+         A40000OrganisationLogo_GXI = "";
          AV11Current_Theme = Guid.Empty;
          H00B03_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
          H00B03_n273Trn_ThemeId = new bool[] {false} ;
@@ -902,7 +909,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wp_apppreview__default(),
             new Object[][] {
                 new Object[] {
-               H00B02_A11OrganisationId, H00B02_A29LocationId, H00B02_A273Trn_ThemeId, H00B02_n273Trn_ThemeId
+               H00B02_A11OrganisationId, H00B02_A29LocationId, H00B02_A273Trn_ThemeId, H00B02_n273Trn_ThemeId, H00B02_A40000OrganisationLogo_GXI
                }
                , new Object[] {
                H00B03_A273Trn_ThemeId, H00B03_A274Trn_ThemeName, H00B03_A281Trn_ThemeFontFamily, H00B03_A405Trn_ThemeFontSize
@@ -967,6 +974,7 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool n273Trn_ThemeId ;
       private string A284IconSVG ;
+      private string A40000OrganisationLogo_GXI ;
       private string A274Trn_ThemeName ;
       private string A281Trn_ThemeFontFamily ;
       private string A277ColorCode ;
@@ -977,6 +985,7 @@ namespace GeneXus.Programs {
       private string A539CtaColorName ;
       private Guid AV9AppVersionId ;
       private Guid wcpOAV9AppVersionId ;
+      private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A273Trn_ThemeId ;
       private Guid AV11Current_Theme ;
@@ -996,6 +1005,7 @@ namespace GeneXus.Programs {
       private Guid[] H00B02_A29LocationId ;
       private Guid[] H00B02_A273Trn_ThemeId ;
       private bool[] H00B02_n273Trn_ThemeId ;
+      private string[] H00B02_A40000OrganisationLogo_GXI ;
       private Guid[] H00B03_A273Trn_ThemeId ;
       private bool[] H00B03_n273Trn_ThemeId ;
       private string[] H00B03_A274Trn_ThemeName ;
@@ -1065,7 +1075,7 @@ namespace GeneXus.Programs {
           new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
           };
           def= new CursorDef[] {
-              new CursorDef("H00B02", "SELECT OrganisationId, LocationId, Trn_ThemeId FROM Trn_Location WHERE LocationId = :AV8BC_Tr_1Locationid ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00B02,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("H00B02", "SELECT T1.OrganisationId, T1.LocationId, T1.Trn_ThemeId, T2.OrganisationLogo_GXI FROM (Trn_Location T1 INNER JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId) WHERE T1.LocationId = :AV8BC_Tr_1Locationid ORDER BY T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00B02,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("H00B03", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize FROM Trn_Theme WHERE Trn_ThemeId = :AV11Current_Theme ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00B03,1, GxCacheFrequency.OFF ,true,true )
              ,new CursorDef("H00B04", "SELECT Trn_ThemeId, ColorId, ColorCode, ColorName FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, ColorName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00B04,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("H00B05", "SELECT Trn_ThemeId, IconId, IconName, IconSVG, IconCategory FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00B05,100, GxCacheFrequency.OFF ,false,false )
@@ -1085,6 +1095,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((bool[]) buf[3])[0] = rslt.wasNull(3);
+                ((string[]) buf[4])[0] = rslt.getMultimediaUri(4);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
