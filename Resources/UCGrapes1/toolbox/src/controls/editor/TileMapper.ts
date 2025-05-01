@@ -303,9 +303,7 @@ export class TileMapper {
       .filter((content:any)=>content.InfoType == "TileRow")
       .forEach((content: any) => {
         tile = content.Tiles.find((t: any) => t.Id === tileId)
-        // return tile || null;
       })
-      console.log("tile", tile)
       return tile
     }
 

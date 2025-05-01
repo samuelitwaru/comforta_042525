@@ -125,13 +125,15 @@ export class EditorUIManager {
         const type = comp.get("type");
         return type === "tile-wrapper";
       });
+      console.log(tileWrappers)
       if (tileWrappers.length > 3) {
         model.target.remove();
         this.editor.UndoManager.undo();
       }
-
+      // return
       const isDragging: boolean = true;
       const tileUpdate = new TileUpdate();
+
       tileUpdate.updateTile(destinationComponent, isDragging);
       tileUpdate.updateTile(sourceComponent, isDragging);
 
@@ -142,6 +144,7 @@ export class EditorUIManager {
         destinationComponent.getId(),
         model.index
       );
+      console.log("tileMapper", tileMapper);
       this.onTileUpdate(destinationComponent);
     } else if (
       parentEl &&
