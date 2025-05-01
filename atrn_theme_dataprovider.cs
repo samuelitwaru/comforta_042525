@@ -561,7 +561,7 @@ namespace GeneXus.Programs {
          Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
          Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
          Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorSix", "");
-         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#228b22";
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#228b21";
          cleanup();
       }
 
