@@ -656,7 +656,7 @@ span#scroll-right:hover {
   position: absolute;
   top: 100%;
   left: 0;
-  max-height: 200px;
+  /* max-height: 200px; */
   min-width: 100%;
   background-color: white;
   border-radius: 6px;
