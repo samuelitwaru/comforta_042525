@@ -139,18 +139,17 @@ namespace GeneXus.Programs {
                {
                   new prc_logtoserver(context ).execute(  context.GetMessage( "Found form: ", "")+AV15TilesItem.gxTpr_Action.gxTpr_Objectid) ;
                   /* Using cursor P00DJ3 */
-                  pr_default.execute(1, new Object[] {AV15TilesItem.gxTpr_Action.gxTpr_Objectid, AV19LocationId, AV22OrganisationId});
+                  pr_default.execute(1, new Object[] {AV15TilesItem.gxTpr_Action.gxTpr_Objectid});
                   while ( (pr_default.getStatus(1) != 101) )
                   {
-                     A366LocationDynamicFormId = P00DJ3_A366LocationDynamicFormId[0];
-                     n366LocationDynamicFormId = P00DJ3_n366LocationDynamicFormId[0];
-                     A11OrganisationId = P00DJ3_A11OrganisationId[0];
-                     A29LocationId = P00DJ3_A29LocationId[0];
                      A206WWPFormId = P00DJ3_A206WWPFormId[0];
-                     A367CallToActionUrl = P00DJ3_A367CallToActionUrl[0];
-                     A339CallToActionId = P00DJ3_A339CallToActionId[0];
-                     A206WWPFormId = P00DJ3_A206WWPFormId[0];
+                     A208WWPFormReferenceName = P00DJ3_A208WWPFormReferenceName[0];
+                     A207WWPFormVersionNumber = P00DJ3_A207WWPFormVersionNumber[0];
                      AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecturl = A367CallToActionUrl;
+                     GXt_char1 = "";
+                     GXt_char2 = context.GetMessage( "Form", "");
+                     new prc_getcalltoactionformurl(context ).execute( ref  GXt_char2, ref  A208WWPFormReferenceName, out  GXt_char1) ;
+                     AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecturl = GXt_char1;
                      pr_default.readNext(1);
                   }
                   pr_default.close(1);
@@ -193,24 +192,20 @@ namespace GeneXus.Programs {
          AV15TilesItem = new SdtSDT_MenuPage_RowsItem_TilesItem(context);
          AV16SDT_Col = new SdtSDT_Col(context);
          AV12SDT_Tile = new SdtSDT_Tile(context);
-         GXt_char1 = "";
-         P00DJ3_A366LocationDynamicFormId = new Guid[] {Guid.Empty} ;
-         P00DJ3_n366LocationDynamicFormId = new bool[] {false} ;
-         P00DJ3_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P00DJ3_A29LocationId = new Guid[] {Guid.Empty} ;
          P00DJ3_A206WWPFormId = new short[1] ;
-         P00DJ3_A367CallToActionUrl = new string[] {""} ;
-         P00DJ3_A339CallToActionId = new Guid[] {Guid.Empty} ;
-         A366LocationDynamicFormId = Guid.Empty;
+         P00DJ3_A208WWPFormReferenceName = new string[] {""} ;
+         P00DJ3_A207WWPFormVersionNumber = new short[1] ;
+         A208WWPFormReferenceName = "";
          A367CallToActionUrl = "";
-         A339CallToActionId = Guid.Empty;
+         GXt_char1 = "";
+         GXt_char2 = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_convertnewtooldmenustructure__default(),
             new Object[][] {
                 new Object[] {
                P00DJ2_A29LocationId, P00DJ2_A11OrganisationId, P00DJ2_A273Trn_ThemeId, P00DJ2_n273Trn_ThemeId
                }
                , new Object[] {
-               P00DJ3_A366LocationDynamicFormId, P00DJ3_n366LocationDynamicFormId, P00DJ3_A11OrganisationId, P00DJ3_A29LocationId, P00DJ3_A206WWPFormId, P00DJ3_A367CallToActionUrl, P00DJ3_A339CallToActionId
+               P00DJ3_A206WWPFormId, P00DJ3_A208WWPFormReferenceName, P00DJ3_A207WWPFormVersionNumber
                }
             }
          );
@@ -218,12 +213,14 @@ namespace GeneXus.Programs {
       }
 
       private short A206WWPFormId ;
+      private short A207WWPFormVersionNumber ;
       private int AV24GXV1 ;
       private int AV25GXV2 ;
       private string GXt_char1 ;
+      private string GXt_char2 ;
       private bool n273Trn_ThemeId ;
-      private bool n366LocationDynamicFormId ;
       private string AV18PageName ;
+      private string A208WWPFormReferenceName ;
       private string A367CallToActionUrl ;
       private Guid AV17PageId ;
       private Guid AV19LocationId ;
@@ -232,8 +229,6 @@ namespace GeneXus.Programs {
       private Guid A273Trn_ThemeId ;
       private Guid AV22OrganisationId ;
       private Guid AV20ThemeId ;
-      private Guid A366LocationDynamicFormId ;
-      private Guid A339CallToActionId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -249,13 +244,9 @@ namespace GeneXus.Programs {
       private SdtSDT_MenuPage_RowsItem_TilesItem AV15TilesItem ;
       private SdtSDT_Col AV16SDT_Col ;
       private SdtSDT_Tile AV12SDT_Tile ;
-      private Guid[] P00DJ3_A366LocationDynamicFormId ;
-      private bool[] P00DJ3_n366LocationDynamicFormId ;
-      private Guid[] P00DJ3_A11OrganisationId ;
-      private Guid[] P00DJ3_A29LocationId ;
       private short[] P00DJ3_A206WWPFormId ;
-      private string[] P00DJ3_A367CallToActionUrl ;
-      private Guid[] P00DJ3_A339CallToActionId ;
+      private string[] P00DJ3_A208WWPFormReferenceName ;
+      private short[] P00DJ3_A207WWPFormVersionNumber ;
       private SdtSDT_MobilePage aP4_SDT_MobilePage ;
    }
 
@@ -281,13 +272,11 @@ namespace GeneXus.Programs {
           };
           Object[] prmP00DJ3;
           prmP00DJ3 = new Object[] {
-          new ParDef("AV15Tile_1Action_1Objectid",GXType.VarChar,100,0) ,
-          new ParDef("AV19LocationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV22OrganisationId",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV15Tile_1Action_1Objectid",GXType.VarChar,100,0)
           };
           def= new CursorDef[] {
               new CursorDef("P00DJ2", "SELECT LocationId, OrganisationId, Trn_ThemeId FROM Trn_Location WHERE LocationId = :AV19LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00DJ2,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00DJ3", "SELECT T1.LocationDynamicFormId, T1.OrganisationId, T1.LocationId, T2.WWPFormId, T1.CallToActionUrl, T1.CallToActionId FROM (Trn_CallToAction T1 LEFT JOIN Trn_LocationDynamicForm T2 ON T2.LocationDynamicFormId = T1.LocationDynamicFormId AND T2.OrganisationId = T1.OrganisationId AND T2.LocationId = T1.LocationId) WHERE (T2.WWPFormId = TO_NUMBER(0 || :AV15Tile_1Action_1Objectid,'9999999999999999999999999999.99999999999999')) AND (T1.LocationId = :AV19LocationId) AND (T1.OrganisationId = :AV22OrganisationId) ORDER BY T1.CallToActionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00DJ3,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00DJ3", "SELECT WWPFormId, WWPFormReferenceName, WWPFormVersionNumber FROM WWP_Form WHERE WWPFormId = TO_NUMBER(0 || :AV15Tile_1Action_1Objectid,'9999999999999999999999999999.99999999999999') ORDER BY WWPFormId, WWPFormVersionNumber ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00DJ3,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -305,13 +294,9 @@ namespace GeneXus.Programs {
                 ((bool[]) buf[3])[0] = rslt.wasNull(3);
                 return;
              case 1 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((bool[]) buf[1])[0] = rslt.wasNull(1);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
-                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
-                ((short[]) buf[4])[0] = rslt.getShort(4);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(6);
+                ((short[]) buf[0])[0] = rslt.getShort(1);
+                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((short[]) buf[2])[0] = rslt.getShort(3);
                 return;
        }
     }
