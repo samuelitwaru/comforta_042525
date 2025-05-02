@@ -99,6 +99,9 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("Opacity", gxTpr_Opacity, false);
 
+
+			AddObjectProperty("Size", gxTpr_Size, false);
+
 			if (gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Permissions != null)
 			{
 				AddObjectProperty("Permissions", gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Permissions, false);
@@ -257,6 +260,22 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="Size")]
+		[XmlElement(ElementName="Size")]
+		public short gxTpr_Size
+		{
+			get {
+				return gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Size; 
+			}
+			set {
+				gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Size = value;
+				SetDirty("Size");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="Permissions" )]
 		[XmlArray(ElementName="Permissions"  )]
 		[XmlArrayItemAttribute(ElementName="Item" , IsNullable=false )]
@@ -377,6 +396,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Bgimageurl = "";
 
 
+
 			gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Permissions_N = true;
 
 
@@ -416,6 +436,9 @@ namespace GeneXus.Programs
 		 
 
 		protected short gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Opacity;
+		 
+
+		protected short gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Size;
 		 
 		protected bool gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Permissions_N;
 		protected GxSimpleCollection<string> gxTv_SdtSDT_MenuPage_RowsItem_TilesItem_Permissions = null;  
@@ -548,7 +571,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Permissions", Order=9, EmitDefaultValue=false)]
+		[DataMember(Name="Size", Order=9)]
+		public short gxTpr_Size
+		{
+			get { 
+				return sdt.gxTpr_Size;
+
+			}
+			set { 
+				sdt.gxTpr_Size = value;
+			}
+		}
+
+		[DataMember(Name="Permissions", Order=10, EmitDefaultValue=false)]
 		public  GxSimpleCollection<string> gxTpr_Permissions
 		{
 			get { 
@@ -563,7 +598,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Action", Order=10, EmitDefaultValue=false)]
+		[DataMember(Name="Action", Order=11, EmitDefaultValue=false)]
 		public SdtSDT_MenuPage_RowsItem_TilesItem_Action_RESTInterface gxTpr_Action
 		{
 			get {

@@ -103,6 +103,9 @@ namespace GeneXus.Programs
 			{
 				AddObjectProperty("TileAction", gxTv_SdtSDT_Tile_Tileaction, false);
 			}
+
+			AddObjectProperty("TileSize", gxTpr_Tilesize, false);
+
 			return;
 		}
 		#endregion
@@ -284,6 +287,31 @@ namespace GeneXus.Programs
 
 		}
 
+		[SoapElement(ElementName="TileSize")]
+		[XmlElement(ElementName="TileSize")]
+		public string gxTpr_Tilesize_double
+		{
+			get {
+				return Convert.ToString(gxTv_SdtSDT_Tile_Tilesize, System.Globalization.CultureInfo.InvariantCulture);
+			}
+			set {
+				gxTv_SdtSDT_Tile_Tilesize = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+			}
+		}
+		[XmlIgnore]
+		public decimal gxTpr_Tilesize
+		{
+			get {
+				return gxTv_SdtSDT_Tile_Tilesize; 
+			}
+			set {
+				gxTv_SdtSDT_Tile_Tilesize = value;
+				SetDirty("Tilesize");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -316,6 +344,7 @@ namespace GeneXus.Programs
 
 
 			gxTv_SdtSDT_Tile_Tileaction_N = true;
+
 
 			return  ;
 		}
@@ -355,6 +384,9 @@ namespace GeneXus.Programs
 
 		protected GeneXus.Programs.SdtSDT_TileAction gxTv_SdtSDT_Tile_Tileaction = null;
 		protected bool gxTv_SdtSDT_Tile_Tileaction_N;
+		 
+
+		protected decimal gxTv_SdtSDT_Tile_Tilesize;
 		 
 
 
@@ -494,6 +526,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Tileaction = value.sdt;
+			}
+		}
+
+		[DataMember(Name="TileSize", Order=10)]
+		public decimal gxTpr_Tilesize
+		{
+			get { 
+				return sdt.gxTpr_Tilesize;
+
+			}
+			set { 
+				sdt.gxTpr_Tilesize = value;
 			}
 		}
 

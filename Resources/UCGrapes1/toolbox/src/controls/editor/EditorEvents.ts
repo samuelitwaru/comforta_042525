@@ -4,6 +4,7 @@ import { PageSelector } from "../../ui/components/page-selector/PageSelector";
 import { ActionSelectContainer } from "../../ui/components/tools-section/action-list/ActionSelectContainer";
 import { ContentSection } from "../../ui/components/tools-section/ContentSection";
 import { ImageUpload } from "../../ui/components/tools-section/tile-image/ImageUpload";
+import { minTileHeight } from "../../utils/default-attributes";
 import { ThemeManager } from "../themes/ThemeManager";
 import { ToolboxManager } from "../toolbox/ToolboxManager";
 import { AppVersionManager } from "../versions/AppVersionManager";
@@ -21,6 +22,11 @@ export class EditorEvents {
   themeManager: any;
   uiManager!: EditorUIManager;
   isHome?: boolean;
+  isResizing: boolean = false;
+  resizingRowHeight: number = 0;
+  resizingRow: HTMLDivElement | undefined;
+  resizeYStart: number = 0;
+  selectedComponent: any;
 
   constructor() {
     this.appVersionManager = new AppVersionManager();
@@ -55,6 +61,36 @@ export class EditorEvents {
       this.editor.on("load", () => {
         const wrapper = this.editor.getWrapper();
         if (wrapper) {
+            wrapper.view.el.addEventListener("mousedown", (e:MouseEvent) => {
+              const targetElement = e.target as Element;
+              if (targetElement.closest('.tile-resize-button')) {
+                this.isResizing = true;
+                this.resizingRow = targetElement.closest('.template-wrapper') as HTMLDivElement
+                this.resizingRowHeight = this.resizingRow.offsetHeight
+                this.resizeYStart = e.clientY
+              }
+            })
+
+            document.addEventListener("mousemove", (e:MouseEvent) => {
+              if (this.isResizing) {
+                let newHeight = this.resizingRowHeight + (e.clientY-this.resizeYStart)
+                if (newHeight < minTileHeight) newHeight = minTileHeight;
+                this.resizingRow?.setAttribute("style", `height:${newHeight}px`)
+              }
+            })
+
+            document.addEventListener("mouseup", (e:MouseEvent) => {
+              if (this.isResizing) {
+                this.isResizing = false
+              }
+            })
+
+            wrapper.view.el.addEventListener("mouseup", (e:MouseEvent) => {
+              if (this.isResizing) {
+                this.isResizing = false
+              }
+            })
+
             wrapper.view.el.addEventListener("dblclick", (e: MouseEvent) => {
               const targetElement = e.target as Element;
               console.log(targetElement)
@@ -122,10 +158,11 @@ export class EditorEvents {
             new ToolboxManager().unDoReDo();
             this.uiManager.initContentDataUi(e);
             this.uiManager.activateEditor(this.frameId);
+            this.uiManager.handleInfoSectionHover(e);
           });
 
           wrapper.view.el.addEventListener("mouseover", (e: MouseEvent) => {
-            this.uiManager.handleInfoSectionHover(e);
+            // this.uiManager.handleInfoSectionHover(e);
           });
         } else {
           console.error("Wrapper not found!");
@@ -159,12 +196,13 @@ export class EditorEvents {
     let destinationComponent: any;
 
     this.editor.on("component:drag:start", (model: any) => {
-      sourceComponent = model.parent;
+      // sourceComponent = model.parent;
     });
 
     this.editor.on("component:drag:end", (model: any) => {
-      destinationComponent = model.parent;
-      this.uiManager.handleDragEnd(model, sourceComponent, destinationComponent);
+      // if (this.isResizing) return
+      // destinationComponent = model.parent;
+      // this.uiManager.handleDragEnd(model, sourceComponent, destinationComponent);
     });
   }
 

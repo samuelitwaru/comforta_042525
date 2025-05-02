@@ -20,7 +20,7 @@ export class HomeAppBarComponent {
         if (organisationLogo) {
             logo.src = organisationLogo;
         } else {
-            logo.src = '/Resources/AppPreview/public/logo.png'; // fallback
+            logo.src = '/Resources/ComfortaLogo1.png'; // fallback
         }
 
 

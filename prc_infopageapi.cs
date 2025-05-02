@@ -174,6 +174,8 @@ namespace GeneXus.Programs {
                   GXt_char1 = "";
                   new prc_getthemecolorbyname(context ).execute(  AV17ThemeId,  AV19SDT_InfoTile.gxTpr_Bgcolor, out  GXt_char1) ;
                   AV19SDT_InfoTile.gxTpr_Bgcolor = GXt_char1;
+                  AV19SDT_InfoTile.gxTpr_Size = (decimal)(((AV19SDT_InfoTile.gxTpr_Size==Convert.ToDecimal(0)) ? 80 : (short)(Math.Round(AV19SDT_InfoTile.gxTpr_Size, 18, MidpointRounding.ToEven))));
+                  AV19SDT_InfoTile.gxTpr_Size = (decimal)(AV19SDT_InfoTile.gxTpr_Size/ (decimal)(80));
                   AV25GXV2 = (int)(AV25GXV2+1);
                }
             }

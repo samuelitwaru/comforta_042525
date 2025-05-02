@@ -127,6 +127,11 @@ namespace GeneXus.Programs {
                AV12SDT_Tile.gxTpr_Tilebgcolor = GXt_char1;
                AV12SDT_Tile.gxTpr_Tilebgimageurl = AV15TilesItem.gxTpr_Bgimageurl;
                AV12SDT_Tile.gxTpr_Tilebgimageopacity = AV15TilesItem.gxTpr_Opacity;
+               if ( AV15TilesItem.gxTpr_Size == 0 )
+               {
+                  AV15TilesItem.gxTpr_Size = 80;
+               }
+               AV12SDT_Tile.gxTpr_Tilesize = (decimal)(AV15TilesItem.gxTpr_Size/ (decimal)(80));
                AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecttype = AV15TilesItem.gxTpr_Action.gxTpr_Objecttype;
                AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objectid = AV15TilesItem.gxTpr_Action.gxTpr_Objectid;
                AV12SDT_Tile.gxTpr_Tileaction.gxTpr_Objecturl = AV15TilesItem.gxTpr_Action.gxTpr_Objecturl;

@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250501121406"
+  version: "20250502053642"
 servers:
   - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/rest
 paths:
@@ -2726,6 +2726,10 @@ components:
           description: "Opacity"
           type: "number"
           format: "double"
+        Size:
+          description: "Size"
+          type: "number"
+          format: "double"
         Action:
           $ref: "#/components/schemas/SDT_InfoTile.Action"
     SDT_InfoTile.Action:
@@ -2961,6 +2965,10 @@ components:
           type: "string"
         Opacity:
           description: "Opacity"
+          type: "integer"
+          format: "int32"
+        Size:
+          description: "Size"
           type: "integer"
           format: "int32"
         Permissions:
@@ -3496,6 +3504,10 @@ components:
         TileAction:
           description: "SDT_Tile Action"
           $ref: "#/components/schemas/SDT_TileAction"
+        TileSize:
+          description: "Tile Size"
+          type: "number"
+          format: "double"
     SDT_TileAction:
       properties:
         ObjectType:

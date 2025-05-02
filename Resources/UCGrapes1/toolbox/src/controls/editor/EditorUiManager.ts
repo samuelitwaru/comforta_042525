@@ -134,6 +134,7 @@ export class EditorUIManager {
       const isDragging: boolean = true;
       const tileUpdate = new TileUpdate();
 
+      alert()
       tileUpdate.updateTile(destinationComponent, isDragging);
       tileUpdate.updateTile(sourceComponent, isDragging);
 

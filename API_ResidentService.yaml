@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250501121406"
+  version: "20250502053642"
 servers:
   - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/api
 paths:
@@ -4101,6 +4101,10 @@ components:
         TileAction:
           description: "SDT_Tile Action"
           $ref: "#/components/schemas/SDT_TileAction"
+        TileSize:
+          description: "Tile Size"
+          type: "number"
+          format: "double"
 
 
 

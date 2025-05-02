@@ -139,7 +139,8 @@ button {
 .template-block {
   border: 2px dashed #4c53577d;
   border-radius: 8px;
-  height: 4.5rem;
+  /* height: 4.5rem; */
+  height: 100%;
   padding: 0.4rem;
   background-color: transparent;
   display: flex;
@@ -148,9 +149,9 @@ button {
   cursor: move;
 }
 
-.high-priority-template {
+/* .high-priority-template {
   height: 6rem;
-}
+} */
 
 @media (min-width: 350px) {
   .template-block {
@@ -252,6 +253,16 @@ button {
   color: #fff;
 }
 
+.tile-resize-button {
+  position: absolute;
+  bottom: -15px;
+  left: 20px;
+  display: none;
+  background-color: transparent;
+  border: none;
+  z-index: 1;
+}
+
 .tile-open-menu {
   position: absolute;
   top: -12px;
@@ -260,6 +271,10 @@ button {
 }
 
 .template-wrapper .gjs-selected ~ .tile-open-menu {
+  display: block;
+}
+
+.template-wrapper .gjs-selected ~ .tile-resize-button {
   display: block;
 }
 
