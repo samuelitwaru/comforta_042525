@@ -72,6 +72,10 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("ThemeFontSize", gxTpr_Themefontsize, false);
 
+			if (gxTv_SdtSDT_LocationTheme_Color != null)
+			{
+				AddObjectProperty("Color", gxTv_SdtSDT_LocationTheme_Color, false);
+			}
 			return;
 		}
 		#endregion
@@ -141,6 +145,43 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="Color" )]
+		[XmlElement(ElementName="Color" )]
+		public SdtSDT_LocationTheme_Color gxTpr_Color
+		{
+			get {
+				if ( gxTv_SdtSDT_LocationTheme_Color == null )
+				{
+					gxTv_SdtSDT_LocationTheme_Color = new SdtSDT_LocationTheme_Color(context);
+				}
+				gxTv_SdtSDT_LocationTheme_Color_N = false;
+				return gxTv_SdtSDT_LocationTheme_Color;
+			}
+			set {
+				gxTv_SdtSDT_LocationTheme_Color_N = false;
+				gxTv_SdtSDT_LocationTheme_Color = value;
+				SetDirty("Color");
+			}
+
+		}
+
+		public void gxTv_SdtSDT_LocationTheme_Color_SetNull()
+		{
+			gxTv_SdtSDT_LocationTheme_Color_N = true;
+			gxTv_SdtSDT_LocationTheme_Color = null;
+		}
+
+		public bool gxTv_SdtSDT_LocationTheme_Color_IsNull()
+		{
+			return gxTv_SdtSDT_LocationTheme_Color == null;
+		}
+		public bool ShouldSerializegxTpr_Color_Json()
+		{
+				return (gxTv_SdtSDT_LocationTheme_Color != null && gxTv_SdtSDT_LocationTheme_Color.ShouldSerializeSdtJson());
+
+		}
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -165,6 +206,9 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_LocationTheme_Themename = "";
 			gxTv_SdtSDT_LocationTheme_Themefontfamily = "";
 
+
+			gxTv_SdtSDT_LocationTheme_Color_N = true;
+
 			return  ;
 		}
 
@@ -185,6 +229,9 @@ namespace GeneXus.Programs
 
 		protected short gxTv_SdtSDT_LocationTheme_Themefontsize;
 		 
+		protected bool gxTv_SdtSDT_LocationTheme_Color_N;
+		protected SdtSDT_LocationTheme_Color gxTv_SdtSDT_LocationTheme_Color = null; 
+
 
 
 		#endregion
@@ -249,6 +296,23 @@ namespace GeneXus.Programs
 			set { 
 				sdt.gxTpr_Themefontsize = value;
 			}
+		}
+
+		[DataMember(Name="Color", Order=4, EmitDefaultValue=false)]
+		public SdtSDT_LocationTheme_Color_RESTInterface gxTpr_Color
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Color_Json())
+					return new SdtSDT_LocationTheme_Color_RESTInterface(sdt.gxTpr_Color);
+				else
+					return null;
+
+			}
+
+			set {
+				sdt.gxTpr_Color = value.sdt;
+			}
+
 		}
 
 

@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250502053642"
+  version: "20250502085058"
 servers:
   - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/rest
 paths:
@@ -2797,6 +2797,21 @@ components:
           description: "Trn_Theme Font Size"
           type: "integer"
           format: "int32"
+        Color:
+          $ref: "#/components/schemas/SDT_LocationTheme.Color"
+    SDT_LocationTheme.Color:
+      properties:
+        ColorId:
+          description: "Cta Color Id"
+          type: "string"
+          format: "uuid"
+        ColorName:
+          description: "Cta Color Name"
+          type: "string"
+        ColorCode:
+          description: "Cta Color Code"
+          type: "string"
+      x-gx-level: "SDT_LocationTheme"
     SDT_LoginResidentResponse:
       properties:
         access_token:

@@ -2,6 +2,7 @@ import { InfoType } from "../../interfaces/InfoType";
 import { ActionListPopUp } from "../../ui/views/ActionListPopUp";
 import {
   DefaultAttributes,
+  minTileHeight,
   rowDefaultAttributes,
   tileDefaultAttributes,
   tileWrapperDefaultAttributes,
@@ -350,7 +351,7 @@ export class TileManager {
 
   private getTile(isSingleTile:boolean=false) {
     return `
-      <div ${tileWrapperDefaultAttributes} class="template-wrapper" id="${randomIdGenerator(
+      <div ${tileWrapperDefaultAttributes} ${isSingleTile ? `style="height:${minTileHeight}px"`:``} class="template-wrapper" id="${randomIdGenerator(
       8
     )}">
         <div ${tileDefaultAttributes} class="template-block" style="background-color: transparent; color: #333333; justify-content: left">

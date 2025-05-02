@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250502053642"
+  version: "20250502085059"
 servers:
-  - url: https://staging.comforta.yukon.software/api
+  - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/api
 paths:
   /auth/resident-login:
     post:
@@ -1158,7 +1158,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SDT_LocationTheme"  
+                $ref: "#/components/schemas/SDT_Theme"  
 
         404:
           description: "Not found"
@@ -1904,7 +1904,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -3477,7 +3477,25 @@ components:
           type: "integer"
           format: "int32"
 
+        Color:
+          $ref: "#/components/schemas/SDT_LocationTheme.Color"
 
+
+    SDT_LocationTheme.Color:
+      properties:
+        ColorId:
+          description: "Cta Color Id"
+          type: "string"
+          format: "uuid"
+        ColorName:
+          description: "Cta Color Name"
+          type: "string"
+        ColorCode:
+          description: "Cta Color Code"
+          type: "string"
+
+
+      x-gx-level: "SDT_LocationTheme"
 
     SDT_AppVersion:
       properties:

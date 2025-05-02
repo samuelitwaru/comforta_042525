@@ -1295,7 +1295,7 @@ namespace GeneXus.Programs {
 
       public void gxep_getlocationtheme( Guid aP0_locationId ,
                                          Guid aP1_organisationId ,
-                                         out SdtSDT_LocationTheme aP2_SDT_LocationTheme )
+                                         out SdtSDT_Theme aP2_SDT_Theme )
       {
          restCliGetLocationTheme = new GXRestAPIClient();
          if ( restLocation == null )
@@ -1313,11 +1313,11 @@ namespace GeneXus.Programs {
             gxProperties.ErrorCode = restCliGetLocationTheme.ErrorCode;
             gxProperties.ErrorMessage = restCliGetLocationTheme.ErrorMessage;
             gxProperties.StatusCode = restCliGetLocationTheme.StatusCode;
-            aP2_SDT_LocationTheme = new SdtSDT_LocationTheme();
+            aP2_SDT_Theme = new SdtSDT_Theme();
          }
          else
          {
-            aP2_SDT_LocationTheme = restCliGetLocationTheme.GetBodySdt<SdtSDT_LocationTheme>("SDT_LocationTheme");
+            aP2_SDT_Theme = restCliGetLocationTheme.GetBodySdt<SdtSDT_Theme>("SDT_Theme");
          }
          /* GetLocationTheme Constructor */
       }
@@ -2314,7 +2314,7 @@ namespace GeneXus.Programs {
          restCliGetServices = new GXRestAPIClient();
          aP0_SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>();
          restCliGetLocationTheme = new GXRestAPIClient();
-         aP2_SDT_LocationTheme = new SdtSDT_LocationTheme();
+         aP2_SDT_Theme = new SdtSDT_Theme();
          restCliToolboxGetLocationTheme = new GXRestAPIClient();
          aP0_SDT_LocationTheme = new SdtSDT_LocationTheme();
          restCliGetThemes = new GXRestAPIClient();
@@ -2474,7 +2474,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
       protected GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ;
-      protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
+      protected SdtSDT_Theme aP2_SDT_Theme ;
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
       protected GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ;
       protected GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ;
