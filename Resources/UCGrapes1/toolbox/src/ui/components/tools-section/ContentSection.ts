@@ -80,7 +80,7 @@ export class ContentSection {
 
     private renderComponents() {
         const ctaButtonSection = new CtaButtonLayout();
-        const ctaIconList = new CtaIconList(this.iconsList);
+        // const ctaIconList = new CtaIconList(this.iconsList);
         const activeCtaColors = this.themeManager.currentTheme.ThemeCtaColors;
         const ctaColorList = new CtaColorPalette(activeCtaColors);
 
@@ -88,7 +88,7 @@ export class ContentSection {
         this.container.innerHTML = '';
 
         ctaButtonSection.render(this.container);
-        ctaIconList.render(this.container);
+        // ctaIconList.render(this.container);
         ctaColorList.render(this.container);
         
         this.render();
