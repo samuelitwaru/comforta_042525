@@ -206,8 +206,8 @@ export class EditorEvents {
         this.uiManager.showCtaTools()
       } else if (isTile) {
         this.uiManager.setTileProperties();
-        this.uiManager.createChildEditor();
         this.uiManager.showTileTools()
+        this.uiManager.createChildEditor();
       }
       // this.uiManager.toggleSidebar()
       // this.uiManager.setInfoTileProperties();

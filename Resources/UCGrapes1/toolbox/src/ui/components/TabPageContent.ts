@@ -1,3 +1,4 @@
+import { ContentSection } from "./tools-section/ContentSection";
 import { MenuSection } from "./tools-section/MenuSection";
 import { TabButtons } from "./tools-section/TabButtons";
 
@@ -15,6 +16,8 @@ export class TabPageContent {
 
     const menuSection = new MenuSection();
     menuSection.render(this.container);
+    const contentSection = new ContentSection({});
+    contentSection.render(this.container)
   }
 
   render(container: HTMLElement) {
