@@ -4,6 +4,7 @@ import { TabButtons } from "./tools-section/TabButtons";
 
 export class TabPageContent {
   container: HTMLElement;
+  contentSection: ContentSection = new ContentSection;
 
   constructor() {
     this.container = document.createElement("div");
@@ -16,8 +17,8 @@ export class TabPageContent {
 
     const menuSection = new MenuSection();
     menuSection.render(this.container);
-    const contentSection = new ContentSection({});
-    contentSection.render(this.container)
+    this.contentSection = new ContentSection();
+    this.contentSection.render(this.container)
   }
 
   render(container: HTMLElement) {

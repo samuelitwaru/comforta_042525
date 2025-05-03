@@ -352,12 +352,14 @@ export class EditorUIManager {
   }
 
   setInfoCtaProperties() {
+    // render cta component
+    (window as any).app.toolsSection.pagesTabContent.contentSection.renderComponents()
+
     const selectedComponent = (globalThis as any).selectedComponent;
     if (this.pageData.PageType !== "Information") return;
 
     if (!selectedComponent.is("info-cta-section")) return;
-  
-    
+
     this.clearCtaProperties();
 
     const tileInfoSectionAttributes: InfoType = (

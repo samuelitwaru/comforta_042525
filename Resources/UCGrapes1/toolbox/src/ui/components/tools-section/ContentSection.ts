@@ -12,8 +12,7 @@ export class ContentSection {
     createCTAComponent: CreateCTAComponent | undefined;
     page: any;
 
-    constructor(page: any) {
-        this.page = page;
+    constructor() {
         this.themeManager = new ThemeManager();
         this.container = document.createElement("div") as HTMLElement
         this.container.id = "content-page-section"
@@ -23,7 +22,7 @@ export class ContentSection {
     private async initializeContentSection() {
         this.toggleSideBar();
         this.setupContainerStyles();
-        this.renderComponents();
+        // this.renderComponents();
     }
 
 
@@ -69,7 +68,7 @@ export class ContentSection {
         this.container.style.display = 'block';
     }
 
-    private renderComponents() {
+    public renderComponents() {
         // Clear previous content before rendering
         this.container.innerHTML = '';
         
