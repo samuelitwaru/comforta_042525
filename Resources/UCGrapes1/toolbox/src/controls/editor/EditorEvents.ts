@@ -98,12 +98,6 @@ export class EditorEvents {
             })
 
             wrapper.view.el.addEventListener("dblclick", (e: MouseEvent) => {
-              const targetElement = e.target as Element;
-              console.log(targetElement)
-              console.log(targetElement.closest(".gjs-selected"))
-              console.log(targetElement.closest(".template-block"))
-              console.log(this.editor.getSelected())
-
               e.preventDefault();
               const selectedComponent = (globalThis as any).selectedComponent;
               if (!selectedComponent) return;
@@ -137,21 +131,6 @@ export class EditorEvents {
               return;
             }
 
-            // if (targetElement.closest("[data-gjs-type='tile-wrapper']")) {
-            //   const tileWrapper = targetElement.closest(
-            //     "[data-gjs-type='tile-wrapper']"
-            //   ) as HTMLElement;
-              
-            //   const tileWrapperComponent = wrapper.find("#" + tileWrapper?.id)[0];
-            //   if (tileWrapperComponent) {
-            //     (globalThis as any).selectedComponent = null;
-            //     this.editor.select(tileWrapperComponent);
-            //     console.log("Tile wrapper selected:", this.editor.getSelected().getHTML());
-            //     this.onSelected();              
-            //   }
-
-            // }
-
             this.uiManager.clearAllMenuContainers();
             
             (globalThis as any).activeEditor = this.editor;
@@ -167,9 +146,6 @@ export class EditorEvents {
             this.uiManager.handleInfoSectionHover(e);
           });
 
-          wrapper.view.el.addEventListener("mouseover", (e: MouseEvent) => {
-            // this.uiManager.handleInfoSectionHover(e);
-          });
         } else {
           console.error("Wrapper not found!");
         }
@@ -218,12 +194,24 @@ export class EditorEvents {
       (globalThis as any).tileMapper = this.uiManager.createTileMapper();
       (globalThis as any).infoContentMapper = this.uiManager.createInfoContentMapper();
       (globalThis as any).frameId = this.frameId;
+
+      console.log(component.getClasses())
+
+      const isTile = component.getClasses().includes('template-block')
+      const isCta = ['img-button-container','plain-button-container','cta-container-child']
+                      .some(cls => component.getClasses().includes(cls))
       
-      this.uiManager.setTileProperties();
-      this.uiManager.setInfoTileProperties();
-      this.uiManager.setCtaProperties();
-      this.uiManager.setInfoCtaProperties();
-      this.uiManager.createChildEditor();
+      if (isCta) {
+        this.uiManager.setInfoCtaProperties();
+        this.uiManager.showCtaTools()
+      } else if (isTile) {
+        this.uiManager.setTileProperties();
+        this.uiManager.createChildEditor();
+        this.uiManager.showTileTools()
+      }
+      // this.uiManager.toggleSidebar()
+      // this.uiManager.setInfoTileProperties();
+      // this.uiManager.setCtaProperties();
     });
 
     this.editor.on("component:deselected", () => {

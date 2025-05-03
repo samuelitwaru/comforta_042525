@@ -151,10 +151,6 @@ namespace GeneXus.Programs {
                if (true) break;
             }
             pr_default.close(3);
-            GXt_objcol_SdtSDT_TrnAttributes1 = AV24SDT_TrnAttributesCollection;
-            new prc_addappversionpagesattributestosdt(context ).execute(  A523AppVersionId,  AV27PageIdCollection, out  GXt_objcol_SdtSDT_TrnAttributes1) ;
-            AV24SDT_TrnAttributesCollection = GXt_objcol_SdtSDT_TrnAttributes1;
-            new prc_addappversionpagetodynamictransalation(context ).execute(  AV24SDT_TrnAttributesCollection) ;
             if ( AV18Notify )
             {
                AV19Title = "New Updates Available";
@@ -208,8 +204,6 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A598PublishedActiveAppVersionId = Guid.Empty;
-         AV24SDT_TrnAttributesCollection = new GXBaseCollection<SdtSDT_TrnAttributes>( context, "SDT_TrnAttributes", "Comforta_version20");
-         GXt_objcol_SdtSDT_TrnAttributes1 = new GXBaseCollection<SdtSDT_TrnAttributes>( context, "SDT_TrnAttributes", "Comforta_version20");
          AV19Title = "";
          AV20NotificationMessage = "";
          AV22ResidentIdCollectionEmpty = new GxSimpleCollection<Guid>();
@@ -277,8 +271,6 @@ namespace GeneXus.Programs {
       private Guid[] P00BL5_A29LocationId ;
       private Guid[] P00BL5_A598PublishedActiveAppVersionId ;
       private bool[] P00BL5_n598PublishedActiveAppVersionId ;
-      private GXBaseCollection<SdtSDT_TrnAttributes> AV24SDT_TrnAttributesCollection ;
-      private GXBaseCollection<SdtSDT_TrnAttributes> GXt_objcol_SdtSDT_TrnAttributes1 ;
       private GxSimpleCollection<Guid> AV22ResidentIdCollectionEmpty ;
       private SdtSDT_Error aP2_SDT_Error ;
       private IDataStoreProvider pr_datastore1 ;
