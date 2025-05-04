@@ -41,7 +41,12 @@ export class InfoPageMapper {
     }
 
     private renderTileRow(row: InfoType): HTMLElement {
-        const isHighPriorityRow = false;
+        // const isHighPriorityRow = false;
+        // const hasSingleTile = row.Tiles.length === 1;
+        const hasSingleTile = row.Tiles?.length === 1;
+        // const isHighPriorityRow = isFirstRow && hasSingleTile;
+        const isHighPriorityRow = hasSingleTile;
+
         // Create a row container
         const rowElement = document.createElement('div');
         rowElement.className = 'tbap-row';
@@ -49,7 +54,8 @@ export class InfoPageMapper {
         if (row.Tiles) {
             const rowTileLength = row.Tiles.length;
             row?.Tiles.forEach((tile, index) => {
-                const isHighPriority = isHighPriorityRow && index === 0;
+                // const isHighPriority = isHighPriorityRow && index === 0;
+                const isHighPriority = isHighPriorityRow;
                 const tileComponent = new TileComponent(tile, isHighPriority, this.pageId, rowTileLength);
                 rowElement.appendChild(tileComponent.getElement());
             });

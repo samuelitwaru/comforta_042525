@@ -11,4 +11,5 @@ export interface Tile {
     BGImageUrl: string;
     Opacity: number;
     Action: TileAction;
+    Size: number;
 }

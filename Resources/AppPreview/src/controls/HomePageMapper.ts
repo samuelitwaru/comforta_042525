@@ -15,7 +15,8 @@ export class HomePageMapper {
 
     private renderRow(row: Row, isFirstRow: boolean): HTMLElement {
         const hasSingleTile = row.Tiles.length === 1;
-        const isHighPriorityRow = isFirstRow && hasSingleTile;
+        // const isHighPriorityRow = isFirstRow && hasSingleTile;
+        const isHighPriorityRow = hasSingleTile;
         
         // Create a row container
         const rowElement = document.createElement('div');
@@ -25,7 +26,7 @@ export class HomePageMapper {
         // Add tiles to the row
         const rowTileLength = row.Tiles.length;
         row.Tiles.forEach((tile, index) => {
-            const isHighPriority = isHighPriorityRow && index === 0;
+            const isHighPriority = isHighPriorityRow;
             const tileComponent = new TileComponent(tile, isHighPriority, this.pageId, rowTileLength);
             rowElement.appendChild(tileComponent.getElement());
         });

@@ -3,6 +3,7 @@ import { TileController } from "../controls/TileController";
 import { NavigationData } from "../interfaces/Navigation";
 import { Tile } from "../interfaces/Tile";
 
+
 export class TileComponent {
     tile: Tile;
     pageId: string;
@@ -25,7 +26,10 @@ export class TileComponent {
         // Apply appropriate CSS class based on priority
         this.tileContainer.classList.add("tbap-tile");
         if (this.isHighPriority) {
-            this.tileContainer.classList.add("high-priority-tile");
+            // this.tileContainer.classList.add("high-priority-tile");
+            const sizeFactor = this.tile.Size || 80;
+            // console.log(`size ${sizeFactor}`)
+            this.tileContainer.style.height = `${sizeFactor}px`  
         }
 
         // Set alignment

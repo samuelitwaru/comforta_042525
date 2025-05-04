@@ -13,13 +13,35 @@ export class ImageUpload {
   infoId?: string;
   finishedUploads: { [key: string]: Media } = {};
   cropContainer!: HTMLDivElement;
+  bgImage: any;
+  opacity: any;
 
   constructor(type: any, infoId?: string) {
+    console.log('type', type)
+    console.log('infoId', infoId)
     this.type = type;
     this.infoId = infoId;
     this.modalContent = document.createElement("div");
     this.toolboxService = new ToolBoxService();
+    this.getCurrentImageSettings()
     this.init();
+    console.log('attrs', this.bgImage, this.opacity)
+  }
+
+  private getCurrentImageSettings() {
+    if (this.type == 'tile') {
+      const tileComp = (globalThis as any).selectedComponent.parent()
+      const rowComp = tileComp.parent()
+      console.log('selected tile', tileComp.getEl());
+      console.log('selected row', rowComp.getEl());
+      const attrs = (globalThis as any).tileMapper.getTile(
+        rowComp.getId(),
+        tileComp.getId()
+      );
+      console.log('attrs', attrs)
+      this.bgImage = attrs.BGImageUrl
+      this.opacity = attrs.Opacity
+    }
   }
 
   private init() {
@@ -478,7 +500,7 @@ export class ImageUpload {
 
     // Create a wrapper for the slider and buttons
     const modalFooter = document.createElement("div");
-    modalFooter.className = "modal-footer";
+    modalFooter.className = "tb-modal-footer";
     // Add the slider to adjust overlay opacity
     const opacitySlider = document.createElement("input");
     opacitySlider.type = "range";
@@ -505,7 +527,7 @@ export class ImageUpload {
           selectedComponent.parent().parent().getId(),
           selectedComponent.parent().getId(),
           "Opacity",
-          opacitySlider.value
+          parseInt(opacitySlider.value)
         );
       } else {
         (globalThis as any).tileMapper.updateTile(

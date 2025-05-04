@@ -60,6 +60,7 @@ export class EditorEvents {
     if (this.editor !== undefined) {
       this.editor.on("load", () => {
         const wrapper = this.editor.getWrapper();
+        (globalThis as any).wrapper = wrapper
         if (wrapper) {
             wrapper.view.el.addEventListener("mousedown", (e:MouseEvent) => {
               const targetElement = e.target as Element;
@@ -113,7 +114,8 @@ export class EditorEvents {
               modal.classList.add("tb-modal");
               modal.style.display = "flex";
 
-              const modalContent = new ImageUpload("tile");
+              const tileComp = selectedComponent.closest('.template-wrapper')
+              const modalContent = new ImageUpload("tile", tileComp.getId());
               modalContent.render(modal);
 
               const uploadInput = document.createElement("input");

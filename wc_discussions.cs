@@ -1812,6 +1812,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13Message)) )
          {
+            new prc_logtoserver(context ).execute(  context.GetMessage( "Message: ", "")+AV13Message) ;
             GXt_int2 = AV6WWPEntityId;
             new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context ).execute(  AV24WWPEntityName, out  GXt_int2) ;
             AV6WWPEntityId = GXt_int2;
@@ -1824,11 +1825,16 @@ namespace GeneXus.Programs {
                AV32socket.broadcast( AV31NotificationInfo);
                if ( new GeneXus.Programs.wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage(context).executeUdp(  AV6WWPEntityId,  0,  AV22WWPDiscussionMessageEntityRecordId,  AV13Message,  Ucmentions_Selecteditemsjson,  StringUtil.Str( (decimal)(AV5WWPDiscussionMessage.gxTpr_Wwpdiscussionmessageid), 10, 0),  context.GetMessage( "WWP_Notifications_NewDiscussionThread", ""),  AV26WWPSubscriptionEntityRecordDescription,  AV25WWPNotificationLink) )
                {
+                  new prc_logtoserver(context ).execute(  context.GetMessage( "Triggered from WC_Discussions: ", "")+AV26WWPSubscriptionEntityRecordDescription) ;
                   AV13Message = "";
                   AssignAttri(sPrefix, false, "AV13Message", AV13Message);
                   divNewthreadcell_Visible = 0;
                   AssignProp(sPrefix, false, divNewthreadcell_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divNewthreadcell_Visible), 5, 0), true);
                   gxgrGrid_refresh( subGrid_Rows, AV22WWPDiscussionMessageEntityRecordId, AV6WWPEntityId, AV37Pgmname, AV12IsFirstDiscussionRecord, AV29DiscussionResidentId, AV23WWPDiscussionMessageIdToExpand, AV26WWPSubscriptionEntityRecordDescription, AV25WWPNotificationLink, AV5WWPDiscussionMessage, A205WWPDiscussionMessageEntityReco, sPrefix) ;
+               }
+               else
+               {
+                  new prc_logtoserver(context ).execute(  context.GetMessage( "Entity ID: ", "")+StringUtil.Str( (decimal)(AV6WWPEntityId), 10, 0)) ;
                }
             }
          }
@@ -2184,7 +2190,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254281258586", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255421133881", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2200,7 +2206,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_discussions.js", "?20254281258590", false, true);
+         context.AddJavascriptSource("wc_discussions.js", "?20255421133882", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
