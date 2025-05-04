@@ -27,6 +27,8 @@ export class TileUpdate {
       const alignValue = length === 3 ? "center" : tileAttributes.Align;
       const cssAlignValue = alignValue === "left" ? "start" : alignValue;
 
+      tile.setStyle({height:`${minTileHeight}px !important`})
+      console.log(tile)
       // if tiles are 2 or 3, remove resize button else add the resize button
       if (length > 1) {
         console.log('resizer', tile.find('.tile-resize-button'))
@@ -34,7 +36,6 @@ export class TileUpdate {
       } else {
         tile.append(resizeButton("Resize"))
       }
-      tile.setStyle({height:`${minTileHeight}px`})
 
       const tileAlignment = {
         "justify-content": cssAlignValue,
