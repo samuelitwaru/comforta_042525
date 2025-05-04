@@ -13,13 +13,16 @@ export class SingleImageFile {
   private toolboxService: ToolBoxService;
   type: any;
   infoId?: string;
+  imageUpload: ImageUpload;
+  fileListContainer: HTMLElement | undefined;
 
-  constructor(mediaFile: Media, type: any, infoId?: string) {
+  constructor(mediaFile: Media, type: any, imageUpload:ImageUpload, infoId?: string) {
     this.mediaFile = mediaFile;
     this.type = type;
     this.infoId = infoId;
     this.toolboxService = new ToolBoxService();
     this.container = document.createElement("div");
+    this.imageUpload = imageUpload
     this.init();
   }
 
@@ -86,6 +89,9 @@ export class SingleImageFile {
 
   private setupItemClickEvent(statusCheck: HTMLElement) {
     this.container.addEventListener("click", () => {
+      this.fileListContainer = document.getElementById('fileList') as HTMLElement
+      this.fileListContainer.style.display = "none";
+      this.imageUpload.displayImageEditor(this.mediaFile.MediaUrl)
       document.querySelectorAll(".file-item").forEach((el) => {
         el.classList.remove("selected");
         const icon = el.querySelector(".status-icon");
@@ -162,17 +168,13 @@ export class SingleImageFile {
       const safeMediaUrl = encodeURI(this.mediaFile.MediaUrl);
       selectedComponent.addStyle({
         "background-image": `url(${safeMediaUrl})`,
-        "background-color": "transparent",
         "background-size": "cover",
         "background-position": "center",
         "background-blend-mode": "overlay",
       });
-
-      selectedComponent.getEl().style.backgroundColor = "transparent";
       
       const updates = [
         ["BGImageUrl", safeMediaUrl],
-        ["Opacity", "0"],
         ["BGColor", "transparent"],
       ];
 

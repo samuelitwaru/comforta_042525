@@ -73,10 +73,12 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Medianame_Z");
          state.Add("gxTpr_Mediasize_Z");
          state.Add("gxTpr_Mediatype_Z");
+         state.Add("gxTpr_Mediadatetime_Z_Nullable");
          state.Add("gxTpr_Mediaurl_Z");
          state.Add("gxTpr_Locationid_Z");
          state.Add("gxTpr_Mediaimage_gxi_Z");
          state.Add("gxTpr_Mediaimage_N");
+         state.Add("gxTpr_Mediadatetime_N");
          state.Add("gxTpr_Mediaimage_gxi_N");
          return state ;
       }
@@ -91,6 +93,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Media_Mediaimage_gxi = sdt.gxTv_SdtTrn_Media_Mediaimage_gxi ;
          gxTv_SdtTrn_Media_Mediasize = sdt.gxTv_SdtTrn_Media_Mediasize ;
          gxTv_SdtTrn_Media_Mediatype = sdt.gxTv_SdtTrn_Media_Mediatype ;
+         gxTv_SdtTrn_Media_Mediadatetime = sdt.gxTv_SdtTrn_Media_Mediadatetime ;
          gxTv_SdtTrn_Media_Mediaurl = sdt.gxTv_SdtTrn_Media_Mediaurl ;
          gxTv_SdtTrn_Media_Locationid = sdt.gxTv_SdtTrn_Media_Locationid ;
          gxTv_SdtTrn_Media_Mode = sdt.gxTv_SdtTrn_Media_Mode ;
@@ -99,10 +102,12 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Media_Medianame_Z = sdt.gxTv_SdtTrn_Media_Medianame_Z ;
          gxTv_SdtTrn_Media_Mediasize_Z = sdt.gxTv_SdtTrn_Media_Mediasize_Z ;
          gxTv_SdtTrn_Media_Mediatype_Z = sdt.gxTv_SdtTrn_Media_Mediatype_Z ;
+         gxTv_SdtTrn_Media_Mediadatetime_Z = sdt.gxTv_SdtTrn_Media_Mediadatetime_Z ;
          gxTv_SdtTrn_Media_Mediaurl_Z = sdt.gxTv_SdtTrn_Media_Mediaurl_Z ;
          gxTv_SdtTrn_Media_Locationid_Z = sdt.gxTv_SdtTrn_Media_Locationid_Z ;
          gxTv_SdtTrn_Media_Mediaimage_gxi_Z = sdt.gxTv_SdtTrn_Media_Mediaimage_gxi_Z ;
          gxTv_SdtTrn_Media_Mediaimage_N = sdt.gxTv_SdtTrn_Media_Mediaimage_N ;
+         gxTv_SdtTrn_Media_Mediadatetime_N = sdt.gxTv_SdtTrn_Media_Mediadatetime_N ;
          gxTv_SdtTrn_Media_Mediaimage_gxi_N = sdt.gxTv_SdtTrn_Media_Mediaimage_gxi_N ;
          return  ;
       }
@@ -128,6 +133,27 @@ namespace GeneXus.Programs {
          AddObjectProperty("MediaImage_N", gxTv_SdtTrn_Media_Mediaimage_N, false, includeNonInitialized);
          AddObjectProperty("MediaSize", gxTv_SdtTrn_Media_Mediasize, false, includeNonInitialized);
          AddObjectProperty("MediaType", gxTv_SdtTrn_Media_Mediatype, false, includeNonInitialized);
+         datetime_STZ = gxTv_SdtTrn_Media_Mediadatetime;
+         sDateCnv = "";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "-";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "-";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "T";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Hour( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += ":";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Minute( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += ":";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         AddObjectProperty("MediaDateTime", sDateCnv, false, includeNonInitialized);
+         AddObjectProperty("MediaDateTime_N", gxTv_SdtTrn_Media_Mediadatetime_N, false, includeNonInitialized);
          AddObjectProperty("MediaUrl", gxTv_SdtTrn_Media_Mediaurl, false, includeNonInitialized);
          AddObjectProperty("LocationId", gxTv_SdtTrn_Media_Locationid, false, includeNonInitialized);
          if ( includeState )
@@ -139,10 +165,31 @@ namespace GeneXus.Programs {
             AddObjectProperty("MediaName_Z", gxTv_SdtTrn_Media_Medianame_Z, false, includeNonInitialized);
             AddObjectProperty("MediaSize_Z", gxTv_SdtTrn_Media_Mediasize_Z, false, includeNonInitialized);
             AddObjectProperty("MediaType_Z", gxTv_SdtTrn_Media_Mediatype_Z, false, includeNonInitialized);
+            datetime_STZ = gxTv_SdtTrn_Media_Mediadatetime_Z;
+            sDateCnv = "";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "-";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "-";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "T";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Hour( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += ":";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Minute( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += ":";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            AddObjectProperty("MediaDateTime_Z", sDateCnv, false, includeNonInitialized);
             AddObjectProperty("MediaUrl_Z", gxTv_SdtTrn_Media_Mediaurl_Z, false, includeNonInitialized);
             AddObjectProperty("LocationId_Z", gxTv_SdtTrn_Media_Locationid_Z, false, includeNonInitialized);
             AddObjectProperty("MediaImage_GXI_Z", gxTv_SdtTrn_Media_Mediaimage_gxi_Z, false, includeNonInitialized);
             AddObjectProperty("MediaImage_N", gxTv_SdtTrn_Media_Mediaimage_N, false, includeNonInitialized);
+            AddObjectProperty("MediaDateTime_N", gxTv_SdtTrn_Media_Mediadatetime_N, false, includeNonInitialized);
             AddObjectProperty("MediaImage_GXI_N", gxTv_SdtTrn_Media_Mediaimage_gxi_N, false, includeNonInitialized);
          }
          return  ;
@@ -182,6 +229,12 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Media_Mediatype = sdt.gxTv_SdtTrn_Media_Mediatype ;
          }
+         if ( sdt.IsDirty("MediaDateTime") )
+         {
+            gxTv_SdtTrn_Media_Mediadatetime_N = (short)(sdt.gxTv_SdtTrn_Media_Mediadatetime_N);
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Mediadatetime = sdt.gxTv_SdtTrn_Media_Mediadatetime ;
+         }
          if ( sdt.IsDirty("MediaUrl") )
          {
             sdtIsNull = 0;
@@ -212,6 +265,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Media_Medianame_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Mediasize_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Mediatype_Z_SetNull( );
+               this.gxTv_SdtTrn_Media_Mediadatetime_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Mediaurl_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Locationid_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Mediaimage_gxi_Z_SetNull( );
@@ -329,6 +383,56 @@ namespace GeneXus.Programs {
             SetDirty("Mediatype");
          }
 
+      }
+
+      [  SoapElement( ElementName = "MediaDateTime" )]
+      [  XmlElement( ElementName = "MediaDateTime"  , IsNullable=true )]
+      public string gxTpr_Mediadatetime_Nullable
+      {
+         get {
+            if ( gxTv_SdtTrn_Media_Mediadatetime == DateTime.MinValue)
+               return null;
+            return new GxDatetimeString(gxTv_SdtTrn_Media_Mediadatetime).value ;
+         }
+
+         set {
+            gxTv_SdtTrn_Media_Mediadatetime_N = 0;
+            sdtIsNull = 0;
+            if (String.IsNullOrEmpty(value) || value == GxDatetimeString.NullValue )
+               gxTv_SdtTrn_Media_Mediadatetime = DateTime.MinValue;
+            else
+               gxTv_SdtTrn_Media_Mediadatetime = DateTime.Parse( value);
+         }
+
+      }
+
+      [XmlIgnore]
+      public DateTime gxTpr_Mediadatetime
+      {
+         get {
+            return gxTv_SdtTrn_Media_Mediadatetime ;
+         }
+
+         set {
+            gxTv_SdtTrn_Media_Mediadatetime_N = 0;
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Mediadatetime = value;
+            SetDirty("Mediadatetime");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Media_Mediadatetime_SetNull( )
+      {
+         gxTv_SdtTrn_Media_Mediadatetime_N = 1;
+         gxTv_SdtTrn_Media_Mediadatetime = (DateTime)(DateTime.MinValue);
+         SetDirty("Mediadatetime");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Media_Mediadatetime_IsNull( )
+      {
+         return (gxTv_SdtTrn_Media_Mediadatetime_N==1) ;
       }
 
       [  SoapElement( ElementName = "MediaUrl" )]
@@ -531,6 +635,53 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "MediaDateTime_Z" )]
+      [  XmlElement( ElementName = "MediaDateTime_Z"  , IsNullable=true )]
+      public string gxTpr_Mediadatetime_Z_Nullable
+      {
+         get {
+            if ( gxTv_SdtTrn_Media_Mediadatetime_Z == DateTime.MinValue)
+               return null;
+            return new GxDatetimeString(gxTv_SdtTrn_Media_Mediadatetime_Z).value ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            if (String.IsNullOrEmpty(value) || value == GxDatetimeString.NullValue )
+               gxTv_SdtTrn_Media_Mediadatetime_Z = DateTime.MinValue;
+            else
+               gxTv_SdtTrn_Media_Mediadatetime_Z = DateTime.Parse( value);
+         }
+
+      }
+
+      [XmlIgnore]
+      public DateTime gxTpr_Mediadatetime_Z
+      {
+         get {
+            return gxTv_SdtTrn_Media_Mediadatetime_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Mediadatetime_Z = value;
+            SetDirty("Mediadatetime_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Media_Mediadatetime_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Media_Mediadatetime_Z = (DateTime)(DateTime.MinValue);
+         SetDirty("Mediadatetime_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Media_Mediadatetime_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "MediaUrl_Z" )]
       [  XmlElement( ElementName = "MediaUrl_Z"   )]
       public string gxTpr_Mediaurl_Z
@@ -643,6 +794,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "MediaDateTime_N" )]
+      [  XmlElement( ElementName = "MediaDateTime_N"   )]
+      public short gxTpr_Mediadatetime_N
+      {
+         get {
+            return gxTv_SdtTrn_Media_Mediadatetime_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Mediadatetime_N = value;
+            SetDirty("Mediadatetime_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Media_Mediadatetime_N_SetNull( )
+      {
+         gxTv_SdtTrn_Media_Mediadatetime_N = 0;
+         SetDirty("Mediadatetime_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Media_Mediadatetime_N_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "MediaImage_GXI_N" )]
       [  XmlElement( ElementName = "MediaImage_GXI_N"   )]
       public short gxTpr_Mediaimage_gxi_N
@@ -693,15 +872,20 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Media_Mediaimage = "";
          gxTv_SdtTrn_Media_Mediaimage_gxi = "";
          gxTv_SdtTrn_Media_Mediatype = "";
+         gxTv_SdtTrn_Media_Mediadatetime = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_Media_Mediaurl = "";
          gxTv_SdtTrn_Media_Locationid = Guid.Empty;
          gxTv_SdtTrn_Media_Mode = "";
          gxTv_SdtTrn_Media_Mediaid_Z = Guid.Empty;
          gxTv_SdtTrn_Media_Medianame_Z = "";
          gxTv_SdtTrn_Media_Mediatype_Z = "";
+         gxTv_SdtTrn_Media_Mediadatetime_Z = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_Media_Mediaurl_Z = "";
          gxTv_SdtTrn_Media_Locationid_Z = Guid.Empty;
          gxTv_SdtTrn_Media_Mediaimage_gxi_Z = "";
+         datetime_STZ = (DateTime)(DateTime.MinValue);
+         sDateCnv = "";
+         sNumToPad = "";
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_media", "GeneXus.Programs.trn_media_bc", new Object[] {context}, constructorCallingAssembly);;
          obj.initialize();
@@ -719,12 +903,18 @@ namespace GeneXus.Programs {
       private short sdtIsNull ;
       private short gxTv_SdtTrn_Media_Initialized ;
       private short gxTv_SdtTrn_Media_Mediaimage_N ;
+      private short gxTv_SdtTrn_Media_Mediadatetime_N ;
       private short gxTv_SdtTrn_Media_Mediaimage_gxi_N ;
       private int gxTv_SdtTrn_Media_Mediasize ;
       private int gxTv_SdtTrn_Media_Mediasize_Z ;
       private string gxTv_SdtTrn_Media_Mediatype ;
       private string gxTv_SdtTrn_Media_Mode ;
       private string gxTv_SdtTrn_Media_Mediatype_Z ;
+      private string sDateCnv ;
+      private string sNumToPad ;
+      private DateTime gxTv_SdtTrn_Media_Mediadatetime ;
+      private DateTime gxTv_SdtTrn_Media_Mediadatetime_Z ;
+      private DateTime datetime_STZ ;
       private string gxTv_SdtTrn_Media_Medianame ;
       private string gxTv_SdtTrn_Media_Mediaimage_gxi ;
       private string gxTv_SdtTrn_Media_Mediaurl ;
@@ -820,7 +1010,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MediaUrl" , Order = 5 )]
+      [DataMember( Name = "MediaDateTime" , Order = 5 )]
+      [GxSeudo()]
+      public string gxTpr_Mediadatetime
+      {
+         get {
+            return DateTimeUtil.TToC2( sdt.gxTpr_Mediadatetime, (IGxContext)(context)) ;
+         }
+
+         set {
+            sdt.gxTpr_Mediadatetime = DateTimeUtil.CToT2( value, (IGxContext)(context));
+         }
+
+      }
+
+      [DataMember( Name = "MediaUrl" , Order = 6 )]
       [GxSeudo()]
       public string gxTpr_Mediaurl
       {
@@ -834,7 +1038,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationId" , Order = 6 )]
+      [DataMember( Name = "LocationId" , Order = 7 )]
       [GxSeudo()]
       public Guid gxTpr_Locationid
       {
@@ -869,7 +1073,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 7 )]
+      [DataMember( Name = "gx_md5_hash", Order = 8 )]
       public string Hash
       {
          get {

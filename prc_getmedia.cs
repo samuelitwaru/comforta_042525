@@ -89,6 +89,8 @@ namespace GeneXus.Programs {
                A417MediaSize = P009M2_A417MediaSize[0];
                A418MediaType = P009M2_A418MediaType[0];
                A416MediaUrl = P009M2_A416MediaUrl[0];
+               A618MediaDateTime = P009M2_A618MediaDateTime[0];
+               n618MediaDateTime = P009M2_n618MediaDateTime[0];
                A415MediaImage = P009M2_A415MediaImage[0];
                n415MediaImage = P009M2_n415MediaImage[0];
                AV8SDT_Media = new SdtSDT_Media(context);
@@ -137,6 +139,8 @@ namespace GeneXus.Programs {
          P009M2_A417MediaSize = new int[1] ;
          P009M2_A418MediaType = new string[] {""} ;
          P009M2_A416MediaUrl = new string[] {""} ;
+         P009M2_A618MediaDateTime = new DateTime[] {DateTime.MinValue} ;
+         P009M2_n618MediaDateTime = new bool[] {false} ;
          P009M2_A415MediaImage = new string[] {""} ;
          P009M2_n415MediaImage = new bool[] {false} ;
          A29LocationId = Guid.Empty;
@@ -145,6 +149,7 @@ namespace GeneXus.Programs {
          A414MediaName = "";
          A418MediaType = "";
          A416MediaUrl = "";
+         A618MediaDateTime = (DateTime)(DateTime.MinValue);
          A415MediaImage = "";
          AV8SDT_Media = new SdtSDT_Media(context);
          AV15MediaPath = "";
@@ -152,7 +157,8 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getmedia__default(),
             new Object[][] {
                 new Object[] {
-               P009M2_A29LocationId, P009M2_A40000MediaImage_GXI, P009M2_n40000MediaImage_GXI, P009M2_A413MediaId, P009M2_A414MediaName, P009M2_A417MediaSize, P009M2_A418MediaType, P009M2_A416MediaUrl, P009M2_A415MediaImage, P009M2_n415MediaImage
+               P009M2_A29LocationId, P009M2_A40000MediaImage_GXI, P009M2_n40000MediaImage_GXI, P009M2_A413MediaId, P009M2_A414MediaName, P009M2_A417MediaSize, P009M2_A418MediaType, P009M2_A416MediaUrl, P009M2_A618MediaDateTime, P009M2_n618MediaDateTime,
+               P009M2_A415MediaImage, P009M2_n415MediaImage
                }
             }
          );
@@ -161,7 +167,9 @@ namespace GeneXus.Programs {
 
       private int A417MediaSize ;
       private string A418MediaType ;
+      private DateTime A618MediaDateTime ;
       private bool n40000MediaImage_GXI ;
+      private bool n618MediaDateTime ;
       private bool n415MediaImage ;
       private string A40000MediaImage_GXI ;
       private string A414MediaName ;
@@ -186,6 +194,8 @@ namespace GeneXus.Programs {
       private int[] P009M2_A417MediaSize ;
       private string[] P009M2_A418MediaType ;
       private string[] P009M2_A416MediaUrl ;
+      private DateTime[] P009M2_A618MediaDateTime ;
+      private bool[] P009M2_n618MediaDateTime ;
       private string[] P009M2_A415MediaImage ;
       private bool[] P009M2_n415MediaImage ;
       private SdtSDT_Media AV8SDT_Media ;
@@ -212,7 +222,7 @@ namespace GeneXus.Programs {
           new ParDef("AV17Udparg1",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009M2", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE LocationId = :AV17Udparg1 ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009M2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P009M2", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaDateTime, MediaImage FROM Trn_Media WHERE LocationId = :AV17Udparg1 ORDER BY MediaDateTime DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009M2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -232,8 +242,10 @@ namespace GeneXus.Programs {
                 ((int[]) buf[5])[0] = rslt.getInt(5);
                 ((string[]) buf[6])[0] = rslt.getString(6, 20);
                 ((string[]) buf[7])[0] = rslt.getVarchar(7);
-                ((string[]) buf[8])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(2));
+                ((DateTime[]) buf[8])[0] = rslt.getGXDateTime(8);
                 ((bool[]) buf[9])[0] = rslt.wasNull(8);
+                ((string[]) buf[10])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(2));
+                ((bool[]) buf[11])[0] = rslt.wasNull(9);
                 return;
        }
     }

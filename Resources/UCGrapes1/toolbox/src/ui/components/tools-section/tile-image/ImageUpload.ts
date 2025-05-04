@@ -22,6 +22,7 @@ export class ImageUpload {
   }
 
   private init() {
+    this.modalContent.innerHTML = "";
     this.modalContent.className = "tb-modal-content";
 
     const modalHeader = document.createElement("div");
@@ -69,13 +70,13 @@ export class ImageUpload {
     modalActions.appendChild(cancelBtn);
     modalActions.appendChild(saveBtn);
 
-    console.log('modalHeader')
+    console.log("modalHeader");
     this.modalContent.appendChild(modalHeader);
     this.uploadArea();
     this.createFileListElement();
     this.loadMediaFiles(); // Load media files asynchronously
 
-    console.log('modalActions')
+    console.log("modalActions");
     this.modalContent.appendChild(modalActions);
   }
 
@@ -92,7 +93,7 @@ export class ImageUpload {
         </div>
         `;
     this.setupDragAndDrop(uploadArea);
-    console.log('uploadArea')
+    console.log("uploadArea");
     this.modalContent.appendChild(uploadArea);
   }
 
@@ -107,21 +108,26 @@ export class ImageUpload {
     loadingElement.textContent = "Loading media files...";
     this.fileListElement.appendChild(loadingElement);
 
-    console.log('this.fileListElement')
+    console.log("this.fileListElement");
     this.modalContent.appendChild(this.fileListElement);
   }
 
   private async loadMediaFiles() {
     try {
       const media = await this.toolboxService.getMediaFiles();
-
+      console.log('files', media)
       if (this.fileListElement) {
         this.fileListElement.innerHTML = "";
 
         // Render each media item
         if (media && media.length > 0) {
           media.forEach((item: Media) => {
-            const singleImageFile = new SingleImageFile(item, this.type, this.infoId);
+            const singleImageFile = new SingleImageFile(
+              item,
+              this.type,
+              this,
+              this.infoId
+            );
             singleImageFile.render(this.fileListElement as HTMLElement);
           });
         }
@@ -135,502 +141,498 @@ export class ImageUpload {
     }
   }
 
-private async setupDragAndDrop(uploadArea: HTMLElement) {
-  // Create hidden file input
-  const fileInput = document.createElement("input");
-  fileInput.type = "file";
-  fileInput.id = "fileInput";
-  fileInput.multiple = true;
-  fileInput.accept = "image/jpeg, image/jpg, image/png";
-  fileInput.style.display = "none";
-  uploadArea.appendChild(fileInput);
+  private async setupDragAndDrop(uploadArea: HTMLElement) {
+    // Create hidden file input
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.id = "fileInput";
+    fileInput.multiple = true;
+    fileInput.accept = "image/jpeg, image/jpg, image/png";
+    fileInput.style.display = "none";
+    uploadArea.appendChild(fileInput);
 
-  // Prevent the file input from being triggered unintentionally
-  uploadArea.addEventListener("click", (e) => {
-    if (e.target === uploadArea) {
-      fileInput.click();
-    }
-  });
+    // Prevent the file input from being triggered unintentionally
+    uploadArea.addEventListener("click", (e) => {
+      if (e.target === uploadArea) {
+        fileInput.click();
+      }
+    });
 
-  // File input change handler
-  fileInput.addEventListener("change", () => {
-    if (fileInput.files && fileInput.files.length > 0) {
-      this.handleFiles(fileInput.files);
-    }
-  });
+    // File input change handler
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files && fileInput.files.length > 0) {
+        this.handleFiles(fileInput.files);
+      }
+    });
 
-  // Drag and drop events
-  uploadArea.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    uploadArea.classList.add("drag-over");
-  });
+    // Drag and drop events
+    uploadArea.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      uploadArea.classList.add("drag-over");
+    });
 
-  uploadArea.addEventListener("dragleave", (e) => {
-    e.preventDefault();
-    uploadArea.classList.remove("drag-over");
-  });
+    uploadArea.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove("drag-over");
+    });
 
-  uploadArea.addEventListener("drop", async (e) => {
-    e.preventDefault();
-    uploadArea.classList.remove("drag-over");
+    uploadArea.addEventListener("drop", async (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove("drag-over");
 
-    if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
-      await this.handleFiles(e.dataTransfer.files);
-    }
-  });
-}
-private async handleFiles(files: FileList) {
-  const fileArray = Array.from(files);
+      if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
+        await this.handleFiles(e.dataTransfer.files);
+      }
+    });
+  }
+  private async handleFiles(files: FileList) {
+    const fileArray = Array.from(files);
+    console.log('filearray', fileArray)
+    for (const file of fileArray) {
+      if (file.type.startsWith("image/")) {
+        try {
+          const dataUrl = await this.readFileAsDataURL(file);
+          //upload image here
+          const newMedia: Media = {
+            MediaId: Date.now().toString(),
+            MediaName: file.name,
+            MediaUrl: dataUrl,
+            MediaType: file.type,
+            MediaSize: file.size,
+          };
 
-  for (const file of fileArray) {
-    if (file.type.startsWith("image/")) {
-      try {
-        const dataUrl = await this.readFileAsDataURL(file);
-
-        // Replace the upload area with the image editor
-        this.displayImageEditor(dataUrl, file);
-
-      } catch (error) {
-        console.error("Error processing file:", error);
+          const response = await this.toolboxService.uploadFile(
+            newMedia.MediaUrl,
+            newMedia.MediaName,
+            newMedia.MediaSize,
+            newMedia.MediaType
+          );
+          this.init()
+          // Replace the upload area with the image editor
+          // this.displayImageEditor(dataUrl, file);
+        } catch (error) {
+          console.error("Error processing file:", error);
+        }
       }
     }
   }
-}
-private displayImageEditor(dataUrl: string, file: File) {
-  // Clear the upload area
-  const uploadArea = this.modalContent.querySelector(".upload-area") as HTMLElement;
-  if (uploadArea) {
-    uploadArea.innerHTML = "";
-  }
 
-  // Create the image container
-  const imageContainer = document.createElement("div");
-  imageContainer.className = "image-editor-container";
-  imageContainer.style.position = "relative";
-  imageContainer.style.width = "100%";
-  imageContainer.style.height = "300px";
-  imageContainer.style.overflow = "hidden";
-  imageContainer.style.border = "1px solid #ccc";
-
-  // Create the image element
-  const img = document.createElement("img");
-  img.src = dataUrl;
-  img.alt = file.name;
-  img.style.position = "absolute";
-  img.style.top = "50%";
-  img.style.left = "50%";
-  img.style.transform = "translate(-50%, -50%) scale(1)";
-  img.style.transformOrigin = "center center";
-  img.style.width = "100%"; // Make the image fill the container
-  img.style.height = "100%"; // Maintain aspect ratio within the container
-  img.style.objectFit = "cover";
-
-  imageContainer.appendChild(img);
-
-
-  // Add a draggable frame
-  //const zoomLevel = parseFloat(zoomSlider.value);
-  const frame = document.createElement("div");
-  frame.style.position = "absolute";
-  frame.style.border = "2px dashed #5068A8";
-  frame.style.width = "80%";
-  frame.style.height = "80%";
-  frame.style.top = "10%";
-  frame.style.left = "10%";
-  frame.style.cursor = "move";
-  frame.style.zIndex = "10";
-
+  private dataUriToFile(dataUri:string, filename = 'image.png') {
+    const [header, base64] = dataUri.split(',');
+    const mimeMatch = header.match(/:(.*?);/);
+    const mime = mimeMatch ? mimeMatch[1] : 'image/png';
   
-  // Add resize handles
-  const handles = ["top-left", "top-right", "bottom-left", "bottom-right"];
-  handles.forEach((handle) => {
-    const handleDiv = document.createElement("div");
-    handleDiv.className = `resize-handle ${handle}`;
-    handleDiv.style.position = "absolute";
-    handleDiv.style.width = "10px";
-    handleDiv.style.height = "10px";
-    handleDiv.style.backgroundColor = "#000";
-    handleDiv.style.zIndex = "11";
-
-    // Position the handles
-    if (handle.includes("top")) handleDiv.style.top = "-5px";
-    if (handle.includes("bottom")) handleDiv.style.bottom = "-5px";
-    if (handle.includes("left")) handleDiv.style.left = "-5px";
-    if (handle.includes("right")) handleDiv.style.right = "-5px";
-
-    frame.appendChild(handleDiv);
-     // Add resize logic
-     handleDiv.addEventListener("mousedown", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const startX = e.clientX;
-      const startY = e.clientY;
-      const startWidth = frame.offsetWidth;
-      const startHeight = frame.offsetHeight;
-      const startLeft = frame.offsetLeft;
-      const startTop = frame.offsetTop;
-
-      const onMouseMove = (moveEvent: MouseEvent) => {
-        const dx = moveEvent.clientX - startX;
-        const dy = moveEvent.clientY - startY;
-
-        if (handle.includes("right")) {
-          frame.style.width = `${startWidth + dx}px`;
-        }
-        if (handle.includes("bottom")) {
-          frame.style.height = `${startHeight + dy}px`;
-        }
-        if (handle.includes("left")) {
-          frame.style.width = `${startWidth - dx}px`;
-          frame.style.left = `${startLeft + dx}px`;
-        }
-        if (handle.includes("top")) {
-          frame.style.height = `${startHeight - dy}px`;
-          frame.style.top = `${startTop + dy}px`;
-        }
-
-        // Update the overlay positions
-        initializeOverlay();
-      };
-      const onMouseUp = () => {
-        document.removeEventListener("mousemove", onMouseMove);
-        document.removeEventListener("mouseup", onMouseUp);
-      };
-
-      document.addEventListener("mousemove", onMouseMove);
-      document.addEventListener("mouseup", onMouseUp);
-    });
-  });
-
-   
-
-  let isDragging = false;
-  let offsetX = 0;
-  let offsetY = 0;
-
-  frame.addEventListener("mousedown", (e) => {
-    e.preventDefault(); // Prevent default behavior (e.g., text selection)
-    e.stopPropagation(); // Stop event propagation
-    isDragging = true;
-    offsetX = e.clientX - frame.getBoundingClientRect().left;
-    offsetY = e.clientY - frame.getBoundingClientRect().top;
-    document.body.style.userSelect = "none";
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-      e.preventDefault(); 
-      e.stopPropagation(); 
-      const parentRect = imageContainer.getBoundingClientRect();
-      
-
-      let newLeft = e.clientX - offsetX - parentRect.left;
-      let newTop = e.clientY - offsetY - parentRect.top;
-
-      // Ensure the frame stays within the image container
-    if (newLeft < 0) newLeft = 0;
-    if (newLeft + frame.offsetWidth > parentRect.width) {
-      newLeft = parentRect.width - frame.offsetWidth;
+    const binary = atob(base64);
+    const array = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      array[i] = binary.charCodeAt(i);
     }
-
-    if (newTop < 0) newTop = 0;
-    if (newTop + frame.offsetHeight > parentRect.height) {
-      newTop = parentRect.height - frame.offsetHeight;
-    }
-
-    frame.style.left = `${newLeft}px`;
-    frame.style.top = `${newTop}px`;
-
- // Update the grey overlay positions
- overlayTop.style.height = `${newTop}px`;
- overlayBottom.style.top = `${newTop + frame.offsetHeight}px`;
- overlayBottom.style.height = `${parentRect.height - (newTop + frame.offsetHeight)}px`;
- overlayLeft.style.top = `${newTop}px`;
- overlayLeft.style.height = `${frame.offsetHeight}px`;
- overlayLeft.style.width = `${newLeft}px`;
- overlayRight.style.top = `${newTop}px`;
- overlayRight.style.height = `${frame.offsetHeight}px`;
- overlayRight.style.left = `${newLeft + frame.offsetWidth}px`;
- overlayRight.style.width = `${parentRect.width - (newLeft + frame.offsetWidth)}px`;
-   
+  
+    return new File([array], filename, { type: mime });
   }
-  });
 
-  document.addEventListener("mouseup", (e) => {
-    if (isDragging) {
-      e.preventDefault(); // Prevent default behavior
+  private async getFile(url:string) {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new File([blob], 'image.jpg', { type: blob.type });
+  }
+
+  public async displayImageEditor(dataUrl: string, file?: File) {
+    if(!file) {
+      file = await this.getFile(dataUrl)
+    }
+
+    // console.log('image-editor', file)
+    // Clear the upload area
+    const uploadArea = this.modalContent.querySelector(
+      ".upload-area"
+    ) as HTMLElement;
+    if (uploadArea) {
+      uploadArea.innerHTML = "";
+    }
+
+    // Create the image container
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "image-editor-container";
+    imageContainer.style.position = "relative";
+    imageContainer.style.width = "100%";
+    imageContainer.style.height = "400px";
+    imageContainer.style.overflow = "hidden";
+    imageContainer.style.border = "1px solid #ccc";
+
+    // Create the image element
+    const img = document.createElement("img");
+    img.id = 'selected-image'
+    img.src = dataUrl;
+    img.onload = () => {
+      const frameHeight = 400
+      const frameWidth = frameHeight * (img.naturalWidth/img.naturalHeight)
+      console.log(frameHeight, frameWidth)
+      frame.style.width = `${0.8*frameWidth}px`;
+      frame.style.height = `${0.8*frameHeight}px`;
+      initializeOverlay()
+    }
+
+    imageContainer.appendChild(img);
+
+    // Add a draggable frame
+    //const zoomLevel = parseFloat(zoomSlider.value);
+
+    const frame = document.createElement("div");
+    frame.id = "crop-frame"
+    frame.style.position = "absolute";
+    frame.style.border = "2px dashed #5068A8";
+    
+    const rect = imageContainer.getBoundingClientRect()
+    console.log(rect.x)
+
+    
+
+
+    // Add resize handles
+    const handles = ["top-left", "top-right", "bottom-left", "bottom-right"];
+    handles.forEach((handle) => {
+      const handleDiv = document.createElement("div");
+      handleDiv.className = `resize-handle ${handle}`;
+      handleDiv.style.position = "absolute";
+      handleDiv.style.width = "10px";
+      handleDiv.style.height = "10px";
+      handleDiv.style.backgroundColor = "#000";
+      handleDiv.style.zIndex = "11";
+
+      // Position the handles
+      if (handle.includes("top")) handleDiv.style.top = "-5px";
+      if (handle.includes("bottom")) handleDiv.style.bottom = "-5px";
+      if (handle.includes("left")) handleDiv.style.left = "-5px";
+      if (handle.includes("right")) handleDiv.style.right = "-5px";
+
+      frame.appendChild(handleDiv);
+      // Add resize logic
+      handleDiv.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const startX = e.clientX;
+        const startY = e.clientY;
+        const startWidth = frame.offsetWidth;
+        const startHeight = frame.offsetHeight;
+        const startLeft = frame.offsetLeft;
+        const startTop = frame.offsetTop;
+
+        const onMouseMove = (moveEvent: MouseEvent) => {
+          const dx = moveEvent.clientX - startX;
+          const dy = moveEvent.clientY - startY;
+
+          if (handle.includes("right")) {
+            frame.style.width = `${startWidth + dx}px`;
+          }
+          if (handle.includes("bottom")) {
+            frame.style.height = `${startHeight + dy}px`;
+          }
+          if (handle.includes("left")) {
+            frame.style.width = `${startWidth - dx}px`;
+            frame.style.left = `${startLeft + dx}px`;
+          }
+          if (handle.includes("top")) {
+            frame.style.height = `${startHeight - dy}px`;
+            frame.style.top = `${startTop + dy}px`;
+          }
+
+          // Update the overlay positions
+          initializeOverlay();
+        };
+        const onMouseUp = () => {
+          document.removeEventListener("mousemove", onMouseMove);
+          document.removeEventListener("mouseup", onMouseUp);
+        };
+
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+      });
+    });
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    frame.addEventListener("mousedown", (e) => {
+      e.preventDefault(); // Prevent default behavior (e.g., text selection)
       e.stopPropagation(); // Stop event propagation
-      isDragging = false;
-      document.body.style.userSelect = "auto"; // Re-enable text selection globally
+      isDragging = true;
+      offsetX = e.clientX - frame.getBoundingClientRect().left;
+      offsetY = e.clientY - frame.getBoundingClientRect().top;
+      document.body.style.userSelect = "none";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+        const parentRect = imageContainer.getBoundingClientRect();
+
+        let newLeft = e.clientX - offsetX - parentRect.left;
+        let newTop = e.clientY - offsetY - parentRect.top;
+
+        // Ensure the frame stays within the image container
+        if (newLeft < 0) newLeft = 0;
+        if (newLeft + frame.offsetWidth > parentRect.width) {
+          newLeft = parentRect.width - frame.offsetWidth;
+        }
+
+        if (newTop < 0) newTop = 0;
+        if (newTop + frame.offsetHeight > parentRect.height) {
+          newTop = parentRect.height - frame.offsetHeight;
+        }
+
+        frame.style.left = `${newLeft}px`;
+        frame.style.top = `${newTop}px`;
+        // Update the grey overlay positions
+        overlayTop.style.height = `${newTop}px`;
+        overlayBottom.style.top = `${newTop + frame.offsetHeight}px`;
+        overlayBottom.style.height = `${
+          parentRect.height - (newTop + frame.offsetHeight)
+        }px`;
+        overlayLeft.style.top = `${newTop}px`;
+        overlayLeft.style.height = `${frame.offsetHeight}px`;
+        overlayLeft.style.width = `${newLeft}px`;
+        overlayRight.style.top = `${newTop}px`;
+        overlayRight.style.height = `${frame.offsetHeight}px`;
+        overlayRight.style.left = `${newLeft + frame.offsetWidth}px`;
+        overlayRight.style.width = `${
+          parentRect.width - (newLeft + frame.offsetWidth)
+        }px`;
+      }
+    });
+
+    document.addEventListener("mouseup", (e) => {
+      if (isDragging) {
+        e.preventDefault(); // Prevent default behavior
+        e.stopPropagation(); // Stop event propagation
+        isDragging = false;
+        document.body.style.userSelect = "auto"; // Re-enable text selection globally
+      }
+    });
+
+    // Add grey overlay outside the frame
+    const overlayTop = document.createElement("div");
+    const overlayBottom = document.createElement("div");
+    const overlayLeft = document.createElement("div");
+    const overlayRight = document.createElement("div");
+
+    const overlayStyle = {
+      position: "absolute",
+      backgroundColor: "rgba(0, 0, 0, 0.7)", // 60% grey opacity
+      zIndex: "5", // Ensure the overlays are below the frame
+      pointerEvents: "none", // Allow interactions with the frame
+    };
+
+    imageContainer.appendChild(frame);
+
+    const initializeOverlay = () => {
+      const frameRect = frame.getBoundingClientRect();
+      const parentRect = imageContainer.getBoundingClientRect();
+
+      console.log(img.getBoundingClientRect())
+
+      console.log('frameRect', frameRect)
+      console.log('parentRect', parentRect)
+
+      Object.assign(overlayTop.style, overlayStyle, {
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: `${frameRect.top - parentRect.top}px`,
+      });
+
+      Object.assign(overlayBottom.style, overlayStyle, {
+        top: `${frameRect.bottom - parentRect.top}px`,
+        left: "0",
+        width: "100%",
+        height: `${parentRect.bottom - frameRect.bottom}px`,
+      });
+
+      Object.assign(overlayLeft.style, overlayStyle, {
+        top: `${frameRect.top - parentRect.top}px`,
+        left: "0",
+        width: `${frameRect.left - parentRect.left}px`,
+        height: `${frameRect.height}px`,
+      });
+
+      Object.assign(overlayRight.style, overlayStyle, {
+        top: `${frameRect.top - parentRect.top}px`,
+        left: `${frameRect.right - parentRect.left}px`,
+        width: `${parentRect.right - frameRect.right}px`,
+        height: `${frameRect.height}px`,
+      });
+    };
+    // Defer overlay initialization to ensure the frame is fully rendered
+    setTimeout(() => {
+      initializeOverlay();
+
+      // Add the overlays to the image container
+      imageContainer.appendChild(overlayTop);
+      imageContainer.appendChild(overlayBottom);
+      imageContainer.appendChild(overlayLeft);
+      imageContainer.appendChild(overlayRight);
+    }, 0);
+
+    // Create a wrapper for the slider and buttons
+    const modalFooter = document.createElement("div");
+    modalFooter.className = "modal-footer";
+    // Add the slider to adjust overlay opacity
+    const opacitySlider = document.createElement("input");
+    opacitySlider.type = "range";
+    opacitySlider.min = "0";
+    opacitySlider.max = "100";
+    opacitySlider.step = "1";
+    opacitySlider.value = "0"; // Default 60% opacity
+    opacitySlider.style.width = "40%";
+
+    opacitySlider.addEventListener("input", () => {
+      const opacityValue = parseInt(opacitySlider.value, 10) / 100;
+      console.log('opacity:', opacityValue)
+      opacityLabel.innerText = `${opacitySlider.value}%`;
+      const selectedComponent = (globalThis as any).selectedComponent;
+      if (!selectedComponent) return;
+
+      selectedComponent.getEl().style.backgroundColor = `rgba(0, 0, 0, ${opacityValue})`;
+
+      const pageData = (globalThis as any).pageData;
+
+      if (pageData.PageType === "Information") {
+        const infoSectionController = new InfoSectionController();
+        infoSectionController.updateInfoTileAttributes(
+          selectedComponent.parent().parent().getId(),
+          selectedComponent.parent().getId(),
+          "Opacity",
+          opacitySlider.value
+        );
+      } else {
+        (globalThis as any).tileMapper.updateTile(
+          selectedComponent.parent().getId(),
+          "Opacity",
+          opacitySlider.value
+        );
+        console.log('updated tile opacity', opacitySlider.value)
+      }
+
+      img.style.opacity = `1`;
+      img.style.filter = `brightness(${1 - opacityValue})`;
+    });
+
+    // Create a label to display the opacity percentage
+    const opacityLabel = document.createElement("span");
+    opacityLabel.innerText = `${opacitySlider.value}%`; // Set initial value
+    opacityLabel.style.fontSize = "14px";
+    opacityLabel.style.color = "#333";
+
+    const sliderWrapper = document.createElement("div");
+    sliderWrapper.style.display = "flex";
+    sliderWrapper.style.alignItems = "center";
+    sliderWrapper.style.gap = "10px";
+
+    sliderWrapper.appendChild(opacitySlider);
+    sliderWrapper.appendChild(opacityLabel);
+
+    modalFooter.appendChild(sliderWrapper);
+
+    console.log("modalFooter");
+    this.modalContent.appendChild(modalFooter);
+
+    if (uploadArea) {
+      uploadArea.appendChild(imageContainer);
+      uploadArea.appendChild(modalFooter);
     }
-  });
-
-
-
-  // Add grey overlay outside the frame
-  const overlayTop = document.createElement("div");
-  const overlayBottom = document.createElement("div");
-  const overlayLeft = document.createElement("div");
-  const overlayRight = document.createElement("div");
-
-  const overlayStyle = {
-    position: "absolute",
-    backgroundColor: "rgba(0, 0, 0, 0.7)", // 60% grey opacity
-    zIndex: "5", // Ensure the overlays are below the frame
-    pointerEvents: "none", // Allow interactions with the frame
-  };
-
-  imageContainer.appendChild(frame);
-
-  const initializeOverlay = () => {
-    const frameRect = frame.getBoundingClientRect();
-    const parentRect = imageContainer.getBoundingClientRect();
-  
-    Object.assign(overlayTop.style, overlayStyle, {
-      top: "0",
-      left: "0",
-      width: "100%",
-      height: `${frameRect.top - parentRect.top}px`,
-    });
-  
-    Object.assign(overlayBottom.style, overlayStyle, {
-      top: `${frameRect.bottom - parentRect.top}px`,
-      left: "0",
-      width: "100%",
-      height: `${parentRect.bottom - frameRect.bottom}px`,
-    });
-  
-    Object.assign(overlayLeft.style, overlayStyle, {
-      top: `${frameRect.top - parentRect.top}px`,
-      left: "0",
-      width: `${frameRect.left - parentRect.left}px`,
-      height: `${frameRect.height}px`,
-    });
-  
-    Object.assign(overlayRight.style, overlayStyle, {
-      top: `${frameRect.top - parentRect.top}px`,
-      left: `${frameRect.right - parentRect.left}px`,
-      width: `${parentRect.right - frameRect.right}px`,
-      height: `${frameRect.height}px`,
-    });
-  };
-// Defer overlay initialization to ensure the frame is fully rendered
-setTimeout(() => {
-  initializeOverlay();
-
-  // Add the overlays to the image container
-  imageContainer.appendChild(overlayTop);
-  imageContainer.appendChild(overlayBottom);
-  imageContainer.appendChild(overlayLeft);
-  imageContainer.appendChild(overlayRight);
-}, 0);
-      // Create a wrapper for the slider and buttons
-  const modalFooter = document.createElement("div");
-  modalFooter.className = "modal-footer";
-  // Add the slider to adjust overlay opacity
-  const opacitySlider = document.createElement("input");
-  opacitySlider.type = "range";
-  opacitySlider.min = "0";
-  opacitySlider.max = "100";
-  opacitySlider.step = "1";
-  opacitySlider.value = "0"; // Default 60% opacity
-  opacitySlider.style.width = "40%";
- 
-  opacitySlider.addEventListener("input", () => {
-    const opacityValue = parseInt(opacitySlider.value, 10) / 100;
-    opacityLabel.innerText = `${opacitySlider.value}%`; 
-    const selectedComponent = (globalThis as any).selectedComponent;
-    if (!selectedComponent) return;
-  
-    selectedComponent.getEl().style.backgroundColor = `rgba(0, 0, 0, ${opacityValue})`;
-  
-    const pageData = (globalThis as any).pageData;
-  
-    if (pageData.PageType === "Information") {
-      const infoSectionController = new InfoSectionController();
-      infoSectionController.updateInfoTileAttributes(
-        selectedComponent.parent().parent().getId(),
-        selectedComponent.parent().getId(),
-        "Opacity",
-        opacitySlider.value
-      );
-    } else {
-      (globalThis as any).tileMapper.updateTile(
-        selectedComponent.parent().getId(),
-        "Opacity",
-        opacitySlider.value
-      );
-    }
-     
-  img.style.opacity = `1`;
-  img.style.filter = `brightness(${1 - opacityValue})`;
-    });
-
-  // Create a label to display the opacity percentage
-  const opacityLabel = document.createElement("span");
-  opacityLabel.innerText = `${opacitySlider.value}%`; // Set initial value
-  opacityLabel.style.fontSize = "14px";
-  opacityLabel.style.color = "#333";
-    
-  const sliderWrapper = document.createElement("div");
-  sliderWrapper.style.display = "flex";
-  sliderWrapper.style.alignItems = "center";
-  sliderWrapper.style.gap = "10px";
-    
-  sliderWrapper.appendChild(opacitySlider);
-  sliderWrapper.appendChild(opacityLabel);
-
-  modalFooter.appendChild(sliderWrapper);  
- 
-  const buttonContainer = document.createElement("div");
-  buttonContainer.className = "button-container";
-  
-  const doneButton = document.createElement("button");
-  doneButton.innerText = "OK";  
-  doneButton.style.width = "92px";
-  doneButton.style.height = "35px"; 
-  doneButton.style.background = "#5068A8";
-  doneButton.style.borderRadius = "4px";
-  doneButton.style.color = "#fff";
-  doneButton.style.border = "none";
-
-  doneButton.addEventListener("click", () => {
-    console.log("Check if done button is clicked");
-    this.saveCroppedImage(img, frame, file);
-    
-  });
-   // Add the "Cancel" button
-   const cancelButton = document.createElement("button");
-   cancelButton.innerText = "Cancel";
-   cancelButton.style.width = "92px";
-   cancelButton.style.height = "35px";
-   cancelButton.style.borderRadius = "4px";
-   cancelButton.style.border = "1px solid #5068A8";
-   cancelButton.style.color = "#5068A8";
-   
- 
-   cancelButton.addEventListener("click", () => {
-     console.log("Cancel button clicked");
-     this.resetModal();
-   });
-   
-  buttonContainer.appendChild(cancelButton);
-  buttonContainer.appendChild(doneButton);
-  
-  modalFooter.appendChild(buttonContainer);
-  
-  console.log('modalFooter')
-  this.modalContent.appendChild(modalFooter);
-
-
-  if (uploadArea) {
-    uploadArea.appendChild(imageContainer);
-    uploadArea.appendChild(modalFooter);
-    uploadArea.appendChild(buttonContainer);
   }
-}
-private async saveCroppedImage(img: HTMLImageElement, frame: HTMLElement, file: File) {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
 
-  if (!ctx) {
-    console.error("Canvas context is not available.");
+  private async saveCroppedImage(
+    img: HTMLImageElement,
+    frame: HTMLElement,
+    file: File
+  ) {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    if (!ctx) {
+      console.error("Canvas context is not available.");
+      return;
+    }
+
+    const imgRect = img.getBoundingClientRect();
+    const frameRect = frame.getBoundingClientRect();
+
+    const scaleX = img.naturalWidth / imgRect.width;
+    const scaleY = img.naturalHeight / imgRect.height;
+
+    const cropX = (frameRect.left - imgRect.left) * scaleX;
+    const cropY = (frameRect.top - imgRect.top) * scaleY;
+    const cropWidth = frameRect.width * scaleX;
+    const cropHeight = frameRect.height * scaleY;
+
+    canvas.width = cropWidth;
+    canvas.height = cropHeight;
+
+    //ctx.globalAlpha = selectedOpacity; // Set the opacity for the canvas context
+    ctx.globalAlpha = 1.0;
+    ctx.drawImage(
+      img,
+      cropX,
+      cropY,
+      cropWidth,
+      cropHeight,
+      0,
+      0,
+      cropWidth,
+      cropHeight
+    );
+    // Apply the selected opacity
+    const opacitySlider = document.querySelector(
+      "input[type='range']"
+    ) as HTMLInputElement;
+    const selectedOpacity = parseInt(opacitySlider.value, 10) / 100;
+
+    // Apply brightness effect to the canvas
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+
+    ctx.putImageData(imageData, 0, 0);
+
+    const croppedDataUrl = canvas.toDataURL("image/png");
+
+    const newMedia: Media = {
+      MediaId: Date.now().toString(),
+      MediaName: file.name,
+      MediaUrl: croppedDataUrl,
+      MediaType: file.type,
+      MediaSize: file.size,
+    };
+    console.log('newMedia', newMedia)
+    const response = await this.toolboxService.uploadFile(
+      newMedia.MediaUrl,
+      newMedia.MediaName,
+      newMedia.MediaSize,
+      newMedia.MediaType
+    );
+
+    console.log('response', response)
+    // alert('response')
+    // const uploadedMedia: Media = response.BC_Trn_Media;
+
+    if (this.fileListElement) {
+      console.log("Adding cropped image to the file list...");
+      this.displayMediaFile(this.fileListElement, newMedia);
+    } else {
+      console.error("File list element is not available.");
+    }
+
+    this.resetModal();
+  }
+
+  private resetModal() {
+    this.modalContent.innerHTML = "";
+    this.init();
     return;
   }
-
-  const imgRect = img.getBoundingClientRect();
-  const frameRect = frame.getBoundingClientRect();
-
-  const scaleX = img.naturalWidth / imgRect.width;
-  const scaleY = img.naturalHeight / imgRect.height;
-
-  const cropX = (frameRect.left - imgRect.left) * scaleX;
-  const cropY = (frameRect.top - imgRect.top) * scaleY;
-  const cropWidth = frameRect.width * scaleX;
-  const cropHeight = frameRect.height * scaleY;
-
-  canvas.width = cropWidth;
-  canvas.height = cropHeight;
-
-  
-
-  //ctx.globalAlpha = selectedOpacity; // Set the opacity for the canvas context
-  ctx.globalAlpha = 1.0;
-  ctx.drawImage(
-    img,
-    cropX,
-    cropY,
-    cropWidth,
-    cropHeight,
-    0,
-    0,
-    cropWidth,
-    cropHeight
-  );
-  // Apply the selected opacity
-  const opacitySlider = document.querySelector("input[type='range']") as HTMLInputElement;
-  const selectedOpacity = parseInt(opacitySlider.value, 10) / 100;
-  
-
-  // Apply brightness effect to the canvas
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const data = imageData.data;
-
-  
-  ctx.putImageData(imageData, 0, 0);
-
-  const croppedDataUrl = canvas.toDataURL("image/png");
-
-
-  const newMedia: Media = {
-    MediaId: Date.now().toString(),
-    MediaName: file.name,
-    MediaUrl: croppedDataUrl,
-    MediaType: file.type,
-    MediaSize: file.size,
-  };
-
-  const response = await this.toolboxService.uploadFile(
-    newMedia.MediaUrl,
-    newMedia.MediaName,
-    newMedia.MediaSize,
-    newMedia.MediaType
-  );
-  const uploadedMedia: Media = response.BC_Trn_Media;
-
-  if (this.fileListElement) {
-    console.log("Adding cropped image to the file list...");
-    this.displayMediaFile(this.fileListElement, newMedia);
-  } else {
-    console.error("File list element is not available.");
-  }
-
-  this.resetModal();
-}
-private resetModal() {
-  this.modalContent.innerHTML = ''
-  this.init()
-  return
-  // console.log("Resetting modal content...");
-
-  // // Clear only the upload area and file list, not the entire modal content
-  // const uploadArea = this.modalContent.querySelector(".upload-area");
-  // const fileList = this.modalContent.querySelector(".file-list");
-
-  // if (uploadArea) {
-  //   uploadArea.remove(); // Remove the existing upload area
-  // }
-
-  // if (fileList) {
-  //   fileList.remove(); // Remove the existing file list
-  // }
-
-  // // Reinitialize the upload area and file list
-  // this.uploadArea();
-  // this.createFileListElement();
-  // this.loadMediaFiles(); // Reload media files
-}
 
   private displayMediaFileProgress(fileList: HTMLElement, file: Media) {
     const fileItem = document.createElement("div");
@@ -647,24 +649,34 @@ private resetModal() {
               <img src="${
                 file.MediaUrl
               }" alt="File thumbnail" class="preview-image">
-                ${ isValid ? "" : `<small>File is invalid. Please upload a valid file (jpg, png, jpeg and less than 2MB).</small>` }
+                ${
+                  isValid
+                    ? ""
+                    : `<small>File is invalid. Please upload a valid file (jpg, png, jpeg and less than 2MB).</small>`
+                }
               </div>
               <span class="status-icon" style="color: ${
                 isValid ? "green" : "red"
               }">
                 ${isValid ? "" : "⚠"}
               </span>
-              ${ isValid ? "" : `<span style="margin-left: 10px" id="delete-invalid" class="fa-regular fa-trash-can"></span>`}
+              ${
+                isValid
+                  ? ""
+                  : `<span style="margin-left: 10px" id="delete-invalid" class="fa-regular fa-trash-can"></span>`
+              }
             `;
     fileList.insertBefore(fileItem, fileList.firstChild);
 
-    const invalidFileDelete = fileItem.querySelector("#delete-invalid") as HTMLElement;
+    const invalidFileDelete = fileItem.querySelector(
+      "#delete-invalid"
+    ) as HTMLElement;
     if (invalidFileDelete) {
-        invalidFileDelete.style.cursor = "pointer";
-        invalidFileDelete.addEventListener("click", (e) => {
-            e.preventDefault();
+      invalidFileDelete.style.cursor = "pointer";
+      invalidFileDelete.addEventListener("click", (e) => {
+        e.preventDefault();
         fileList.removeChild(fileItem);
-        });
+      });
     }
 
     let progress = 0;
@@ -673,16 +685,18 @@ private resetModal() {
 
     const interval = setInterval(() => {
       progress += Math.floor(Math.random() * 15) + 5;
-      if (progressBar) progressBar.style.width = `${progress > 100 ? 100 : progress}%`;
-      if (progressText) progressText.textContent = `${progress > 100 ? 100 : progress}%`;
+      if (progressBar)
+        progressBar.style.width = `${progress > 100 ? 100 : progress}%`;
+      if (progressText)
+        progressText.textContent = `${progress > 100 ? 100 : progress}%`;
 
       if (progress >= 100) {
         clearInterval(interval);
         if (isValid) {
-            fileList.removeChild(fileItem);
-            file = this.finishedUploads[file.MediaId] || file;
-            this.displayMediaFile(fileList, file);
-        }        
+          fileList.removeChild(fileItem);
+          file = this.finishedUploads[file.MediaId] || file;
+          this.displayMediaFile(fileList, file);
+        }
       }
     }, 300);
 
@@ -712,7 +726,6 @@ private resetModal() {
   }
 
   private displayMediaFile(fileList: HTMLElement, file: Media): void {
-   
     const fileItem = document.createElement("div");
     fileItem.className = "file-item";
 
@@ -726,7 +739,7 @@ private resetModal() {
     const actionButtons = document.createElement("div");
     actionButtons.className = "action-buttons";
 
-      // Add the check button
+    // Add the check button
     const checkButton = document.createElement("button");
     checkButton.className = "action-button check-button";
     checkButton.innerHTML = "✔"; // Check icon
@@ -745,29 +758,26 @@ private resetModal() {
       console.log("Image deleted:", file.MediaUrl);
     });
 
-     // Append buttons to the action buttons container
-  actionButtons.appendChild(checkButton);
-  actionButtons.appendChild(deleteButton);
+    // Append buttons to the action buttons container
+    actionButtons.appendChild(checkButton);
+    actionButtons.appendChild(deleteButton);
 
-  // Append the image and action buttons to the file item
-  fileItem.appendChild(img);
-  fileItem.appendChild(actionButtons);
+    // Append the image and action buttons to the file item
+    fileItem.appendChild(img);
+    fileItem.appendChild(actionButtons);
 
-  // Append the file item to the file list
-  fileList.appendChild(fileItem);
+    // Append the file item to the file list
+    fileList.appendChild(fileItem);
 
-  
+    // Handle tile click
+    fileItem.addEventListener("click", () => {
+      // Remove active class from all tiles
+      const allTiles = fileList.querySelectorAll(".file-item");
+      allTiles.forEach((tile) => tile.classList.remove("active"));
 
-     // Handle tile click
-  fileItem.addEventListener("click", () => {
-    // Remove active class from all tiles
-    const allTiles = fileList.querySelectorAll(".file-item");
-    allTiles.forEach((tile) => tile.classList.remove("active"));
-
-    // Add active class to the clicked tile
-    fileItem.classList.add("active");
-
-  });
+      // Add active class to the clicked tile
+      fileItem.classList.add("active");
+    });
   }
 
   // Add this property to the class with the correct type
