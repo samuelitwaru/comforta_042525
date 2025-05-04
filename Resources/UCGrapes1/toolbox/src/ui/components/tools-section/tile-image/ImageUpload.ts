@@ -12,6 +12,7 @@ export class ImageUpload {
   fileListElement: HTMLElement | null = null;
   infoId?: string;
   finishedUploads: { [key: string]: Media } = {};
+  cropContainer!: HTMLDivElement;
 
   constructor(type: any, infoId?: string) {
     this.type = type;
@@ -69,15 +70,19 @@ export class ImageUpload {
 
     modalActions.appendChild(cancelBtn);
     modalActions.appendChild(saveBtn);
-
-    console.log("modalHeader");
     this.modalContent.appendChild(modalHeader);
     this.uploadArea();
+    
+    // cropper container
+    this.cropContainer = document.createElement("div")
+    this.cropContainer.id = 'crop-container'
+    this.modalContent.appendChild(this.cropContainer);
+
     this.createFileListElement();
     this.loadMediaFiles(); // Load media files asynchronously
-
-    console.log("modalActions");
     this.modalContent.appendChild(modalActions);
+
+    
   }
 
   private uploadArea() {
@@ -153,8 +158,8 @@ export class ImageUpload {
 
     // Prevent the file input from being triggered unintentionally
     uploadArea.addEventListener("click", (e) => {
+      fileInput.click();
       if (e.target === uploadArea) {
-        fileInput.click();
       }
     });
 
@@ -242,13 +247,12 @@ export class ImageUpload {
       file = await this.getFile(dataUrl)
     }
 
-    // console.log('image-editor', file)
-    // Clear the upload area
+    // hide upload area
     const uploadArea = this.modalContent.querySelector(
       ".upload-area"
     ) as HTMLElement;
     if (uploadArea) {
-      uploadArea.innerHTML = "";
+      uploadArea.style.display = "none";
     }
 
     // Create the image container
@@ -282,10 +286,6 @@ export class ImageUpload {
     frame.id = "crop-frame"
     frame.style.position = "absolute";
     frame.style.border = "2px dashed #5068A8";
-    
-    const rect = imageContainer.getBoundingClientRect()
-    console.log(rect.x)
-
     
 
 
@@ -539,10 +539,9 @@ export class ImageUpload {
     console.log("modalFooter");
     this.modalContent.appendChild(modalFooter);
 
-    if (uploadArea) {
-      uploadArea.appendChild(imageContainer);
-      uploadArea.appendChild(modalFooter);
-    }
+    this.cropContainer.appendChild(imageContainer);
+    this.cropContainer.appendChild(modalFooter);
+    
   }
 
   private async saveCroppedImage(
