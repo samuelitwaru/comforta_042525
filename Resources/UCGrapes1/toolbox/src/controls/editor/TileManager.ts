@@ -80,9 +80,11 @@ export class TileManager {
 
       if (this.page?.PageType === "Information") {
       } else {
+        console.log('index', index);
         (globalThis as any).tileMapper.addFreshRow(
           newRowComponent.getId() as string,
-          tileId as string
+          tileId as string,
+          index + 1
         );
       }
     }

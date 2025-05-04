@@ -239,19 +239,10 @@ namespace GeneXus.Programs
 
 
 
+
 		[SoapElement(ElementName="Opacity")]
 		[XmlElement(ElementName="Opacity")]
-		public string gxTpr_Opacity_double
-		{
-			get {
-				return Convert.ToString(gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Opacity, System.Globalization.CultureInfo.InvariantCulture);
-			}
-			set {
-				gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Opacity = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
-			}
-		}
-		[XmlIgnore]
-		public decimal gxTpr_Opacity
+		public short gxTpr_Opacity
 		{
 			get {
 				return gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Opacity; 
@@ -393,7 +384,7 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Bgimageurl;
 		 
 
-		protected decimal gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Opacity;
+		protected short gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Opacity;
 		 
 
 		protected decimal gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Size;
@@ -516,14 +507,14 @@ namespace GeneXus.Programs
 		}
 
 		[DataMember(Name="Opacity", Order=8)]
-		public  string gxTpr_Opacity
+		public short gxTpr_Opacity
 		{
 			get { 
-				return StringUtil.LTrim( StringUtil.Str(  sdt.gxTpr_Opacity, 10, 5));
+				return sdt.gxTpr_Opacity;
 
 			}
 			set { 
-				sdt.gxTpr_Opacity =  NumberUtil.Val( value, ".");
+				sdt.gxTpr_Opacity = value;
 			}
 		}
 
