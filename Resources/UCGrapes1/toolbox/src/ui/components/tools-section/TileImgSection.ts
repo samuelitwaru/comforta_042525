@@ -18,6 +18,6 @@ export class TileImgSection {
     }
 
     render(container: HTMLElement) {
-        container.appendChild(this.container);        
+        // container.appendChild(this.container);        
     }
 }
