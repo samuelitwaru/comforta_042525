@@ -23,25 +23,7 @@ export class ImageUpload {
     this.infoId = infoId;
     this.modalContent = document.createElement("div");
     this.toolboxService = new ToolBoxService();
-    this.getCurrentImageSettings()
     this.init();
-    console.log('attrs', this.bgImage, this.opacity)
-  }
-
-  private getCurrentImageSettings() {
-    if (this.type == 'tile') {
-      const tileComp = (globalThis as any).selectedComponent.parent()
-      const rowComp = tileComp.parent()
-      console.log('selected tile', tileComp.getEl());
-      console.log('selected row', rowComp.getEl());
-      const attrs = (globalThis as any).tileMapper.getTile(
-        rowComp.getId(),
-        tileComp.getId()
-      );
-      console.log('attrs', attrs)
-      this.bgImage = attrs.BGImageUrl
-      this.opacity = attrs.Opacity
-    }
   }
 
   private init() {

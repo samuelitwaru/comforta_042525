@@ -92,6 +92,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          else
          {
+            new prc_logtofile(context ).execute(  context.GetMessage( "Error on actual form delete", "")) ;
             context.RollbackDataStores("workwithplus.dynamicforms.wwp_df_deleteform",pr_default);
             AV9Messages = AV8WWP_Form.GetMessages();
          }

@@ -101,7 +101,7 @@ namespace GeneXus.Programs {
          AV13GAMUser.gxTpr_Firstname = AV10GivenName;
          AV13GAMUser.gxTpr_Lastname = AV11LastName;
          AV13GAMUser.gxTpr_Email = AV8Email;
-         AV13GAMUser.gxTpr_Password = "user123";
+         AV13GAMUser.gxTpr_Password = Guid.NewGuid( ).ToString();
          AV13GAMUser.gxTpr_Authenticationtypename = "local";
          AV13GAMUser.gxTpr_Namespace = "Comforta";
          AV13GAMUser.save();
@@ -112,9 +112,11 @@ namespace GeneXus.Programs {
             AV16Role = AV14GAMRole.getbyname(AV12RoleName, out  AV15GAMErrorCollection);
             if ( AV13GAMUser.addrole(AV16Role, out  AV15GAMErrorCollection) )
             {
+               AV25ActivactionKey = AV13GAMUser.getnewactivationkey(out  AV24GAMErrors);
                AV13GAMUser.save();
                context.CommitDataStores("prc_creategamuseraccount",pr_default);
             }
+            new prc_senduseractivationlink(context).executeSubmit(  AV13GAMUser.gxTpr_Guid,  AV25ActivactionKey,  AV19HttpRequest.BaseURL, ref  AV18isSuccessful, ref  AV22ErrDescription, ref  AV15GAMErrorCollection) ;
          }
          else
          {
@@ -142,6 +144,10 @@ namespace GeneXus.Programs {
          AV16Role = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
          AV15GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV14GAMRole = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
+         AV25ActivactionKey = "";
+         AV24GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
+         AV19HttpRequest = new GxHttpRequest( context);
+         AV22ErrDescription = "";
          GXt_char1 = "";
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_creategamuseraccount__datastore1(),
             new Object[][] {
@@ -158,13 +164,17 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private string AV25ActivactionKey ;
       private string GXt_char1 ;
+      private bool AV18isSuccessful ;
       private string AV23GAMErrorResponse ;
       private string AV8Email ;
       private string AV10GivenName ;
       private string AV11LastName ;
       private string AV12RoleName ;
       private string AV9GAMUserGUID ;
+      private string AV22ErrDescription ;
+      private GxHttpRequest AV19HttpRequest ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -175,6 +185,7 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV16Role ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV15GAMErrorCollection ;
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV14GAMRole ;
+      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV24GAMErrors ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }

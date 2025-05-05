@@ -230,7 +230,6 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
-         context.AddJavascriptSource("UserControls/UC_CustomImageUploadRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -566,11 +565,6 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
-            /* User Defined Control */
-            ucUsercontrol1.Render(context, "uc_customimageupload", Usercontrol1_Internalname, "USERCONTROL1Container");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -630,8 +624,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 54,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavFirstname_Internalname, AV23FirstName, StringUtil.RTrim( context.localUtil.Format( AV23FirstName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,54);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFirstname_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavFirstname_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 52,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavFirstname_Internalname, AV23FirstName, StringUtil.RTrim( context.localUtil.Format( AV23FirstName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,52);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFirstname_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavFirstname_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -650,8 +644,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 60,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavFirstnamevalue_Internalname, AV24FirstNameValue, StringUtil.RTrim( context.localUtil.Format( AV24FirstNameValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,60);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFirstnamevalue_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavFirstnamevalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 58,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavFirstnamevalue_Internalname, AV24FirstNameValue, StringUtil.RTrim( context.localUtil.Format( AV24FirstNameValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,58);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFirstnamevalue_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavFirstnamevalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -670,8 +664,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 66,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavLastname_Internalname, AV29LastName, StringUtil.RTrim( context.localUtil.Format( AV29LastName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,66);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavLastname_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavLastname_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavLastname_Internalname, AV29LastName, StringUtil.RTrim( context.localUtil.Format( AV29LastName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavLastname_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavLastname_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -690,8 +684,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 72,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavLastnamevalue_Internalname, AV30LastNameValue, StringUtil.RTrim( context.localUtil.Format( AV30LastNameValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,72);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavLastnamevalue_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavLastnamevalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 70,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavLastnamevalue_Internalname, AV30LastNameValue, StringUtil.RTrim( context.localUtil.Format( AV30LastNameValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,70);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavLastnamevalue_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavLastnamevalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -710,8 +704,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 78,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavEmail_Internalname, AV16Email, StringUtil.RTrim( context.localUtil.Format( AV16Email, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,78);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEmail_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavEmail_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 76,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavEmail_Internalname, AV16Email, StringUtil.RTrim( context.localUtil.Format( AV16Email, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,76);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEmail_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavEmail_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -730,8 +724,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 84,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavEmailvalue_Internalname, AV17EmailValue, StringUtil.RTrim( context.localUtil.Format( AV17EmailValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,84);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEmailvalue_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavEmailvalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 82,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavEmailvalue_Internalname, AV17EmailValue, StringUtil.RTrim( context.localUtil.Format( AV17EmailValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,82);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEmailvalue_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavEmailvalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -750,8 +744,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 90,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPhone_Internalname, AV33Phone, StringUtil.RTrim( context.localUtil.Format( AV33Phone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,90);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhone_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavPhone_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 88,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavPhone_Internalname, AV33Phone, StringUtil.RTrim( context.localUtil.Format( AV33Phone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,88);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhone_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavPhone_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -800,8 +794,8 @@ namespace GeneXus.Programs {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavPhonenumber_Internalname, context.GetMessage( "Phone Number", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 106,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPhonenumber_Internalname, AV38PhoneNumber, StringUtil.RTrim( context.localUtil.Format( AV38PhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,106);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonenumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavPhonenumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 104,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavPhonenumber_Internalname, AV38PhoneNumber, StringUtil.RTrim( context.localUtil.Format( AV38PhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,104);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonenumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavPhonenumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -812,16 +806,16 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "CellMarginTop", "start", "top", "", "flex-grow:1;align-self:flex-end;", "div");
-            wb_table1_108_9D2( true) ;
+            wb_table1_106_9D2( true) ;
          }
          else
          {
-            wb_table1_108_9D2( false) ;
+            wb_table1_106_9D2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table1_108_9D2e( bool wbgen )
+      protected void wb_table1_106_9D2e( bool wbgen )
       {
          if ( wbgen )
          {
@@ -859,8 +853,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 122,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPhonecode_Internalname, AV34PhoneCode, StringUtil.RTrim( context.localUtil.Format( AV34PhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,122);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavPhonecode_Visible, 1, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 120,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavPhonecode_Internalname, AV34PhoneCode, StringUtil.RTrim( context.localUtil.Format( AV34PhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,120);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavPhonecode_Visible, 1, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1627,7 +1621,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
       }
 
-      protected void wb_table1_108_9D2( bool wbgen )
+      protected void wb_table1_106_9D2( bool wbgen )
       {
          if ( wbgen )
          {
@@ -1644,14 +1638,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group ActionGroup", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 113,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 111,'',false,'',0)\"";
             ClassString = "btn-default";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "Cancel", ""), bttBtncancel_Jsonclick, 7, context.GetMessage( "Cancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e189d1_client"+"'", TempTags, "", 2, "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 115,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 113,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnsaveupdate_Internalname, "", context.GetMessage( "Update", ""), bttBtnsaveupdate_Jsonclick, 5, context.GetMessage( "Update", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOSAVEUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_UserProfile.htm");
@@ -1661,11 +1655,11 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table1_108_9D2e( true) ;
+            wb_table1_106_9D2e( true) ;
          }
          else
          {
-            wb_table1_108_9D2e( false) ;
+            wb_table1_106_9D2e( false) ;
          }
       }
 
@@ -1709,7 +1703,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813164548", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202555163454", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1725,11 +1719,10 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_userprofile.js", "?202542813164552", false, true);
+         context.AddJavascriptSource("wp_userprofile.js", "?202555163455", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
-         context.AddJavascriptSource("UserControls/UC_CustomImageUploadRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1754,7 +1747,6 @@ namespace GeneXus.Programs {
          edtavUser_Internalname = "vUSER";
          edtavRole_Internalname = "vROLE";
          bttBtnupdateprofile_Internalname = "BTNUPDATEPROFILE";
-         Usercontrol1_Internalname = "USERCONTROL1";
          divProfileextendedinfo1_tablemaininfo_Internalname = "PROFILEEXTENDEDINFO1_TABLEMAININFO";
          Dvpanel_profileextendedinfo1_tablemaininfo_Internalname = "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO";
          lblAvatarlabel_Internalname = "AVATARLABEL";
@@ -1941,7 +1933,6 @@ namespace GeneXus.Programs {
          AV56user = "";
          AV46role = "";
          bttBtnupdateprofile_Jsonclick = "";
-         ucUsercontrol1 = new GXUserControl();
          ucDvpanel_profileextendedinfo1_tableabout = new GXUserControl();
          lblAvatarlabel_Jsonclick = "";
          ucAvataruc = new GXUserControl();
@@ -2085,7 +2076,6 @@ namespace GeneXus.Programs {
       private string edtavRole_Jsonclick ;
       private string bttBtnupdateprofile_Internalname ;
       private string bttBtnupdateprofile_Jsonclick ;
-      private string Usercontrol1_Internalname ;
       private string Dvpanel_profileextendedinfo1_tableabout_Internalname ;
       private string divProfileextendedinfo1_tableabout_Internalname ;
       private string divUpdateavatartable_Internalname ;
@@ -2176,7 +2166,6 @@ namespace GeneXus.Programs {
       private string AV68profileImage ;
       private string AV62UserProfileImage ;
       private GXUserControl ucDvpanel_profileextendedinfo1_tablemaininfo ;
-      private GXUserControl ucUsercontrol1 ;
       private GXUserControl ucDvpanel_profileextendedinfo1_tableabout ;
       private GXUserControl ucAvataruc ;
       private GXUserControl ucCombo_phonecode ;

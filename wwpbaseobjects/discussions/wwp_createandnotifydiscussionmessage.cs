@@ -119,10 +119,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          AV9WWPDiscussionMessage.gxTpr_Wwpdiscussionmessagethreadid = AV17WWPDiscussionMessageThreadId;
          AV9WWPDiscussionMessage.gxTpr_Wwpdiscussionmessagemessage = AV14Message;
          AV9WWPDiscussionMessage.Save();
-         new prc_logtoserver(context ).execute(  AV9WWPDiscussionMessage.ToJSonString(true, true)) ;
          if ( AV9WWPDiscussionMessage.Success() )
          {
-            new prc_logtoserver(context ).execute(  context.GetMessage( "Discussion Notification Saved: ", "")+AV14Message) ;
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13MentionWWPUserExtendedIdCollectionJson)) )
             {
                AV12MentionWWPUserExtendedIdCollection.FromJSonString(AV13MentionWWPUserExtendedIdCollectionJson, null);
@@ -140,7 +138,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                }
             }
             context.CommitDataStores("wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage",pr_default);
-            new prc_logtoserver(context ).execute(  context.GetMessage( "Committed", "")) ;
             AV25GAMUser.load( AV9WWPDiscussionMessage.gxTpr_Wwpuserextendedid);
             if ( AV25GAMUser.success() )
             {

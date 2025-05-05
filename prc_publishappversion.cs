@@ -135,7 +135,6 @@ namespace GeneXus.Programs {
                A29LocationId = P00BL5_A29LocationId[0];
                A598PublishedActiveAppVersionId = P00BL5_A598PublishedActiveAppVersionId[0];
                n598PublishedActiveAppVersionId = P00BL5_n598PublishedActiveAppVersionId[0];
-               new prc_logtoserver(context ).execute(  context.GetMessage( "setting PublishedActiveAppVersionId: ", "")+AV15AppVersionId.ToString()) ;
                A598PublishedActiveAppVersionId = AV15AppVersionId;
                n598PublishedActiveAppVersionId = false;
                GXTBL4 = 1;

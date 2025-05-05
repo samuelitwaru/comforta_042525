@@ -135,7 +135,6 @@ namespace GeneXus.Programs {
                      AV10CleanedPageStructure = AV18SDT_ContentPage.ToJSonString(false, true);
                   }
                }
-               new prc_logtoserver(context ).execute(  context.GetMessage( "Cleaned: ", "")+AV10CleanedPageStructure) ;
                A518PageStructure = AV10CleanedPageStructure;
                if ( ! ( ( StringUtil.StrCmp(O518PageStructure, AV10CleanedPageStructure) == 0 ) ) )
                {

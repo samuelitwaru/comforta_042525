@@ -92,23 +92,21 @@ namespace GeneXus.Programs {
             cleanup();
             if (true) return;
          }
-         new prc_logtoserver(context ).execute(  AV10AppVersionId.ToString()) ;
-         new prc_logtoserver(context ).execute(  AV9PageId.ToString()) ;
-         AV14GXLvl10 = 0;
+         AV14GXLvl8 = 0;
          /* Using cursor P00BK2 */
          pr_default.execute(0, new Object[] {AV10AppVersionId});
          while ( (pr_default.getStatus(0) != 101) )
          {
             A523AppVersionId = P00BK2_A523AppVersionId[0];
-            AV14GXLvl10 = 1;
-            AV15GXLvl12 = 0;
+            AV14GXLvl8 = 1;
+            AV15GXLvl10 = 0;
             /* Using cursor P00BK3 */
             pr_default.execute(1, new Object[] {A523AppVersionId, AV9PageId});
             while ( (pr_default.getStatus(1) != 101) )
             {
                GXTBK3 = 0;
                A516PageId = P00BK3_A516PageId[0];
-               AV15GXLvl12 = 1;
+               AV15GXLvl10 = 1;
                /* Using cursor P00BK4 */
                pr_default.execute(2, new Object[] {A523AppVersionId, A516PageId});
                pr_default.close(2);
@@ -124,7 +122,7 @@ namespace GeneXus.Programs {
                if (true) break;
             }
             pr_default.close(1);
-            if ( AV15GXLvl12 == 0 )
+            if ( AV15GXLvl10 == 0 )
             {
                AV8SDT_Error.gxTpr_Status = context.GetMessage( "Error", "");
                AV8SDT_Error.gxTpr_Message = context.GetMessage( "Version Not Found", "");
@@ -133,7 +131,7 @@ namespace GeneXus.Programs {
             if (true) break;
          }
          pr_default.close(0);
-         if ( AV14GXLvl10 == 0 )
+         if ( AV14GXLvl8 == 0 )
          {
             AV8SDT_Error.gxTpr_Status = context.GetMessage( "Error", "");
             AV8SDT_Error.gxTpr_Message = context.GetMessage( "Version Not Found", "");
@@ -185,8 +183,8 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private short AV14GXLvl10 ;
-      private short AV15GXLvl12 ;
+      private short AV14GXLvl8 ;
+      private short AV15GXLvl10 ;
       private short GXTBK3 ;
       private Guid AV10AppVersionId ;
       private Guid AV9PageId ;
