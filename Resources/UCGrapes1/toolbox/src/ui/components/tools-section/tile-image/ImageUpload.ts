@@ -635,10 +635,6 @@ export class ImageUpload {
       newMedia.MediaType
     );
 
-    console.log('response', response)
-    // alert('response')
-    // const uploadedMedia: Media = response.BC_Trn_Media;
-
     if (this.fileListElement) {
       console.log("Adding cropped image to the file list...");
       this.displayMediaFile(this.fileListElement, newMedia);
