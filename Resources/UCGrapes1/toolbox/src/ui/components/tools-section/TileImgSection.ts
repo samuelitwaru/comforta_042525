@@ -18,6 +18,7 @@ export class TileImgSection {
     }
 
     render(container: HTMLElement) {
-        // container.appendChild(this.container);        
+        this.container.style.display = "none";
+        container.appendChild(this.container);        
     }
 }
