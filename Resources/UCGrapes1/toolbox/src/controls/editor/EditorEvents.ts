@@ -187,13 +187,13 @@ export class EditorEvents {
     let destinationComponent: any;
 
     this.editor.on("component:drag:start", (model: any) => {
-      // sourceComponent = model.parent;
+      sourceComponent = model.parent;
     });
 
     this.editor.on("component:drag:end", (model: any) => {
-      // if (this.isResizing) return
-      // destinationComponent = model.parent;
-      // this.uiManager.handleDragEnd(model, sourceComponent, destinationComponent);
+      if (this.isResizing) return
+      destinationComponent = model.parent;
+      this.uiManager.handleDragEnd(model, sourceComponent, destinationComponent);
     });
   }
 
@@ -208,7 +208,6 @@ export class EditorEvents {
       const isCta = ['img-button-container','plain-button-container','cta-container-child']
                       .some(cls => component.getClasses().includes(cls))
       
-      console.log(isCta, isTile)
       if (isCta) {
         this.uiManager.setInfoCtaProperties();
         this.uiManager.showCtaTools()
