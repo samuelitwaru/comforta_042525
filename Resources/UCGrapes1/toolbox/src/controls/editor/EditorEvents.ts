@@ -76,9 +76,7 @@ export class EditorEvents {
               if (this.isResizing) {
                 let newHeight = this.resizingRowHeight + (e.clientY-this.resizeYStart)
                 if (newHeight < minTileHeight) newHeight = minTileHeight;
-                // this.resizingRow?.setAttribute("style", `height:${newHeight}px !important`);
                 const comps = wrapper.find(`#${this.resizingRow?.id}`)
-                console.log(comps)
                 if (comps.length) {
                   comps[0].addStyle({
                     height: `${newHeight}px`
@@ -94,12 +92,6 @@ export class EditorEvents {
             })
 
             document.addEventListener("mouseup", (e:MouseEvent) => {
-              if (this.isResizing) {
-                this.isResizing = false
-              }
-            })
-
-            wrapper.view.el.addEventListener("mouseup", (e:MouseEvent) => {
               if (this.isResizing) {
                 this.isResizing = false
               }
