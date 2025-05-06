@@ -255,12 +255,14 @@ button {
 
 .tile-resize-button {
   position: absolute;
-  bottom: -15px;
-  left: 20px;
   display: none;
   background-color: transparent;
   border: none;
+  bottom: -5px;
   z-index: 1;
+  width: 100%;
+  cursor: ns-resize !important;
+  height: 10px;
 }
 
 .tile-open-menu {
@@ -274,7 +276,7 @@ button {
   display: block;
 }
 
-.template-wrapper .gjs-selected ~ .tile-resize-button {
+.template-wrapper:hover .tile-resize-button {
   display: block;
 }
 

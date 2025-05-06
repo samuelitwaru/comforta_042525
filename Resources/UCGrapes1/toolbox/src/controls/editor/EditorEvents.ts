@@ -10,6 +10,7 @@ import { ToolboxManager } from "../toolbox/ToolboxManager";
 import { AppVersionManager } from "../versions/AppVersionManager";
 import { EditorUIManager } from "./EditorUiManager";
 import { FrameEvent } from "./FrameEvent";
+import { PageMapper } from "./PageMapper";
 
 export class EditorEvents {
   editor: any;
@@ -191,7 +192,7 @@ export class EditorEvents {
 
   onSelected() {
     this.editor.on("component:selected", (component: any) => {
-      
+      const pageMapper = new PageMapper(this.editor);
       (globalThis as any).selectedComponent = component;
       (globalThis as any).tileMapper = this.uiManager.createTileMapper();
       (globalThis as any).infoContentMapper = this.uiManager.createInfoContentMapper();
