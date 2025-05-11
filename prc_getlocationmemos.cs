@@ -182,6 +182,7 @@ namespace GeneXus.Programs {
             AV9SDT_Memo.gxTpr_Residentguid = A71ResidentGUID;
             AV9SDT_Memo.gxTpr_Memobgcolorcode = A566MemoBgColorCode;
             AV9SDT_Memo.gxTpr_Memoform = A567MemoForm;
+            AV9SDT_Memo.gxTpr_Createdby = A64ResidentGivenName+" "+A65ResidentLastName;
             AV19SDT_Memos.Add(AV9SDT_Memo, 0);
             pr_default.readNext(2);
          }

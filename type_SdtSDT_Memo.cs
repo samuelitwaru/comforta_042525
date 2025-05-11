@@ -56,6 +56,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_Memo_Memoform = "";
 
+			gxTv_SdtSDT_Memo_Createdby = "";
+
 		}
 
 		public SdtSDT_Memo(IGxContext context)
@@ -188,6 +190,9 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("MemoForm", gxTpr_Memoform, false);
+
+
+			AddObjectProperty("CreatedBy", gxTpr_Createdby, false);
 
 			return;
 		}
@@ -531,6 +536,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="CreatedBy")]
+		[XmlElement(ElementName="CreatedBy")]
+		public string gxTpr_Createdby
+		{
+			get {
+				return gxTv_SdtSDT_Memo_Createdby; 
+			}
+			set {
+				gxTv_SdtSDT_Memo_Createdby = value;
+				SetDirty("Createdby");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -568,6 +589,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Memo_Residentguid = "";
 			gxTv_SdtSDT_Memo_Memobgcolorcode = "";
 			gxTv_SdtSDT_Memo_Memoform = "";
+			gxTv_SdtSDT_Memo_Createdby = "";
 			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
@@ -639,6 +661,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_Memo_Memoform;
+		 
+
+		protected string gxTv_SdtSDT_Memo_Createdby;
 		 
 
 
@@ -883,6 +908,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Memoform = value;
+			}
+		}
+
+		[DataMember(Name="CreatedBy", Order=19)]
+		public  string gxTpr_Createdby
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Createdby);
+
+			}
+			set { 
+				 sdt.gxTpr_Createdby = value;
 			}
 		}
 

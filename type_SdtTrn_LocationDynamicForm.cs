@@ -74,6 +74,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Locationdynamicformid_Z");
          state.Add("gxTpr_Organisationid_Z");
          state.Add("gxTpr_Locationid_Z");
+         state.Add("gxTpr_Formpagename_Z");
          state.Add("gxTpr_Wwpformid_Z");
          state.Add("gxTpr_Wwpformversionnumber_Z");
          state.Add("gxTpr_Wwpformreferencename_Z");
@@ -97,6 +98,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid = sdt.gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid ;
          gxTv_SdtTrn_LocationDynamicForm_Organisationid = sdt.gxTv_SdtTrn_LocationDynamicForm_Organisationid ;
          gxTv_SdtTrn_LocationDynamicForm_Locationid = sdt.gxTv_SdtTrn_LocationDynamicForm_Locationid ;
+         gxTv_SdtTrn_LocationDynamicForm_Formpagename = sdt.gxTv_SdtTrn_LocationDynamicForm_Formpagename ;
          gxTv_SdtTrn_LocationDynamicForm_Wwpformid = sdt.gxTv_SdtTrn_LocationDynamicForm_Wwpformid ;
          gxTv_SdtTrn_LocationDynamicForm_Wwpformversionnumber = sdt.gxTv_SdtTrn_LocationDynamicForm_Wwpformversionnumber ;
          gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename = sdt.gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename ;
@@ -116,6 +118,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid_Z = sdt.gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid_Z ;
          gxTv_SdtTrn_LocationDynamicForm_Organisationid_Z = sdt.gxTv_SdtTrn_LocationDynamicForm_Organisationid_Z ;
          gxTv_SdtTrn_LocationDynamicForm_Locationid_Z = sdt.gxTv_SdtTrn_LocationDynamicForm_Locationid_Z ;
+         gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z = sdt.gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z ;
          gxTv_SdtTrn_LocationDynamicForm_Wwpformid_Z = sdt.gxTv_SdtTrn_LocationDynamicForm_Wwpformid_Z ;
          gxTv_SdtTrn_LocationDynamicForm_Wwpformversionnumber_Z = sdt.gxTv_SdtTrn_LocationDynamicForm_Wwpformversionnumber_Z ;
          gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename_Z = sdt.gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename_Z ;
@@ -151,6 +154,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("LocationDynamicFormId_N", gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid_N, false, includeNonInitialized);
          AddObjectProperty("OrganisationId", gxTv_SdtTrn_LocationDynamicForm_Organisationid, false, includeNonInitialized);
          AddObjectProperty("LocationId", gxTv_SdtTrn_LocationDynamicForm_Locationid, false, includeNonInitialized);
+         AddObjectProperty("FormPageName", gxTv_SdtTrn_LocationDynamicForm_Formpagename, false, includeNonInitialized);
          AddObjectProperty("WWPFormId", gxTv_SdtTrn_LocationDynamicForm_Wwpformid, false, includeNonInitialized);
          AddObjectProperty("WWPFormVersionNumber", gxTv_SdtTrn_LocationDynamicForm_Wwpformversionnumber, false, includeNonInitialized);
          AddObjectProperty("WWPFormReferenceName", gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename, false, includeNonInitialized);
@@ -191,6 +195,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("LocationDynamicFormId_Z", gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_LocationDynamicForm_Organisationid_Z, false, includeNonInitialized);
             AddObjectProperty("LocationId_Z", gxTv_SdtTrn_LocationDynamicForm_Locationid_Z, false, includeNonInitialized);
+            AddObjectProperty("FormPageName_Z", gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z, false, includeNonInitialized);
             AddObjectProperty("WWPFormId_Z", gxTv_SdtTrn_LocationDynamicForm_Wwpformid_Z, false, includeNonInitialized);
             AddObjectProperty("WWPFormVersionNumber_Z", gxTv_SdtTrn_LocationDynamicForm_Wwpformversionnumber_Z, false, includeNonInitialized);
             AddObjectProperty("WWPFormReferenceName_Z", gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename_Z, false, includeNonInitialized);
@@ -243,6 +248,11 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_LocationDynamicForm_Locationid = sdt.gxTv_SdtTrn_LocationDynamicForm_Locationid ;
+         }
+         if ( sdt.IsDirty("FormPageName") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_LocationDynamicForm_Formpagename = sdt.gxTv_SdtTrn_LocationDynamicForm_Formpagename ;
          }
          if ( sdt.IsDirty("WWPFormId") )
          {
@@ -333,6 +343,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Locationid_Z_SetNull( );
+               this.gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Wwpformid_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Wwpformversionnumber_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename_Z_SetNull( );
@@ -368,6 +379,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Locationid_Z_SetNull( );
+               this.gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Wwpformid_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Wwpformversionnumber_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename_Z_SetNull( );
@@ -403,6 +415,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Locationid_Z_SetNull( );
+               this.gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Wwpformid_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Wwpformversionnumber_Z_SetNull( );
                this.gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename_Z_SetNull( );
@@ -418,6 +431,22 @@ namespace GeneXus.Programs {
             }
             gxTv_SdtTrn_LocationDynamicForm_Locationid = value;
             SetDirty("Locationid");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "FormPageName" )]
+      [  XmlElement( ElementName = "FormPageName"   )]
+      public string gxTpr_Formpagename
+      {
+         get {
+            return gxTv_SdtTrn_LocationDynamicForm_Formpagename ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_LocationDynamicForm_Formpagename = value;
+            SetDirty("Formpagename");
          }
 
       }
@@ -813,6 +842,34 @@ namespace GeneXus.Programs {
       }
 
       public bool gxTv_SdtTrn_LocationDynamicForm_Locationid_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "FormPageName_Z" )]
+      [  XmlElement( ElementName = "FormPageName_Z"   )]
+      public string gxTpr_Formpagename_Z
+      {
+         get {
+            return gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z = value;
+            SetDirty("Formpagename_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z_SetNull( )
+      {
+         gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z = "";
+         SetDirty("Formpagename_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z_IsNull( )
       {
          return false ;
       }
@@ -1220,6 +1277,7 @@ namespace GeneXus.Programs {
          sdtIsNull = 1;
          gxTv_SdtTrn_LocationDynamicForm_Organisationid = Guid.Empty;
          gxTv_SdtTrn_LocationDynamicForm_Locationid = Guid.Empty;
+         gxTv_SdtTrn_LocationDynamicForm_Formpagename = "";
          gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename = "";
          gxTv_SdtTrn_LocationDynamicForm_Wwpformtitle = "";
          gxTv_SdtTrn_LocationDynamicForm_Wwpformdate = (DateTime)(DateTime.MinValue);
@@ -1230,6 +1288,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_LocationDynamicForm_Locationdynamicformid_Z = Guid.Empty;
          gxTv_SdtTrn_LocationDynamicForm_Organisationid_Z = Guid.Empty;
          gxTv_SdtTrn_LocationDynamicForm_Locationid_Z = Guid.Empty;
+         gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z = "";
          gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename_Z = "";
          gxTv_SdtTrn_LocationDynamicForm_Wwpformtitle_Z = "";
          gxTv_SdtTrn_LocationDynamicForm_Wwpformdate_Z = (DateTime)(DateTime.MinValue);
@@ -1278,9 +1337,11 @@ namespace GeneXus.Programs {
       private bool gxTv_SdtTrn_LocationDynamicForm_Wwpformisfordynamicvalidations_Z ;
       private string gxTv_SdtTrn_LocationDynamicForm_Wwpformresumemessage ;
       private string gxTv_SdtTrn_LocationDynamicForm_Wwpformvalidations ;
+      private string gxTv_SdtTrn_LocationDynamicForm_Formpagename ;
       private string gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename ;
       private string gxTv_SdtTrn_LocationDynamicForm_Wwpformtitle ;
       private string gxTv_SdtTrn_LocationDynamicForm_Wwpformsectionrefelements ;
+      private string gxTv_SdtTrn_LocationDynamicForm_Formpagename_Z ;
       private string gxTv_SdtTrn_LocationDynamicForm_Wwpformreferencename_Z ;
       private string gxTv_SdtTrn_LocationDynamicForm_Wwpformtitle_Z ;
       private string gxTv_SdtTrn_LocationDynamicForm_Wwpformsectionrefelements_Z ;
@@ -1346,7 +1407,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormId" , Order = 3 )]
+      [DataMember( Name = "FormPageName" , Order = 3 )]
+      [GxSeudo()]
+      public string gxTpr_Formpagename
+      {
+         get {
+            return sdt.gxTpr_Formpagename ;
+         }
+
+         set {
+            sdt.gxTpr_Formpagename = value;
+         }
+
+      }
+
+      [DataMember( Name = "WWPFormId" , Order = 4 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformid
       {
@@ -1360,7 +1435,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormVersionNumber" , Order = 4 )]
+      [DataMember( Name = "WWPFormVersionNumber" , Order = 5 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformversionnumber
       {
@@ -1374,7 +1449,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormReferenceName" , Order = 5 )]
+      [DataMember( Name = "WWPFormReferenceName" , Order = 6 )]
       [GxSeudo()]
       public string gxTpr_Wwpformreferencename
       {
@@ -1388,7 +1463,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormTitle" , Order = 6 )]
+      [DataMember( Name = "WWPFormTitle" , Order = 7 )]
       [GxSeudo()]
       public string gxTpr_Wwpformtitle
       {
@@ -1402,7 +1477,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormDate" , Order = 7 )]
+      [DataMember( Name = "WWPFormDate" , Order = 8 )]
       [GxSeudo()]
       public string gxTpr_Wwpformdate
       {
@@ -1416,7 +1491,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormIsWizard" , Order = 8 )]
+      [DataMember( Name = "WWPFormIsWizard" , Order = 9 )]
       [GxSeudo()]
       public bool gxTpr_Wwpformiswizard
       {
@@ -1430,7 +1505,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormResume" , Order = 9 )]
+      [DataMember( Name = "WWPFormResume" , Order = 10 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformresume
       {
@@ -1444,7 +1519,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormResumeMessage" , Order = 10 )]
+      [DataMember( Name = "WWPFormResumeMessage" , Order = 11 )]
       public string gxTpr_Wwpformresumemessage
       {
          get {
@@ -1457,7 +1532,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormValidations" , Order = 11 )]
+      [DataMember( Name = "WWPFormValidations" , Order = 12 )]
       public string gxTpr_Wwpformvalidations
       {
          get {
@@ -1470,7 +1545,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormInstantiated" , Order = 12 )]
+      [DataMember( Name = "WWPFormInstantiated" , Order = 13 )]
       [GxSeudo()]
       public bool gxTpr_Wwpforminstantiated
       {
@@ -1484,7 +1559,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormLatestVersionNumber" , Order = 13 )]
+      [DataMember( Name = "WWPFormLatestVersionNumber" , Order = 14 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformlatestversionnumber
       {
@@ -1498,7 +1573,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormType" , Order = 14 )]
+      [DataMember( Name = "WWPFormType" , Order = 15 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformtype
       {
@@ -1512,7 +1587,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormSectionRefElements" , Order = 15 )]
+      [DataMember( Name = "WWPFormSectionRefElements" , Order = 16 )]
       [GxSeudo()]
       public string gxTpr_Wwpformsectionrefelements
       {
@@ -1526,7 +1601,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormIsForDynamicValidations" , Order = 16 )]
+      [DataMember( Name = "WWPFormIsForDynamicValidations" , Order = 17 )]
       [GxSeudo()]
       public bool gxTpr_Wwpformisfordynamicvalidations
       {
@@ -1561,7 +1636,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 17 )]
+      [DataMember( Name = "gx_md5_hash", Order = 18 )]
       public string Hash
       {
          get {

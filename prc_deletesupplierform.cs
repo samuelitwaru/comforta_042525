@@ -5,6 +5,8 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
+using System.Data;
+using GeneXus.Data;
 using com.genexus;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
@@ -26,6 +28,9 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
          IsMain = true;
          context.SetDefaultTheme("WorkWithPlusDS", true);
       }
@@ -34,46 +39,39 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( short aP0_WWPFormId ,
-                           short aP1_WWPFormVersionNumber ,
-                           Guid aP2_SupplierDynamicFormId ,
-                           Guid aP3_SupplierGenId ,
-                           out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP4_OutMessage )
+      public void execute( Guid aP0_SupplierDynamicFormId ,
+                           Guid aP1_SupplierGenId ,
+                           out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_OutMessage )
       {
-         this.A206WWPFormId = aP0_WWPFormId;
-         this.A207WWPFormVersionNumber = aP1_WWPFormVersionNumber;
-         this.A616SupplierDynamicFormId = aP2_SupplierDynamicFormId;
-         this.A42SupplierGenId = aP3_SupplierGenId;
+         this.A616SupplierDynamicFormId = aP0_SupplierDynamicFormId;
+         this.A42SupplierGenId = aP1_SupplierGenId;
          this.AV9OutMessage = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus") ;
          initialize();
          ExecuteImpl();
-         aP4_OutMessage=this.AV9OutMessage;
+         aP2_OutMessage=this.AV9OutMessage;
       }
 
-      public GXBaseCollection<GeneXus.Utils.SdtMessages_Message> executeUdp( short aP0_WWPFormId ,
-                                                                             short aP1_WWPFormVersionNumber ,
-                                                                             Guid aP2_SupplierDynamicFormId ,
-                                                                             Guid aP3_SupplierGenId )
+      public GXBaseCollection<GeneXus.Utils.SdtMessages_Message> executeUdp( Guid aP0_SupplierDynamicFormId ,
+                                                                             Guid aP1_SupplierGenId )
       {
-         execute(aP0_WWPFormId, aP1_WWPFormVersionNumber, aP2_SupplierDynamicFormId, aP3_SupplierGenId, out aP4_OutMessage);
+         execute(aP0_SupplierDynamicFormId, aP1_SupplierGenId, out aP2_OutMessage);
          return AV9OutMessage ;
       }
 
-      public void executeSubmit( short aP0_WWPFormId ,
-                                 short aP1_WWPFormVersionNumber ,
-                                 Guid aP2_SupplierDynamicFormId ,
-                                 Guid aP3_SupplierGenId ,
-                                 out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP4_OutMessage )
+      public void executeSubmit( Guid aP0_SupplierDynamicFormId ,
+                                 Guid aP1_SupplierGenId ,
+                                 out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_OutMessage )
       {
-         this.A206WWPFormId = aP0_WWPFormId;
-         this.A207WWPFormVersionNumber = aP1_WWPFormVersionNumber;
-         this.A616SupplierDynamicFormId = aP2_SupplierDynamicFormId;
-         this.A42SupplierGenId = aP3_SupplierGenId;
+         this.A616SupplierDynamicFormId = aP0_SupplierDynamicFormId;
+         this.A42SupplierGenId = aP1_SupplierGenId;
          this.AV9OutMessage = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus") ;
          SubmitImpl();
-         aP4_OutMessage=this.AV9OutMessage;
+         aP2_OutMessage=this.AV9OutMessage;
       }
 
       protected override void ExecutePrivate( )
@@ -84,7 +82,27 @@ namespace GeneXus.Programs {
          AV8Trn_SupplierDynamicForm.Delete();
          if ( AV8Trn_SupplierDynamicForm.Success() )
          {
-            new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_deleteform(context ).execute(  A206WWPFormId,  A207WWPFormVersionNumber, out  AV9OutMessage) ;
+            /* Using cursor P00GA2 */
+            pr_default.execute(0, new Object[] {AV8Trn_SupplierDynamicForm.gxTpr_Wwpformid, AV8Trn_SupplierDynamicForm.gxTpr_Wwpformversionnumber});
+            while ( (pr_default.getStatus(0) != 101) )
+            {
+               A214WWPFormInstanceId = P00GA2_A214WWPFormInstanceId[0];
+               A207WWPFormVersionNumber = P00GA2_A207WWPFormVersionNumber[0];
+               A206WWPFormId = P00GA2_A206WWPFormId[0];
+               /* Optimized DELETE. */
+               /* Using cursor P00GA3 */
+               pr_default.execute(1, new Object[] {A214WWPFormInstanceId});
+               pr_default.close(1);
+               pr_default.SmartCacheProvider.SetUpdated("WWP_FormInstanceElement");
+               /* End optimized DELETE. */
+               /* Using cursor P00GA4 */
+               pr_default.execute(2, new Object[] {A214WWPFormInstanceId});
+               pr_default.close(2);
+               pr_default.SmartCacheProvider.SetUpdated("WWP_FormInstance");
+               pr_default.readNext(0);
+            }
+            pr_default.close(0);
+            new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_deleteform(context ).execute(  AV8Trn_SupplierDynamicForm.gxTpr_Wwpformid,  AV8Trn_SupplierDynamicForm.gxTpr_Wwpformversionnumber, out  AV9OutMessage) ;
          }
          else
          {
@@ -95,6 +113,7 @@ namespace GeneXus.Programs {
 
       public override void cleanup( )
       {
+         context.CommitDataStores("prc_deletesupplierform",pr_default);
          CloseCursors();
          if ( IsMain )
          {
@@ -107,16 +126,92 @@ namespace GeneXus.Programs {
       {
          AV9OutMessage = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV8Trn_SupplierDynamicForm = new SdtTrn_SupplierDynamicForm(context);
+         P00GA2_A214WWPFormInstanceId = new int[1] ;
+         P00GA2_A207WWPFormVersionNumber = new short[1] ;
+         P00GA2_A206WWPFormId = new short[1] ;
+         pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_deletesupplierform__default(),
+            new Object[][] {
+                new Object[] {
+               P00GA2_A214WWPFormInstanceId, P00GA2_A207WWPFormVersionNumber, P00GA2_A206WWPFormId
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               }
+            }
+         );
          /* GeneXus formulas. */
       }
 
-      private short A206WWPFormId ;
       private short A207WWPFormVersionNumber ;
+      private short A206WWPFormId ;
+      private int A214WWPFormInstanceId ;
       private Guid A616SupplierDynamicFormId ;
       private Guid A42SupplierGenId ;
+      private IGxDataStore dsDataStore1 ;
+      private IGxDataStore dsGAM ;
+      private IGxDataStore dsDefault ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV9OutMessage ;
       private SdtTrn_SupplierDynamicForm AV8Trn_SupplierDynamicForm ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP4_OutMessage ;
+      private IDataStoreProvider pr_default ;
+      private int[] P00GA2_A214WWPFormInstanceId ;
+      private short[] P00GA2_A207WWPFormVersionNumber ;
+      private short[] P00GA2_A206WWPFormId ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_OutMessage ;
    }
+
+   public class prc_deletesupplierform__default : DataStoreHelperBase, IDataStoreHelper
+   {
+      public ICursor[] getCursors( )
+      {
+         cursorDefinitions();
+         return new Cursor[] {
+          new ForEachCursor(def[0])
+         ,new UpdateCursor(def[1])
+         ,new UpdateCursor(def[2])
+       };
+    }
+
+    private static CursorDef[] def;
+    private void cursorDefinitions( )
+    {
+       if ( def == null )
+       {
+          Object[] prmP00GA2;
+          prmP00GA2 = new Object[] {
+          new ParDef("AV8Trn_S_2Wwpformid",GXType.Int16,4,0) ,
+          new ParDef("AV8Trn_S_1Wwpformversionnumbe",GXType.Int16,4,0)
+          };
+          Object[] prmP00GA3;
+          prmP00GA3 = new Object[] {
+          new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+          };
+          Object[] prmP00GA4;
+          prmP00GA4 = new Object[] {
+          new ParDef("WWPFormInstanceId",GXType.Int32,6,0)
+          };
+          def= new CursorDef[] {
+              new CursorDef("P00GA2", "SELECT WWPFormInstanceId, WWPFormVersionNumber, WWPFormId FROM WWP_FormInstance WHERE WWPFormId = :AV8Trn_S_2Wwpformid and WWPFormVersionNumber = :AV8Trn_S_1Wwpformversionnumbe ORDER BY WWPFormId, WWPFormVersionNumber  FOR UPDATE OF WWP_FormInstance",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GA2,1, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00GA3", "DELETE FROM WWP_FormInstanceElement  WHERE WWPFormInstanceId = :WWPFormInstanceId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00GA3)
+             ,new CursorDef("P00GA4", "SAVEPOINT gxupdate;DELETE FROM WWP_FormInstance  WHERE WWPFormInstanceId = :WWPFormInstanceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00GA4)
+          };
+       }
+    }
+
+    public void getResults( int cursor ,
+                            IFieldGetter rslt ,
+                            Object[] buf )
+    {
+       switch ( cursor )
+       {
+             case 0 :
+                ((int[]) buf[0])[0] = rslt.getInt(1);
+                ((short[]) buf[1])[0] = rslt.getShort(2);
+                ((short[]) buf[2])[0] = rslt.getShort(3);
+                return;
+       }
+    }
+
+ }
 
 }

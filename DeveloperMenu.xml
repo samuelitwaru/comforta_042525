@@ -585,4 +585,10 @@
       <ObjDesc>Prc_Convert Content Pages</ObjDesc>
       <ObjLink>aprc_convertcontentpages.aspx</ObjLink>
    </Object>
+   <Object>
+      <ObjCls>1</ObjCls>
+      <ObjName>Prc_ConvertMenuToInfoPage</ObjName>
+      <ObjDesc>Prc_Convert Menu To Info Page</ObjDesc>
+      <ObjLink>aprc_convertmenutoinfopage.aspx</ObjLink>
+   </Object>
 </Objects>

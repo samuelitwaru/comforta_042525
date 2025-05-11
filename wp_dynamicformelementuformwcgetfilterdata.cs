@@ -146,16 +146,6 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(StringUtil.Upper( AV37DDOName), "DDO_WWPFORMREFERENCENAME") == 0 )
-         {
-            /* Execute user subroutine: 'LOADWWPFORMREFERENCENAMEOPTIONS' */
-            S131 ();
-            if ( returnInSub )
-            {
-               cleanup();
-               if (true) return;
-            }
-         }
          AV40OptionsJson = AV27Options.ToJSonString(false);
          AV41OptionsDescJson = AV29OptionsDesc.ToJSonString(false);
          AV42OptionIndexesJson = AV30OptionIndexes.ToJSonString(false);
@@ -174,10 +164,10 @@ namespace GeneXus.Programs {
          {
             AV34GridState.FromXml(AV32Session.Get("WP_DynamicFormElementUFormWCGridState"), null, "", "");
          }
-         AV49GXV1 = 1;
-         while ( AV49GXV1 <= AV34GridState.gxTpr_Filtervalues.Count )
+         AV51GXV1 = 1;
+         while ( AV51GXV1 <= AV34GridState.gxTpr_Filtervalues.Count )
          {
-            AV35GridStateFilterValue = ((WorkWithPlus.workwithplus_web.SdtWWPGridState_FilterValue)AV34GridState.gxTpr_Filtervalues.Item(AV49GXV1));
+            AV35GridStateFilterValue = ((WorkWithPlus.workwithplus_web.SdtWWPGridState_FilterValue)AV34GridState.gxTpr_Filtervalues.Item(AV51GXV1));
             if ( StringUtil.StrCmp(AV35GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV43FilterFullText = AV35GridStateFilterValue.gxTpr_Value;
@@ -189,14 +179,6 @@ namespace GeneXus.Programs {
             else if ( StringUtil.StrCmp(AV35GridStateFilterValue.gxTpr_Name, "TFWWPFORMTITLE_SEL") == 0 )
             {
                AV12TFWWPFormTitle_Sel = AV35GridStateFilterValue.gxTpr_Value;
-            }
-            else if ( StringUtil.StrCmp(AV35GridStateFilterValue.gxTpr_Name, "TFWWPFORMREFERENCENAME") == 0 )
-            {
-               AV13TFWWPFormReferenceName = AV35GridStateFilterValue.gxTpr_Value;
-            }
-            else if ( StringUtil.StrCmp(AV35GridStateFilterValue.gxTpr_Name, "TFWWPFORMREFERENCENAME_SEL") == 0 )
-            {
-               AV14TFWWPFormReferenceName_Sel = AV35GridStateFilterValue.gxTpr_Value;
             }
             else if ( StringUtil.StrCmp(AV35GridStateFilterValue.gxTpr_Name, "TFWWPFORMDATE") == 0 )
             {
@@ -221,7 +203,7 @@ namespace GeneXus.Programs {
             {
                AV47WWPFormIsForDynamicValidations = BooleanUtil.Val( AV35GridStateFilterValue.gxTpr_Value);
             }
-            AV49GXV1 = (int)(AV49GXV1+1);
+            AV51GXV1 = (int)(AV51GXV1+1);
          }
       }
 
@@ -236,14 +218,11 @@ namespace GeneXus.Programs {
                                               AV48GeneralDynamicFormids ,
                                               AV12TFWWPFormTitle_Sel ,
                                               AV11TFWWPFormTitle ,
-                                              AV14TFWWPFormReferenceName_Sel ,
-                                              AV13TFWWPFormReferenceName ,
                                               AV15TFWWPFormDate ,
                                               AV16TFWWPFormDate_To ,
                                               AV17TFWWPFormVersionNumber ,
                                               AV18TFWWPFormVersionNumber_To ,
                                               A209WWPFormTitle ,
-                                              A208WWPFormReferenceName ,
                                               A231WWPFormDate ,
                                               A207WWPFormVersionNumber ,
                                               AV43FilterFullText ,
@@ -258,9 +237,8 @@ namespace GeneXus.Programs {
                                               }
          });
          lV11TFWWPFormTitle = StringUtil.Concat( StringUtil.RTrim( AV11TFWWPFormTitle), "%", "");
-         lV13TFWWPFormReferenceName = StringUtil.Concat( StringUtil.RTrim( AV13TFWWPFormReferenceName), "%", "");
          /* Using cursor P00E12 */
-         pr_default.execute(0, new Object[] {AV46WWPFormType, lV11TFWWPFormTitle, AV12TFWWPFormTitle_Sel, lV13TFWWPFormReferenceName, AV14TFWWPFormReferenceName_Sel, AV15TFWWPFormDate, AV16TFWWPFormDate_To, AV17TFWWPFormVersionNumber, AV18TFWWPFormVersionNumber_To});
+         pr_default.execute(0, new Object[] {AV46WWPFormType, lV11TFWWPFormTitle, AV12TFWWPFormTitle_Sel, AV15TFWWPFormDate, AV16TFWWPFormDate_To, AV17TFWWPFormVersionNumber, AV18TFWWPFormVersionNumber_To});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRKE12 = false;
@@ -268,12 +246,11 @@ namespace GeneXus.Programs {
             A209WWPFormTitle = P00E12_A209WWPFormTitle[0];
             A231WWPFormDate = P00E12_A231WWPFormDate[0];
             A207WWPFormVersionNumber = P00E12_A207WWPFormVersionNumber[0];
-            A208WWPFormReferenceName = P00E12_A208WWPFormReferenceName[0];
             A206WWPFormId = P00E12_A206WWPFormId[0];
             GXt_int1 = A219WWPFormLatestVersionNumber;
             new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int1) ;
             A219WWPFormLatestVersionNumber = GXt_int1;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV43FilterFullText)) || ( ( StringUtil.Like( StringUtil.Lower( A209WWPFormTitle) , StringUtil.PadR( "%" + StringUtil.Lower( AV43FilterFullText) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A208WWPFormReferenceName) , StringUtil.PadR( "%" + StringUtil.Lower( AV43FilterFullText) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV43FilterFullText , 254 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A219WWPFormLatestVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV43FilterFullText , 254 , "%"),  ' ' ) ) ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV43FilterFullText)) || ( ( StringUtil.Like( StringUtil.Lower( A209WWPFormTitle) , StringUtil.PadR( "%" + StringUtil.Lower( AV43FilterFullText) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV43FilterFullText , 254 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A219WWPFormLatestVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV43FilterFullText , 254 , "%"),  ' ' ) ) ) )
             {
                if ( (0==AV19TFWWPFormLatestVersionNumber) || ( ( A219WWPFormLatestVersionNumber >= AV19TFWWPFormLatestVersionNumber ) ) )
                {
@@ -319,100 +296,6 @@ namespace GeneXus.Programs {
          pr_default.close(0);
       }
 
-      protected void S131( )
-      {
-         /* 'LOADWWPFORMREFERENCENAMEOPTIONS' Routine */
-         returnInSub = false;
-         AV13TFWWPFormReferenceName = AV21SearchTxt;
-         AV14TFWWPFormReferenceName_Sel = "";
-         pr_default.dynParam(1, new Object[]{ new Object[]{
-                                              A206WWPFormId ,
-                                              AV48GeneralDynamicFormids ,
-                                              AV12TFWWPFormTitle_Sel ,
-                                              AV11TFWWPFormTitle ,
-                                              AV14TFWWPFormReferenceName_Sel ,
-                                              AV13TFWWPFormReferenceName ,
-                                              AV15TFWWPFormDate ,
-                                              AV16TFWWPFormDate_To ,
-                                              AV17TFWWPFormVersionNumber ,
-                                              AV18TFWWPFormVersionNumber_To ,
-                                              A209WWPFormTitle ,
-                                              A208WWPFormReferenceName ,
-                                              A231WWPFormDate ,
-                                              A207WWPFormVersionNumber ,
-                                              AV43FilterFullText ,
-                                              A219WWPFormLatestVersionNumber ,
-                                              AV19TFWWPFormLatestVersionNumber ,
-                                              AV20TFWWPFormLatestVersionNumber_To ,
-                                              AV46WWPFormType ,
-                                              A240WWPFormType } ,
-                                              new int[]{
-                                              TypeConstants.SHORT, TypeConstants.DATE, TypeConstants.DATE, TypeConstants.SHORT, TypeConstants.SHORT, TypeConstants.DATE, TypeConstants.SHORT, TypeConstants.SHORT, TypeConstants.SHORT, TypeConstants.SHORT,
-                                              TypeConstants.SHORT, TypeConstants.SHORT
-                                              }
-         });
-         lV11TFWWPFormTitle = StringUtil.Concat( StringUtil.RTrim( AV11TFWWPFormTitle), "%", "");
-         lV13TFWWPFormReferenceName = StringUtil.Concat( StringUtil.RTrim( AV13TFWWPFormReferenceName), "%", "");
-         /* Using cursor P00E13 */
-         pr_default.execute(1, new Object[] {AV46WWPFormType, lV11TFWWPFormTitle, AV12TFWWPFormTitle_Sel, lV13TFWWPFormReferenceName, AV14TFWWPFormReferenceName_Sel, AV15TFWWPFormDate, AV16TFWWPFormDate_To, AV17TFWWPFormVersionNumber, AV18TFWWPFormVersionNumber_To});
-         while ( (pr_default.getStatus(1) != 101) )
-         {
-            BRKE14 = false;
-            A240WWPFormType = P00E13_A240WWPFormType[0];
-            A208WWPFormReferenceName = P00E13_A208WWPFormReferenceName[0];
-            A231WWPFormDate = P00E13_A231WWPFormDate[0];
-            A207WWPFormVersionNumber = P00E13_A207WWPFormVersionNumber[0];
-            A209WWPFormTitle = P00E13_A209WWPFormTitle[0];
-            A206WWPFormId = P00E13_A206WWPFormId[0];
-            GXt_int1 = A219WWPFormLatestVersionNumber;
-            new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getlatestversionofform(context ).execute(  A206WWPFormId, out  GXt_int1) ;
-            A219WWPFormLatestVersionNumber = GXt_int1;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV43FilterFullText)) || ( ( StringUtil.Like( StringUtil.Lower( A209WWPFormTitle) , StringUtil.PadR( "%" + StringUtil.Lower( AV43FilterFullText) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A208WWPFormReferenceName) , StringUtil.PadR( "%" + StringUtil.Lower( AV43FilterFullText) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A207WWPFormVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV43FilterFullText , 254 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Str( (decimal)(A219WWPFormLatestVersionNumber), 4, 0) , StringUtil.PadR( "%" + AV43FilterFullText , 254 , "%"),  ' ' ) ) ) )
-            {
-               if ( (0==AV19TFWWPFormLatestVersionNumber) || ( ( A219WWPFormLatestVersionNumber >= AV19TFWWPFormLatestVersionNumber ) ) )
-               {
-                  if ( (0==AV20TFWWPFormLatestVersionNumber_To) || ( ( A219WWPFormLatestVersionNumber <= AV20TFWWPFormLatestVersionNumber_To ) ) )
-                  {
-                     AV31count = 0;
-                     while ( (pr_default.getStatus(1) != 101) && ( P00E13_A240WWPFormType[0] == A240WWPFormType ) && ( StringUtil.StrCmp(P00E13_A208WWPFormReferenceName[0], A208WWPFormReferenceName) == 0 ) )
-                     {
-                        BRKE14 = false;
-                        A207WWPFormVersionNumber = P00E13_A207WWPFormVersionNumber[0];
-                        A206WWPFormId = P00E13_A206WWPFormId[0];
-                        if ( (AV48GeneralDynamicFormids.IndexOf(A206WWPFormId)>0) )
-                        {
-                           AV31count = (long)(AV31count+1);
-                        }
-                        BRKE14 = true;
-                        pr_default.readNext(1);
-                     }
-                     if ( (0==AV22SkipItems) )
-                     {
-                        AV26Option = (String.IsNullOrEmpty(StringUtil.RTrim( A208WWPFormReferenceName)) ? "<#Empty#>" : A208WWPFormReferenceName);
-                        AV27Options.Add(AV26Option, 0);
-                        AV30OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV31count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-                        if ( AV27Options.Count == 10 )
-                        {
-                           /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                           if (true) break;
-                        }
-                     }
-                     else
-                     {
-                        AV22SkipItems = (short)(AV22SkipItems-1);
-                     }
-                  }
-               }
-            }
-            if ( ! BRKE14 )
-            {
-               BRKE14 = true;
-               pr_default.readNext(1);
-            }
-         }
-         pr_default.close(1);
-      }
-
       public override void cleanup( )
       {
          CloseCursors();
@@ -439,36 +322,22 @@ namespace GeneXus.Programs {
          AV43FilterFullText = "";
          AV11TFWWPFormTitle = "";
          AV12TFWWPFormTitle_Sel = "";
-         AV13TFWWPFormReferenceName = "";
-         AV14TFWWPFormReferenceName_Sel = "";
          AV15TFWWPFormDate = (DateTime)(DateTime.MinValue);
          AV16TFWWPFormDate_To = (DateTime)(DateTime.MinValue);
          lV11TFWWPFormTitle = "";
-         lV13TFWWPFormReferenceName = "";
          AV48GeneralDynamicFormids = new GxSimpleCollection<short>();
          A209WWPFormTitle = "";
-         A208WWPFormReferenceName = "";
          A231WWPFormDate = (DateTime)(DateTime.MinValue);
          P00E12_A240WWPFormType = new short[1] ;
          P00E12_A209WWPFormTitle = new string[] {""} ;
          P00E12_A231WWPFormDate = new DateTime[] {DateTime.MinValue} ;
          P00E12_A207WWPFormVersionNumber = new short[1] ;
-         P00E12_A208WWPFormReferenceName = new string[] {""} ;
          P00E12_A206WWPFormId = new short[1] ;
          AV26Option = "";
-         P00E13_A240WWPFormType = new short[1] ;
-         P00E13_A208WWPFormReferenceName = new string[] {""} ;
-         P00E13_A231WWPFormDate = new DateTime[] {DateTime.MinValue} ;
-         P00E13_A207WWPFormVersionNumber = new short[1] ;
-         P00E13_A209WWPFormTitle = new string[] {""} ;
-         P00E13_A206WWPFormId = new short[1] ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wp_dynamicformelementuformwcgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P00E12_A240WWPFormType, P00E12_A209WWPFormTitle, P00E12_A231WWPFormDate, P00E12_A207WWPFormVersionNumber, P00E12_A208WWPFormReferenceName, P00E12_A206WWPFormId
-               }
-               , new Object[] {
-               P00E13_A240WWPFormType, P00E13_A208WWPFormReferenceName, P00E13_A231WWPFormDate, P00E13_A207WWPFormVersionNumber, P00E13_A209WWPFormTitle, P00E13_A206WWPFormId
+               P00E12_A240WWPFormType, P00E12_A209WWPFormTitle, P00E12_A231WWPFormDate, P00E12_A207WWPFormVersionNumber, P00E12_A206WWPFormId
                }
             }
          );
@@ -488,7 +357,7 @@ namespace GeneXus.Programs {
       private short A219WWPFormLatestVersionNumber ;
       private short A240WWPFormType ;
       private short GXt_int1 ;
-      private int AV49GXV1 ;
+      private int AV51GXV1 ;
       private long AV31count ;
       private DateTime AV15TFWWPFormDate ;
       private DateTime AV16TFWWPFormDate_To ;
@@ -496,7 +365,6 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool AV47WWPFormIsForDynamicValidations ;
       private bool BRKE12 ;
-      private bool BRKE14 ;
       private string AV40OptionsJson ;
       private string AV41OptionsDescJson ;
       private string AV42OptionIndexesJson ;
@@ -507,12 +375,8 @@ namespace GeneXus.Programs {
       private string AV43FilterFullText ;
       private string AV11TFWWPFormTitle ;
       private string AV12TFWWPFormTitle_Sel ;
-      private string AV13TFWWPFormReferenceName ;
-      private string AV14TFWWPFormReferenceName_Sel ;
       private string lV11TFWWPFormTitle ;
-      private string lV13TFWWPFormReferenceName ;
       private string A209WWPFormTitle ;
-      private string A208WWPFormReferenceName ;
       private string AV26Option ;
       private IGxSession AV32Session ;
       private IGxDataStore dsDataStore1 ;
@@ -530,14 +394,7 @@ namespace GeneXus.Programs {
       private string[] P00E12_A209WWPFormTitle ;
       private DateTime[] P00E12_A231WWPFormDate ;
       private short[] P00E12_A207WWPFormVersionNumber ;
-      private string[] P00E12_A208WWPFormReferenceName ;
       private short[] P00E12_A206WWPFormId ;
-      private short[] P00E13_A240WWPFormType ;
-      private string[] P00E13_A208WWPFormReferenceName ;
-      private DateTime[] P00E13_A231WWPFormDate ;
-      private short[] P00E13_A207WWPFormVersionNumber ;
-      private string[] P00E13_A209WWPFormTitle ;
-      private short[] P00E13_A206WWPFormId ;
       private string aP3_OptionsJson ;
       private string aP4_OptionsDescJson ;
       private string aP5_OptionIndexesJson ;
@@ -550,14 +407,11 @@ namespace GeneXus.Programs {
                                              GxSimpleCollection<short> AV48GeneralDynamicFormids ,
                                              string AV12TFWWPFormTitle_Sel ,
                                              string AV11TFWWPFormTitle ,
-                                             string AV14TFWWPFormReferenceName_Sel ,
-                                             string AV13TFWWPFormReferenceName ,
                                              DateTime AV15TFWWPFormDate ,
                                              DateTime AV16TFWWPFormDate_To ,
                                              short AV17TFWWPFormVersionNumber ,
                                              short AV18TFWWPFormVersionNumber_To ,
                                              string A209WWPFormTitle ,
-                                             string A208WWPFormReferenceName ,
                                              DateTime A231WWPFormDate ,
                                              short A207WWPFormVersionNumber ,
                                              string AV43FilterFullText ,
@@ -569,9 +423,9 @@ namespace GeneXus.Programs {
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int2 = new short[9];
+         short[] GXv_int2 = new short[7];
          Object[] GXv_Object3 = new Object[2];
-         scmdbuf = "SELECT WWPFormType, WWPFormTitle, WWPFormDate, WWPFormVersionNumber, WWPFormReferenceName, WWPFormId FROM WWP_Form";
+         scmdbuf = "SELECT WWPFormType, WWPFormTitle, WWPFormDate, WWPFormVersionNumber, WWPFormId FROM WWP_Form";
          AddWhere(sWhereString, "(WWPFormType = :AV46WWPFormType)");
          AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV48GeneralDynamicFormids, "WWPFormId IN (", ")")+")");
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12TFWWPFormTitle_Sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11TFWWPFormTitle)) ) )
@@ -594,33 +448,13 @@ namespace GeneXus.Programs {
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from WWPFormTitle))=0))");
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14TFWWPFormReferenceName_Sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13TFWWPFormReferenceName)) ) )
-         {
-            AddWhere(sWhereString, "(WWPFormReferenceName like :lV13TFWWPFormReferenceName)");
-         }
-         else
-         {
-            GXv_int2[3] = 1;
-         }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14TFWWPFormReferenceName_Sel)) && ! ( StringUtil.StrCmp(AV14TFWWPFormReferenceName_Sel, "<#Empty#>") == 0 ) )
-         {
-            AddWhere(sWhereString, "(WWPFormReferenceName = ( :AV14TFWWPFormReferenceName_Sel))");
-         }
-         else
-         {
-            GXv_int2[4] = 1;
-         }
-         if ( StringUtil.StrCmp(AV14TFWWPFormReferenceName_Sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from WWPFormReferenceName))=0))");
-         }
          if ( ! (DateTime.MinValue==AV15TFWWPFormDate) )
          {
             AddWhere(sWhereString, "(WWPFormDate >= :AV15TFWWPFormDate)");
          }
          else
          {
-            GXv_int2[5] = 1;
+            GXv_int2[3] = 1;
          }
          if ( ! (DateTime.MinValue==AV16TFWWPFormDate_To) )
          {
@@ -628,7 +462,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int2[6] = 1;
+            GXv_int2[4] = 1;
          }
          if ( ! (0==AV17TFWWPFormVersionNumber) )
          {
@@ -636,7 +470,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int2[7] = 1;
+            GXv_int2[5] = 1;
          }
          if ( ! (0==AV18TFWWPFormVersionNumber_To) )
          {
@@ -644,121 +478,13 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int2[8] = 1;
+            GXv_int2[6] = 1;
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY WWPFormType, WWPFormTitle";
          GXv_Object3[0] = scmdbuf;
          GXv_Object3[1] = GXv_int2;
          return GXv_Object3 ;
-      }
-
-      protected Object[] conditional_P00E13( IGxContext context ,
-                                             short A206WWPFormId ,
-                                             GxSimpleCollection<short> AV48GeneralDynamicFormids ,
-                                             string AV12TFWWPFormTitle_Sel ,
-                                             string AV11TFWWPFormTitle ,
-                                             string AV14TFWWPFormReferenceName_Sel ,
-                                             string AV13TFWWPFormReferenceName ,
-                                             DateTime AV15TFWWPFormDate ,
-                                             DateTime AV16TFWWPFormDate_To ,
-                                             short AV17TFWWPFormVersionNumber ,
-                                             short AV18TFWWPFormVersionNumber_To ,
-                                             string A209WWPFormTitle ,
-                                             string A208WWPFormReferenceName ,
-                                             DateTime A231WWPFormDate ,
-                                             short A207WWPFormVersionNumber ,
-                                             string AV43FilterFullText ,
-                                             short A219WWPFormLatestVersionNumber ,
-                                             short AV19TFWWPFormLatestVersionNumber ,
-                                             short AV20TFWWPFormLatestVersionNumber_To ,
-                                             short AV46WWPFormType ,
-                                             short A240WWPFormType )
-      {
-         System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
-         string scmdbuf;
-         short[] GXv_int4 = new short[9];
-         Object[] GXv_Object5 = new Object[2];
-         scmdbuf = "SELECT WWPFormType, WWPFormReferenceName, WWPFormDate, WWPFormVersionNumber, WWPFormTitle, WWPFormId FROM WWP_Form";
-         AddWhere(sWhereString, "(WWPFormType = :AV46WWPFormType)");
-         AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV48GeneralDynamicFormids, "WWPFormId IN (", ")")+")");
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12TFWWPFormTitle_Sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11TFWWPFormTitle)) ) )
-         {
-            AddWhere(sWhereString, "(WWPFormTitle like :lV11TFWWPFormTitle)");
-         }
-         else
-         {
-            GXv_int4[1] = 1;
-         }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12TFWWPFormTitle_Sel)) && ! ( StringUtil.StrCmp(AV12TFWWPFormTitle_Sel, "<#Empty#>") == 0 ) )
-         {
-            AddWhere(sWhereString, "(WWPFormTitle = ( :AV12TFWWPFormTitle_Sel))");
-         }
-         else
-         {
-            GXv_int4[2] = 1;
-         }
-         if ( StringUtil.StrCmp(AV12TFWWPFormTitle_Sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from WWPFormTitle))=0))");
-         }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14TFWWPFormReferenceName_Sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13TFWWPFormReferenceName)) ) )
-         {
-            AddWhere(sWhereString, "(WWPFormReferenceName like :lV13TFWWPFormReferenceName)");
-         }
-         else
-         {
-            GXv_int4[3] = 1;
-         }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14TFWWPFormReferenceName_Sel)) && ! ( StringUtil.StrCmp(AV14TFWWPFormReferenceName_Sel, "<#Empty#>") == 0 ) )
-         {
-            AddWhere(sWhereString, "(WWPFormReferenceName = ( :AV14TFWWPFormReferenceName_Sel))");
-         }
-         else
-         {
-            GXv_int4[4] = 1;
-         }
-         if ( StringUtil.StrCmp(AV14TFWWPFormReferenceName_Sel, "<#Empty#>") == 0 )
-         {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from WWPFormReferenceName))=0))");
-         }
-         if ( ! (DateTime.MinValue==AV15TFWWPFormDate) )
-         {
-            AddWhere(sWhereString, "(WWPFormDate >= :AV15TFWWPFormDate)");
-         }
-         else
-         {
-            GXv_int4[5] = 1;
-         }
-         if ( ! (DateTime.MinValue==AV16TFWWPFormDate_To) )
-         {
-            AddWhere(sWhereString, "(WWPFormDate <= :AV16TFWWPFormDate_To)");
-         }
-         else
-         {
-            GXv_int4[6] = 1;
-         }
-         if ( ! (0==AV17TFWWPFormVersionNumber) )
-         {
-            AddWhere(sWhereString, "(WWPFormVersionNumber >= :AV17TFWWPFormVersionNumber)");
-         }
-         else
-         {
-            GXv_int4[7] = 1;
-         }
-         if ( ! (0==AV18TFWWPFormVersionNumber_To) )
-         {
-            AddWhere(sWhereString, "(WWPFormVersionNumber <= :AV18TFWWPFormVersionNumber_To)");
-         }
-         else
-         {
-            GXv_int4[8] = 1;
-         }
-         scmdbuf += sWhereString;
-         scmdbuf += " ORDER BY WWPFormType, WWPFormReferenceName";
-         GXv_Object5[0] = scmdbuf;
-         GXv_Object5[1] = GXv_int4;
-         return GXv_Object5 ;
       }
 
       public override Object [] getDynamicStatement( int cursor ,
@@ -768,9 +494,7 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_P00E12(context, (short)dynConstraints[0] , (GxSimpleCollection<short>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (DateTime)dynConstraints[6] , (DateTime)dynConstraints[7] , (short)dynConstraints[8] , (short)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (DateTime)dynConstraints[12] , (short)dynConstraints[13] , (string)dynConstraints[14] , (short)dynConstraints[15] , (short)dynConstraints[16] , (short)dynConstraints[17] , (short)dynConstraints[18] , (short)dynConstraints[19] );
-               case 1 :
-                     return conditional_P00E13(context, (short)dynConstraints[0] , (GxSimpleCollection<short>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (DateTime)dynConstraints[6] , (DateTime)dynConstraints[7] , (short)dynConstraints[8] , (short)dynConstraints[9] , (string)dynConstraints[10] , (string)dynConstraints[11] , (DateTime)dynConstraints[12] , (short)dynConstraints[13] , (string)dynConstraints[14] , (short)dynConstraints[15] , (short)dynConstraints[16] , (short)dynConstraints[17] , (short)dynConstraints[18] , (short)dynConstraints[19] );
+                     return conditional_P00E12(context, (short)dynConstraints[0] , (GxSimpleCollection<short>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (DateTime)dynConstraints[4] , (DateTime)dynConstraints[5] , (short)dynConstraints[6] , (short)dynConstraints[7] , (string)dynConstraints[8] , (DateTime)dynConstraints[9] , (short)dynConstraints[10] , (string)dynConstraints[11] , (short)dynConstraints[12] , (short)dynConstraints[13] , (short)dynConstraints[14] , (short)dynConstraints[15] , (short)dynConstraints[16] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -780,7 +504,6 @@ namespace GeneXus.Programs {
          cursorDefinitions();
          return new Cursor[] {
           new ForEachCursor(def[0])
-         ,new ForEachCursor(def[1])
        };
     }
 
@@ -794,20 +517,6 @@ namespace GeneXus.Programs {
           new ParDef("AV46WWPFormType",GXType.Int16,1,0) ,
           new ParDef("lV11TFWWPFormTitle",GXType.VarChar,100,0) ,
           new ParDef("AV12TFWWPFormTitle_Sel",GXType.VarChar,100,0) ,
-          new ParDef("lV13TFWWPFormReferenceName",GXType.VarChar,100,0) ,
-          new ParDef("AV14TFWWPFormReferenceName_Sel",GXType.VarChar,100,0) ,
-          new ParDef("AV15TFWWPFormDate",GXType.DateTime,8,5) ,
-          new ParDef("AV16TFWWPFormDate_To",GXType.DateTime,8,5) ,
-          new ParDef("AV17TFWWPFormVersionNumber",GXType.Int16,4,0) ,
-          new ParDef("AV18TFWWPFormVersionNumber_To",GXType.Int16,4,0)
-          };
-          Object[] prmP00E13;
-          prmP00E13 = new Object[] {
-          new ParDef("AV46WWPFormType",GXType.Int16,1,0) ,
-          new ParDef("lV11TFWWPFormTitle",GXType.VarChar,100,0) ,
-          new ParDef("AV12TFWWPFormTitle_Sel",GXType.VarChar,100,0) ,
-          new ParDef("lV13TFWWPFormReferenceName",GXType.VarChar,100,0) ,
-          new ParDef("AV14TFWWPFormReferenceName_Sel",GXType.VarChar,100,0) ,
           new ParDef("AV15TFWWPFormDate",GXType.DateTime,8,5) ,
           new ParDef("AV16TFWWPFormDate_To",GXType.DateTime,8,5) ,
           new ParDef("AV17TFWWPFormVersionNumber",GXType.Int16,4,0) ,
@@ -815,7 +524,6 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("P00E12", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00E12,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00E13", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00E13,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -831,16 +539,7 @@ namespace GeneXus.Programs {
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
                 ((short[]) buf[3])[0] = rslt.getShort(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((short[]) buf[5])[0] = rslt.getShort(6);
-                return;
-             case 1 :
-                ((short[]) buf[0])[0] = rslt.getShort(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
-                ((short[]) buf[3])[0] = rslt.getShort(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((short[]) buf[5])[0] = rslt.getShort(6);
+                ((short[]) buf[4])[0] = rslt.getShort(5);
                 return;
        }
     }

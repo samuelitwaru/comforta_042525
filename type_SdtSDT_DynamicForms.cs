@@ -30,6 +30,8 @@ namespace GeneXus.Programs
 		public SdtSDT_DynamicForms( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtSDT_DynamicForms_Pagename = "";
+
 			gxTv_SdtSDT_DynamicForms_Referencename = "";
 
 			gxTv_SdtSDT_DynamicForms_Formurl = "";
@@ -64,6 +66,9 @@ namespace GeneXus.Programs
 			AddObjectProperty("FormId", gxTpr_Formid, false);
 
 
+			AddObjectProperty("PageName", gxTpr_Pagename, false);
+
+
 			AddObjectProperty("ReferenceName", gxTpr_Referencename, false);
 
 
@@ -85,6 +90,22 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtSDT_DynamicForms_Formid = value;
 				SetDirty("Formid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="PageName")]
+		[XmlElement(ElementName="PageName")]
+		public string gxTpr_Pagename
+		{
+			get {
+				return gxTv_SdtSDT_DynamicForms_Pagename; 
+			}
+			set {
+				gxTv_SdtSDT_DynamicForms_Pagename = value;
+				SetDirty("Pagename");
 			}
 		}
 
@@ -143,6 +164,7 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
+			gxTv_SdtSDT_DynamicForms_Pagename = "";
 			gxTv_SdtSDT_DynamicForms_Referencename = "";
 			gxTv_SdtSDT_DynamicForms_Formurl = "";
 			return  ;
@@ -155,6 +177,9 @@ namespace GeneXus.Programs
 		#region Declaration
 
 		protected short gxTv_SdtSDT_DynamicForms_Formid;
+		 
+
+		protected string gxTv_SdtSDT_DynamicForms_Pagename;
 		 
 
 		protected string gxTv_SdtSDT_DynamicForms_Referencename;
@@ -192,7 +217,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReferenceName", Order=1)]
+		[DataMember(Name="PageName", Order=1)]
+		public  string gxTpr_Pagename
+		{
+			get { 
+				return sdt.gxTpr_Pagename;
+
+			}
+			set { 
+				 sdt.gxTpr_Pagename = value;
+			}
+		}
+
+		[DataMember(Name="ReferenceName", Order=2)]
 		public  string gxTpr_Referencename
 		{
 			get { 
@@ -204,7 +241,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="FormUrl", Order=2)]
+		[DataMember(Name="FormUrl", Order=3)]
 		public  string gxTpr_Formurl
 		{
 			get { 

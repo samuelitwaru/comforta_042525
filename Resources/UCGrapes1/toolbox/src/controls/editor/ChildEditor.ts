@@ -22,10 +22,12 @@ export class ChildEditor {
   pageData: any;
   themeManager: any;
   pageTitle: any;
+  isNewPage: boolean;
 
-  constructor(pageId: any, pageData?: any) {
+  constructor(pageId: any, pageData?: any, isNewPage: boolean = false) {
     this.pageId = pageId;
     this.pageData = pageData;
+    this.isNewPage = isNewPage;
     this.themeManager = new ThemeManager();
     this.editorManager = new EditorManager();
     this.editorEvents = new EditorEvents();
@@ -63,7 +65,7 @@ export class ChildEditor {
       converter = new JSONToGrapesJSMenu(this.pageData);
       setUpEditor(converter);
     } else if (this.pageData?.PageType === "Information") {
-      converter = new JSONToGrapesJSInformation(this.pageData);
+      converter = new JSONToGrapesJSInformation(this.pageData, this.isNewPage);
       setUpEditor(converter);
     } else if (this.pageData?.PageType === "Location") {
       const locationEditor = new LoadLocationData(childEditor, this.pageData);
@@ -97,13 +99,14 @@ export class ChildEditor {
     this.editorManager.finalizeEditorSetup(childEditor);
     new UndoRedoManager(this.pageData.PageId);
     this.themeManager.applyTheme(this.themeManager.currentTheme);
+    this.updatePositions();
   }
 
   createNewEditor(editorId: string) {
     const frameContainer = document.getElementById(
       "child-container"
     ) as HTMLElement;
-    const newEditor = new EditorFrame(editorId, false, this.pageData, this.pageTitle);
+    const newEditor = new EditorFrame(editorId, false, this.pageData, this.pageTitle, this.isNewPage);
     newEditor.render(frameContainer);
   }
 
@@ -114,6 +117,10 @@ export class ChildEditor {
       id++;
     });
     return id;
+  }
+
+  refreshPage() {
+    
   }
 
   addImageContent(editor: any) {
@@ -149,5 +156,13 @@ export class ChildEditor {
   private updateFrame() {
     this.editorEvents.removeOtherEditors();
     this.editorEvents.activateNavigators();
+  }
+
+  private updatePositions() {
+    const childContainer = document.getElementById(
+      "child-container"
+    ) as HTMLDivElement; 
+    childContainer.scrollLeft = childContainer.scrollWidth - childContainer.clientWidth;
+    childContainer.style.justifyContent = "right";
   }
 }

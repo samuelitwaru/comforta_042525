@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250506054620"
+  version: "20250509181159"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -1390,6 +1390,32 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/v2/save-page-thumbnail:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.SavePageThumbnail"
+      summary: "Save Page Thumnail"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavePageThumbnailInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
   /toolbox/v2/publish-appversion:
     post:
       tags:
@@ -1463,6 +1489,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CreateInfoPageOutput"
+        404:
+          description: "Not found"
+
+  /toolbox/v2/create-link-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CreateLinkPage"
+      summary: "Create link Page"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateLinkPageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateLinkPageOutput"
         404:
           description: "Not found"
 
@@ -2142,6 +2193,7 @@ components:
 
 
 
+
     CreateMenuPageOutput:
       properties:
         MenuPage:
@@ -2154,6 +2206,17 @@ components:
           $ref: "#/components/schemas/SDT_Error"
 
     CreateInfoPageOutput:
+      properties:
+        MenuPage:
+          description: "Page"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_AppVersion.Pages_PagesItem"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    CreateLinkPageOutput:
       properties:
         MenuPage:
           description: "Page"
@@ -2460,6 +2523,14 @@ components:
         PageStructure:
           type: "string"
 
+    SavePageThumbnailInput:  
+      properties:
+        PageId:
+          type: "string"
+          format: "uuid"
+        PageThumbnailData:
+          type: "string"
+
     PublishAppVersionInput:  
       properties:
         AppVersionId:
@@ -2483,6 +2554,19 @@ components:
           format: "uuid"
         PageName:
           type: "string"
+
+    CreateLinkPageInput:  
+      properties:
+        AppVersionId:
+          type: "string"
+          format: "uuid"
+        PageName:
+          type: "string"
+        Url:
+          type: "string"
+        WWPFormId:
+          type: "integer"
+          format: "int32"
 
     CreateServicePageInput:  
       properties:
@@ -3543,6 +3627,12 @@ components:
         PageType:
           description: "Page Type"
           type: "string"
+        PageThumbnailUrl:
+          description: "Page Thumbnail Url"
+          type: "string"
+        PageLinkStructure:
+          description: "SDT_Link Page"
+          $ref: "#/components/schemas/SDT_LinkPage"
         PageMenuStructure:
           description: "SDT_Menu Page"
           $ref: "#/components/schemas/SDT_MenuPage"
@@ -3823,6 +3913,9 @@ components:
           type: "string"
         MemoForm:
           description: "Memo Form"
+          type: "string"
+        CreatedBy:
+          description: "Created By"
           type: "string"
 
 

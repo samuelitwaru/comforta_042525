@@ -87,8 +87,7 @@ namespace GeneXus.Programs {
             A206WWPFormId = P00BZ2_A206WWPFormId[0];
             A509OrganisationDynamicFormId = P00BZ2_A509OrganisationDynamicFormId[0];
             A11OrganisationId = P00BZ2_A11OrganisationId[0];
-            A207WWPFormVersionNumber = P00BZ2_A207WWPFormVersionNumber[0];
-            new prc_deleteorganisationform(context ).execute(  A206WWPFormId,  A207WWPFormVersionNumber,  A509OrganisationDynamicFormId,  A11OrganisationId, out  AV11Messages) ;
+            new prc_deleteorganisationform(context ).execute(  A509OrganisationDynamicFormId,  A11OrganisationId, out  AV11Messages) ;
             if ( AV11Messages.Count == 0 )
             {
                /* Using cursor P00BZ3 */
@@ -120,12 +119,11 @@ namespace GeneXus.Programs {
          P00BZ2_A206WWPFormId = new short[1] ;
          P00BZ2_A509OrganisationDynamicFormId = new Guid[] {Guid.Empty} ;
          P00BZ2_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P00BZ2_A207WWPFormVersionNumber = new short[1] ;
          AV11Messages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_deletecascadeorganisationdynamicform__default(),
             new Object[][] {
                 new Object[] {
-               P00BZ2_A206WWPFormId, P00BZ2_A509OrganisationDynamicFormId, P00BZ2_A11OrganisationId, P00BZ2_A207WWPFormVersionNumber
+               P00BZ2_A206WWPFormId, P00BZ2_A509OrganisationDynamicFormId, P00BZ2_A11OrganisationId
                }
                , new Object[] {
                }
@@ -136,7 +134,6 @@ namespace GeneXus.Programs {
 
       private short AV10WWPFormId ;
       private short A206WWPFormId ;
-      private short A207WWPFormVersionNumber ;
       private Guid AV8OrganisationDynamicFormId ;
       private Guid AV9OrganisationId ;
       private Guid A11OrganisationId ;
@@ -148,7 +145,6 @@ namespace GeneXus.Programs {
       private short[] P00BZ2_A206WWPFormId ;
       private Guid[] P00BZ2_A509OrganisationDynamicFormId ;
       private Guid[] P00BZ2_A11OrganisationId ;
-      private short[] P00BZ2_A207WWPFormVersionNumber ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV11Messages ;
    }
 
@@ -166,7 +162,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[3];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT WWPFormId, OrganisationDynamicFormId, OrganisationId, WWPFormVersionNumber FROM Trn_OrganisationDynamicForm";
+         scmdbuf = "SELECT WWPFormId, OrganisationDynamicFormId, OrganisationId FROM Trn_OrganisationDynamicForm";
          if ( ! (Guid.Empty==AV9OrganisationId) )
          {
             AddWhere(sWhereString, "(OrganisationId = :AV9OrganisationId)");
@@ -253,7 +249,6 @@ namespace GeneXus.Programs {
                 ((short[]) buf[0])[0] = rslt.getShort(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((short[]) buf[3])[0] = rslt.getShort(4);
                 return;
        }
     }

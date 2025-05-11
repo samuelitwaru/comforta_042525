@@ -176,7 +176,7 @@ namespace GeneXus.Programs {
             if ( ( GxWebError == 0 ) && ! isAjaxCallMode( ) )
             {
                /* GeneXus formulas. */
-               AV22Pgmname = "Trn_SupplierGenGeneral";
+               AV23Pgmname = "Trn_SupplierGenGeneral";
                edtavSuppliergenphonecode_description_Enabled = 0;
                AssignProp(sPrefix, false, edtavSuppliergenphonecode_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavSuppliergenphonecode_description_Enabled), 5, 0), true);
                edtavSuppliergenlandlinecode_description_Enabled = 0;
@@ -1200,7 +1200,7 @@ namespace GeneXus.Programs {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         AV22Pgmname = "Trn_SupplierGenGeneral";
+         AV23Pgmname = "Trn_SupplierGenGeneral";
          edtavSuppliergenphonecode_description_Enabled = 0;
          AssignProp(sPrefix, false, edtavSuppliergenphonecode_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavSuppliergenphonecode_description_Enabled), 5, 0), true);
          edtavSuppliergenlandlinecode_description_Enabled = 0;
@@ -1270,7 +1270,7 @@ namespace GeneXus.Programs {
 
       protected void before_start_formulas( )
       {
-         AV22Pgmname = "Trn_SupplierGenGeneral";
+         AV23Pgmname = "Trn_SupplierGenGeneral";
          edtavSuppliergenphonecode_description_Enabled = 0;
          AssignProp(sPrefix, false, edtavSuppliergenphonecode_description_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavSuppliergenphonecode_description_Enabled), 5, 0), true);
          edtavSuppliergenlandlinecode_description_Enabled = 0;
@@ -1493,7 +1493,7 @@ namespace GeneXus.Programs {
          /* 'PREPARETRANSACTION' Routine */
          returnInSub = false;
          AV8TrnContext = new WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext(context);
-         AV8TrnContext.gxTpr_Callerobject = AV22Pgmname;
+         AV8TrnContext.gxTpr_Callerobject = AV23Pgmname;
          AV8TrnContext.gxTpr_Callerondelete = false;
          AV8TrnContext.gxTpr_Callerurl = AV11HTTPRequest.ScriptName+"?"+AV11HTTPRequest.QueryString;
          AV8TrnContext.gxTpr_Transactionname = "Trn_SupplierGen";
@@ -1701,7 +1701,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255115115684", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255920564156", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1717,7 +1717,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_suppliergengeneral.js", "?20255115115685", false, true);
+         context.AddJavascriptSource("trn_suppliergengeneral.js", "?20255920564156", false, true);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          /* End function include_jscripts */
@@ -1884,7 +1884,7 @@ namespace GeneXus.Programs {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sPrefix = "";
-         AV22Pgmname = "";
+         AV23Pgmname = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -1964,9 +1964,9 @@ namespace GeneXus.Programs {
                }
             }
          );
-         AV22Pgmname = "Trn_SupplierGenGeneral";
+         AV23Pgmname = "Trn_SupplierGenGeneral";
          /* GeneXus formulas. */
-         AV22Pgmname = "Trn_SupplierGenGeneral";
+         AV23Pgmname = "Trn_SupplierGenGeneral";
          edtavSuppliergenphonecode_description_Enabled = 0;
          edtavSuppliergenlandlinecode_description_Enabled = 0;
          edtavSuppliergenaddresscountry_description_Enabled = 0;
@@ -2011,7 +2011,7 @@ namespace GeneXus.Programs {
       private string sPrefix ;
       private string sCompPrefix ;
       private string sSFPrefix ;
-      private string AV22Pgmname ;
+      private string AV23Pgmname ;
       private string edtavSuppliergenphonecode_description_Internalname ;
       private string edtavSuppliergenlandlinecode_description_Internalname ;
       private string edtavSuppliergenaddresscountry_description_Internalname ;

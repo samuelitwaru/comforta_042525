@@ -1152,7 +1152,9 @@ namespace GeneXus.Programs {
                {
                   context.CommitDataStores("wc_copygeneraldynamicformtolocation",pr_default);
                   GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_DF_Copy_SuccessTitle", ""),  context.GetMessage( "WWP_DF_Copy_Success", ""),  "success",  "",  "na",  ""));
-                  CallWebObject(formatLink("wp_locationdynamicform.aspx") );
+                  GXKey = Crypto.GetSiteKey( );
+                  GXEncryptionTmp = "wp_dynamicform.aspx"+UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + UrlEncode(StringUtil.BoolToStr(false)) + "," + UrlEncode(StringUtil.RTrim(context.GetMessage( "LocationDynamicForm", "")));
+                  CallWebObject(formatLink("wp_dynamicform.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
                   context.wjLocDisableFrm = 1;
                }
                else
@@ -1373,7 +1375,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542812584527", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255920563284", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1389,7 +1391,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_copygeneraldynamicformtolocation.js", "?202542812584527", false, true);
+         context.AddJavascriptSource("wc_copygeneraldynamicformtolocation.js", "?20255920563285", false, true);
          /* End function include_jscripts */
       }
 
@@ -1533,6 +1535,7 @@ namespace GeneXus.Programs {
          H009R5_A206WWPFormId = new short[1] ;
          AV7Element = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element(context);
          AV15Trn_LocationDynamicForm = new SdtTrn_LocationDynamicForm(context);
+         GXEncryptionTmp = "";
          AV21GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV10Message = new GeneXus.Utils.SdtMessages_Message(context);
          AV23GXV4 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
@@ -1615,6 +1618,7 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string gxwrpcisep ;
+      private string GXEncryptionTmp ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool AV5CheckRequiredFieldsResult ;

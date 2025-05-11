@@ -36,6 +36,15 @@ export const i18n = new I18n({
         close: "Close",
         copied: "Linked copied to clipboard",
       },
+      trash: {
+        label: "Trash",
+        modal_title: "Trash",
+        modal_description:
+          "A shareable link has been generated for you. Copy it and share for previews!",
+        copy: "Copy",
+        close: "Close",
+        copied: "Linked copied to clipboard",
+      },
       appversion: {
         create_new: "Create new version",
         duplicate: "Duplicate version",
@@ -59,7 +68,7 @@ export const i18n = new I18n({
       confirmation_accept: "Confirm",
       confirmation_cancel: "Cancel",
       image_upload: {
-        modal_title: "Upload",
+        modal_title: "Upload Image",
         cancel: "Cancel",
         save: "Save",
         upload_message:
@@ -78,6 +87,7 @@ export const i18n = new I18n({
         weblink: "Web link",
         module: "Modules",
         content: "Content",
+        call_to_action: "Call to Action",
       },
     },
     default: {
@@ -99,6 +109,7 @@ export const i18n = new I18n({
       add_content_page: "Add content page",
       information_page: "New Page",
       existing_pages: "Existing Pages",
+      call_to_action: "Call to Action",
       forms: "Forms",
       modules: "Modules",
       email: "Email",
@@ -185,7 +196,7 @@ export const i18n = new I18n({
       confirmation_accept: "Bevestigen",
       confirmation_cancel: "Annuleren",
       image_upload: {
-        modal_title: "Uploaden",
+        modal_title: "Uploaden Image",
         cancel: "Annuleren",
         save: "Opslaan",
         upload_message:
@@ -226,6 +237,7 @@ export const i18n = new I18n({
       forms: "Formulieren",
       modules: "Modules",
       existing_pages: "Bestaande pagina's",
+      call_to_action: "Call to Action",
       email: "e-mail",
       phone: "Telefoon",
       maps: "Kaarten",

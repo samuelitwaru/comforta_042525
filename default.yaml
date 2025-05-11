@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250506054620"
+  version: "20250509181158"
 servers:
   - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/rest
 paths:
@@ -2271,6 +2271,12 @@ components:
         PageType:
           description: "Page Type"
           type: "string"
+        PageThumbnailUrl:
+          description: "Page Thumbnail Url"
+          type: "string"
+        PageLinkStructure:
+          description: "SDT_Link Page"
+          $ref: "#/components/schemas/SDT_LinkPage"
         PageMenuStructure:
           description: "SDT_Menu Page"
           $ref: "#/components/schemas/SDT_MenuPage"
@@ -2744,6 +2750,15 @@ components:
           description: "Object Url"
           type: "string"
       x-gx-level: "SDT_InfoTile"
+    SDT_LinkPage:
+      properties:
+        Url:
+          description: "Url"
+          type: "string"
+        WWPFormId:
+          description: "WWPForm Id"
+          type: "integer"
+          format: "int32"
     SDT_Location:
       properties:
         LocationId:
@@ -2924,6 +2939,9 @@ components:
           type: "string"
         MemoForm:
           description: "Memo Form"
+          type: "string"
+        CreatedBy:
+          description: "Created By"
           type: "string"
     SDT_MemoCategory:
       properties:

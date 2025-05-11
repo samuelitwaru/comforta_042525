@@ -36,44 +36,34 @@ namespace GeneXus.Programs {
          IsMain = false;
       }
 
-      public void execute( short aP0_WWPFormId ,
-                           short aP1_WWPFormVersionNumber ,
-                           Guid aP2_OrganisationDynamicFormId ,
-                           Guid aP3_OrganisationId ,
-                           out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP4_OutMessage )
+      public void execute( Guid aP0_OrganisationDynamicFormId ,
+                           Guid aP1_OrganisationId ,
+                           out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_OutMessage )
       {
-         this.A206WWPFormId = aP0_WWPFormId;
-         this.A207WWPFormVersionNumber = aP1_WWPFormVersionNumber;
-         this.A509OrganisationDynamicFormId = aP2_OrganisationDynamicFormId;
-         this.A11OrganisationId = aP3_OrganisationId;
+         this.A509OrganisationDynamicFormId = aP0_OrganisationDynamicFormId;
+         this.A11OrganisationId = aP1_OrganisationId;
          this.AV8OutMessage = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus") ;
          initialize();
          ExecuteImpl();
-         aP4_OutMessage=this.AV8OutMessage;
+         aP2_OutMessage=this.AV8OutMessage;
       }
 
-      public GXBaseCollection<GeneXus.Utils.SdtMessages_Message> executeUdp( short aP0_WWPFormId ,
-                                                                             short aP1_WWPFormVersionNumber ,
-                                                                             Guid aP2_OrganisationDynamicFormId ,
-                                                                             Guid aP3_OrganisationId )
+      public GXBaseCollection<GeneXus.Utils.SdtMessages_Message> executeUdp( Guid aP0_OrganisationDynamicFormId ,
+                                                                             Guid aP1_OrganisationId )
       {
-         execute(aP0_WWPFormId, aP1_WWPFormVersionNumber, aP2_OrganisationDynamicFormId, aP3_OrganisationId, out aP4_OutMessage);
+         execute(aP0_OrganisationDynamicFormId, aP1_OrganisationId, out aP2_OutMessage);
          return AV8OutMessage ;
       }
 
-      public void executeSubmit( short aP0_WWPFormId ,
-                                 short aP1_WWPFormVersionNumber ,
-                                 Guid aP2_OrganisationDynamicFormId ,
-                                 Guid aP3_OrganisationId ,
-                                 out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP4_OutMessage )
+      public void executeSubmit( Guid aP0_OrganisationDynamicFormId ,
+                                 Guid aP1_OrganisationId ,
+                                 out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_OutMessage )
       {
-         this.A206WWPFormId = aP0_WWPFormId;
-         this.A207WWPFormVersionNumber = aP1_WWPFormVersionNumber;
-         this.A509OrganisationDynamicFormId = aP2_OrganisationDynamicFormId;
-         this.A11OrganisationId = aP3_OrganisationId;
+         this.A509OrganisationDynamicFormId = aP0_OrganisationDynamicFormId;
+         this.A11OrganisationId = aP1_OrganisationId;
          this.AV8OutMessage = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus") ;
          SubmitImpl();
-         aP4_OutMessage=this.AV8OutMessage;
+         aP2_OutMessage=this.AV8OutMessage;
       }
 
       protected override void ExecutePrivate( )
@@ -84,7 +74,7 @@ namespace GeneXus.Programs {
          AV9Trn_OrganisationDynamicForm.Delete();
          if ( AV9Trn_OrganisationDynamicForm.Success() )
          {
-            new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_deleteform(context ).execute(  A206WWPFormId,  A207WWPFormVersionNumber, out  AV8OutMessage) ;
+            new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_deleteform(context ).execute(  AV9Trn_OrganisationDynamicForm.gxTpr_Wwpformid,  AV9Trn_OrganisationDynamicForm.gxTpr_Wwpformversionnumber, out  AV8OutMessage) ;
          }
          else
          {
@@ -110,13 +100,11 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private short A206WWPFormId ;
-      private short A207WWPFormVersionNumber ;
       private Guid A509OrganisationDynamicFormId ;
       private Guid A11OrganisationId ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV8OutMessage ;
       private SdtTrn_OrganisationDynamicForm AV9Trn_OrganisationDynamicForm ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP4_OutMessage ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_OutMessage ;
    }
 
 }

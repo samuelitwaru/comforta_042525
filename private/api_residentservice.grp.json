@@ -516,6 +516,16 @@
 },
 {
 "Verb":"POST",
+"PathRegexp":"toolbox/v2/save-page-thumbnail",
+"Path":"toolbox/v2/save-page-thumbnail",
+"Name":"savepagethumbnail",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_savepagethumbnail",
+"Implementation":"Prc_SavePageThumbnail"
+},
+{
+"Verb":"POST",
 "PathRegexp":"toolbox/v2/publish-appversion",
 "Path":"toolbox/v2/publish-appversion",
 "Name":"publishappversion",
@@ -543,6 +553,16 @@
 "VariableAlias": [],
 "ServiceMethod":"gxep_createinfopage",
 "Implementation":"Prc_CreateInfoPage"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/v2/create-link-page",
+"Path":"toolbox/v2/create-link-page",
+"Name":"createlinkpage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_createlinkpage",
+"Implementation":"Prc_CreateLinkPage"
 },
 {
 "Verb":"POST",

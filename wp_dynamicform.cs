@@ -640,7 +640,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</div>") ;
             context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+"TABSContainer"+"title4"+"\" style=\"display:none;\">") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblSupplierdynamicform_title_Internalname, context.GetMessage( "Supplier Dynamic From", ""), "", "", lblSupplierdynamicform_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_DynamicForm.htm");
+            GxWebStd.gx_label_ctrl( context, lblSupplierdynamicform_title_Internalname, context.GetMessage( "Supplier Dynamic Form", ""), "", "", lblSupplierdynamicform_title_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_DynamicForm.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", "", "display:none;", "div");
             context.WriteHtmlText( "SupplierDynamicForm") ;
@@ -1262,8 +1262,18 @@ namespace GeneXus.Programs {
          }
          Form.Caption = context.GetMessage( "Dynamic Forms", "");
          AssignProp("", false, "FORM", "Caption", Form.Caption, true);
-         AV13SelectedTabCode = "GeneralDynamicForm";
-         AssignAttri("", false, "AV13SelectedTabCode", AV13SelectedTabCode);
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8TabCode)) )
+         {
+            AV13SelectedTabCode = AV8TabCode;
+            AssignAttri("", false, "AV13SelectedTabCode", AV13SelectedTabCode);
+         }
+         else
+         {
+            AV13SelectedTabCode = "GeneralDynamicForm";
+            AssignAttri("", false, "AV13SelectedTabCode", AV13SelectedTabCode);
+         }
+         Tabs_Activepagecontrolname = AV13SelectedTabCode;
+         ucTabs.SendProperty(context, "", false, Tabs_Internalname, "ActivePageControlName", Tabs_Activepagecontrolname);
          /* Execute user subroutine: 'LOADTABS' */
          S112 ();
          if ( returnInSub )
@@ -1607,7 +1617,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254281318482", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255920571228", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1623,7 +1633,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_dynamicform.js", "?20254281318482", false, true);
+         context.AddJavascriptSource("wp_dynamicform.js", "?20255920571228", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);

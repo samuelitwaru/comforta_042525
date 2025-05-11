@@ -113,13 +113,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV23GXV2 = 1;
-               AV22GXV1 = AV8BC_Trn_Page.GetMessages();
-               while ( AV23GXV2 <= AV22GXV1.Count )
+               AV24GXV2 = 1;
+               AV23GXV1 = AV8BC_Trn_Page.GetMessages();
+               while ( AV24GXV2 <= AV23GXV1.Count )
                {
-                  AV9Message = ((GeneXus.Utils.SdtMessages_Message)AV22GXV1.Item(AV23GXV2));
+                  AV9Message = ((GeneXus.Utils.SdtMessages_Message)AV23GXV1.Item(AV24GXV2));
                   new prc_logtofile(context ).execute(  AV9Message.gxTpr_Description) ;
-                  AV23GXV2 = (int)(AV23GXV2+1);
+                  AV24GXV2 = (int)(AV24GXV2+1);
                }
             }
             AV17Response = AV8BC_Trn_Page.ToJSonString(true, true);
@@ -145,7 +145,7 @@ namespace GeneXus.Programs {
          AV21error = new SdtSDT_Error(context);
          AV8BC_Trn_Page = new SdtTrn_Page(context);
          GXt_guid1 = Guid.Empty;
-         AV22GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV23GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV9Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_createpage__datastore1(),
             new Object[][] {
@@ -162,7 +162,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV23GXV2 ;
+      private int AV24GXV2 ;
       private string AV13PageJsonContent ;
       private string AV17Response ;
       private string AV16PageName ;
@@ -174,7 +174,7 @@ namespace GeneXus.Programs {
       private SdtSDT_Error AV21error ;
       private SdtTrn_Page AV8BC_Trn_Page ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV22GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV23GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV9Message ;
       private SdtSDT_Error aP3_error ;
       private IDataStoreProvider pr_datastore1 ;

@@ -24,7 +24,7 @@ export class TileUpdate {
           display: length >= 3 ? "none" : "flex",
         });
       }
-      const alignValue = length === 3 ? "center" : tileAttributes.Align;
+      const alignValue = length === 3 ? "center" : tileAttributes?.Align;
       const cssAlignValue = alignValue === "left" ? "start" : alignValue;
 
       
@@ -72,8 +72,6 @@ export class TileUpdate {
         (tile: any) => tile.Id === tileWrapper.getId()
       );
     } else {
-        console.log("rowComponent", rowComponent.getId());
-        console.log("tileWrapper", tileWrapper.getId());
         tileAttributes = (globalThis as any).tileMapper.getTile(
             rowComponent.getId(),
             tileWrapper.getId()

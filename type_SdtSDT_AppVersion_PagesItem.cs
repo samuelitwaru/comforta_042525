@@ -36,6 +36,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_AppVersion_PagesItem_Pagetype = "";
 
+			gxTv_SdtSDT_AppVersion_PagesItem_Pagethumbnailurl = "";
+
 		}
 
 		public SdtSDT_AppVersion_PagesItem(IGxContext context)
@@ -77,6 +79,13 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("PageType", gxTpr_Pagetype, false);
 
+
+			AddObjectProperty("PageThumbnailUrl", gxTpr_Pagethumbnailurl, false);
+
+			if (gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure != null)
+			{
+				AddObjectProperty("PageLinkStructure", gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure, false);
+			}
 			if (gxTv_SdtSDT_AppVersion_PagesItem_Pagemenustructure != null)
 			{
 				AddObjectProperty("PageMenuStructure", gxTv_SdtSDT_AppVersion_PagesItem_Pagemenustructure, false);
@@ -173,6 +182,54 @@ namespace GeneXus.Programs
 		}
 
 
+
+
+		[SoapElement(ElementName="PageThumbnailUrl")]
+		[XmlElement(ElementName="PageThumbnailUrl")]
+		public string gxTpr_Pagethumbnailurl
+		{
+			get {
+				return gxTv_SdtSDT_AppVersion_PagesItem_Pagethumbnailurl; 
+			}
+			set {
+				gxTv_SdtSDT_AppVersion_PagesItem_Pagethumbnailurl = value;
+				SetDirty("Pagethumbnailurl");
+			}
+		}
+
+
+
+		[SoapElement(ElementName="PageLinkStructure")]
+		[XmlElement(ElementName="PageLinkStructure")]
+		public GeneXus.Programs.SdtSDT_LinkPage gxTpr_Pagelinkstructure
+		{
+			get {
+				if ( gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure == null )
+				{
+					gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure = new GeneXus.Programs.SdtSDT_LinkPage(context);
+				}
+				return gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure; 
+			}
+			set {
+				gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure = value;
+				SetDirty("Pagelinkstructure");
+			}
+		}
+		public void gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure_SetNull()
+		{
+			gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure_N = true;
+			gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure = null;
+		}
+
+		public bool gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure_IsNull()
+		{
+			return gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure == null;
+		}
+		public bool ShouldSerializegxTpr_Pagelinkstructure_Json()
+		{
+			return gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure != null;
+
+		}
 
 		[SoapElement(ElementName="PageMenuStructure")]
 		[XmlElement(ElementName="PageMenuStructure")]
@@ -295,6 +352,10 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_AppVersion_PagesItem_Ispredefined = false;
 			gxTv_SdtSDT_AppVersion_PagesItem_Pagestructure = "";
 			gxTv_SdtSDT_AppVersion_PagesItem_Pagetype = "";
+			gxTv_SdtSDT_AppVersion_PagesItem_Pagethumbnailurl = "";
+
+			gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure_N = true;
+
 
 			gxTv_SdtSDT_AppVersion_PagesItem_Pagemenustructure_N = true;
 
@@ -326,6 +387,13 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_AppVersion_PagesItem_Pagetype;
+		 
+
+		protected string gxTv_SdtSDT_AppVersion_PagesItem_Pagethumbnailurl;
+		 
+
+		protected GeneXus.Programs.SdtSDT_LinkPage gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure = null;
+		protected bool gxTv_SdtSDT_AppVersion_PagesItem_Pagelinkstructure_N;
 		 
 
 		protected GeneXus.Programs.SdtSDT_MenuPage gxTv_SdtSDT_AppVersion_PagesItem_Pagemenustructure = null;
@@ -417,7 +485,34 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageMenuStructure", Order=5, EmitDefaultValue=false)]
+		[DataMember(Name="PageThumbnailUrl", Order=5)]
+		public  string gxTpr_Pagethumbnailurl
+		{
+			get { 
+				return sdt.gxTpr_Pagethumbnailurl;
+
+			}
+			set { 
+				 sdt.gxTpr_Pagethumbnailurl = value;
+			}
+		}
+
+		[DataMember(Name="PageLinkStructure", Order=6, EmitDefaultValue=false)]
+		public GeneXus.Programs.SdtSDT_LinkPage_RESTInterface gxTpr_Pagelinkstructure
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Pagelinkstructure_Json())
+					return new GeneXus.Programs.SdtSDT_LinkPage_RESTInterface(sdt.gxTpr_Pagelinkstructure);
+				else
+					return null;
+
+			}
+			set { 
+				sdt.gxTpr_Pagelinkstructure = value.sdt;
+			}
+		}
+
+		[DataMember(Name="PageMenuStructure", Order=7, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtSDT_MenuPage_RESTInterface gxTpr_Pagemenustructure
 		{
 			get { 
@@ -432,7 +527,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageContentStructure", Order=6, EmitDefaultValue=false)]
+		[DataMember(Name="PageContentStructure", Order=8, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtSDT_ContentPage_RESTInterface gxTpr_Pagecontentstructure
 		{
 			get { 
@@ -447,7 +542,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageInfoStructure", Order=7, EmitDefaultValue=false)]
+		[DataMember(Name="PageInfoStructure", Order=9, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtSDT_InfoContent_RESTInterface gxTpr_Pageinfostructure
 		{
 			get { 

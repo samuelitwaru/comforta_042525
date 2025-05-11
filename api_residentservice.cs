@@ -235,6 +235,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_savepagethumbnail") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_publishappversion") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -244,6 +248,10 @@ namespace GeneXus.Programs {
             return GAMSecurityLevel.SecurityNone ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_createinfopage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_createlinkpage") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
          }
@@ -1267,6 +1275,19 @@ namespace GeneXus.Programs {
          aP5_error=this.AV69error;
       }
 
+      public void gxep_savepagethumbnail( Guid aP0_PageId ,
+                                          string aP1_PageThumbnailData ,
+                                          out SdtSDT_Error aP2_error )
+      {
+         this.AV37PageId = aP0_PageId;
+         this.AV138PageThumbnailData = aP1_PageThumbnailData;
+         AV69error = new SdtSDT_Error(context);
+         initialize();
+         /* SavePageThumbnail Constructor */
+         new prc_savepagethumbnail(context ).execute(  AV37PageId,  AV138PageThumbnailData, out  AV69error) ;
+         aP2_error=this.AV69error;
+      }
+
       public void gxep_publishappversion( Guid aP0_AppVersionId ,
                                           bool aP1_Notify ,
                                           out SdtSDT_Error aP2_error )
@@ -1309,6 +1330,26 @@ namespace GeneXus.Programs {
          new prc_createinfopage(context ).execute(  AV92AppVersionId,  AV43PageName, out  AV97MenuPage, out  AV69error) ;
          aP2_MenuPage=this.AV97MenuPage;
          aP3_error=this.AV69error;
+      }
+
+      public void gxep_createlinkpage( Guid aP0_AppVersionId ,
+                                       string aP1_PageName ,
+                                       string aP2_Url ,
+                                       short aP3_WWPFormId ,
+                                       out SdtSDT_AppVersion_PagesItem aP4_MenuPage ,
+                                       out SdtSDT_Error aP5_error )
+      {
+         this.AV92AppVersionId = aP0_AppVersionId;
+         this.AV43PageName = aP1_PageName;
+         this.AV136Url = aP2_Url;
+         this.AV137WWPFormId = aP3_WWPFormId;
+         AV97MenuPage = new SdtSDT_AppVersion_PagesItem(context);
+         AV69error = new SdtSDT_Error(context);
+         initialize();
+         /* CreateLinkPage Constructor */
+         new prc_createlinkpage(context ).execute(  AV92AppVersionId,  AV43PageName,  AV136Url,  AV137WWPFormId, out  AV97MenuPage, out  AV69error) ;
+         aP4_MenuPage=this.AV97MenuPage;
+         aP5_error=this.AV69error;
       }
 
       public void gxep_createservicepage( Guid aP0_AppVersionId ,
@@ -1624,6 +1665,7 @@ namespace GeneXus.Programs {
       protected short AV86PageSize ;
       protected short AV85PageNumber ;
       protected short AV11DeviceType ;
+      protected short AV137WWPFormId ;
       protected short AV110MemoDuration ;
       protected int AV34MediaSize ;
       protected string Gx_restmethod ;
@@ -1649,6 +1691,7 @@ namespace GeneXus.Programs {
       protected string AV39PageGJSHtml ;
       protected string AV40PageGJSJson ;
       protected string AV90PageStructure ;
+      protected string AV138PageThumbnailData ;
       protected string AV103ProductServiceDescription ;
       protected string AV105ProductServiceImageBase64 ;
       protected string AV123LocationDescription ;
@@ -1672,6 +1715,7 @@ namespace GeneXus.Programs {
       protected string AV43PageName ;
       protected string AV99AppVersionName ;
       protected string AV91PageType ;
+      protected string AV136Url ;
       protected string AV116MemoTitle ;
       protected string AV108MemoDescription ;
       protected string AV113MemoImage ;
@@ -1766,6 +1810,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_AppVersion aP1_AppVersion ;
       protected SdtSDT_AppVersion_PagesItem AV97MenuPage ;
       protected SdtSDT_AppVersion_PagesItem aP2_MenuPage ;
+      protected SdtSDT_AppVersion_PagesItem aP4_MenuPage ;
       protected SdtSDT_AppVersion_PagesItem AV95ContentPage ;
       protected SdtSDT_AppVersion_PagesItem aP2_ContentPage ;
       protected GXBaseCollection<SdtSDT_PageUrl> AV133PageUrlList ;

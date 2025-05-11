@@ -94,8 +94,7 @@ namespace GeneXus.Programs {
             A366LocationDynamicFormId = P00BT2_A366LocationDynamicFormId[0];
             A11OrganisationId = P00BT2_A11OrganisationId[0];
             A29LocationId = P00BT2_A29LocationId[0];
-            A207WWPFormVersionNumber = P00BT2_A207WWPFormVersionNumber[0];
-            new prc_deletelocationform(context ).execute(  A206WWPFormId,  A207WWPFormVersionNumber,  A366LocationDynamicFormId,  A11OrganisationId,  A29LocationId, out  AV12Messages) ;
+            new prc_deletelocationform(context ).execute(  A366LocationDynamicFormId,  A11OrganisationId,  A29LocationId, out  AV12Messages) ;
             if ( AV12Messages.Count == 0 )
             {
                /* Using cursor P00BT3 */
@@ -129,12 +128,11 @@ namespace GeneXus.Programs {
          P00BT2_A366LocationDynamicFormId = new Guid[] {Guid.Empty} ;
          P00BT2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00BT2_A29LocationId = new Guid[] {Guid.Empty} ;
-         P00BT2_A207WWPFormVersionNumber = new short[1] ;
          AV12Messages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_deletecascadelocationdynamicform__default(),
             new Object[][] {
                 new Object[] {
-               P00BT2_A206WWPFormId, P00BT2_A366LocationDynamicFormId, P00BT2_A11OrganisationId, P00BT2_A29LocationId, P00BT2_A207WWPFormVersionNumber
+               P00BT2_A206WWPFormId, P00BT2_A366LocationDynamicFormId, P00BT2_A11OrganisationId, P00BT2_A29LocationId
                }
                , new Object[] {
                }
@@ -145,7 +143,6 @@ namespace GeneXus.Programs {
 
       private short AV11WWPFormId ;
       private short A206WWPFormId ;
-      private short A207WWPFormVersionNumber ;
       private Guid AV8LocationDynamicFormId ;
       private Guid AV9LocationId ;
       private Guid AV10OrganisationId ;
@@ -160,7 +157,6 @@ namespace GeneXus.Programs {
       private Guid[] P00BT2_A366LocationDynamicFormId ;
       private Guid[] P00BT2_A11OrganisationId ;
       private Guid[] P00BT2_A29LocationId ;
-      private short[] P00BT2_A207WWPFormVersionNumber ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV12Messages ;
    }
 
@@ -180,7 +176,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[4];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT WWPFormId, LocationDynamicFormId, OrganisationId, LocationId, WWPFormVersionNumber FROM Trn_LocationDynamicForm";
+         scmdbuf = "SELECT WWPFormId, LocationDynamicFormId, OrganisationId, LocationId FROM Trn_LocationDynamicForm";
          if ( ! (Guid.Empty==AV9LocationId) )
          {
             AddWhere(sWhereString, "(LocationId = :AV9LocationId)");
@@ -278,7 +274,6 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-                ((short[]) buf[4])[0] = rslt.getShort(5);
                 return;
        }
     }
