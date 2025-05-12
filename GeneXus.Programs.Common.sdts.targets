@@ -38,6 +38,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersion2_SDT_Theme_ColorsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersion2_SDT_Theme_CtaColorsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersion2_PagesItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersionPage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AvatarUpload.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_BrandThemeColors.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />

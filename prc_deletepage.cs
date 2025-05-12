@@ -106,14 +106,20 @@ namespace GeneXus.Programs {
             {
                GXTBK3 = 0;
                A516PageId = P00BK3_A516PageId[0];
+               A621IsPageDeleted = P00BK3_A621IsPageDeleted[0];
+               A623PageDeletedAt = P00BK3_A623PageDeletedAt[0];
+               n623PageDeletedAt = P00BK3_n623PageDeletedAt[0];
                AV15GXLvl10 = 1;
-               /* Using cursor P00BK4 */
-               pr_default.execute(2, new Object[] {A523AppVersionId, A516PageId});
-               pr_default.close(2);
-               pr_default.SmartCacheProvider.SetUpdated("Trn_AppVersionPage");
+               A621IsPageDeleted = true;
+               A623PageDeletedAt = DateTimeUtil.Now( context);
+               n623PageDeletedAt = false;
                GXTBK3 = 1;
                AV11BC_Trn_AppVersion.Load(AV10AppVersionId);
                new prc_loadappversionsdt(context ).execute(  AV11BC_Trn_AppVersion, out  AV13SDT_AppVersion) ;
+               /* Using cursor P00BK4 */
+               pr_default.execute(2, new Object[] {A621IsPageDeleted, n623PageDeletedAt, A623PageDeletedAt, A523AppVersionId, A516PageId});
+               pr_default.close(2);
+               pr_default.SmartCacheProvider.SetUpdated("Trn_AppVersionPage");
                if ( GXTBK3 == 1 )
                {
                   context.CommitDataStores("prc_deletepage",pr_default);
@@ -158,7 +164,11 @@ namespace GeneXus.Programs {
          A523AppVersionId = Guid.Empty;
          P00BK3_A523AppVersionId = new Guid[] {Guid.Empty} ;
          P00BK3_A516PageId = new Guid[] {Guid.Empty} ;
+         P00BK3_A621IsPageDeleted = new bool[] {false} ;
+         P00BK3_A623PageDeletedAt = new DateTime[] {DateTime.MinValue} ;
+         P00BK3_n623PageDeletedAt = new bool[] {false} ;
          A516PageId = Guid.Empty;
+         A623PageDeletedAt = (DateTime)(DateTime.MinValue);
          AV11BC_Trn_AppVersion = new SdtTrn_AppVersion(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_deletepage__datastore1(),
             new Object[][] {
@@ -174,7 +184,7 @@ namespace GeneXus.Programs {
                P00BK2_A523AppVersionId
                }
                , new Object[] {
-               P00BK3_A523AppVersionId, P00BK3_A516PageId
+               P00BK3_A523AppVersionId, P00BK3_A516PageId, P00BK3_A621IsPageDeleted, P00BK3_A623PageDeletedAt, P00BK3_n623PageDeletedAt
                }
                , new Object[] {
                }
@@ -186,6 +196,9 @@ namespace GeneXus.Programs {
       private short AV14GXLvl8 ;
       private short AV15GXLvl10 ;
       private short GXTBK3 ;
+      private DateTime A623PageDeletedAt ;
+      private bool A621IsPageDeleted ;
+      private bool n623PageDeletedAt ;
       private Guid AV10AppVersionId ;
       private Guid AV9PageId ;
       private Guid A523AppVersionId ;
@@ -199,6 +212,9 @@ namespace GeneXus.Programs {
       private Guid[] P00BK2_A523AppVersionId ;
       private Guid[] P00BK3_A523AppVersionId ;
       private Guid[] P00BK3_A516PageId ;
+      private bool[] P00BK3_A621IsPageDeleted ;
+      private DateTime[] P00BK3_A623PageDeletedAt ;
+      private bool[] P00BK3_n623PageDeletedAt ;
       private SdtTrn_AppVersion AV11BC_Trn_AppVersion ;
       private SdtSDT_AppVersion aP2_SDT_AppVersion ;
       private SdtSDT_Error aP3_SDT_Error ;
@@ -298,13 +314,15 @@ public class prc_deletepage__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmP00BK4;
        prmP00BK4 = new Object[] {
+       new ParDef("IsPageDeleted",GXType.Boolean,4,0) ,
+       new ParDef("PageDeletedAt",GXType.DateTime,8,5){Nullable=true} ,
        new ParDef("AppVersionId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("PageId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
            new CursorDef("P00BK2", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :AV10AppVersionId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BK2,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("P00BK3", "SELECT AppVersionId, PageId FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId and PageId = :AV9PageId ORDER BY AppVersionId, PageId ",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BK3,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("P00BK4", "SAVEPOINT gxupdate;DELETE FROM Trn_AppVersionPage  WHERE AppVersionId = :AppVersionId AND PageId = :PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00BK4)
+          ,new CursorDef("P00BK3", "SELECT AppVersionId, PageId, IsPageDeleted, PageDeletedAt FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId and PageId = :AV9PageId ORDER BY AppVersionId, PageId  FOR UPDATE OF Trn_AppVersionPage",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BK3,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("P00BK4", "SAVEPOINT gxupdate;UPDATE Trn_AppVersionPage SET IsPageDeleted=:IsPageDeleted, PageDeletedAt=:PageDeletedAt  WHERE AppVersionId = :AppVersionId AND PageId = :PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00BK4)
        };
     }
  }
@@ -321,6 +339,9 @@ public class prc_deletepage__default : DataStoreHelperBase, IDataStoreHelper
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((bool[]) buf[2])[0] = rslt.getBool(3);
+             ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
              return;
     }
  }

@@ -36,6 +36,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_DynamicForms_Formurl = "";
 
+			gxTv_SdtSDT_DynamicForms_Supplierid = "";
+
 		}
 
 		public SdtSDT_DynamicForms(IGxContext context)
@@ -73,6 +75,9 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("FormUrl", gxTpr_Formurl, false);
+
+
+			AddObjectProperty("SupplierId", gxTpr_Supplierid, false);
 
 			return;
 		}
@@ -143,6 +148,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="SupplierId")]
+		[XmlElement(ElementName="SupplierId")]
+		public string gxTpr_Supplierid
+		{
+			get {
+				return gxTv_SdtSDT_DynamicForms_Supplierid; 
+			}
+			set {
+				gxTv_SdtSDT_DynamicForms_Supplierid = value;
+				SetDirty("Supplierid");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -167,6 +188,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_DynamicForms_Pagename = "";
 			gxTv_SdtSDT_DynamicForms_Referencename = "";
 			gxTv_SdtSDT_DynamicForms_Formurl = "";
+			gxTv_SdtSDT_DynamicForms_Supplierid = "";
 			return  ;
 		}
 
@@ -186,6 +208,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_DynamicForms_Formurl;
+		 
+
+		protected string gxTv_SdtSDT_DynamicForms_Supplierid;
 		 
 
 
@@ -250,6 +275,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Formurl = value;
+			}
+		}
+
+		[DataMember(Name="SupplierId", Order=4)]
+		public  string gxTpr_Supplierid
+		{
+			get { 
+				return sdt.gxTpr_Supplierid;
+
+			}
+			set { 
+				 sdt.gxTpr_Supplierid = value;
 			}
 		}
 

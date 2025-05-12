@@ -81,10 +81,12 @@ namespace GeneXus.Programs {
          while ( (pr_default.getStatus(0) != 101) )
          {
             A523AppVersionId = P00CA2_A523AppVersionId[0];
+            A620IsVersionDeleted = P00CA2_A620IsVersionDeleted[0];
             /* Using cursor P00CA3 */
             pr_default.execute(1, new Object[] {A523AppVersionId});
             while ( (pr_default.getStatus(1) != 101) )
             {
+               A621IsPageDeleted = P00CA3_A621IsPageDeleted[0];
                A516PageId = P00CA3_A516PageId[0];
                A517PageName = P00CA3_A517PageName[0];
                A525PageType = P00CA3_A525PageType[0];
@@ -161,8 +163,10 @@ namespace GeneXus.Programs {
       {
          AV9SDT_AppVersion = new SdtSDT_AppVersion(context);
          P00CA2_A523AppVersionId = new Guid[] {Guid.Empty} ;
+         P00CA2_A620IsVersionDeleted = new bool[] {false} ;
          A523AppVersionId = Guid.Empty;
          P00CA3_A523AppVersionId = new Guid[] {Guid.Empty} ;
+         P00CA3_A621IsPageDeleted = new bool[] {false} ;
          P00CA3_A516PageId = new Guid[] {Guid.Empty} ;
          P00CA3_A517PageName = new string[] {""} ;
          P00CA3_A525PageType = new string[] {""} ;
@@ -184,16 +188,18 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_loadappversionsdt__default(),
             new Object[][] {
                 new Object[] {
-               P00CA2_A523AppVersionId
+               P00CA2_A523AppVersionId, P00CA2_A620IsVersionDeleted
                }
                , new Object[] {
-               P00CA3_A523AppVersionId, P00CA3_A516PageId, P00CA3_A517PageName, P00CA3_A525PageType, P00CA3_A541IsPredefined, P00CA3_A40000PageThumbnail_GXI, P00CA3_n40000PageThumbnail_GXI, P00CA3_A518PageStructure
+               P00CA3_A523AppVersionId, P00CA3_A621IsPageDeleted, P00CA3_A516PageId, P00CA3_A517PageName, P00CA3_A525PageType, P00CA3_A541IsPredefined, P00CA3_A40000PageThumbnail_GXI, P00CA3_n40000PageThumbnail_GXI, P00CA3_A518PageStructure
                }
             }
          );
          /* GeneXus formulas. */
       }
 
+      private bool A620IsVersionDeleted ;
+      private bool A621IsPageDeleted ;
       private bool A541IsPredefined ;
       private bool n40000PageThumbnail_GXI ;
       private string A518PageStructure ;
@@ -210,7 +216,9 @@ namespace GeneXus.Programs {
       private SdtSDT_AppVersion AV9SDT_AppVersion ;
       private IDataStoreProvider pr_default ;
       private Guid[] P00CA2_A523AppVersionId ;
+      private bool[] P00CA2_A620IsVersionDeleted ;
       private Guid[] P00CA3_A523AppVersionId ;
+      private bool[] P00CA3_A621IsPageDeleted ;
       private Guid[] P00CA3_A516PageId ;
       private string[] P00CA3_A517PageName ;
       private string[] P00CA3_A525PageType ;
@@ -251,8 +259,8 @@ namespace GeneXus.Programs {
           new ParDef("AppVersionId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00CA2", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :AV8BC_Tr_1Appversionid ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CA2,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("P00CA3", "SELECT AppVersionId, PageId, PageName, PageType, IsPredefined, PageThumbnail_GXI, PageStructure FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CA3,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00CA2", "SELECT AppVersionId, IsVersionDeleted FROM Trn_AppVersion WHERE (AppVersionId = :AV8BC_Tr_1Appversionid) AND (IsVersionDeleted = FALSE) ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CA2,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("P00CA3", "SELECT AppVersionId, IsPageDeleted, PageId, PageName, PageType, IsPredefined, PageThumbnail_GXI, PageStructure FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (IsPageDeleted = FALSE) ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CA3,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -265,16 +273,18 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((bool[]) buf[1])[0] = rslt.getBool(2);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((bool[]) buf[1])[0] = rslt.getBool(2);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((bool[]) buf[4])[0] = rslt.getBool(5);
-                ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
-                ((bool[]) buf[6])[0] = rslt.wasNull(6);
-                ((string[]) buf[7])[0] = rslt.getLongVarchar(7);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((bool[]) buf[5])[0] = rslt.getBool(6);
+                ((string[]) buf[6])[0] = rslt.getMultimediaUri(7);
+                ((bool[]) buf[7])[0] = rslt.wasNull(7);
+                ((string[]) buf[8])[0] = rslt.getLongVarchar(8);
                 return;
        }
     }

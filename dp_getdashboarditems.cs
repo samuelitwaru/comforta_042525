@@ -119,34 +119,24 @@ namespace GeneXus.Programs {
          Gxm1uhomemodulessdt.gxTpr_Optiondescription = "Organisations";
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1uhomemodulessdt, 0);
-         Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "AGB Suppliers", "");
-         Gxm1uhomemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-ambulance";
-         Gxm1uhomemodulessdt.gxTpr_Optiontype = 1;
-         Gxm1uhomemodulessdt.gxTpr_Optionsize = 2;
-         Gxm1uhomemodulessdt.gxTpr_Optionwclink = formatLink("wp_organisationagbsuppliers.aspx") ;
-         Gxm1uhomemodulessdt.gxTpr_Rolename = "Organisation Manager";
-         Gxm1uhomemodulessdt.gxTpr_Optionbackgroundimage = context.convertURL( (string)(context.GetImagePath( "4688f42a-4096-4b76-bddb-a886e286486f", "", context.GetTheme( ))));
-         Gxm1uhomemodulessdt.gxTpr_Optiondescription = "AGB Suppliers";
-         Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
-         Gxm2rootcol.Add(Gxm1uhomemodulessdt, 0);
-         Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "General Suppliers", "");
+         Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Suppliers", "");
          Gxm1uhomemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-shipping-fast";
          Gxm1uhomemodulessdt.gxTpr_Optiontype = 1;
          Gxm1uhomemodulessdt.gxTpr_Optionsize = 2;
          Gxm1uhomemodulessdt.gxTpr_Optionwclink = formatLink("wp_organisationgeneralsuppliers.aspx") ;
          Gxm1uhomemodulessdt.gxTpr_Rolename = "Organisation Manager";
          Gxm1uhomemodulessdt.gxTpr_Optionbackgroundimage = context.convertURL( (string)(context.GetImagePath( "4c659b0a-96d5-4099-bfb6-c43d7184e732", "", context.GetTheme( ))));
-         Gxm1uhomemodulessdt.gxTpr_Optiondescription = "General Suppliers";
+         Gxm1uhomemodulessdt.gxTpr_Optiondescription = "Suppliers";
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1uhomemodulessdt, 0);
-         Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Services", "");
-         Gxm1uhomemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-box-open";
+         Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Forms", "");
+         Gxm1uhomemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-file-alt";
          Gxm1uhomemodulessdt.gxTpr_Optiontype = 1;
          Gxm1uhomemodulessdt.gxTpr_Optionsize = 2;
-         Gxm1uhomemodulessdt.gxTpr_Optionwclink = formatLink("trn_productserviceww.aspx") ;
-         Gxm1uhomemodulessdt.gxTpr_Rolename = "All";
-         Gxm1uhomemodulessdt.gxTpr_Optionbackgroundimage = context.convertURL( (string)(context.GetImagePath( "4c659b0a-96d5-4099-bfb6-c43d7184e732", "", context.GetTheme( ))));
-         Gxm1uhomemodulessdt.gxTpr_Optiondescription = "Products and Services";
+         Gxm1uhomemodulessdt.gxTpr_Rolename = "Organisation Manager";
+         Gxm1uhomemodulessdt.gxTpr_Optionwclink = formatLink("wp_dynamicform.aspx") ;
+         Gxm1uhomemodulessdt.gxTpr_Optionbackgroundimage = context.convertURL( (string)(context.GetImagePath( "3ff1b1cd-90c1-4922-90c7-923fe81ed0ed", "", context.GetTheme( ))));
+         Gxm1uhomemodulessdt.gxTpr_Optiondescription = "Forms";
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1uhomemodulessdt, 0);
          Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Residents", "");
@@ -167,22 +157,6 @@ namespace GeneXus.Programs {
          Gxm1uhomemodulessdt.gxTpr_Optionwclink = formatLink("wp_calendaragenda.aspx") ;
          Gxm1uhomemodulessdt.gxTpr_Optionbackgroundimage = context.convertURL( (string)(context.GetImagePath( "3ff1b1cd-90c1-4922-90c7-923fe81ed0ed", "", context.GetTheme( ))));
          Gxm1uhomemodulessdt.gxTpr_Optiondescription = "Agenda";
-         Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
-         Gxm2rootcol.Add(Gxm1uhomemodulessdt, 0);
-         Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Customization", "");
-         Gxm1uhomemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-eye-dropper";
-         Gxm1uhomemodulessdt.gxTpr_Optiontype = 1;
-         Gxm1uhomemodulessdt.gxTpr_Optionsize = 2;
-         Gxm1uhomemodulessdt.gxTpr_Rolename = "Organisation Manager";
-         GXt_char1 = "";
-         new prc_organizationsettingtrnmode(context ).execute( out  GXt_char1) ;
-         GXt_guid2 = Guid.Empty;
-         new prc_organizationsettingid(context ).execute( out  GXt_guid2) ;
-         GXKey = Crypto.GetSiteKey( );
-         GXEncryptionTmp = "trn_organisationsetting.aspx"+GXUtil.UrlEncode(StringUtil.RTrim(GXt_char1)) + "," + GXUtil.UrlEncode(GXt_guid2.ToString());
-         Gxm1uhomemodulessdt.gxTpr_Optionwclink = formatLink("trn_organisationsetting.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
-         Gxm1uhomemodulessdt.gxTpr_Optionbackgroundimage = context.convertURL( (string)(context.GetImagePath( "3ff1b1cd-90c1-4922-90c7-923fe81ed0ed", "", context.GetTheme( ))));
-         Gxm1uhomemodulessdt.gxTpr_Optiondescription = "Customization";
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1uhomemodulessdt, 0);
          Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Page Templates", "");
@@ -242,17 +216,9 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
-         GXt_char1 = "";
-         GXt_guid2 = Guid.Empty;
-         GXKey = "";
-         GXEncryptionTmp = "";
          /* GeneXus formulas. */
       }
 
-      private string GXt_char1 ;
-      private string GXKey ;
-      private string GXEncryptionTmp ;
-      private Guid GXt_guid2 ;
       private GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem> Gxm2rootcol ;
       private SdtUHomeModulesSDT_UHomeModulesSDTItem Gxm1uhomemodulessdt ;
       private GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem> aP0_Gxm2rootcol ;

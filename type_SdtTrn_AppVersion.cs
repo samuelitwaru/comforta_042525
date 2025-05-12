@@ -75,8 +75,11 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Locationid_Z");
          state.Add("gxTpr_Organisationid_Z");
          state.Add("gxTpr_Isactive_Z");
+         state.Add("gxTpr_Isversiondeleted_Z");
+         state.Add("gxTpr_Versiondeletedat_Z_Nullable");
          state.Add("gxTpr_Locationid_N");
          state.Add("gxTpr_Organisationid_N");
+         state.Add("gxTpr_Versiondeletedat_N");
          return state ;
       }
 
@@ -89,6 +92,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_AppVersion_Locationid = sdt.gxTv_SdtTrn_AppVersion_Locationid ;
          gxTv_SdtTrn_AppVersion_Organisationid = sdt.gxTv_SdtTrn_AppVersion_Organisationid ;
          gxTv_SdtTrn_AppVersion_Isactive = sdt.gxTv_SdtTrn_AppVersion_Isactive ;
+         gxTv_SdtTrn_AppVersion_Isversiondeleted = sdt.gxTv_SdtTrn_AppVersion_Isversiondeleted ;
+         gxTv_SdtTrn_AppVersion_Versiondeletedat = sdt.gxTv_SdtTrn_AppVersion_Versiondeletedat ;
          gxTv_SdtTrn_AppVersion_Page = sdt.gxTv_SdtTrn_AppVersion_Page ;
          gxTv_SdtTrn_AppVersion_Mode = sdt.gxTv_SdtTrn_AppVersion_Mode ;
          gxTv_SdtTrn_AppVersion_Initialized = sdt.gxTv_SdtTrn_AppVersion_Initialized ;
@@ -97,8 +102,11 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_AppVersion_Locationid_Z = sdt.gxTv_SdtTrn_AppVersion_Locationid_Z ;
          gxTv_SdtTrn_AppVersion_Organisationid_Z = sdt.gxTv_SdtTrn_AppVersion_Organisationid_Z ;
          gxTv_SdtTrn_AppVersion_Isactive_Z = sdt.gxTv_SdtTrn_AppVersion_Isactive_Z ;
+         gxTv_SdtTrn_AppVersion_Isversiondeleted_Z = sdt.gxTv_SdtTrn_AppVersion_Isversiondeleted_Z ;
+         gxTv_SdtTrn_AppVersion_Versiondeletedat_Z = sdt.gxTv_SdtTrn_AppVersion_Versiondeletedat_Z ;
          gxTv_SdtTrn_AppVersion_Locationid_N = sdt.gxTv_SdtTrn_AppVersion_Locationid_N ;
          gxTv_SdtTrn_AppVersion_Organisationid_N = sdt.gxTv_SdtTrn_AppVersion_Organisationid_N ;
+         gxTv_SdtTrn_AppVersion_Versiondeletedat_N = sdt.gxTv_SdtTrn_AppVersion_Versiondeletedat_N ;
          return  ;
       }
 
@@ -124,6 +132,28 @@ namespace GeneXus.Programs {
          AddObjectProperty("OrganisationId", gxTv_SdtTrn_AppVersion_Organisationid, false, includeNonInitialized);
          AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_AppVersion_Organisationid_N, false, includeNonInitialized);
          AddObjectProperty("IsActive", gxTv_SdtTrn_AppVersion_Isactive, false, includeNonInitialized);
+         AddObjectProperty("IsVersionDeleted", gxTv_SdtTrn_AppVersion_Isversiondeleted, false, includeNonInitialized);
+         datetime_STZ = gxTv_SdtTrn_AppVersion_Versiondeletedat;
+         sDateCnv = "";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "-";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "-";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "T";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Hour( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += ":";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Minute( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += ":";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         AddObjectProperty("VersionDeletedAt", sDateCnv, false, includeNonInitialized);
+         AddObjectProperty("VersionDeletedAt_N", gxTv_SdtTrn_AppVersion_Versiondeletedat_N, false, includeNonInitialized);
          if ( gxTv_SdtTrn_AppVersion_Page != null )
          {
             AddObjectProperty("Page", gxTv_SdtTrn_AppVersion_Page, includeState, includeNonInitialized);
@@ -137,8 +167,30 @@ namespace GeneXus.Programs {
             AddObjectProperty("LocationId_Z", gxTv_SdtTrn_AppVersion_Locationid_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_AppVersion_Organisationid_Z, false, includeNonInitialized);
             AddObjectProperty("IsActive_Z", gxTv_SdtTrn_AppVersion_Isactive_Z, false, includeNonInitialized);
+            AddObjectProperty("IsVersionDeleted_Z", gxTv_SdtTrn_AppVersion_Isversiondeleted_Z, false, includeNonInitialized);
+            datetime_STZ = gxTv_SdtTrn_AppVersion_Versiondeletedat_Z;
+            sDateCnv = "";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "-";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "-";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "T";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Hour( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += ":";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Minute( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += ":";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            AddObjectProperty("VersionDeletedAt_Z", sDateCnv, false, includeNonInitialized);
             AddObjectProperty("LocationId_N", gxTv_SdtTrn_AppVersion_Locationid_N, false, includeNonInitialized);
             AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_AppVersion_Organisationid_N, false, includeNonInitialized);
+            AddObjectProperty("VersionDeletedAt_N", gxTv_SdtTrn_AppVersion_Versiondeletedat_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -171,6 +223,17 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_AppVersion_Isactive = sdt.gxTv_SdtTrn_AppVersion_Isactive ;
+         }
+         if ( sdt.IsDirty("IsVersionDeleted") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Isversiondeleted = sdt.gxTv_SdtTrn_AppVersion_Isversiondeleted ;
+         }
+         if ( sdt.IsDirty("VersionDeletedAt") )
+         {
+            gxTv_SdtTrn_AppVersion_Versiondeletedat_N = (short)(sdt.gxTv_SdtTrn_AppVersion_Versiondeletedat_N);
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Versiondeletedat = sdt.gxTv_SdtTrn_AppVersion_Versiondeletedat ;
          }
          if ( gxTv_SdtTrn_AppVersion_Page != null )
          {
@@ -219,6 +282,8 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_AppVersion_Locationid_Z_SetNull( );
                this.gxTv_SdtTrn_AppVersion_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_AppVersion_Isactive_Z_SetNull( );
+               this.gxTv_SdtTrn_AppVersion_Isversiondeleted_Z_SetNull( );
+               this.gxTv_SdtTrn_AppVersion_Versiondeletedat_Z_SetNull( );
                if ( gxTv_SdtTrn_AppVersion_Page != null )
                {
                   GXBCLevelCollection<SdtTrn_AppVersion_Page> collectionPage = gxTv_SdtTrn_AppVersion_Page;
@@ -329,6 +394,72 @@ namespace GeneXus.Programs {
             SetDirty("Isactive");
          }
 
+      }
+
+      [  SoapElement( ElementName = "IsVersionDeleted" )]
+      [  XmlElement( ElementName = "IsVersionDeleted"   )]
+      public bool gxTpr_Isversiondeleted
+      {
+         get {
+            return gxTv_SdtTrn_AppVersion_Isversiondeleted ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Isversiondeleted = value;
+            SetDirty("Isversiondeleted");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "VersionDeletedAt" )]
+      [  XmlElement( ElementName = "VersionDeletedAt"  , IsNullable=true )]
+      public string gxTpr_Versiondeletedat_Nullable
+      {
+         get {
+            if ( gxTv_SdtTrn_AppVersion_Versiondeletedat == DateTime.MinValue)
+               return null;
+            return new GxDatetimeString(gxTv_SdtTrn_AppVersion_Versiondeletedat).value ;
+         }
+
+         set {
+            gxTv_SdtTrn_AppVersion_Versiondeletedat_N = 0;
+            sdtIsNull = 0;
+            if (String.IsNullOrEmpty(value) || value == GxDatetimeString.NullValue )
+               gxTv_SdtTrn_AppVersion_Versiondeletedat = DateTime.MinValue;
+            else
+               gxTv_SdtTrn_AppVersion_Versiondeletedat = DateTime.Parse( value);
+         }
+
+      }
+
+      [XmlIgnore]
+      public DateTime gxTpr_Versiondeletedat
+      {
+         get {
+            return gxTv_SdtTrn_AppVersion_Versiondeletedat ;
+         }
+
+         set {
+            gxTv_SdtTrn_AppVersion_Versiondeletedat_N = 0;
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Versiondeletedat = value;
+            SetDirty("Versiondeletedat");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppVersion_Versiondeletedat_SetNull( )
+      {
+         gxTv_SdtTrn_AppVersion_Versiondeletedat_N = 1;
+         gxTv_SdtTrn_AppVersion_Versiondeletedat = (DateTime)(DateTime.MinValue);
+         SetDirty("Versiondeletedat");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppVersion_Versiondeletedat_IsNull( )
+      {
+         return (gxTv_SdtTrn_AppVersion_Versiondeletedat_N==1) ;
       }
 
       [  SoapElement( ElementName = "Page" )]
@@ -587,6 +718,81 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "IsVersionDeleted_Z" )]
+      [  XmlElement( ElementName = "IsVersionDeleted_Z"   )]
+      public bool gxTpr_Isversiondeleted_Z
+      {
+         get {
+            return gxTv_SdtTrn_AppVersion_Isversiondeleted_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Isversiondeleted_Z = value;
+            SetDirty("Isversiondeleted_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppVersion_Isversiondeleted_Z_SetNull( )
+      {
+         gxTv_SdtTrn_AppVersion_Isversiondeleted_Z = false;
+         SetDirty("Isversiondeleted_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppVersion_Isversiondeleted_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "VersionDeletedAt_Z" )]
+      [  XmlElement( ElementName = "VersionDeletedAt_Z"  , IsNullable=true )]
+      public string gxTpr_Versiondeletedat_Z_Nullable
+      {
+         get {
+            if ( gxTv_SdtTrn_AppVersion_Versiondeletedat_Z == DateTime.MinValue)
+               return null;
+            return new GxDatetimeString(gxTv_SdtTrn_AppVersion_Versiondeletedat_Z).value ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            if (String.IsNullOrEmpty(value) || value == GxDatetimeString.NullValue )
+               gxTv_SdtTrn_AppVersion_Versiondeletedat_Z = DateTime.MinValue;
+            else
+               gxTv_SdtTrn_AppVersion_Versiondeletedat_Z = DateTime.Parse( value);
+         }
+
+      }
+
+      [XmlIgnore]
+      public DateTime gxTpr_Versiondeletedat_Z
+      {
+         get {
+            return gxTv_SdtTrn_AppVersion_Versiondeletedat_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Versiondeletedat_Z = value;
+            SetDirty("Versiondeletedat_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppVersion_Versiondeletedat_Z_SetNull( )
+      {
+         gxTv_SdtTrn_AppVersion_Versiondeletedat_Z = (DateTime)(DateTime.MinValue);
+         SetDirty("Versiondeletedat_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppVersion_Versiondeletedat_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "LocationId_N" )]
       [  XmlElement( ElementName = "LocationId_N"   )]
       public short gxTpr_Locationid_N
@@ -643,6 +849,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "VersionDeletedAt_N" )]
+      [  XmlElement( ElementName = "VersionDeletedAt_N"   )]
+      public short gxTpr_Versiondeletedat_N
+      {
+         get {
+            return gxTv_SdtTrn_AppVersion_Versiondeletedat_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Versiondeletedat_N = value;
+            SetDirty("Versiondeletedat_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppVersion_Versiondeletedat_N_SetNull( )
+      {
+         gxTv_SdtTrn_AppVersion_Versiondeletedat_N = 0;
+         SetDirty("Versiondeletedat_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppVersion_Versiondeletedat_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -664,11 +898,16 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_AppVersion_Appversionname = "";
          gxTv_SdtTrn_AppVersion_Locationid = Guid.Empty;
          gxTv_SdtTrn_AppVersion_Organisationid = Guid.Empty;
+         gxTv_SdtTrn_AppVersion_Versiondeletedat = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_AppVersion_Mode = "";
          gxTv_SdtTrn_AppVersion_Appversionid_Z = Guid.Empty;
          gxTv_SdtTrn_AppVersion_Appversionname_Z = "";
          gxTv_SdtTrn_AppVersion_Locationid_Z = Guid.Empty;
          gxTv_SdtTrn_AppVersion_Organisationid_Z = Guid.Empty;
+         gxTv_SdtTrn_AppVersion_Versiondeletedat_Z = (DateTime)(DateTime.MinValue);
+         datetime_STZ = (DateTime)(DateTime.MinValue);
+         sDateCnv = "";
+         sNumToPad = "";
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_appversion", "GeneXus.Programs.trn_appversion_bc", new Object[] {context}, constructorCallingAssembly);;
          obj.initialize();
@@ -687,9 +926,17 @@ namespace GeneXus.Programs {
       private short gxTv_SdtTrn_AppVersion_Initialized ;
       private short gxTv_SdtTrn_AppVersion_Locationid_N ;
       private short gxTv_SdtTrn_AppVersion_Organisationid_N ;
+      private short gxTv_SdtTrn_AppVersion_Versiondeletedat_N ;
       private string gxTv_SdtTrn_AppVersion_Mode ;
+      private string sDateCnv ;
+      private string sNumToPad ;
+      private DateTime gxTv_SdtTrn_AppVersion_Versiondeletedat ;
+      private DateTime gxTv_SdtTrn_AppVersion_Versiondeletedat_Z ;
+      private DateTime datetime_STZ ;
       private bool gxTv_SdtTrn_AppVersion_Isactive ;
+      private bool gxTv_SdtTrn_AppVersion_Isversiondeleted ;
       private bool gxTv_SdtTrn_AppVersion_Isactive_Z ;
+      private bool gxTv_SdtTrn_AppVersion_Isversiondeleted_Z ;
       private string gxTv_SdtTrn_AppVersion_Appversionname ;
       private string gxTv_SdtTrn_AppVersion_Appversionname_Z ;
       private Guid gxTv_SdtTrn_AppVersion_Appversionid ;
@@ -783,7 +1030,35 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "Page" , Order = 5 )]
+      [DataMember( Name = "IsVersionDeleted" , Order = 5 )]
+      [GxSeudo()]
+      public bool gxTpr_Isversiondeleted
+      {
+         get {
+            return sdt.gxTpr_Isversiondeleted ;
+         }
+
+         set {
+            sdt.gxTpr_Isversiondeleted = value;
+         }
+
+      }
+
+      [DataMember( Name = "VersionDeletedAt" , Order = 6 )]
+      [GxSeudo()]
+      public string gxTpr_Versiondeletedat
+      {
+         get {
+            return DateTimeUtil.TToC2( sdt.gxTpr_Versiondeletedat, (IGxContext)(context)) ;
+         }
+
+         set {
+            sdt.gxTpr_Versiondeletedat = DateTimeUtil.CToT2( value, (IGxContext)(context));
+         }
+
+      }
+
+      [DataMember( Name = "Page" , Order = 7 )]
       public GxGenericCollection<SdtTrn_AppVersion_Page_RESTInterface> gxTpr_Page
       {
          get {
@@ -817,7 +1092,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 6 )]
+      [DataMember( Name = "gx_md5_hash", Order = 8 )]
       public string Hash
       {
          get {

@@ -1,15 +1,6 @@
-ALTER TABLE Trn_LocationDynamicForm ALTER COLUMN LocationDynamicFormId DROP DEFAULT;
-CREATE TABLE GXA0070 (LocationDynamicFormId CHAR(36) NOT NULL , OrganisationId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , WWPFormId smallint NOT NULL , WWPFormVersionNumber smallint NOT NULL , FormPageName VARCHAR(100) NOT NULL );
-Run conversion program for table Trn_LocationDynamicForm;
-DROP TABLE Trn_LocationDynamicForm CASCADE;
-ALTER TABLE GXA0070 RENAME TO Trn_LocationDynamicForm;
-ALTER TABLE Trn_LocationDynamicForm ADD CONSTRAINT Trn_LocationDynamicForm_pkey PRIMARY KEY(LocationDynamicFormId, OrganisationId, LocationId);
-CREATE INDEX ITRN_LOCATIONDYNAMICFORM1 ON Trn_LocationDynamicForm (WWPFormId ,WWPFormVersionNumber );
-CREATE INDEX ITRN_LOCATIONDYNAMICFORM2 ON Trn_LocationDynamicForm (LocationId ,OrganisationId );
+ALTER TABLE Trn_AppVersion ADD IsVersionDeleted BOOLEAN NOT NULL DEFAULT FALSE, ADD VersionDeletedAt timestamp without time zone;
+ALTER TABLE Trn_AppVersion ALTER COLUMN IsVersionDeleted DROP DEFAULT;
 
-ALTER TABLE Trn_CallToAction ADD CONSTRAINT ITRN_CALLTOACTION2 FOREIGN KEY (ProductServiceId, LocationId, OrganisationId) REFERENCES Trn_ProductService (ProductServiceId, LocationId, OrganisationId);
-ALTER TABLE Trn_CallToAction ADD CONSTRAINT ITRN_CALLTOACTION1 FOREIGN KEY (LocationDynamicFormId, OrganisationId, LocationId) REFERENCES Trn_LocationDynamicForm (LocationDynamicFormId, OrganisationId, LocationId);
-
-ALTER TABLE Trn_LocationDynamicForm ADD CONSTRAINT ITRN_LOCATIONDYNAMICFORM2 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
-ALTER TABLE Trn_LocationDynamicForm ADD CONSTRAINT ITRN_LOCATIONDYNAMICFORM1 FOREIGN KEY (WWPFormId, WWPFormVersionNumber) REFERENCES WWP_Form (WWPFormId, WWPFormVersionNumber);
+ALTER TABLE Trn_AppVersionPage ADD IsPageDeleted BOOLEAN NOT NULL DEFAULT FALSE, ADD PageDeletedAt timestamp without time zone;
+ALTER TABLE Trn_AppVersionPage ALTER COLUMN IsPageDeleted DROP DEFAULT;
 

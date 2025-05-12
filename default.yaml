@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250509181158"
+  version: "20250512062829"
 servers:
   - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/rest
 paths:

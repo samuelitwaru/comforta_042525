@@ -934,14 +934,39 @@ namespace GeneXus.Programs {
             pr_default.readNext(4);
          }
          pr_default.close(4);
-         AV64Udparg1 = new prc_getuserlocationid(context).executeUdp( );
          /* Using cursor H005C7 */
-         pr_default.execute(5, new Object[] {AV64Udparg1});
+         pr_default.execute(5);
          while ( (pr_default.getStatus(5) != 101) )
          {
-            A29LocationId = H005C7_A29LocationId[0];
-            A413MediaId = H005C7_A413MediaId[0];
-            A414MediaName = H005C7_A414MediaName[0];
+            A207WWPFormVersionNumber = H005C7_A207WWPFormVersionNumber[0];
+            A206WWPFormId = H005C7_A206WWPFormId[0];
+            A209WWPFormTitle = H005C7_A209WWPFormTitle[0];
+            A208WWPFormReferenceName = H005C7_A208WWPFormReferenceName[0];
+            A42SupplierGenId = H005C7_A42SupplierGenId[0];
+            A209WWPFormTitle = H005C7_A209WWPFormTitle[0];
+            A208WWPFormReferenceName = H005C7_A208WWPFormReferenceName[0];
+            AV43SDT_DynamicForms = new SdtSDT_DynamicForms(context);
+            AV43SDT_DynamicForms.gxTpr_Formid = A206WWPFormId;
+            AV43SDT_DynamicForms.gxTpr_Pagename = A209WWPFormTitle;
+            AV43SDT_DynamicForms.gxTpr_Referencename = A208WWPFormReferenceName;
+            AV43SDT_DynamicForms.gxTpr_Supplierid = A42SupplierGenId.ToString();
+            GXt_char3 = "";
+            GXt_char1 = context.GetMessage( "Form", "");
+            new prc_getcalltoactionformurl(context ).execute( ref  GXt_char1, ref  A208WWPFormReferenceName, out  GXt_char3) ;
+            AssignAttri("", false, "A208WWPFormReferenceName", A208WWPFormReferenceName);
+            AV43SDT_DynamicForms.gxTpr_Formurl = GXt_char3;
+            AV44SDT_DynamicFormsCollection.Add(AV43SDT_DynamicForms, 0);
+            pr_default.readNext(5);
+         }
+         pr_default.close(5);
+         AV64Udparg1 = new prc_getuserlocationid(context).executeUdp( );
+         /* Using cursor H005C8 */
+         pr_default.execute(6, new Object[] {AV64Udparg1});
+         while ( (pr_default.getStatus(6) != 101) )
+         {
+            A29LocationId = H005C8_A29LocationId[0];
+            A413MediaId = H005C8_A413MediaId[0];
+            A414MediaName = H005C8_A414MediaName[0];
             AV18BC_Trn_Media = new SdtTrn_Media(context);
             AV18BC_Trn_Media.Load(A413MediaId);
             AV53MediaPath = context.GetMessage( "media/", "") + A414MediaName;
@@ -956,9 +981,9 @@ namespace GeneXus.Programs {
                AV18BC_Trn_Media.Delete();
                context.CommitDataStores("wp_applicationdesign",pr_default);
             }
-            pr_default.readNext(5);
+            pr_default.readNext(6);
          }
-         pr_default.close(5);
+         pr_default.close(6);
          GXt_objcol_SdtTrn_Theme4 = AV8BC_Trn_ThemeCollection;
          new prc_getorganisationtheme(context ).execute(  AV40OrganisationId,  AV39LocationId, out  GXt_objcol_SdtTrn_Theme4) ;
          AV8BC_Trn_ThemeCollection = GXt_objcol_SdtTrn_Theme4;
@@ -966,22 +991,22 @@ namespace GeneXus.Programs {
          GXt_objcol_SdtTrn_SupplierGen5 = AV59Suppliers;
          new prc_getorganisationsuppliers(context ).execute(  AV40OrganisationId, out  GXt_objcol_SdtTrn_SupplierGen5) ;
          AV59Suppliers = GXt_objcol_SdtTrn_SupplierGen5;
-         /* Using cursor H005C8 */
-         pr_default.execute(6);
-         while ( (pr_default.getStatus(6) != 101) )
+         /* Using cursor H005C9 */
+         pr_default.execute(7);
+         while ( (pr_default.getStatus(7) != 101) )
          {
-            A392Trn_PageId = H005C8_A392Trn_PageId[0];
-            A397Trn_PageName = H005C8_A397Trn_PageName[0];
-            A424PageChildren = H005C8_A424PageChildren[0];
-            n424PageChildren = H005C8_n424PageChildren[0];
+            A392Trn_PageId = H005C9_A392Trn_PageId[0];
+            A397Trn_PageName = H005C9_A397Trn_PageName[0];
+            A424PageChildren = H005C9_A424PageChildren[0];
+            n424PageChildren = H005C9_n424PageChildren[0];
             AV30SDT_PageStructure = new SdtSDT_PageStructure(context);
             AV30SDT_PageStructure.gxTpr_Id = A392Trn_PageId;
             AV30SDT_PageStructure.gxTpr_Name = A397Trn_PageName;
             AV30SDT_PageStructure.gxTpr_Children.FromJSonString(A424PageChildren, null);
             AV29SDT_Pages.Add(AV30SDT_PageStructure, 0);
-            pr_default.readNext(6);
+            pr_default.readNext(7);
          }
-         pr_default.close(6);
+         pr_default.close(7);
          AV36Current_Language = context.GetLanguage( );
          Apptoolbox1_Current_language = AV36Current_Language;
          ucApptoolbox1.SendProperty(context, "", false, Apptoolbox1_Internalname, "Current_Language", Apptoolbox1_Current_language);
@@ -1050,7 +1075,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202559953970", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255129274268", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1066,7 +1091,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_applicationdesign.js", "?202559953972", false, true);
+         context.AddJavascriptSource("wp_applicationdesign.js", "?20255129274270", false, true);
          context.AddJavascriptSource("UserControls/UC_AppToolBox1Render.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1208,11 +1233,18 @@ namespace GeneXus.Programs {
          A209WWPFormTitle = "";
          A208WWPFormReferenceName = "";
          AV43SDT_DynamicForms = new SdtSDT_DynamicForms(context);
-         GXt_char1 = "";
+         H005C7_A616SupplierDynamicFormId = new Guid[] {Guid.Empty} ;
+         H005C7_A207WWPFormVersionNumber = new short[1] ;
+         H005C7_A206WWPFormId = new short[1] ;
+         H005C7_A209WWPFormTitle = new string[] {""} ;
+         H005C7_A208WWPFormReferenceName = new string[] {""} ;
+         H005C7_A42SupplierGenId = new Guid[] {Guid.Empty} ;
+         A42SupplierGenId = Guid.Empty;
          GXt_char3 = "";
-         H005C7_A29LocationId = new Guid[] {Guid.Empty} ;
-         H005C7_A413MediaId = new Guid[] {Guid.Empty} ;
-         H005C7_A414MediaName = new string[] {""} ;
+         GXt_char1 = "";
+         H005C8_A29LocationId = new Guid[] {Guid.Empty} ;
+         H005C8_A413MediaId = new Guid[] {Guid.Empty} ;
+         H005C8_A414MediaName = new string[] {""} ;
          A413MediaId = Guid.Empty;
          A414MediaName = "";
          AV18BC_Trn_Media = new SdtTrn_Media(context);
@@ -1221,11 +1253,11 @@ namespace GeneXus.Programs {
          GXt_objcol_SdtTrn_Theme4 = new GXBCCollection<SdtTrn_Theme>( context, "Trn_Theme", "Comforta_version20");
          AV57SDT_Error = new SdtSDT_Error(context);
          GXt_objcol_SdtTrn_SupplierGen5 = new GXBCCollection<SdtTrn_SupplierGen>( context, "Trn_SupplierGen", "Comforta_version20");
-         H005C8_A29LocationId = new Guid[] {Guid.Empty} ;
-         H005C8_A392Trn_PageId = new Guid[] {Guid.Empty} ;
-         H005C8_A397Trn_PageName = new string[] {""} ;
-         H005C8_A424PageChildren = new string[] {""} ;
-         H005C8_n424PageChildren = new bool[] {false} ;
+         H005C9_A29LocationId = new Guid[] {Guid.Empty} ;
+         H005C9_A392Trn_PageId = new Guid[] {Guid.Empty} ;
+         H005C9_A397Trn_PageName = new string[] {""} ;
+         H005C9_A424PageChildren = new string[] {""} ;
+         H005C9_n424PageChildren = new bool[] {false} ;
          A392Trn_PageId = Guid.Empty;
          A397Trn_PageName = "";
          A424PageChildren = "";
@@ -1261,16 +1293,21 @@ namespace GeneXus.Programs {
                H005C6_A366LocationDynamicFormId, H005C6_A207WWPFormVersionNumber, H005C6_A11OrganisationId, H005C6_A29LocationId, H005C6_A206WWPFormId, H005C6_A209WWPFormTitle, H005C6_A208WWPFormReferenceName
                }
                , new Object[] {
-               H005C7_A29LocationId, H005C7_A413MediaId, H005C7_A414MediaName
+               H005C7_A616SupplierDynamicFormId, H005C7_A207WWPFormVersionNumber, H005C7_A206WWPFormId, H005C7_A209WWPFormTitle, H005C7_A208WWPFormReferenceName, H005C7_A42SupplierGenId
                }
                , new Object[] {
-               H005C8_A29LocationId, H005C8_A392Trn_PageId, H005C8_A397Trn_PageName, H005C8_A424PageChildren, H005C8_n424PageChildren
+               H005C8_A29LocationId, H005C8_A413MediaId, H005C8_A414MediaName
+               }
+               , new Object[] {
+               H005C9_A29LocationId, H005C9_A392Trn_PageId, H005C9_A397Trn_PageName, H005C9_A424PageChildren, H005C9_n424PageChildren
                }
             }
          );
          /* GeneXus formulas. */
       }
 
+      private short nRcdExists_10 ;
+      private short nIsMod_10 ;
       private short nRcdExists_9 ;
       private short nIsMod_9 ;
       private short nRcdExists_8 ;
@@ -1324,8 +1361,8 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string GXDecQS ;
       private string A266ProductServiceTileName ;
-      private string GXt_char1 ;
       private string GXt_char3 ;
+      private string GXt_char1 ;
       private string AV36Current_Language ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -1361,6 +1398,7 @@ namespace GeneXus.Programs {
       private Guid AV64Udparg1 ;
       private Guid AV65Udparg2 ;
       private Guid A58ProductServiceId ;
+      private Guid A42SupplierGenId ;
       private Guid A413MediaId ;
       private Guid A392Trn_PageId ;
       private Guid AV51NewProductServiceId ;
@@ -1405,18 +1443,24 @@ namespace GeneXus.Programs {
       private string[] H005C6_A209WWPFormTitle ;
       private string[] H005C6_A208WWPFormReferenceName ;
       private SdtSDT_DynamicForms AV43SDT_DynamicForms ;
-      private Guid[] H005C7_A29LocationId ;
-      private Guid[] H005C7_A413MediaId ;
-      private string[] H005C7_A414MediaName ;
+      private Guid[] H005C7_A616SupplierDynamicFormId ;
+      private short[] H005C7_A207WWPFormVersionNumber ;
+      private short[] H005C7_A206WWPFormId ;
+      private string[] H005C7_A209WWPFormTitle ;
+      private string[] H005C7_A208WWPFormReferenceName ;
+      private Guid[] H005C7_A42SupplierGenId ;
+      private Guid[] H005C8_A29LocationId ;
+      private Guid[] H005C8_A413MediaId ;
+      private string[] H005C8_A414MediaName ;
       private SdtTrn_Media AV18BC_Trn_Media ;
       private GXBCCollection<SdtTrn_Theme> GXt_objcol_SdtTrn_Theme4 ;
       private SdtSDT_Error AV57SDT_Error ;
       private GXBCCollection<SdtTrn_SupplierGen> GXt_objcol_SdtTrn_SupplierGen5 ;
-      private Guid[] H005C8_A29LocationId ;
-      private Guid[] H005C8_A392Trn_PageId ;
-      private string[] H005C8_A397Trn_PageName ;
-      private string[] H005C8_A424PageChildren ;
-      private bool[] H005C8_n424PageChildren ;
+      private Guid[] H005C9_A29LocationId ;
+      private Guid[] H005C9_A392Trn_PageId ;
+      private string[] H005C9_A397Trn_PageName ;
+      private string[] H005C9_A424PageChildren ;
+      private bool[] H005C9_n424PageChildren ;
       private SdtSDT_PageStructure AV30SDT_PageStructure ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1501,6 +1545,7 @@ public class wp_applicationdesign__default : DataStoreHelperBase, IDataStoreHelp
       ,new ForEachCursor(def[4])
       ,new ForEachCursor(def[5])
       ,new ForEachCursor(def[6])
+      ,new ForEachCursor(def[7])
     };
  }
 
@@ -1532,10 +1577,13 @@ public class wp_applicationdesign__default : DataStoreHelperBase, IDataStoreHelp
        };
        Object[] prmH005C7;
        prmH005C7 = new Object[] {
-       new ParDef("AV64Udparg1",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmH005C8;
        prmH005C8 = new Object[] {
+       new ParDef("AV64Udparg1",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmH005C9;
+       prmH005C9 = new Object[] {
        };
        def= new CursorDef[] {
            new CursorDef("H005C2", "SELECT OrganisationId, OrganisationLogo_GXI FROM Trn_Organisation WHERE OrganisationId = :AV40OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005C2,1, GxCacheFrequency.OFF ,false,true )
@@ -1543,8 +1591,9 @@ public class wp_applicationdesign__default : DataStoreHelperBase, IDataStoreHelp
           ,new CursorDef("H005C4", "SELECT Trn_TemplateId FROM Trn_Template ORDER BY Trn_TemplateId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005C4,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("H005C5", "SELECT OrganisationId, LocationId, ProductServiceImage_GXI, ProductServiceId, ProductServiceName, ProductServiceTileName, ProductServiceClass, ProductServiceImage FROM Trn_ProductService WHERE LocationId = :AV64Udparg1 and OrganisationId = :AV65Udparg2 ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005C5,100, GxCacheFrequency.OFF ,false,false )
           ,new CursorDef("H005C6", "SELECT T1.LocationDynamicFormId, T1.WWPFormVersionNumber, T1.OrganisationId, T1.LocationId, T1.WWPFormId, T2.WWPFormTitle, T2.WWPFormReferenceName FROM (Trn_LocationDynamicForm T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber) WHERE T1.LocationId = :AV64Udparg1 and T1.OrganisationId = :AV65Udparg2 ORDER BY T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005C6,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("H005C7", "SELECT LocationId, MediaId, MediaName FROM Trn_Media WHERE LocationId = :AV64Udparg1 ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005C7,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("H005C8", "SELECT LocationId, Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005C8,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("H005C7", "SELECT T1.SupplierDynamicFormId, T1.WWPFormVersionNumber, T1.WWPFormId, T2.WWPFormTitle, T2.WWPFormReferenceName, T1.SupplierGenId FROM (Trn_SupplierDynamicForm T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber) ORDER BY T1.SupplierDynamicFormId, T1.SupplierGenId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005C7,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("H005C8", "SELECT LocationId, MediaId, MediaName FROM Trn_Media WHERE LocationId = :AV64Udparg1 ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005C8,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("H005C9", "SELECT LocationId, Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005C9,100, GxCacheFrequency.OFF ,false,false )
        };
     }
  }
@@ -1589,10 +1638,18 @@ public class wp_applicationdesign__default : DataStoreHelperBase, IDataStoreHelp
              return;
           case 5 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((short[]) buf[1])[0] = rslt.getShort(2);
+             ((short[]) buf[2])[0] = rslt.getShort(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((Guid[]) buf[5])[0] = rslt.getGuid(6);
+             return;
+          case 6 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
              return;
-          case 6 :
+          case 7 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);

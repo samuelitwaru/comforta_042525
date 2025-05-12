@@ -89,6 +89,7 @@ namespace GeneXus.Programs {
          {
             A29LocationId = P00BE2_A29LocationId[0];
             n29LocationId = P00BE2_n29LocationId[0];
+            A620IsVersionDeleted = P00BE2_A620IsVersionDeleted[0];
             A523AppVersionId = P00BE2_A523AppVersionId[0];
             A524AppVersionName = P00BE2_A524AppVersionName[0];
             AV10BC_Trn_AppVersion = new SdtTrn_AppVersion(context);
@@ -116,6 +117,7 @@ namespace GeneXus.Programs {
          AV19Udparg1 = Guid.Empty;
          P00BE2_A29LocationId = new Guid[] {Guid.Empty} ;
          P00BE2_n29LocationId = new bool[] {false} ;
+         P00BE2_A620IsVersionDeleted = new bool[] {false} ;
          P00BE2_A523AppVersionId = new Guid[] {Guid.Empty} ;
          P00BE2_A524AppVersionName = new string[] {""} ;
          A29LocationId = Guid.Empty;
@@ -126,7 +128,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getappversions__default(),
             new Object[][] {
                 new Object[] {
-               P00BE2_A29LocationId, P00BE2_n29LocationId, P00BE2_A523AppVersionId, P00BE2_A524AppVersionName
+               P00BE2_A29LocationId, P00BE2_n29LocationId, P00BE2_A620IsVersionDeleted, P00BE2_A523AppVersionId, P00BE2_A524AppVersionName
                }
             }
          );
@@ -134,6 +136,7 @@ namespace GeneXus.Programs {
       }
 
       private bool n29LocationId ;
+      private bool A620IsVersionDeleted ;
       private string A524AppVersionName ;
       private Guid AV19Udparg1 ;
       private Guid A29LocationId ;
@@ -148,6 +151,7 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] P00BE2_A29LocationId ;
       private bool[] P00BE2_n29LocationId ;
+      private bool[] P00BE2_A620IsVersionDeleted ;
       private Guid[] P00BE2_A523AppVersionId ;
       private string[] P00BE2_A524AppVersionName ;
       private SdtTrn_AppVersion AV10BC_Trn_AppVersion ;
@@ -174,7 +178,7 @@ namespace GeneXus.Programs {
           new ParDef("AV19Udparg1",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00BE2", "SELECT LocationId, AppVersionId, AppVersionName FROM Trn_AppVersion WHERE LocationId = :AV19Udparg1 ORDER BY AppVersionName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BE2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00BE2", "SELECT LocationId, IsVersionDeleted, AppVersionId, AppVersionName FROM Trn_AppVersion WHERE (LocationId = :AV19Udparg1) AND (IsVersionDeleted = FALSE) ORDER BY AppVersionName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BE2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -188,8 +192,9 @@ namespace GeneXus.Programs {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((bool[]) buf[1])[0] = rslt.wasNull(1);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
-                ((string[]) buf[3])[0] = rslt.getVarchar(3);
+                ((bool[]) buf[2])[0] = rslt.getBool(2);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
+                ((string[]) buf[4])[0] = rslt.getVarchar(4);
                 return;
        }
     }

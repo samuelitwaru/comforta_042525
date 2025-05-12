@@ -18,6 +18,7 @@ using GeneXus.XML;
 using GeneXus.Search;
 using GeneXus.Encryption;
 using GeneXus.Http.Client;
+using GeneXus.Http.Server;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
@@ -114,23 +115,24 @@ namespace GeneXus.Programs {
                A516PageId = P00GB3_A516PageId[0];
                AV13SDT_InfoContent = new SdtSDT_InfoContent(context);
                AV8SDT_MenuPage.FromJSonString(A518PageStructure, null);
-               AV17GXV1 = 1;
-               while ( AV17GXV1 <= AV8SDT_MenuPage.gxTpr_Rows.Count )
+               AV19GXV1 = 1;
+               while ( AV19GXV1 <= AV8SDT_MenuPage.gxTpr_Rows.Count )
                {
-                  AV9RowItem = ((SdtSDT_MenuPage_RowsItem)AV8SDT_MenuPage.gxTpr_Rows.Item(AV17GXV1));
+                  AV9RowItem = ((SdtSDT_MenuPage_RowsItem)AV8SDT_MenuPage.gxTpr_Rows.Item(AV19GXV1));
                   AV14InfoContentItem = new SdtSDT_InfoContent_InfoContentItem(context);
                   AV14InfoContentItem.gxTpr_Infoid = new SdtRandomStringGenerator(context).generate(15);
                   AV14InfoContentItem.gxTpr_Infovalue = "RowItem";
-                  AV18GXV2 = 1;
-                  while ( AV18GXV2 <= AV9RowItem.gxTpr_Tiles.Count )
+                  AV20GXV2 = 1;
+                  while ( AV20GXV2 <= AV9RowItem.gxTpr_Tiles.Count )
                   {
-                     AV10TileItem = ((SdtSDT_MenuPage_RowsItem_TilesItem)AV9RowItem.gxTpr_Tiles.Item(AV18GXV2));
+                     AV10TileItem = ((SdtSDT_MenuPage_RowsItem_TilesItem)AV9RowItem.gxTpr_Tiles.Item(AV20GXV2));
                      AV11SDT_InfoTile = new GXBaseCollection<SdtSDT_InfoTile_SDT_InfoTileItem>( context, "SDT_InfoTileItem", "Comforta_version20");
-                     AV18GXV2 = (int)(AV18GXV2+1);
+                     AV20GXV2 = (int)(AV20GXV2+1);
                   }
-                  AV17GXV1 = (int)(AV17GXV1+1);
+                  AV19GXV1 = (int)(AV19GXV1+1);
                }
                new prc_logtofile(context ).execute(  AV13SDT_InfoContent.ToJSonString(false, true)) ;
+               AV16HttpResponse.AddString(AV13SDT_InfoContent.ToJSonString(false, true)+StringUtil.NewLine( ));
                pr_default.readNext(1);
             }
             pr_default.close(1);
@@ -175,6 +177,7 @@ namespace GeneXus.Programs {
          AV14InfoContentItem = new SdtSDT_InfoContent_InfoContentItem(context);
          AV10TileItem = new SdtSDT_MenuPage_RowsItem_TilesItem(context);
          AV11SDT_InfoTile = new GXBaseCollection<SdtSDT_InfoTile_SDT_InfoTileItem>( context, "SDT_InfoTileItem", "Comforta_version20");
+         AV16HttpResponse = new GxHttpResponse( context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_convertmenutoinfopage__default(),
             new Object[][] {
                 new Object[] {
@@ -190,8 +193,8 @@ namespace GeneXus.Programs {
 
       private short nGotPars ;
       private short GxWebError ;
-      private int AV17GXV1 ;
-      private int AV18GXV2 ;
+      private int AV19GXV1 ;
+      private int AV20GXV2 ;
       private string GXKey ;
       private string gxfirstwebparm ;
       private bool entryPointCalled ;
@@ -199,6 +202,7 @@ namespace GeneXus.Programs {
       private string A525PageType ;
       private Guid A523AppVersionId ;
       private Guid A516PageId ;
+      private GxHttpResponse AV16HttpResponse ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
