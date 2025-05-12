@@ -162,7 +162,7 @@ export class InfoSectionPopup {
 
   addImage(sectionId?: string) {
     // this.controller.addImage();
-    this.infoSectionUi.openImageUpload(sectionId);
+    this.infoSectionUi.openImageUpload();
   }
 
   addDescription(sectionId?: string) {
