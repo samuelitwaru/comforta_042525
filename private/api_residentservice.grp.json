@@ -235,6 +235,16 @@
 "Verb":"GET"
 },
 {
+"PathRegexp":"toolbox/home-page",
+"Path":"toolbox/home-page",
+"Name":"homepageapi",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_homepageapi",
+"Implementation":"Prc_HomePageAPI",
+"Verb":"GET"
+},
+{
 "PathRegexp":"toolbox/page",
 "Path":"toolbox/page",
 "Name":"pageapi",

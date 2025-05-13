@@ -123,6 +123,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_homepageapi") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_pageapi") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -877,6 +881,20 @@ namespace GeneXus.Programs {
          aP3_SDT_MobilePageCollection=this.AV52SDT_MobilePageCollection;
       }
 
+      public void gxep_homepageapi( Guid aP0_locationId ,
+                                    Guid aP1_organisationId ,
+                                    string aP2_userId ,
+                                    out SdtSDT_InfoPage aP3_SDT_InfoPage )
+      {
+         this.AV12locationId = aP0_locationId;
+         this.AV16organisationId = aP1_organisationId;
+         this.AV8userId = aP2_userId;
+         initialize();
+         /* HomePageAPI Constructor */
+         new prc_homepageapi(context ).execute(  AV12locationId,  AV16organisationId,  AV8userId, out  AV135SDT_InfoPage) ;
+         aP3_SDT_InfoPage=this.AV135SDT_InfoPage;
+      }
+
       public void gxep_pageapi( Guid aP0_PageId ,
                                 Guid aP1_locationId ,
                                 Guid aP2_organisationId ,
@@ -903,6 +921,7 @@ namespace GeneXus.Programs {
          this.AV12locationId = aP1_locationId;
          this.AV16organisationId = aP2_organisationId;
          this.AV8userId = aP3_userId;
+         AV135SDT_InfoPage = new SdtSDT_InfoPage(context);
          initialize();
          /* InfoPageAPI Constructor */
          new prc_infopageapi(context ).execute(  AV37PageId,  AV12locationId,  AV16organisationId,  AV8userId, out  AV135SDT_InfoPage) ;
@@ -1640,8 +1659,8 @@ namespace GeneXus.Programs {
          AV64SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>( context, "SDT_Media", "Comforta_version20");
          AV27SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version20");
          AV52SDT_MobilePageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version20");
-         AV56SDT_MobilePage = new SdtSDT_MobilePage(context);
          AV135SDT_InfoPage = new SdtSDT_InfoPage(context);
+         AV56SDT_MobilePage = new SdtSDT_MobilePage(context);
          AV51SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>( context, "SDT_ContentPage", "Comforta_version20");
          AV61SDT_ContentPage = new SdtSDT_ContentPageV1(context);
          AV47SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version20");
@@ -1773,9 +1792,10 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> AV52SDT_MobilePageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> aP3_SDT_MobilePageCollection ;
+      protected SdtSDT_InfoPage AV135SDT_InfoPage ;
+      protected SdtSDT_InfoPage aP3_SDT_InfoPage ;
       protected SdtSDT_MobilePage AV56SDT_MobilePage ;
       protected SdtSDT_MobilePage aP4_SDT_MobilePage ;
-      protected SdtSDT_InfoPage AV135SDT_InfoPage ;
       protected SdtSDT_InfoPage aP4_SDT_InfoPage ;
       protected GXBaseCollection<SdtSDT_ContentPage> AV51SDT_ContentPageCollection ;
       protected GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection ;
