@@ -316,7 +316,7 @@ export class EditorUIManager {
           info.Tiles.forEach((tile:any) => {
             listHTML += `<li>${tile.Text}</li>`
           })
-        } else if (info.InfoType == "Cta") {
+        } else if (info.InfoType == "Cta" && info.CtaAttributes.Action.ObjectType) {
           const objectType = info.CtaAttributes.Action.ObjectType
           if (["DynamicForm", "WebLink"].includes(objectType)) {
             listHTML += `<li>${info.CtaAttributes.CtaLabel}</li>`
