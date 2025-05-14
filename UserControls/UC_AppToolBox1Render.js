@@ -128,7 +128,7 @@ function UC_AppToolBox1($) {
 						ThemeFontFamily: theme.Trn_ThemeFontFamily,
 						ThemeColors: {},
 						ThemeIcons: theme.Icon,
-						ThemeCtaColors: theme.CtaColor
+						ThemeCtaColors: theme.CtaColor.sort((a, b) => a.CtaColorName.localeCompare(b.CtaColorName))
 						};
 						
 						// Sort and map ThemeColors by ColorName
@@ -158,6 +158,7 @@ function UC_AppToolBox1($) {
 						
 						return res;
 					});
+					console.log(themes)
 					if (typeof App !== 'undefined') {
 						localStorage.clear();
 						this.app = new App(
