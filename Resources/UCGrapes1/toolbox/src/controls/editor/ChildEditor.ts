@@ -80,7 +80,6 @@ export class ChildEditor {
       this.pageData?.PageType === "WebLink" ||
       this.pageData?.PageType === "DynamicForm"
     ) {
-      alert()
       console.log('tileAttributes',tileAttributes)
       const urlPageEditor = new UrlPageEditor(childEditor);
       urlPageEditor.initialise(tileAttributes.Action);

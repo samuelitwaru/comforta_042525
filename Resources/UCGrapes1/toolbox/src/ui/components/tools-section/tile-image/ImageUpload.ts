@@ -767,7 +767,7 @@ export class ImageUpload {
               ${
                 isValid
                   ? ""
-                  : `<span style="margin-left: 10px" id="delete-invalid" class="fa-regular fa-trash-can"></span>`
+                  : `<span style="margin-right: 10px" id="delete-invalid" class="fa-regular fa-trash-can"></span><span style="margin-left: 10px" id="delete-invalid" class="fa-regular fa-trash-can"></span>`
               }
             `;
     fileList.insertBefore(fileItem, fileList.firstChild);
