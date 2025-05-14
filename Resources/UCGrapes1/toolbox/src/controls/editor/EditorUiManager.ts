@@ -300,8 +300,43 @@ export class EditorUIManager {
         this.activateMiniatureFrame(frame.id);
       }
     });
-
+    this.showPageInfo()
     new ToolboxManager().unDoReDo();
+  }
+
+  showPageInfo() {
+    if ((globalThis as any).selectedComponent) {
+      return
+    }
+    let listHTML = ``
+    const pageInfoSection = document.querySelector('#page-info-section') as HTMLElement
+    if (this.pageData.PageType == "Information" && this.pageData.PageInfoStructure.InfoContent) {
+      this.pageData.PageInfoStructure.InfoContent.forEach((info:any) => {
+        if (info.InfoType == "TileRow") {
+          info.Tiles.forEach((tile:any) => {
+            listHTML += `<li>${tile.Text}</li>`
+          })
+        } else if (info.InfoType == "Cta") {
+          const objectType = info.CtaAttributes.Action.ObjectType
+          if (["DynamicForm", "WebLink"].includes(objectType)) {
+            listHTML += `<li>${info.CtaAttributes.CtaLabel}</li>`
+          }
+        }
+      }) 
+    } 
+    pageInfoSection.innerHTML = `
+      <h3>${this.pageData.PageName.toUpperCase()}</h3>
+      <hr/>
+      <ul>
+        ${listHTML}
+      </ul>
+    `
+    pageInfoSection.style.display = "block";
+  }
+
+  hidePageInfo() {
+    const pageInfoSection = document.querySelector('#page-info-section') as HTMLElement
+    pageInfoSection.style.display = "none";
   }
 
   activateMiniatureFrame(frameId: string) {

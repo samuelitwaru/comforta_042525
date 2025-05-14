@@ -293,6 +293,7 @@ export class EditorEvents {
         this.uiManager.toggleSidebar(true);
         this.uiManager.setInfoCtaProperties();
         this.uiManager.showCtaTools();
+        this.uiManager.hidePageInfo()
 
         const ctaAttrs = (globalThis as any).tileMapper.getCta(component.getId())
         const version = (globalThis as any).activeVersion;
@@ -315,6 +316,7 @@ export class EditorEvents {
         }
 
 
+      
       }
 
       else if (isTile) {
@@ -323,8 +325,10 @@ export class EditorEvents {
         this.uiManager.setInfoTileProperties();
         this.uiManager.showTileTools();
         this.uiManager.createChildEditor();
+        this.uiManager.hidePageInfo()
       } else {
         this.uiManager.toggleSidebar(false);
+        this.uiManager.showPageInfo()
       }
       // this.uiManager.toggleSidebar()
       // this.uiManager.setCtaProperties();
@@ -333,6 +337,7 @@ export class EditorEvents {
     this.editor.on("component:deselected", () => {
       (globalThis as any).selectedComponent = null;
       this.uiManager.toggleSidebar(false);
+      this.uiManager.showPageInfo()
     });
   }
 
