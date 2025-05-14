@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250513064304"
+  version: "20250514040617"
 servers:
   - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/rest
 paths:
@@ -2626,7 +2626,21 @@ components:
           description: "Cta Connected Supplier Id"
           type: "string"
           format: "uuid"
+        Action:
+          $ref: "#/components/schemas/SDT_InfoContent.InfoContent.CtaAttributes.Action"
       x-gx-level: "SDT_InfoContent.InfoContent"
+    SDT_InfoContent.InfoContent.CtaAttributes.Action:
+      properties:
+        ObjectType:
+          description: "Object Type"
+          type: "string"
+        ObjectUrl:
+          description: "Object Url"
+          type: "string"
+        ObjectId:
+          description: "Object Id"
+          type: "string"
+      x-gx-level: "SDT_InfoContent.InfoContent.CtaAttributes"
     SDT_InfoPage:
       properties:
         PageId:

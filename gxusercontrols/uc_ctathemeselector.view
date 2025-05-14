@@ -34,12 +34,22 @@
     </div>
     <div class="color-selector">
         <input type="color" class="cta-color-picker" name="ctaColor3" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
-            value="{{gxTpr_ctaColor3}}{{ctaColor3}}{{^ctaColor3}}#B2B997{{/ctaColor3}}">
-        <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{gxTpr_ctaColor3}}{{ctaColor3}}{{^ctaColor3}}#B2B997{{/ctaColor3}}" id="ctaColor3HexValue">
+            value="{{gxTpr_ctaColor3}}{{ctaColor3}}{{^ctaColor3}}#969674{{/ctaColor3}}">
+        <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{gxTpr_ctaColor3}}{{ctaColor3}}{{^ctaColor3}}#969674{{/ctaColor3}}" id="ctaColor3HexValue">
     </div>
     <div class="color-selector">
         <input type="color" class="cta-color-picker" name="ctaColor4" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
             value="{{gxTpr_ctaColor4}}{{ctaColor4}}{{^ctaColor4}}#C4A082{{/ctaColor4}}">
         <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{gxTpr_ctaColor4}}{{ctaColor4}}{{^ctaColor4}}#C4A082{{/ctaColor4}}" id="ctaColor4HexValue">
+    </div>
+    <div class="color-selector">
+        <input type="color" class="cta-color-picker" name="ctaColor5" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
+            value="{{gxTpr_ctaColor5}}{{ctaColor5}}{{^ctaColor5}}#E9C4AA{{/ctaColor5}}">
+        <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{gxTpr_ctaColor5}}{{ctaColor5}}{{^ctaColor5}}#E9C4AA{{/ctaColor5}}" id="ctaColor5HexValue">
+    </div>
+    <div class="color-selector">
+        <input type="color" class="cta-color-picker" name="ctaColor6" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
+            value="{{gxTpr_ctaColor6}}{{ctaColor6}}{{^ctaColor6}}#B7B7B7{{/ctaColor6}}">
+        <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{gxTpr_ctaColor6}}{{ctaColor6}}{{^ctaColor6}}#B7B7B7{{/ctaColor6}}" id="ctaColor6HexValue">
     </div>
 </div>

@@ -72,9 +72,9 @@ type_SdtTrn_Theme.cs
 type_SdtTrn_Theme_Color.cs
 type_SdtTrn_Theme_CtaColor.cs
 type_SdtTrn_Theme_Icon.cs
-type_SdtTrn_Location.cs
 type_SdtTrn_AppVersion.cs
 type_SdtTrn_AppVersion_Page.cs
+type_SdtTrn_Location.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 type_SdtRandomStringGenerator.cs

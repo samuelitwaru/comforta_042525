@@ -1354,7 +1354,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542813172248", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025514712895", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1370,7 +1370,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_manageorganisationprovisioning.js", "?202542813172248", false, true);
+         context.AddJavascriptSource("wp_manageorganisationprovisioning.js", "?2025514712895", false, true);
          context.AddJavascriptSource("UserControls/UC_ThemeSelectorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_CtaThemeSelectorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_FileUploadRender.js", "", false, true);
@@ -1478,7 +1478,7 @@ namespace GeneXus.Programs {
          Comfirmdeletemodal_Title = context.GetMessage( "Comfirm Delete", "");
          Logoupload_Previewimagelink = "&ImagePalceholder";
          Calltoactionthemeselector_Ctacolor4 = "#C4A082";
-         Calltoactionthemeselector_Ctacolor3 = "#B2B997";
+         Calltoactionthemeselector_Ctacolor3 = "#969674";
          Calltoactionthemeselector_Ctacolor2 = "#D4A76A";
          Calltoactionthemeselector_Ctacolor1 = "#2C405A";
          Themeselector_Textcolorvalue = "#B7B7B7";

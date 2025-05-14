@@ -65,6 +65,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_InfoContent.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_InfoContent_InfoContentItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_InfoContent_InfoContentItem_CtaAttributes.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_InfoPage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_InfoPage_InfoContentItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_InfoPage_InfoContentItem_CtaAttributes.cs" />

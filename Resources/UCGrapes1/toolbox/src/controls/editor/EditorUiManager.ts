@@ -295,7 +295,6 @@ export class EditorUIManager {
     });
 
     new ToolboxManager().unDoReDo();
-    console.log("activateEditor: ")
   }
 
   activateMiniatureFrame(frameId: string) {
@@ -461,6 +460,12 @@ export class EditorUIManager {
     const rowComponent = tileWrapper.parent();
     let tileAttributes;
 
+    const isTile = selectedComponent.getClasses().includes('template-block')
+    const isCta = ['img-button-container', 'plain-button-container', 'cta-container-child']
+      .some(cls => selectedComponent.getClasses().includes(cls))
+
+
+
     if (this.pageData.PageType === "Information") {
       const tileInfoSectionAttributes: InfoType = (
         globalThis as any
@@ -581,4 +586,36 @@ export class EditorUIManager {
 
     return { updateButtonVisibility, scrollBy };
   }
+
+  resetTitleFromDOM() {
+        const pageTitle = document.querySelector('.app-bar .title') as HTMLHeadingElement;
+        const editHeader = document.getElementById('edit_page_title') as HTMLElement;
+        const saveChange = document.getElementById('save_page_title') as HTMLElement;
+        const titleDiv = document.querySelector('.app-bar .appbar-title-container') as HTMLDivElement;
+        
+        if (!pageTitle || !editHeader || !saveChange || !titleDiv) {
+            console.warn('resetTitleFromDOM: Required elements not found in DOM');
+            return;
+        }
+                
+        // Reset UI elements
+        pageTitle.contentEditable = "false";
+        editHeader.style.display = "block";
+        saveChange.style.display = "none";
+        titleDiv.style.removeProperty("border-width");
+        pageTitle.style.whiteSpace = "";
+        pageTitle.style.overflow = "";
+        pageTitle.style.textOverflow = "";
+        
+        const editorWidth = (globalThis as any).deviceWidth;
+        const length = editorWidth ? (editorWidth <= 350 ? 16 : 24) : 16;
+        if (pageTitle.textContent && this.pageData.PageName) {
+          pageTitle.title = this.pageData.PageName
+          if (pageTitle.textContent.length > length) {
+            pageTitle.textContent = this.pageData.PageName.substring(0, length) + "...";            
+          } else {
+            pageTitle.textContent = this.pageData.PageName;
+          }
+        }  
+    }
 }

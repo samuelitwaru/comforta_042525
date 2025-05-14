@@ -109,11 +109,11 @@ namespace GeneXus.Programs {
                CheckExtendedTable04103( ) ;
                if ( AnyError == 0 )
                {
+                  ZM04103( 31) ;
                   ZM04103( 32) ;
                   ZM04103( 33) ;
                   ZM04103( 34) ;
                   ZM04103( 35) ;
-                  ZM04103( 36) ;
                }
                CloseExtendedTableCursors04103( ) ;
             }
@@ -205,7 +205,7 @@ namespace GeneXus.Programs {
 
       protected void ZM04103( short GX_JID )
       {
-         if ( ( GX_JID == 31 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 30 ) || ( GX_JID == 0 ) )
          {
             Z35LocationPhone = A35LocationPhone;
             Z329LocationZipCode = A329LocationZipCode;
@@ -229,6 +229,9 @@ namespace GeneXus.Programs {
             Z584ActiveAppVersionId = A584ActiveAppVersionId;
             Z598PublishedActiveAppVersionId = A598PublishedActiveAppVersionId;
          }
+         if ( ( GX_JID == 31 ) || ( GX_JID == 0 ) )
+         {
+         }
          if ( ( GX_JID == 32 ) || ( GX_JID == 0 ) )
          {
          }
@@ -237,16 +240,13 @@ namespace GeneXus.Programs {
          }
          if ( ( GX_JID == 34 ) || ( GX_JID == 0 ) )
          {
+            Z598PublishedActiveAppVersionId = A523AppVersionId;
          }
          if ( ( GX_JID == 35 ) || ( GX_JID == 0 ) )
          {
-            Z598PublishedActiveAppVersionId = A523AppVersionId;
-         }
-         if ( ( GX_JID == 36 ) || ( GX_JID == 0 ) )
-         {
             Z584ActiveAppVersionId = A523AppVersionId;
          }
-         if ( GX_JID == -31 )
+         if ( GX_JID == -30 )
          {
             Z29LocationId = A29LocationId;
             Z35LocationPhone = A35LocationPhone;
@@ -371,7 +371,7 @@ namespace GeneXus.Programs {
             A494LocationImage = BC00049_A494LocationImage[0];
             A574ReceptionImage = BC00049_A574ReceptionImage[0];
             n574ReceptionImage = BC00049_n574ReceptionImage[0];
-            ZM04103( -31) ;
+            ZM04103( -30) ;
          }
          pr_default.close(7);
          OnLoadActions04103( ) ;
@@ -580,7 +580,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM04103( 31) ;
+            ZM04103( 30) ;
             RcdFound103 = 1;
             A29LocationId = BC00043_A29LocationId[0];
             n29LocationId = BC00043_n29LocationId[0];
@@ -1156,7 +1156,6 @@ namespace GeneXus.Programs {
       protected void BeforeValidate04103( )
       {
          /* Before Validate Rules */
-         A36LocationDescription = AV38LocationDescriptionVar;
       }
 
       protected void DisableAttributes04103( )
@@ -1486,7 +1485,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM04103( -31) ;
+         ZM04103( -30) ;
          OnLoadActions04103( ) ;
          AddRow04103( ) ;
          ScanKeyEnd04103( ) ;
@@ -1524,7 +1523,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM04103( -31) ;
+         ZM04103( -30) ;
          OnLoadActions04103( ) ;
          AddRow04103( ) ;
          ScanKeyEnd04103( ) ;

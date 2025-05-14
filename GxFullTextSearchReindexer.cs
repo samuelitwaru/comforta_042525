@@ -183,10 +183,10 @@ namespace GeneXus.Programs {
          obj = new SdtTrn_Theme(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_Location(context);
+         obj = new SdtTrn_AppVersion(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_AppVersion(context);
+         obj = new SdtTrn_Location(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          return 1 ;

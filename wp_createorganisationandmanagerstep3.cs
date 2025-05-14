@@ -648,6 +648,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* User Defined Control */
+            ucCalltoactionthemeselector.SetProperty("ctaColor1", Calltoactionthemeselector_Ctacolor1);
+            ucCalltoactionthemeselector.SetProperty("ctaColor2", Calltoactionthemeselector_Ctacolor2);
+            ucCalltoactionthemeselector.SetProperty("ctaColor3", Calltoactionthemeselector_Ctacolor3);
+            ucCalltoactionthemeselector.SetProperty("ctaColor4", Calltoactionthemeselector_Ctacolor4);
+            ucCalltoactionthemeselector.SetProperty("ctaColor5", Calltoactionthemeselector_Ctacolor5);
+            ucCalltoactionthemeselector.SetProperty("ctaColor6", Calltoactionthemeselector_Ctacolor6);
             ucCalltoactionthemeselector.SetProperty("ResultTheme", AV57SelectedCtaTheme);
             ucCalltoactionthemeselector.Render(context, "uc_ctathemeselector", Calltoactionthemeselector_Internalname, sPrefix+"CALLTOACTIONTHEMESELECTORContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1835,7 +1841,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202542812563027", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025514712448", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1851,7 +1857,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createorganisationandmanagerstep3.js", "?202542812563028", false, true);
+         context.AddJavascriptSource("wp_createorganisationandmanagerstep3.js", "?2025514712449", false, true);
          context.AddJavascriptSource("UserControls/UC_ThemeSelectorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_CtaThemeSelectorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_FileUploadRender.js", "", false, true);
@@ -1943,10 +1949,6 @@ namespace GeneXus.Programs {
          chkavOrganisationhasmyservices.Caption = context.GetMessage( "Organisation Has My Services", "");
          chkavOrganisationhasmyliving.Caption = context.GetMessage( "Organisation Has My Living", "");
          chkavOrganisationhasmycare.Caption = context.GetMessage( "Organisation Has My Care", "");
-         Calltoactionthemeselector_Ctacolor4 = "#C4A082";
-         Calltoactionthemeselector_Ctacolor3 = "#B2B997";
-         Calltoactionthemeselector_Ctacolor2 = "#D4A76A";
-         Calltoactionthemeselector_Ctacolor1 = "#2C405A";
          Themeselector_Textcolorvalue = "#B7B7B7";
          Themeselector_Secondarycolorvalue = "#E9C4AA";
          Themeselector_Primarycolorvalue = "#C4A082";
@@ -1969,6 +1971,12 @@ namespace GeneXus.Programs {
          Btnwizardprevious_Class = "ButtonMaterialDefault ButtonWizard";
          Btnwizardprevious_Caption = context.GetMessage( "GXM_previous", "");
          Btnwizardprevious_Tooltiptext = "";
+         Calltoactionthemeselector_Ctacolor6 = "#B7B7B7";
+         Calltoactionthemeselector_Ctacolor5 = "#E9C4AA";
+         Calltoactionthemeselector_Ctacolor4 = "#C4A082";
+         Calltoactionthemeselector_Ctacolor3 = "#969674";
+         Calltoactionthemeselector_Ctacolor2 = "#D4A76A";
+         Calltoactionthemeselector_Ctacolor1 = "#2C405A";
          divCtatable_Visible = 1;
          divBrandtable_Visible = 1;
          chkavOrganisationhasownbrand.Enabled = 1;
@@ -2143,6 +2151,12 @@ namespace GeneXus.Programs {
       private string divCtatable_Internalname ;
       private string lblCtatheme_Internalname ;
       private string lblCtatheme_Jsonclick ;
+      private string Calltoactionthemeselector_Ctacolor1 ;
+      private string Calltoactionthemeselector_Ctacolor2 ;
+      private string Calltoactionthemeselector_Ctacolor3 ;
+      private string Calltoactionthemeselector_Ctacolor4 ;
+      private string Calltoactionthemeselector_Ctacolor5 ;
+      private string Calltoactionthemeselector_Ctacolor6 ;
       private string Calltoactionthemeselector_Internalname ;
       private string divFieldavatartable_Internalname ;
       private string lblAvatarlabel_Internalname ;
@@ -2181,10 +2195,6 @@ namespace GeneXus.Programs {
       private string Themeselector_Primarycolorvalue ;
       private string Themeselector_Secondarycolorvalue ;
       private string Themeselector_Textcolorvalue ;
-      private string Calltoactionthemeselector_Ctacolor1 ;
-      private string Calltoactionthemeselector_Ctacolor2 ;
-      private string Calltoactionthemeselector_Ctacolor3 ;
-      private string Calltoactionthemeselector_Ctacolor4 ;
       private string GXt_char1 ;
       private string sCtrlAV54WebSessionKey ;
       private string sCtrlAV47PreviousStep ;

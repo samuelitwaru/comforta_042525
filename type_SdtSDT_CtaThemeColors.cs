@@ -38,6 +38,10 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_CtaThemeColors_Ctacolor4 = "";
 
+			gxTv_SdtSDT_CtaThemeColors_Ctacolor5 = "";
+
+			gxTv_SdtSDT_CtaThemeColors_Ctacolor6 = "";
+
 		}
 
 		public SdtSDT_CtaThemeColors(IGxContext context)
@@ -75,6 +79,12 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("ctaColor4", gxTpr_Ctacolor4, false);
+
+
+			AddObjectProperty("ctaColor5", gxTpr_Ctacolor5, false);
+
+
+			AddObjectProperty("ctaColor6", gxTpr_Ctacolor6, false);
 
 			return;
 		}
@@ -145,6 +155,38 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="ctaColor5")]
+		[XmlElement(ElementName="ctaColor5")]
+		public string gxTpr_Ctacolor5
+		{
+			get {
+				return gxTv_SdtSDT_CtaThemeColors_Ctacolor5; 
+			}
+			set {
+				gxTv_SdtSDT_CtaThemeColors_Ctacolor5 = value;
+				SetDirty("Ctacolor5");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ctaColor6")]
+		[XmlElement(ElementName="ctaColor6")]
+		public string gxTpr_Ctacolor6
+		{
+			get {
+				return gxTv_SdtSDT_CtaThemeColors_Ctacolor6; 
+			}
+			set {
+				gxTv_SdtSDT_CtaThemeColors_Ctacolor6 = value;
+				SetDirty("Ctacolor6");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -170,6 +212,8 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_CtaThemeColors_Ctacolor2 = "";
 			gxTv_SdtSDT_CtaThemeColors_Ctacolor3 = "";
 			gxTv_SdtSDT_CtaThemeColors_Ctacolor4 = "";
+			gxTv_SdtSDT_CtaThemeColors_Ctacolor5 = "";
+			gxTv_SdtSDT_CtaThemeColors_Ctacolor6 = "";
 			return  ;
 		}
 
@@ -189,6 +233,12 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_CtaThemeColors_Ctacolor4;
+		 
+
+		protected string gxTv_SdtSDT_CtaThemeColors_Ctacolor5;
+		 
+
+		protected string gxTv_SdtSDT_CtaThemeColors_Ctacolor6;
 		 
 
 
@@ -253,6 +303,30 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Ctacolor4 = value;
+			}
+		}
+
+		[DataMember(Name="ctaColor5", Order=4)]
+		public  string gxTpr_Ctacolor5
+		{
+			get { 
+				return sdt.gxTpr_Ctacolor5;
+
+			}
+			set { 
+				 sdt.gxTpr_Ctacolor5 = value;
+			}
+		}
+
+		[DataMember(Name="ctaColor6", Order=5)]
+		public  string gxTpr_Ctacolor6
+		{
+			get { 
+				return sdt.gxTpr_Ctacolor6;
+
+			}
+			set { 
+				 sdt.gxTpr_Ctacolor6 = value;
 			}
 		}
 

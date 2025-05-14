@@ -107,6 +107,10 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("CtaConnectedSupplierId", gxTpr_Ctaconnectedsupplierid, false);
 
+			if (gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action != null)
+			{
+				AddObjectProperty("Action", gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action, false);
+			}
 			return;
 		}
 		#endregion
@@ -288,6 +292,43 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="Action" )]
+		[XmlElement(ElementName="Action" )]
+		public SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action gxTpr_Action
+		{
+			get {
+				if ( gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action == null )
+				{
+					gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action = new SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action(context);
+				}
+				gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action_N = false;
+				return gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action;
+			}
+			set {
+				gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action_N = false;
+				gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action = value;
+				SetDirty("Action");
+			}
+
+		}
+
+		public void gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action_SetNull()
+		{
+			gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action_N = true;
+			gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action = null;
+		}
+
+		public bool gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action_IsNull()
+		{
+			return gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action == null;
+		}
+		public bool ShouldSerializegxTpr_Action_Json()
+		{
+				return (gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action != null && gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action.ShouldSerializeSdtJson());
+
+		}
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -319,6 +360,9 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Ctabuttonimgurl = "";
 			gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Ctabuttonicon = "";
 
+
+
+			gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action_N = true;
 
 			return  ;
 		}
@@ -361,6 +405,9 @@ namespace GeneXus.Programs
 
 		protected Guid gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Ctaconnectedsupplierid;
 		 
+		protected bool gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action_N;
+		protected SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action gxTv_SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action = null; 
+
 
 
 		#endregion
@@ -509,6 +556,23 @@ namespace GeneXus.Programs
 			set { 
 				sdt.gxTpr_Ctaconnectedsupplierid = value;
 			}
+		}
+
+		[DataMember(Name="Action", Order=11, EmitDefaultValue=false)]
+		public SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action_RESTInterface gxTpr_Action
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Action_Json())
+					return new SdtSDT_InfoContent_InfoContentItem_CtaAttributes_Action_RESTInterface(sdt.gxTpr_Action);
+				else
+					return null;
+
+			}
+
+			set {
+				sdt.gxTpr_Action = value.sdt;
+			}
+
 		}
 
 
