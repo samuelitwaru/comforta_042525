@@ -89,6 +89,7 @@ namespace GeneXus.Programs {
             AV22BC_Trn_Theme = new SdtTrn_Theme(context);
             AV22BC_Trn_Theme.Load(A273Trn_ThemeId);
             AV22BC_Trn_Theme.gxTpr_Color.Sort("ColorName");
+            AV28Icons = AV22BC_Trn_Theme.gxTpr_Icon;
             AV23BC_Trn_ThemeCollection.Add(AV22BC_Trn_Theme, 0);
             pr_default.readNext(0);
          }
@@ -113,6 +114,7 @@ namespace GeneXus.Programs {
                AV22BC_Trn_Theme = new SdtTrn_Theme(context);
                AV22BC_Trn_Theme.Load(A576LocationThemeId);
                AV22BC_Trn_Theme.gxTpr_Color.Sort("ColorName");
+               AV22BC_Trn_Theme.gxTpr_Icon = AV28Icons;
                AV23BC_Trn_ThemeCollection.Add(AV22BC_Trn_Theme, 0);
                /* Execute user subroutine: 'FINISH' */
                S111 ();
@@ -144,6 +146,7 @@ namespace GeneXus.Programs {
                AV22BC_Trn_Theme = new SdtTrn_Theme(context);
                AV22BC_Trn_Theme.Load(A273Trn_ThemeId);
                AV22BC_Trn_Theme.gxTpr_Color.Sort("ColorName");
+               AV22BC_Trn_Theme.gxTpr_Icon = AV28Icons;
                AV23BC_Trn_ThemeCollection.Add(AV22BC_Trn_Theme, 0);
                /* Execute user subroutine: 'FINISH' */
                S111 ();
@@ -189,6 +192,7 @@ namespace GeneXus.Programs {
          A274Trn_ThemeName = "";
          A273Trn_ThemeId = Guid.Empty;
          AV22BC_Trn_Theme = new SdtTrn_Theme(context);
+         AV28Icons = new GXBCLevelCollection<SdtTrn_Theme_Icon>( context, "Trn_Theme.Icon", "Comforta_version20");
          P00C33_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
          P00C33_n273Trn_ThemeId = new bool[] {false} ;
          P00C33_A576LocationThemeId = new Guid[] {Guid.Empty} ;
@@ -250,6 +254,7 @@ namespace GeneXus.Programs {
       private Guid[] P00C32_A273Trn_ThemeId ;
       private bool[] P00C32_n273Trn_ThemeId ;
       private SdtTrn_Theme AV22BC_Trn_Theme ;
+      private GXBCLevelCollection<SdtTrn_Theme_Icon> AV28Icons ;
       private Guid[] P00C33_A273Trn_ThemeId ;
       private bool[] P00C33_n273Trn_ThemeId ;
       private Guid[] P00C33_A576LocationThemeId ;
