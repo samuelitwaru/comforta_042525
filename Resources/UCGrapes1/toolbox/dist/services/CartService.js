@@ -12,11 +12,11 @@ export class CartService {
     loadCart() {
         // Implementation would deserialize cart data from storage
         // This is a simplified version
-        console.log('Cart loaded from storage');
+        // console.log('Cart loaded from storage');
     }
     saveCart() {
         // Implementation would serialize cart data to storage
-        console.log('Cart saved to storage');
+        // console.log('Cart saved to storage');
     }
     addToCart(book, quantity = 1) {
         this.cart.addItem(book, quantity);
