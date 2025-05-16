@@ -257,7 +257,7 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("P00GB2", "SELECT AppVersionId, AppVersionName FROM Trn_AppVersion ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB2,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00GB3", "SELECT AppVersionId, PageType, PageName, PageStructure, PageId FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (PageType = ( 'Menu')) ORDER BY AppVersionId  FOR UPDATE OF Trn_AppVersionPage",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB3,1, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00GB3", "SELECT AppVersionId, PageType, PageName, PageStructure, PageId FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (PageType = ( 'MyLiving') or PageType = ( 'MyCare') or PageType = ( 'MyService')) ORDER BY AppVersionId  FOR UPDATE OF Trn_AppVersionPage",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB3,1, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00GB4", "SAVEPOINT gxupdate;UPDATE Trn_AppVersionPage SET PageType=:PageType, PageStructure=:PageStructure  WHERE AppVersionId = :AppVersionId AND PageId = :PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00GB4)
           };
        }
