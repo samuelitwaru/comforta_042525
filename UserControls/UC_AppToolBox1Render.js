@@ -158,7 +158,7 @@ function UC_AppToolBox1($) {
 						
 						return res;
 					});
-					console.log(themes)
+					
 					if (typeof App !== 'undefined') {
 						localStorage.clear();
 						this.app = new App(
