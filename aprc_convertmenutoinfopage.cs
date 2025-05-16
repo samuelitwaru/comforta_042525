@@ -82,43 +82,41 @@ namespace GeneXus.Programs {
          while ( (pr_default.getStatus(0) != 101) )
          {
             A523AppVersionId = P00GB2_A523AppVersionId[0];
-            A524AppVersionName = P00GB2_A524AppVersionName[0];
-            new prc_logtoserver(context ).execute(  context.GetMessage( "Version: ", "")+A524AppVersionName) ;
+            AV18Count = 0;
             /* Using cursor P00GB3 */
             pr_default.execute(1, new Object[] {A523AppVersionId});
             while ( (pr_default.getStatus(1) != 101) )
             {
                A525PageType = P00GB3_A525PageType[0];
-               A517PageName = P00GB3_A517PageName[0];
                A518PageStructure = P00GB3_A518PageStructure[0];
+               A517PageName = P00GB3_A517PageName[0];
                A516PageId = P00GB3_A516PageId[0];
-               new prc_logtoserver(context ).execute(  ">>>>>>>>>>>> "+A517PageName) ;
                A525PageType = "Information";
                AV13SDT_InfoContent = new SdtSDT_InfoContent(context);
                AV8SDT_MenuPage.FromJSonString(A518PageStructure, null);
-               AV20GXV1 = 1;
-               while ( AV20GXV1 <= AV8SDT_MenuPage.gxTpr_Rows.Count )
+               AV21GXV1 = 1;
+               while ( AV21GXV1 <= AV8SDT_MenuPage.gxTpr_Rows.Count )
                {
-                  AV9RowItem = ((SdtSDT_MenuPage_RowsItem)AV8SDT_MenuPage.gxTpr_Rows.Item(AV20GXV1));
+                  AV9RowItem = ((SdtSDT_MenuPage_RowsItem)AV8SDT_MenuPage.gxTpr_Rows.Item(AV21GXV1));
                   AV14InfoContentItem = new SdtSDT_InfoContent_InfoContentItem(context);
                   AV14InfoContentItem.gxTpr_Infoid = new SdtRandomStringGenerator(context).generate(15);
                   AV14InfoContentItem.gxTpr_Infotype = "TileRow";
                   AV11SDT_InfoTile = new GXBaseCollection<SdtSDT_InfoTile_SDT_InfoTileItem>( context, "SDT_InfoTileItem", "Comforta_version20");
-                  AV21GXV2 = 1;
-                  while ( AV21GXV2 <= AV9RowItem.gxTpr_Tiles.Count )
+                  AV22GXV2 = 1;
+                  while ( AV22GXV2 <= AV9RowItem.gxTpr_Tiles.Count )
                   {
-                     AV10TileItem = ((SdtSDT_MenuPage_RowsItem_TilesItem)AV9RowItem.gxTpr_Tiles.Item(AV21GXV2));
+                     AV10TileItem = ((SdtSDT_MenuPage_RowsItem_TilesItem)AV9RowItem.gxTpr_Tiles.Item(AV22GXV2));
                      AV17SDT_InfoTileItem = new SdtSDT_InfoTile_SDT_InfoTileItem(context);
                      AV17SDT_InfoTileItem.FromJSonString(AV10TileItem.ToJSonString(false, true), null);
                      AV11SDT_InfoTile.Add(AV17SDT_InfoTileItem, 0);
-                     AV21GXV2 = (int)(AV21GXV2+1);
+                     AV22GXV2 = (int)(AV22GXV2+1);
                   }
                   AV14InfoContentItem.gxTpr_Tiles = AV11SDT_InfoTile;
                   AV13SDT_InfoContent.gxTpr_Infocontent.Add(AV14InfoContentItem, 0);
-                  AV20GXV1 = (int)(AV20GXV1+1);
+                  AV21GXV1 = (int)(AV21GXV1+1);
                }
                new prc_logtoserver(context ).execute(  "		"+AV13SDT_InfoContent.ToJSonString(false, true)) ;
-               AV16HttpResponse.AddString("		"+AV13SDT_InfoContent.ToJSonString(false, true)+StringUtil.NewLine( ));
+               AV16HttpResponse.AddString(context.GetMessage( "converted : ", "")+A517PageName+StringUtil.NewLine( ));
                A518PageStructure = AV13SDT_InfoContent.ToJSonString(false, true);
                /* Using cursor P00GB4 */
                pr_default.execute(2, new Object[] {A525PageType, A518PageStructure, A523AppVersionId, A516PageId});
@@ -130,6 +128,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
+         AV16HttpResponse.AddString(context.GetMessage( "converted : ", "")+StringUtil.Str( (decimal)(AV18Count), 4, 0)+context.GetMessage( " Pages", ""));
          if ( context.WillRedirect( ) )
          {
             context.Redirect( context.wjLoc );
@@ -155,17 +154,15 @@ namespace GeneXus.Programs {
          GXKey = "";
          gxfirstwebparm = "";
          P00GB2_A523AppVersionId = new Guid[] {Guid.Empty} ;
-         P00GB2_A524AppVersionName = new string[] {""} ;
          A523AppVersionId = Guid.Empty;
-         A524AppVersionName = "";
          P00GB3_A523AppVersionId = new Guid[] {Guid.Empty} ;
          P00GB3_A525PageType = new string[] {""} ;
-         P00GB3_A517PageName = new string[] {""} ;
          P00GB3_A518PageStructure = new string[] {""} ;
+         P00GB3_A517PageName = new string[] {""} ;
          P00GB3_A516PageId = new Guid[] {Guid.Empty} ;
          A525PageType = "";
-         A517PageName = "";
          A518PageStructure = "";
+         A517PageName = "";
          A516PageId = Guid.Empty;
          AV13SDT_InfoContent = new SdtSDT_InfoContent(context);
          AV8SDT_MenuPage = new SdtSDT_MenuPage(context);
@@ -178,10 +175,10 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_convertmenutoinfopage__default(),
             new Object[][] {
                 new Object[] {
-               P00GB2_A523AppVersionId, P00GB2_A524AppVersionName
+               P00GB2_A523AppVersionId
                }
                , new Object[] {
-               P00GB3_A523AppVersionId, P00GB3_A525PageType, P00GB3_A517PageName, P00GB3_A518PageStructure, P00GB3_A516PageId
+               P00GB3_A523AppVersionId, P00GB3_A525PageType, P00GB3_A518PageStructure, P00GB3_A517PageName, P00GB3_A516PageId
                }
                , new Object[] {
                }
@@ -192,13 +189,13 @@ namespace GeneXus.Programs {
 
       private short nGotPars ;
       private short GxWebError ;
-      private int AV20GXV1 ;
-      private int AV21GXV2 ;
+      private short AV18Count ;
+      private int AV21GXV1 ;
+      private int AV22GXV2 ;
       private string GXKey ;
       private string gxfirstwebparm ;
       private bool entryPointCalled ;
       private string A518PageStructure ;
-      private string A524AppVersionName ;
       private string A525PageType ;
       private string A517PageName ;
       private Guid A523AppVersionId ;
@@ -209,11 +206,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
       private Guid[] P00GB2_A523AppVersionId ;
-      private string[] P00GB2_A524AppVersionName ;
       private Guid[] P00GB3_A523AppVersionId ;
       private string[] P00GB3_A525PageType ;
-      private string[] P00GB3_A517PageName ;
       private string[] P00GB3_A518PageStructure ;
+      private string[] P00GB3_A517PageName ;
       private Guid[] P00GB3_A516PageId ;
       private SdtSDT_InfoContent AV13SDT_InfoContent ;
       private SdtSDT_MenuPage AV8SDT_MenuPage ;
@@ -256,8 +252,8 @@ namespace GeneXus.Programs {
           new ParDef("PageId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00GB2", "SELECT AppVersionId, AppVersionName FROM Trn_AppVersion ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB2,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00GB3", "SELECT AppVersionId, PageType, PageName, PageStructure, PageId FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (PageType = ( 'MyLiving') or PageType = ( 'MyCare') or PageType = ( 'MyService')) ORDER BY AppVersionId  FOR UPDATE OF Trn_AppVersionPage",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB3,1, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00GB2", "SELECT AppVersionId FROM Trn_AppVersion ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB2,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00GB3", "SELECT AppVersionId, PageType, PageStructure, PageName, PageId FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (PageType = ( 'Menu') or PageType = ( 'MyLiving') or PageType = ( 'MyCare') or PageType = ( 'MyService')) ORDER BY AppVersionId  FOR UPDATE OF Trn_AppVersionPage",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB3,1, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00GB4", "SAVEPOINT gxupdate;UPDATE Trn_AppVersionPage SET PageType=:PageType, PageStructure=:PageStructure  WHERE AppVersionId = :AppVersionId AND PageId = :PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00GB4)
           };
        }
@@ -271,13 +267,12 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+                ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 return;
        }

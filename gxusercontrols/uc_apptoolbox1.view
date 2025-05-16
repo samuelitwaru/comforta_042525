@@ -13,6 +13,7 @@
       	<div class="main-content" id="main-content"></div>
 	
       	<div class="sidebar sidebar-right" id="tb-sidebar">
+			<div id="page-info-title"></div>
 			<div id="page-info-section"></div>
 			<div id="tools-section"></div>
 			<div id="mapping-section" style="display: none;">
