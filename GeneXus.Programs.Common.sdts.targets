@@ -131,6 +131,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme_CtaColorsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Tile.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_TileAction.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_TrashItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_TrnAttributes.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_TrnAttributes_Transaction.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_TrnAttributes_Transaction_AttributeItem.cs" />

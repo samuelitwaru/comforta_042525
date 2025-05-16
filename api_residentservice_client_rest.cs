@@ -1409,6 +1409,92 @@ namespace GeneXus.Programs {
          /* GetThemes Constructor */
       }
 
+      public void gxep_getatrashitems( out GXBaseCollection<SdtSDT_TrashItem> aP0_TrashItems ,
+                                       out SdtSDT_Error aP1_error )
+      {
+         restCliGetATrashItems = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "toolbox/v2/get-trash";
+         restCliGetATrashItems.Location = restLocation;
+         restCliGetATrashItems.HttpMethod = "GET";
+         restCliGetATrashItems.RestExecute();
+         if ( restCliGetATrashItems.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetATrashItems.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetATrashItems.ErrorMessage;
+            gxProperties.StatusCode = restCliGetATrashItems.StatusCode;
+            aP0_TrashItems = new GXBaseCollection<SdtSDT_TrashItem>();
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP0_TrashItems = restCliGetATrashItems.GetBodySdtCollection<SdtSDT_TrashItem>("TrashItems");
+            aP1_error = restCliGetATrashItems.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* GetATrashItems Constructor */
+      }
+
+      public void gxep_restoretrash( string aP0_Type ,
+                                     Guid aP1_TrashId ,
+                                     out SdtSDT_Error aP2_error )
+      {
+         restCliRestoreTrash = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "toolbox/v2/restore-trash";
+         restCliRestoreTrash.Location = restLocation;
+         restCliRestoreTrash.HttpMethod = "POST";
+         restCliRestoreTrash.AddBodyVar("Type", (string)(aP0_Type));
+         restCliRestoreTrash.AddBodyVar("TrashId", (Guid)(aP1_TrashId));
+         restCliRestoreTrash.RestExecute();
+         if ( restCliRestoreTrash.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliRestoreTrash.ErrorCode;
+            gxProperties.ErrorMessage = restCliRestoreTrash.ErrorMessage;
+            gxProperties.StatusCode = restCliRestoreTrash.StatusCode;
+            aP2_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP2_error = restCliRestoreTrash.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* RestoreTrash Constructor */
+      }
+
+      public void gxep_deletetrash( string aP0_Type ,
+                                    Guid aP1_TrashId ,
+                                    out SdtSDT_Error aP2_error )
+      {
+         restCliDeleteTrash = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "toolbox/v2/delete-trash";
+         restCliDeleteTrash.Location = restLocation;
+         restCliDeleteTrash.HttpMethod = "POST";
+         restCliDeleteTrash.AddBodyVar("Type", (string)(aP0_Type));
+         restCliDeleteTrash.AddBodyVar("TrashId", (Guid)(aP1_TrashId));
+         restCliDeleteTrash.RestExecute();
+         if ( restCliDeleteTrash.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliDeleteTrash.ErrorCode;
+            gxProperties.ErrorMessage = restCliDeleteTrash.ErrorMessage;
+            gxProperties.StatusCode = restCliDeleteTrash.StatusCode;
+            aP2_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP2_error = restCliDeleteTrash.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* DeleteTrash Constructor */
+      }
+
       public void gxep_getappversions( out GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ,
                                        out SdtSDT_Error aP1_error )
       {
@@ -2417,6 +2503,10 @@ namespace GeneXus.Programs {
          aP0_SDT_LocationTheme = new SdtSDT_LocationTheme();
          restCliGetThemes = new GXRestAPIClient();
          aP0_SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>();
+         restCliGetATrashItems = new GXRestAPIClient();
+         aP0_TrashItems = new GXBaseCollection<SdtSDT_TrashItem>();
+         restCliRestoreTrash = new GXRestAPIClient();
+         restCliDeleteTrash = new GXRestAPIClient();
          restCliGetAppVersions = new GXRestAPIClient();
          aP0_AppVersions = new GXBaseCollection<SdtSDT_AppVersion>();
          restCliGetAppVersion = new GXRestAPIClient();
@@ -2509,6 +2599,9 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliGetLocationTheme ;
       protected GXRestAPIClient restCliToolboxGetLocationTheme ;
       protected GXRestAPIClient restCliGetThemes ;
+      protected GXRestAPIClient restCliGetATrashItems ;
+      protected GXRestAPIClient restCliRestoreTrash ;
+      protected GXRestAPIClient restCliDeleteTrash ;
       protected GXRestAPIClient restCliGetAppVersions ;
       protected GXRestAPIClient restCliGetAppVersion ;
       protected GXRestAPIClient restCliCreateAppVersion ;
@@ -2582,6 +2675,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Theme aP2_SDT_Theme ;
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
       protected GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ;
+      protected GXBaseCollection<SdtSDT_TrashItem> aP0_TrashItems ;
       protected GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ;
       protected SdtSDT_AppVersion aP0_AppVersion ;
       protected SdtSDT_AppVersion aP2_AppVersion ;

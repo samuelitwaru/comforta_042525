@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250514040617"
+  version: "20250516150846"
 servers:
   - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/rest
 paths:
@@ -2287,6 +2287,30 @@ components:
           description: "SDT_Info Content"
           $ref: "#/components/schemas/SDT_InfoContent"
       x-gx-level: "SDT_AppVersion"
+    SDT_AppVersionPage:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        PageType:
+          description: "Page Type"
+          type: "string"
+        PageStructure:
+          description: "Page Structure"
+          type: "string"
+        PageContentStructure:
+          description: "SDT_Content Page"
+          $ref: "#/components/schemas/SDT_ContentPage"
+        PageMenuStructure:
+          description: "SDT_Menu Page"
+          $ref: "#/components/schemas/SDT_MenuPage"
+        PageInfoStructure:
+          description: "SDT_Info Content"
+          $ref: "#/components/schemas/SDT_InfoContent"
     SDT_CallToAction_SDT_CallToActionItem:
       properties:
         CallToActionId:
@@ -3566,6 +3590,25 @@ components:
         ObjectUrl:
           description: "Object Url"
           type: "string"
+    SDT_TrashItem:
+      properties:
+        Type:
+          description: "Type"
+          type: "string"
+        Page:
+          description: "SDT_App Version Page"
+          $ref: "#/components/schemas/SDT_AppVersionPage"
+        Version:
+          description: "SDT_App Version"
+          $ref: "#/components/schemas/SDT_AppVersion"
+        DeletedAt:
+          description: "Deleted At"
+          type: "string"
+          format: "date-time"
+        TrashId:
+          description: "Trash Id"
+          type: "string"
+          format: "uuid"
     Trn_Location:
       properties:
         LocationId:

@@ -445,6 +445,36 @@
 "Verb":"GET"
 },
 {
+"PathRegexp":"toolbox/v2/get-trash",
+"Path":"toolbox/v2/get-trash",
+"Name":"getatrashitems",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getatrashitems",
+"Implementation":"Prc_GetTrashItems",
+"Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/v2/restore-trash",
+"Path":"toolbox/v2/restore-trash",
+"Verb":"POST",
+"Name":"restoretrash",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_restoretrash",
+"Implementation":"Prc_RestoreTrash"
+},
+{
+"PathRegexp":"toolbox/v2/delete-trash",
+"Path":"toolbox/v2/delete-trash",
+"Verb":"POST",
+"Name":"deletetrash",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_deletetrash",
+"Implementation":"Prc_DeleteTrash"
+},
+{
 "PathRegexp":"toolbox/v2/appversions",
 "Path":"toolbox/v2/appversions",
 "Name":"getappversions",

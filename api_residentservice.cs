@@ -207,6 +207,18 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getatrashitems") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_restoretrash") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_deletetrash") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_getappversions") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -1178,6 +1190,43 @@ namespace GeneXus.Programs {
          aP1_error=this.AV69error;
       }
 
+      public void gxep_getatrashitems( out GXBaseCollection<SdtSDT_TrashItem> aP0_TrashItems ,
+                                       out SdtSDT_Error aP1_error )
+      {
+         AV69error = new SdtSDT_Error(context);
+         initialize();
+         /* GetATrashItems Constructor */
+         new prc_gettrashitems(context ).execute( out  AV139TrashItems, out  AV69error) ;
+         aP0_TrashItems=this.AV139TrashItems;
+         aP1_error=this.AV69error;
+      }
+
+      public void gxep_restoretrash( string aP0_Type ,
+                                     Guid aP1_TrashId ,
+                                     out SdtSDT_Error aP2_error )
+      {
+         this.AV141Type = aP0_Type;
+         this.AV140TrashId = aP1_TrashId;
+         AV69error = new SdtSDT_Error(context);
+         initialize();
+         /* RestoreTrash Constructor */
+         new prc_restoretrash(context ).execute(  AV141Type,  AV140TrashId, out  AV69error) ;
+         aP2_error=this.AV69error;
+      }
+
+      public void gxep_deletetrash( string aP0_Type ,
+                                    Guid aP1_TrashId ,
+                                    out SdtSDT_Error aP2_error )
+      {
+         this.AV141Type = aP0_Type;
+         this.AV140TrashId = aP1_TrashId;
+         AV69error = new SdtSDT_Error(context);
+         initialize();
+         /* DeleteTrash Constructor */
+         new prc_deletetrash(context ).execute(  AV141Type,  AV140TrashId, out  AV69error) ;
+         aP2_error=this.AV69error;
+      }
+
       public void gxep_getappversions( out GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ,
                                        out SdtSDT_Error aP1_error )
       {
@@ -1669,6 +1718,7 @@ namespace GeneXus.Programs {
          AV78SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>( context, "SDT_ProductService", "Comforta_version20");
          AV62SDT_LocationTheme = new SdtSDT_LocationTheme(context);
          AV88SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>( context, "SDT_Theme", "Comforta_version20");
+         AV139TrashItems = new GXBaseCollection<SdtSDT_TrashItem>( context, "SDT_TrashItem", "Comforta_version20");
          AV96AppVersions = new GXBaseCollection<SdtSDT_AppVersion>( context, "SDT_AppVersion", "Comforta_version20");
          AV98AppVersion = new SdtSDT_AppVersion(context);
          AV97MenuPage = new SdtSDT_AppVersion_PagesItem(context);
@@ -1732,6 +1782,7 @@ namespace GeneXus.Programs {
       protected string AV82LogoUrl ;
       protected string AV81ProfileImageUrl ;
       protected string AV43PageName ;
+      protected string AV141Type ;
       protected string AV99AppVersionName ;
       protected string AV91PageType ;
       protected string AV136Url ;
@@ -1749,6 +1800,7 @@ namespace GeneXus.Programs {
       protected Guid AV45ChildPageId ;
       protected Guid AV53ThemeId ;
       protected Guid AV49ProductServiceId ;
+      protected Guid AV140TrashId ;
       protected Guid AV92AppVersionId ;
       protected Guid AV107MemoCategoryId ;
       protected Guid AV112MemoId ;
@@ -1822,6 +1874,8 @@ namespace GeneXus.Programs {
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
       protected GXBaseCollection<SdtSDT_Theme> AV88SDT_ThemeCollection ;
       protected GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ;
+      protected GXBaseCollection<SdtSDT_TrashItem> AV139TrashItems ;
+      protected GXBaseCollection<SdtSDT_TrashItem> aP0_TrashItems ;
       protected GXBaseCollection<SdtSDT_AppVersion> AV96AppVersions ;
       protected GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ;
       protected SdtSDT_AppVersion AV98AppVersion ;

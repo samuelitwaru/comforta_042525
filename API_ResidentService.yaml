@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250514040617"
+  version: "20250516150846"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -1240,6 +1240,77 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/v2/get-trash:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetATrashItems"
+      summary: "Get trash items"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetATrashItemsOutput"
+        404:
+          description: "Not found"
+
+  /toolbox/v2/restore-trash:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.RestoreTrash"
+      summary: "Restore trash items"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RestoreTrashInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/v2/delete-trash:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.DeleteTrash"
+      summary: "Delete trash forever"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteTrashInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
   /toolbox/v2/appversions:
     get:
       tags:
@@ -2167,6 +2238,19 @@ components:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
 
+    GetATrashItemsOutput:
+      properties:
+        TrashItems:
+          description: "SDT_Trash Item"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_TrashItem"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+
+
     GetAppVersionsOutput:
       properties:
         AppVersions:
@@ -2511,6 +2595,23 @@ components:
 
 
 
+
+
+    RestoreTrashInput:  
+      properties:
+        Type:
+          type: "string"
+        TrashId:
+          type: "string"
+          format: "uuid"
+
+    DeleteTrashInput:  
+      properties:
+        Type:
+          type: "string"
+        TrashId:
+          type: "string"
+          format: "uuid"
 
 
 
@@ -3626,6 +3727,28 @@ components:
 
       x-gx-level: "SDT_LocationTheme"
 
+    SDT_TrashItem:
+      properties:
+        Type:
+          description: "Type"
+          type: "string"
+        Page:
+          description: "SDT_App Version Page"
+          $ref: "#/components/schemas/SDT_AppVersionPage"
+        Version:
+          description: "SDT_App Version"
+          $ref: "#/components/schemas/SDT_AppVersion"
+        DeletedAt:
+          description: "Deleted At"
+          type: "string"
+          format: "date-time"
+        TrashId:
+          description: "Trash Id"
+          type: "string"
+          format: "uuid"
+
+
+
     SDT_AppVersion:
       properties:
         AppVersionId:
@@ -3991,6 +4114,33 @@ components:
 
 
 
+    SDT_AppVersionPage:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        PageType:
+          description: "Page Type"
+          type: "string"
+        PageStructure:
+          description: "Page Structure"
+          type: "string"
+        PageContentStructure:
+          description: "SDT_Content Page"
+          $ref: "#/components/schemas/SDT_ContentPage"
+        PageMenuStructure:
+          description: "SDT_Menu Page"
+          $ref: "#/components/schemas/SDT_MenuPage"
+        PageInfoStructure:
+          description: "SDT_Info Content"
+          $ref: "#/components/schemas/SDT_InfoContent"
+
+
+
     SDT_CallToAction_SDT_CallToActionItem:
       properties:
         CallToActionId:
@@ -4103,6 +4253,177 @@ components:
           type: "string"
 
 
+
+    SDT_InfoContent:
+      properties:
+        InfoContent:
+          type: array
+          items:
+            description: InfoContentItem
+            $ref: "#/components/schemas/SDT_InfoContent.InfoContent_InfoContentItem"
+
+
+    SDT_InfoContent.InfoContent_InfoContentItem:
+      properties:
+        InfoId:
+          description: "Info Id"
+          type: "string"
+        InfoType:
+          description: "Info Type"
+          type: "string"
+        InfoValue:
+          description: "Info Value"
+          type: "string"
+        Tiles:
+          description: "SDT_Info Tile"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_InfoTile_SDT_InfoTileItem"
+
+        CtaAttributes:
+          $ref: "#/components/schemas/SDT_InfoContent.InfoContent.CtaAttributes"
+
+      x-gx-level: "SDT_InfoContent"
+
+    SDT_InfoContent.InfoContent.CtaAttributes:
+      properties:
+        CtaId:
+          description: "Cta Id"
+          type: "string"
+        CtaType:
+          description: "Cta Type"
+          type: "string"
+        CtaLabel:
+          description: "Cta Label"
+          type: "string"
+        CtaAction:
+          description: "Cta Action"
+          type: "string"
+        CtaColor:
+          description: "Cta Color"
+          type: "string"
+        CtaBGColor:
+          description: "Cta BGColor"
+          type: "string"
+        CtaButtonType:
+          description: "Cta Button Type"
+          type: "string"
+        CtaButtonImgUrl:
+          description: "Cta Button Img Url"
+          type: "string"
+        CtaButtonIcon:
+          description: "Cta Button Icon"
+          type: "string"
+        CtaSupplierIsConnected:
+          description: "Cta Supplier Is Connected"
+          type: "boolean"
+        CtaConnectedSupplierId:
+          description: "Cta Connected Supplier Id"
+          type: "string"
+          format: "uuid"
+
+        Action:
+          $ref: "#/components/schemas/SDT_InfoContent.InfoContent.CtaAttributes.Action"
+
+      x-gx-level: "SDT_InfoContent.InfoContent"
+
+    SDT_InfoContent.InfoContent.CtaAttributes.Action:
+      properties:
+        ObjectType:
+          description: "Object Type"
+          type: "string"
+        ObjectUrl:
+          description: "Object Url"
+          type: "string"
+        ObjectId:
+          description: "Object Id"
+          type: "string"
+
+
+      x-gx-level: "SDT_InfoContent.InfoContent.CtaAttributes"
+
+    SDT_MenuPage:
+      properties:
+        Rows:
+          type: array
+          items:
+            description: RowsItem
+            $ref: "#/components/schemas/SDT_MenuPage.Rows_RowsItem"
+
+
+    SDT_MenuPage.Rows_RowsItem:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+
+        Tiles:
+          type: array
+          items:
+            description: TilesItem
+            $ref: "#/components/schemas/SDT_MenuPage.Rows.Tiles_TilesItem"
+
+      x-gx-level: "SDT_MenuPage"
+
+    SDT_MenuPage.Rows.Tiles_TilesItem:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+        Name:
+          description: "Name"
+          type: "string"
+        Text:
+          description: "Text"
+          type: "string"
+        Color:
+          description: "Color"
+          type: "string"
+        Align:
+          description: "Align"
+          type: "string"
+        Icon:
+          description: "Icon"
+          type: "string"
+        BGColor:
+          description: "BGColor"
+          type: "string"
+        BGImageUrl:
+          description: "BGImage Url"
+          type: "string"
+        Opacity:
+          description: "Opacity"
+          type: "integer"
+          format: "int32"
+        Size:
+          description: "Size"
+          type: "integer"
+          format: "int32"
+        Permissions:
+          description: "Permissions"
+          type: array
+          items:
+            type: "string"
+
+        Action:
+          $ref: "#/components/schemas/SDT_MenuPage.Rows.Tiles.Action"
+
+      x-gx-level: "SDT_MenuPage.Rows"
+
+    SDT_MenuPage.Rows.Tiles.Action:
+      properties:
+        ObjectType:
+          description: "Object Type"
+          type: "string"
+        ObjectId:
+          description: "Object Id"
+          type: "string"
+        ObjectUrl:
+          description: "Object Url"
+          type: "string"
+
+
+      x-gx-level: "SDT_MenuPage.Rows.Tiles"
 
     SDT_OneSignalCustomData:
       properties:

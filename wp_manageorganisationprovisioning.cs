@@ -356,6 +356,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "CALLTOACTIONTHEMESELECTOR_Ctacolor2", StringUtil.RTrim( Calltoactionthemeselector_Ctacolor2));
          GxWebStd.gx_hidden_field( context, "CALLTOACTIONTHEMESELECTOR_Ctacolor3", StringUtil.RTrim( Calltoactionthemeselector_Ctacolor3));
          GxWebStd.gx_hidden_field( context, "CALLTOACTIONTHEMESELECTOR_Ctacolor4", StringUtil.RTrim( Calltoactionthemeselector_Ctacolor4));
+         GxWebStd.gx_hidden_field( context, "CALLTOACTIONTHEMESELECTOR_Ctacolor5", StringUtil.RTrim( Calltoactionthemeselector_Ctacolor5));
+         GxWebStd.gx_hidden_field( context, "CALLTOACTIONTHEMESELECTOR_Ctacolor6", StringUtil.RTrim( Calltoactionthemeselector_Ctacolor6));
          GxWebStd.gx_hidden_field( context, "LOGOUPLOAD_Previewimagelink", StringUtil.RTrim( Logoupload_Previewimagelink));
          GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Title", StringUtil.RTrim( Comfirmdeletemodal_Title));
          GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Confirmationtext", StringUtil.RTrim( Comfirmdeletemodal_Confirmationtext));
@@ -1027,6 +1029,8 @@ namespace GeneXus.Programs {
             Calltoactionthemeselector_Ctacolor2 = cgiGet( "CALLTOACTIONTHEMESELECTOR_Ctacolor2");
             Calltoactionthemeselector_Ctacolor3 = cgiGet( "CALLTOACTIONTHEMESELECTOR_Ctacolor3");
             Calltoactionthemeselector_Ctacolor4 = cgiGet( "CALLTOACTIONTHEMESELECTOR_Ctacolor4");
+            Calltoactionthemeselector_Ctacolor5 = cgiGet( "CALLTOACTIONTHEMESELECTOR_Ctacolor5");
+            Calltoactionthemeselector_Ctacolor6 = cgiGet( "CALLTOACTIONTHEMESELECTOR_Ctacolor6");
             Logoupload_Previewimagelink = cgiGet( "LOGOUPLOAD_Previewimagelink");
             Comfirmdeletemodal_Title = cgiGet( "COMFIRMDELETEMODAL_Title");
             Comfirmdeletemodal_Confirmationtext = cgiGet( "COMFIRMDELETEMODAL_Confirmationtext");
@@ -1152,6 +1156,10 @@ namespace GeneXus.Programs {
             ucCalltoactionthemeselector.SendProperty(context, "", false, Calltoactionthemeselector_Internalname, "ctaColor3", Calltoactionthemeselector_Ctacolor3);
             Calltoactionthemeselector_Ctacolor4 = AV6DefaultCtaTheme.gxTpr_Ctacolor4;
             ucCalltoactionthemeselector.SendProperty(context, "", false, Calltoactionthemeselector_Internalname, "ctaColor4", Calltoactionthemeselector_Ctacolor4);
+            Calltoactionthemeselector_Ctacolor5 = AV6DefaultCtaTheme.gxTpr_Ctacolor5;
+            ucCalltoactionthemeselector.SendProperty(context, "", false, Calltoactionthemeselector_Internalname, "ctaColor5", Calltoactionthemeselector_Ctacolor5);
+            Calltoactionthemeselector_Ctacolor6 = AV6DefaultCtaTheme.gxTpr_Ctacolor6;
+            ucCalltoactionthemeselector.SendProperty(context, "", false, Calltoactionthemeselector_Internalname, "ctaColor6", Calltoactionthemeselector_Ctacolor6);
          }
          divLayoutmaintable_Class = divLayoutmaintable_Class+" "+"EditForm";
          AssignProp("", false, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
@@ -1354,7 +1362,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025514712895", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025516194680", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1370,7 +1378,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_manageorganisationprovisioning.js", "?2025514712895", false, true);
+         context.AddJavascriptSource("wp_manageorganisationprovisioning.js", "?2025516194680", false, true);
          context.AddJavascriptSource("UserControls/UC_ThemeSelectorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_CtaThemeSelectorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_FileUploadRender.js", "", false, true);
@@ -1477,6 +1485,8 @@ namespace GeneXus.Programs {
          Comfirmdeletemodal_Confirmationtext = "Are you sure you want to delete the current logo?";
          Comfirmdeletemodal_Title = context.GetMessage( "Comfirm Delete", "");
          Logoupload_Previewimagelink = "&ImagePalceholder";
+         Calltoactionthemeselector_Ctacolor6 = "#B7B7B7";
+         Calltoactionthemeselector_Ctacolor5 = "#E9C4AA";
          Calltoactionthemeselector_Ctacolor4 = "#C4A082";
          Calltoactionthemeselector_Ctacolor3 = "#969674";
          Calltoactionthemeselector_Ctacolor2 = "#D4A76A";
@@ -1648,6 +1658,8 @@ namespace GeneXus.Programs {
       private string Calltoactionthemeselector_Ctacolor2 ;
       private string Calltoactionthemeselector_Ctacolor3 ;
       private string Calltoactionthemeselector_Ctacolor4 ;
+      private string Calltoactionthemeselector_Ctacolor5 ;
+      private string Calltoactionthemeselector_Ctacolor6 ;
       private string Comfirmdeletemodal_Title ;
       private string Comfirmdeletemodal_Confirmationtext ;
       private string Comfirmdeletemodal_Yesbuttoncaption ;
