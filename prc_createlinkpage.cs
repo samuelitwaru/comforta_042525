@@ -103,7 +103,6 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV14BC_Trn_AppVersion.Load(AV8AppVersionId);
-         new prc_logtoserver(context ).execute(  ">><<>>"+AV8AppVersionId.ToString()+" "+AV9PageName+" "+AV24Url+" "+StringUtil.Str( (decimal)(AV19WWPFormId), 4, 0)) ;
          AV13BC_Page.gxTpr_Pageid = Guid.NewGuid( );
          AV13BC_Page.gxTpr_Pagename = AV9PageName;
          AV16SDT_LinkPage = new SdtSDT_LinkPage(context);
@@ -136,6 +135,7 @@ namespace GeneXus.Programs {
          {
             context.CommitDataStores("prc_createlinkpage",pr_default);
             AV11PageItem.FromJSonString(AV13BC_Page.ToJSonString(true, true), null);
+            AV11PageItem.gxTpr_Pagelinkstructure = AV16SDT_LinkPage;
          }
          else
          {
