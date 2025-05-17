@@ -350,13 +350,13 @@ export class EditorEvents {
           console.error("Wrapper not found!");
         }
 
-        new EditorThumbs(
-          this.frameId,
-          this.pageId,
-          this.editor,
-          this.pageData,
-          this.isHome
-        );
+        // new EditorThumbs(
+        //   this.frameId,
+        //   this.pageId,
+        //   this.editor,
+        //   this.pageData,
+        //   this.isHome
+        // );
 
         console.log("editors", (window as any).app.editors);
 

@@ -277,13 +277,15 @@ export class JSONToGrapesJSInformation {
 
     if (Array.isArray(infoContent) && infoContent.length > 0) {
       const firstSpacer = new AddInfoSectionButton(true).getHTML();
+      const lastSpacer = new AddInfoSectionButton(false, true).getHTML();
       const regularSpacer = new AddInfoSectionButton().getHTML();
 
       contentHtml += firstSpacer;
-      contentHtml += infoContent.map((content: any) => {
+      const contentArray = infoContent.map((content: any, index: number) => {
         const sectionHtml = this.generateInfoContent(content);
-        return sectionHtml + regularSpacer;
-      }).join("");
+        return sectionHtml + (index === infoContent.length - 1 ? lastSpacer : regularSpacer);
+      });
+      contentHtml += contentArray.join("");
     } else {
       // No sections: Add a special hover-enabled plus btn
       contentHtml = new AddInfoSectionButton(false, true, this.isNewPage || this.data.PageName === 'Untitled').getHTML();
@@ -407,7 +409,7 @@ export class JSONToGrapesJSInformation {
         <img
             class="product-service-image"
             ${DefaultAttributes}
-            src="${baseURL}/Resources/UCGrapes1/toolbox/public/images/default.jpg"
+            src="${baseURL}/Resources/UCGrapes/dist/images/default.jpg"
             data-gjs-type="default"
             alt="Full-width Image"
             style="border: 1px dashed #222f54;"
