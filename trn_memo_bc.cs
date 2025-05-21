@@ -108,8 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable1P100( ) ;
                if ( AnyError == 0 )
                {
-                  ZM1P100( 10) ;
-                  ZM1P100( 11) ;
+                  ZM1P100( 9) ;
                }
                CloseExtendedTableCursors1P100( ) ;
             }
@@ -131,11 +130,7 @@ namespace GeneXus.Programs {
             while ( AV32GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
             {
                AV15TrnContextAtt = ((WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV32GXV1));
-               if ( StringUtil.StrCmp(AV15TrnContextAtt.gxTpr_Attributename, "MemoCategoryId") == 0 )
-               {
-                  AV14Insert_MemoCategoryId = StringUtil.StrToGuid( AV15TrnContextAtt.gxTpr_Attributevalue);
-               }
-               else if ( StringUtil.StrCmp(AV15TrnContextAtt.gxTpr_Attributename, "ResidentId") == 0 )
+               if ( StringUtil.StrCmp(AV15TrnContextAtt.gxTpr_Attributename, "ResidentId") == 0 )
                {
                   AV26Insert_ResidentId = StringUtil.StrToGuid( AV15TrnContextAtt.gxTpr_Attributevalue);
                }
@@ -160,11 +155,10 @@ namespace GeneXus.Programs {
 
       protected void ZM1P100( short GX_JID )
       {
-         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
          {
             Z550MemoTitle = A550MemoTitle;
             Z551MemoDescription = A551MemoDescription;
-            Z552MemoImage = A552MemoImage;
             Z553MemoDocument = A553MemoDocument;
             Z561MemoStartDateTime = A561MemoStartDateTime;
             Z562MemoEndDateTime = A562MemoEndDateTime;
@@ -172,23 +166,24 @@ namespace GeneXus.Programs {
             Z564MemoRemoveDate = A564MemoRemoveDate;
             Z566MemoBgColorCode = A566MemoBgColorCode;
             Z567MemoForm = A567MemoForm;
-            Z542MemoCategoryId = A542MemoCategoryId;
+            Z624MemoType = A624MemoType;
+            Z625MemoName = A625MemoName;
+            Z626MemoLeftOffset = A626MemoLeftOffset;
+            Z627MemoTopOffset = A627MemoTopOffset;
+            Z628MemoTitleAngle = A628MemoTitleAngle;
+            Z629MemoTitleScale = A629MemoTitleScale;
             Z62ResidentId = A62ResidentId;
             Z528SG_LocationId = A528SG_LocationId;
             Z529SG_OrganisationId = A529SG_OrganisationId;
          }
-         if ( ( GX_JID == 10 ) || ( GX_JID == 0 ) )
-         {
-            Z543MemoCategoryName = A543MemoCategoryName;
-         }
-         if ( ( GX_JID == 11 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
             Z72ResidentSalutation = A72ResidentSalutation;
             Z64ResidentGivenName = A64ResidentGivenName;
             Z65ResidentLastName = A65ResidentLastName;
             Z71ResidentGUID = A71ResidentGUID;
          }
-         if ( GX_JID == -9 )
+         if ( GX_JID == -8 )
          {
             Z549MemoId = A549MemoId;
             Z550MemoTitle = A550MemoTitle;
@@ -201,11 +196,15 @@ namespace GeneXus.Programs {
             Z564MemoRemoveDate = A564MemoRemoveDate;
             Z566MemoBgColorCode = A566MemoBgColorCode;
             Z567MemoForm = A567MemoForm;
-            Z542MemoCategoryId = A542MemoCategoryId;
+            Z624MemoType = A624MemoType;
+            Z625MemoName = A625MemoName;
+            Z626MemoLeftOffset = A626MemoLeftOffset;
+            Z627MemoTopOffset = A627MemoTopOffset;
+            Z628MemoTitleAngle = A628MemoTitleAngle;
+            Z629MemoTitleScale = A629MemoTitleScale;
             Z62ResidentId = A62ResidentId;
             Z528SG_LocationId = A528SG_LocationId;
             Z529SG_OrganisationId = A529SG_OrganisationId;
-            Z543MemoCategoryName = A543MemoCategoryName;
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
             Z72ResidentSalutation = A72ResidentSalutation;
@@ -233,40 +232,46 @@ namespace GeneXus.Programs {
 
       protected void Load1P100( )
       {
-         /* Using cursor BC001P6 */
-         pr_default.execute(4, new Object[] {A549MemoId});
-         if ( (pr_default.getStatus(4) != 101) )
+         /* Using cursor BC001P5 */
+         pr_default.execute(3, new Object[] {A549MemoId});
+         if ( (pr_default.getStatus(3) != 101) )
          {
             RcdFound100 = 1;
-            A29LocationId = BC001P6_A29LocationId[0];
-            A11OrganisationId = BC001P6_A11OrganisationId[0];
-            A543MemoCategoryName = BC001P6_A543MemoCategoryName[0];
-            A550MemoTitle = BC001P6_A550MemoTitle[0];
-            A551MemoDescription = BC001P6_A551MemoDescription[0];
-            A552MemoImage = BC001P6_A552MemoImage[0];
-            n552MemoImage = BC001P6_n552MemoImage[0];
-            A553MemoDocument = BC001P6_A553MemoDocument[0];
-            n553MemoDocument = BC001P6_n553MemoDocument[0];
-            A561MemoStartDateTime = BC001P6_A561MemoStartDateTime[0];
-            n561MemoStartDateTime = BC001P6_n561MemoStartDateTime[0];
-            A562MemoEndDateTime = BC001P6_A562MemoEndDateTime[0];
-            n562MemoEndDateTime = BC001P6_n562MemoEndDateTime[0];
-            A563MemoDuration = BC001P6_A563MemoDuration[0];
-            n563MemoDuration = BC001P6_n563MemoDuration[0];
-            A564MemoRemoveDate = BC001P6_A564MemoRemoveDate[0];
-            A72ResidentSalutation = BC001P6_A72ResidentSalutation[0];
-            A64ResidentGivenName = BC001P6_A64ResidentGivenName[0];
-            A65ResidentLastName = BC001P6_A65ResidentLastName[0];
-            A71ResidentGUID = BC001P6_A71ResidentGUID[0];
-            A566MemoBgColorCode = BC001P6_A566MemoBgColorCode[0];
-            A567MemoForm = BC001P6_A567MemoForm[0];
-            A542MemoCategoryId = BC001P6_A542MemoCategoryId[0];
-            A62ResidentId = BC001P6_A62ResidentId[0];
-            A528SG_LocationId = BC001P6_A528SG_LocationId[0];
-            A529SG_OrganisationId = BC001P6_A529SG_OrganisationId[0];
-            ZM1P100( -9) ;
+            A29LocationId = BC001P5_A29LocationId[0];
+            A11OrganisationId = BC001P5_A11OrganisationId[0];
+            A550MemoTitle = BC001P5_A550MemoTitle[0];
+            A551MemoDescription = BC001P5_A551MemoDescription[0];
+            A552MemoImage = BC001P5_A552MemoImage[0];
+            n552MemoImage = BC001P5_n552MemoImage[0];
+            A553MemoDocument = BC001P5_A553MemoDocument[0];
+            n553MemoDocument = BC001P5_n553MemoDocument[0];
+            A561MemoStartDateTime = BC001P5_A561MemoStartDateTime[0];
+            n561MemoStartDateTime = BC001P5_n561MemoStartDateTime[0];
+            A562MemoEndDateTime = BC001P5_A562MemoEndDateTime[0];
+            n562MemoEndDateTime = BC001P5_n562MemoEndDateTime[0];
+            A563MemoDuration = BC001P5_A563MemoDuration[0];
+            n563MemoDuration = BC001P5_n563MemoDuration[0];
+            A564MemoRemoveDate = BC001P5_A564MemoRemoveDate[0];
+            n564MemoRemoveDate = BC001P5_n564MemoRemoveDate[0];
+            A72ResidentSalutation = BC001P5_A72ResidentSalutation[0];
+            A64ResidentGivenName = BC001P5_A64ResidentGivenName[0];
+            A65ResidentLastName = BC001P5_A65ResidentLastName[0];
+            A71ResidentGUID = BC001P5_A71ResidentGUID[0];
+            A566MemoBgColorCode = BC001P5_A566MemoBgColorCode[0];
+            n566MemoBgColorCode = BC001P5_n566MemoBgColorCode[0];
+            A567MemoForm = BC001P5_A567MemoForm[0];
+            A624MemoType = BC001P5_A624MemoType[0];
+            A625MemoName = BC001P5_A625MemoName[0];
+            A626MemoLeftOffset = BC001P5_A626MemoLeftOffset[0];
+            A627MemoTopOffset = BC001P5_A627MemoTopOffset[0];
+            A628MemoTitleAngle = BC001P5_A628MemoTitleAngle[0];
+            A629MemoTitleScale = BC001P5_A629MemoTitleScale[0];
+            A62ResidentId = BC001P5_A62ResidentId[0];
+            A528SG_LocationId = BC001P5_A528SG_LocationId[0];
+            A529SG_OrganisationId = BC001P5_A529SG_OrganisationId[0];
+            ZM1P100( -8) ;
          }
-         pr_default.close(4);
+         pr_default.close(3);
          OnLoadActions1P100( ) ;
       }
 
@@ -278,32 +283,22 @@ namespace GeneXus.Programs {
       {
          standaloneModal( ) ;
          /* Using cursor BC001P4 */
-         pr_default.execute(2, new Object[] {A542MemoCategoryId});
+         pr_default.execute(2, new Object[] {A62ResidentId, A528SG_LocationId, A529SG_OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
-         {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_MemoCategory", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEMOCATEGORYID");
-            AnyError = 1;
-         }
-         A543MemoCategoryName = BC001P4_A543MemoCategoryName[0];
-         pr_default.close(2);
-         /* Using cursor BC001P5 */
-         pr_default.execute(3, new Object[] {A62ResidentId, A528SG_LocationId, A529SG_OrganisationId});
-         if ( (pr_default.getStatus(3) == 101) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SG_ORGANISATIONID");
             AnyError = 1;
          }
-         A72ResidentSalutation = BC001P5_A72ResidentSalutation[0];
-         A64ResidentGivenName = BC001P5_A64ResidentGivenName[0];
-         A65ResidentLastName = BC001P5_A65ResidentLastName[0];
-         A71ResidentGUID = BC001P5_A71ResidentGUID[0];
-         pr_default.close(3);
+         A72ResidentSalutation = BC001P4_A72ResidentSalutation[0];
+         A64ResidentGivenName = BC001P4_A64ResidentGivenName[0];
+         A65ResidentLastName = BC001P4_A65ResidentLastName[0];
+         A71ResidentGUID = BC001P4_A71ResidentGUID[0];
+         pr_default.close(2);
       }
 
       protected void CloseExtendedTableCursors1P100( )
       {
          pr_default.close(2);
-         pr_default.close(3);
       }
 
       protected void enableDisable( )
@@ -312,9 +307,9 @@ namespace GeneXus.Programs {
 
       protected void GetKey1P100( )
       {
-         /* Using cursor BC001P7 */
-         pr_default.execute(5, new Object[] {A549MemoId});
-         if ( (pr_default.getStatus(5) != 101) )
+         /* Using cursor BC001P6 */
+         pr_default.execute(4, new Object[] {A549MemoId});
+         if ( (pr_default.getStatus(4) != 101) )
          {
             RcdFound100 = 1;
          }
@@ -322,7 +317,7 @@ namespace GeneXus.Programs {
          {
             RcdFound100 = 0;
          }
-         pr_default.close(5);
+         pr_default.close(4);
       }
 
       protected void getByPrimaryKey( )
@@ -331,7 +326,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A549MemoId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1P100( 9) ;
+            ZM1P100( 8) ;
             RcdFound100 = 1;
             A549MemoId = BC001P3_A549MemoId[0];
             A550MemoTitle = BC001P3_A550MemoTitle[0];
@@ -347,9 +342,16 @@ namespace GeneXus.Programs {
             A563MemoDuration = BC001P3_A563MemoDuration[0];
             n563MemoDuration = BC001P3_n563MemoDuration[0];
             A564MemoRemoveDate = BC001P3_A564MemoRemoveDate[0];
+            n564MemoRemoveDate = BC001P3_n564MemoRemoveDate[0];
             A566MemoBgColorCode = BC001P3_A566MemoBgColorCode[0];
+            n566MemoBgColorCode = BC001P3_n566MemoBgColorCode[0];
             A567MemoForm = BC001P3_A567MemoForm[0];
-            A542MemoCategoryId = BC001P3_A542MemoCategoryId[0];
+            A624MemoType = BC001P3_A624MemoType[0];
+            A625MemoName = BC001P3_A625MemoName[0];
+            A626MemoLeftOffset = BC001P3_A626MemoLeftOffset[0];
+            A627MemoTopOffset = BC001P3_A627MemoTopOffset[0];
+            A628MemoTitleAngle = BC001P3_A628MemoTitleAngle[0];
+            A629MemoTitleScale = BC001P3_A629MemoTitleScale[0];
             A62ResidentId = BC001P3_A62ResidentId[0];
             A528SG_LocationId = BC001P3_A528SG_LocationId[0];
             A529SG_OrganisationId = BC001P3_A529SG_OrganisationId[0];
@@ -419,15 +421,19 @@ namespace GeneXus.Programs {
                return  ;
             }
             Gx_longc = false;
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z550MemoTitle, BC001P2_A550MemoTitle[0]) != 0 ) || ( StringUtil.StrCmp(Z551MemoDescription, BC001P2_A551MemoDescription[0]) != 0 ) || ( StringUtil.StrCmp(Z552MemoImage, BC001P2_A552MemoImage[0]) != 0 ) || ( StringUtil.StrCmp(Z553MemoDocument, BC001P2_A553MemoDocument[0]) != 0 ) || ( Z561MemoStartDateTime != BC001P2_A561MemoStartDateTime[0] ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z550MemoTitle, BC001P2_A550MemoTitle[0]) != 0 ) || ( StringUtil.StrCmp(Z551MemoDescription, BC001P2_A551MemoDescription[0]) != 0 ) || ( StringUtil.StrCmp(Z553MemoDocument, BC001P2_A553MemoDocument[0]) != 0 ) || ( Z561MemoStartDateTime != BC001P2_A561MemoStartDateTime[0] ) || ( Z562MemoEndDateTime != BC001P2_A562MemoEndDateTime[0] ) )
             {
                Gx_longc = true;
             }
-            if ( Gx_longc || ( Z562MemoEndDateTime != BC001P2_A562MemoEndDateTime[0] ) || ( Z563MemoDuration != BC001P2_A563MemoDuration[0] ) || ( DateTimeUtil.ResetTime ( Z564MemoRemoveDate ) != DateTimeUtil.ResetTime ( BC001P2_A564MemoRemoveDate[0] ) ) || ( StringUtil.StrCmp(Z566MemoBgColorCode, BC001P2_A566MemoBgColorCode[0]) != 0 ) || ( StringUtil.StrCmp(Z567MemoForm, BC001P2_A567MemoForm[0]) != 0 ) )
+            if ( Gx_longc || ( Z563MemoDuration != BC001P2_A563MemoDuration[0] ) || ( DateTimeUtil.ResetTime ( Z564MemoRemoveDate ) != DateTimeUtil.ResetTime ( BC001P2_A564MemoRemoveDate[0] ) ) || ( StringUtil.StrCmp(Z566MemoBgColorCode, BC001P2_A566MemoBgColorCode[0]) != 0 ) || ( StringUtil.StrCmp(Z567MemoForm, BC001P2_A567MemoForm[0]) != 0 ) || ( StringUtil.StrCmp(Z624MemoType, BC001P2_A624MemoType[0]) != 0 ) )
             {
                Gx_longc = true;
             }
-            if ( Gx_longc || ( Z542MemoCategoryId != BC001P2_A542MemoCategoryId[0] ) || ( Z62ResidentId != BC001P2_A62ResidentId[0] ) || ( Z528SG_LocationId != BC001P2_A528SG_LocationId[0] ) || ( Z529SG_OrganisationId != BC001P2_A529SG_OrganisationId[0] ) )
+            if ( Gx_longc || ( StringUtil.StrCmp(Z625MemoName, BC001P2_A625MemoName[0]) != 0 ) || ( Z626MemoLeftOffset != BC001P2_A626MemoLeftOffset[0] ) || ( Z627MemoTopOffset != BC001P2_A627MemoTopOffset[0] ) || ( Z628MemoTitleAngle != BC001P2_A628MemoTitleAngle[0] ) || ( Z629MemoTitleScale != BC001P2_A629MemoTitleScale[0] ) )
+            {
+               Gx_longc = true;
+            }
+            if ( Gx_longc || ( Z62ResidentId != BC001P2_A62ResidentId[0] ) || ( Z528SG_LocationId != BC001P2_A528SG_LocationId[0] ) || ( Z529SG_OrganisationId != BC001P2_A529SG_OrganisationId[0] ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Memo"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -455,11 +461,11 @@ namespace GeneXus.Programs {
                   BeforeInsert1P100( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor BC001P8 */
-                     pr_default.execute(6, new Object[] {A549MemoId, A550MemoTitle, A551MemoDescription, n552MemoImage, A552MemoImage, n553MemoDocument, A553MemoDocument, n561MemoStartDateTime, A561MemoStartDateTime, n562MemoEndDateTime, A562MemoEndDateTime, n563MemoDuration, A563MemoDuration, A564MemoRemoveDate, A566MemoBgColorCode, A567MemoForm, A542MemoCategoryId, A62ResidentId, A528SG_LocationId, A529SG_OrganisationId});
-                     pr_default.close(6);
+                     /* Using cursor BC001P7 */
+                     pr_default.execute(5, new Object[] {A549MemoId, A550MemoTitle, A551MemoDescription, n552MemoImage, A552MemoImage, n553MemoDocument, A553MemoDocument, n561MemoStartDateTime, A561MemoStartDateTime, n562MemoEndDateTime, A562MemoEndDateTime, n563MemoDuration, A563MemoDuration, n564MemoRemoveDate, A564MemoRemoveDate, n566MemoBgColorCode, A566MemoBgColorCode, A567MemoForm, A624MemoType, A625MemoName, A626MemoLeftOffset, A627MemoTopOffset, A628MemoTitleAngle, A629MemoTitleScale, A62ResidentId, A528SG_LocationId, A529SG_OrganisationId});
+                     pr_default.close(5);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Memo");
-                     if ( (pr_default.getStatus(6) == 1) )
+                     if ( (pr_default.getStatus(5) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
                         AnyError = 1;
@@ -510,11 +516,11 @@ namespace GeneXus.Programs {
                   BeforeUpdate1P100( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor BC001P9 */
-                     pr_default.execute(7, new Object[] {A550MemoTitle, A551MemoDescription, n552MemoImage, A552MemoImage, n553MemoDocument, A553MemoDocument, n561MemoStartDateTime, A561MemoStartDateTime, n562MemoEndDateTime, A562MemoEndDateTime, n563MemoDuration, A563MemoDuration, A564MemoRemoveDate, A566MemoBgColorCode, A567MemoForm, A542MemoCategoryId, A62ResidentId, A528SG_LocationId, A529SG_OrganisationId, A549MemoId});
-                     pr_default.close(7);
+                     /* Using cursor BC001P8 */
+                     pr_default.execute(6, new Object[] {A550MemoTitle, A551MemoDescription, n552MemoImage, A552MemoImage, n553MemoDocument, A553MemoDocument, n561MemoStartDateTime, A561MemoStartDateTime, n562MemoEndDateTime, A562MemoEndDateTime, n563MemoDuration, A563MemoDuration, n564MemoRemoveDate, A564MemoRemoveDate, n566MemoBgColorCode, A566MemoBgColorCode, A567MemoForm, A624MemoType, A625MemoName, A626MemoLeftOffset, A627MemoTopOffset, A628MemoTitleAngle, A629MemoTitleScale, A62ResidentId, A528SG_LocationId, A529SG_OrganisationId, A549MemoId});
+                     pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Memo");
-                     if ( (pr_default.getStatus(7) == 103) )
+                     if ( (pr_default.getStatus(6) == 103) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Memo"}), "RecordIsLocked", 1, "");
                         AnyError = 1;
@@ -566,9 +572,9 @@ namespace GeneXus.Programs {
                if ( AnyError == 0 )
                {
                   /* No cascading delete specified. */
-                  /* Using cursor BC001P10 */
-                  pr_default.execute(8, new Object[] {A549MemoId});
-                  pr_default.close(8);
+                  /* Using cursor BC001P9 */
+                  pr_default.execute(7, new Object[] {A549MemoId});
+                  pr_default.close(7);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_Memo");
                   if ( AnyError == 0 )
                   {
@@ -600,17 +606,13 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
-            /* Using cursor BC001P11 */
-            pr_default.execute(9, new Object[] {A542MemoCategoryId});
-            A543MemoCategoryName = BC001P11_A543MemoCategoryName[0];
-            pr_default.close(9);
-            /* Using cursor BC001P12 */
-            pr_default.execute(10, new Object[] {A62ResidentId, A528SG_LocationId, A529SG_OrganisationId});
-            A72ResidentSalutation = BC001P12_A72ResidentSalutation[0];
-            A64ResidentGivenName = BC001P12_A64ResidentGivenName[0];
-            A65ResidentLastName = BC001P12_A65ResidentLastName[0];
-            A71ResidentGUID = BC001P12_A71ResidentGUID[0];
-            pr_default.close(10);
+            /* Using cursor BC001P10 */
+            pr_default.execute(8, new Object[] {A62ResidentId, A528SG_LocationId, A529SG_OrganisationId});
+            A72ResidentSalutation = BC001P10_A72ResidentSalutation[0];
+            A64ResidentGivenName = BC001P10_A64ResidentGivenName[0];
+            A65ResidentLastName = BC001P10_A65ResidentLastName[0];
+            A71ResidentGUID = BC001P10_A71ResidentGUID[0];
+            pr_default.close(8);
          }
       }
 
@@ -643,39 +645,45 @@ namespace GeneXus.Programs {
       public void ScanKeyStart1P100( )
       {
          /* Scan By routine */
-         /* Using cursor BC001P13 */
-         pr_default.execute(11, new Object[] {A549MemoId});
+         /* Using cursor BC001P11 */
+         pr_default.execute(9, new Object[] {A549MemoId});
          RcdFound100 = 0;
-         if ( (pr_default.getStatus(11) != 101) )
+         if ( (pr_default.getStatus(9) != 101) )
          {
             RcdFound100 = 1;
-            A29LocationId = BC001P13_A29LocationId[0];
-            A11OrganisationId = BC001P13_A11OrganisationId[0];
-            A549MemoId = BC001P13_A549MemoId[0];
-            A543MemoCategoryName = BC001P13_A543MemoCategoryName[0];
-            A550MemoTitle = BC001P13_A550MemoTitle[0];
-            A551MemoDescription = BC001P13_A551MemoDescription[0];
-            A552MemoImage = BC001P13_A552MemoImage[0];
-            n552MemoImage = BC001P13_n552MemoImage[0];
-            A553MemoDocument = BC001P13_A553MemoDocument[0];
-            n553MemoDocument = BC001P13_n553MemoDocument[0];
-            A561MemoStartDateTime = BC001P13_A561MemoStartDateTime[0];
-            n561MemoStartDateTime = BC001P13_n561MemoStartDateTime[0];
-            A562MemoEndDateTime = BC001P13_A562MemoEndDateTime[0];
-            n562MemoEndDateTime = BC001P13_n562MemoEndDateTime[0];
-            A563MemoDuration = BC001P13_A563MemoDuration[0];
-            n563MemoDuration = BC001P13_n563MemoDuration[0];
-            A564MemoRemoveDate = BC001P13_A564MemoRemoveDate[0];
-            A72ResidentSalutation = BC001P13_A72ResidentSalutation[0];
-            A64ResidentGivenName = BC001P13_A64ResidentGivenName[0];
-            A65ResidentLastName = BC001P13_A65ResidentLastName[0];
-            A71ResidentGUID = BC001P13_A71ResidentGUID[0];
-            A566MemoBgColorCode = BC001P13_A566MemoBgColorCode[0];
-            A567MemoForm = BC001P13_A567MemoForm[0];
-            A542MemoCategoryId = BC001P13_A542MemoCategoryId[0];
-            A62ResidentId = BC001P13_A62ResidentId[0];
-            A528SG_LocationId = BC001P13_A528SG_LocationId[0];
-            A529SG_OrganisationId = BC001P13_A529SG_OrganisationId[0];
+            A29LocationId = BC001P11_A29LocationId[0];
+            A11OrganisationId = BC001P11_A11OrganisationId[0];
+            A549MemoId = BC001P11_A549MemoId[0];
+            A550MemoTitle = BC001P11_A550MemoTitle[0];
+            A551MemoDescription = BC001P11_A551MemoDescription[0];
+            A552MemoImage = BC001P11_A552MemoImage[0];
+            n552MemoImage = BC001P11_n552MemoImage[0];
+            A553MemoDocument = BC001P11_A553MemoDocument[0];
+            n553MemoDocument = BC001P11_n553MemoDocument[0];
+            A561MemoStartDateTime = BC001P11_A561MemoStartDateTime[0];
+            n561MemoStartDateTime = BC001P11_n561MemoStartDateTime[0];
+            A562MemoEndDateTime = BC001P11_A562MemoEndDateTime[0];
+            n562MemoEndDateTime = BC001P11_n562MemoEndDateTime[0];
+            A563MemoDuration = BC001P11_A563MemoDuration[0];
+            n563MemoDuration = BC001P11_n563MemoDuration[0];
+            A564MemoRemoveDate = BC001P11_A564MemoRemoveDate[0];
+            n564MemoRemoveDate = BC001P11_n564MemoRemoveDate[0];
+            A72ResidentSalutation = BC001P11_A72ResidentSalutation[0];
+            A64ResidentGivenName = BC001P11_A64ResidentGivenName[0];
+            A65ResidentLastName = BC001P11_A65ResidentLastName[0];
+            A71ResidentGUID = BC001P11_A71ResidentGUID[0];
+            A566MemoBgColorCode = BC001P11_A566MemoBgColorCode[0];
+            n566MemoBgColorCode = BC001P11_n566MemoBgColorCode[0];
+            A567MemoForm = BC001P11_A567MemoForm[0];
+            A624MemoType = BC001P11_A624MemoType[0];
+            A625MemoName = BC001P11_A625MemoName[0];
+            A626MemoLeftOffset = BC001P11_A626MemoLeftOffset[0];
+            A627MemoTopOffset = BC001P11_A627MemoTopOffset[0];
+            A628MemoTitleAngle = BC001P11_A628MemoTitleAngle[0];
+            A629MemoTitleScale = BC001P11_A629MemoTitleScale[0];
+            A62ResidentId = BC001P11_A62ResidentId[0];
+            A528SG_LocationId = BC001P11_A528SG_LocationId[0];
+            A529SG_OrganisationId = BC001P11_A529SG_OrganisationId[0];
          }
          /* Load Subordinate Levels */
       }
@@ -683,7 +691,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext1P100( )
       {
          /* Scan next routine */
-         pr_default.readNext(11);
+         pr_default.readNext(9);
          RcdFound100 = 0;
          ScanKeyLoad1P100( ) ;
       }
@@ -692,43 +700,49 @@ namespace GeneXus.Programs {
       {
          sMode100 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(11) != 101) )
+         if ( (pr_default.getStatus(9) != 101) )
          {
             RcdFound100 = 1;
-            A29LocationId = BC001P13_A29LocationId[0];
-            A11OrganisationId = BC001P13_A11OrganisationId[0];
-            A549MemoId = BC001P13_A549MemoId[0];
-            A543MemoCategoryName = BC001P13_A543MemoCategoryName[0];
-            A550MemoTitle = BC001P13_A550MemoTitle[0];
-            A551MemoDescription = BC001P13_A551MemoDescription[0];
-            A552MemoImage = BC001P13_A552MemoImage[0];
-            n552MemoImage = BC001P13_n552MemoImage[0];
-            A553MemoDocument = BC001P13_A553MemoDocument[0];
-            n553MemoDocument = BC001P13_n553MemoDocument[0];
-            A561MemoStartDateTime = BC001P13_A561MemoStartDateTime[0];
-            n561MemoStartDateTime = BC001P13_n561MemoStartDateTime[0];
-            A562MemoEndDateTime = BC001P13_A562MemoEndDateTime[0];
-            n562MemoEndDateTime = BC001P13_n562MemoEndDateTime[0];
-            A563MemoDuration = BC001P13_A563MemoDuration[0];
-            n563MemoDuration = BC001P13_n563MemoDuration[0];
-            A564MemoRemoveDate = BC001P13_A564MemoRemoveDate[0];
-            A72ResidentSalutation = BC001P13_A72ResidentSalutation[0];
-            A64ResidentGivenName = BC001P13_A64ResidentGivenName[0];
-            A65ResidentLastName = BC001P13_A65ResidentLastName[0];
-            A71ResidentGUID = BC001P13_A71ResidentGUID[0];
-            A566MemoBgColorCode = BC001P13_A566MemoBgColorCode[0];
-            A567MemoForm = BC001P13_A567MemoForm[0];
-            A542MemoCategoryId = BC001P13_A542MemoCategoryId[0];
-            A62ResidentId = BC001P13_A62ResidentId[0];
-            A528SG_LocationId = BC001P13_A528SG_LocationId[0];
-            A529SG_OrganisationId = BC001P13_A529SG_OrganisationId[0];
+            A29LocationId = BC001P11_A29LocationId[0];
+            A11OrganisationId = BC001P11_A11OrganisationId[0];
+            A549MemoId = BC001P11_A549MemoId[0];
+            A550MemoTitle = BC001P11_A550MemoTitle[0];
+            A551MemoDescription = BC001P11_A551MemoDescription[0];
+            A552MemoImage = BC001P11_A552MemoImage[0];
+            n552MemoImage = BC001P11_n552MemoImage[0];
+            A553MemoDocument = BC001P11_A553MemoDocument[0];
+            n553MemoDocument = BC001P11_n553MemoDocument[0];
+            A561MemoStartDateTime = BC001P11_A561MemoStartDateTime[0];
+            n561MemoStartDateTime = BC001P11_n561MemoStartDateTime[0];
+            A562MemoEndDateTime = BC001P11_A562MemoEndDateTime[0];
+            n562MemoEndDateTime = BC001P11_n562MemoEndDateTime[0];
+            A563MemoDuration = BC001P11_A563MemoDuration[0];
+            n563MemoDuration = BC001P11_n563MemoDuration[0];
+            A564MemoRemoveDate = BC001P11_A564MemoRemoveDate[0];
+            n564MemoRemoveDate = BC001P11_n564MemoRemoveDate[0];
+            A72ResidentSalutation = BC001P11_A72ResidentSalutation[0];
+            A64ResidentGivenName = BC001P11_A64ResidentGivenName[0];
+            A65ResidentLastName = BC001P11_A65ResidentLastName[0];
+            A71ResidentGUID = BC001P11_A71ResidentGUID[0];
+            A566MemoBgColorCode = BC001P11_A566MemoBgColorCode[0];
+            n566MemoBgColorCode = BC001P11_n566MemoBgColorCode[0];
+            A567MemoForm = BC001P11_A567MemoForm[0];
+            A624MemoType = BC001P11_A624MemoType[0];
+            A625MemoName = BC001P11_A625MemoName[0];
+            A626MemoLeftOffset = BC001P11_A626MemoLeftOffset[0];
+            A627MemoTopOffset = BC001P11_A627MemoTopOffset[0];
+            A628MemoTitleAngle = BC001P11_A628MemoTitleAngle[0];
+            A629MemoTitleScale = BC001P11_A629MemoTitleScale[0];
+            A62ResidentId = BC001P11_A62ResidentId[0];
+            A528SG_LocationId = BC001P11_A528SG_LocationId[0];
+            A529SG_OrganisationId = BC001P11_A529SG_OrganisationId[0];
          }
          Gx_mode = sMode100;
       }
 
       protected void ScanKeyEnd1P100( )
       {
-         pr_default.close(11);
+         pr_default.close(9);
       }
 
       protected void AfterConfirm1P100( )
@@ -783,8 +797,6 @@ namespace GeneXus.Programs {
       {
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
-         A542MemoCategoryId = Guid.Empty;
-         A543MemoCategoryName = "";
          A550MemoTitle = "";
          A551MemoDescription = "";
          A552MemoImage = "";
@@ -798,18 +810,25 @@ namespace GeneXus.Programs {
          A563MemoDuration = 0;
          n563MemoDuration = false;
          A564MemoRemoveDate = DateTime.MinValue;
+         n564MemoRemoveDate = false;
          A62ResidentId = Guid.Empty;
          A72ResidentSalutation = "";
          A64ResidentGivenName = "";
          A65ResidentLastName = "";
          A71ResidentGUID = "";
          A566MemoBgColorCode = "";
+         n566MemoBgColorCode = false;
          A567MemoForm = "";
          A529SG_OrganisationId = Guid.Empty;
          A528SG_LocationId = Guid.Empty;
+         A624MemoType = "";
+         A625MemoName = "";
+         A626MemoLeftOffset = 0;
+         A627MemoTopOffset = 0;
+         A628MemoTitleAngle = 0;
+         A629MemoTitleScale = 0;
          Z550MemoTitle = "";
          Z551MemoDescription = "";
-         Z552MemoImage = "";
          Z553MemoDocument = "";
          Z561MemoStartDateTime = (DateTime)(DateTime.MinValue);
          Z562MemoEndDateTime = (DateTime)(DateTime.MinValue);
@@ -817,7 +836,12 @@ namespace GeneXus.Programs {
          Z564MemoRemoveDate = DateTime.MinValue;
          Z566MemoBgColorCode = "";
          Z567MemoForm = "";
-         Z542MemoCategoryId = Guid.Empty;
+         Z624MemoType = "";
+         Z625MemoName = "";
+         Z626MemoLeftOffset = 0;
+         Z627MemoTopOffset = 0;
+         Z628MemoTitleAngle = 0;
+         Z629MemoTitleScale = 0;
          Z62ResidentId = Guid.Empty;
          Z528SG_LocationId = Guid.Empty;
          Z529SG_OrganisationId = Guid.Empty;
@@ -856,8 +880,6 @@ namespace GeneXus.Programs {
       public void VarsToRow100( SdtTrn_Memo obj100 )
       {
          obj100.gxTpr_Mode = Gx_mode;
-         obj100.gxTpr_Memocategoryid = A542MemoCategoryId;
-         obj100.gxTpr_Memocategoryname = A543MemoCategoryName;
          obj100.gxTpr_Memotitle = A550MemoTitle;
          obj100.gxTpr_Memodescription = A551MemoDescription;
          obj100.gxTpr_Memoimage = A552MemoImage;
@@ -875,13 +897,16 @@ namespace GeneXus.Programs {
          obj100.gxTpr_Memoform = A567MemoForm;
          obj100.gxTpr_Sg_organisationid = A529SG_OrganisationId;
          obj100.gxTpr_Sg_locationid = A528SG_LocationId;
+         obj100.gxTpr_Memotype = A624MemoType;
+         obj100.gxTpr_Memoname = A625MemoName;
+         obj100.gxTpr_Memoleftoffset = A626MemoLeftOffset;
+         obj100.gxTpr_Memotopoffset = A627MemoTopOffset;
+         obj100.gxTpr_Memotitleangle = A628MemoTitleAngle;
+         obj100.gxTpr_Memotitlescale = A629MemoTitleScale;
          obj100.gxTpr_Memoid = A549MemoId;
          obj100.gxTpr_Memoid_Z = Z549MemoId;
-         obj100.gxTpr_Memocategoryid_Z = Z542MemoCategoryId;
-         obj100.gxTpr_Memocategoryname_Z = Z543MemoCategoryName;
          obj100.gxTpr_Memotitle_Z = Z550MemoTitle;
          obj100.gxTpr_Memodescription_Z = Z551MemoDescription;
-         obj100.gxTpr_Memoimage_Z = Z552MemoImage;
          obj100.gxTpr_Memodocument_Z = Z553MemoDocument;
          obj100.gxTpr_Memostartdatetime_Z = Z561MemoStartDateTime;
          obj100.gxTpr_Memoenddatetime_Z = Z562MemoEndDateTime;
@@ -896,11 +921,19 @@ namespace GeneXus.Programs {
          obj100.gxTpr_Memoform_Z = Z567MemoForm;
          obj100.gxTpr_Sg_organisationid_Z = Z529SG_OrganisationId;
          obj100.gxTpr_Sg_locationid_Z = Z528SG_LocationId;
+         obj100.gxTpr_Memotype_Z = Z624MemoType;
+         obj100.gxTpr_Memoname_Z = Z625MemoName;
+         obj100.gxTpr_Memoleftoffset_Z = Z626MemoLeftOffset;
+         obj100.gxTpr_Memotopoffset_Z = Z627MemoTopOffset;
+         obj100.gxTpr_Memotitleangle_Z = Z628MemoTitleAngle;
+         obj100.gxTpr_Memotitlescale_Z = Z629MemoTitleScale;
          obj100.gxTpr_Memoimage_N = (short)(Convert.ToInt16(n552MemoImage));
          obj100.gxTpr_Memodocument_N = (short)(Convert.ToInt16(n553MemoDocument));
          obj100.gxTpr_Memostartdatetime_N = (short)(Convert.ToInt16(n561MemoStartDateTime));
          obj100.gxTpr_Memoenddatetime_N = (short)(Convert.ToInt16(n562MemoEndDateTime));
          obj100.gxTpr_Memoduration_N = (short)(Convert.ToInt16(n563MemoDuration));
+         obj100.gxTpr_Memoremovedate_N = (short)(Convert.ToInt16(n564MemoRemoveDate));
+         obj100.gxTpr_Memobgcolorcode_N = (short)(Convert.ToInt16(n566MemoBgColorCode));
          obj100.gxTpr_Mode = Gx_mode;
          return  ;
       }
@@ -915,8 +948,6 @@ namespace GeneXus.Programs {
                                 int forceLoad )
       {
          Gx_mode = obj100.gxTpr_Mode;
-         A542MemoCategoryId = obj100.gxTpr_Memocategoryid;
-         A543MemoCategoryName = obj100.gxTpr_Memocategoryname;
          A550MemoTitle = obj100.gxTpr_Memotitle;
          A551MemoDescription = obj100.gxTpr_Memodescription;
          A552MemoImage = obj100.gxTpr_Memoimage;
@@ -930,22 +961,27 @@ namespace GeneXus.Programs {
          A563MemoDuration = obj100.gxTpr_Memoduration;
          n563MemoDuration = false;
          A564MemoRemoveDate = obj100.gxTpr_Memoremovedate;
+         n564MemoRemoveDate = false;
          A62ResidentId = obj100.gxTpr_Residentid;
          A72ResidentSalutation = obj100.gxTpr_Residentsalutation;
          A64ResidentGivenName = obj100.gxTpr_Residentgivenname;
          A65ResidentLastName = obj100.gxTpr_Residentlastname;
          A71ResidentGUID = obj100.gxTpr_Residentguid;
          A566MemoBgColorCode = obj100.gxTpr_Memobgcolorcode;
+         n566MemoBgColorCode = false;
          A567MemoForm = obj100.gxTpr_Memoform;
          A529SG_OrganisationId = obj100.gxTpr_Sg_organisationid;
          A528SG_LocationId = obj100.gxTpr_Sg_locationid;
+         A624MemoType = obj100.gxTpr_Memotype;
+         A625MemoName = obj100.gxTpr_Memoname;
+         A626MemoLeftOffset = obj100.gxTpr_Memoleftoffset;
+         A627MemoTopOffset = obj100.gxTpr_Memotopoffset;
+         A628MemoTitleAngle = obj100.gxTpr_Memotitleangle;
+         A629MemoTitleScale = obj100.gxTpr_Memotitlescale;
          A549MemoId = obj100.gxTpr_Memoid;
          Z549MemoId = obj100.gxTpr_Memoid_Z;
-         Z542MemoCategoryId = obj100.gxTpr_Memocategoryid_Z;
-         Z543MemoCategoryName = obj100.gxTpr_Memocategoryname_Z;
          Z550MemoTitle = obj100.gxTpr_Memotitle_Z;
          Z551MemoDescription = obj100.gxTpr_Memodescription_Z;
-         Z552MemoImage = obj100.gxTpr_Memoimage_Z;
          Z553MemoDocument = obj100.gxTpr_Memodocument_Z;
          Z561MemoStartDateTime = obj100.gxTpr_Memostartdatetime_Z;
          Z562MemoEndDateTime = obj100.gxTpr_Memoenddatetime_Z;
@@ -960,11 +996,19 @@ namespace GeneXus.Programs {
          Z567MemoForm = obj100.gxTpr_Memoform_Z;
          Z529SG_OrganisationId = obj100.gxTpr_Sg_organisationid_Z;
          Z528SG_LocationId = obj100.gxTpr_Sg_locationid_Z;
+         Z624MemoType = obj100.gxTpr_Memotype_Z;
+         Z625MemoName = obj100.gxTpr_Memoname_Z;
+         Z626MemoLeftOffset = obj100.gxTpr_Memoleftoffset_Z;
+         Z627MemoTopOffset = obj100.gxTpr_Memotopoffset_Z;
+         Z628MemoTitleAngle = obj100.gxTpr_Memotitleangle_Z;
+         Z629MemoTitleScale = obj100.gxTpr_Memotitlescale_Z;
          n552MemoImage = (bool)(Convert.ToBoolean(obj100.gxTpr_Memoimage_N));
          n553MemoDocument = (bool)(Convert.ToBoolean(obj100.gxTpr_Memodocument_N));
          n561MemoStartDateTime = (bool)(Convert.ToBoolean(obj100.gxTpr_Memostartdatetime_N));
          n562MemoEndDateTime = (bool)(Convert.ToBoolean(obj100.gxTpr_Memoenddatetime_N));
          n563MemoDuration = (bool)(Convert.ToBoolean(obj100.gxTpr_Memoduration_N));
+         n564MemoRemoveDate = (bool)(Convert.ToBoolean(obj100.gxTpr_Memoremovedate_N));
+         n566MemoBgColorCode = (bool)(Convert.ToBoolean(obj100.gxTpr_Memobgcolorcode_N));
          Gx_mode = obj100.gxTpr_Mode;
          return  ;
       }
@@ -987,7 +1031,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z549MemoId = A549MemoId;
          }
-         ZM1P100( -9) ;
+         ZM1P100( -8) ;
          OnLoadActions1P100( ) ;
          AddRow1P100( ) ;
          ScanKeyEnd1P100( ) ;
@@ -1016,7 +1060,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z549MemoId = A549MemoId;
          }
-         ZM1P100( -9) ;
+         ZM1P100( -8) ;
          OnLoadActions1P100( ) ;
          AddRow1P100( ) ;
          ScanKeyEnd1P100( ) ;
@@ -1391,8 +1435,7 @@ namespace GeneXus.Programs {
       protected override void CloseCursors( )
       {
          pr_default.close(1);
-         pr_default.close(9);
-         pr_default.close(10);
+         pr_default.close(8);
       }
 
       public override void initialize( )
@@ -1407,7 +1450,6 @@ namespace GeneXus.Programs {
          AV12WebSession = context.GetSession();
          AV31Pgmname = "";
          AV15TrnContextAtt = new WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext_Attribute(context);
-         AV14Insert_MemoCategoryId = Guid.Empty;
          AV26Insert_ResidentId = Guid.Empty;
          AV29Insert_SG_OrganisationId = Guid.Empty;
          AV30Insert_SG_LocationId = Guid.Empty;
@@ -1415,8 +1457,6 @@ namespace GeneXus.Programs {
          A550MemoTitle = "";
          Z551MemoDescription = "";
          A551MemoDescription = "";
-         Z552MemoImage = "";
-         A552MemoImage = "";
          Z553MemoDocument = "";
          A553MemoDocument = "";
          Z561MemoStartDateTime = (DateTime)(DateTime.MinValue);
@@ -1429,16 +1469,16 @@ namespace GeneXus.Programs {
          A566MemoBgColorCode = "";
          Z567MemoForm = "";
          A567MemoForm = "";
-         Z542MemoCategoryId = Guid.Empty;
-         A542MemoCategoryId = Guid.Empty;
+         Z624MemoType = "";
+         A624MemoType = "";
+         Z625MemoName = "";
+         A625MemoName = "";
          Z62ResidentId = Guid.Empty;
          A62ResidentId = Guid.Empty;
          Z528SG_LocationId = Guid.Empty;
          A528SG_LocationId = Guid.Empty;
          Z529SG_OrganisationId = Guid.Empty;
          A529SG_OrganisationId = Guid.Empty;
-         Z543MemoCategoryName = "";
-         A543MemoCategoryName = "";
          Z72ResidentSalutation = "";
          A72ResidentSalutation = "";
          Z64ResidentGivenName = "";
@@ -1447,45 +1487,52 @@ namespace GeneXus.Programs {
          A65ResidentLastName = "";
          Z71ResidentGUID = "";
          A71ResidentGUID = "";
+         Z552MemoImage = "";
+         A552MemoImage = "";
          Z29LocationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          Z11OrganisationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
-         BC001P6_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC001P6_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC001P6_A549MemoId = new Guid[] {Guid.Empty} ;
-         BC001P6_A543MemoCategoryName = new string[] {""} ;
-         BC001P6_A550MemoTitle = new string[] {""} ;
-         BC001P6_A551MemoDescription = new string[] {""} ;
-         BC001P6_A552MemoImage = new string[] {""} ;
-         BC001P6_n552MemoImage = new bool[] {false} ;
-         BC001P6_A553MemoDocument = new string[] {""} ;
-         BC001P6_n553MemoDocument = new bool[] {false} ;
-         BC001P6_A561MemoStartDateTime = new DateTime[] {DateTime.MinValue} ;
-         BC001P6_n561MemoStartDateTime = new bool[] {false} ;
-         BC001P6_A562MemoEndDateTime = new DateTime[] {DateTime.MinValue} ;
-         BC001P6_n562MemoEndDateTime = new bool[] {false} ;
-         BC001P6_A563MemoDuration = new short[1] ;
-         BC001P6_n563MemoDuration = new bool[] {false} ;
-         BC001P6_A564MemoRemoveDate = new DateTime[] {DateTime.MinValue} ;
-         BC001P6_A72ResidentSalutation = new string[] {""} ;
-         BC001P6_A64ResidentGivenName = new string[] {""} ;
-         BC001P6_A65ResidentLastName = new string[] {""} ;
-         BC001P6_A71ResidentGUID = new string[] {""} ;
-         BC001P6_A566MemoBgColorCode = new string[] {""} ;
-         BC001P6_A567MemoForm = new string[] {""} ;
-         BC001P6_A542MemoCategoryId = new Guid[] {Guid.Empty} ;
-         BC001P6_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC001P6_A528SG_LocationId = new Guid[] {Guid.Empty} ;
-         BC001P6_A529SG_OrganisationId = new Guid[] {Guid.Empty} ;
-         BC001P4_A543MemoCategoryName = new string[] {""} ;
          BC001P5_A29LocationId = new Guid[] {Guid.Empty} ;
          BC001P5_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC001P5_A549MemoId = new Guid[] {Guid.Empty} ;
+         BC001P5_A550MemoTitle = new string[] {""} ;
+         BC001P5_A551MemoDescription = new string[] {""} ;
+         BC001P5_A552MemoImage = new string[] {""} ;
+         BC001P5_n552MemoImage = new bool[] {false} ;
+         BC001P5_A553MemoDocument = new string[] {""} ;
+         BC001P5_n553MemoDocument = new bool[] {false} ;
+         BC001P5_A561MemoStartDateTime = new DateTime[] {DateTime.MinValue} ;
+         BC001P5_n561MemoStartDateTime = new bool[] {false} ;
+         BC001P5_A562MemoEndDateTime = new DateTime[] {DateTime.MinValue} ;
+         BC001P5_n562MemoEndDateTime = new bool[] {false} ;
+         BC001P5_A563MemoDuration = new short[1] ;
+         BC001P5_n563MemoDuration = new bool[] {false} ;
+         BC001P5_A564MemoRemoveDate = new DateTime[] {DateTime.MinValue} ;
+         BC001P5_n564MemoRemoveDate = new bool[] {false} ;
          BC001P5_A72ResidentSalutation = new string[] {""} ;
          BC001P5_A64ResidentGivenName = new string[] {""} ;
          BC001P5_A65ResidentLastName = new string[] {""} ;
          BC001P5_A71ResidentGUID = new string[] {""} ;
-         BC001P7_A549MemoId = new Guid[] {Guid.Empty} ;
+         BC001P5_A566MemoBgColorCode = new string[] {""} ;
+         BC001P5_n566MemoBgColorCode = new bool[] {false} ;
+         BC001P5_A567MemoForm = new string[] {""} ;
+         BC001P5_A624MemoType = new string[] {""} ;
+         BC001P5_A625MemoName = new string[] {""} ;
+         BC001P5_A626MemoLeftOffset = new decimal[1] ;
+         BC001P5_A627MemoTopOffset = new decimal[1] ;
+         BC001P5_A628MemoTitleAngle = new decimal[1] ;
+         BC001P5_A629MemoTitleScale = new decimal[1] ;
+         BC001P5_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC001P5_A528SG_LocationId = new Guid[] {Guid.Empty} ;
+         BC001P5_A529SG_OrganisationId = new Guid[] {Guid.Empty} ;
+         BC001P4_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC001P4_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC001P4_A72ResidentSalutation = new string[] {""} ;
+         BC001P4_A64ResidentGivenName = new string[] {""} ;
+         BC001P4_A65ResidentLastName = new string[] {""} ;
+         BC001P4_A71ResidentGUID = new string[] {""} ;
+         BC001P6_A549MemoId = new Guid[] {Guid.Empty} ;
          BC001P3_A549MemoId = new Guid[] {Guid.Empty} ;
          BC001P3_A550MemoTitle = new string[] {""} ;
          BC001P3_A551MemoDescription = new string[] {""} ;
@@ -1500,9 +1547,16 @@ namespace GeneXus.Programs {
          BC001P3_A563MemoDuration = new short[1] ;
          BC001P3_n563MemoDuration = new bool[] {false} ;
          BC001P3_A564MemoRemoveDate = new DateTime[] {DateTime.MinValue} ;
+         BC001P3_n564MemoRemoveDate = new bool[] {false} ;
          BC001P3_A566MemoBgColorCode = new string[] {""} ;
+         BC001P3_n566MemoBgColorCode = new bool[] {false} ;
          BC001P3_A567MemoForm = new string[] {""} ;
-         BC001P3_A542MemoCategoryId = new Guid[] {Guid.Empty} ;
+         BC001P3_A624MemoType = new string[] {""} ;
+         BC001P3_A625MemoName = new string[] {""} ;
+         BC001P3_A626MemoLeftOffset = new decimal[1] ;
+         BC001P3_A627MemoTopOffset = new decimal[1] ;
+         BC001P3_A628MemoTitleAngle = new decimal[1] ;
+         BC001P3_A629MemoTitleScale = new decimal[1] ;
          BC001P3_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC001P3_A528SG_LocationId = new Guid[] {Guid.Empty} ;
          BC001P3_A529SG_OrganisationId = new Guid[] {Guid.Empty} ;
@@ -1521,44 +1575,56 @@ namespace GeneXus.Programs {
          BC001P2_A563MemoDuration = new short[1] ;
          BC001P2_n563MemoDuration = new bool[] {false} ;
          BC001P2_A564MemoRemoveDate = new DateTime[] {DateTime.MinValue} ;
+         BC001P2_n564MemoRemoveDate = new bool[] {false} ;
          BC001P2_A566MemoBgColorCode = new string[] {""} ;
+         BC001P2_n566MemoBgColorCode = new bool[] {false} ;
          BC001P2_A567MemoForm = new string[] {""} ;
-         BC001P2_A542MemoCategoryId = new Guid[] {Guid.Empty} ;
+         BC001P2_A624MemoType = new string[] {""} ;
+         BC001P2_A625MemoName = new string[] {""} ;
+         BC001P2_A626MemoLeftOffset = new decimal[1] ;
+         BC001P2_A627MemoTopOffset = new decimal[1] ;
+         BC001P2_A628MemoTitleAngle = new decimal[1] ;
+         BC001P2_A629MemoTitleScale = new decimal[1] ;
          BC001P2_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC001P2_A528SG_LocationId = new Guid[] {Guid.Empty} ;
          BC001P2_A529SG_OrganisationId = new Guid[] {Guid.Empty} ;
-         BC001P11_A543MemoCategoryName = new string[] {""} ;
-         BC001P12_A72ResidentSalutation = new string[] {""} ;
-         BC001P12_A64ResidentGivenName = new string[] {""} ;
-         BC001P12_A65ResidentLastName = new string[] {""} ;
-         BC001P12_A71ResidentGUID = new string[] {""} ;
-         BC001P13_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC001P13_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC001P13_A549MemoId = new Guid[] {Guid.Empty} ;
-         BC001P13_A543MemoCategoryName = new string[] {""} ;
-         BC001P13_A550MemoTitle = new string[] {""} ;
-         BC001P13_A551MemoDescription = new string[] {""} ;
-         BC001P13_A552MemoImage = new string[] {""} ;
-         BC001P13_n552MemoImage = new bool[] {false} ;
-         BC001P13_A553MemoDocument = new string[] {""} ;
-         BC001P13_n553MemoDocument = new bool[] {false} ;
-         BC001P13_A561MemoStartDateTime = new DateTime[] {DateTime.MinValue} ;
-         BC001P13_n561MemoStartDateTime = new bool[] {false} ;
-         BC001P13_A562MemoEndDateTime = new DateTime[] {DateTime.MinValue} ;
-         BC001P13_n562MemoEndDateTime = new bool[] {false} ;
-         BC001P13_A563MemoDuration = new short[1] ;
-         BC001P13_n563MemoDuration = new bool[] {false} ;
-         BC001P13_A564MemoRemoveDate = new DateTime[] {DateTime.MinValue} ;
-         BC001P13_A72ResidentSalutation = new string[] {""} ;
-         BC001P13_A64ResidentGivenName = new string[] {""} ;
-         BC001P13_A65ResidentLastName = new string[] {""} ;
-         BC001P13_A71ResidentGUID = new string[] {""} ;
-         BC001P13_A566MemoBgColorCode = new string[] {""} ;
-         BC001P13_A567MemoForm = new string[] {""} ;
-         BC001P13_A542MemoCategoryId = new Guid[] {Guid.Empty} ;
-         BC001P13_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC001P13_A528SG_LocationId = new Guid[] {Guid.Empty} ;
-         BC001P13_A529SG_OrganisationId = new Guid[] {Guid.Empty} ;
+         BC001P10_A72ResidentSalutation = new string[] {""} ;
+         BC001P10_A64ResidentGivenName = new string[] {""} ;
+         BC001P10_A65ResidentLastName = new string[] {""} ;
+         BC001P10_A71ResidentGUID = new string[] {""} ;
+         BC001P11_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC001P11_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC001P11_A549MemoId = new Guid[] {Guid.Empty} ;
+         BC001P11_A550MemoTitle = new string[] {""} ;
+         BC001P11_A551MemoDescription = new string[] {""} ;
+         BC001P11_A552MemoImage = new string[] {""} ;
+         BC001P11_n552MemoImage = new bool[] {false} ;
+         BC001P11_A553MemoDocument = new string[] {""} ;
+         BC001P11_n553MemoDocument = new bool[] {false} ;
+         BC001P11_A561MemoStartDateTime = new DateTime[] {DateTime.MinValue} ;
+         BC001P11_n561MemoStartDateTime = new bool[] {false} ;
+         BC001P11_A562MemoEndDateTime = new DateTime[] {DateTime.MinValue} ;
+         BC001P11_n562MemoEndDateTime = new bool[] {false} ;
+         BC001P11_A563MemoDuration = new short[1] ;
+         BC001P11_n563MemoDuration = new bool[] {false} ;
+         BC001P11_A564MemoRemoveDate = new DateTime[] {DateTime.MinValue} ;
+         BC001P11_n564MemoRemoveDate = new bool[] {false} ;
+         BC001P11_A72ResidentSalutation = new string[] {""} ;
+         BC001P11_A64ResidentGivenName = new string[] {""} ;
+         BC001P11_A65ResidentLastName = new string[] {""} ;
+         BC001P11_A71ResidentGUID = new string[] {""} ;
+         BC001P11_A566MemoBgColorCode = new string[] {""} ;
+         BC001P11_n566MemoBgColorCode = new bool[] {false} ;
+         BC001P11_A567MemoForm = new string[] {""} ;
+         BC001P11_A624MemoType = new string[] {""} ;
+         BC001P11_A625MemoName = new string[] {""} ;
+         BC001P11_A626MemoLeftOffset = new decimal[1] ;
+         BC001P11_A627MemoTopOffset = new decimal[1] ;
+         BC001P11_A628MemoTitleAngle = new decimal[1] ;
+         BC001P11_A629MemoTitleScale = new decimal[1] ;
+         BC001P11_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC001P11_A528SG_LocationId = new Guid[] {Guid.Empty} ;
+         BC001P11_A529SG_OrganisationId = new Guid[] {Guid.Empty} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_memo_bc__datastore1(),
@@ -1573,42 +1639,40 @@ namespace GeneXus.Programs {
             new Object[][] {
                 new Object[] {
                BC001P2_A549MemoId, BC001P2_A550MemoTitle, BC001P2_A551MemoDescription, BC001P2_A552MemoImage, BC001P2_n552MemoImage, BC001P2_A553MemoDocument, BC001P2_n553MemoDocument, BC001P2_A561MemoStartDateTime, BC001P2_n561MemoStartDateTime, BC001P2_A562MemoEndDateTime,
-               BC001P2_n562MemoEndDateTime, BC001P2_A563MemoDuration, BC001P2_n563MemoDuration, BC001P2_A564MemoRemoveDate, BC001P2_A566MemoBgColorCode, BC001P2_A567MemoForm, BC001P2_A542MemoCategoryId, BC001P2_A62ResidentId, BC001P2_A528SG_LocationId, BC001P2_A529SG_OrganisationId
+               BC001P2_n562MemoEndDateTime, BC001P2_A563MemoDuration, BC001P2_n563MemoDuration, BC001P2_A564MemoRemoveDate, BC001P2_n564MemoRemoveDate, BC001P2_A566MemoBgColorCode, BC001P2_n566MemoBgColorCode, BC001P2_A567MemoForm, BC001P2_A624MemoType, BC001P2_A625MemoName,
+               BC001P2_A626MemoLeftOffset, BC001P2_A627MemoTopOffset, BC001P2_A628MemoTitleAngle, BC001P2_A629MemoTitleScale, BC001P2_A62ResidentId, BC001P2_A528SG_LocationId, BC001P2_A529SG_OrganisationId
                }
                , new Object[] {
                BC001P3_A549MemoId, BC001P3_A550MemoTitle, BC001P3_A551MemoDescription, BC001P3_A552MemoImage, BC001P3_n552MemoImage, BC001P3_A553MemoDocument, BC001P3_n553MemoDocument, BC001P3_A561MemoStartDateTime, BC001P3_n561MemoStartDateTime, BC001P3_A562MemoEndDateTime,
-               BC001P3_n562MemoEndDateTime, BC001P3_A563MemoDuration, BC001P3_n563MemoDuration, BC001P3_A564MemoRemoveDate, BC001P3_A566MemoBgColorCode, BC001P3_A567MemoForm, BC001P3_A542MemoCategoryId, BC001P3_A62ResidentId, BC001P3_A528SG_LocationId, BC001P3_A529SG_OrganisationId
+               BC001P3_n562MemoEndDateTime, BC001P3_A563MemoDuration, BC001P3_n563MemoDuration, BC001P3_A564MemoRemoveDate, BC001P3_n564MemoRemoveDate, BC001P3_A566MemoBgColorCode, BC001P3_n566MemoBgColorCode, BC001P3_A567MemoForm, BC001P3_A624MemoType, BC001P3_A625MemoName,
+               BC001P3_A626MemoLeftOffset, BC001P3_A627MemoTopOffset, BC001P3_A628MemoTitleAngle, BC001P3_A629MemoTitleScale, BC001P3_A62ResidentId, BC001P3_A528SG_LocationId, BC001P3_A529SG_OrganisationId
                }
                , new Object[] {
-               BC001P4_A543MemoCategoryName
+               BC001P4_A29LocationId, BC001P4_A11OrganisationId, BC001P4_A72ResidentSalutation, BC001P4_A64ResidentGivenName, BC001P4_A65ResidentLastName, BC001P4_A71ResidentGUID
                }
                , new Object[] {
-               BC001P5_A29LocationId, BC001P5_A11OrganisationId, BC001P5_A72ResidentSalutation, BC001P5_A64ResidentGivenName, BC001P5_A65ResidentLastName, BC001P5_A71ResidentGUID
+               BC001P5_A29LocationId, BC001P5_A11OrganisationId, BC001P5_A549MemoId, BC001P5_A550MemoTitle, BC001P5_A551MemoDescription, BC001P5_A552MemoImage, BC001P5_n552MemoImage, BC001P5_A553MemoDocument, BC001P5_n553MemoDocument, BC001P5_A561MemoStartDateTime,
+               BC001P5_n561MemoStartDateTime, BC001P5_A562MemoEndDateTime, BC001P5_n562MemoEndDateTime, BC001P5_A563MemoDuration, BC001P5_n563MemoDuration, BC001P5_A564MemoRemoveDate, BC001P5_n564MemoRemoveDate, BC001P5_A72ResidentSalutation, BC001P5_A64ResidentGivenName, BC001P5_A65ResidentLastName,
+               BC001P5_A71ResidentGUID, BC001P5_A566MemoBgColorCode, BC001P5_n566MemoBgColorCode, BC001P5_A567MemoForm, BC001P5_A624MemoType, BC001P5_A625MemoName, BC001P5_A626MemoLeftOffset, BC001P5_A627MemoTopOffset, BC001P5_A628MemoTitleAngle, BC001P5_A629MemoTitleScale,
+               BC001P5_A62ResidentId, BC001P5_A528SG_LocationId, BC001P5_A529SG_OrganisationId
                }
                , new Object[] {
-               BC001P6_A29LocationId, BC001P6_A11OrganisationId, BC001P6_A549MemoId, BC001P6_A543MemoCategoryName, BC001P6_A550MemoTitle, BC001P6_A551MemoDescription, BC001P6_A552MemoImage, BC001P6_n552MemoImage, BC001P6_A553MemoDocument, BC001P6_n553MemoDocument,
-               BC001P6_A561MemoStartDateTime, BC001P6_n561MemoStartDateTime, BC001P6_A562MemoEndDateTime, BC001P6_n562MemoEndDateTime, BC001P6_A563MemoDuration, BC001P6_n563MemoDuration, BC001P6_A564MemoRemoveDate, BC001P6_A72ResidentSalutation, BC001P6_A64ResidentGivenName, BC001P6_A65ResidentLastName,
-               BC001P6_A71ResidentGUID, BC001P6_A566MemoBgColorCode, BC001P6_A567MemoForm, BC001P6_A542MemoCategoryId, BC001P6_A62ResidentId, BC001P6_A528SG_LocationId, BC001P6_A529SG_OrganisationId
-               }
-               , new Object[] {
-               BC001P7_A549MemoId
-               }
-               , new Object[] {
+               BC001P6_A549MemoId
                }
                , new Object[] {
                }
                , new Object[] {
                }
                , new Object[] {
-               BC001P11_A543MemoCategoryName
                }
                , new Object[] {
-               BC001P12_A72ResidentSalutation, BC001P12_A64ResidentGivenName, BC001P12_A65ResidentLastName, BC001P12_A71ResidentGUID
+               BC001P10_A72ResidentSalutation, BC001P10_A64ResidentGivenName, BC001P10_A65ResidentLastName, BC001P10_A71ResidentGUID
                }
                , new Object[] {
-               BC001P13_A29LocationId, BC001P13_A11OrganisationId, BC001P13_A549MemoId, BC001P13_A543MemoCategoryName, BC001P13_A550MemoTitle, BC001P13_A551MemoDescription, BC001P13_A552MemoImage, BC001P13_n552MemoImage, BC001P13_A553MemoDocument, BC001P13_n553MemoDocument,
-               BC001P13_A561MemoStartDateTime, BC001P13_n561MemoStartDateTime, BC001P13_A562MemoEndDateTime, BC001P13_n562MemoEndDateTime, BC001P13_A563MemoDuration, BC001P13_n563MemoDuration, BC001P13_A564MemoRemoveDate, BC001P13_A72ResidentSalutation, BC001P13_A64ResidentGivenName, BC001P13_A65ResidentLastName,
-               BC001P13_A71ResidentGUID, BC001P13_A566MemoBgColorCode, BC001P13_A567MemoForm, BC001P13_A542MemoCategoryId, BC001P13_A62ResidentId, BC001P13_A528SG_LocationId, BC001P13_A529SG_OrganisationId
+               BC001P11_A29LocationId, BC001P11_A11OrganisationId, BC001P11_A549MemoId, BC001P11_A550MemoTitle, BC001P11_A551MemoDescription, BC001P11_A552MemoImage, BC001P11_n552MemoImage, BC001P11_A553MemoDocument, BC001P11_n553MemoDocument, BC001P11_A561MemoStartDateTime,
+               BC001P11_n561MemoStartDateTime, BC001P11_A562MemoEndDateTime, BC001P11_n562MemoEndDateTime, BC001P11_A563MemoDuration, BC001P11_n563MemoDuration, BC001P11_A564MemoRemoveDate, BC001P11_n564MemoRemoveDate, BC001P11_A72ResidentSalutation, BC001P11_A64ResidentGivenName, BC001P11_A65ResidentLastName,
+               BC001P11_A71ResidentGUID, BC001P11_A566MemoBgColorCode, BC001P11_n566MemoBgColorCode, BC001P11_A567MemoForm, BC001P11_A624MemoType, BC001P11_A625MemoName, BC001P11_A626MemoLeftOffset, BC001P11_A627MemoTopOffset, BC001P11_A628MemoTitleAngle, BC001P11_A629MemoTitleScale,
+               BC001P11_A62ResidentId, BC001P11_A528SG_LocationId, BC001P11_A529SG_OrganisationId
                }
             }
          );
@@ -1629,6 +1693,14 @@ namespace GeneXus.Programs {
       private short RcdFound100 ;
       private int trnEnded ;
       private int AV32GXV1 ;
+      private decimal Z626MemoLeftOffset ;
+      private decimal A626MemoLeftOffset ;
+      private decimal Z627MemoTopOffset ;
+      private decimal A627MemoTopOffset ;
+      private decimal Z628MemoTitleAngle ;
+      private decimal A628MemoTitleAngle ;
+      private decimal Z629MemoTitleScale ;
+      private decimal A629MemoTitleScale ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
@@ -1650,19 +1722,23 @@ namespace GeneXus.Programs {
       private bool n561MemoStartDateTime ;
       private bool n562MemoEndDateTime ;
       private bool n563MemoDuration ;
+      private bool n564MemoRemoveDate ;
+      private bool n566MemoBgColorCode ;
       private bool Gx_longc ;
+      private string Z552MemoImage ;
+      private string A552MemoImage ;
       private string Z550MemoTitle ;
       private string A550MemoTitle ;
       private string Z551MemoDescription ;
       private string A551MemoDescription ;
-      private string Z552MemoImage ;
-      private string A552MemoImage ;
       private string Z553MemoDocument ;
       private string A553MemoDocument ;
       private string Z566MemoBgColorCode ;
       private string A566MemoBgColorCode ;
-      private string Z543MemoCategoryName ;
-      private string A543MemoCategoryName ;
+      private string Z624MemoType ;
+      private string A624MemoType ;
+      private string Z625MemoName ;
+      private string A625MemoName ;
       private string Z64ResidentGivenName ;
       private string A64ResidentGivenName ;
       private string Z65ResidentLastName ;
@@ -1671,12 +1747,9 @@ namespace GeneXus.Programs {
       private string A71ResidentGUID ;
       private Guid Z549MemoId ;
       private Guid A549MemoId ;
-      private Guid AV14Insert_MemoCategoryId ;
       private Guid AV26Insert_ResidentId ;
       private Guid AV29Insert_SG_OrganisationId ;
       private Guid AV30Insert_SG_LocationId ;
-      private Guid Z542MemoCategoryId ;
-      private Guid A542MemoCategoryId ;
       private Guid Z62ResidentId ;
       private Guid A62ResidentId ;
       private Guid Z528SG_LocationId ;
@@ -1695,41 +1768,46 @@ namespace GeneXus.Programs {
       private WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext AV11TrnContext ;
       private WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext_Attribute AV15TrnContextAtt ;
       private IDataStoreProvider pr_default ;
-      private Guid[] BC001P6_A29LocationId ;
-      private Guid[] BC001P6_A11OrganisationId ;
-      private Guid[] BC001P6_A549MemoId ;
-      private string[] BC001P6_A543MemoCategoryName ;
-      private string[] BC001P6_A550MemoTitle ;
-      private string[] BC001P6_A551MemoDescription ;
-      private string[] BC001P6_A552MemoImage ;
-      private bool[] BC001P6_n552MemoImage ;
-      private string[] BC001P6_A553MemoDocument ;
-      private bool[] BC001P6_n553MemoDocument ;
-      private DateTime[] BC001P6_A561MemoStartDateTime ;
-      private bool[] BC001P6_n561MemoStartDateTime ;
-      private DateTime[] BC001P6_A562MemoEndDateTime ;
-      private bool[] BC001P6_n562MemoEndDateTime ;
-      private short[] BC001P6_A563MemoDuration ;
-      private bool[] BC001P6_n563MemoDuration ;
-      private DateTime[] BC001P6_A564MemoRemoveDate ;
-      private string[] BC001P6_A72ResidentSalutation ;
-      private string[] BC001P6_A64ResidentGivenName ;
-      private string[] BC001P6_A65ResidentLastName ;
-      private string[] BC001P6_A71ResidentGUID ;
-      private string[] BC001P6_A566MemoBgColorCode ;
-      private string[] BC001P6_A567MemoForm ;
-      private Guid[] BC001P6_A542MemoCategoryId ;
-      private Guid[] BC001P6_A62ResidentId ;
-      private Guid[] BC001P6_A528SG_LocationId ;
-      private Guid[] BC001P6_A529SG_OrganisationId ;
-      private string[] BC001P4_A543MemoCategoryName ;
       private Guid[] BC001P5_A29LocationId ;
       private Guid[] BC001P5_A11OrganisationId ;
+      private Guid[] BC001P5_A549MemoId ;
+      private string[] BC001P5_A550MemoTitle ;
+      private string[] BC001P5_A551MemoDescription ;
+      private string[] BC001P5_A552MemoImage ;
+      private bool[] BC001P5_n552MemoImage ;
+      private string[] BC001P5_A553MemoDocument ;
+      private bool[] BC001P5_n553MemoDocument ;
+      private DateTime[] BC001P5_A561MemoStartDateTime ;
+      private bool[] BC001P5_n561MemoStartDateTime ;
+      private DateTime[] BC001P5_A562MemoEndDateTime ;
+      private bool[] BC001P5_n562MemoEndDateTime ;
+      private short[] BC001P5_A563MemoDuration ;
+      private bool[] BC001P5_n563MemoDuration ;
+      private DateTime[] BC001P5_A564MemoRemoveDate ;
+      private bool[] BC001P5_n564MemoRemoveDate ;
       private string[] BC001P5_A72ResidentSalutation ;
       private string[] BC001P5_A64ResidentGivenName ;
       private string[] BC001P5_A65ResidentLastName ;
       private string[] BC001P5_A71ResidentGUID ;
-      private Guid[] BC001P7_A549MemoId ;
+      private string[] BC001P5_A566MemoBgColorCode ;
+      private bool[] BC001P5_n566MemoBgColorCode ;
+      private string[] BC001P5_A567MemoForm ;
+      private string[] BC001P5_A624MemoType ;
+      private string[] BC001P5_A625MemoName ;
+      private decimal[] BC001P5_A626MemoLeftOffset ;
+      private decimal[] BC001P5_A627MemoTopOffset ;
+      private decimal[] BC001P5_A628MemoTitleAngle ;
+      private decimal[] BC001P5_A629MemoTitleScale ;
+      private Guid[] BC001P5_A62ResidentId ;
+      private Guid[] BC001P5_A528SG_LocationId ;
+      private Guid[] BC001P5_A529SG_OrganisationId ;
+      private Guid[] BC001P4_A29LocationId ;
+      private Guid[] BC001P4_A11OrganisationId ;
+      private string[] BC001P4_A72ResidentSalutation ;
+      private string[] BC001P4_A64ResidentGivenName ;
+      private string[] BC001P4_A65ResidentLastName ;
+      private string[] BC001P4_A71ResidentGUID ;
+      private Guid[] BC001P6_A549MemoId ;
       private Guid[] BC001P3_A549MemoId ;
       private string[] BC001P3_A550MemoTitle ;
       private string[] BC001P3_A551MemoDescription ;
@@ -1744,9 +1822,16 @@ namespace GeneXus.Programs {
       private short[] BC001P3_A563MemoDuration ;
       private bool[] BC001P3_n563MemoDuration ;
       private DateTime[] BC001P3_A564MemoRemoveDate ;
+      private bool[] BC001P3_n564MemoRemoveDate ;
       private string[] BC001P3_A566MemoBgColorCode ;
+      private bool[] BC001P3_n566MemoBgColorCode ;
       private string[] BC001P3_A567MemoForm ;
-      private Guid[] BC001P3_A542MemoCategoryId ;
+      private string[] BC001P3_A624MemoType ;
+      private string[] BC001P3_A625MemoName ;
+      private decimal[] BC001P3_A626MemoLeftOffset ;
+      private decimal[] BC001P3_A627MemoTopOffset ;
+      private decimal[] BC001P3_A628MemoTitleAngle ;
+      private decimal[] BC001P3_A629MemoTitleScale ;
       private Guid[] BC001P3_A62ResidentId ;
       private Guid[] BC001P3_A528SG_LocationId ;
       private Guid[] BC001P3_A529SG_OrganisationId ;
@@ -1764,44 +1849,56 @@ namespace GeneXus.Programs {
       private short[] BC001P2_A563MemoDuration ;
       private bool[] BC001P2_n563MemoDuration ;
       private DateTime[] BC001P2_A564MemoRemoveDate ;
+      private bool[] BC001P2_n564MemoRemoveDate ;
       private string[] BC001P2_A566MemoBgColorCode ;
+      private bool[] BC001P2_n566MemoBgColorCode ;
       private string[] BC001P2_A567MemoForm ;
-      private Guid[] BC001P2_A542MemoCategoryId ;
+      private string[] BC001P2_A624MemoType ;
+      private string[] BC001P2_A625MemoName ;
+      private decimal[] BC001P2_A626MemoLeftOffset ;
+      private decimal[] BC001P2_A627MemoTopOffset ;
+      private decimal[] BC001P2_A628MemoTitleAngle ;
+      private decimal[] BC001P2_A629MemoTitleScale ;
       private Guid[] BC001P2_A62ResidentId ;
       private Guid[] BC001P2_A528SG_LocationId ;
       private Guid[] BC001P2_A529SG_OrganisationId ;
-      private string[] BC001P11_A543MemoCategoryName ;
-      private string[] BC001P12_A72ResidentSalutation ;
-      private string[] BC001P12_A64ResidentGivenName ;
-      private string[] BC001P12_A65ResidentLastName ;
-      private string[] BC001P12_A71ResidentGUID ;
-      private Guid[] BC001P13_A29LocationId ;
-      private Guid[] BC001P13_A11OrganisationId ;
-      private Guid[] BC001P13_A549MemoId ;
-      private string[] BC001P13_A543MemoCategoryName ;
-      private string[] BC001P13_A550MemoTitle ;
-      private string[] BC001P13_A551MemoDescription ;
-      private string[] BC001P13_A552MemoImage ;
-      private bool[] BC001P13_n552MemoImage ;
-      private string[] BC001P13_A553MemoDocument ;
-      private bool[] BC001P13_n553MemoDocument ;
-      private DateTime[] BC001P13_A561MemoStartDateTime ;
-      private bool[] BC001P13_n561MemoStartDateTime ;
-      private DateTime[] BC001P13_A562MemoEndDateTime ;
-      private bool[] BC001P13_n562MemoEndDateTime ;
-      private short[] BC001P13_A563MemoDuration ;
-      private bool[] BC001P13_n563MemoDuration ;
-      private DateTime[] BC001P13_A564MemoRemoveDate ;
-      private string[] BC001P13_A72ResidentSalutation ;
-      private string[] BC001P13_A64ResidentGivenName ;
-      private string[] BC001P13_A65ResidentLastName ;
-      private string[] BC001P13_A71ResidentGUID ;
-      private string[] BC001P13_A566MemoBgColorCode ;
-      private string[] BC001P13_A567MemoForm ;
-      private Guid[] BC001P13_A542MemoCategoryId ;
-      private Guid[] BC001P13_A62ResidentId ;
-      private Guid[] BC001P13_A528SG_LocationId ;
-      private Guid[] BC001P13_A529SG_OrganisationId ;
+      private string[] BC001P10_A72ResidentSalutation ;
+      private string[] BC001P10_A64ResidentGivenName ;
+      private string[] BC001P10_A65ResidentLastName ;
+      private string[] BC001P10_A71ResidentGUID ;
+      private Guid[] BC001P11_A29LocationId ;
+      private Guid[] BC001P11_A11OrganisationId ;
+      private Guid[] BC001P11_A549MemoId ;
+      private string[] BC001P11_A550MemoTitle ;
+      private string[] BC001P11_A551MemoDescription ;
+      private string[] BC001P11_A552MemoImage ;
+      private bool[] BC001P11_n552MemoImage ;
+      private string[] BC001P11_A553MemoDocument ;
+      private bool[] BC001P11_n553MemoDocument ;
+      private DateTime[] BC001P11_A561MemoStartDateTime ;
+      private bool[] BC001P11_n561MemoStartDateTime ;
+      private DateTime[] BC001P11_A562MemoEndDateTime ;
+      private bool[] BC001P11_n562MemoEndDateTime ;
+      private short[] BC001P11_A563MemoDuration ;
+      private bool[] BC001P11_n563MemoDuration ;
+      private DateTime[] BC001P11_A564MemoRemoveDate ;
+      private bool[] BC001P11_n564MemoRemoveDate ;
+      private string[] BC001P11_A72ResidentSalutation ;
+      private string[] BC001P11_A64ResidentGivenName ;
+      private string[] BC001P11_A65ResidentLastName ;
+      private string[] BC001P11_A71ResidentGUID ;
+      private string[] BC001P11_A566MemoBgColorCode ;
+      private bool[] BC001P11_n566MemoBgColorCode ;
+      private string[] BC001P11_A567MemoForm ;
+      private string[] BC001P11_A624MemoType ;
+      private string[] BC001P11_A625MemoName ;
+      private decimal[] BC001P11_A626MemoLeftOffset ;
+      private decimal[] BC001P11_A627MemoTopOffset ;
+      private decimal[] BC001P11_A628MemoTitleAngle ;
+      private decimal[] BC001P11_A629MemoTitleScale ;
+      private Guid[] BC001P11_A62ResidentId ;
+      private Guid[] BC001P11_A528SG_LocationId ;
+      private Guid[] BC001P11_A529SG_OrganisationId ;
       private SdtTrn_Memo bcTrn_Memo ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1884,13 +1981,11 @@ public class trn_memo_bc__default : DataStoreHelperBase, IDataStoreHelper
       ,new ForEachCursor(def[2])
       ,new ForEachCursor(def[3])
       ,new ForEachCursor(def[4])
-      ,new ForEachCursor(def[5])
+      ,new UpdateCursor(def[5])
       ,new UpdateCursor(def[6])
       ,new UpdateCursor(def[7])
-      ,new UpdateCursor(def[8])
+      ,new ForEachCursor(def[8])
       ,new ForEachCursor(def[9])
-      ,new ForEachCursor(def[10])
-      ,new ForEachCursor(def[11])
     };
  }
 
@@ -1909,13 +2004,13 @@ public class trn_memo_bc__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmBC001P4;
        prmBC001P4 = new Object[] {
-       new ParDef("MemoCategoryId",GXType.UniqueIdentifier,36,0)
-       };
-       Object[] prmBC001P5;
-       prmBC001P5 = new Object[] {
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("SG_LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("SG_OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC001P5;
+       prmBC001P5 = new Object[] {
+       new ParDef("MemoId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmBC001P6;
        prmBC001P6 = new Object[] {
@@ -1923,75 +2018,75 @@ public class trn_memo_bc__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmBC001P7;
        prmBC001P7 = new Object[] {
-       new ParDef("MemoId",GXType.UniqueIdentifier,36,0)
-       };
-       Object[] prmBC001P8;
-       prmBC001P8 = new Object[] {
        new ParDef("MemoId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("MemoTitle",GXType.VarChar,100,0) ,
        new ParDef("MemoDescription",GXType.VarChar,200,0) ,
-       new ParDef("MemoImage",GXType.VarChar,200,0){Nullable=true} ,
+       new ParDef("MemoImage",GXType.LongVarChar,2097152,0){Nullable=true} ,
        new ParDef("MemoDocument",GXType.VarChar,200,0){Nullable=true} ,
        new ParDef("MemoStartDateTime",GXType.DateTime,8,5){Nullable=true} ,
        new ParDef("MemoEndDateTime",GXType.DateTime,8,5){Nullable=true} ,
        new ParDef("MemoDuration",GXType.Int16,4,0){Nullable=true} ,
-       new ParDef("MemoRemoveDate",GXType.Date,8,0) ,
-       new ParDef("MemoBgColorCode",GXType.VarChar,100,0) ,
+       new ParDef("MemoRemoveDate",GXType.Date,8,0){Nullable=true} ,
+       new ParDef("MemoBgColorCode",GXType.VarChar,100,0){Nullable=true} ,
        new ParDef("MemoForm",GXType.Char,20,0) ,
-       new ParDef("MemoCategoryId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("MemoType",GXType.VarChar,100,0) ,
+       new ParDef("MemoName",GXType.VarChar,100,0) ,
+       new ParDef("MemoLeftOffset",GXType.Number,10,4) ,
+       new ParDef("MemoTopOffset",GXType.Number,10,4) ,
+       new ParDef("MemoTitleAngle",GXType.Number,10,4) ,
+       new ParDef("MemoTitleScale",GXType.Number,10,4) ,
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("SG_LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("SG_OrganisationId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmBC001P9;
-       prmBC001P9 = new Object[] {
+       Object[] prmBC001P8;
+       prmBC001P8 = new Object[] {
        new ParDef("MemoTitle",GXType.VarChar,100,0) ,
        new ParDef("MemoDescription",GXType.VarChar,200,0) ,
-       new ParDef("MemoImage",GXType.VarChar,200,0){Nullable=true} ,
+       new ParDef("MemoImage",GXType.LongVarChar,2097152,0){Nullable=true} ,
        new ParDef("MemoDocument",GXType.VarChar,200,0){Nullable=true} ,
        new ParDef("MemoStartDateTime",GXType.DateTime,8,5){Nullable=true} ,
        new ParDef("MemoEndDateTime",GXType.DateTime,8,5){Nullable=true} ,
        new ParDef("MemoDuration",GXType.Int16,4,0){Nullable=true} ,
-       new ParDef("MemoRemoveDate",GXType.Date,8,0) ,
-       new ParDef("MemoBgColorCode",GXType.VarChar,100,0) ,
+       new ParDef("MemoRemoveDate",GXType.Date,8,0){Nullable=true} ,
+       new ParDef("MemoBgColorCode",GXType.VarChar,100,0){Nullable=true} ,
        new ParDef("MemoForm",GXType.Char,20,0) ,
-       new ParDef("MemoCategoryId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("MemoType",GXType.VarChar,100,0) ,
+       new ParDef("MemoName",GXType.VarChar,100,0) ,
+       new ParDef("MemoLeftOffset",GXType.Number,10,4) ,
+       new ParDef("MemoTopOffset",GXType.Number,10,4) ,
+       new ParDef("MemoTitleAngle",GXType.Number,10,4) ,
+       new ParDef("MemoTitleScale",GXType.Number,10,4) ,
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("SG_LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("SG_OrganisationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("MemoId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmBC001P10;
-       prmBC001P10 = new Object[] {
+       Object[] prmBC001P9;
+       prmBC001P9 = new Object[] {
        new ParDef("MemoId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmBC001P11;
-       prmBC001P11 = new Object[] {
-       new ParDef("MemoCategoryId",GXType.UniqueIdentifier,36,0)
-       };
-       Object[] prmBC001P12;
-       prmBC001P12 = new Object[] {
+       Object[] prmBC001P10;
+       prmBC001P10 = new Object[] {
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("SG_LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("SG_OrganisationId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmBC001P13;
-       prmBC001P13 = new Object[] {
+       Object[] prmBC001P11;
+       prmBC001P11 = new Object[] {
        new ParDef("MemoId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("BC001P2", "SELECT MemoId, MemoTitle, MemoDescription, MemoImage, MemoDocument, MemoStartDateTime, MemoEndDateTime, MemoDuration, MemoRemoveDate, MemoBgColorCode, MemoForm, MemoCategoryId, ResidentId, SG_LocationId, SG_OrganisationId FROM Trn_Memo WHERE MemoId = :MemoId  FOR UPDATE OF Trn_Memo",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P2,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001P3", "SELECT MemoId, MemoTitle, MemoDescription, MemoImage, MemoDocument, MemoStartDateTime, MemoEndDateTime, MemoDuration, MemoRemoveDate, MemoBgColorCode, MemoForm, MemoCategoryId, ResidentId, SG_LocationId, SG_OrganisationId FROM Trn_Memo WHERE MemoId = :MemoId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P3,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001P4", "SELECT MemoCategoryName FROM Trn_MemoCategory WHERE MemoCategoryId = :MemoCategoryId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P4,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001P5", "SELECT LocationId, OrganisationId, ResidentSalutation, ResidentGivenName, ResidentLastName, ResidentGUID FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :SG_LocationId AND OrganisationId = :SG_OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P5,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001P6", "SELECT T3.LocationId, T3.OrganisationId, TM1.MemoId, T2.MemoCategoryName, TM1.MemoTitle, TM1.MemoDescription, TM1.MemoImage, TM1.MemoDocument, TM1.MemoStartDateTime, TM1.MemoEndDateTime, TM1.MemoDuration, TM1.MemoRemoveDate, T3.ResidentSalutation, T3.ResidentGivenName, T3.ResidentLastName, T3.ResidentGUID, TM1.MemoBgColorCode, TM1.MemoForm, TM1.MemoCategoryId, TM1.ResidentId, TM1.SG_LocationId, TM1.SG_OrganisationId FROM ((Trn_Memo TM1 INNER JOIN Trn_MemoCategory T2 ON T2.MemoCategoryId = TM1.MemoCategoryId) INNER JOIN Trn_Resident T3 ON T3.ResidentId = TM1.ResidentId AND T3.LocationId = TM1.SG_LocationId AND T3.OrganisationId = TM1.SG_OrganisationId) WHERE TM1.MemoId = :MemoId ORDER BY TM1.MemoId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P6,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001P7", "SELECT MemoId FROM Trn_Memo WHERE MemoId = :MemoId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P7,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001P8", "SAVEPOINT gxupdate;INSERT INTO Trn_Memo(MemoId, MemoTitle, MemoDescription, MemoImage, MemoDocument, MemoStartDateTime, MemoEndDateTime, MemoDuration, MemoRemoveDate, MemoBgColorCode, MemoForm, MemoCategoryId, ResidentId, SG_LocationId, SG_OrganisationId) VALUES(:MemoId, :MemoTitle, :MemoDescription, :MemoImage, :MemoDocument, :MemoStartDateTime, :MemoEndDateTime, :MemoDuration, :MemoRemoveDate, :MemoBgColorCode, :MemoForm, :MemoCategoryId, :ResidentId, :SG_LocationId, :SG_OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001P8)
-          ,new CursorDef("BC001P9", "SAVEPOINT gxupdate;UPDATE Trn_Memo SET MemoTitle=:MemoTitle, MemoDescription=:MemoDescription, MemoImage=:MemoImage, MemoDocument=:MemoDocument, MemoStartDateTime=:MemoStartDateTime, MemoEndDateTime=:MemoEndDateTime, MemoDuration=:MemoDuration, MemoRemoveDate=:MemoRemoveDate, MemoBgColorCode=:MemoBgColorCode, MemoForm=:MemoForm, MemoCategoryId=:MemoCategoryId, ResidentId=:ResidentId, SG_LocationId=:SG_LocationId, SG_OrganisationId=:SG_OrganisationId  WHERE MemoId = :MemoId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001P9)
-          ,new CursorDef("BC001P10", "SAVEPOINT gxupdate;DELETE FROM Trn_Memo  WHERE MemoId = :MemoId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001P10)
-          ,new CursorDef("BC001P11", "SELECT MemoCategoryName FROM Trn_MemoCategory WHERE MemoCategoryId = :MemoCategoryId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P11,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001P12", "SELECT ResidentSalutation, ResidentGivenName, ResidentLastName, ResidentGUID FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :SG_LocationId AND OrganisationId = :SG_OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P12,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001P13", "SELECT T3.LocationId, T3.OrganisationId, TM1.MemoId, T2.MemoCategoryName, TM1.MemoTitle, TM1.MemoDescription, TM1.MemoImage, TM1.MemoDocument, TM1.MemoStartDateTime, TM1.MemoEndDateTime, TM1.MemoDuration, TM1.MemoRemoveDate, T3.ResidentSalutation, T3.ResidentGivenName, T3.ResidentLastName, T3.ResidentGUID, TM1.MemoBgColorCode, TM1.MemoForm, TM1.MemoCategoryId, TM1.ResidentId, TM1.SG_LocationId, TM1.SG_OrganisationId FROM ((Trn_Memo TM1 INNER JOIN Trn_MemoCategory T2 ON T2.MemoCategoryId = TM1.MemoCategoryId) INNER JOIN Trn_Resident T3 ON T3.ResidentId = TM1.ResidentId AND T3.LocationId = TM1.SG_LocationId AND T3.OrganisationId = TM1.SG_OrganisationId) WHERE TM1.MemoId = :MemoId ORDER BY TM1.MemoId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P13,100, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("BC001P2", "SELECT MemoId, MemoTitle, MemoDescription, MemoImage, MemoDocument, MemoStartDateTime, MemoEndDateTime, MemoDuration, MemoRemoveDate, MemoBgColorCode, MemoForm, MemoType, MemoName, MemoLeftOffset, MemoTopOffset, MemoTitleAngle, MemoTitleScale, ResidentId, SG_LocationId, SG_OrganisationId FROM Trn_Memo WHERE MemoId = :MemoId  FOR UPDATE OF Trn_Memo",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001P3", "SELECT MemoId, MemoTitle, MemoDescription, MemoImage, MemoDocument, MemoStartDateTime, MemoEndDateTime, MemoDuration, MemoRemoveDate, MemoBgColorCode, MemoForm, MemoType, MemoName, MemoLeftOffset, MemoTopOffset, MemoTitleAngle, MemoTitleScale, ResidentId, SG_LocationId, SG_OrganisationId FROM Trn_Memo WHERE MemoId = :MemoId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001P4", "SELECT LocationId, OrganisationId, ResidentSalutation, ResidentGivenName, ResidentLastName, ResidentGUID FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :SG_LocationId AND OrganisationId = :SG_OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001P5", "SELECT T2.LocationId, T2.OrganisationId, TM1.MemoId, TM1.MemoTitle, TM1.MemoDescription, TM1.MemoImage, TM1.MemoDocument, TM1.MemoStartDateTime, TM1.MemoEndDateTime, TM1.MemoDuration, TM1.MemoRemoveDate, T2.ResidentSalutation, T2.ResidentGivenName, T2.ResidentLastName, T2.ResidentGUID, TM1.MemoBgColorCode, TM1.MemoForm, TM1.MemoType, TM1.MemoName, TM1.MemoLeftOffset, TM1.MemoTopOffset, TM1.MemoTitleAngle, TM1.MemoTitleScale, TM1.ResidentId, TM1.SG_LocationId, TM1.SG_OrganisationId FROM (Trn_Memo TM1 INNER JOIN Trn_Resident T2 ON T2.ResidentId = TM1.ResidentId AND T2.LocationId = TM1.SG_LocationId AND T2.OrganisationId = TM1.SG_OrganisationId) WHERE TM1.MemoId = :MemoId ORDER BY TM1.MemoId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P5,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001P6", "SELECT MemoId FROM Trn_Memo WHERE MemoId = :MemoId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001P7", "SAVEPOINT gxupdate;INSERT INTO Trn_Memo(MemoId, MemoTitle, MemoDescription, MemoImage, MemoDocument, MemoStartDateTime, MemoEndDateTime, MemoDuration, MemoRemoveDate, MemoBgColorCode, MemoForm, MemoType, MemoName, MemoLeftOffset, MemoTopOffset, MemoTitleAngle, MemoTitleScale, ResidentId, SG_LocationId, SG_OrganisationId) VALUES(:MemoId, :MemoTitle, :MemoDescription, :MemoImage, :MemoDocument, :MemoStartDateTime, :MemoEndDateTime, :MemoDuration, :MemoRemoveDate, :MemoBgColorCode, :MemoForm, :MemoType, :MemoName, :MemoLeftOffset, :MemoTopOffset, :MemoTitleAngle, :MemoTitleScale, :ResidentId, :SG_LocationId, :SG_OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001P7)
+          ,new CursorDef("BC001P8", "SAVEPOINT gxupdate;UPDATE Trn_Memo SET MemoTitle=:MemoTitle, MemoDescription=:MemoDescription, MemoImage=:MemoImage, MemoDocument=:MemoDocument, MemoStartDateTime=:MemoStartDateTime, MemoEndDateTime=:MemoEndDateTime, MemoDuration=:MemoDuration, MemoRemoveDate=:MemoRemoveDate, MemoBgColorCode=:MemoBgColorCode, MemoForm=:MemoForm, MemoType=:MemoType, MemoName=:MemoName, MemoLeftOffset=:MemoLeftOffset, MemoTopOffset=:MemoTopOffset, MemoTitleAngle=:MemoTitleAngle, MemoTitleScale=:MemoTitleScale, ResidentId=:ResidentId, SG_LocationId=:SG_LocationId, SG_OrganisationId=:SG_OrganisationId  WHERE MemoId = :MemoId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001P8)
+          ,new CursorDef("BC001P9", "SAVEPOINT gxupdate;DELETE FROM Trn_Memo  WHERE MemoId = :MemoId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001P9)
+          ,new CursorDef("BC001P10", "SELECT ResidentSalutation, ResidentGivenName, ResidentLastName, ResidentGUID FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :SG_LocationId AND OrganisationId = :SG_OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P10,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001P11", "SELECT T2.LocationId, T2.OrganisationId, TM1.MemoId, TM1.MemoTitle, TM1.MemoDescription, TM1.MemoImage, TM1.MemoDocument, TM1.MemoStartDateTime, TM1.MemoEndDateTime, TM1.MemoDuration, TM1.MemoRemoveDate, T2.ResidentSalutation, T2.ResidentGivenName, T2.ResidentLastName, T2.ResidentGUID, TM1.MemoBgColorCode, TM1.MemoForm, TM1.MemoType, TM1.MemoName, TM1.MemoLeftOffset, TM1.MemoTopOffset, TM1.MemoTitleAngle, TM1.MemoTitleScale, TM1.ResidentId, TM1.SG_LocationId, TM1.SG_OrganisationId FROM (Trn_Memo TM1 INNER JOIN Trn_Resident T2 ON T2.ResidentId = TM1.ResidentId AND T2.LocationId = TM1.SG_LocationId AND T2.OrganisationId = TM1.SG_OrganisationId) WHERE TM1.MemoId = :MemoId ORDER BY TM1.MemoId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001P11,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -2006,7 +2101,7 @@ public class trn_memo_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
              ((bool[]) buf[4])[0] = rslt.wasNull(4);
              ((string[]) buf[5])[0] = rslt.getVarchar(5);
              ((bool[]) buf[6])[0] = rslt.wasNull(5);
@@ -2017,18 +2112,25 @@ public class trn_memo_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((short[]) buf[11])[0] = rslt.getShort(8);
              ((bool[]) buf[12])[0] = rslt.wasNull(8);
              ((DateTime[]) buf[13])[0] = rslt.getGXDate(9);
-             ((string[]) buf[14])[0] = rslt.getVarchar(10);
-             ((string[]) buf[15])[0] = rslt.getString(11, 20);
-             ((Guid[]) buf[16])[0] = rslt.getGuid(12);
-             ((Guid[]) buf[17])[0] = rslt.getGuid(13);
-             ((Guid[]) buf[18])[0] = rslt.getGuid(14);
-             ((Guid[]) buf[19])[0] = rslt.getGuid(15);
+             ((bool[]) buf[14])[0] = rslt.wasNull(9);
+             ((string[]) buf[15])[0] = rslt.getVarchar(10);
+             ((bool[]) buf[16])[0] = rslt.wasNull(10);
+             ((string[]) buf[17])[0] = rslt.getString(11, 20);
+             ((string[]) buf[18])[0] = rslt.getVarchar(12);
+             ((string[]) buf[19])[0] = rslt.getVarchar(13);
+             ((decimal[]) buf[20])[0] = rslt.getDecimal(14);
+             ((decimal[]) buf[21])[0] = rslt.getDecimal(15);
+             ((decimal[]) buf[22])[0] = rslt.getDecimal(16);
+             ((decimal[]) buf[23])[0] = rslt.getDecimal(17);
+             ((Guid[]) buf[24])[0] = rslt.getGuid(18);
+             ((Guid[]) buf[25])[0] = rslt.getGuid(19);
+             ((Guid[]) buf[26])[0] = rslt.getGuid(20);
              return;
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
              ((bool[]) buf[4])[0] = rslt.wasNull(4);
              ((string[]) buf[5])[0] = rslt.getVarchar(5);
              ((bool[]) buf[6])[0] = rslt.wasNull(5);
@@ -2039,17 +2141,21 @@ public class trn_memo_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((short[]) buf[11])[0] = rslt.getShort(8);
              ((bool[]) buf[12])[0] = rslt.wasNull(8);
              ((DateTime[]) buf[13])[0] = rslt.getGXDate(9);
-             ((string[]) buf[14])[0] = rslt.getVarchar(10);
-             ((string[]) buf[15])[0] = rslt.getString(11, 20);
-             ((Guid[]) buf[16])[0] = rslt.getGuid(12);
-             ((Guid[]) buf[17])[0] = rslt.getGuid(13);
-             ((Guid[]) buf[18])[0] = rslt.getGuid(14);
-             ((Guid[]) buf[19])[0] = rslt.getGuid(15);
+             ((bool[]) buf[14])[0] = rslt.wasNull(9);
+             ((string[]) buf[15])[0] = rslt.getVarchar(10);
+             ((bool[]) buf[16])[0] = rslt.wasNull(10);
+             ((string[]) buf[17])[0] = rslt.getString(11, 20);
+             ((string[]) buf[18])[0] = rslt.getVarchar(12);
+             ((string[]) buf[19])[0] = rslt.getVarchar(13);
+             ((decimal[]) buf[20])[0] = rslt.getDecimal(14);
+             ((decimal[]) buf[21])[0] = rslt.getDecimal(15);
+             ((decimal[]) buf[22])[0] = rslt.getDecimal(16);
+             ((decimal[]) buf[23])[0] = rslt.getDecimal(17);
+             ((Guid[]) buf[24])[0] = rslt.getGuid(18);
+             ((Guid[]) buf[25])[0] = rslt.getGuid(19);
+             ((Guid[]) buf[26])[0] = rslt.getGuid(20);
              return;
           case 2 :
-             ((string[]) buf[0])[0] = rslt.getVarchar(1);
-             return;
-          case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((string[]) buf[2])[0] = rslt.getString(3, 20);
@@ -2057,75 +2163,84 @@ public class trn_memo_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              return;
-          case 4 :
+          case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-             ((string[]) buf[5])[0] = rslt.getVarchar(6);
-             ((string[]) buf[6])[0] = rslt.getVarchar(7);
-             ((bool[]) buf[7])[0] = rslt.wasNull(7);
-             ((string[]) buf[8])[0] = rslt.getVarchar(8);
-             ((bool[]) buf[9])[0] = rslt.wasNull(8);
-             ((DateTime[]) buf[10])[0] = rslt.getGXDateTime(9);
-             ((bool[]) buf[11])[0] = rslt.wasNull(9);
-             ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10);
-             ((bool[]) buf[13])[0] = rslt.wasNull(10);
-             ((short[]) buf[14])[0] = rslt.getShort(11);
-             ((bool[]) buf[15])[0] = rslt.wasNull(11);
-             ((DateTime[]) buf[16])[0] = rslt.getGXDate(12);
-             ((string[]) buf[17])[0] = rslt.getString(13, 20);
-             ((string[]) buf[18])[0] = rslt.getVarchar(14);
-             ((string[]) buf[19])[0] = rslt.getVarchar(15);
-             ((string[]) buf[20])[0] = rslt.getVarchar(16);
-             ((string[]) buf[21])[0] = rslt.getVarchar(17);
-             ((string[]) buf[22])[0] = rslt.getString(18, 20);
-             ((Guid[]) buf[23])[0] = rslt.getGuid(19);
-             ((Guid[]) buf[24])[0] = rslt.getGuid(20);
-             ((Guid[]) buf[25])[0] = rslt.getGuid(21);
-             ((Guid[]) buf[26])[0] = rslt.getGuid(22);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
+             ((string[]) buf[7])[0] = rslt.getVarchar(7);
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             ((DateTime[]) buf[9])[0] = rslt.getGXDateTime(8);
+             ((bool[]) buf[10])[0] = rslt.wasNull(8);
+             ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(9);
+             ((bool[]) buf[12])[0] = rslt.wasNull(9);
+             ((short[]) buf[13])[0] = rslt.getShort(10);
+             ((bool[]) buf[14])[0] = rslt.wasNull(10);
+             ((DateTime[]) buf[15])[0] = rslt.getGXDate(11);
+             ((bool[]) buf[16])[0] = rslt.wasNull(11);
+             ((string[]) buf[17])[0] = rslt.getString(12, 20);
+             ((string[]) buf[18])[0] = rslt.getVarchar(13);
+             ((string[]) buf[19])[0] = rslt.getVarchar(14);
+             ((string[]) buf[20])[0] = rslt.getVarchar(15);
+             ((string[]) buf[21])[0] = rslt.getVarchar(16);
+             ((bool[]) buf[22])[0] = rslt.wasNull(16);
+             ((string[]) buf[23])[0] = rslt.getString(17, 20);
+             ((string[]) buf[24])[0] = rslt.getVarchar(18);
+             ((string[]) buf[25])[0] = rslt.getVarchar(19);
+             ((decimal[]) buf[26])[0] = rslt.getDecimal(20);
+             ((decimal[]) buf[27])[0] = rslt.getDecimal(21);
+             ((decimal[]) buf[28])[0] = rslt.getDecimal(22);
+             ((decimal[]) buf[29])[0] = rslt.getDecimal(23);
+             ((Guid[]) buf[30])[0] = rslt.getGuid(24);
+             ((Guid[]) buf[31])[0] = rslt.getGuid(25);
+             ((Guid[]) buf[32])[0] = rslt.getGuid(26);
              return;
-          case 5 :
+          case 4 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
-          case 9 :
-             ((string[]) buf[0])[0] = rslt.getVarchar(1);
-             return;
-          case 10 :
+          case 8 :
              ((string[]) buf[0])[0] = rslt.getString(1, 20);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
              ((string[]) buf[3])[0] = rslt.getVarchar(4);
              return;
-          case 11 :
+          case 9 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-             ((string[]) buf[5])[0] = rslt.getVarchar(6);
-             ((string[]) buf[6])[0] = rslt.getVarchar(7);
-             ((bool[]) buf[7])[0] = rslt.wasNull(7);
-             ((string[]) buf[8])[0] = rslt.getVarchar(8);
-             ((bool[]) buf[9])[0] = rslt.wasNull(8);
-             ((DateTime[]) buf[10])[0] = rslt.getGXDateTime(9);
-             ((bool[]) buf[11])[0] = rslt.wasNull(9);
-             ((DateTime[]) buf[12])[0] = rslt.getGXDateTime(10);
-             ((bool[]) buf[13])[0] = rslt.wasNull(10);
-             ((short[]) buf[14])[0] = rslt.getShort(11);
-             ((bool[]) buf[15])[0] = rslt.wasNull(11);
-             ((DateTime[]) buf[16])[0] = rslt.getGXDate(12);
-             ((string[]) buf[17])[0] = rslt.getString(13, 20);
-             ((string[]) buf[18])[0] = rslt.getVarchar(14);
-             ((string[]) buf[19])[0] = rslt.getVarchar(15);
-             ((string[]) buf[20])[0] = rslt.getVarchar(16);
-             ((string[]) buf[21])[0] = rslt.getVarchar(17);
-             ((string[]) buf[22])[0] = rslt.getString(18, 20);
-             ((Guid[]) buf[23])[0] = rslt.getGuid(19);
-             ((Guid[]) buf[24])[0] = rslt.getGuid(20);
-             ((Guid[]) buf[25])[0] = rslt.getGuid(21);
-             ((Guid[]) buf[26])[0] = rslt.getGuid(22);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
+             ((string[]) buf[7])[0] = rslt.getVarchar(7);
+             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             ((DateTime[]) buf[9])[0] = rslt.getGXDateTime(8);
+             ((bool[]) buf[10])[0] = rslt.wasNull(8);
+             ((DateTime[]) buf[11])[0] = rslt.getGXDateTime(9);
+             ((bool[]) buf[12])[0] = rslt.wasNull(9);
+             ((short[]) buf[13])[0] = rslt.getShort(10);
+             ((bool[]) buf[14])[0] = rslt.wasNull(10);
+             ((DateTime[]) buf[15])[0] = rslt.getGXDate(11);
+             ((bool[]) buf[16])[0] = rslt.wasNull(11);
+             ((string[]) buf[17])[0] = rslt.getString(12, 20);
+             ((string[]) buf[18])[0] = rslt.getVarchar(13);
+             ((string[]) buf[19])[0] = rslt.getVarchar(14);
+             ((string[]) buf[20])[0] = rslt.getVarchar(15);
+             ((string[]) buf[21])[0] = rslt.getVarchar(16);
+             ((bool[]) buf[22])[0] = rslt.wasNull(16);
+             ((string[]) buf[23])[0] = rslt.getString(17, 20);
+             ((string[]) buf[24])[0] = rslt.getVarchar(18);
+             ((string[]) buf[25])[0] = rslt.getVarchar(19);
+             ((decimal[]) buf[26])[0] = rslt.getDecimal(20);
+             ((decimal[]) buf[27])[0] = rslt.getDecimal(21);
+             ((decimal[]) buf[28])[0] = rslt.getDecimal(22);
+             ((decimal[]) buf[29])[0] = rslt.getDecimal(23);
+             ((Guid[]) buf[30])[0] = rslt.getGuid(24);
+             ((Guid[]) buf[31])[0] = rslt.getGuid(25);
+             ((Guid[]) buf[32])[0] = rslt.getGuid(26);
              return;
     }
  }

@@ -1,6 +1,10 @@
-ALTER TABLE Trn_AppVersion ADD IsVersionDeleted BOOLEAN NOT NULL DEFAULT FALSE, ADD VersionDeletedAt timestamp without time zone;
-ALTER TABLE Trn_AppVersion ALTER COLUMN IsVersionDeleted DROP DEFAULT;
+ALTER TABLE Trn_Memo ALTER COLUMN MemoId DROP DEFAULT;
+CREATE TABLE GXA0100 (MemoId CHAR(36) NOT NULL , MemoTitle VARCHAR(100) NOT NULL , MemoDescription VARCHAR(200) NOT NULL , MemoImage TEXT , MemoDocument VARCHAR(200) , MemoStartDateTime timestamp without time zone , MemoEndDateTime timestamp without time zone , MemoDuration smallint , MemoRemoveDate date , ResidentId CHAR(36) NOT NULL , MemoBgColorCode VARCHAR(100) , MemoForm CHAR(20) NOT NULL , SG_OrganisationId CHAR(36) NOT NULL , SG_LocationId CHAR(36) NOT NULL , MemoType VARCHAR(100) NOT NULL , MemoName VARCHAR(100) NOT NULL , MemoLeftOffset NUMERIC(9,4) NOT NULL , MemoTopOffset NUMERIC(9,4) NOT NULL , MemoTitleAngle NUMERIC(9,4) NOT NULL , MemoTitleScale NUMERIC(9,4) NOT NULL );
+Run conversion program for table Trn_Memo;
+DROP TABLE Trn_Memo CASCADE;
+ALTER TABLE GXA0100 RENAME TO Trn_Memo;
+ALTER TABLE Trn_Memo ADD CONSTRAINT Trn_Memo_pkey PRIMARY KEY(MemoId);
+CREATE INDEX ITRN_MEMO2 ON Trn_Memo (ResidentId ,SG_LocationId ,SG_OrganisationId );
 
-ALTER TABLE Trn_AppVersionPage ADD IsPageDeleted BOOLEAN NOT NULL DEFAULT FALSE, ADD PageDeletedAt timestamp without time zone;
-ALTER TABLE Trn_AppVersionPage ALTER COLUMN IsPageDeleted DROP DEFAULT;
+ALTER TABLE Trn_Memo ADD CONSTRAINT ITRN_MEMO2 FOREIGN KEY (ResidentId, SG_LocationId, SG_OrganisationId) REFERENCES Trn_Resident (ResidentId, LocationId, OrganisationId);
 

@@ -1552,7 +1552,50 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_creatememo( string aP0_ResidentId ,
-                                   Guid aP1_MemoCategoryId ,
+                                   string aP1_MemoTitle ,
+                                   string aP2_MemoDescription ,
+                                   string aP3_MemoImage ,
+                                   string aP4_MemoDocument ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP5_MemoStartDateTime ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP6_MemoEndDateTime ,
+                                   short aP7_MemoDuration ,
+                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP8_MemoRemoveDate ,
+                                   string aP9_MemoBgColorCode ,
+                                   string aP10_MemoForm ,
+                                   string aP11_MemoType ,
+                                   string aP12_MemoName ,
+                                   decimal aP13_MemoLeftOffset ,
+                                   decimal aP14_MemoTopOffset ,
+                                   decimal aP15_MemoTitleAngle ,
+                                   decimal aP16_MemoTitleScale ,
+                                   out SdtSDT_Error aP17_error )
+      {
+         this.AV55ResidentId = aP0_ResidentId;
+         this.AV116MemoTitle = aP1_MemoTitle;
+         this.AV108MemoDescription = aP2_MemoDescription;
+         this.AV113MemoImage = aP3_MemoImage;
+         this.AV109MemoDocument = aP4_MemoDocument;
+         this.AV115MemoStartDateTime = aP5_MemoStartDateTime;
+         this.AV111MemoEndDateTime = aP6_MemoEndDateTime;
+         this.AV110MemoDuration = aP7_MemoDuration;
+         this.AV114MemoRemoveDate = aP8_MemoRemoveDate;
+         this.AV125MemoBgColorCode = aP9_MemoBgColorCode;
+         this.AV126MemoForm = aP10_MemoForm;
+         this.AV142MemoType = aP11_MemoType;
+         this.AV143MemoName = aP12_MemoName;
+         this.AV144MemoLeftOffset = aP13_MemoLeftOffset;
+         this.AV145MemoTopOffset = aP14_MemoTopOffset;
+         this.AV146MemoTitleAngle = aP15_MemoTitleAngle;
+         this.AV147MemoTitleScale = aP16_MemoTitleScale;
+         AV69error = new SdtSDT_Error(context);
+         initialize();
+         /* CreateMemo Constructor */
+         new prc_creatememo(context ).execute(  AV55ResidentId,  AV116MemoTitle,  AV108MemoDescription,  AV113MemoImage,  AV109MemoDocument,  AV115MemoStartDateTime,  AV111MemoEndDateTime,  AV110MemoDuration,  AV114MemoRemoveDate,  AV125MemoBgColorCode,  AV126MemoForm,  AV142MemoType,  AV143MemoName,  AV144MemoLeftOffset,  AV145MemoTopOffset,  AV146MemoTitleAngle,  AV147MemoTitleScale, out  AV69error) ;
+         aP17_error=this.AV69error;
+      }
+
+      public void gxep_updatememo( Guid aP0_MemoId ,
+                                   string aP1_ResidentId ,
                                    string aP2_MemoTitle ,
                                    string aP3_MemoDescription ,
                                    string aP4_MemoImage ,
@@ -1563,10 +1606,16 @@ namespace GeneXus.Programs {
                                    [GxJsonFormat("yyyy-MM-dd")] DateTime aP9_MemoRemoveDate ,
                                    string aP10_MemoBgColorCode ,
                                    string aP11_MemoForm ,
-                                   out SdtSDT_Error aP12_error )
+                                   string aP12_MemoType ,
+                                   string aP13_MemoName ,
+                                   decimal aP14_MemoLeftOffset ,
+                                   decimal aP15_MemoTopOffset ,
+                                   decimal aP16_MemoTitleAngle ,
+                                   decimal aP17_MemoTitleScale ,
+                                   out SdtSDT_Error aP18_error )
       {
-         this.AV55ResidentId = aP0_ResidentId;
-         this.AV107MemoCategoryId = aP1_MemoCategoryId;
+         this.AV112MemoId = aP0_MemoId;
+         this.AV55ResidentId = aP1_ResidentId;
          this.AV116MemoTitle = aP2_MemoTitle;
          this.AV108MemoDescription = aP3_MemoDescription;
          this.AV113MemoImage = aP4_MemoImage;
@@ -1577,46 +1626,17 @@ namespace GeneXus.Programs {
          this.AV114MemoRemoveDate = aP9_MemoRemoveDate;
          this.AV125MemoBgColorCode = aP10_MemoBgColorCode;
          this.AV126MemoForm = aP11_MemoForm;
-         AV69error = new SdtSDT_Error(context);
-         initialize();
-         /* CreateMemo Constructor */
-         new prc_creatememo(context ).execute(  AV55ResidentId,  AV107MemoCategoryId,  AV116MemoTitle,  AV108MemoDescription,  AV113MemoImage,  AV109MemoDocument,  AV115MemoStartDateTime,  AV111MemoEndDateTime,  AV110MemoDuration,  AV114MemoRemoveDate,  AV125MemoBgColorCode,  AV126MemoForm, out  AV69error) ;
-         aP12_error=this.AV69error;
-      }
-
-      public void gxep_updatememo( Guid aP0_MemoId ,
-                                   string aP1_ResidentId ,
-                                   Guid aP2_MemoCategoryId ,
-                                   string aP3_MemoTitle ,
-                                   string aP4_MemoDescription ,
-                                   string aP5_MemoImage ,
-                                   string aP6_MemoDocument ,
-                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP7_MemoStartDateTime ,
-                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP8_MemoEndDateTime ,
-                                   short aP9_MemoDuration ,
-                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP10_MemoRemoveDate ,
-                                   string aP11_MemoBgColorCode ,
-                                   string aP12_MemoForm ,
-                                   out SdtSDT_Error aP13_error )
-      {
-         this.AV112MemoId = aP0_MemoId;
-         this.AV55ResidentId = aP1_ResidentId;
-         this.AV107MemoCategoryId = aP2_MemoCategoryId;
-         this.AV116MemoTitle = aP3_MemoTitle;
-         this.AV108MemoDescription = aP4_MemoDescription;
-         this.AV113MemoImage = aP5_MemoImage;
-         this.AV109MemoDocument = aP6_MemoDocument;
-         this.AV115MemoStartDateTime = aP7_MemoStartDateTime;
-         this.AV111MemoEndDateTime = aP8_MemoEndDateTime;
-         this.AV110MemoDuration = aP9_MemoDuration;
-         this.AV114MemoRemoveDate = aP10_MemoRemoveDate;
-         this.AV125MemoBgColorCode = aP11_MemoBgColorCode;
-         this.AV126MemoForm = aP12_MemoForm;
+         this.AV142MemoType = aP12_MemoType;
+         this.AV143MemoName = aP13_MemoName;
+         this.AV144MemoLeftOffset = aP14_MemoLeftOffset;
+         this.AV145MemoTopOffset = aP15_MemoTopOffset;
+         this.AV146MemoTitleAngle = aP16_MemoTitleAngle;
+         this.AV147MemoTitleScale = aP17_MemoTitleScale;
          AV69error = new SdtSDT_Error(context);
          initialize();
          /* updateMemo Constructor */
-         new prc_updatememo(context ).execute(  AV112MemoId,  AV55ResidentId,  AV107MemoCategoryId,  AV116MemoTitle,  AV108MemoDescription,  AV113MemoImage,  AV109MemoDocument,  AV115MemoStartDateTime,  AV111MemoEndDateTime,  AV110MemoDuration,  AV114MemoRemoveDate,  AV125MemoBgColorCode,  AV126MemoForm, out  AV69error) ;
-         aP13_error=this.AV69error;
+         new prc_updatememo(context ).execute(  AV112MemoId,  AV55ResidentId,  AV116MemoTitle,  AV108MemoDescription,  AV113MemoImage,  AV109MemoDocument,  AV115MemoStartDateTime,  AV111MemoEndDateTime,  AV110MemoDuration,  AV114MemoRemoveDate,  AV125MemoBgColorCode,  AV126MemoForm,  AV142MemoType,  AV143MemoName,  AV144MemoLeftOffset,  AV145MemoTopOffset,  AV146MemoTitleAngle,  AV147MemoTitleScale, out  AV69error) ;
+         aP18_error=this.AV69error;
       }
 
       public void gxep_getmemo( Guid aP0_MemoId ,
@@ -1737,6 +1757,10 @@ namespace GeneXus.Programs {
       protected short AV137WWPFormId ;
       protected short AV110MemoDuration ;
       protected int AV34MediaSize ;
+      protected decimal AV144MemoLeftOffset ;
+      protected decimal AV145MemoTopOffset ;
+      protected decimal AV146MemoTitleAngle ;
+      protected decimal AV147MemoTitleScale ;
       protected string Gx_restmethod ;
       protected string AV10DeviceToken ;
       protected string AV9DeviceID ;
@@ -1767,6 +1791,7 @@ namespace GeneXus.Programs {
       protected string AV124LocationImageBase64 ;
       protected string AV127ReceptionDescription ;
       protected string AV128ReceptionImageBase64 ;
+      protected string AV113MemoImage ;
       protected string AV71username ;
       protected string AV72password ;
       protected string AV8userId ;
@@ -1788,9 +1813,10 @@ namespace GeneXus.Programs {
       protected string AV136Url ;
       protected string AV116MemoTitle ;
       protected string AV108MemoDescription ;
-      protected string AV113MemoImage ;
       protected string AV109MemoDocument ;
       protected string AV125MemoBgColorCode ;
+      protected string AV142MemoType ;
+      protected string AV143MemoName ;
       protected Guid AV16organisationId ;
       protected Guid AV12locationId ;
       protected Guid AV29MediaId ;
@@ -1897,8 +1923,8 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_MemoCategory> aP0_SDT_MemoCategories ;
       protected SdtSDT_MemoCategory AV122SDT_MemoCategory ;
       protected SdtSDT_MemoCategory aP1_SDT_MemoCategory ;
-      protected SdtSDT_Error aP12_error ;
-      protected SdtSDT_Error aP13_error ;
+      protected SdtSDT_Error aP17_error ;
+      protected SdtSDT_Error aP18_error ;
       protected SdtSDT_Memo AV120SDT_Memo ;
       protected SdtSDT_Memo aP1_SDT_Memo ;
    }

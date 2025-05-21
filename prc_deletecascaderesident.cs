@@ -116,7 +116,7 @@ namespace GeneXus.Programs {
             A71ResidentGUID = P00BW2_A71ResidentGUID[0];
             new prc_deletecascadememo(context ).execute(  Guid.Empty, ref  A62ResidentId,  Guid.Empty,  Guid.Empty) ;
             new prc_deletegamuseraccount(context ).execute(  A71ResidentGUID, out  AV8GAMErrorResponse) ;
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8GAMErrorResponse)) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8GAMErrorResponse)) || StringUtil.Contains( AV8GAMErrorResponse, context.GetMessage( "User not found.", "")) )
             {
                if ( AV14isMain )
                {
@@ -158,7 +158,7 @@ namespace GeneXus.Programs {
             else
             {
                AV15isSuccessful = false;
-               AV16Message = context.GetMessage( "Failed to delete user account", "");
+               AV16Message = context.GetMessage( "Failed to delete user account: ", "") + AV8GAMErrorResponse;
             }
             if ( GXTBW2 == 1 )
             {

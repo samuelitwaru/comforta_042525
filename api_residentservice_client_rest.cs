@@ -2197,18 +2197,23 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_creatememo( string aP0_ResidentId ,
-                                   Guid aP1_MemoCategoryId ,
-                                   string aP2_MemoTitle ,
-                                   string aP3_MemoDescription ,
-                                   string aP4_MemoImage ,
-                                   string aP5_MemoDocument ,
-                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP6_MemoStartDateTime ,
-                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP7_MemoEndDateTime ,
-                                   short aP8_MemoDuration ,
-                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP9_MemoRemoveDate ,
-                                   string aP10_MemoBgColorCode ,
-                                   string aP11_MemoForm ,
-                                   out SdtSDT_Error aP12_error )
+                                   string aP1_MemoTitle ,
+                                   string aP2_MemoDescription ,
+                                   string aP3_MemoImage ,
+                                   string aP4_MemoDocument ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP5_MemoStartDateTime ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP6_MemoEndDateTime ,
+                                   short aP7_MemoDuration ,
+                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP8_MemoRemoveDate ,
+                                   string aP9_MemoBgColorCode ,
+                                   string aP10_MemoForm ,
+                                   string aP11_MemoType ,
+                                   string aP12_MemoName ,
+                                   decimal aP13_MemoLeftOffset ,
+                                   decimal aP14_MemoTopOffset ,
+                                   decimal aP15_MemoTitleAngle ,
+                                   decimal aP16_MemoTitleScale ,
+                                   out SdtSDT_Error aP17_error )
       {
          restCliCreateMemo = new GXRestAPIClient();
          if ( restLocation == null )
@@ -2219,46 +2224,56 @@ namespace GeneXus.Programs {
          restCliCreateMemo.Location = restLocation;
          restCliCreateMemo.HttpMethod = "POST";
          restCliCreateMemo.AddBodyVar("ResidentId", (string)(aP0_ResidentId));
-         restCliCreateMemo.AddBodyVar("MemoCategoryId", (Guid)(aP1_MemoCategoryId));
-         restCliCreateMemo.AddBodyVar("MemoTitle", (string)(aP2_MemoTitle));
-         restCliCreateMemo.AddBodyVar("MemoDescription", (string)(aP3_MemoDescription));
-         restCliCreateMemo.AddBodyVar("MemoImage", (string)(aP4_MemoImage));
-         restCliCreateMemo.AddBodyVar("MemoDocument", (string)(aP5_MemoDocument));
-         restCliCreateMemo.AddBodyVar("MemoStartDateTime", (DateTime)(aP6_MemoStartDateTime), false);
-         restCliCreateMemo.AddBodyVar("MemoEndDateTime", (DateTime)(aP7_MemoEndDateTime), false);
-         restCliCreateMemo.AddBodyVar("MemoDuration", (short)(aP8_MemoDuration));
-         restCliCreateMemo.AddBodyVar("MemoRemoveDate", (DateTime)(aP9_MemoRemoveDate));
-         restCliCreateMemo.AddBodyVar("MemoBgColorCode", (string)(aP10_MemoBgColorCode));
-         restCliCreateMemo.AddBodyVar("MemoForm", (string)(aP11_MemoForm));
+         restCliCreateMemo.AddBodyVar("MemoTitle", (string)(aP1_MemoTitle));
+         restCliCreateMemo.AddBodyVar("MemoDescription", (string)(aP2_MemoDescription));
+         restCliCreateMemo.AddBodyVar("MemoImage", (string)(aP3_MemoImage));
+         restCliCreateMemo.AddBodyVar("MemoDocument", (string)(aP4_MemoDocument));
+         restCliCreateMemo.AddBodyVar("MemoStartDateTime", (DateTime)(aP5_MemoStartDateTime), false);
+         restCliCreateMemo.AddBodyVar("MemoEndDateTime", (DateTime)(aP6_MemoEndDateTime), false);
+         restCliCreateMemo.AddBodyVar("MemoDuration", (short)(aP7_MemoDuration));
+         restCliCreateMemo.AddBodyVar("MemoRemoveDate", (DateTime)(aP8_MemoRemoveDate));
+         restCliCreateMemo.AddBodyVar("MemoBgColorCode", (string)(aP9_MemoBgColorCode));
+         restCliCreateMemo.AddBodyVar("MemoForm", (string)(aP10_MemoForm));
+         restCliCreateMemo.AddBodyVar("MemoType", (string)(aP11_MemoType));
+         restCliCreateMemo.AddBodyVar("MemoName", (string)(aP12_MemoName));
+         restCliCreateMemo.AddBodyVar("MemoLeftOffset", (decimal)(aP13_MemoLeftOffset));
+         restCliCreateMemo.AddBodyVar("MemoTopOffset", (decimal)(aP14_MemoTopOffset));
+         restCliCreateMemo.AddBodyVar("MemoTitleAngle", (decimal)(aP15_MemoTitleAngle));
+         restCliCreateMemo.AddBodyVar("MemoTitleScale", (decimal)(aP16_MemoTitleScale));
          restCliCreateMemo.RestExecute();
          if ( restCliCreateMemo.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliCreateMemo.ErrorCode;
             gxProperties.ErrorMessage = restCliCreateMemo.ErrorMessage;
             gxProperties.StatusCode = restCliCreateMemo.StatusCode;
-            aP12_error = new SdtSDT_Error();
+            aP17_error = new SdtSDT_Error();
          }
          else
          {
-            aP12_error = restCliCreateMemo.GetBodySdt<SdtSDT_Error>("error");
+            aP17_error = restCliCreateMemo.GetBodySdt<SdtSDT_Error>("error");
          }
          /* CreateMemo Constructor */
       }
 
       public void gxep_updatememo( Guid aP0_MemoId ,
                                    string aP1_ResidentId ,
-                                   Guid aP2_MemoCategoryId ,
-                                   string aP3_MemoTitle ,
-                                   string aP4_MemoDescription ,
-                                   string aP5_MemoImage ,
-                                   string aP6_MemoDocument ,
-                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP7_MemoStartDateTime ,
-                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP8_MemoEndDateTime ,
-                                   short aP9_MemoDuration ,
-                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP10_MemoRemoveDate ,
-                                   string aP11_MemoBgColorCode ,
-                                   string aP12_MemoForm ,
-                                   out SdtSDT_Error aP13_error )
+                                   string aP2_MemoTitle ,
+                                   string aP3_MemoDescription ,
+                                   string aP4_MemoImage ,
+                                   string aP5_MemoDocument ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP6_MemoStartDateTime ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP7_MemoEndDateTime ,
+                                   short aP8_MemoDuration ,
+                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP9_MemoRemoveDate ,
+                                   string aP10_MemoBgColorCode ,
+                                   string aP11_MemoForm ,
+                                   string aP12_MemoType ,
+                                   string aP13_MemoName ,
+                                   decimal aP14_MemoLeftOffset ,
+                                   decimal aP15_MemoTopOffset ,
+                                   decimal aP16_MemoTitleAngle ,
+                                   decimal aP17_MemoTitleScale ,
+                                   out SdtSDT_Error aP18_error )
       {
          restCliupdateMemo = new GXRestAPIClient();
          if ( restLocation == null )
@@ -2270,28 +2285,33 @@ namespace GeneXus.Programs {
          restCliupdateMemo.HttpMethod = "POST";
          restCliupdateMemo.AddBodyVar("MemoId", (Guid)(aP0_MemoId));
          restCliupdateMemo.AddBodyVar("ResidentId", (string)(aP1_ResidentId));
-         restCliupdateMemo.AddBodyVar("MemoCategoryId", (Guid)(aP2_MemoCategoryId));
-         restCliupdateMemo.AddBodyVar("MemoTitle", (string)(aP3_MemoTitle));
-         restCliupdateMemo.AddBodyVar("MemoDescription", (string)(aP4_MemoDescription));
-         restCliupdateMemo.AddBodyVar("MemoImage", (string)(aP5_MemoImage));
-         restCliupdateMemo.AddBodyVar("MemoDocument", (string)(aP6_MemoDocument));
-         restCliupdateMemo.AddBodyVar("MemoStartDateTime", (DateTime)(aP7_MemoStartDateTime), false);
-         restCliupdateMemo.AddBodyVar("MemoEndDateTime", (DateTime)(aP8_MemoEndDateTime), false);
-         restCliupdateMemo.AddBodyVar("MemoDuration", (short)(aP9_MemoDuration));
-         restCliupdateMemo.AddBodyVar("MemoRemoveDate", (DateTime)(aP10_MemoRemoveDate));
-         restCliupdateMemo.AddBodyVar("MemoBgColorCode", (string)(aP11_MemoBgColorCode));
-         restCliupdateMemo.AddBodyVar("MemoForm", (string)(aP12_MemoForm));
+         restCliupdateMemo.AddBodyVar("MemoTitle", (string)(aP2_MemoTitle));
+         restCliupdateMemo.AddBodyVar("MemoDescription", (string)(aP3_MemoDescription));
+         restCliupdateMemo.AddBodyVar("MemoImage", (string)(aP4_MemoImage));
+         restCliupdateMemo.AddBodyVar("MemoDocument", (string)(aP5_MemoDocument));
+         restCliupdateMemo.AddBodyVar("MemoStartDateTime", (DateTime)(aP6_MemoStartDateTime), false);
+         restCliupdateMemo.AddBodyVar("MemoEndDateTime", (DateTime)(aP7_MemoEndDateTime), false);
+         restCliupdateMemo.AddBodyVar("MemoDuration", (short)(aP8_MemoDuration));
+         restCliupdateMemo.AddBodyVar("MemoRemoveDate", (DateTime)(aP9_MemoRemoveDate));
+         restCliupdateMemo.AddBodyVar("MemoBgColorCode", (string)(aP10_MemoBgColorCode));
+         restCliupdateMemo.AddBodyVar("MemoForm", (string)(aP11_MemoForm));
+         restCliupdateMemo.AddBodyVar("MemoType", (string)(aP12_MemoType));
+         restCliupdateMemo.AddBodyVar("MemoName", (string)(aP13_MemoName));
+         restCliupdateMemo.AddBodyVar("MemoLeftOffset", (decimal)(aP14_MemoLeftOffset));
+         restCliupdateMemo.AddBodyVar("MemoTopOffset", (decimal)(aP15_MemoTopOffset));
+         restCliupdateMemo.AddBodyVar("MemoTitleAngle", (decimal)(aP16_MemoTitleAngle));
+         restCliupdateMemo.AddBodyVar("MemoTitleScale", (decimal)(aP17_MemoTitleScale));
          restCliupdateMemo.RestExecute();
          if ( restCliupdateMemo.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliupdateMemo.ErrorCode;
             gxProperties.ErrorMessage = restCliupdateMemo.ErrorMessage;
             gxProperties.StatusCode = restCliupdateMemo.StatusCode;
-            aP13_error = new SdtSDT_Error();
+            aP18_error = new SdtSDT_Error();
          }
          else
          {
-            aP13_error = restCliupdateMemo.GetBodySdt<SdtSDT_Error>("error");
+            aP18_error = restCliupdateMemo.GetBodySdt<SdtSDT_Error>("error");
          }
          /* updateMemo Constructor */
       }
@@ -2543,9 +2563,9 @@ namespace GeneXus.Programs {
          restCliGetMemoCategory = new GXRestAPIClient();
          aP1_SDT_MemoCategory = new SdtSDT_MemoCategory();
          restCliCreateMemo = new GXRestAPIClient();
-         aP12_error = new SdtSDT_Error();
+         aP17_error = new SdtSDT_Error();
          restCliupdateMemo = new GXRestAPIClient();
-         aP13_error = new SdtSDT_Error();
+         aP18_error = new SdtSDT_Error();
          restCliGetMemo = new GXRestAPIClient();
          aP1_SDT_Memo = new SdtSDT_Memo();
          restCliGetResidentMemos = new GXRestAPIClient();
@@ -2688,8 +2708,8 @@ namespace GeneXus.Programs {
       protected SdtSDT_Error aP4_error ;
       protected GXBaseCollection<SdtSDT_MemoCategory> aP0_SDT_MemoCategories ;
       protected SdtSDT_MemoCategory aP1_SDT_MemoCategory ;
-      protected SdtSDT_Error aP12_error ;
-      protected SdtSDT_Error aP13_error ;
+      protected SdtSDT_Error aP17_error ;
+      protected SdtSDT_Error aP18_error ;
       protected SdtSDT_Memo aP1_SDT_Memo ;
    }
 

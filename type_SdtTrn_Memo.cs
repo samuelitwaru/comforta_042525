@@ -57,7 +57,7 @@ namespace GeneXus.Programs {
          metadata.Set("BT", "Trn_Memo");
          metadata.Set("PK", "[ \"MemoId\" ]");
          metadata.Set("PKAssigned", "[ \"MemoId\" ]");
-         metadata.Set("FKList", "[ { \"FK\":[ \"MemoCategoryId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"ResidentId\",\"LocationId\",\"OrganisationId\" ],\"FKMap\":[ \"SG_LocationId-LocationId\",\"SG_OrganisationId-OrganisationId\" ] } ]");
+         metadata.Set("FKList", "[ { \"FK\":[ \"ResidentId\",\"LocationId\",\"OrganisationId\" ],\"FKMap\":[ \"SG_LocationId-LocationId\",\"SG_OrganisationId-OrganisationId\" ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
          metadata.Set("AllowDelete", "True");
@@ -70,11 +70,8 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Mode");
          state.Add("gxTpr_Initialized");
          state.Add("gxTpr_Memoid_Z");
-         state.Add("gxTpr_Memocategoryid_Z");
-         state.Add("gxTpr_Memocategoryname_Z");
          state.Add("gxTpr_Memotitle_Z");
          state.Add("gxTpr_Memodescription_Z");
-         state.Add("gxTpr_Memoimage_Z");
          state.Add("gxTpr_Memodocument_Z");
          state.Add("gxTpr_Memostartdatetime_Z_Nullable");
          state.Add("gxTpr_Memoenddatetime_Z_Nullable");
@@ -89,11 +86,19 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Memoform_Z");
          state.Add("gxTpr_Sg_organisationid_Z");
          state.Add("gxTpr_Sg_locationid_Z");
+         state.Add("gxTpr_Memotype_Z");
+         state.Add("gxTpr_Memoname_Z");
+         state.Add("gxTpr_Memoleftoffset_Z");
+         state.Add("gxTpr_Memotopoffset_Z");
+         state.Add("gxTpr_Memotitleangle_Z");
+         state.Add("gxTpr_Memotitlescale_Z");
          state.Add("gxTpr_Memoimage_N");
          state.Add("gxTpr_Memodocument_N");
          state.Add("gxTpr_Memostartdatetime_N");
          state.Add("gxTpr_Memoenddatetime_N");
          state.Add("gxTpr_Memoduration_N");
+         state.Add("gxTpr_Memoremovedate_N");
+         state.Add("gxTpr_Memobgcolorcode_N");
          return state ;
       }
 
@@ -102,8 +107,6 @@ namespace GeneXus.Programs {
          SdtTrn_Memo sdt;
          sdt = (SdtTrn_Memo)(source);
          gxTv_SdtTrn_Memo_Memoid = sdt.gxTv_SdtTrn_Memo_Memoid ;
-         gxTv_SdtTrn_Memo_Memocategoryid = sdt.gxTv_SdtTrn_Memo_Memocategoryid ;
-         gxTv_SdtTrn_Memo_Memocategoryname = sdt.gxTv_SdtTrn_Memo_Memocategoryname ;
          gxTv_SdtTrn_Memo_Memotitle = sdt.gxTv_SdtTrn_Memo_Memotitle ;
          gxTv_SdtTrn_Memo_Memodescription = sdt.gxTv_SdtTrn_Memo_Memodescription ;
          gxTv_SdtTrn_Memo_Memoimage = sdt.gxTv_SdtTrn_Memo_Memoimage ;
@@ -121,14 +124,17 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Memo_Memoform = sdt.gxTv_SdtTrn_Memo_Memoform ;
          gxTv_SdtTrn_Memo_Sg_organisationid = sdt.gxTv_SdtTrn_Memo_Sg_organisationid ;
          gxTv_SdtTrn_Memo_Sg_locationid = sdt.gxTv_SdtTrn_Memo_Sg_locationid ;
+         gxTv_SdtTrn_Memo_Memotype = sdt.gxTv_SdtTrn_Memo_Memotype ;
+         gxTv_SdtTrn_Memo_Memoname = sdt.gxTv_SdtTrn_Memo_Memoname ;
+         gxTv_SdtTrn_Memo_Memoleftoffset = sdt.gxTv_SdtTrn_Memo_Memoleftoffset ;
+         gxTv_SdtTrn_Memo_Memotopoffset = sdt.gxTv_SdtTrn_Memo_Memotopoffset ;
+         gxTv_SdtTrn_Memo_Memotitleangle = sdt.gxTv_SdtTrn_Memo_Memotitleangle ;
+         gxTv_SdtTrn_Memo_Memotitlescale = sdt.gxTv_SdtTrn_Memo_Memotitlescale ;
          gxTv_SdtTrn_Memo_Mode = sdt.gxTv_SdtTrn_Memo_Mode ;
          gxTv_SdtTrn_Memo_Initialized = sdt.gxTv_SdtTrn_Memo_Initialized ;
          gxTv_SdtTrn_Memo_Memoid_Z = sdt.gxTv_SdtTrn_Memo_Memoid_Z ;
-         gxTv_SdtTrn_Memo_Memocategoryid_Z = sdt.gxTv_SdtTrn_Memo_Memocategoryid_Z ;
-         gxTv_SdtTrn_Memo_Memocategoryname_Z = sdt.gxTv_SdtTrn_Memo_Memocategoryname_Z ;
          gxTv_SdtTrn_Memo_Memotitle_Z = sdt.gxTv_SdtTrn_Memo_Memotitle_Z ;
          gxTv_SdtTrn_Memo_Memodescription_Z = sdt.gxTv_SdtTrn_Memo_Memodescription_Z ;
-         gxTv_SdtTrn_Memo_Memoimage_Z = sdt.gxTv_SdtTrn_Memo_Memoimage_Z ;
          gxTv_SdtTrn_Memo_Memodocument_Z = sdt.gxTv_SdtTrn_Memo_Memodocument_Z ;
          gxTv_SdtTrn_Memo_Memostartdatetime_Z = sdt.gxTv_SdtTrn_Memo_Memostartdatetime_Z ;
          gxTv_SdtTrn_Memo_Memoenddatetime_Z = sdt.gxTv_SdtTrn_Memo_Memoenddatetime_Z ;
@@ -143,11 +149,19 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Memo_Memoform_Z = sdt.gxTv_SdtTrn_Memo_Memoform_Z ;
          gxTv_SdtTrn_Memo_Sg_organisationid_Z = sdt.gxTv_SdtTrn_Memo_Sg_organisationid_Z ;
          gxTv_SdtTrn_Memo_Sg_locationid_Z = sdt.gxTv_SdtTrn_Memo_Sg_locationid_Z ;
+         gxTv_SdtTrn_Memo_Memotype_Z = sdt.gxTv_SdtTrn_Memo_Memotype_Z ;
+         gxTv_SdtTrn_Memo_Memoname_Z = sdt.gxTv_SdtTrn_Memo_Memoname_Z ;
+         gxTv_SdtTrn_Memo_Memoleftoffset_Z = sdt.gxTv_SdtTrn_Memo_Memoleftoffset_Z ;
+         gxTv_SdtTrn_Memo_Memotopoffset_Z = sdt.gxTv_SdtTrn_Memo_Memotopoffset_Z ;
+         gxTv_SdtTrn_Memo_Memotitleangle_Z = sdt.gxTv_SdtTrn_Memo_Memotitleangle_Z ;
+         gxTv_SdtTrn_Memo_Memotitlescale_Z = sdt.gxTv_SdtTrn_Memo_Memotitlescale_Z ;
          gxTv_SdtTrn_Memo_Memoimage_N = sdt.gxTv_SdtTrn_Memo_Memoimage_N ;
          gxTv_SdtTrn_Memo_Memodocument_N = sdt.gxTv_SdtTrn_Memo_Memodocument_N ;
          gxTv_SdtTrn_Memo_Memostartdatetime_N = sdt.gxTv_SdtTrn_Memo_Memostartdatetime_N ;
          gxTv_SdtTrn_Memo_Memoenddatetime_N = sdt.gxTv_SdtTrn_Memo_Memoenddatetime_N ;
          gxTv_SdtTrn_Memo_Memoduration_N = sdt.gxTv_SdtTrn_Memo_Memoduration_N ;
+         gxTv_SdtTrn_Memo_Memoremovedate_N = sdt.gxTv_SdtTrn_Memo_Memoremovedate_N ;
+         gxTv_SdtTrn_Memo_Memobgcolorcode_N = sdt.gxTv_SdtTrn_Memo_Memobgcolorcode_N ;
          return  ;
       }
 
@@ -167,8 +181,6 @@ namespace GeneXus.Programs {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("MemoId", gxTv_SdtTrn_Memo_Memoid, false, includeNonInitialized);
-         AddObjectProperty("MemoCategoryId", gxTv_SdtTrn_Memo_Memocategoryid, false, includeNonInitialized);
-         AddObjectProperty("MemoCategoryName", gxTv_SdtTrn_Memo_Memocategoryname, false, includeNonInitialized);
          AddObjectProperty("MemoTitle", gxTv_SdtTrn_Memo_Memotitle, false, includeNonInitialized);
          AddObjectProperty("MemoDescription", gxTv_SdtTrn_Memo_Memodescription, false, includeNonInitialized);
          AddObjectProperty("MemoImage", gxTv_SdtTrn_Memo_Memoimage, false, includeNonInitialized);
@@ -229,25 +241,30 @@ namespace GeneXus.Programs {
          sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( gxTv_SdtTrn_Memo_Memoremovedate)), 10, 0));
          sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
          AddObjectProperty("MemoRemoveDate", sDateCnv, false, includeNonInitialized);
+         AddObjectProperty("MemoRemoveDate_N", gxTv_SdtTrn_Memo_Memoremovedate_N, false, includeNonInitialized);
          AddObjectProperty("ResidentId", gxTv_SdtTrn_Memo_Residentid, false, includeNonInitialized);
          AddObjectProperty("ResidentSalutation", gxTv_SdtTrn_Memo_Residentsalutation, false, includeNonInitialized);
          AddObjectProperty("ResidentGivenName", gxTv_SdtTrn_Memo_Residentgivenname, false, includeNonInitialized);
          AddObjectProperty("ResidentLastName", gxTv_SdtTrn_Memo_Residentlastname, false, includeNonInitialized);
          AddObjectProperty("ResidentGUID", gxTv_SdtTrn_Memo_Residentguid, false, includeNonInitialized);
          AddObjectProperty("MemoBgColorCode", gxTv_SdtTrn_Memo_Memobgcolorcode, false, includeNonInitialized);
+         AddObjectProperty("MemoBgColorCode_N", gxTv_SdtTrn_Memo_Memobgcolorcode_N, false, includeNonInitialized);
          AddObjectProperty("MemoForm", gxTv_SdtTrn_Memo_Memoform, false, includeNonInitialized);
          AddObjectProperty("SG_OrganisationId", gxTv_SdtTrn_Memo_Sg_organisationid, false, includeNonInitialized);
          AddObjectProperty("SG_LocationId", gxTv_SdtTrn_Memo_Sg_locationid, false, includeNonInitialized);
+         AddObjectProperty("MemoType", gxTv_SdtTrn_Memo_Memotype, false, includeNonInitialized);
+         AddObjectProperty("MemoName", gxTv_SdtTrn_Memo_Memoname, false, includeNonInitialized);
+         AddObjectProperty("MemoLeftOffset", gxTv_SdtTrn_Memo_Memoleftoffset, false, includeNonInitialized);
+         AddObjectProperty("MemoTopOffset", gxTv_SdtTrn_Memo_Memotopoffset, false, includeNonInitialized);
+         AddObjectProperty("MemoTitleAngle", gxTv_SdtTrn_Memo_Memotitleangle, false, includeNonInitialized);
+         AddObjectProperty("MemoTitleScale", gxTv_SdtTrn_Memo_Memotitlescale, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("Mode", gxTv_SdtTrn_Memo_Mode, false, includeNonInitialized);
             AddObjectProperty("Initialized", gxTv_SdtTrn_Memo_Initialized, false, includeNonInitialized);
             AddObjectProperty("MemoId_Z", gxTv_SdtTrn_Memo_Memoid_Z, false, includeNonInitialized);
-            AddObjectProperty("MemoCategoryId_Z", gxTv_SdtTrn_Memo_Memocategoryid_Z, false, includeNonInitialized);
-            AddObjectProperty("MemoCategoryName_Z", gxTv_SdtTrn_Memo_Memocategoryname_Z, false, includeNonInitialized);
             AddObjectProperty("MemoTitle_Z", gxTv_SdtTrn_Memo_Memotitle_Z, false, includeNonInitialized);
             AddObjectProperty("MemoDescription_Z", gxTv_SdtTrn_Memo_Memodescription_Z, false, includeNonInitialized);
-            AddObjectProperty("MemoImage_Z", gxTv_SdtTrn_Memo_Memoimage_Z, false, includeNonInitialized);
             AddObjectProperty("MemoDocument_Z", gxTv_SdtTrn_Memo_Memodocument_Z, false, includeNonInitialized);
             datetime_STZ = gxTv_SdtTrn_Memo_Memostartdatetime_Z;
             sDateCnv = "";
@@ -309,11 +326,19 @@ namespace GeneXus.Programs {
             AddObjectProperty("MemoForm_Z", gxTv_SdtTrn_Memo_Memoform_Z, false, includeNonInitialized);
             AddObjectProperty("SG_OrganisationId_Z", gxTv_SdtTrn_Memo_Sg_organisationid_Z, false, includeNonInitialized);
             AddObjectProperty("SG_LocationId_Z", gxTv_SdtTrn_Memo_Sg_locationid_Z, false, includeNonInitialized);
+            AddObjectProperty("MemoType_Z", gxTv_SdtTrn_Memo_Memotype_Z, false, includeNonInitialized);
+            AddObjectProperty("MemoName_Z", gxTv_SdtTrn_Memo_Memoname_Z, false, includeNonInitialized);
+            AddObjectProperty("MemoLeftOffset_Z", gxTv_SdtTrn_Memo_Memoleftoffset_Z, false, includeNonInitialized);
+            AddObjectProperty("MemoTopOffset_Z", gxTv_SdtTrn_Memo_Memotopoffset_Z, false, includeNonInitialized);
+            AddObjectProperty("MemoTitleAngle_Z", gxTv_SdtTrn_Memo_Memotitleangle_Z, false, includeNonInitialized);
+            AddObjectProperty("MemoTitleScale_Z", gxTv_SdtTrn_Memo_Memotitlescale_Z, false, includeNonInitialized);
             AddObjectProperty("MemoImage_N", gxTv_SdtTrn_Memo_Memoimage_N, false, includeNonInitialized);
             AddObjectProperty("MemoDocument_N", gxTv_SdtTrn_Memo_Memodocument_N, false, includeNonInitialized);
             AddObjectProperty("MemoStartDateTime_N", gxTv_SdtTrn_Memo_Memostartdatetime_N, false, includeNonInitialized);
             AddObjectProperty("MemoEndDateTime_N", gxTv_SdtTrn_Memo_Memoenddatetime_N, false, includeNonInitialized);
             AddObjectProperty("MemoDuration_N", gxTv_SdtTrn_Memo_Memoduration_N, false, includeNonInitialized);
+            AddObjectProperty("MemoRemoveDate_N", gxTv_SdtTrn_Memo_Memoremovedate_N, false, includeNonInitialized);
+            AddObjectProperty("MemoBgColorCode_N", gxTv_SdtTrn_Memo_Memobgcolorcode_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -324,16 +349,6 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_Memo_Memoid = sdt.gxTv_SdtTrn_Memo_Memoid ;
-         }
-         if ( sdt.IsDirty("MemoCategoryId") )
-         {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Memo_Memocategoryid = sdt.gxTv_SdtTrn_Memo_Memocategoryid ;
-         }
-         if ( sdt.IsDirty("MemoCategoryName") )
-         {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Memo_Memocategoryname = sdt.gxTv_SdtTrn_Memo_Memocategoryname ;
          }
          if ( sdt.IsDirty("MemoTitle") )
          {
@@ -377,6 +392,7 @@ namespace GeneXus.Programs {
          }
          if ( sdt.IsDirty("MemoRemoveDate") )
          {
+            gxTv_SdtTrn_Memo_Memoremovedate_N = (short)(sdt.gxTv_SdtTrn_Memo_Memoremovedate_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Memo_Memoremovedate = sdt.gxTv_SdtTrn_Memo_Memoremovedate ;
          }
@@ -407,6 +423,7 @@ namespace GeneXus.Programs {
          }
          if ( sdt.IsDirty("MemoBgColorCode") )
          {
+            gxTv_SdtTrn_Memo_Memobgcolorcode_N = (short)(sdt.gxTv_SdtTrn_Memo_Memobgcolorcode_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Memo_Memobgcolorcode = sdt.gxTv_SdtTrn_Memo_Memobgcolorcode ;
          }
@@ -425,6 +442,36 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Memo_Sg_locationid = sdt.gxTv_SdtTrn_Memo_Sg_locationid ;
          }
+         if ( sdt.IsDirty("MemoType") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotype = sdt.gxTv_SdtTrn_Memo_Memotype ;
+         }
+         if ( sdt.IsDirty("MemoName") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memoname = sdt.gxTv_SdtTrn_Memo_Memoname ;
+         }
+         if ( sdt.IsDirty("MemoLeftOffset") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memoleftoffset = sdt.gxTv_SdtTrn_Memo_Memoleftoffset ;
+         }
+         if ( sdt.IsDirty("MemoTopOffset") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotopoffset = sdt.gxTv_SdtTrn_Memo_Memotopoffset ;
+         }
+         if ( sdt.IsDirty("MemoTitleAngle") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotitleangle = sdt.gxTv_SdtTrn_Memo_Memotitleangle ;
+         }
+         if ( sdt.IsDirty("MemoTitleScale") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotitlescale = sdt.gxTv_SdtTrn_Memo_Memotitlescale ;
+         }
          return  ;
       }
 
@@ -442,11 +489,8 @@ namespace GeneXus.Programs {
             {
                gxTv_SdtTrn_Memo_Mode = "INS";
                this.gxTv_SdtTrn_Memo_Memoid_Z_SetNull( );
-               this.gxTv_SdtTrn_Memo_Memocategoryid_Z_SetNull( );
-               this.gxTv_SdtTrn_Memo_Memocategoryname_Z_SetNull( );
                this.gxTv_SdtTrn_Memo_Memotitle_Z_SetNull( );
                this.gxTv_SdtTrn_Memo_Memodescription_Z_SetNull( );
-               this.gxTv_SdtTrn_Memo_Memoimage_Z_SetNull( );
                this.gxTv_SdtTrn_Memo_Memodocument_Z_SetNull( );
                this.gxTv_SdtTrn_Memo_Memostartdatetime_Z_SetNull( );
                this.gxTv_SdtTrn_Memo_Memoenddatetime_Z_SetNull( );
@@ -461,41 +505,15 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Memo_Memoform_Z_SetNull( );
                this.gxTv_SdtTrn_Memo_Sg_organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_Memo_Sg_locationid_Z_SetNull( );
+               this.gxTv_SdtTrn_Memo_Memotype_Z_SetNull( );
+               this.gxTv_SdtTrn_Memo_Memoname_Z_SetNull( );
+               this.gxTv_SdtTrn_Memo_Memoleftoffset_Z_SetNull( );
+               this.gxTv_SdtTrn_Memo_Memotopoffset_Z_SetNull( );
+               this.gxTv_SdtTrn_Memo_Memotitleangle_Z_SetNull( );
+               this.gxTv_SdtTrn_Memo_Memotitlescale_Z_SetNull( );
             }
             gxTv_SdtTrn_Memo_Memoid = value;
             SetDirty("Memoid");
-         }
-
-      }
-
-      [  SoapElement( ElementName = "MemoCategoryId" )]
-      [  XmlElement( ElementName = "MemoCategoryId"   )]
-      public Guid gxTpr_Memocategoryid
-      {
-         get {
-            return gxTv_SdtTrn_Memo_Memocategoryid ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Memo_Memocategoryid = value;
-            SetDirty("Memocategoryid");
-         }
-
-      }
-
-      [  SoapElement( ElementName = "MemoCategoryName" )]
-      [  XmlElement( ElementName = "MemoCategoryName"   )]
-      public string gxTpr_Memocategoryname
-      {
-         get {
-            return gxTv_SdtTrn_Memo_Memocategoryname ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Memo_Memocategoryname = value;
-            SetDirty("Memocategoryname");
          }
 
       }
@@ -733,6 +751,7 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Memo_Memoremovedate_N = 0;
             sdtIsNull = 0;
             if (String.IsNullOrEmpty(value) || value == GxDateString.NullValue )
                gxTv_SdtTrn_Memo_Memoremovedate = DateTime.MinValue;
@@ -750,11 +769,25 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Memo_Memoremovedate_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Memo_Memoremovedate = value;
             SetDirty("Memoremovedate");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Memo_Memoremovedate_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memoremovedate_N = 1;
+         gxTv_SdtTrn_Memo_Memoremovedate = (DateTime)(DateTime.MinValue);
+         SetDirty("Memoremovedate");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memoremovedate_IsNull( )
+      {
+         return (gxTv_SdtTrn_Memo_Memoremovedate_N==1) ;
       }
 
       [  SoapElement( ElementName = "ResidentId" )]
@@ -846,11 +879,25 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Memo_Memobgcolorcode_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Memo_Memobgcolorcode = value;
             SetDirty("Memobgcolorcode");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Memo_Memobgcolorcode_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memobgcolorcode_N = 1;
+         gxTv_SdtTrn_Memo_Memobgcolorcode = "";
+         SetDirty("Memobgcolorcode");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memobgcolorcode_IsNull( )
+      {
+         return (gxTv_SdtTrn_Memo_Memobgcolorcode_N==1) ;
       }
 
       [  SoapElement( ElementName = "MemoForm" )]
@@ -897,6 +944,102 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Memo_Sg_locationid = value;
             SetDirty("Sg_locationid");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "MemoType" )]
+      [  XmlElement( ElementName = "MemoType"   )]
+      public string gxTpr_Memotype
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memotype ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotype = value;
+            SetDirty("Memotype");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "MemoName" )]
+      [  XmlElement( ElementName = "MemoName"   )]
+      public string gxTpr_Memoname
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memoname ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memoname = value;
+            SetDirty("Memoname");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "MemoLeftOffset" )]
+      [  XmlElement( ElementName = "MemoLeftOffset"   )]
+      public decimal gxTpr_Memoleftoffset
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memoleftoffset ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memoleftoffset = value;
+            SetDirty("Memoleftoffset");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "MemoTopOffset" )]
+      [  XmlElement( ElementName = "MemoTopOffset"   )]
+      public decimal gxTpr_Memotopoffset
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memotopoffset ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotopoffset = value;
+            SetDirty("Memotopoffset");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "MemoTitleAngle" )]
+      [  XmlElement( ElementName = "MemoTitleAngle"   )]
+      public decimal gxTpr_Memotitleangle
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memotitleangle ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotitleangle = value;
+            SetDirty("Memotitleangle");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "MemoTitleScale" )]
+      [  XmlElement( ElementName = "MemoTitleScale"   )]
+      public decimal gxTpr_Memotitlescale
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memotitlescale ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotitlescale = value;
+            SetDirty("Memotitlescale");
          }
 
       }
@@ -985,62 +1128,6 @@ namespace GeneXus.Programs {
          return false ;
       }
 
-      [  SoapElement( ElementName = "MemoCategoryId_Z" )]
-      [  XmlElement( ElementName = "MemoCategoryId_Z"   )]
-      public Guid gxTpr_Memocategoryid_Z
-      {
-         get {
-            return gxTv_SdtTrn_Memo_Memocategoryid_Z ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Memo_Memocategoryid_Z = value;
-            SetDirty("Memocategoryid_Z");
-         }
-
-      }
-
-      public void gxTv_SdtTrn_Memo_Memocategoryid_Z_SetNull( )
-      {
-         gxTv_SdtTrn_Memo_Memocategoryid_Z = Guid.Empty;
-         SetDirty("Memocategoryid_Z");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Memo_Memocategoryid_Z_IsNull( )
-      {
-         return false ;
-      }
-
-      [  SoapElement( ElementName = "MemoCategoryName_Z" )]
-      [  XmlElement( ElementName = "MemoCategoryName_Z"   )]
-      public string gxTpr_Memocategoryname_Z
-      {
-         get {
-            return gxTv_SdtTrn_Memo_Memocategoryname_Z ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Memo_Memocategoryname_Z = value;
-            SetDirty("Memocategoryname_Z");
-         }
-
-      }
-
-      public void gxTv_SdtTrn_Memo_Memocategoryname_Z_SetNull( )
-      {
-         gxTv_SdtTrn_Memo_Memocategoryname_Z = "";
-         SetDirty("Memocategoryname_Z");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Memo_Memocategoryname_Z_IsNull( )
-      {
-         return false ;
-      }
-
       [  SoapElement( ElementName = "MemoTitle_Z" )]
       [  XmlElement( ElementName = "MemoTitle_Z"   )]
       public string gxTpr_Memotitle_Z
@@ -1093,34 +1180,6 @@ namespace GeneXus.Programs {
       }
 
       public bool gxTv_SdtTrn_Memo_Memodescription_Z_IsNull( )
-      {
-         return false ;
-      }
-
-      [  SoapElement( ElementName = "MemoImage_Z" )]
-      [  XmlElement( ElementName = "MemoImage_Z"   )]
-      public string gxTpr_Memoimage_Z
-      {
-         get {
-            return gxTv_SdtTrn_Memo_Memoimage_Z ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Memo_Memoimage_Z = value;
-            SetDirty("Memoimage_Z");
-         }
-
-      }
-
-      public void gxTv_SdtTrn_Memo_Memoimage_Z_SetNull( )
-      {
-         gxTv_SdtTrn_Memo_Memoimage_Z = "";
-         SetDirty("Memoimage_Z");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Memo_Memoimage_Z_IsNull( )
       {
          return false ;
       }
@@ -1574,6 +1633,174 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "MemoType_Z" )]
+      [  XmlElement( ElementName = "MemoType_Z"   )]
+      public string gxTpr_Memotype_Z
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memotype_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotype_Z = value;
+            SetDirty("Memotype_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Memo_Memotype_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memotype_Z = "";
+         SetDirty("Memotype_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memotype_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "MemoName_Z" )]
+      [  XmlElement( ElementName = "MemoName_Z"   )]
+      public string gxTpr_Memoname_Z
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memoname_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memoname_Z = value;
+            SetDirty("Memoname_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Memo_Memoname_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memoname_Z = "";
+         SetDirty("Memoname_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memoname_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "MemoLeftOffset_Z" )]
+      [  XmlElement( ElementName = "MemoLeftOffset_Z"   )]
+      public decimal gxTpr_Memoleftoffset_Z
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memoleftoffset_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memoleftoffset_Z = value;
+            SetDirty("Memoleftoffset_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Memo_Memoleftoffset_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memoleftoffset_Z = 0;
+         SetDirty("Memoleftoffset_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memoleftoffset_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "MemoTopOffset_Z" )]
+      [  XmlElement( ElementName = "MemoTopOffset_Z"   )]
+      public decimal gxTpr_Memotopoffset_Z
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memotopoffset_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotopoffset_Z = value;
+            SetDirty("Memotopoffset_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Memo_Memotopoffset_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memotopoffset_Z = 0;
+         SetDirty("Memotopoffset_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memotopoffset_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "MemoTitleAngle_Z" )]
+      [  XmlElement( ElementName = "MemoTitleAngle_Z"   )]
+      public decimal gxTpr_Memotitleangle_Z
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memotitleangle_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotitleangle_Z = value;
+            SetDirty("Memotitleangle_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Memo_Memotitleangle_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memotitleangle_Z = 0;
+         SetDirty("Memotitleangle_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memotitleangle_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "MemoTitleScale_Z" )]
+      [  XmlElement( ElementName = "MemoTitleScale_Z"   )]
+      public decimal gxTpr_Memotitlescale_Z
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memotitlescale_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memotitlescale_Z = value;
+            SetDirty("Memotitlescale_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Memo_Memotitlescale_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memotitlescale_Z = 0;
+         SetDirty("Memotitlescale_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memotitlescale_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "MemoImage_N" )]
       [  XmlElement( ElementName = "MemoImage_N"   )]
       public short gxTpr_Memoimage_N
@@ -1714,6 +1941,62 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "MemoRemoveDate_N" )]
+      [  XmlElement( ElementName = "MemoRemoveDate_N"   )]
+      public short gxTpr_Memoremovedate_N
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memoremovedate_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memoremovedate_N = value;
+            SetDirty("Memoremovedate_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Memo_Memoremovedate_N_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memoremovedate_N = 0;
+         SetDirty("Memoremovedate_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memoremovedate_N_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "MemoBgColorCode_N" )]
+      [  XmlElement( ElementName = "MemoBgColorCode_N"   )]
+      public short gxTpr_Memobgcolorcode_N
+      {
+         get {
+            return gxTv_SdtTrn_Memo_Memobgcolorcode_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Memo_Memobgcolorcode_N = value;
+            SetDirty("Memobgcolorcode_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Memo_Memobgcolorcode_N_SetNull( )
+      {
+         gxTv_SdtTrn_Memo_Memobgcolorcode_N = 0;
+         SetDirty("Memobgcolorcode_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Memo_Memobgcolorcode_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -1732,8 +2015,6 @@ namespace GeneXus.Programs {
       {
          gxTv_SdtTrn_Memo_Memoid = Guid.Empty;
          sdtIsNull = 1;
-         gxTv_SdtTrn_Memo_Memocategoryid = Guid.Empty;
-         gxTv_SdtTrn_Memo_Memocategoryname = "";
          gxTv_SdtTrn_Memo_Memotitle = "";
          gxTv_SdtTrn_Memo_Memodescription = "";
          gxTv_SdtTrn_Memo_Memoimage = "";
@@ -1750,13 +2031,12 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Memo_Memoform = "";
          gxTv_SdtTrn_Memo_Sg_organisationid = Guid.Empty;
          gxTv_SdtTrn_Memo_Sg_locationid = Guid.Empty;
+         gxTv_SdtTrn_Memo_Memotype = "";
+         gxTv_SdtTrn_Memo_Memoname = "";
          gxTv_SdtTrn_Memo_Mode = "";
          gxTv_SdtTrn_Memo_Memoid_Z = Guid.Empty;
-         gxTv_SdtTrn_Memo_Memocategoryid_Z = Guid.Empty;
-         gxTv_SdtTrn_Memo_Memocategoryname_Z = "";
          gxTv_SdtTrn_Memo_Memotitle_Z = "";
          gxTv_SdtTrn_Memo_Memodescription_Z = "";
-         gxTv_SdtTrn_Memo_Memoimage_Z = "";
          gxTv_SdtTrn_Memo_Memodocument_Z = "";
          gxTv_SdtTrn_Memo_Memostartdatetime_Z = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_Memo_Memoenddatetime_Z = (DateTime)(DateTime.MinValue);
@@ -1770,6 +2050,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Memo_Memoform_Z = "";
          gxTv_SdtTrn_Memo_Sg_organisationid_Z = Guid.Empty;
          gxTv_SdtTrn_Memo_Sg_locationid_Z = Guid.Empty;
+         gxTv_SdtTrn_Memo_Memotype_Z = "";
+         gxTv_SdtTrn_Memo_Memoname_Z = "";
          datetime_STZ = (DateTime)(DateTime.MinValue);
          sDateCnv = "";
          sNumToPad = "";
@@ -1796,6 +2078,16 @@ namespace GeneXus.Programs {
       private short gxTv_SdtTrn_Memo_Memostartdatetime_N ;
       private short gxTv_SdtTrn_Memo_Memoenddatetime_N ;
       private short gxTv_SdtTrn_Memo_Memoduration_N ;
+      private short gxTv_SdtTrn_Memo_Memoremovedate_N ;
+      private short gxTv_SdtTrn_Memo_Memobgcolorcode_N ;
+      private decimal gxTv_SdtTrn_Memo_Memoleftoffset ;
+      private decimal gxTv_SdtTrn_Memo_Memotopoffset ;
+      private decimal gxTv_SdtTrn_Memo_Memotitleangle ;
+      private decimal gxTv_SdtTrn_Memo_Memotitlescale ;
+      private decimal gxTv_SdtTrn_Memo_Memoleftoffset_Z ;
+      private decimal gxTv_SdtTrn_Memo_Memotopoffset_Z ;
+      private decimal gxTv_SdtTrn_Memo_Memotitleangle_Z ;
+      private decimal gxTv_SdtTrn_Memo_Memotitlescale_Z ;
       private string gxTv_SdtTrn_Memo_Residentsalutation ;
       private string gxTv_SdtTrn_Memo_Memoform ;
       private string gxTv_SdtTrn_Memo_Mode ;
@@ -1810,31 +2102,30 @@ namespace GeneXus.Programs {
       private DateTime datetime_STZ ;
       private DateTime gxTv_SdtTrn_Memo_Memoremovedate ;
       private DateTime gxTv_SdtTrn_Memo_Memoremovedate_Z ;
-      private string gxTv_SdtTrn_Memo_Memocategoryname ;
+      private string gxTv_SdtTrn_Memo_Memoimage ;
       private string gxTv_SdtTrn_Memo_Memotitle ;
       private string gxTv_SdtTrn_Memo_Memodescription ;
-      private string gxTv_SdtTrn_Memo_Memoimage ;
       private string gxTv_SdtTrn_Memo_Memodocument ;
       private string gxTv_SdtTrn_Memo_Residentgivenname ;
       private string gxTv_SdtTrn_Memo_Residentlastname ;
       private string gxTv_SdtTrn_Memo_Residentguid ;
       private string gxTv_SdtTrn_Memo_Memobgcolorcode ;
-      private string gxTv_SdtTrn_Memo_Memocategoryname_Z ;
+      private string gxTv_SdtTrn_Memo_Memotype ;
+      private string gxTv_SdtTrn_Memo_Memoname ;
       private string gxTv_SdtTrn_Memo_Memotitle_Z ;
       private string gxTv_SdtTrn_Memo_Memodescription_Z ;
-      private string gxTv_SdtTrn_Memo_Memoimage_Z ;
       private string gxTv_SdtTrn_Memo_Memodocument_Z ;
       private string gxTv_SdtTrn_Memo_Residentgivenname_Z ;
       private string gxTv_SdtTrn_Memo_Residentlastname_Z ;
       private string gxTv_SdtTrn_Memo_Residentguid_Z ;
       private string gxTv_SdtTrn_Memo_Memobgcolorcode_Z ;
+      private string gxTv_SdtTrn_Memo_Memotype_Z ;
+      private string gxTv_SdtTrn_Memo_Memoname_Z ;
       private Guid gxTv_SdtTrn_Memo_Memoid ;
-      private Guid gxTv_SdtTrn_Memo_Memocategoryid ;
       private Guid gxTv_SdtTrn_Memo_Residentid ;
       private Guid gxTv_SdtTrn_Memo_Sg_organisationid ;
       private Guid gxTv_SdtTrn_Memo_Sg_locationid ;
       private Guid gxTv_SdtTrn_Memo_Memoid_Z ;
-      private Guid gxTv_SdtTrn_Memo_Memocategoryid_Z ;
       private Guid gxTv_SdtTrn_Memo_Residentid_Z ;
       private Guid gxTv_SdtTrn_Memo_Sg_organisationid_Z ;
       private Guid gxTv_SdtTrn_Memo_Sg_locationid_Z ;
@@ -1866,35 +2157,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoCategoryId" , Order = 1 )]
-      [GxSeudo()]
-      public Guid gxTpr_Memocategoryid
-      {
-         get {
-            return sdt.gxTpr_Memocategoryid ;
-         }
-
-         set {
-            sdt.gxTpr_Memocategoryid = value;
-         }
-
-      }
-
-      [DataMember( Name = "MemoCategoryName" , Order = 2 )]
-      [GxSeudo()]
-      public string gxTpr_Memocategoryname
-      {
-         get {
-            return sdt.gxTpr_Memocategoryname ;
-         }
-
-         set {
-            sdt.gxTpr_Memocategoryname = value;
-         }
-
-      }
-
-      [DataMember( Name = "MemoTitle" , Order = 3 )]
+      [DataMember( Name = "MemoTitle" , Order = 1 )]
       [GxSeudo()]
       public string gxTpr_Memotitle
       {
@@ -1908,7 +2171,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoDescription" , Order = 4 )]
+      [DataMember( Name = "MemoDescription" , Order = 2 )]
       [GxSeudo()]
       public string gxTpr_Memodescription
       {
@@ -1922,8 +2185,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoImage" , Order = 5 )]
-      [GxSeudo()]
+      [DataMember( Name = "MemoImage" , Order = 3 )]
       public string gxTpr_Memoimage
       {
          get {
@@ -1936,7 +2198,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoDocument" , Order = 6 )]
+      [DataMember( Name = "MemoDocument" , Order = 4 )]
       [GxSeudo()]
       public string gxTpr_Memodocument
       {
@@ -1950,7 +2212,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoStartDateTime" , Order = 7 )]
+      [DataMember( Name = "MemoStartDateTime" , Order = 5 )]
       [GxSeudo()]
       public string gxTpr_Memostartdatetime
       {
@@ -1964,7 +2226,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoEndDateTime" , Order = 8 )]
+      [DataMember( Name = "MemoEndDateTime" , Order = 6 )]
       [GxSeudo()]
       public string gxTpr_Memoenddatetime
       {
@@ -1978,7 +2240,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoDuration" , Order = 9 )]
+      [DataMember( Name = "MemoDuration" , Order = 7 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Memoduration
       {
@@ -1992,7 +2254,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoRemoveDate" , Order = 10 )]
+      [DataMember( Name = "MemoRemoveDate" , Order = 8 )]
       [GxSeudo()]
       public string gxTpr_Memoremovedate
       {
@@ -2006,7 +2268,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentId" , Order = 11 )]
+      [DataMember( Name = "ResidentId" , Order = 9 )]
       [GxSeudo()]
       public Guid gxTpr_Residentid
       {
@@ -2020,7 +2282,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentSalutation" , Order = 12 )]
+      [DataMember( Name = "ResidentSalutation" , Order = 10 )]
       [GxSeudo()]
       public string gxTpr_Residentsalutation
       {
@@ -2034,7 +2296,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentGivenName" , Order = 13 )]
+      [DataMember( Name = "ResidentGivenName" , Order = 11 )]
       [GxSeudo()]
       public string gxTpr_Residentgivenname
       {
@@ -2048,7 +2310,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentLastName" , Order = 14 )]
+      [DataMember( Name = "ResidentLastName" , Order = 12 )]
       [GxSeudo()]
       public string gxTpr_Residentlastname
       {
@@ -2062,7 +2324,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ResidentGUID" , Order = 15 )]
+      [DataMember( Name = "ResidentGUID" , Order = 13 )]
       [GxSeudo()]
       public string gxTpr_Residentguid
       {
@@ -2076,7 +2338,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoBgColorCode" , Order = 16 )]
+      [DataMember( Name = "MemoBgColorCode" , Order = 14 )]
       [GxSeudo()]
       public string gxTpr_Memobgcolorcode
       {
@@ -2090,7 +2352,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "MemoForm" , Order = 17 )]
+      [DataMember( Name = "MemoForm" , Order = 15 )]
       [GxSeudo()]
       public string gxTpr_Memoform
       {
@@ -2104,7 +2366,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "SG_OrganisationId" , Order = 18 )]
+      [DataMember( Name = "SG_OrganisationId" , Order = 16 )]
       [GxSeudo()]
       public Guid gxTpr_Sg_organisationid
       {
@@ -2118,7 +2380,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "SG_LocationId" , Order = 19 )]
+      [DataMember( Name = "SG_LocationId" , Order = 17 )]
       [GxSeudo()]
       public Guid gxTpr_Sg_locationid
       {
@@ -2128,6 +2390,90 @@ namespace GeneXus.Programs {
 
          set {
             sdt.gxTpr_Sg_locationid = value;
+         }
+
+      }
+
+      [DataMember( Name = "MemoType" , Order = 18 )]
+      [GxSeudo()]
+      public string gxTpr_Memotype
+      {
+         get {
+            return sdt.gxTpr_Memotype ;
+         }
+
+         set {
+            sdt.gxTpr_Memotype = value;
+         }
+
+      }
+
+      [DataMember( Name = "MemoName" , Order = 19 )]
+      [GxSeudo()]
+      public string gxTpr_Memoname
+      {
+         get {
+            return sdt.gxTpr_Memoname ;
+         }
+
+         set {
+            sdt.gxTpr_Memoname = value;
+         }
+
+      }
+
+      [DataMember( Name = "MemoLeftOffset" , Order = 20 )]
+      [GxSeudo()]
+      public string gxTpr_Memoleftoffset
+      {
+         get {
+            return StringUtil.LTrim( StringUtil.Str( sdt.gxTpr_Memoleftoffset, 10, 4)) ;
+         }
+
+         set {
+            sdt.gxTpr_Memoleftoffset = NumberUtil.Val( value, ".");
+         }
+
+      }
+
+      [DataMember( Name = "MemoTopOffset" , Order = 21 )]
+      [GxSeudo()]
+      public string gxTpr_Memotopoffset
+      {
+         get {
+            return StringUtil.LTrim( StringUtil.Str( sdt.gxTpr_Memotopoffset, 10, 4)) ;
+         }
+
+         set {
+            sdt.gxTpr_Memotopoffset = NumberUtil.Val( value, ".");
+         }
+
+      }
+
+      [DataMember( Name = "MemoTitleAngle" , Order = 22 )]
+      [GxSeudo()]
+      public string gxTpr_Memotitleangle
+      {
+         get {
+            return StringUtil.LTrim( StringUtil.Str( sdt.gxTpr_Memotitleangle, 10, 4)) ;
+         }
+
+         set {
+            sdt.gxTpr_Memotitleangle = NumberUtil.Val( value, ".");
+         }
+
+      }
+
+      [DataMember( Name = "MemoTitleScale" , Order = 23 )]
+      [GxSeudo()]
+      public string gxTpr_Memotitlescale
+      {
+         get {
+            return StringUtil.LTrim( StringUtil.Str( sdt.gxTpr_Memotitlescale, 10, 4)) ;
+         }
+
+         set {
+            sdt.gxTpr_Memotitlescale = NumberUtil.Val( value, ".");
          }
 
       }
@@ -2153,7 +2499,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 20 )]
+      [DataMember( Name = "gx_md5_hash", Order = 24 )]
       public string Hash
       {
          get {

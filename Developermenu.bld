@@ -416,7 +416,6 @@ aprc_createapppreview
 aprc_createapppreview
 aprc_contentpagesapiv2
 trn_memowwgetfilterdata
-trn_memoloaddvcombo
 trn_memocategorywwgetfilterdata
 trn_residentpackagewwgetfilterdata
 wp_organisationdynamicformgetfilterdata

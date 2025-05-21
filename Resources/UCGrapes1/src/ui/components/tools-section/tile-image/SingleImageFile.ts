@@ -1,6 +1,6 @@
 import { ContentDataManager } from "../../../../controls/editor/ContentDataManager";
 import { TileProperties } from "../../../../controls/editor/TileProperties";
-import { InfoSectionController } from "../../../../controls/InfoSectionController";
+import { InfoSectionManager } from "../../../../controls/InfoSectionManager";
 import { ToolBoxService } from "../../../../services/ToolBoxService";
 import { InfoType, Media } from "../../../../types";
 import { ConfirmationBox } from "../../ConfirmationBox";
@@ -16,14 +16,20 @@ export class SingleImageFile {
   imageUpload: ImageUpload;
   fileListContainer: HTMLElement | undefined;
 
-  constructor(mediaFile: Media, type: any, imageUpload: ImageUpload, infoId?: string, sectionId?: string) {
+  constructor(
+    mediaFile: Media,
+    type: any,
+    imageUpload: ImageUpload,
+    infoId?: string,
+    sectionId?: string
+  ) {
     this.mediaFile = mediaFile;
     this.type = type;
     this.infoId = infoId;
     this.sectionId = sectionId;
     this.toolboxService = new ToolBoxService();
     this.container = document.createElement("div");
-    this.imageUpload = imageUpload
+    this.imageUpload = imageUpload;
     this.init();
   }
 
@@ -36,60 +42,77 @@ export class SingleImageFile {
     img.alt = this.mediaFile.MediaName;
     img.className = "preview-image";
 
-    // Create a wrapper for statusCheck and deleteSpan
-    const actionColumn = document.createElement("div");
-    actionColumn.className = "action-column";
-
-    const fileInfo = document.createElement("div");
-    fileInfo.className = "file-info";
-
-    const fileName = document.createElement("div");
-    fileName.className = "file-name";
-    fileName.innerText = this.mediaFile.MediaName;
-
-    const fileSize = document.createElement("div");
-    fileSize.className = "file-size";
-    fileSize.innerText = this.formatBytes(this.mediaFile.MediaSize);
-
-    // fileInfo.appendChild(fileName);
-    // fileInfo.appendChild(fileSize);
-
+    // Check icon (statusCheck) - now positioned top left
     const statusCheck = document.createElement("span");
     statusCheck.className = "status-icon";
-    statusCheck.style.color = "green";
+    statusCheck.style.position = "absolute";
+    statusCheck.style.top = "-11px";
+    statusCheck.style.left = "-8px";
+    statusCheck.style.width = "25px";
+    statusCheck.style.height = "25px";
+    statusCheck.style.zIndex = "4";
+    statusCheck.style.display = "none";
 
+    // Action column (delete and add image) - top right
+    const actionColumn = document.createElement("div");
+    actionColumn.className = "action-column";
+    actionColumn.style.position = "absolute";
+    actionColumn.style.top = "-16px";
+    actionColumn.style.right = "-4px";
+    actionColumn.style.display = "flex";
+    actionColumn.style.flexDirection = "row";
+    actionColumn.style.gap = "4px";
+    actionColumn.style.zIndex = "3";
+    actionColumn.style.marginLeft = "50px";
+
+    // Add Image icon (left of delete)
     const addImage = document.createElement("span");
     addImage.className = "add-image";
     addImage.title = "Replace image";
-    addImage.style.width = "16px";
-    addImage.style.height = "16px";
-    addImage.style.backgroundImage = "url('/Resources/UCGrapes1/src/images/rotate.png')";
+    addImage.style.width = "33px";
+    addImage.style.height = "33px";
+    addImage.style.backgroundImage = "url('/Resources/UCGrapes/public/images/rotatenew.png')";
     addImage.style.backgroundSize = "contain";
     addImage.style.backgroundRepeat = "no-repeat";
     addImage.style.backgroundPosition = "center";
     addImage.style.cursor = "pointer";
+    addImage.style.display = "flex";
+    addImage.style.alignItems = "center";
+    addImage.style.justifyContent = "center";
 
-    this.setupItemClickEvent(statusCheck);
+    addImage.addEventListener("click", (e) => {
+      e.stopPropagation();
+      img.click();
+    });
 
+    // Delete icon (rightmost)
     const deleteSpan = document.createElement("span");
     deleteSpan.className = "delete-media fa-regular fa-trash-can";
     deleteSpan.title = "Delete image";
+    deleteSpan.style.width = "33px";
+    deleteSpan.style.height = "33px";
+    deleteSpan.style.fontSize = "16px";
+    deleteSpan.style.color = "#5068a8";
+    deleteSpan.style.display = "flex";
+    deleteSpan.style.alignItems = "center";
+    deleteSpan.style.justifyContent = "center";
+    deleteSpan.style.cursor = "pointer";
+    deleteSpan.style.border = "1px solid #5068a8";
 
     deleteSpan.addEventListener("click", (e) => {
-      e.stopPropagation(); // Prevent triggering the container's click event
+      e.stopPropagation();
       this.deleteEvent();
     });
 
-    // Append statusCheck and deleteSpan to the action column
-    //actionColumn.appendChild(statusCheck);
+    // Append addImage and deleteSpan to the action column (addImage left of delete)
     actionColumn.appendChild(addImage);
     actionColumn.appendChild(deleteSpan);
 
     this.container.appendChild(img);
-    // this.container.appendChild(fileInfo);
-    // this.container.appendChild(statusCheck);
-    // this.container.appendChild(deleteSpan);
+    this.container.appendChild(statusCheck);
     this.container.appendChild(actionColumn);
+
+    this.setupItemClickEvent(statusCheck);
   }
 
   private formatBytes(bytes: number) {
@@ -102,27 +125,28 @@ export class SingleImageFile {
 
   private setupItemClickEvent(statusCheck: HTMLElement) {
     this.container.addEventListener("click", () => {
-      this.fileListContainer = document.getElementById('fileList') as HTMLElement
+      this.fileListContainer = document.getElementById(
+        "fileList"
+      ) as HTMLElement;
       this.fileListContainer.style.display = "none";
       this.imageUpload.displayImageEditor(this.mediaFile.MediaUrl)
+      // Remove check from all other images
       document.querySelectorAll(".file-item").forEach((el) => {
         el.classList.remove("selected");
-        const icon = el.querySelector(".status-icon");
+        const icon = el.querySelector(".status-icon") as HTMLElement;
         if (icon) {
-          icon.innerHTML = el.classList.contains("invalid") ? "⚠" : "";
+          icon.style.display = "none";
         }
       });
 
-      if (this.container.classList.contains("selected")) {
-        statusCheck.innerHTML = ""; // Remove checkmark if already selected
-      } else {
-        statusCheck.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13.423" viewBox="0 0 18 13.423">
-                        <path id="Icon_awesome-check" data-name="Icon awesome-check" d="M6.114,17.736l-5.85-5.85a.9.9,0,0,1,0-1.273L1.536,9.341a.9.9,0,0,1,1.273,0L6.75,13.282l8.441-8.441a.9.9,0,0,1,1.273,0l1.273,1.273a.9.9,0,0,1,0,1.273L7.386,17.736A.9.9,0,0,1,6.114,17.736Z" transform="translate(0 -4.577)" fill="#3a9341"></path>
-                    </svg>
-                `;
-      }
-      this.container.classList.toggle("selected");
+      // Show check only on this image
+      statusCheck.style.backgroundImage = "url('/Resources/UCGrapes/public/images/check.png')";
+      statusCheck.style.backgroundSize = "contain";
+      statusCheck.style.backgroundRepeat = "no-repeat";
+      statusCheck.style.backgroundPosition = "center";
+      statusCheck.style.display = "block";
+
+      this.container.classList.add("selected");
       this.setupModalActions();
     });
   }
@@ -165,7 +189,6 @@ export class SingleImageFile {
         const uniqueFileName = `cropped-imafresetge-${Date.now()}.png`; // Generate a unique file name
         const file = new File([img.src], uniqueFileName, { type: "image/png" });
         await this.imageUpload.saveCroppedImage(img, frame, file);
-
       }
       if (this.type === "tile") {
         this.addImageToTile();
@@ -194,11 +217,12 @@ export class SingleImageFile {
         "background-position": "center",
         "background-blend-mode": "overlay",
       });
+      const selectedElement = selectedComponent.getEl()
+      
+      if (selectedElement) selectedElement.style.backgroundColor = "transparent";
 
       const updates = [
         ["BGImageUrl", safeMediaUrl],
-        ["BGColor", "transparent"],
-       // ["Opacity", this.imageUpload.opacity],
       ];
 
       let tileAttributes;
@@ -206,9 +230,9 @@ export class SingleImageFile {
       const rowComponent = tileWrapper.parent();
       const pageData = (globalThis as any).pageData;
       if (pageData.PageType === "Information") {
-        const infoSectionController = new InfoSectionController();
+        const infoSectionManager = new InfoSectionManager();
         for (const [property, value] of updates) {
-          infoSectionController.updateInfoTileAttributes(
+          infoSectionManager.updateInfoTileAttributes(
             rowComponent.getId(),
             tileWrapper.getId(),
             property,
@@ -218,15 +242,13 @@ export class SingleImageFile {
 
         const tileInfoSectionAttributes: InfoType = (
           globalThis as any
-        ).infoContentMapper.getInfoContent(
-          rowComponent.getId()
-        );
+        ).infoContentMapper.getInfoContent(rowComponent.getId());
 
         tileAttributes = tileInfoSectionAttributes?.Tiles?.find(
           (tile: any) => tile.Id === tileWrapper.getId()
         );
       } else {
-       // console.log("Updating tile mapper value: ", (globalThis as any).tileMapper)
+        // console.log("Updating tile mapper value: ", (globalThis as any).tileMapper)
         for (const [property, value] of updates) {
           (globalThis as any).tileMapper.updateTile(
             tileWrapper.getId(),
@@ -270,14 +292,18 @@ export class SingleImageFile {
 
   private async updateInfoImage() {
     const safeMediaUrl = encodeURI(this.mediaFile.MediaUrl);
-    const infoSectionController = new InfoSectionController();
-    infoSectionController.updateInfoImage(safeMediaUrl, this.infoId, this.sectionId);
+    const infoSectionManager = new InfoSectionManager();
+    infoSectionManager.updateInfoImage(
+      safeMediaUrl,
+      this.infoId,
+      this.sectionId
+    );
   }
 
   private updateInfoCtaButtonImage() {
     const safeMediaUrl = encodeURI(this.mediaFile.MediaUrl);
-    const infoSectionController = new InfoSectionController();
-    infoSectionController.updateInfoCtaButtonImage(safeMediaUrl, this.infoId);
+    const infoSectionManager = new InfoSectionManager();
+    infoSectionManager.updateInfoCtaButtonImage(safeMediaUrl, this.infoId);
   }
 
   private deleteEvent() {

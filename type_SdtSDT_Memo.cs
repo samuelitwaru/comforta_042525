@@ -30,8 +30,6 @@ namespace GeneXus.Programs
 		public SdtSDT_Memo( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtSDT_Memo_Memocategoryname = "";
-
 			gxTv_SdtSDT_Memo_Memotitle = "";
 
 			gxTv_SdtSDT_Memo_Memodescription = "";
@@ -57,6 +55,10 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Memo_Memoform = "";
 
 			gxTv_SdtSDT_Memo_Createdby = "";
+
+			gxTv_SdtSDT_Memo_Memotype = "";
+
+			gxTv_SdtSDT_Memo_Memoname = "";
 
 		}
 
@@ -86,15 +88,6 @@ namespace GeneXus.Programs
 		public override void ToJSON(bool includeState)
 		{
 			AddObjectProperty("MemoId", gxTpr_Memoid, false);
-
-
-			AddObjectProperty("BulletinBoardId", gxTpr_Bulletinboardid, false);
-
-
-			AddObjectProperty("MemoCategoryId", gxTpr_Memocategoryid, false);
-
-
-			AddObjectProperty("MemoCategoryName", gxTpr_Memocategoryname, false);
 
 
 			AddObjectProperty("MemoTitle", gxTpr_Memotitle, false);
@@ -194,6 +187,24 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("CreatedBy", gxTpr_Createdby, false);
 
+
+			AddObjectProperty("MemoType", gxTpr_Memotype, false);
+
+
+			AddObjectProperty("MemoName", gxTpr_Memoname, false);
+
+
+			AddObjectProperty("MemoLeftOffset", gxTpr_Memoleftoffset, false);
+
+
+			AddObjectProperty("MemoTopOffset", gxTpr_Memotopoffset, false);
+
+
+			AddObjectProperty("MemoTitleAngle", gxTpr_Memotitleangle, false);
+
+
+			AddObjectProperty("MemoTitleScale", gxTpr_Memotitlescale, false);
+
 			return;
 		}
 		#endregion
@@ -210,54 +221,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtSDT_Memo_Memoid = value;
 				SetDirty("Memoid");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="BulletinBoardId")]
-		[XmlElement(ElementName="BulletinBoardId")]
-		public Guid gxTpr_Bulletinboardid
-		{
-			get {
-				return gxTv_SdtSDT_Memo_Bulletinboardid; 
-			}
-			set {
-				gxTv_SdtSDT_Memo_Bulletinboardid = value;
-				SetDirty("Bulletinboardid");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="MemoCategoryId")]
-		[XmlElement(ElementName="MemoCategoryId")]
-		public Guid gxTpr_Memocategoryid
-		{
-			get {
-				return gxTv_SdtSDT_Memo_Memocategoryid; 
-			}
-			set {
-				gxTv_SdtSDT_Memo_Memocategoryid = value;
-				SetDirty("Memocategoryid");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="MemoCategoryName")]
-		[XmlElement(ElementName="MemoCategoryName")]
-		public string gxTpr_Memocategoryname
-		{
-			get {
-				return gxTv_SdtSDT_Memo_Memocategoryname; 
-			}
-			set {
-				gxTv_SdtSDT_Memo_Memocategoryname = value;
-				SetDirty("Memocategoryname");
 			}
 		}
 
@@ -552,6 +515,138 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="MemoType")]
+		[XmlElement(ElementName="MemoType")]
+		public string gxTpr_Memotype
+		{
+			get {
+				return gxTv_SdtSDT_Memo_Memotype; 
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memotype = value;
+				SetDirty("Memotype");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="MemoName")]
+		[XmlElement(ElementName="MemoName")]
+		public string gxTpr_Memoname
+		{
+			get {
+				return gxTv_SdtSDT_Memo_Memoname; 
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memoname = value;
+				SetDirty("Memoname");
+			}
+		}
+
+
+
+		[SoapElement(ElementName="MemoLeftOffset")]
+		[XmlElement(ElementName="MemoLeftOffset")]
+		public string gxTpr_Memoleftoffset_double
+		{
+			get {
+				return Convert.ToString(gxTv_SdtSDT_Memo_Memoleftoffset, System.Globalization.CultureInfo.InvariantCulture);
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memoleftoffset = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+			}
+		}
+		[XmlIgnore]
+		public decimal gxTpr_Memoleftoffset
+		{
+			get {
+				return gxTv_SdtSDT_Memo_Memoleftoffset; 
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memoleftoffset = value;
+				SetDirty("Memoleftoffset");
+			}
+		}
+
+
+
+		[SoapElement(ElementName="MemoTopOffset")]
+		[XmlElement(ElementName="MemoTopOffset")]
+		public string gxTpr_Memotopoffset_double
+		{
+			get {
+				return Convert.ToString(gxTv_SdtSDT_Memo_Memotopoffset, System.Globalization.CultureInfo.InvariantCulture);
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memotopoffset = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+			}
+		}
+		[XmlIgnore]
+		public decimal gxTpr_Memotopoffset
+		{
+			get {
+				return gxTv_SdtSDT_Memo_Memotopoffset; 
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memotopoffset = value;
+				SetDirty("Memotopoffset");
+			}
+		}
+
+
+
+		[SoapElement(ElementName="MemoTitleAngle")]
+		[XmlElement(ElementName="MemoTitleAngle")]
+		public string gxTpr_Memotitleangle_double
+		{
+			get {
+				return Convert.ToString(gxTv_SdtSDT_Memo_Memotitleangle, System.Globalization.CultureInfo.InvariantCulture);
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memotitleangle = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+			}
+		}
+		[XmlIgnore]
+		public decimal gxTpr_Memotitleangle
+		{
+			get {
+				return gxTv_SdtSDT_Memo_Memotitleangle; 
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memotitleangle = value;
+				SetDirty("Memotitleangle");
+			}
+		}
+
+
+
+		[SoapElement(ElementName="MemoTitleScale")]
+		[XmlElement(ElementName="MemoTitleScale")]
+		public string gxTpr_Memotitlescale_double
+		{
+			get {
+				return Convert.ToString(gxTv_SdtSDT_Memo_Memotitlescale, System.Globalization.CultureInfo.InvariantCulture);
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memotitlescale = (decimal)(Convert.ToDecimal(value, System.Globalization.CultureInfo.InvariantCulture));
+			}
+		}
+		[XmlIgnore]
+		public decimal gxTpr_Memotitlescale
+		{
+			get {
+				return gxTv_SdtSDT_Memo_Memotitlescale; 
+			}
+			set {
+				gxTv_SdtSDT_Memo_Memotitlescale = value;
+				SetDirty("Memotitlescale");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -573,7 +668,6 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
-			gxTv_SdtSDT_Memo_Memocategoryname = "";
 			gxTv_SdtSDT_Memo_Memotitle = "";
 			gxTv_SdtSDT_Memo_Memodescription = "";
 			gxTv_SdtSDT_Memo_Memoimage = "";
@@ -590,6 +684,12 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Memo_Memobgcolorcode = "";
 			gxTv_SdtSDT_Memo_Memoform = "";
 			gxTv_SdtSDT_Memo_Createdby = "";
+			gxTv_SdtSDT_Memo_Memotype = "";
+			gxTv_SdtSDT_Memo_Memoname = "";
+
+
+
+
 			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
@@ -607,15 +707,6 @@ namespace GeneXus.Programs
 		protected DateTime datetime_STZ ;
 
 		protected Guid gxTv_SdtSDT_Memo_Memoid;
-		 
-
-		protected Guid gxTv_SdtSDT_Memo_Bulletinboardid;
-		 
-
-		protected Guid gxTv_SdtSDT_Memo_Memocategoryid;
-		 
-
-		protected string gxTv_SdtSDT_Memo_Memocategoryname;
 		 
 
 		protected string gxTv_SdtSDT_Memo_Memotitle;
@@ -666,6 +757,24 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtSDT_Memo_Createdby;
 		 
 
+		protected string gxTv_SdtSDT_Memo_Memotype;
+		 
+
+		protected string gxTv_SdtSDT_Memo_Memoname;
+		 
+
+		protected decimal gxTv_SdtSDT_Memo_Memoleftoffset;
+		 
+
+		protected decimal gxTv_SdtSDT_Memo_Memotopoffset;
+		 
+
+		protected decimal gxTv_SdtSDT_Memo_Memotitleangle;
+		 
+
+		protected decimal gxTv_SdtSDT_Memo_Memotitlescale;
+		 
+
 
 		#endregion
 	}
@@ -695,43 +804,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="BulletinBoardId", Order=1)]
-		public Guid gxTpr_Bulletinboardid
-		{
-			get { 
-				return sdt.gxTpr_Bulletinboardid;
-
-			}
-			set { 
-				sdt.gxTpr_Bulletinboardid = value;
-			}
-		}
-
-		[DataMember(Name="MemoCategoryId", Order=2)]
-		public Guid gxTpr_Memocategoryid
-		{
-			get { 
-				return sdt.gxTpr_Memocategoryid;
-
-			}
-			set { 
-				sdt.gxTpr_Memocategoryid = value;
-			}
-		}
-
-		[DataMember(Name="MemoCategoryName", Order=3)]
-		public  string gxTpr_Memocategoryname
-		{
-			get { 
-				return sdt.gxTpr_Memocategoryname;
-
-			}
-			set { 
-				 sdt.gxTpr_Memocategoryname = value;
-			}
-		}
-
-		[DataMember(Name="MemoTitle", Order=4)]
+		[DataMember(Name="MemoTitle", Order=1)]
 		public  string gxTpr_Memotitle
 		{
 			get { 
@@ -743,7 +816,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MemoDescription", Order=5)]
+		[DataMember(Name="MemoDescription", Order=2)]
 		public  string gxTpr_Memodescription
 		{
 			get { 
@@ -755,7 +828,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MemoImage", Order=6)]
+		[DataMember(Name="MemoImage", Order=3)]
 		public  string gxTpr_Memoimage
 		{
 			get { 
@@ -767,7 +840,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MemoDocument", Order=7)]
+		[DataMember(Name="MemoDocument", Order=4)]
 		public  string gxTpr_Memodocument
 		{
 			get { 
@@ -779,7 +852,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MemoStartDateTime", Order=8)]
+		[DataMember(Name="MemoStartDateTime", Order=5)]
 		public  string gxTpr_Memostartdatetime
 		{
 			get { 
@@ -791,7 +864,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MemoEndDateTime", Order=9)]
+		[DataMember(Name="MemoEndDateTime", Order=6)]
 		public  string gxTpr_Memoenddatetime
 		{
 			get { 
@@ -803,7 +876,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MemoDuration", Order=10)]
+		[DataMember(Name="MemoDuration", Order=7)]
 		public short gxTpr_Memoduration
 		{
 			get { 
@@ -815,7 +888,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MemoRemoveDate", Order=11)]
+		[DataMember(Name="MemoRemoveDate", Order=8)]
 		public  string gxTpr_Memoremovedate
 		{
 			get { 
@@ -827,7 +900,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ResidentId", Order=12)]
+		[DataMember(Name="ResidentId", Order=9)]
 		public Guid gxTpr_Residentid
 		{
 			get { 
@@ -839,7 +912,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ResidentSalutation", Order=13)]
+		[DataMember(Name="ResidentSalutation", Order=10)]
 		public  string gxTpr_Residentsalutation
 		{
 			get { 
@@ -851,7 +924,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ResidentGivenName", Order=14)]
+		[DataMember(Name="ResidentGivenName", Order=11)]
 		public  string gxTpr_Residentgivenname
 		{
 			get { 
@@ -863,7 +936,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ResidentLastName", Order=15)]
+		[DataMember(Name="ResidentLastName", Order=12)]
 		public  string gxTpr_Residentlastname
 		{
 			get { 
@@ -875,7 +948,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ResidentGUID", Order=16)]
+		[DataMember(Name="ResidentGUID", Order=13)]
 		public  string gxTpr_Residentguid
 		{
 			get { 
@@ -887,7 +960,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MemoBgColorCode", Order=17)]
+		[DataMember(Name="MemoBgColorCode", Order=14)]
 		public  string gxTpr_Memobgcolorcode
 		{
 			get { 
@@ -899,7 +972,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="MemoForm", Order=18)]
+		[DataMember(Name="MemoForm", Order=15)]
 		public  string gxTpr_Memoform
 		{
 			get { 
@@ -911,7 +984,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="CreatedBy", Order=19)]
+		[DataMember(Name="CreatedBy", Order=16)]
 		public  string gxTpr_Createdby
 		{
 			get { 
@@ -920,6 +993,78 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Createdby = value;
+			}
+		}
+
+		[DataMember(Name="MemoType", Order=17)]
+		public  string gxTpr_Memotype
+		{
+			get { 
+				return sdt.gxTpr_Memotype;
+
+			}
+			set { 
+				 sdt.gxTpr_Memotype = value;
+			}
+		}
+
+		[DataMember(Name="MemoName", Order=18)]
+		public  string gxTpr_Memoname
+		{
+			get { 
+				return sdt.gxTpr_Memoname;
+
+			}
+			set { 
+				 sdt.gxTpr_Memoname = value;
+			}
+		}
+
+		[DataMember(Name="MemoLeftOffset", Order=19)]
+		public  string gxTpr_Memoleftoffset
+		{
+			get { 
+				return StringUtil.LTrim( StringUtil.Str(  sdt.gxTpr_Memoleftoffset, 10, 4));
+
+			}
+			set { 
+				sdt.gxTpr_Memoleftoffset =  NumberUtil.Val( value, ".");
+			}
+		}
+
+		[DataMember(Name="MemoTopOffset", Order=20)]
+		public  string gxTpr_Memotopoffset
+		{
+			get { 
+				return StringUtil.LTrim( StringUtil.Str(  sdt.gxTpr_Memotopoffset, 10, 4));
+
+			}
+			set { 
+				sdt.gxTpr_Memotopoffset =  NumberUtil.Val( value, ".");
+			}
+		}
+
+		[DataMember(Name="MemoTitleAngle", Order=21)]
+		public  string gxTpr_Memotitleangle
+		{
+			get { 
+				return StringUtil.LTrim( StringUtil.Str(  sdt.gxTpr_Memotitleangle, 10, 4));
+
+			}
+			set { 
+				sdt.gxTpr_Memotitleangle =  NumberUtil.Val( value, ".");
+			}
+		}
+
+		[DataMember(Name="MemoTitleScale", Order=22)]
+		public  string gxTpr_Memotitlescale
+		{
+			get { 
+				return StringUtil.LTrim( StringUtil.Str(  sdt.gxTpr_Memotitlescale, 10, 4));
+
+			}
+			set { 
+				sdt.gxTpr_Memotitlescale =  NumberUtil.Val( value, ".");
 			}
 		}
 

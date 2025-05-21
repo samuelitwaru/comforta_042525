@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250516150846"
+  version: "20250521143014"
 servers:
   - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/rest
 paths:
@@ -2917,17 +2917,6 @@ components:
           description: "Memo Id"
           type: "string"
           format: "uuid"
-        BulletinBoardId:
-          description: "Bulletin Board Id"
-          type: "string"
-          format: "uuid"
-        MemoCategoryId:
-          description: "Memo Category Id"
-          type: "string"
-          format: "uuid"
-        MemoCategoryName:
-          description: "Memo Category Name"
-          type: "string"
         MemoTitle:
           description: "Memo Title"
           type: "string"
@@ -2981,6 +2970,28 @@ components:
         CreatedBy:
           description: "Created By"
           type: "string"
+        MemoType:
+          description: "Memo Type"
+          type: "string"
+        MemoName:
+          description: "Memo Name"
+          type: "string"
+        MemoLeftOffset:
+          description: "Memo Left Offset"
+          type: "number"
+          format: "double"
+        MemoTopOffset:
+          description: "Memo Top Offset"
+          type: "number"
+          format: "double"
+        MemoTitleAngle:
+          description: "Memo Title Angle"
+          type: "number"
+          format: "double"
+        MemoTitleScale:
+          description: "Memo Title Scale"
+          type: "number"
+          format: "double"
     SDT_MemoCategory:
       properties:
         MemoCategoryId:

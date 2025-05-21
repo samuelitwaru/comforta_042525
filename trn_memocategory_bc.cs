@@ -451,17 +451,6 @@ namespace GeneXus.Programs {
       {
          standaloneModal( ) ;
          /* No delete mode formulas found. */
-         if ( AnyError == 0 )
-         {
-            /* Using cursor BC001N9 */
-            pr_default.execute(7, new Object[] {A542MemoCategoryId});
-            if ( (pr_default.getStatus(7) != 101) )
-            {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Memo", "")}), "CannotDeleteReferencedRecord", 1, "");
-               AnyError = 1;
-            }
-            pr_default.close(7);
-         }
       }
 
       protected void EndLevel1N98( )
@@ -493,14 +482,14 @@ namespace GeneXus.Programs {
       public void ScanKeyStart1N98( )
       {
          /* Scan By routine */
-         /* Using cursor BC001N10 */
-         pr_default.execute(8, new Object[] {A542MemoCategoryId});
+         /* Using cursor BC001N9 */
+         pr_default.execute(7, new Object[] {A542MemoCategoryId});
          RcdFound98 = 0;
-         if ( (pr_default.getStatus(8) != 101) )
+         if ( (pr_default.getStatus(7) != 101) )
          {
             RcdFound98 = 1;
-            A542MemoCategoryId = BC001N10_A542MemoCategoryId[0];
-            A543MemoCategoryName = BC001N10_A543MemoCategoryName[0];
+            A542MemoCategoryId = BC001N9_A542MemoCategoryId[0];
+            A543MemoCategoryName = BC001N9_A543MemoCategoryName[0];
          }
          /* Load Subordinate Levels */
       }
@@ -508,7 +497,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext1N98( )
       {
          /* Scan next routine */
-         pr_default.readNext(8);
+         pr_default.readNext(7);
          RcdFound98 = 0;
          ScanKeyLoad1N98( ) ;
       }
@@ -517,18 +506,18 @@ namespace GeneXus.Programs {
       {
          sMode98 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(8) != 101) )
+         if ( (pr_default.getStatus(7) != 101) )
          {
             RcdFound98 = 1;
-            A542MemoCategoryId = BC001N10_A542MemoCategoryId[0];
-            A543MemoCategoryName = BC001N10_A543MemoCategoryName[0];
+            A542MemoCategoryId = BC001N9_A542MemoCategoryId[0];
+            A543MemoCategoryName = BC001N9_A543MemoCategoryName[0];
          }
          Gx_mode = sMode98;
       }
 
       protected void ScanKeyEnd1N98( )
       {
-         pr_default.close(8);
+         pr_default.close(7);
       }
 
       protected void AfterConfirm1N98( )
@@ -1088,9 +1077,8 @@ namespace GeneXus.Programs {
          sMode98 = "";
          BC001N2_A542MemoCategoryId = new Guid[] {Guid.Empty} ;
          BC001N2_A543MemoCategoryName = new string[] {""} ;
-         BC001N9_A549MemoId = new Guid[] {Guid.Empty} ;
-         BC001N10_A542MemoCategoryId = new Guid[] {Guid.Empty} ;
-         BC001N10_A543MemoCategoryName = new string[] {""} ;
+         BC001N9_A542MemoCategoryId = new Guid[] {Guid.Empty} ;
+         BC001N9_A543MemoCategoryName = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_memocategory_bc__datastore1(),
@@ -1122,10 +1110,7 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC001N9_A549MemoId
-               }
-               , new Object[] {
-               BC001N10_A542MemoCategoryId, BC001N10_A543MemoCategoryName
+               BC001N9_A542MemoCategoryId, BC001N9_A543MemoCategoryName
                }
             }
          );
@@ -1165,9 +1150,8 @@ namespace GeneXus.Programs {
       private string[] BC001N3_A543MemoCategoryName ;
       private Guid[] BC001N2_A542MemoCategoryId ;
       private string[] BC001N2_A543MemoCategoryName ;
-      private Guid[] BC001N9_A549MemoId ;
-      private Guid[] BC001N10_A542MemoCategoryId ;
-      private string[] BC001N10_A543MemoCategoryName ;
+      private Guid[] BC001N9_A542MemoCategoryId ;
+      private string[] BC001N9_A543MemoCategoryName ;
       private SdtTrn_MemoCategory bcTrn_MemoCategory ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1253,7 +1237,6 @@ public class trn_memocategory_bc__default : DataStoreHelperBase, IDataStoreHelpe
       ,new UpdateCursor(def[5])
       ,new UpdateCursor(def[6])
       ,new ForEachCursor(def[7])
-      ,new ForEachCursor(def[8])
     };
  }
 
@@ -1296,10 +1279,6 @@ public class trn_memocategory_bc__default : DataStoreHelperBase, IDataStoreHelpe
        prmBC001N9 = new Object[] {
        new ParDef("MemoCategoryId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmBC001N10;
-       prmBC001N10 = new Object[] {
-       new ParDef("MemoCategoryId",GXType.UniqueIdentifier,36,0)
-       };
        def= new CursorDef[] {
            new CursorDef("BC001N2", "SELECT MemoCategoryId, MemoCategoryName FROM Trn_MemoCategory WHERE MemoCategoryId = :MemoCategoryId  FOR UPDATE OF Trn_MemoCategory",true, GxErrorMask.GX_NOMASK, false, this,prmBC001N2,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC001N3", "SELECT MemoCategoryId, MemoCategoryName FROM Trn_MemoCategory WHERE MemoCategoryId = :MemoCategoryId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001N3,1, GxCacheFrequency.OFF ,true,false )
@@ -1308,8 +1287,7 @@ public class trn_memocategory_bc__default : DataStoreHelperBase, IDataStoreHelpe
           ,new CursorDef("BC001N6", "SAVEPOINT gxupdate;INSERT INTO Trn_MemoCategory(MemoCategoryId, MemoCategoryName) VALUES(:MemoCategoryId, :MemoCategoryName);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001N6)
           ,new CursorDef("BC001N7", "SAVEPOINT gxupdate;UPDATE Trn_MemoCategory SET MemoCategoryName=:MemoCategoryName  WHERE MemoCategoryId = :MemoCategoryId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001N7)
           ,new CursorDef("BC001N8", "SAVEPOINT gxupdate;DELETE FROM Trn_MemoCategory  WHERE MemoCategoryId = :MemoCategoryId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001N8)
-          ,new CursorDef("BC001N9", "SELECT MemoId FROM Trn_Memo WHERE MemoCategoryId = :MemoCategoryId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001N9,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC001N10", "SELECT TM1.MemoCategoryId, TM1.MemoCategoryName FROM Trn_MemoCategory TM1 WHERE TM1.MemoCategoryId = :MemoCategoryId ORDER BY TM1.MemoCategoryId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001N10,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001N9", "SELECT TM1.MemoCategoryId, TM1.MemoCategoryName FROM Trn_MemoCategory TM1 WHERE TM1.MemoCategoryId = :MemoCategoryId ORDER BY TM1.MemoCategoryId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001N9,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -1336,9 +1314,6 @@ public class trn_memocategory_bc__default : DataStoreHelperBase, IDataStoreHelpe
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
           case 7 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             return;
-          case 8 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
              return;

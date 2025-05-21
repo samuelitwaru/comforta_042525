@@ -430,31 +430,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMemoCategoryName_Internalname+"\"", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtMemoCategoryName_Internalname, context.GetMessage( "Category", ""), "col-sm-4 AttributeLabel", 1, true, "");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtMemoCategoryName_Internalname, A543MemoCategoryName, StringUtil.RTrim( context.localUtil.Format( A543MemoCategoryName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", edtMemoCategoryName_Link, "", "", "", edtMemoCategoryName_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoCategoryName_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "Name", "start", true, "", "HLP_Trn_MemoGeneral.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
-            /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtMemoTitle_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtMemoTitle_Internalname, context.GetMessage( "Title", ""), "col-sm-4 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtMemoTitle_Internalname, A550MemoTitle, StringUtil.RTrim( context.localUtil.Format( A550MemoTitle, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoTitle_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoTitle_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "GeneXusUnanimo\\Title", "start", true, "", "HLP_Trn_MemoGeneral.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'" + sPrefix + "',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtMemoTitle_Internalname, A550MemoTitle, StringUtil.RTrim( context.localUtil.Format( A550MemoTitle, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoTitle_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoTitle_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "GeneXusUnanimo\\Title", "start", true, "", "HLP_Trn_MemoGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -470,12 +453,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 19,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtMemoDescription_Internalname, A551MemoDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,24);\"", 0, 1, edtMemoDescription_Enabled, 0, 80, "chr", 3, "row", 0, StyleString, ClassString, "", "", "200", -1, 0, "", "", -1, true, "GeneXusUnanimo\\Description", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_MemoGeneral.htm");
+            GxWebStd.gx_html_textarea( context, edtMemoDescription_Internalname, A551MemoDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,19);\"", 0, 1, edtMemoDescription_Enabled, 0, 80, "chr", 3, "row", 0, StyleString, ClassString, "", "", "200", -1, 0, "", "", -1, true, "GeneXusUnanimo\\Description", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_MemoGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -491,12 +474,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtMemoImage_Internalname, A552MemoImage, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", 0, 1, edtMemoImage_Enabled, 0, 80, "chr", 3, "row", 0, StyleString, ClassString, "", "", "200", -1, 0, "", "", -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_MemoGeneral.htm");
+            GxWebStd.gx_html_textarea( context, edtMemoImage_Internalname, A552MemoImage, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,24);\"", 0, 1, edtMemoImage_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_MemoGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -512,12 +495,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtMemoDocument_Internalname, A553MemoDocument, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,34);\"", 0, 1, edtMemoDocument_Enabled, 0, 80, "chr", 3, "row", 0, StyleString, ClassString, "", "", "200", -1, 0, "", "", -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_MemoGeneral.htm");
+            GxWebStd.gx_html_textarea( context, edtMemoDocument_Internalname, A553MemoDocument, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", 0, 1, edtMemoDocument_Enabled, 0, 80, "chr", 3, "row", 0, StyleString, ClassString, "", "", "200", -1, 0, "", "", -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_MemoGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -533,9 +516,9 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtMemoStartDateTime_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtMemoStartDateTime_Internalname, context.localUtil.TToC( A561MemoStartDateTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A561MemoStartDateTime, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,39);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoStartDateTime_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoStartDateTime_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_MemoGeneral.htm");
+            GxWebStd.gx_single_line_edit( context, edtMemoStartDateTime_Internalname, context.localUtil.TToC( A561MemoStartDateTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A561MemoStartDateTime, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,34);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoStartDateTime_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoStartDateTime_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_MemoGeneral.htm");
             GxWebStd.gx_bitmap( context, edtMemoStartDateTime_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtMemoStartDateTime_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_MemoGeneral.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -553,9 +536,9 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtMemoEndDateTime_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtMemoEndDateTime_Internalname, context.localUtil.TToC( A562MemoEndDateTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A562MemoEndDateTime, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,44);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoEndDateTime_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoEndDateTime_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_MemoGeneral.htm");
+            GxWebStd.gx_single_line_edit( context, edtMemoEndDateTime_Internalname, context.localUtil.TToC( A562MemoEndDateTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A562MemoEndDateTime, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,39);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoEndDateTime_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoEndDateTime_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_MemoGeneral.htm");
             GxWebStd.gx_bitmap( context, edtMemoEndDateTime_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtMemoEndDateTime_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_MemoGeneral.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -573,8 +556,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtMemoDuration_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A563MemoDuration), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtMemoDuration_Enabled!=0) ? context.localUtil.Format( (decimal)(A563MemoDuration), "ZZZ9") : context.localUtil.Format( (decimal)(A563MemoDuration), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,49);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoDuration_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoDuration_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_MemoGeneral.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'" + sPrefix + "',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtMemoDuration_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(A563MemoDuration), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtMemoDuration_Enabled!=0) ? context.localUtil.Format( (decimal)(A563MemoDuration), "ZZZ9") : context.localUtil.Format( (decimal)(A563MemoDuration), "ZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,44);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoDuration_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoDuration_Enabled, 0, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_MemoGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -590,9 +573,9 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 54,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtMemoRemoveDate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtMemoRemoveDate_Internalname, context.localUtil.Format(A564MemoRemoveDate, "99/99/99"), context.localUtil.Format( A564MemoRemoveDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,54);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoRemoveDate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoRemoveDate_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_MemoGeneral.htm");
+            GxWebStd.gx_single_line_edit( context, edtMemoRemoveDate_Internalname, context.localUtil.Format(A564MemoRemoveDate, "99/99/99"), context.localUtil.Format( A564MemoRemoveDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,49);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtMemoRemoveDate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtMemoRemoveDate_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_MemoGeneral.htm");
             GxWebStd.gx_bitmap( context, edtMemoRemoveDate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtMemoRemoveDate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_MemoGeneral.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -610,8 +593,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 59,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtResidentId_Internalname, A62ResidentId.ToString(), A62ResidentId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,59);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtResidentId_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_MemoGeneral.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 54,'" + sPrefix + "',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtResidentId_Internalname, A62ResidentId.ToString(), A62ResidentId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,54);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtResidentId_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_MemoGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -627,7 +610,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 59,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_MemoGeneral.htm");
@@ -991,7 +974,6 @@ namespace GeneXus.Programs {
                A29LocationId = H00AU2_A29LocationId[0];
                A529SG_OrganisationId = H00AU2_A529SG_OrganisationId[0];
                A11OrganisationId = H00AU2_A11OrganisationId[0];
-               A542MemoCategoryId = H00AU2_A542MemoCategoryId[0];
                A71ResidentGUID = H00AU2_A71ResidentGUID[0];
                AssignAttri(sPrefix, false, "A71ResidentGUID", A71ResidentGUID);
                A64ResidentGivenName = H00AU2_A64ResidentGivenName[0];
@@ -1001,6 +983,7 @@ namespace GeneXus.Programs {
                A62ResidentId = H00AU2_A62ResidentId[0];
                AssignAttri(sPrefix, false, "A62ResidentId", A62ResidentId.ToString());
                A564MemoRemoveDate = H00AU2_A564MemoRemoveDate[0];
+               n564MemoRemoveDate = H00AU2_n564MemoRemoveDate[0];
                AssignAttri(sPrefix, false, "A564MemoRemoveDate", context.localUtil.Format(A564MemoRemoveDate, "99/99/99"));
                A563MemoDuration = H00AU2_A563MemoDuration[0];
                n563MemoDuration = H00AU2_n563MemoDuration[0];
@@ -1021,10 +1004,6 @@ namespace GeneXus.Programs {
                AssignAttri(sPrefix, false, "A551MemoDescription", A551MemoDescription);
                A550MemoTitle = H00AU2_A550MemoTitle[0];
                AssignAttri(sPrefix, false, "A550MemoTitle", A550MemoTitle);
-               A543MemoCategoryName = H00AU2_A543MemoCategoryName[0];
-               AssignAttri(sPrefix, false, "A543MemoCategoryName", A543MemoCategoryName);
-               A543MemoCategoryName = H00AU2_A543MemoCategoryName[0];
-               AssignAttri(sPrefix, false, "A543MemoCategoryName", A543MemoCategoryName);
                A71ResidentGUID = H00AU2_A71ResidentGUID[0];
                AssignAttri(sPrefix, false, "A71ResidentGUID", A71ResidentGUID);
                A64ResidentGivenName = H00AU2_A64ResidentGivenName[0];
@@ -1048,8 +1027,6 @@ namespace GeneXus.Programs {
       protected void before_start_formulas( )
       {
          AV13Pgmname = "Trn_MemoGeneral";
-         edtMemoCategoryName_Enabled = 0;
-         AssignProp(sPrefix, false, edtMemoCategoryName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMemoCategoryName_Enabled), 5, 0), true);
          edtMemoTitle_Enabled = 0;
          AssignProp(sPrefix, false, edtMemoTitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtMemoTitle_Enabled), 5, 0), true);
          edtMemoDescription_Enabled = 0;
@@ -1097,8 +1074,6 @@ namespace GeneXus.Programs {
             /* Read saved values. */
             wcpOA549MemoId = StringUtil.StrToGuid( cgiGet( sPrefix+"wcpOA549MemoId"));
             /* Read variables values. */
-            A543MemoCategoryName = cgiGet( edtMemoCategoryName_Internalname);
-            AssignAttri(sPrefix, false, "A543MemoCategoryName", A543MemoCategoryName);
             A550MemoTitle = cgiGet( edtMemoTitle_Internalname);
             AssignAttri(sPrefix, false, "A550MemoTitle", A550MemoTitle);
             A551MemoDescription = cgiGet( edtMemoDescription_Internalname);
@@ -1119,6 +1094,7 @@ namespace GeneXus.Programs {
             n563MemoDuration = false;
             AssignAttri(sPrefix, false, "A563MemoDuration", StringUtil.LTrimStr( (decimal)(A563MemoDuration), 4, 0));
             A564MemoRemoveDate = context.localUtil.CToD( cgiGet( edtMemoRemoveDate_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+            n564MemoRemoveDate = false;
             AssignAttri(sPrefix, false, "A564MemoRemoveDate", context.localUtil.Format(A564MemoRemoveDate, "99/99/99"));
             A62ResidentId = StringUtil.StrToGuid( cgiGet( edtResidentId_Internalname));
             AssignAttri(sPrefix, false, "A62ResidentId", A62ResidentId.ToString());
@@ -1172,16 +1148,6 @@ namespace GeneXus.Programs {
       {
          /* Load Routine */
          returnInSub = false;
-         GXt_boolean1 = AV12TempBoolean;
-         new WorkWithPlus.workwithplus_commongam.secgamisauthbyfunctionalitykey(context ).execute(  "trn_memocategoryview_Execute", out  GXt_boolean1) ;
-         AV12TempBoolean = GXt_boolean1;
-         if ( AV12TempBoolean )
-         {
-            GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_memocategoryview.aspx"+UrlEncode(A542MemoCategoryId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
-            edtMemoCategoryName_Link = formatLink("trn_memocategoryview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
-            AssignProp(sPrefix, false, edtMemoCategoryName_Internalname, "Link", edtMemoCategoryName_Link, true);
-         }
          edtMemoId_Visible = 0;
          AssignProp(sPrefix, false, edtMemoId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtMemoId_Visible), 5, 0), true);
          cmbResidentSalutation.Visible = 0;
@@ -1406,7 +1372,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20254281250093", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255211723498", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1422,7 +1388,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_memogeneral.js", "?20254281250093", false, true);
+         context.AddJavascriptSource("trn_memogeneral.js", "?20255211723498", false, true);
          /* End function include_jscripts */
       }
 
@@ -1442,7 +1408,6 @@ namespace GeneXus.Programs {
 
       protected void init_default_properties( )
       {
-         edtMemoCategoryName_Internalname = sPrefix+"MEMOCATEGORYNAME";
          edtMemoTitle_Internalname = sPrefix+"MEMOTITLE";
          edtMemoDescription_Internalname = sPrefix+"MEMODESCRIPTION";
          edtMemoImage_Internalname = sPrefix+"MEMOIMAGE";
@@ -1505,9 +1470,6 @@ namespace GeneXus.Programs {
          edtMemoDescription_Enabled = 0;
          edtMemoTitle_Jsonclick = "";
          edtMemoTitle_Enabled = 0;
-         edtMemoCategoryName_Jsonclick = "";
-         edtMemoCategoryName_Link = "";
-         edtMemoCategoryName_Enabled = 0;
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             if ( context.isSpaRequest( ) )
@@ -1553,7 +1515,6 @@ namespace GeneXus.Programs {
          GXEncryptionTmp = "";
          GX_FocusControl = "";
          TempTags = "";
-         A543MemoCategoryName = "";
          A550MemoTitle = "";
          ClassString = "";
          StyleString = "";
@@ -1580,12 +1541,12 @@ namespace GeneXus.Programs {
          H00AU2_A529SG_OrganisationId = new Guid[] {Guid.Empty} ;
          H00AU2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H00AU2_A549MemoId = new Guid[] {Guid.Empty} ;
-         H00AU2_A542MemoCategoryId = new Guid[] {Guid.Empty} ;
          H00AU2_A71ResidentGUID = new string[] {""} ;
          H00AU2_A64ResidentGivenName = new string[] {""} ;
          H00AU2_A72ResidentSalutation = new string[] {""} ;
          H00AU2_A62ResidentId = new Guid[] {Guid.Empty} ;
          H00AU2_A564MemoRemoveDate = new DateTime[] {DateTime.MinValue} ;
+         H00AU2_n564MemoRemoveDate = new bool[] {false} ;
          H00AU2_A563MemoDuration = new short[1] ;
          H00AU2_n563MemoDuration = new bool[] {false} ;
          H00AU2_A562MemoEndDateTime = new DateTime[] {DateTime.MinValue} ;
@@ -1598,12 +1559,10 @@ namespace GeneXus.Programs {
          H00AU2_n552MemoImage = new bool[] {false} ;
          H00AU2_A551MemoDescription = new string[] {""} ;
          H00AU2_A550MemoTitle = new string[] {""} ;
-         H00AU2_A543MemoCategoryName = new string[] {""} ;
          A528SG_LocationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A529SG_OrganisationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
-         A542MemoCategoryId = Guid.Empty;
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV8TrnContext = new WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext(context);
          AV11HTTPRequest = new GxHttpRequest( context);
@@ -1614,9 +1573,9 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_memogeneral__default(),
             new Object[][] {
                 new Object[] {
-               H00AU2_A528SG_LocationId, H00AU2_A29LocationId, H00AU2_A529SG_OrganisationId, H00AU2_A11OrganisationId, H00AU2_A549MemoId, H00AU2_A542MemoCategoryId, H00AU2_A71ResidentGUID, H00AU2_A64ResidentGivenName, H00AU2_A72ResidentSalutation, H00AU2_A62ResidentId,
-               H00AU2_A564MemoRemoveDate, H00AU2_A563MemoDuration, H00AU2_n563MemoDuration, H00AU2_A562MemoEndDateTime, H00AU2_n562MemoEndDateTime, H00AU2_A561MemoStartDateTime, H00AU2_n561MemoStartDateTime, H00AU2_A553MemoDocument, H00AU2_n553MemoDocument, H00AU2_A552MemoImage,
-               H00AU2_n552MemoImage, H00AU2_A551MemoDescription, H00AU2_A550MemoTitle, H00AU2_A543MemoCategoryName
+               H00AU2_A528SG_LocationId, H00AU2_A29LocationId, H00AU2_A529SG_OrganisationId, H00AU2_A11OrganisationId, H00AU2_A549MemoId, H00AU2_A71ResidentGUID, H00AU2_A64ResidentGivenName, H00AU2_A72ResidentSalutation, H00AU2_A62ResidentId, H00AU2_A564MemoRemoveDate,
+               H00AU2_n564MemoRemoveDate, H00AU2_A563MemoDuration, H00AU2_n563MemoDuration, H00AU2_A562MemoEndDateTime, H00AU2_n562MemoEndDateTime, H00AU2_A561MemoStartDateTime, H00AU2_n561MemoStartDateTime, H00AU2_A553MemoDocument, H00AU2_n553MemoDocument, H00AU2_A552MemoImage,
+               H00AU2_n552MemoImage, H00AU2_A551MemoDescription, H00AU2_A550MemoTitle
                }
             }
          );
@@ -1635,7 +1594,6 @@ namespace GeneXus.Programs {
       private short nDoneStart ;
       private short nDonePA ;
       private short nGXWrapped ;
-      private int edtMemoCategoryName_Enabled ;
       private int edtMemoTitle_Enabled ;
       private int edtMemoDescription_Enabled ;
       private int edtMemoImage_Enabled ;
@@ -1667,11 +1625,8 @@ namespace GeneXus.Programs {
       private string divLayoutmaintable_Internalname ;
       private string divTable_Internalname ;
       private string divTransactiondetail_tableattributes_Internalname ;
-      private string edtMemoCategoryName_Internalname ;
-      private string TempTags ;
-      private string edtMemoCategoryName_Link ;
-      private string edtMemoCategoryName_Jsonclick ;
       private string edtMemoTitle_Internalname ;
+      private string TempTags ;
       private string edtMemoTitle_Jsonclick ;
       private string edtMemoDescription_Internalname ;
       private string ClassString ;
@@ -1716,18 +1671,16 @@ namespace GeneXus.Programs {
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
+      private bool n564MemoRemoveDate ;
       private bool n563MemoDuration ;
       private bool n562MemoEndDateTime ;
       private bool n561MemoStartDateTime ;
       private bool n553MemoDocument ;
       private bool n552MemoImage ;
       private bool returnInSub ;
-      private bool AV12TempBoolean ;
-      private bool GXt_boolean1 ;
-      private string A543MemoCategoryName ;
+      private string A552MemoImage ;
       private string A550MemoTitle ;
       private string A551MemoDescription ;
-      private string A552MemoImage ;
       private string A553MemoDocument ;
       private string A64ResidentGivenName ;
       private string A71ResidentGUID ;
@@ -1738,7 +1691,6 @@ namespace GeneXus.Programs {
       private Guid A29LocationId ;
       private Guid A529SG_OrganisationId ;
       private Guid A11OrganisationId ;
-      private Guid A542MemoCategoryId ;
       private GXWebForm Form ;
       private GxHttpRequest AV11HTTPRequest ;
       private IGxSession AV10Session ;
@@ -1752,12 +1704,12 @@ namespace GeneXus.Programs {
       private Guid[] H00AU2_A529SG_OrganisationId ;
       private Guid[] H00AU2_A11OrganisationId ;
       private Guid[] H00AU2_A549MemoId ;
-      private Guid[] H00AU2_A542MemoCategoryId ;
       private string[] H00AU2_A71ResidentGUID ;
       private string[] H00AU2_A64ResidentGivenName ;
       private string[] H00AU2_A72ResidentSalutation ;
       private Guid[] H00AU2_A62ResidentId ;
       private DateTime[] H00AU2_A564MemoRemoveDate ;
+      private bool[] H00AU2_n564MemoRemoveDate ;
       private short[] H00AU2_A563MemoDuration ;
       private bool[] H00AU2_n563MemoDuration ;
       private DateTime[] H00AU2_A562MemoEndDateTime ;
@@ -1770,7 +1722,6 @@ namespace GeneXus.Programs {
       private bool[] H00AU2_n552MemoImage ;
       private string[] H00AU2_A551MemoDescription ;
       private string[] H00AU2_A550MemoTitle ;
-      private string[] H00AU2_A543MemoCategoryName ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
       private WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext AV8TrnContext ;
       private msglist BackMsgLst ;
@@ -1797,7 +1748,7 @@ namespace GeneXus.Programs {
           new ParDef("MemoId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H00AU2", "SELECT T1.SG_LocationId, T3.LocationId, T1.SG_OrganisationId, T3.OrganisationId, T1.MemoId, T1.MemoCategoryId, T3.ResidentGUID, T3.ResidentGivenName, T3.ResidentSalutation, T1.ResidentId, T1.MemoRemoveDate, T1.MemoDuration, T1.MemoEndDateTime, T1.MemoStartDateTime, T1.MemoDocument, T1.MemoImage, T1.MemoDescription, T1.MemoTitle, T2.MemoCategoryName FROM ((Trn_Memo T1 INNER JOIN Trn_MemoCategory T2 ON T2.MemoCategoryId = T1.MemoCategoryId) INNER JOIN Trn_Resident T3 ON T3.ResidentId = T1.ResidentId AND T3.LocationId = T1.SG_LocationId AND T3.OrganisationId = T1.SG_OrganisationId) WHERE T1.MemoId = :MemoId ORDER BY T1.MemoId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00AU2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("H00AU2", "SELECT T1.SG_LocationId, T2.LocationId, T1.SG_OrganisationId, T2.OrganisationId, T1.MemoId, T2.ResidentGUID, T2.ResidentGivenName, T2.ResidentSalutation, T1.ResidentId, T1.MemoRemoveDate, T1.MemoDuration, T1.MemoEndDateTime, T1.MemoStartDateTime, T1.MemoDocument, T1.MemoImage, T1.MemoDescription, T1.MemoTitle FROM (Trn_Memo T1 INNER JOIN Trn_Resident T2 ON T2.ResidentId = T1.ResidentId AND T2.LocationId = T1.SG_LocationId AND T2.OrganisationId = T1.SG_OrganisationId) WHERE T1.MemoId = :MemoId ORDER BY T1.MemoId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00AU2,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }
@@ -1814,25 +1765,24 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 ((Guid[]) buf[4])[0] = rslt.getGuid(5);
-                ((Guid[]) buf[5])[0] = rslt.getGuid(6);
+                ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((string[]) buf[6])[0] = rslt.getVarchar(7);
-                ((string[]) buf[7])[0] = rslt.getVarchar(8);
-                ((string[]) buf[8])[0] = rslt.getString(9, 20);
-                ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-                ((DateTime[]) buf[10])[0] = rslt.getGXDate(11);
-                ((short[]) buf[11])[0] = rslt.getShort(12);
-                ((bool[]) buf[12])[0] = rslt.wasNull(12);
-                ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(13);
-                ((bool[]) buf[14])[0] = rslt.wasNull(13);
-                ((DateTime[]) buf[15])[0] = rslt.getGXDateTime(14);
-                ((bool[]) buf[16])[0] = rslt.wasNull(14);
-                ((string[]) buf[17])[0] = rslt.getVarchar(15);
-                ((bool[]) buf[18])[0] = rslt.wasNull(15);
-                ((string[]) buf[19])[0] = rslt.getVarchar(16);
-                ((bool[]) buf[20])[0] = rslt.wasNull(16);
-                ((string[]) buf[21])[0] = rslt.getVarchar(17);
-                ((string[]) buf[22])[0] = rslt.getVarchar(18);
-                ((string[]) buf[23])[0] = rslt.getVarchar(19);
+                ((string[]) buf[7])[0] = rslt.getString(8, 20);
+                ((Guid[]) buf[8])[0] = rslt.getGuid(9);
+                ((DateTime[]) buf[9])[0] = rslt.getGXDate(10);
+                ((bool[]) buf[10])[0] = rslt.wasNull(10);
+                ((short[]) buf[11])[0] = rslt.getShort(11);
+                ((bool[]) buf[12])[0] = rslt.wasNull(11);
+                ((DateTime[]) buf[13])[0] = rslt.getGXDateTime(12);
+                ((bool[]) buf[14])[0] = rslt.wasNull(12);
+                ((DateTime[]) buf[15])[0] = rslt.getGXDateTime(13);
+                ((bool[]) buf[16])[0] = rslt.wasNull(13);
+                ((string[]) buf[17])[0] = rslt.getVarchar(14);
+                ((bool[]) buf[18])[0] = rslt.wasNull(14);
+                ((string[]) buf[19])[0] = rslt.getLongVarchar(15);
+                ((bool[]) buf[20])[0] = rslt.wasNull(15);
+                ((string[]) buf[21])[0] = rslt.getVarchar(16);
+                ((string[]) buf[22])[0] = rslt.getVarchar(17);
                 return;
        }
     }

@@ -1,4 +1,4 @@
-import { InfoSectionController } from "../../../../controls/InfoSectionController";
+import { InfoSectionManager } from "../../../../controls/InfoSectionManager";
 import { ImageUpload } from "./ImageUpload";
 
 export class OpacitySection {
@@ -46,6 +46,7 @@ export class OpacitySection {
 
     const valueDisplay = document.createElement("span");
     valueDisplay.id = "valueDisplay";
+    valueDisplay.style.width = "50px";
     valueDisplay.innerHTML = "0%";
 
     sliderWrapper.appendChild(input);
@@ -89,8 +90,8 @@ export class OpacitySection {
     const pageData = (globalThis as any).pageData;
 
     if (pageData.PageType === "Information") {
-      const infoSectionController = new InfoSectionController();
-      infoSectionController.updateInfoTileAttributes(
+      const infoSectionManager = new InfoSectionManager();
+      infoSectionManager.updateInfoTileAttributes(
         selectedComponent.parent().parent().getId(),
         selectedComponent.parent().getId(),
         "Opacity",

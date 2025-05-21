@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250516150846"
+  version: "20250521143015"
 servers:
-  - url: https://staging.comforta.yukon.software/api
+  - url: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/api
 paths:
   /auth/resident-login:
     post:
@@ -2065,7 +2065,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8082/Comforta_version20DevelopmentNETPostgreSQL1/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -2781,9 +2781,6 @@ components:
       properties:
         ResidentId:
           type: "string"
-        MemoCategoryId:
-          type: "string"
-          format: "uuid"
         MemoTitle:
           type: "string"
         MemoDescription:
@@ -2808,6 +2805,22 @@ components:
           type: "string"
         MemoForm:
           type: "string"
+        MemoType:
+          type: "string"
+        MemoName:
+          type: "string"
+        MemoLeftOffset:
+          type: "number"
+          format: "double"
+        MemoTopOffset:
+          type: "number"
+          format: "double"
+        MemoTitleAngle:
+          type: "number"
+          format: "double"
+        MemoTitleScale:
+          type: "number"
+          format: "double"
 
     updateMemoInput:  
       properties:
@@ -2816,9 +2829,6 @@ components:
           format: "uuid"
         ResidentId:
           type: "string"
-        MemoCategoryId:
-          type: "string"
-          format: "uuid"
         MemoTitle:
           type: "string"
         MemoDescription:
@@ -2843,6 +2853,22 @@ components:
           type: "string"
         MemoForm:
           type: "string"
+        MemoType:
+          type: "string"
+        MemoName:
+          type: "string"
+        MemoLeftOffset:
+          type: "number"
+          format: "double"
+        MemoTopOffset:
+          type: "number"
+          format: "double"
+        MemoTitleAngle:
+          type: "number"
+          format: "double"
+        MemoTitleScale:
+          type: "number"
+          format: "double"
 
 
 
@@ -4017,17 +4043,6 @@ components:
           description: "Memo Id"
           type: "string"
           format: "uuid"
-        BulletinBoardId:
-          description: "Bulletin Board Id"
-          type: "string"
-          format: "uuid"
-        MemoCategoryId:
-          description: "Memo Category Id"
-          type: "string"
-          format: "uuid"
-        MemoCategoryName:
-          description: "Memo Category Name"
-          type: "string"
         MemoTitle:
           description: "Memo Title"
           type: "string"
@@ -4081,6 +4096,28 @@ components:
         CreatedBy:
           description: "Created By"
           type: "string"
+        MemoType:
+          description: "Memo Type"
+          type: "string"
+        MemoName:
+          description: "Memo Name"
+          type: "string"
+        MemoLeftOffset:
+          description: "Memo Left Offset"
+          type: "number"
+          format: "double"
+        MemoTopOffset:
+          description: "Memo Top Offset"
+          type: "number"
+          format: "double"
+        MemoTitleAngle:
+          description: "Memo Title Angle"
+          type: "number"
+          format: "double"
+        MemoTitleScale:
+          description: "Memo Title Scale"
+          type: "number"
+          format: "double"
 
 
 

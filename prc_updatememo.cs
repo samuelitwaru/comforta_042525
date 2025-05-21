@@ -46,87 +46,112 @@ namespace GeneXus.Programs {
 
       public void execute( Guid aP0_MemoId ,
                            string aP1_ResidentGUID ,
-                           Guid aP2_MemoCategoryId ,
-                           string aP3_MemoTitle ,
-                           string aP4_MemoDescription ,
-                           string aP5_MemoImage ,
-                           string aP6_MemoDocument ,
-                           DateTime aP7_MemoStartDateTime ,
-                           DateTime aP8_MemoEndDateTime ,
-                           short aP9_MemoDuration ,
-                           DateTime aP10_MemoRemoveDate ,
-                           string aP11_MemoBgColorCode ,
-                           string aP12_MemoForm ,
-                           out SdtSDT_Error aP13_Error )
+                           string aP2_MemoTitle ,
+                           string aP3_MemoDescription ,
+                           string aP4_MemoImage ,
+                           string aP5_MemoDocument ,
+                           DateTime aP6_MemoStartDateTime ,
+                           DateTime aP7_MemoEndDateTime ,
+                           short aP8_MemoDuration ,
+                           DateTime aP9_MemoRemoveDate ,
+                           string aP10_MemoBgColorCode ,
+                           string aP11_MemoForm ,
+                           string aP12_MemoType ,
+                           string aP13_MemoName ,
+                           decimal aP14_MemoLeftOffset ,
+                           decimal aP15_MemoTopOffset ,
+                           decimal aP16_MemoTitleAngle ,
+                           decimal aP17_MemoTitleScale ,
+                           out SdtSDT_Error aP18_Error )
       {
          this.AV17MemoId = aP0_MemoId;
          this.AV23ResidentGUID = aP1_ResidentGUID;
-         this.AV11MemoCategoryId = aP2_MemoCategoryId;
-         this.AV21MemoTitle = aP3_MemoTitle;
-         this.AV12MemoDescription = aP4_MemoDescription;
-         this.AV18MemoImage = aP5_MemoImage;
-         this.AV13MemoDocument = aP6_MemoDocument;
-         this.AV20MemoStartDateTime = aP7_MemoStartDateTime;
-         this.AV15MemoEndDateTime = aP8_MemoEndDateTime;
-         this.AV14MemoDuration = aP9_MemoDuration;
-         this.AV19MemoRemoveDate = aP10_MemoRemoveDate;
-         this.AV10MemoBgColorCode = aP11_MemoBgColorCode;
-         this.AV16MemoForm = aP12_MemoForm;
+         this.AV21MemoTitle = aP2_MemoTitle;
+         this.AV12MemoDescription = aP3_MemoDescription;
+         this.AV18MemoImage = aP4_MemoImage;
+         this.AV13MemoDocument = aP5_MemoDocument;
+         this.AV20MemoStartDateTime = aP6_MemoStartDateTime;
+         this.AV15MemoEndDateTime = aP7_MemoEndDateTime;
+         this.AV14MemoDuration = aP8_MemoDuration;
+         this.AV19MemoRemoveDate = aP9_MemoRemoveDate;
+         this.AV10MemoBgColorCode = aP10_MemoBgColorCode;
+         this.AV16MemoForm = aP11_MemoForm;
+         this.AV27MemoType = aP12_MemoType;
+         this.AV28MemoName = aP13_MemoName;
+         this.AV29MemoLeftOffset = aP14_MemoLeftOffset;
+         this.AV30MemoTopOffset = aP15_MemoTopOffset;
+         this.AV31MemoTitleAngle = aP16_MemoTitleAngle;
+         this.AV26MemoTitleScale = aP17_MemoTitleScale;
          this.AV8Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
-         aP13_Error=this.AV8Error;
+         aP18_Error=this.AV8Error;
       }
 
       public SdtSDT_Error executeUdp( Guid aP0_MemoId ,
                                       string aP1_ResidentGUID ,
-                                      Guid aP2_MemoCategoryId ,
-                                      string aP3_MemoTitle ,
-                                      string aP4_MemoDescription ,
-                                      string aP5_MemoImage ,
-                                      string aP6_MemoDocument ,
-                                      DateTime aP7_MemoStartDateTime ,
-                                      DateTime aP8_MemoEndDateTime ,
-                                      short aP9_MemoDuration ,
-                                      DateTime aP10_MemoRemoveDate ,
-                                      string aP11_MemoBgColorCode ,
-                                      string aP12_MemoForm )
+                                      string aP2_MemoTitle ,
+                                      string aP3_MemoDescription ,
+                                      string aP4_MemoImage ,
+                                      string aP5_MemoDocument ,
+                                      DateTime aP6_MemoStartDateTime ,
+                                      DateTime aP7_MemoEndDateTime ,
+                                      short aP8_MemoDuration ,
+                                      DateTime aP9_MemoRemoveDate ,
+                                      string aP10_MemoBgColorCode ,
+                                      string aP11_MemoForm ,
+                                      string aP12_MemoType ,
+                                      string aP13_MemoName ,
+                                      decimal aP14_MemoLeftOffset ,
+                                      decimal aP15_MemoTopOffset ,
+                                      decimal aP16_MemoTitleAngle ,
+                                      decimal aP17_MemoTitleScale )
       {
-         execute(aP0_MemoId, aP1_ResidentGUID, aP2_MemoCategoryId, aP3_MemoTitle, aP4_MemoDescription, aP5_MemoImage, aP6_MemoDocument, aP7_MemoStartDateTime, aP8_MemoEndDateTime, aP9_MemoDuration, aP10_MemoRemoveDate, aP11_MemoBgColorCode, aP12_MemoForm, out aP13_Error);
+         execute(aP0_MemoId, aP1_ResidentGUID, aP2_MemoTitle, aP3_MemoDescription, aP4_MemoImage, aP5_MemoDocument, aP6_MemoStartDateTime, aP7_MemoEndDateTime, aP8_MemoDuration, aP9_MemoRemoveDate, aP10_MemoBgColorCode, aP11_MemoForm, aP12_MemoType, aP13_MemoName, aP14_MemoLeftOffset, aP15_MemoTopOffset, aP16_MemoTitleAngle, aP17_MemoTitleScale, out aP18_Error);
          return AV8Error ;
       }
 
       public void executeSubmit( Guid aP0_MemoId ,
                                  string aP1_ResidentGUID ,
-                                 Guid aP2_MemoCategoryId ,
-                                 string aP3_MemoTitle ,
-                                 string aP4_MemoDescription ,
-                                 string aP5_MemoImage ,
-                                 string aP6_MemoDocument ,
-                                 DateTime aP7_MemoStartDateTime ,
-                                 DateTime aP8_MemoEndDateTime ,
-                                 short aP9_MemoDuration ,
-                                 DateTime aP10_MemoRemoveDate ,
-                                 string aP11_MemoBgColorCode ,
-                                 string aP12_MemoForm ,
-                                 out SdtSDT_Error aP13_Error )
+                                 string aP2_MemoTitle ,
+                                 string aP3_MemoDescription ,
+                                 string aP4_MemoImage ,
+                                 string aP5_MemoDocument ,
+                                 DateTime aP6_MemoStartDateTime ,
+                                 DateTime aP7_MemoEndDateTime ,
+                                 short aP8_MemoDuration ,
+                                 DateTime aP9_MemoRemoveDate ,
+                                 string aP10_MemoBgColorCode ,
+                                 string aP11_MemoForm ,
+                                 string aP12_MemoType ,
+                                 string aP13_MemoName ,
+                                 decimal aP14_MemoLeftOffset ,
+                                 decimal aP15_MemoTopOffset ,
+                                 decimal aP16_MemoTitleAngle ,
+                                 decimal aP17_MemoTitleScale ,
+                                 out SdtSDT_Error aP18_Error )
       {
          this.AV17MemoId = aP0_MemoId;
          this.AV23ResidentGUID = aP1_ResidentGUID;
-         this.AV11MemoCategoryId = aP2_MemoCategoryId;
-         this.AV21MemoTitle = aP3_MemoTitle;
-         this.AV12MemoDescription = aP4_MemoDescription;
-         this.AV18MemoImage = aP5_MemoImage;
-         this.AV13MemoDocument = aP6_MemoDocument;
-         this.AV20MemoStartDateTime = aP7_MemoStartDateTime;
-         this.AV15MemoEndDateTime = aP8_MemoEndDateTime;
-         this.AV14MemoDuration = aP9_MemoDuration;
-         this.AV19MemoRemoveDate = aP10_MemoRemoveDate;
-         this.AV10MemoBgColorCode = aP11_MemoBgColorCode;
-         this.AV16MemoForm = aP12_MemoForm;
+         this.AV21MemoTitle = aP2_MemoTitle;
+         this.AV12MemoDescription = aP3_MemoDescription;
+         this.AV18MemoImage = aP4_MemoImage;
+         this.AV13MemoDocument = aP5_MemoDocument;
+         this.AV20MemoStartDateTime = aP6_MemoStartDateTime;
+         this.AV15MemoEndDateTime = aP7_MemoEndDateTime;
+         this.AV14MemoDuration = aP8_MemoDuration;
+         this.AV19MemoRemoveDate = aP9_MemoRemoveDate;
+         this.AV10MemoBgColorCode = aP10_MemoBgColorCode;
+         this.AV16MemoForm = aP11_MemoForm;
+         this.AV27MemoType = aP12_MemoType;
+         this.AV28MemoName = aP13_MemoName;
+         this.AV29MemoLeftOffset = aP14_MemoLeftOffset;
+         this.AV30MemoTopOffset = aP15_MemoTopOffset;
+         this.AV31MemoTitleAngle = aP16_MemoTitleAngle;
+         this.AV26MemoTitleScale = aP17_MemoTitleScale;
          this.AV8Error = new SdtSDT_Error(context) ;
          SubmitImpl();
-         aP13_Error=this.AV8Error;
+         aP18_Error=this.AV8Error;
       }
 
       protected override void ExecutePrivate( )
@@ -148,31 +173,92 @@ namespace GeneXus.Programs {
          }
          pr_default.close(0);
          AV25Trn_Memo.Load(AV17MemoId);
-         AV25Trn_Memo.gxTpr_Memocategoryid = AV11MemoCategoryId;
-         AV25Trn_Memo.gxTpr_Memotitle = AV21MemoTitle;
-         AV25Trn_Memo.gxTpr_Memodescription = AV12MemoDescription;
-         AV25Trn_Memo.gxTpr_Memoimage = AV18MemoImage;
-         AV25Trn_Memo.gxTpr_Memodocument = AV13MemoDocument;
-         AV25Trn_Memo.gxTpr_Memostartdatetime = AV20MemoStartDateTime;
-         AV25Trn_Memo.gxTpr_Memoenddatetime = AV15MemoEndDateTime;
-         AV25Trn_Memo.gxTpr_Memoduration = AV14MemoDuration;
-         AV25Trn_Memo.gxTpr_Memoremovedate = AV19MemoRemoveDate;
-         AV25Trn_Memo.gxTpr_Residentid = AV24ResidentId;
-         AV25Trn_Memo.gxTpr_Memobgcolorcode = AV10MemoBgColorCode;
-         AV25Trn_Memo.gxTpr_Memoform = AV16MemoForm;
-         AV25Trn_Memo.gxTpr_Sg_organisationid = AV22OrganisationId;
-         AV25Trn_Memo.gxTpr_Sg_locationid = AV9LocationId;
-         AV25Trn_Memo.Save();
-         if ( AV25Trn_Memo.Success() )
+         if ( AV25Trn_Memo.gxTpr_Residentid == AV24ResidentId )
          {
-            context.CommitDataStores("prc_updatememo",pr_default);
-            AV8Error.gxTpr_Status = context.GetMessage( "Success", "");
-            AV8Error.gxTpr_Message = context.GetMessage( "Memo created successfully", "");
+            AV25Trn_Memo.gxTpr_Sg_organisationid = AV22OrganisationId;
+            AV25Trn_Memo.gxTpr_Sg_locationid = AV9LocationId;
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV21MemoTitle)) )
+            {
+               AV25Trn_Memo.gxTpr_Memotitle = AV21MemoTitle;
+            }
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12MemoDescription)) )
+            {
+               AV25Trn_Memo.gxTpr_Memodescription = AV12MemoDescription;
+            }
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV18MemoImage)) )
+            {
+               AV25Trn_Memo.gxTpr_Memoimage = AV18MemoImage;
+            }
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13MemoDocument)) )
+            {
+               AV25Trn_Memo.gxTpr_Memodocument = AV13MemoDocument;
+            }
+            if ( ! (DateTime.MinValue==AV20MemoStartDateTime) )
+            {
+               AV25Trn_Memo.gxTpr_Memostartdatetime = AV20MemoStartDateTime;
+            }
+            if ( ! (DateTime.MinValue==AV15MemoEndDateTime) )
+            {
+               AV25Trn_Memo.gxTpr_Memoenddatetime = AV15MemoEndDateTime;
+            }
+            if ( ! (0==AV14MemoDuration) )
+            {
+               AV25Trn_Memo.gxTpr_Memoduration = AV14MemoDuration;
+            }
+            if ( ! (DateTime.MinValue==AV19MemoRemoveDate) )
+            {
+               AV25Trn_Memo.gxTpr_Memoremovedate = AV19MemoRemoveDate;
+            }
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV10MemoBgColorCode)) )
+            {
+               AV25Trn_Memo.gxTpr_Memobgcolorcode = AV10MemoBgColorCode;
+            }
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16MemoForm)) )
+            {
+               AV25Trn_Memo.gxTpr_Memoform = AV16MemoForm;
+            }
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27MemoType)) )
+            {
+               AV25Trn_Memo.gxTpr_Memotype = AV27MemoType;
+            }
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV28MemoName)) )
+            {
+               AV25Trn_Memo.gxTpr_Memoname = AV28MemoName;
+            }
+            if ( ! (Convert.ToDecimal(0)==AV29MemoLeftOffset) )
+            {
+               AV25Trn_Memo.gxTpr_Memoleftoffset = AV29MemoLeftOffset;
+            }
+            if ( ! (Convert.ToDecimal(0)==AV30MemoTopOffset) )
+            {
+               AV25Trn_Memo.gxTpr_Memotopoffset = AV30MemoTopOffset;
+            }
+            if ( ! (Convert.ToDecimal(0)==AV31MemoTitleAngle) )
+            {
+               AV25Trn_Memo.gxTpr_Memotitleangle = AV31MemoTitleAngle;
+            }
+            if ( ! (Convert.ToDecimal(0)==AV26MemoTitleScale) )
+            {
+               AV25Trn_Memo.gxTpr_Memotitlescale = AV26MemoTitleScale;
+            }
+            AV25Trn_Memo.Save();
+            if ( AV25Trn_Memo.Success() )
+            {
+               context.CommitDataStores("prc_updatememo",pr_default);
+               AV8Error.gxTpr_Status = context.GetMessage( "Success", "");
+               AV8Error.gxTpr_Message = context.GetMessage( "Memo created successfully", "");
+            }
+            else
+            {
+               AV8Error.gxTpr_Status = context.GetMessage( "Error", "");
+               AV8Error.gxTpr_Message = context.GetMessage( "Failed to update memo", "");
+               context.RollbackDataStores("prc_updatememo",pr_default);
+            }
          }
          else
          {
             AV8Error.gxTpr_Status = context.GetMessage( "Error", "");
-            AV8Error.gxTpr_Message = context.GetMessage( "Failed to update memo", "");
+            AV8Error.gxTpr_Message = context.GetMessage( "Failed to update memo, the memo does not belong to the resident", "");
             context.RollbackDataStores("prc_updatememo",pr_default);
          }
          cleanup();
@@ -222,19 +308,24 @@ namespace GeneXus.Programs {
       }
 
       private short AV14MemoDuration ;
+      private decimal AV29MemoLeftOffset ;
+      private decimal AV30MemoTopOffset ;
+      private decimal AV31MemoTitleAngle ;
+      private decimal AV26MemoTitleScale ;
       private string AV16MemoForm ;
       private DateTime AV20MemoStartDateTime ;
       private DateTime AV15MemoEndDateTime ;
       private DateTime AV19MemoRemoveDate ;
+      private string AV18MemoImage ;
       private string AV23ResidentGUID ;
       private string AV21MemoTitle ;
       private string AV12MemoDescription ;
-      private string AV18MemoImage ;
       private string AV13MemoDocument ;
       private string AV10MemoBgColorCode ;
+      private string AV27MemoType ;
+      private string AV28MemoName ;
       private string A71ResidentGUID ;
       private Guid AV17MemoId ;
-      private Guid AV11MemoCategoryId ;
       private Guid A62ResidentId ;
       private Guid A29LocationId ;
       private Guid A11OrganisationId ;
@@ -251,7 +342,7 @@ namespace GeneXus.Programs {
       private Guid[] P00D12_A29LocationId ;
       private Guid[] P00D12_A11OrganisationId ;
       private SdtTrn_Memo AV25Trn_Memo ;
-      private SdtSDT_Error aP13_Error ;
+      private SdtSDT_Error aP18_Error ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
