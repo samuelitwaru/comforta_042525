@@ -106,7 +106,7 @@ namespace GeneXus.Programs {
          AV13BC_Page.gxTpr_Pageid = Guid.NewGuid( );
          AV13BC_Page.gxTpr_Pagename = AV9PageName;
          AV16SDT_LinkPage = new SdtSDT_LinkPage(context);
-         if ( ! (0==AV19WWPFormId) )
+         if ( ! ( AV19WWPFormId == 0 ) )
          {
             AV16SDT_LinkPage.gxTpr_Wwpformid = AV19WWPFormId;
             /* Using cursor P00GC2 */
