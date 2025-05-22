@@ -12,6 +12,8 @@ export class WebLinkPageComponent {
     constructor(tile: Tile, page: Page) {
         this.page = page;
         this.tile = tile;
+        console.log('tile', tile)
+        console.log('page', page)
         this.pageElement = document.createElement("div");
         this.init();
     }

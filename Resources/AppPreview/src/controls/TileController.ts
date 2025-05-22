@@ -12,11 +12,12 @@ export class TileController {
     constructor(tile: Tile) {
         this.version = AppVersionManager.getInstance();
         this.tile = tile;
+        console.log('tile', tile);
     }
 
     public navigate() {
         if (this.tile.Action.ObjectId) {
-            if (this.tile.Action.ObjectType === "Web Link") {
+            if (this.tile.Action.ObjectType === "WebLink") {
                 const webLinkController = new WebLinkController(this.tile, this.tile.Action.ObjectId);
                 webLinkController.init();
             } else if (this.tile.Action.ObjectType === "Map") {

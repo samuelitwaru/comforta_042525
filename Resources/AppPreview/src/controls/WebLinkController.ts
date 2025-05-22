@@ -13,6 +13,7 @@ export class WebLinkController {
             this.version = AppVersionManager.getInstance();
             this.tile = tile;
             this.pageId = pageId;
+            console.log('tile', tile);
         }
     
         init() {

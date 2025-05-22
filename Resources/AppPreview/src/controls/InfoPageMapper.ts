@@ -15,7 +15,6 @@ export class InfoPageMapper {
     constructor(page: Page) {
         this.pageId = page.PageId;
         this.pageData = page.PageInfoStructure;
-        console.log("this.page", page);
     }
 
     private renderImage(content: InfoType) {

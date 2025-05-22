@@ -422,4 +422,5 @@
   border-radius: 8px;
   max-width: 70px;
   height: 65px;
+  object-fit: cover;
 }

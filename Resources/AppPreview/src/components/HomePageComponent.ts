@@ -1,4 +1,5 @@
 import { HomePageMapper } from "../controls/HomePageMapper";
+import { InfoPageMapper } from "../controls/InfoPageMapper";
 import { Page } from "../interfaces/Page";
 import { HeaderComponent } from "./HeaderComponent";
 import { HomeAppBarComponent } from "./HomeAppBarComponent";
@@ -22,7 +23,7 @@ export class HomePageComponent {
         header.render(this.homeElement);
         homeAppBar.render(this.homeElement);
 
-        const homePageMapper = new HomePageMapper(this.page);
+        const homePageMapper = new InfoPageMapper(this.page);
         homePageMapper.renderContent(this.homeElement);
     }
 
